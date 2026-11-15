@@ -1,0 +1,137 @@
+metadata:
+  title: I2C Distribution Sub-harness (REV_A_PROVISIONAL)
+  description: SELV I2C distribution to OLED/TMP102/RTC. No mains. Verify addresses.
+  author: OpenCode
+  date: '2026-11-15'
+  rev: REV_A_PROVISIONAL
+options:
+  bgcolor: WH
+connectors:
+  J1:
+    type: Carrier SELV connector
+    pinlabels:
+    - +3V3
+    - GND
+    - SDA
+    - SCL
+  J_I2C:
+    type: I2C distribution block
+    pinlabels:
+    - +3V3_IN
+    - GND_IN
+    - SDA_IN
+    - SCL_IN
+    - +3V3_A
+    - GND_A
+    - SDA_A
+    - SCL_A
+    - +3V3_B
+    - GND_B
+    - SDA_B
+    - SCL_B
+  U4:
+    type: TMP102
+    pinlabels:
+    - VCC
+    - GND
+    - SDA
+    - SCL
+  U5:
+    type: DS3231M
+    pinlabels:
+    - VCC
+    - GND
+    - SDA
+    - SCL
+cables:
+  W_I2C_IN:
+    gauge: 0.25 mm2
+    length: 0.10 m
+    wirecount: 4
+    color: GY
+    colors:
+    - RD
+    - BK
+    - WH
+    - GN
+    wirelabels:
+    - +3V3
+    - GND
+    - SDA
+    - SCL
+  W_TEMP:
+    gauge: 0.25 mm2
+    length: 0.12 m
+    wirecount: 4
+    color: GY
+    colors:
+    - RD
+    - BK
+    - WH
+    - GN
+    wirelabels:
+    - +3V3
+    - GND
+    - SDA
+    - SCL
+  W_RTC:
+    gauge: 0.25 mm2
+    length: 0.12 m
+    wirecount: 4
+    color: GY
+    colors:
+    - RD
+    - BK
+    - WH
+    - GN
+    wirelabels:
+    - +3V3
+    - GND
+    - SDA
+    - SCL
+connections:
+- - J1:
+    - +3V3
+    - GND
+    - SDA
+    - SCL
+  - W_I2C_IN:
+    - 1
+    - 2
+    - 3
+    - 4
+  - J_I2C:
+    - +3V3_IN
+    - GND_IN
+    - SDA_IN
+    - SCL_IN
+- - J_I2C:
+    - +3V3_A
+    - GND_A
+    - SDA_A
+    - SCL_A
+  - W_TEMP:
+    - 1
+    - 2
+    - 3
+    - 4
+  - U4:
+    - VCC
+    - GND
+    - SDA
+    - SCL
+- - J_I2C:
+    - +3V3_B
+    - GND_B
+    - SDA_B
+    - SCL_B
+  - W_RTC:
+    - 1
+    - 2
+    - 3
+    - 4
+  - U5:
+    - VCC
+    - GND
+    - SDA
+    - SCL

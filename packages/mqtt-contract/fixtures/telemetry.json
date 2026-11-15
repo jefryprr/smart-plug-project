@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "device_id": "dev-sim-001",
+  "message_id": "msg-telemetry-001",
+  "sequence": 1042,
+  "sampled_at": "2026-11-15T02:00:00Z",
+  "quality": "VALID",
+  "measurements": {
+    "voltage_v": 230.1,
+    "current_a": 0.45,
+    "active_power_w": 92.7,
+    "energy_kwh_total": 15.214,
+    "power_factor": 0.9,
+    "frequency_hz": 50.0
+  },
+  "state": {
+    "commanded_output": "ON",
+    "observed_output": null,
+    "fault": null,
+    "lockout": false,
+    "state_version": 7,
+    "clock_valid": true,
+    "meter_valid": true,
+    "temperature_valid": true
+  }
+}

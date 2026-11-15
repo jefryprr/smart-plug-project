@@ -1,0 +1,26 @@
+endpoint,method,auth_required,allowed_roles,object_scope,rate_limit,notes
+/api/v1/auth/login,POST,no,public,none,5/min/IP,Generic 401; no user enumeration
+/api/v1/auth/refresh,POST,refresh_token,public,session,20/min/IP,Rotates and revokes old session
+/api/v1/auth/logout,POST,access_token,any authenticated,own session,none,Revokes current refresh session
+/api/v1/me,GET,access_token,any authenticated,own user,none,Returns homes/roles
+/api/v1/devices,GET,access_token,any member,own homes,none,Tenant-scoped query
+/api/v1/device-claims,POST,access_token,any authenticated,single-use code,none,Expiry + single use + audit
+/api/v1/devices/{id},GET,access_token,any member,own device,none,404 for other tenant
+/api/v1/devices/{id},PATCH,access_token,owner/admin,own device,none,Name/room validation
+/api/v1/devices/{id}/commands,POST,access_token,owner/admin,own device,30/min,Ttl/idempotency/replay/lockout
+/api/v1/devices/{id}/commands/{commandId},GET,access_token,any member,own device,none,Audit correlation
+/api/v1/devices/{id}/telemetry,GET,access_token,any member,own device,none,Range/limit cap
+/api/v1/devices/{id}/analytics,GET,access_token,any member,own device,none,Max 400 days
+/api/v1/devices/{id}/automations,GET,access_token,any member,own device,none,Read schedules
+/api/v1/devices/{id}/automations,PUT,access_token,owner/admin,own device,none,Optimistic version
+/api/v1/devices/{id}/tariff,GET,access_token,any member,own device,none,History
+/api/v1/devices/{id}/tariff,PUT,access_token,owner/admin,own device,none,No retroactive rewrite
+/api/v1/devices/{id}/budget,GET,access_token,any member,own device,none,Default disabled if unset
+/api/v1/devices/{id}/budget,PUT,access_token,owner/admin,own device,none,Validated bounds
+/api/v1/devices/{id}/events,GET,access_token,any member,own device,none,Pagination/redaction
+/api/v1/devices/{id}/notifications/test,POST,access_token,owner/admin,own device,2/min,Provider mock/Telegram
+/api/v1/devices/{id}/diagnostics,GET,access_token,owner/admin,own device,none,No secrets in payload
+/api/v1/devices/{id}/ota,POST,access_token,owner/admin,own device,none,Request only; no image delivery
+/api/v1/devices/{id}/revoke,POST,access_token,owner,own device,none,Revokes credentials/claim
+/health/live,GET,no,public,none,none,No internal details
+/health/ready,GET,no,public,service,none,DB/MQTT status only

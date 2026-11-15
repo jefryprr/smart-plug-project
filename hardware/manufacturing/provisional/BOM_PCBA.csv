@@ -1,0 +1,12 @@
+reference_designators,description,manufacturer,mpn,qty,footprint,approved_status,notes
+U1,ESP32-S3-DevKitC-1 N16R8,Espressif,ESP32-S3-DevKitC-1-N16R8,1,2x20 header,PENDING_APPROVAL,Board revision unverified
+U4,TMP102 temperature sensor,Texas Instruments,TMP102AIDRLR,1,SOT-563,PENDING_APPROVAL,No footprint approved
+U5,DS3231M RTC,Analog Devices,DS3231MZ+,1,SO-16W,PENDING_APPROVAL,No footprint approved
+U8,Relay driver MOSFET,Alpha & Omega,AO3400A,1,SOT-23,PENDING_APPROVAL,No footprint approved
+U9,WS2812 level shifter,Texas Instruments,SN74AHCT1G125DBVR,1,SOT-23-5,PENDING_APPROVAL,No footprint approved
+U6,UART isolator,Analog Devices,ADuM1201ARZ,1,SOIC-8,PENDING_APPROVAL,No footprint approved
+J1,2x20 header for DevKitC-1,TBD,HDR-2X20-2.54-F,1,PinHeader_2x20,PROVISIONAL,Mechanical fit pending
+J2,JST-XH 4-pin OLED,JST,B4B-XH-A,1,JST_XH_4,PROVISIONAL,Low voltage only
+J3,JST-XH 2-pin button,JST,B2B-XH-A,1,JST_XH_2,PROVISIONAL,Low voltage only
+J4,JST-XH 3-pin RGB,JST,B3B-XH-A,1,JST_XH_3,PROVISIONAL,Low voltage only
+DS1,OLED SSD1306 0.96,TBD,OLED-096-SSD1306-I2C,1,Module, DOCUMENTATION_DEFICIENT,Controller/batch unverified

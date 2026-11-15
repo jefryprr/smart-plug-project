@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "master_rows": 46,
+  "pcba_rows": 11,
+  "missing_refs_in_master": [],
+  "unpriced_lines": 46,
+  "unapproved_lines": 46,
+  "approved_for_fabrication": 0,
+  "limitations": [
+    "No prices were verified; BOM is unpriced and not approved."
+  ]
+}

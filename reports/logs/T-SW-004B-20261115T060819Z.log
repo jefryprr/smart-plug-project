@@ -1,0 +1,13 @@
+
+> @smartplug/device-simulator@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 C:/Users/JEFRY PRATAMA/Zed/SMART-PLUG-V2/apps/device-simulator
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  13:09:01
+   Duration  1.19s (import 56%, tests 27%, transform 16%, worker 1%)
+

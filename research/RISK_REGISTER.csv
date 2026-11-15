@@ -1,0 +1,19 @@
+risk_id,category,risk,likelihood,impact,mitigation,owner,status
+PR-01,Supply,PZEM V4 official batch datasheet unavailable,High,High,Switch to ADE7953 or approve alternate; quarantine samples,Hardware,OPEN
+PR-02,Supply,Relay 10 A DPST with traceable datasheet unavailable,Medium,High,Use 8 A relay and lower rating, or larger contactor,Hardware,OPEN
+PR-03,Supply,ESP32-S3 DevKitC-1 N16R8 stock/price varies,Medium,Medium,Order from authorized distributor; verify revision,Hardware,OPEN
+PR-04,Supply,Socket/plug/enclosure documentation deficient,High,High,Select rated products; inspect samples,Hardware,OPEN
+PR-05,Schedule,KiCad/ESP-IDF/Android SDK installation time,High,Medium,Install in phases; document blockers,Project,OPEN
+PR-06,Schedule,Scope is large (80 FRs),High,High,Prioritize P0 and safety gates; keep status honest,Project,OPEN
+PR-07,Technical,SQLite/Postgres divergence,High,Medium,Implement Postgres adapter and test,Backend,OPEN
+PR-08,Technical,MQTT/TLS/ACL not executed,High,High,Staging deploy with TLS/ACL negative tests,Backend/Security,OPEN
+PR-09,Technical,No physical fit/thermal/PE test,High,High,Lab/engineer review before fabrication,Hardware,BLOCKED
+PR-10,Security,No secure boot/flash encryption/signed OTA,Medium,High,Decision + recovery plan + tests,Security,OPEN
+PR-11,Security,SessionStorage XSS exposure,Medium,Medium,CSP review, httpOnly BFF option,Frontend,OPEN
+PR-12,Cost,BOM unpriced may exceed Rp500–750k,High,Medium,Get dated quotes; allow Q07=C,Project,OPEN
+PR-13,Regulatory,Consumer sale without SNI/certification,Low,High,Do not market; regulatory plan,Project,OPEN
+PR-14,Safety,Relay contact weld / stuck ON,Medium,High,Fuse/thermal backup, feedback, lab test,Hardware,BLOCKED
+PR-15,Safety,PE discontinuity,Low,High,Dedicated PE + continuity test,Hardware,BLOCKED
+PR-16,Safety,3D printed enclosure used with mains,Medium,High,Prototype-only label; rated enclosure required,Mechanical,OPEN
+PR-17,Data,Synthetic demo mistaken for real data,Medium,Medium,Persistent labels; docs; data_source,Frontend,CONFIRMED
+PR-18,Maintenance,API/device schema drift,Medium,Medium,OpenAPI/JSON Schema + contract tests,Backend,OPEN

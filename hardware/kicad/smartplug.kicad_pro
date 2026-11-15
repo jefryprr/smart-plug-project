@@ -1,0 +1,101 @@
+{
+  "board": {
+    "3dviewports": [],
+    "design_settings": {
+      "defaults": {},
+      "rules": {},
+      "track_widths": [],
+      "via_dimensions": []
+    },
+    "layer_presets": [],
+    "viewports": []
+  },
+  "boards": [],
+  "cvpcb": {
+    "equivalence_files": []
+  },
+  "libraries": {
+    "pinned_footprint_libs": [],
+    "pinned_symbol_libs": []
+  },
+  "meta": {
+    "filename": "smartplug.kicad_pro",
+    "version": 1
+  },
+  "net_settings": {
+    "classes": [
+      {
+        "name": "Default",
+        "clearance": 0.2,
+        "track_width": 0.25,
+        "via_diameter": 0.8,
+        "via_drill": 0.4,
+        "wire_width": 6,
+        "bus_width": 12,
+        "line_style": 0,
+        "priority": 1
+      }
+    ],
+    "meta": {
+      "version": 3
+    }
+  },
+  "pcbnew": {
+    "last_paths": {
+      "gencad": "",
+      "idf": "",
+      "netlist": "",
+      "specctra_dsn": "",
+      "step": "",
+      "vrml": ""
+    },
+    "page_layout_descr_file": ""
+  },
+  "schematic": {
+    "legacy_lib_dir": "",
+    "legacy_lib_list": []
+  },
+  "sheets": [
+    [
+      "ca315c34-06fb-459c-8a20-3a35cc1faca1",
+      "Root"
+    ],
+    [
+      "919c6a5b-8e55-495f-8caf-908c268095a0",
+      "AC_INPUT_OUTPUT"
+    ],
+    [
+      "a5555082-47ac-409c-be92-3c183c12702a",
+      "SAFETY_AND_SWITCH"
+    ],
+    [
+      "8136cffd-d2a4-4b15-b472-48706438087e",
+      "AC_DC_POWER"
+    ],
+    [
+      "5779ece5-7be9-4ebf-bad6-cbaa2e096592",
+      "PZEM_AND_CT"
+    ],
+    [
+      "bdc033ee-da20-45e5-b605-d12e127b4667",
+      "LOW_VOLTAGE_CONTROL"
+    ],
+    [
+      "6412e38f-4ef1-44bc-8d1b-a98e19db1426",
+      "ESP32S3_CARRIER"
+    ],
+    [
+      "67095bc8-b2e1-4c62-8a46-55a10365fb43",
+      "DISPLAY_AND_BUTTONS"
+    ],
+    [
+      "a510f8d1-f25d-4b18-bf15-5d7ef9a5ccd8",
+      "TEMP_SENSING"
+    ],
+    [
+      "7c5067bd-96f6-4cb4-a866-b3239c18dfb8",
+      "SERVICE_AND_DEBUG"
+    ]
+  ],
+  "text_variables": {}
+}

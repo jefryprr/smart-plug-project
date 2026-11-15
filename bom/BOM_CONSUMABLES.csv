@@ -1,0 +1,6 @@
+item_id,reference_designators,category,description,manufacturer,manufacturer_part_number,module_revision,qty_per_unit,unit,price_idr_per_unit,tax_shipment_included,total_idr,price_checked_at,seller,seller_url,datasheet_url,datasheet_revision,approved_status,alternative_mpn,footprint_id,mechanical_model,supplier_stock_status,rating_verified,notes,source_evidence
+C-001,-,Consumables,"Lead-free solder, SAC305, 0.5 mm",TBD,SOLDER-SAC305,-,1,roll,,FALSE,,,,,,UNKNOWN,PROVISIONAL,,TBD,TBD,UNKNOWN,FALSE,Low-voltage assembly only for beginners.,Generic.
+C-002,-,Consumables,No-clean flux pen,TBD,FLUX-PEN,-,1,pcs,,FALSE,,,,,,UNKNOWN,PROVISIONAL,,TBD,TBD,UNKNOWN,FALSE,Clean residue per assembly procedure.,Generic.
+C-003,-,Consumables,Isopropyl alcohol 99% and lint-free swabs,TBD,IPA-99,-,1,pcs,,FALSE,,,,,,UNKNOWN,PROVISIONAL,,TBD,TBD,UNKNOWN,FALSE,Flux cleaning and inspection.,Generic.
+C-004,-,Consumables,Ferrules and crimp tool for 1.5 mm2 and 0.25 mm2,TBD,FERRULE-KIT,-,1,pcs,,FALSE,,,,,,UNKNOWN,PROVISIONAL,,TBD,TBD,UNKNOWN,FALSE,Proper crimp required; solder-only stranded wire is not acceptable for mains terminals.,Generic.
+C-005,-,Consumables,Kapton/polyimide tape and thermal pad,TBD,THERMAL-TAPE,-,1,pcs,,FALSE,,,,,,UNKNOWN,PROVISIONAL,,TBD,TBD,UNKNOWN,FALSE,Do not rely on tape for insulation barriers.,Generic.

@@ -1,0 +1,52 @@
+{
+  "pe_path": {
+    "status": "PASS",
+    "members": [
+      "P1:PE",
+      "W_PE:1",
+      "X1:PE",
+      "WPE:PE"
+    ],
+    "rule": "PE must connect input to output without relay/fuse/thermal cutoff."
+  },
+  "relay_contacts_separate": {
+    "status": "PASS",
+    "note": "NO contacts must be separate nets before/after switching."
+  },
+  "relay_coil_selv": {
+    "status": "PASS",
+    "note": "Coil is driven from SELV only."
+  },
+  "uart_isolation": {
+    "status": "PASS",
+    "failures": [],
+    "note": "No net may short isolator side 1 to side 2."
+  },
+  "mains_selv_separation": {
+    "status": "PASS",
+    "failures": [],
+    "note": "Static net check only; does not prove PCB/enclosure creepage."
+  },
+  "gpio_crosscheck": {
+    "status": "PASS",
+    "issues": [],
+    "board_revision_verified": false,
+    "checked_defines": 11,
+    "limitations": [
+      "Board revision is unverified; static compare only."
+    ]
+  },
+  "bom_crosscheck": {
+    "status": "PASS",
+    "master_rows": 46,
+    "pcba_rows": 11,
+    "missing_refs_in_master": [],
+    "unpriced_lines": 46,
+    "unapproved_lines": 46,
+    "approved_for_fabrication": 0,
+    "limitations": [
+      "No prices were verified; BOM is unpriced and not approved."
+    ]
+  },
+  "overall_status": "PASS"
+}

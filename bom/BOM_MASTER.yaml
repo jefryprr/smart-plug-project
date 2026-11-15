@@ -1,0 +1,1205 @@
+project: esp32-s3-iot-smart-plug
+design_revision: REV_A_PROVISIONAL
+generated_at: '2026-11-15T05:07:47.017407+00:00'
+items:
+- item_id: E-001
+  reference_designators: U1
+  category: MCU
+  description: ESP32-S3 DevKitC-1, N16R8 (16 MB flash, 8 MB PSRAM)
+  manufacturer: Espressif
+  manufacturer_part_number: ESP32-S3-DevKitC-1-N16R8
+  module_revision: v1.1 (planned)
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html
+  datasheet_revision: UNKNOWN
+  approved_status: PENDING_APPROVAL
+  alternative_mpn: ESP32-S3-DevKitC-1-N8R8; third-party clone (not preferred)
+  footprint_id: ESP32-S3-DevKitC-1_2x20_P2.54
+  mechanical_model: esp32s3_devkitc1_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: RGB pin differs between v1.0 (GPIO48) and v1.1 (GPIO38); board must be photographed
+    and revision verified. N16R8 uses octal PSRAM; avoid GPIO33-37.
+  source_evidence: Espressif user guide v1.1; verify exact board marking and USB/strapping
+    pins on arrival.
+- item_id: E-002
+  reference_designators: U2
+  category: Metering
+  description: PZEM-004T V4 AC energy meter, 100 A split/open CT, TTL/Modbus
+  manufacturer: Peacefair
+  manufacturer_part_number: PZEM-004T-V4-100A-SPLIT
+  module_revision: V4 (unverified batch)
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://github.com/im-0/pzem-004t-original-docs
+  datasheet_revision: UNKNOWN
+  approved_status: DOCUMENTATION_DEFICIENT
+  alternative_mpn: ADE7953 + CT + isolation; HLW8032 + shunt (not preferred)
+  footprint_id: OFF_BOARD_MODULE
+  mechanical_model: pzem004t_v4_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Official Peacefair V4 datasheet for the exact batch is not verified. UART
+    level, isolation, terminal rating, and CT ratio must be measured. Do not confuse
+    CT rating with output current rating.
+  source_evidence: PRD retailer references are availability evidence only, not datasheet.
+    Archive is historical and may not match the purchased V4.
+- item_id: E-003
+  reference_designators: U3
+  category: Power
+  description: AC/DC 5 V 1 A isolated power module, 90-264 VAC input
+  manufacturer: Mean Well
+  manufacturer_part_number: IRM-05-5
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF
+  datasheet_revision: UNKNOWN
+  approved_status: PENDING_APPROVAL
+  alternative_mpn: Recom RAC01-05SC; Hi-Link HLK-PM01 (documentation deficient)
+  footprint_id: OFF_BOARD_MODULE
+  mechanical_model: irm05_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Isolation withstand, leakage, no-load, thermal derating, and creepage must
+    be reviewed in the final assembly. Fuse and MOV belong upstream.
+  source_evidence: Mean Well IRM-05 series datasheet; exact revision to be recorded
+    at purchase.
+- item_id: E-004
+  reference_designators: U4
+  category: Sensing
+  description: Digital temperature sensor, I2C, 3.3 V, SOT-563
+  manufacturer: Texas Instruments
+  manufacturer_part_number: TMP102AIDRLR
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.ti.com/lit/ds/symlink/tmp102.pdf
+  datasheet_revision: UNKNOWN
+  approved_status: PENDING_APPROVAL
+  alternative_mpn: MCP9808; DS18B20 (remote probe)
+  footprint_id: SOT-563-6
+  mechanical_model: TMP102_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Place near relay/terminal hotspot. Sensor failure must produce invalid state,
+    not a stale comfortable reading.
+  source_evidence: TI TMP102 datasheet; accuracy and thermal response to be verified
+    on bench.
+- item_id: E-005
+  reference_designators: U5
+  category: Sensing
+  description: I2C real-time clock with integrated crystal, 3.3 V
+  manufacturer: Analog Devices
+  manufacturer_part_number: DS3231MZ+
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.analog.com/media/en/technical-documentation/data-sheets/DS3231M.pdf
+  datasheet_revision: UNKNOWN
+  approved_status: PENDING_APPROVAL
+  alternative_mpn: PCF8523T + 32.768 kHz crystal; SNTP holdover only
+  footprint_id: SO-16W
+  mechanical_model: DS3231_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Battery/supercap holder and drift budget must be selected. Invalid clock
+    blocks automatic ON.
+  source_evidence: Analog Devices DS3231M datasheet; RTC drift and backup runtime
+    require measurement.
+- item_id: E-006
+  reference_designators: U6
+  category: Isolation
+  description: Dual-channel digital isolator for PZEM UART (2.5 kVrms class)
+  manufacturer: Analog Devices
+  manufacturer_part_number: ADuM1201ARZ
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.analog.com/media/en/technical-documentation/data-sheets/ADuM1200_1201.pdf
+  datasheet_revision: UNKNOWN
+  approved_status: PENDING_APPROVAL
+  alternative_mpn: Si8622; optocoupler pair (slower, more space)
+  footprint_id: SOIC-8
+  mechanical_model: ADuM1201_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Mandatory provisional barrier between PZEM-side UART and SELV MCU. Final
+    working voltage/creepage must be reviewed. Do not connect PZEM GND directly to
+    MCU GND.
+  source_evidence: ADI ADuM1201 datasheet; isolation rating is component-level, not
+    final assembly proof.
+- item_id: E-007
+  reference_designators: U7
+  category: Isolation
+  description: Isolated 5 V to 5 V DC/DC converter, 1 W, for PZEM barrier
+  manufacturer: Mornsun
+  manufacturer_part_number: B0505S-1WR3
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.mornsun-power.com/html/pdf/B0505S-1WR3.html
+  datasheet_revision: UNKNOWN
+  approved_status: PENDING_APPROVAL
+  alternative_mpn: RECOM R1SE-0505; Traco TMR 1-0511
+  footprint_id: SIP-4
+  mechanical_model: B0505S_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Provides isolated 5 V to the PZEM side. Output filtering and common-mode
+    path must be reviewed.
+  source_evidence: Mornsun datasheet; exact revision to be recorded.
+- item_id: E-008
+  reference_designators: U8
+  category: Switching
+  description: N-channel MOSFET relay driver, logic-level, SOT-23
+  manufacturer: Alpha & Omega Semiconductor
+  manufacturer_part_number: AO3400A
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.aosmd.com/res/data_sheets/AO3400A.pdf
+  datasheet_revision: UNKNOWN
+  approved_status: PENDING_APPROVAL
+  alternative_mpn: 2N7002 (lower current); ULN2003 (module driver)
+  footprint_id: SOT-23
+  mechanical_model: AO3400_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Gate pulldown 100k and series 1k are mandatory for boot-safe OFF. Flyback
+    diode across coil. Verify coil current and thermal.
+  source_evidence: AOS datasheet; boot waveform must be measured on a low-voltage
+    fixture.
+- item_id: E-009
+  reference_designators: U9
+  category: UI
+  description: Single buffer/level shifter for 3.3 V to 5 V WS2812 data
+  manufacturer: Texas Instruments
+  manufacturer_part_number: SN74AHCT1G125DBVR
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.ti.com/lit/ds/symlink/sn74ahct1g125.pdf
+  datasheet_revision: UNKNOWN
+  approved_status: PENDING_APPROVAL
+  alternative_mpn: 74HCT125; power WS2812 at 3.3 V if proven
+  footprint_id: SOT-23-5
+  mechanical_model: SOT23_5_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: WS2812B high-level threshold at 5 V may exceed 3.3 V logic. Level shift and
+    330 ohm series resistor.
+  source_evidence: TI datasheet; verify LED timing and supply decoupling.
+- item_id: E-010
+  reference_designators: K1
+  category: Switching
+  description: DPST-NO power PCB relay, 5 V DC coil, 8 A / 250 VAC class
+  manufacturer: TE Connectivity (Schrack)
+  manufacturer_part_number: RT444005
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.mouser.com/datasheet/2/418/9/ENG_DS_RT2_3-576697.pdf
+  datasheet_revision: UNKNOWN
+  approved_status: PENDING_APPROVAL
+  alternative_mpn: Two Omron G5LE-1A (not mechanically linked); Schneider Acti9 iCT
+    2P 16A (larger, off-board)
+  footprint_id: RT2_DPST_NO
+  mechanical_model: RT2_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: DPST-NO is required to review two-pole disconnection. 8 A IEC rating is below
+    the 10 A target; provisional continuous rating must be derated and thermally tested.
+    Do not substitute a single SPDT. Latching relays rejected for fail-safe reasons.
+  source_evidence: TE RT2 datasheet (8 A, 250 VAC, 2 form A); exact MPN/coil voltage
+    and UL/IEC ratings require verification.
+- item_id: E-011
+  reference_designators: F1
+  category: Protection
+  description: Fuse, 5x20 mm, 10 A, 250 VAC, time-lag
+  manufacturer: Littelfuse
+  manufacturer_part_number: 0215010.MXP
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.littelfuse.com/assetdocs/215-series-datasheet?assetguid=...
+  datasheet_revision: UNKNOWN
+  approved_status: PENDING_APPROVAL
+  alternative_mpn: Schurter 0001.2510; Bel Fuse 5TT 10
+  footprint_id: FUSE_5x20_HOLDER
+  mechanical_model: fuse_5x20_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Fuse is backup protection, not the only overcurrent protection. Breaking
+    capacity, time-current curve, holder rating, and coordination must be reviewed.
+    Provisional continuous load may be limited to 8 A.
+  source_evidence: Littelfuse 215 series; exact datasheet URL/revision to be captured.
+    Do not use a random glass fuse.
+- item_id: E-012
+  reference_designators: FH1
+  category: Protection
+  description: PCB fuse holder, 5x20 mm, 10 A / 250 VAC
+  manufacturer: Schurter
+  manufacturer_part_number: '0031.8201'
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.schurter.com/en/datasheet/0031.8201
+  datasheet_revision: UNKNOWN
+  approved_status: PENDING_APPROVAL
+  alternative_mpn: Littelfuse 03455LF2H; panel holder with touch protection
+  footprint_id: SCHURTER_0031_8201
+  mechanical_model: fuse_holder_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Touch-proof, tool-access, and service procedure required. Fuse holder must
+    not be accessible during normal use.
+  source_evidence: Schurter product page; verify voltage/current ratings and cover.
+- item_id: E-013
+  reference_designators: MOV1
+  category: Protection
+  description: Metal-oxide varistor, 275 VAC, 10 mm, surge coordination study required
+  manufacturer: EPCOS (TDK)
+  manufacturer_part_number: B72210S0271K101
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.tdk-electronics.tdk.com/inf/70/db/varistors/leaded_sio_v_series.pdf
+  datasheet_revision: UNKNOWN
+  approved_status: PENDING_APPROVAL
+  alternative_mpn: Littelfuse V275LA10P; Bourns MOV-10D271K
+  footprint_id: MOV_10MM
+  mechanical_model: mov_10mm_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: MOV alone is not a complete surge protection design. End-of-life failure
+    mode, thermal fuse coordination, and standard applicability must be reviewed.
+    Do not claim surge suppression until tested.
+  source_evidence: TDK/EPCOS SIOV series; exact part rating to be verified.
+- item_id: E-014
+  reference_designators: TF1
+  category: Protection
+  description: One-shot thermal cutoff, 99 C, 10 A / 250 VAC
+  manufacturer: Sefuse
+  manufacturer_part_number: SF169E
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.sefuse.com/
+  datasheet_revision: UNKNOWN
+  approved_status: DOCUMENTATION_DEFICIENT
+  alternative_mpn: Therm-O-Disc one-shot TCO; thermostat KSD301 (auto-reset, not preferred)
+  footprint_id: TCO_AXIAL
+  mechanical_model: tco_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Must be mechanically clamped to the hottest terminal/relay area and be independent
+    of firmware. Exact trip temperature, holding current, and approval must be verified.
+    A resettable thermostat is not equivalent.
+  source_evidence: Vendor site only; manufacturer datasheet for exact batch not yet
+    verified.
+- item_id: E-015
+  reference_designators: D1
+  category: Passives
+  description: Flyback diode for relay coil, 1 A / 1000 V
+  manufacturer: Vishay
+  manufacturer_part_number: 1N4007-E3/54
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.vishay.com/docs/88503/1n4001.pdf
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: SS34 Schottky; 1N4148 for small coils
+  footprint_id: DO-41
+  mechanical_model: DO41_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Cathode to +5 V, anode to coil low side. Verify coil current and reverse
+    voltage.
+  source_evidence: Vishay 1N400x datasheet.
+- item_id: E-016
+  reference_designators: R1
+  category: Passives
+  description: Gate series resistor, 1 kohm, 1%, 0805
+  manufacturer: Yageo
+  manufacturer_part_number: RC0805FR-071KL
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/RC0805FR-071KL.pdf
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: R_0805_2012Metric
+  mechanical_model: R0805_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Relay driver gate.
+  source_evidence: Yageo datasheet.
+- item_id: E-017
+  reference_designators: R2
+  category: Passives
+  description: Gate pulldown resistor, 100 kohm, 1%, 0805
+  manufacturer: Yageo
+  manufacturer_part_number: RC0805FR-07100KL
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.yageo.com/
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: R_0805_2012Metric
+  mechanical_model: R0805_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Mandatory to keep relay driver OFF while MCU pin floats at boot.
+  source_evidence: Yageo datasheet.
+- item_id: E-018
+  reference_designators: R3
+  category: Passives
+  description: WS2812 data series resistor, 330 ohm, 0805
+  manufacturer: Yageo
+  manufacturer_part_number: RC0805FR-07330RL
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.yageo.com/
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: R_0805_2012Metric
+  mechanical_model: R0805_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Place close to LED data input.
+  source_evidence: Yageo datasheet.
+- item_id: E-019
+  reference_designators: C1
+  category: Passives
+  description: Bulk capacitor, 100 uF, 10 V, low ESR, 6.3x5.4 mm
+  manufacturer: Nichicon
+  manufacturer_part_number: UWT1A101MCL1GS
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.nichicon.co.jp/english/products/pdfs/e-uwt.pdf
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: CP_6.3x5.4
+  mechanical_model: cap_6.3_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: 5 V rail decoupling near relay/PSU.
+  source_evidence: Nichicon datasheet.
+- item_id: E-020
+  reference_designators: C2
+  category: Passives
+  description: Decoupling capacitor, 100 nF, 50 V, 0603
+  manufacturer: Murata
+  manufacturer_part_number: GRM188R71H104KA93D
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.murata.com/
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: C_0603_1608Metric
+  mechanical_model: C0603_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Place at each IC supply pin.
+  source_evidence: Murata datasheet.
+- item_id: E-021
+  reference_designators: DS1
+  category: UI
+  description: OLED 0.96 inch, 128x64, SSD1306, I2C, 3.3 V module
+  manufacturer: TBD
+  manufacturer_part_number: OLED-096-SSD1306-I2C
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: DOCUMENTATION_DEFICIENT
+  alternative_mpn: SH1106 1.3 inch (different controller); bare SSD1306 panel
+  footprint_id: OFF_BOARD_MODULE
+  mechanical_model: oled096_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Verify controller, address, and 3.3 V operation. Do not assume SH1106 is
+    SSD1306-compatible.
+  source_evidence: Generic module; no traceable manufacturer datasheet yet.
+- item_id: E-022
+  reference_designators: LED1
+  category: UI
+  description: Addressable RGB LED, WS2812B, 5050, 5 V
+  manufacturer: Worldsemi
+  manufacturer_part_number: WS2812B-5050
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.worldsemi.com/
+  datasheet_revision: UNKNOWN
+  approved_status: PENDING_APPROVAL
+  alternative_mpn: ''
+  footprint_id: LED_WS2812B_5050
+  mechanical_model: ws2812b_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: External panel indicator; built-in DevKitC-1 RGB may be hidden. Level shift
+    data.
+  source_evidence: Worldsemi datasheet; exact bin/revision to be verified.
+- item_id: E-023
+  reference_designators: SW1
+  category: UI
+  description: Tactile pushbutton, 6x6 mm, through-hole, panel cap
+  manufacturer: Omron
+  manufacturer_part_number: B3F-1000
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3f.pdf
+  datasheet_revision: UNKNOWN
+  approved_status: PENDING_APPROVAL
+  alternative_mpn: ''
+  footprint_id: SW_PUSH_6mm
+  mechanical_model: b3f_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Debounce in firmware; long-press reset separated from short press. Button
+    must remain reachable without mains access.
+  source_evidence: Omron B3F datasheet.
+- item_id: E-024
+  reference_designators: J1
+  category: Connectors
+  description: 2x20 pin female header, 2.54 mm, for DevKitC-1
+  manufacturer: TBD
+  manufacturer_part_number: HDR-2X20-2.54-F
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: PinHeader_2x20_P2.54mm
+  mechanical_model: header_2x20_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Low-voltage module only. Verify DevKitC-1 pin length and orientation. Anti-misinsertion
+    keying recommended.
+  source_evidence: Generic header; mechanical fit to be checked.
+- item_id: E-025
+  reference_designators: J2
+  category: Connectors
+  description: JST-XH 4-pin connector for OLED (3.3 V, GND, SDA, SCL)
+  manufacturer: JST
+  manufacturer_part_number: B4B-XH-A
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: JST_XH_B4B-XH-A
+  mechanical_model: jst_xh_4_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Keyed low-voltage connector.
+  source_evidence: JST datasheet.
+- item_id: E-026
+  reference_designators: J3
+  category: Connectors
+  description: JST-XH 2-pin connector for button
+  manufacturer: JST
+  manufacturer_part_number: B2B-XH-A
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: JST_XH_B2B-XH-A
+  mechanical_model: jst_xh_2_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Low-voltage only.
+  source_evidence: JST datasheet.
+- item_id: E-027
+  reference_designators: J4
+  category: Connectors
+  description: JST-XH 3-pin connector for external RGB (5 V, GND, DATA)
+  manufacturer: JST
+  manufacturer_part_number: B3B-XH-A
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: JST_XH_B3B-XH-A
+  mechanical_model: jst_xh_3_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Low-voltage only.
+  source_evidence: JST datasheet.
+- item_id: E-028
+  reference_designators: J5
+  category: Connectors
+  description: JST-XH 6-pin connector for temp/RTC/expansion
+  manufacturer: JST
+  manufacturer_part_number: B6B-XH-A
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: JST_XH_B6B-XH-A
+  mechanical_model: jst_xh_6_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Low-voltage only.
+  source_evidence: JST datasheet.
+- item_id: E-029
+  reference_designators: TB1
+  category: Connectors
+  description: Mains terminal block, 2-pin, 5.08 mm, 300 V / 10 A class
+  manufacturer: Phoenix Contact
+  manufacturer_part_number: MKDS 3/2-5.08
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: DOCUMENTATION_DEFICIENT
+  alternative_mpn: Degson DG308-5.08-2P; Wago 221-413 (lever nut)
+  footprint_id: TERMINAL_5.08_2P
+  mechanical_model: terminal_5.08_2p_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Exact order code and rating must be verified. Terminal must not loosen; use
+    ferrules and strain relief. Mains terminal is not a low-voltage header.
+  source_evidence: Phoenix series page; exact MPN/rating unverified.
+- item_id: E-030
+  reference_designators: TB2
+  category: Connectors
+  description: Protective earth terminal/stud, screw-clamp, tool-access
+  manufacturer: TBD
+  manufacturer_part_number: PE-TERMINAL-TBD
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: BLOCKED
+  alternative_mpn: ''
+  footprint_id: PE_STUD_TBD
+  mechanical_model: pe_stud_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: PE must be continuous, not switched or fused. Dedicated mechanical bond with
+    lock washer and test point. Exact part is safety-critical and not approved.
+  source_evidence: No approved part yet; engineer must select and verify.
+- item_id: E-031
+  reference_designators: TB3
+  category: Connectors
+  description: Isolated-side PZEM terminal, 5-pin, 5.08 mm
+  manufacturer: Phoenix Contact
+  manufacturer_part_number: MKDS 3/5-5.08
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: DOCUMENTATION_DEFICIENT
+  alternative_mpn: ''
+  footprint_id: TERMINAL_5.08_5P
+  mechanical_model: terminal_5.08_5p_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Keep on isolated side of barrier. Pinout must match actual PZEM V4 batch.
+    Do not assume colors.
+  source_evidence: Exact PZEM pinout unverified.
+- item_id: E-032
+  reference_designators: TB4
+  category: Connectors
+  description: Relay coil terminal, 2-pin, 5.08 mm (SELV)
+  manufacturer: Phoenix Contact
+  manufacturer_part_number: MKDS 3/2-5.08
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: TERMINAL_5.08_2P
+  mechanical_model: terminal_5.08_2p_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: SELV coil only; keep away from mains terminals.
+  source_evidence: Series datasheet.
+- item_id: E-033
+  reference_designators: TB5
+  category: Connectors
+  description: 5 V input terminal, 2-pin, 5.08 mm (SELV)
+  manufacturer: Phoenix Contact
+  manufacturer_part_number: MKDS 3/2-5.08
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: TERMINAL_5.08_2P
+  mechanical_model: terminal_5.08_2p_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Keyed/color-coded to reduce miswiring.
+  source_evidence: Series datasheet.
+- item_id: E-034
+  reference_designators: X1
+  category: Connectors
+  description: Type F (Schuko) panel socket, 16 A / 250 V, 2P+E
+  manufacturer: TBD
+  manufacturer_part_number: SOCKET-TYPE-F-16A-TBD
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: DOCUMENTATION_DEFICIENT
+  alternative_mpn: Type E/F combo socket (Q02=B lean); other Indonesian standard
+  footprint_id: OFF_BOARD_MODULE
+  mechanical_model: type_f_socket_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Product identity, certification, contact material, retention, and PE continuity
+    are unverified. Do not use a universal socket without traceability. Q02 remains
+    an analysis decision.
+  source_evidence: No approved MPN. Retailer photos are not a datasheet.
+- item_id: E-035
+  reference_designators: P1
+  category: Connectors
+  description: Type F (Schuko) cord plug, 16 A / 250 V, 3-core
+  manufacturer: TBD
+  manufacturer_part_number: PLUG-TYPE-F-16A-TBD
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: DOCUMENTATION_DEFICIENT
+  alternative_mpn: Type E/F compatible plug; local standard plug
+  footprint_id: OFF_BOARD_MODULE
+  mechanical_model: type_f_plug_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Mating, cable clamp, PE contact, and orientation must be verified. Cable
+    3x1.5 mm2 H05VV-F provisional.
+  source_evidence: No approved MPN.
+- item_id: E-036
+  reference_designators: CG1
+  category: Mechanical
+  description: Cable gland, M16, IP68, PA66, UL94 V-0
+  manufacturer: TBD
+  manufacturer_part_number: GLAND-M16-TBD
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: OFF_BOARD
+  mechanical_model: gland_m16_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Strain relief must anchor the cable to the enclosure, not the PCB. Verify
+    thread and sealing.
+  source_evidence: Generic part; exact datasheet pending.
+- item_id: E-037
+  reference_designators: ENC1
+  category: Mechanical
+  description: Enclosure, ABS/PC, target 150 x 100 x 70 mm, flame-retardant grade
+  manufacturer: TBD
+  manufacturer_part_number: ENCLOSURE-150X100X70-TBD
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: BLOCKED
+  alternative_mpn: Hammond 1555/1591 series; polycarbonate enclosure with UL94 V-0
+  footprint_id: OFF_BOARD
+  mechanical_model: enclosure_150x100x70_provisional
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: 3D printed enclosure is prototype-only and not certified for mains. Material
+    flammability, impact, thermal aging, and wall thickness must be reviewed. Target
+    dimensions may change to C if safety clearances do not fit.
+  source_evidence: No approved enclosure. CAD is parametric/provisional.
+- item_id: E-038
+  reference_designators: PE1
+  category: Mechanical
+  description: 'PE bonding hardware: screw, lock washer, nut, dedicated stud'
+  manufacturer: TBD
+  manufacturer_part_number: PE-HARDWARE-TBD
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: BLOCKED
+  alternative_mpn: ''
+  footprint_id: OFF_BOARD
+  mechanical_model: pe_hardware_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Must not be reused for other functions; verify continuity and vibration resistance.
+    PE path must not rely on solder mask or anodized surfaces.
+  source_evidence: No approved part; safety-critical.
+- item_id: E-039
+  reference_designators: W1
+  category: Cable
+  description: Mains cord, H05VV-F 3x1.5 mm2, 0.5 m provisional, brown/blue/green-yellow
+  manufacturer: TBD
+  manufacturer_part_number: H05VV-F-3G1.5
+  module_revision: '-'
+  qty_per_unit: 0.5
+  unit: m
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: OFF_BOARD
+  mechanical_model: cable_3g1.5_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Length/current/derating to be calculated. Color is not proof of function;
+    verify continuity and PE. Ferrules and strain relief required.
+  source_evidence: Cable standard reference; exact manufacturer not selected.
+- item_id: E-040
+  reference_designators: W2
+  category: Cable
+  description: Low-voltage hookup wire assortment, 0.25 mm2, 300 V
+  manufacturer: TBD
+  manufacturer_part_number: HOOKUP-0.25MM2
+  module_revision: '-'
+  qty_per_unit: 3
+  unit: m
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: OFF_BOARD
+  mechanical_model: hv_wire_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: SELV only. Keep away from mains barrier.
+  source_evidence: Generic.
+- item_id: E-041
+  reference_designators: PCB1
+  category: PCB
+  description: Low-voltage carrier PCB, 2-layer FR4, 1.6 mm, 1 oz Cu, provisional
+    outline
+  manufacturer: TBD
+  manufacturer_part_number: PCB-CARRIER-REV-A
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: PCB_CARRIER_REV_A
+  mechanical_model: pcb_carrier_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Mains modules off-board; carrier handles 5 V/3.3 V, I2C, UART isolation,
+    relay driver. Stackup/trace width/clearance are provisional and not released.
+  source_evidence: KiCad placement file generated; ERC/DRC blocked without KiCad CLI.
+- item_id: E-042
+  reference_designators: LAB1
+  category: Labels
+  description: 'Safety/rating label set: rated voltage/current, warnings, serial/QR
+    placeholder'
+  manufacturer: TBD
+  manufacturer_part_number: LABEL-SET-REV-A
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: BLOCKED
+  alternative_mpn: ''
+  footprint_id: OFF_BOARD
+  mechanical_model: label_set_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Rating must be derived from verified chain, not target. QR must not expose
+    a reusable secret. Final label requires regulatory review.
+  source_evidence: No approved label content yet.
+- item_id: E-043
+  reference_designators: HS1
+  category: Consumables
+  description: Heat-shrink tubing assortment, flame-retardant
+  manufacturer: TBD
+  manufacturer_part_number: HEATSHRINK-ASSORT
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: set
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: OFF_BOARD
+  mechanical_model: consumable
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Mains joints require appropriate insulation and strain relief.
+  source_evidence: Generic.
+- item_id: E-044
+  reference_designators: SC1
+  category: Mechanical
+  description: M3x8 machine screws, nylon washers
+  manufacturer: TBD
+  manufacturer_part_number: M3X8-SCREW
+  module_revision: '-'
+  qty_per_unit: 8
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: OFF_BOARD
+  mechanical_model: m3_screw
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Do not create conductive paths or reduce isolation distances.
+  source_evidence: Generic.
+- item_id: E-045
+  reference_designators: INS1
+  category: Mechanical
+  description: M3 heat-set inserts for enclosure
+  manufacturer: TBD
+  manufacturer_part_number: M3-INSERT
+  module_revision: '-'
+  qty_per_unit: 4
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: OFF_BOARD
+  mechanical_model: m3_insert
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Insert depth and wall thickness must be verified in CAD.
+  source_evidence: Generic.
+- item_id: E-046
+  reference_designators: ST1
+  category: Mechanical
+  description: M3 nylon standoff set for carrier PCB
+  manufacturer: TBD
+  manufacturer_part_number: M3-STANDOFF
+  module_revision: '-'
+  qty_per_unit: 4
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: OFF_BOARD
+  mechanical_model: m3_standoff
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Nylon avoids unintended conductive paths; verify thermal rating.
+  source_evidence: Generic.

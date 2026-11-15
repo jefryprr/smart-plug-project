@@ -1,0 +1,34 @@
+# syntax=docker/dockerfile:1
+FROM node:24-alpine AS build
+WORKDIR /app
+COPY package.json package-lock.json ./
+COPY apps/api/package.json apps/api/package.json
+COPY apps/device-simulator/package.json apps/device-simulator/package.json
+COPY apps/web/package.json apps/web/package.json
+COPY packages/domain/package.json packages/domain/package.json
+COPY packages/api-contract/package.json packages/api-contract/package.json
+COPY packages/mqtt-contract/package.json packages/mqtt-contract/package.json
+RUN npm ci --no-audit --no-fund
+COPY tsconfig.base.json ./
+COPY packages packages
+COPY apps/api apps/api
+RUN npm run build -w @smartplug/domain \
+ && npm run build -w @smartplug/api-contract \
+ && npm run build -w @smartplug/mqtt-contract \
+ && npm run build -w @smartplug/api
+
+FROM node:24-alpine
+WORKDIR /app
+ENV NODE_ENV=production
+COPY --from=build /app/node_modules node_modules
+COPY --from=build /app/packages/domain/package.json packages/domain/package.json
+COPY --from=build /app/packages/domain/dist packages/domain/dist
+COPY --from=build /app/packages/api-contract/package.json packages/api-contract/package.json
+COPY --from=build /app/packages/api-contract/dist packages/api-contract/dist
+COPY --from=build /app/packages/mqtt-contract/package.json packages/mqtt-contract/package.json
+COPY --from=build /app/packages/mqtt-contract/dist packages/mqtt-contract/dist
+COPY --from=build /app/apps/api/package.json apps/api/package.json
+COPY --from=build /app/apps/api/dist apps/api/dist
+RUN mkdir -p /app/data
+EXPOSE 4000
+CMD ["node", "apps/api/dist/index.js"]

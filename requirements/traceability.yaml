@@ -1,0 +1,1436 @@
+project: esp32-s3-iot-smart-plug
+design_revision: REV_A_PROVISIONAL
+prd_version: '1.0'
+generated_at: '2026-11-15T00:00:00Z'
+status_legend:
+  PASS: Digital evidence exists and the tested criterion passed; physical/HIL not
+    implied.
+  PARTIAL: Some implementation/evidence exists, full criterion not met.
+  BLOCKED: Cannot proceed without hardware/lab/tool/approval.
+  NOT_STARTED: No implementation yet.
+  UNVERIFIED: Claim exists without sufficient test.
+requirements:
+- id: FR-001
+  source_id: 1
+  description: Real-time voltage monitoring
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - apps/api/src/services/telemetry.ts
+  - apps/web/src/components/ElectricalReadings.tsx
+  test_ids:
+  - T-SW-006
+  status: PARTIAL
+  evidence:
+  - API telemetry tests; no physical meter
+  blocked_by:
+  - BLOCK-PHYSICAL-METER
+  risk_ids:
+  - RR-08
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-002
+  source_id: 2
+  description: Real-time current monitoring
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - apps/api/src/services/telemetry.ts
+  - apps/web/src/components/ElectricalReadings.tsx
+  test_ids:
+  - T-SW-006
+  status: PARTIAL
+  evidence:
+  - API telemetry tests; no physical meter
+  blocked_by:
+  - BLOCK-PHYSICAL-METER
+  risk_ids:
+  - RR-08
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-003
+  source_id: 3
+  description: Real-time active power
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - apps/api/src/services/telemetry.ts
+  test_ids:
+  - T-SW-006
+  status: PARTIAL
+  evidence:
+  - Uses meter register fixture; no physical calibration
+  blocked_by:
+  - BLOCK-PHYSICAL-METER
+  risk_ids:
+  - RR-08
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-004
+  source_id: 4
+  description: Energy consumption (kWh)
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - packages/domain/src/index.ts
+  - apps/api/src/services/telemetry.ts
+  test_ids:
+  - T-SW-008
+  - DOMAIN-ENERGY
+  status: PASS
+  evidence:
+  - 34 domain tests + 38 API tests; reset/gap covered
+  blocked_by: []
+  risk_ids:
+  - RR-08
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-005
+  source_id: 5
+  description: Power factor monitoring
+  priority: P1
+  phase: F1+F2
+  implementation_paths:
+  - apps/api/src/services/telemetry.ts
+  - apps/web/src/components/ElectricalReadings.tsx
+  test_ids:
+  - T-SW-006
+  status: PARTIAL
+  evidence:
+  - Displays null/valid PF; no physical calibration
+  blocked_by:
+  - BLOCK-PHYSICAL-METER
+  risk_ids:
+  - RR-08
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-006
+  source_id: 6
+  description: Electricity cost calculator
+  priority: P0
+  phase: F2
+  implementation_paths:
+  - packages/domain/src/index.ts
+  - apps/api/src/services/energy.ts
+  test_ids:
+  - DOMAIN-COST
+  status: PASS
+  evidence:
+  - Historical tariff test; IDR formatting
+  blocked_by: []
+  risk_ids:
+  - RR-16
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-007
+  source_id: 7
+  description: Custom electricity tariff
+  priority: P0
+  phase: F2
+  implementation_paths:
+  - apps/api/src/routes/automation.ts
+  - apps/api/src/services/energy.ts
+  test_ids:
+  - API-TARIFF
+  status: PASS
+  evidence:
+  - Tariff history/overlap tests
+  blocked_by: []
+  risk_ids:
+  - RR-16
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-008
+  source_id: 8
+  description: Energy history
+  priority: P0
+  phase: F2
+  implementation_paths:
+  - apps/api/src/routes/telemetry.ts
+  - apps/api/src/db/schema.ts
+  test_ids:
+  - API-TELEMETRY
+  status: PASS
+  evidence:
+  - Telemetry pagination tests; seeded fixtures
+  blocked_by: []
+  risk_ids:
+  - RR-08
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-009
+  source_id: 9
+  description: Energy analytics
+  priority: P1
+  phase: F2
+  implementation_paths:
+  - apps/api/src/services/energy.ts
+  - apps/web/src/components/EnergyGraph.tsx
+  test_ids:
+  - API-ANALYTICS
+  - T-SW-011
+  status: PASS
+  evidence:
+  - Daily/weekly/monthly aggregation tests; missing data null
+  blocked_by: []
+  risk_ids:
+  - RR-08
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-010
+  source_id: 10
+  description: Peak power tracking
+  priority: P1
+  phase: F2
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-NOT-IMPLEMENTED
+  risk_ids:
+  - RR-08
+  last_verified_at: null
+  reviewer: null
+- id: FR-011
+  source_id: 11
+  description: Energy budget monitoring
+  priority: P1
+  phase: F2
+  implementation_paths:
+  - apps/api/src/routes/automation.ts
+  - apps/api/src/services/alerts.ts
+  test_ids:
+  - API-BUDGET
+  - ALERT-BUDGET
+  status: PASS
+  evidence:
+  - Budget API + crossing alert dedup tests
+  blocked_by: []
+  risk_ids:
+  - RR-16
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-012
+  source_id: 12
+  description: Energy data CSV export
+  priority: P2
+  phase: F2
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-NOT-IMPLEMENTED
+  risk_ids:
+  - RR-08
+  last_verified_at: null
+  reviewer: null
+- id: FR-013
+  source_id: 13
+  description: Remote ON/OFF
+  priority: P0
+  phase: F2
+  implementation_paths:
+  - apps/api/src/services/commands.ts
+  - apps/api/src/mqtt/bridge.ts
+  - apps/device-simulator/src/simulator.ts
+  test_ids:
+  - API-COMMAND
+  - INTEGRATION-COMMAND
+  status: PASS
+  evidence:
+  - 38 API tests incl. simulator ACK; no cloud deploy
+  blocked_by:
+  - BLOCK-CLOUD-CREDENTIALS
+  risk_ids:
+  - RR-10
+  - RR-23
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-014
+  source_id: 14
+  description: Local ON/OFF
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - firmware/main/app_main.c
+  - apps/api/src/services/commands.ts
+  test_ids:
+  - CORE-BUTTON
+  status: PARTIAL
+  evidence:
+  - Physical button code; LAN API not implemented
+  blocked_by:
+  - BLOCK-LOCAL-TRANSPORT
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-015
+  source_id: 15
+  description: Physical ON/OFF button
+  priority: P0
+  phase: F1
+  implementation_paths:
+  - firmware/main/app_main.c
+  test_ids:
+  - CORE-BUTTON
+  status: PARTIAL
+  evidence:
+  - 50 ms debounce code; no hardware test
+  blocked_by:
+  - BLOCK-BOARD
+  risk_ids:
+  - RR-14
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-016
+  source_id: 16
+  description: Scheduled ON/OFF
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - packages/domain/src/index.ts
+  - firmware/core/smartplug_core.c
+  - apps/api/src/routes/automation.ts
+  test_ids:
+  - DOMAIN-SCHEDULE
+  - CORE-SCHEDULE
+  status: PARTIAL
+  evidence:
+  - Schedule evaluator tested; firmware time integration pending
+  blocked_by:
+  - BLOCK-RTC-INTEGRATION
+  risk_ids:
+  - RR-17
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-017
+  source_id: 17
+  description: Weekly scheduling
+  priority: P1
+  phase: F1+F2
+  implementation_paths:
+  - packages/domain/src/index.ts
+  - firmware/core/smartplug_core.c
+  - apps/api/src/routes/automation.ts
+  test_ids:
+  - DOMAIN-SCHEDULE
+  - CORE-SCHEDULE
+  - API-AUTOMATION
+  status: PASS
+  evidence:
+  - Day/window/duplicate tests
+  blocked_by: []
+  risk_ids:
+  - RR-17
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-018
+  source_id: 18
+  description: Countdown timer
+  priority: P0
+  phase: F1+F2
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-NOT-IMPLEMENTED
+  risk_ids:
+  - RR-17
+  last_verified_at: null
+  reviewer: null
+- id: FR-019
+  source_id: 19
+  description: Automatic standby detection
+  priority: P1
+  phase: F1+F2
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-NOT-IMPLEMENTED
+  risk_ids:
+  - RR-08
+  last_verified_at: null
+  reviewer: null
+- id: FR-020
+  source_id: 20
+  description: Automatic standby cut-off
+  priority: P1
+  phase: F1+F2
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-NOT-IMPLEMENTED
+  risk_ids:
+  - RR-01
+  last_verified_at: null
+  reviewer: null
+- id: FR-021
+  source_id: 21
+  description: Idle detection
+  priority: P1
+  phase: F1+F2
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-NOT-IMPLEMENTED
+  risk_ids:
+  - RR-08
+  last_verified_at: null
+  reviewer: null
+- id: FR-022
+  source_id: 22
+  description: Power threshold automation
+  priority: P1
+  phase: F1+F2
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-NOT-IMPLEMENTED
+  risk_ids:
+  - RR-08
+  last_verified_at: null
+  reviewer: null
+- id: FR-023
+  source_id: 23
+  description: Power recovery settings
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - firmware/main/app_main.c
+  - docs/decisions/USER_ANSWERS.md
+  test_ids:
+  - CORE-BOOT
+  status: PARTIAL
+  evidence:
+  - Default OFF in code/docs; NVS policy not implemented
+  blocked_by:
+  - BLOCK-NVS
+  risk_ids:
+  - RR-14
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-024
+  source_id: 24
+  description: Offline scheduling
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - firmware/core/smartplug_core.c
+  test_ids:
+  - CORE-SCHEDULE
+  status: PARTIAL
+  evidence:
+  - Clock validity rule tested; RTC integration pending
+  blocked_by:
+  - BLOCK-RTC-INTEGRATION
+  risk_ids:
+  - RR-17
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-025
+  source_id: 25
+  description: Automation priority management
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - packages/domain/src/index.ts
+  - firmware/core/smartplug_core.c
+  test_ids:
+  - DOMAIN-PRIORITY
+  - CORE-PRIORITY
+  status: PASS
+  evidence:
+  - Lockout/OFF/ON priority tests
+  blocked_by: []
+  risk_ids:
+  - RR-01
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-026
+  source_id: 26
+  description: Overcurrent protection
+  priority: P0
+  phase: F1
+  implementation_paths:
+  - firmware/core/smartplug_core.c
+  - apps/api/src/services/alerts.ts
+  - safety/PROTECTION_COORDINATION.md
+  test_ids:
+  - CORE-MEASUREMENT
+  - ALERT-HIGH-POWER
+  status: PARTIAL
+  evidence:
+  - Software validation/alert; fuse/thermal physical test blocked
+  blocked_by:
+  - BLOCK-FUSE-RATING
+  risk_ids:
+  - RR-03
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-027
+  source_id: 27
+  description: Overtemperature protection
+  priority: P0
+  phase: F1
+  implementation_paths:
+  - firmware/core/smartplug_core.c
+  - apps/api/src/services/alerts.ts
+  - safety/THERMAL_RISK_AND_DERATING.md
+  test_ids:
+  - CORE-MEASUREMENT
+  - ALERT-TEMP
+  status: PARTIAL
+  evidence:
+  - Alert/state logic; thermal cutoff hardware blocked
+  blocked_by:
+  - BLOCK-THERMAL-LAB
+  risk_ids:
+  - RR-04
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-028
+  source_id: 28
+  description: Overvoltage warning
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - firmware/core/smartplug_core.c
+  - packages/domain/src/index.ts
+  test_ids:
+  - CORE-MEASUREMENT
+  - DOMAIN-MEASUREMENT
+  status: PASS
+  evidence:
+  - 260 V warning test; no surge claim
+  blocked_by: []
+  risk_ids:
+  - RR-07
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-029
+  source_id: 29
+  description: Undervoltage warning
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - firmware/core/smartplug_core.c
+  - packages/domain/src/index.ts
+  test_ids:
+  - CORE-MEASUREMENT
+  - DOMAIN-MEASUREMENT
+  status: PASS
+  evidence:
+  - 207 V threshold test
+  blocked_by: []
+  risk_ids:
+  - RR-07
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-030
+  source_id: 30
+  description: Surge protection
+  priority: P0
+  phase: F1
+  implementation_paths:
+  - safety/PROTECTION_COORDINATION.md
+  - bom/BOM_MASTER.csv
+  test_ids:
+  - T-HW-013
+  status: BLOCKED
+  evidence:
+  - MOV candidate only; no surge test
+  blocked_by:
+  - BLOCK-SURGE-STUDY
+  risk_ids:
+  - RR-07
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-031
+  source_id: 31
+  description: Thermal cutoff
+  priority: P0
+  phase: F1
+  implementation_paths:
+  - safety/THERMAL_RISK_AND_DERATING.md
+  - bom/BOM_MASTER.csv
+  test_ids:
+  - T-HW-019
+  status: BLOCKED
+  evidence:
+  - TCO candidate; no physical trip test
+  blocked_by:
+  - BLOCK-THERMAL-LAB
+  risk_ids:
+  - RR-04
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-032
+  source_id: 32
+  description: Fuse protection
+  priority: P0
+  phase: F1
+  implementation_paths:
+  - safety/ELECTRICAL_RATING_CHAIN.md
+  - safety/PROTECTION_COORDINATION.md
+  test_ids:
+  - T-HW-013
+  status: BLOCKED
+  evidence:
+  - Fuse candidate; breaking capacity/coordination unverified
+  blocked_by:
+  - BLOCK-FUSE-RATING
+  risk_ids:
+  - RR-03
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-033
+  source_id: 33
+  description: Fail-safe startup
+  priority: P0
+  phase: F1
+  implementation_paths:
+  - firmware/main/app_main.c
+  - firmware/core/smartplug_core.c
+  test_ids:
+  - CORE-BOOT
+  status: PARTIAL
+  evidence:
+  - Relay GPIO forced OFF; no low-voltage waveform test
+  blocked_by:
+  - BLOCK-BOARD
+  risk_ids:
+  - RR-14
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-034
+  source_id: 34
+  description: Sensor failure detection
+  priority: P0
+  phase: F1
+  implementation_paths:
+  - firmware/core/smartplug_core.c
+  - packages/domain/src/index.ts
+  - apps/api/src/services/alerts.ts
+  test_ids:
+  - CORE-MEASUREMENT
+  - DOMAIN-MEASUREMENT
+  - ALERT-SENSOR
+  status: PASS
+  evidence:
+  - NaN/out-of-range/invalid quality tests
+  blocked_by: []
+  risk_ids:
+  - RR-08
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-035
+  source_id: 35
+  description: Electrical fault logging
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - apps/api/src/services/audit.ts
+  - apps/api/src/routes/operations.ts
+  test_ids:
+  - API-EVENTS
+  status: PASS
+  evidence:
+  - Event history tests
+  blocked_by: []
+  risk_ids:
+  - RR-08
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-036
+  source_id: 36
+  description: Fault lockout
+  priority: P0
+  phase: F1
+  implementation_paths:
+  - firmware/core/smartplug_core.c
+  - packages/domain/src/index.ts
+  - apps/api/src/services/commands.ts
+  test_ids:
+  - CORE-LOCKOUT
+  - DOMAIN-LOCKOUT
+  - API-LOCKOUT
+  status: PASS
+  evidence:
+  - ON rejected, OFF accepted under lockout
+  blocked_by: []
+  risk_ids:
+  - RR-01
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-037
+  source_id: 38
+  description: OLED display
+  priority: P0
+  phase: F1
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-OLED-FIRMWARE
+  risk_ids:
+  - RR-14
+  last_verified_at: null
+  reviewer: null
+- id: FR-038
+  source_id: 39
+  description: OLED page navigation
+  priority: P1
+  phase: F1
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-OLED-FIRMWARE
+  risk_ids:
+  - RR-14
+  last_verified_at: null
+  reviewer: null
+- id: FR-039
+  source_id: 40
+  description: RGB NeoPixel status
+  priority: P1
+  phase: F1
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-RGB-FIRMWARE
+  risk_ids:
+  - RR-14
+  last_verified_at: null
+  reviewer: null
+- id: FR-040
+  source_id: 41
+  description: RGB engineering debug
+  priority: P2
+  phase: F1
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-RGB-FIRMWARE
+  risk_ids:
+  - RR-14
+  last_verified_at: null
+  reviewer: null
+- id: FR-041
+  source_id: 42
+  description: RGB fault indicator
+  priority: P0
+  phase: F1
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-RGB-FIRMWARE
+  risk_ids:
+  - RR-14
+  last_verified_at: null
+  reviewer: null
+- id: FR-042
+  source_id: 43
+  description: RGB night mode
+  priority: P2
+  phase: F1
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-RGB-FIRMWARE
+  risk_ids:
+  - RR-14
+  last_verified_at: null
+  reviewer: null
+- id: FR-043
+  source_id: 44
+  description: Web dashboard
+  priority: P0
+  phase: F2
+  implementation_paths:
+  - apps/web/src/app
+  - apps/web/src/components
+  test_ids:
+  - T-SW-011
+  - T-SW-012
+  status: PASS
+  evidence:
+  - Next build + 5 Playwright tests + axe
+  blocked_by: []
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-044
+  source_id: 45
+  description: Android application
+  priority: P0
+  phase: F2
+  implementation_paths:
+  - apps/android/App.tsx
+  test_ids:
+  - T-SW-013
+  - T-SW-014
+  status: PARTIAL
+  evidence:
+  - Typecheck + Expo Android bundle export; APK blocked
+  blocked_by:
+  - BLOCK-ANDROID-SDK
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-045
+  source_id: 46
+  description: Device naming
+  priority: P1
+  phase: F2
+  implementation_paths:
+  - apps/api/src/routes/devices.ts
+  - apps/web/src/components/DeviceSettings.tsx
+  test_ids:
+  - API-DEVICE-PATCH
+  status: PASS
+  evidence:
+  - Validation and UI rename
+  blocked_by: []
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-046
+  source_id: 47
+  description: Device status dashboard
+  priority: P0
+  phase: F2
+  implementation_paths:
+  - apps/web/src/components/DeviceSummaryCard.tsx
+  - apps/web/src/app/(app)/dashboard/page.tsx
+  test_ids:
+  - T-SW-011
+  status: PASS
+  evidence:
+  - Online/stale/offline/commanded UI + E2E
+  blocked_by: []
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-047
+  source_id: 48
+  description: Engineering diagnostics dashboard
+  priority: P1
+  phase: F1+F2
+  implementation_paths:
+  - apps/web/src/components/DeviceHealth.tsx
+  - apps/api/src/routes/operations.ts
+  test_ids:
+  - API-DIAGNOSTICS
+  - T-SW-011
+  status: PASS
+  evidence:
+  - Diagnostics API/UI; role check
+  blocked_by: []
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-048
+  source_id: 49
+  description: Wi-Fi connectivity
+  priority: P0
+  phase: F1
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-WIFI-FIRMWARE
+  risk_ids:
+  - RR-16
+  last_verified_at: null
+  reviewer: null
+- id: FR-049
+  source_id: 50
+  description: BLE provisioning
+  priority: P1
+  phase: F1+F2
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-PROVISIONING
+  risk_ids:
+  - RR-10
+  last_verified_at: null
+  reviewer: null
+- id: FR-050
+  source_id: 51
+  description: SoftAP setup
+  priority: P1
+  phase: F1+F2
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-PROVISIONING
+  risk_ids:
+  - RR-10
+  last_verified_at: null
+  reviewer: null
+- id: FR-051
+  source_id: 52
+  description: Hybrid local-cloud control
+  priority: P0
+  phase: F2
+  implementation_paths:
+  - apps/api/src/services/commands.ts
+  - apps/api/src/mqtt/bridge.ts
+  test_ids:
+  - INTEGRATION-COMMAND
+  status: PARTIAL
+  evidence:
+  - Cloud/MQTT path tested; local LAN transport missing
+  blocked_by:
+  - BLOCK-LOCAL-TRANSPORT
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-052
+  source_id: 53
+  description: MQTT integration
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - packages/mqtt-contract/src/index.ts
+  - apps/api/src/mqtt/bridge.ts
+  test_ids:
+  - T-SW-003
+  - T-SW-004
+  - INTEGRATION-COMMAND
+  status: PASS
+  evidence:
+  - Contract tests + aedes integration
+  blocked_by: []
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-053
+  source_id: 54
+  description: Home Assistant integration
+  priority: P1
+  phase: F2
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-NOT-IMPLEMENTED
+  risk_ids:
+  - RR-10
+  last_verified_at: null
+  reviewer: null
+- id: FR-054
+  source_id: 55
+  description: REST API
+  priority: P0
+  phase: F2
+  implementation_paths:
+  - packages/api-contract/openapi.yaml
+  - apps/api/src
+  test_ids:
+  - T-SW-001
+  - API-TESTS
+  status: PASS
+  evidence:
+  - OpenAPI + 38 API tests
+  blocked_by: []
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-055
+  source_id: 56
+  description: Real-time synchronization
+  priority: P0
+  phase: F2
+  implementation_paths:
+  - apps/api/src/mqtt/bridge.ts
+  - apps/web/src/lib/hooks.ts
+  test_ids:
+  - INTEGRATION-COMMAND
+  status: PARTIAL
+  evidence:
+  - Polling/MQTT; no WS/SSE and no device sequence shadow
+  blocked_by:
+  - BLOCK-SYNC
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-056
+  source_id: 57
+  description: Wi-Fi auto reconnection
+  priority: P0
+  phase: F1
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-WIFI-FIRMWARE
+  risk_ids:
+  - RR-16
+  last_verified_at: null
+  reviewer: null
+- id: FR-057
+  source_id: 58
+  description: Offline data buffering
+  priority: P1
+  phase: F1+F2
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-NOT-IMPLEMENTED
+  risk_ids:
+  - RR-16
+  last_verified_at: null
+  reviewer: null
+- id: FR-058
+  source_id: 59
+  description: Cloud database
+  priority: P0
+  phase: F2
+  implementation_paths:
+  - apps/api/src/db/schema.ts
+  - database/migrations/001_init.sql
+  test_ids:
+  - T-SW-002
+  status: PARTIAL
+  evidence:
+  - SQLite local schema/tests; PostgreSQL deployment not run
+  blocked_by:
+  - BLOCK-POSTGRES
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-059
+  source_id: 60
+  description: Multi-device management
+  priority: P1
+  phase: F2
+  implementation_paths:
+  - apps/api/src/routes/devices.ts
+  - apps/web/src/app/(app)/devices/page.tsx
+  test_ids:
+  - API-DEVICES
+  status: PARTIAL
+  evidence:
+  - List/claim/rename; no remove/reassign UI
+  blocked_by:
+  - BLOCK-NOT-IMPLEMENTED
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-060
+  source_id: 61
+  description: Power anomaly detection
+  priority: P1
+  phase: F2
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-NOT-IMPLEMENTED
+  risk_ids:
+  - RR-08
+  last_verified_at: null
+  reviewer: null
+- id: FR-061
+  source_id: 62
+  description: Historical pattern analysis
+  priority: P1
+  phase: F2
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-NOT-IMPLEMENTED
+  risk_ids:
+  - RR-08
+  last_verified_at: null
+  reviewer: null
+- id: FR-062
+  source_id: 63
+  description: High power alert
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - apps/api/src/services/alerts.ts
+  test_ids:
+  - ALERT-HIGH-POWER
+  status: PASS
+  evidence:
+  - 3-sample threshold + dedup test
+  blocked_by: []
+  risk_ids:
+  - RR-08
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-063
+  source_id: 64
+  description: High temperature alert
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - apps/api/src/services/alerts.ts
+  - firmware/core/smartplug_core.c
+  test_ids:
+  - ALERT-TEMP
+  status: PARTIAL
+  evidence:
+  - Event rule; physical thermal test blocked
+  blocked_by:
+  - BLOCK-THERMAL-LAB
+  risk_ids:
+  - RR-04
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-064
+  source_id: 65
+  description: Standby consumption alert
+  priority: P1
+  phase: F2
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-NOT-IMPLEMENTED
+  risk_ids:
+  - RR-08
+  last_verified_at: null
+  reviewer: null
+- id: FR-065
+  source_id: 66
+  description: Energy budget alert
+  priority: P1
+  phase: F2
+  implementation_paths:
+  - apps/api/src/services/alerts.ts
+  test_ids:
+  - ALERT-BUDGET
+  status: PASS
+  evidence:
+  - Period dedup test
+  blocked_by: []
+  risk_ids:
+  - RR-16
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-066
+  source_id: 67
+  description: Telegram notification
+  priority: P1
+  phase: F2
+  implementation_paths:
+  - apps/api/src/services/notifications.ts
+  test_ids:
+  - API-NOTIFICATION
+  status: PARTIAL
+  evidence:
+  - Mock provider test; no live Telegram token/sandbox
+  blocked_by:
+  - BLOCK-TELEGRAM-TOKEN
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-067
+  source_id: 68
+  description: Android push notification
+  priority: P1
+  phase: F2
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-FCM
+  risk_ids:
+  - RR-10
+  last_verified_at: null
+  reviewer: null
+- id: FR-068
+  source_id: 69
+  description: Event history
+  priority: P0
+  phase: F2
+  implementation_paths:
+  - apps/api/src/routes/operations.ts
+  - apps/web/src/app/(app)/devices/[id]/events/page.tsx
+  test_ids:
+  - API-EVENTS
+  status: PASS
+  evidence:
+  - Pagination/filter test
+  blocked_by: []
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-069
+  source_id: 70
+  description: OTA firmware update
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - apps/api/src/routes/operations.ts
+  - firmware/partitions.csv
+  test_ids:
+  - API-OTA
+  status: PARTIAL
+  evidence:
+  - OTA request event only; no image delivery
+  blocked_by:
+  - BLOCK-OTA
+  risk_ids:
+  - RR-09
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-070
+  source_id: 71
+  description: OTA rollback
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - firmware/sdkconfig.defaults
+  - firmware/partitions.csv
+  test_ids:
+  - T-SW-018
+  status: PARTIAL
+  evidence:
+  - Config only; ESP-IDF build/test blocked
+  blocked_by:
+  - BLOCK-ESP-IDF
+  risk_ids:
+  - RR-09
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-071
+  source_id: 72
+  description: Firmware integrity verification
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - security/OTA_SIGNING_AND_RECOVERY.md
+  test_ids:
+  - T-SW-018
+  status: PARTIAL
+  evidence:
+  - Plan only; no signed image
+  blocked_by:
+  - BLOCK-OTA
+  risk_ids:
+  - RR-09
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-072
+  source_id: 73
+  description: Watchdog system
+  priority: P0
+  phase: F1
+  implementation_paths:
+  - firmware/sdkconfig.defaults
+  test_ids:
+  - T-HW-017
+  status: PARTIAL
+  evidence:
+  - Task WDT config only; no build/fault injection
+  blocked_by:
+  - BLOCK-ESP-IDF
+  risk_ids:
+  - RR-09
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-073
+  source_id: 74
+  description: Secure authentication
+  priority: P0
+  phase: F2
+  implementation_paths:
+  - apps/api/src/auth
+  - apps/api/src/routes/auth.ts
+  test_ids:
+  - API-AUTH
+  - SECURITY-NEGATIVE
+  status: PASS
+  evidence:
+  - Password hash, JWT, refresh rotation, negative tests
+  blocked_by: []
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-074
+  source_id: 75
+  description: Role-based access control
+  priority: P0
+  phase: F2
+  implementation_paths:
+  - apps/api/src/services/access.ts
+  - apps/api/src/routes
+  test_ids:
+  - API-RBAC
+  status: PASS
+  evidence:
+  - Owner/viewer/negative tests
+  blocked_by: []
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-075
+  source_id: 76
+  description: Encrypted communication
+  priority: P0
+  phase: F2
+  implementation_paths:
+  - security/THREAT_MODEL.md
+  - infrastructure/reverse-proxy/Caddyfile
+  test_ids:
+  - T-SW-019
+  status: PARTIAL
+  evidence:
+  - TLS config/docs; no deployed certificate
+  blocked_by:
+  - BLOCK-DEPLOY
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-076
+  source_id: 77
+  description: Device pairing security
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - apps/api/src/routes/auth.ts
+  - apps/api/src/services/commands.ts
+  test_ids:
+  - API-PAIRING
+  - T-SW-015
+  status: PASS
+  evidence:
+  - Single-use code + expiry/replay test
+  blocked_by: []
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-077
+  source_id: 78
+  description: Command validation
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - firmware/core/smartplug_core.c
+  - packages/domain/src/index.ts
+  - apps/api/src/services/commands.ts
+  test_ids:
+  - CORE-COMMAND
+  - DOMAIN-COMMAND
+  - API-COMMAND
+  status: PASS
+  evidence:
+  - Replay/stale/expiry/wrong device/lockout tests
+  blocked_by: []
+  risk_ids:
+  - RR-23
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-078
+  source_id: 79
+  description: Activity and audit logging
+  priority: P0
+  phase: F2
+  implementation_paths:
+  - apps/api/src/services/audit.ts
+  - apps/api/src/db/schema.ts
+  test_ids:
+  - API-AUDIT
+  status: PASS
+  evidence:
+  - Append-only audit table and tests
+  blocked_by: []
+  risk_ids:
+  - RR-10
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-079
+  source_id: 80
+  description: Factory reset
+  priority: P0
+  phase: F1+F2
+  implementation_paths: []
+  test_ids: []
+  status: NOT_STARTED
+  evidence: []
+  blocked_by:
+  - BLOCK-NOT-IMPLEMENTED
+  risk_ids:
+  - RR-10
+  last_verified_at: null
+  reviewer: null
+- id: FR-080
+  source_id: 81
+  description: Device diagnostics
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - apps/api/src/routes/operations.ts
+  - apps/web/src/components/DeviceHealth.tsx
+  - firmware/main/app_main.c
+  test_ids:
+  - API-DIAGNOSTICS
+  status: PARTIAL
+  evidence:
+  - API/UI diagnostics; firmware counters minimal
+  blocked_by:
+  - BLOCK-ESP-IDF
+  risk_ids:
+  - RR-08
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null

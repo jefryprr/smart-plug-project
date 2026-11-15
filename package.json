@@ -1,0 +1,37 @@
+{
+  "name": "esp32-s3-iot-smart-plug",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ESP32-S3 IoT Smart Plug — digital engineering, firmware, backend, web, Android, and deployment artifacts",
+  "workspaces": [
+    "apps/api",
+    "apps/web",
+    "apps/device-simulator",
+    "packages/domain",
+    "packages/api-contract",
+    "packages/mqtt-contract"
+  ],
+  "scripts": {
+    "build": "npm run build -w @smartplug/domain && npm run build -w @smartplug/api-contract && npm run build -w @smartplug/mqtt-contract && npm run build -w @smartplug/device-simulator && npm run build -w @smartplug/api && npm run build -w @smartplug/web",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test -w @smartplug/domain && npm run test -w @smartplug/mqtt-contract && npm run test -w @smartplug/api",
+    "test:all": "npm run test && npm run test:e2e",
+    "test:e2e": "playwright test",
+    "api:dev": "npm run dev -w @smartplug/api",
+    "web:dev": "npm run dev -w @smartplug/web",
+    "sim:dev": "npm run dev -w @smartplug/device-simulator",
+    "validate": "node scripts/validate_all.mjs",
+    "manifest": "node scripts/generate_manifest.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^24.10.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vitest": "^5.1.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

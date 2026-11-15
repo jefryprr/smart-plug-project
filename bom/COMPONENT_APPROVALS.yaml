@@ -1,0 +1,323 @@
+project: esp32-s3-iot-smart-plug
+design_revision: REV_A_PROVISIONAL
+generated_at: '2026-11-15T05:07:47.017407+00:00'
+approval_policy: User approved the research direction, not final MPNs. No component
+  is approved for fabrication.
+approved_by: null
+safety_reviewer: null
+items:
+- item_id: E-001
+  mpn: ESP32-S3-DevKitC-1-N16R8
+  status: PENDING_APPROVAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: RGB pin differs between v1.0 (GPIO48) and v1.1 (GPIO38); board
+    must be photographed and revision verified. N16R8 uses octal PSRAM; avoid GPIO33-37.
+- item_id: E-002
+  mpn: PZEM-004T-V4-100A-SPLIT
+  status: DOCUMENTATION_DEFICIENT
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Official Peacefair V4 datasheet for the exact batch is not verified.
+    UART level, isolation, terminal rating, and CT ratio must be measured. Do not
+    confuse CT rating with output current rating.
+- item_id: E-003
+  mpn: IRM-05-5
+  status: PENDING_APPROVAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Isolation withstand, leakage, no-load, thermal derating, and creepage
+    must be reviewed in the final assembly. Fuse and MOV belong upstream.
+- item_id: E-004
+  mpn: TMP102AIDRLR
+  status: PENDING_APPROVAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Place near relay/terminal hotspot. Sensor failure must produce
+    invalid state, not a stale comfortable reading.
+- item_id: E-005
+  mpn: DS3231MZ+
+  status: PENDING_APPROVAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Battery/supercap holder and drift budget must be selected. Invalid
+    clock blocks automatic ON.
+- item_id: E-006
+  mpn: ADuM1201ARZ
+  status: PENDING_APPROVAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Mandatory provisional barrier between PZEM-side UART and SELV MCU.
+    Final working voltage/creepage must be reviewed. Do not connect PZEM GND directly
+    to MCU GND.
+- item_id: E-007
+  mpn: B0505S-1WR3
+  status: PENDING_APPROVAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Provides isolated 5 V to the PZEM side. Output filtering and common-mode
+    path must be reviewed.
+- item_id: E-008
+  mpn: AO3400A
+  status: PENDING_APPROVAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Gate pulldown 100k and series 1k are mandatory for boot-safe OFF.
+    Flyback diode across coil. Verify coil current and thermal.
+- item_id: E-009
+  mpn: SN74AHCT1G125DBVR
+  status: PENDING_APPROVAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: WS2812B high-level threshold at 5 V may exceed 3.3 V logic. Level
+    shift and 330 ohm series resistor.
+- item_id: E-010
+  mpn: RT444005
+  status: PENDING_APPROVAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: DPST-NO is required to review two-pole disconnection. 8 A IEC rating
+    is below the 10 A target; provisional continuous rating must be derated and thermally
+    tested. Do not substitute a single SPDT. Latching relays rejected for fail-safe
+    reaso
+- item_id: E-011
+  mpn: 0215010.MXP
+  status: PENDING_APPROVAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Fuse is backup protection, not the only overcurrent protection.
+    Breaking capacity, time-current curve, holder rating, and coordination must be
+    reviewed. Provisional continuous load may be limited to 8 A.
+- item_id: E-012
+  mpn: '0031.8201'
+  status: PENDING_APPROVAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Touch-proof, tool-access, and service procedure required. Fuse
+    holder must not be accessible during normal use.
+- item_id: E-013
+  mpn: B72210S0271K101
+  status: PENDING_APPROVAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: MOV alone is not a complete surge protection design. End-of-life
+    failure mode, thermal fuse coordination, and standard applicability must be reviewed.
+    Do not claim surge suppression until tested.
+- item_id: E-014
+  mpn: SF169E
+  status: DOCUMENTATION_DEFICIENT
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Must be mechanically clamped to the hottest terminal/relay area
+    and be independent of firmware. Exact trip temperature, holding current, and approval
+    must be verified. A resettable thermostat is not equivalent.
+- item_id: E-015
+  mpn: 1N4007-E3/54
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Cathode to +5 V, anode to coil low side. Verify coil current and
+    reverse voltage.
+- item_id: E-016
+  mpn: RC0805FR-071KL
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Relay driver gate.
+- item_id: E-017
+  mpn: RC0805FR-07100KL
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Mandatory to keep relay driver OFF while MCU pin floats at boot.
+- item_id: E-018
+  mpn: RC0805FR-07330RL
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Place close to LED data input.
+- item_id: E-019
+  mpn: UWT1A101MCL1GS
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: 5 V rail decoupling near relay/PSU.
+- item_id: E-020
+  mpn: GRM188R71H104KA93D
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Place at each IC supply pin.
+- item_id: E-021
+  mpn: OLED-096-SSD1306-I2C
+  status: DOCUMENTATION_DEFICIENT
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Verify controller, address, and 3.3 V operation. Do not assume
+    SH1106 is SSD1306-compatible.
+- item_id: E-022
+  mpn: WS2812B-5050
+  status: PENDING_APPROVAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: External panel indicator; built-in DevKitC-1 RGB may be hidden.
+    Level shift data.
+- item_id: E-023
+  mpn: B3F-1000
+  status: PENDING_APPROVAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Debounce in firmware; long-press reset separated from short press.
+    Button must remain reachable without mains access.
+- item_id: E-024
+  mpn: HDR-2X20-2.54-F
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Low-voltage module only. Verify DevKitC-1 pin length and orientation.
+    Anti-misinsertion keying recommended.
+- item_id: E-025
+  mpn: B4B-XH-A
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Keyed low-voltage connector.
+- item_id: E-026
+  mpn: B2B-XH-A
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Low-voltage only.
+- item_id: E-027
+  mpn: B3B-XH-A
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Low-voltage only.
+- item_id: E-028
+  mpn: B6B-XH-A
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Low-voltage only.
+- item_id: E-029
+  mpn: MKDS 3/2-5.08
+  status: DOCUMENTATION_DEFICIENT
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Exact order code and rating must be verified. Terminal must not
+    loosen; use ferrules and strain relief. Mains terminal is not a low-voltage header.
+- item_id: E-030
+  mpn: PE-TERMINAL-TBD
+  status: BLOCKED
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: PE must be continuous, not switched or fused. Dedicated mechanical
+    bond with lock washer and test point. Exact part is safety-critical and not approved.
+- item_id: E-031
+  mpn: MKDS 3/5-5.08
+  status: DOCUMENTATION_DEFICIENT
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Keep on isolated side of barrier. Pinout must match actual PZEM
+    V4 batch. Do not assume colors.
+- item_id: E-032
+  mpn: MKDS 3/2-5.08
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: SELV coil only; keep away from mains terminals.
+- item_id: E-033
+  mpn: MKDS 3/2-5.08
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Keyed/color-coded to reduce miswiring.
+- item_id: E-034
+  mpn: SOCKET-TYPE-F-16A-TBD
+  status: DOCUMENTATION_DEFICIENT
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Product identity, certification, contact material, retention, and
+    PE continuity are unverified. Do not use a universal socket without traceability.
+    Q02 remains an analysis decision.
+- item_id: E-035
+  mpn: PLUG-TYPE-F-16A-TBD
+  status: DOCUMENTATION_DEFICIENT
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Mating, cable clamp, PE contact, and orientation must be verified.
+    Cable 3x1.5 mm2 H05VV-F provisional.
+- item_id: E-036
+  mpn: GLAND-M16-TBD
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Strain relief must anchor the cable to the enclosure, not the PCB.
+    Verify thread and sealing.
+- item_id: E-037
+  mpn: ENCLOSURE-150X100X70-TBD
+  status: BLOCKED
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: 3D printed enclosure is prototype-only and not certified for mains.
+    Material flammability, impact, thermal aging, and wall thickness must be reviewed.
+    Target dimensions may change to C if safety clearances do not fit.
+- item_id: E-038
+  mpn: PE-HARDWARE-TBD
+  status: BLOCKED
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Must not be reused for other functions; verify continuity and vibration
+    resistance. PE path must not rely on solder mask or anodized surfaces.
+- item_id: E-039
+  mpn: H05VV-F-3G1.5
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Length/current/derating to be calculated. Color is not proof of
+    function; verify continuity and PE. Ferrules and strain relief required.
+- item_id: E-040
+  mpn: HOOKUP-0.25MM2
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: SELV only. Keep away from mains barrier.
+- item_id: E-041
+  mpn: PCB-CARRIER-REV-A
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Mains modules off-board; carrier handles 5 V/3.3 V, I2C, UART isolation,
+    relay driver. Stackup/trace width/clearance are provisional and not released.
+- item_id: E-042
+  mpn: LABEL-SET-REV-A
+  status: BLOCKED
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Rating must be derived from verified chain, not target. QR must
+    not expose a reusable secret. Final label requires regulatory review.
+- item_id: E-043
+  mpn: HEATSHRINK-ASSORT
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Mains joints require appropriate insulation and strain relief.
+- item_id: E-044
+  mpn: M3X8-SCREW
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Do not create conductive paths or reduce isolation distances.
+- item_id: E-045
+  mpn: M3-INSERT
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Insert depth and wall thickness must be verified in CAD.
+- item_id: E-046
+  mpn: M3-STANDOFF
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Nylon avoids unintended conductive paths; verify thermal rating.
