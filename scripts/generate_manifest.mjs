@@ -9,7 +9,7 @@ const CHECKSUMS = resolve("deliverables/CHECKSUMS.sha256");
 
 const TEXT_EXTENSIONS = new Set([
   ".md", ".ts", ".tsx", ".js", ".mjs", ".py", ".yaml", ".yml", ".json",
-  ".csv", ".sql", ".c", ".h", ".txt", ".css", ".html", ".svg", ".log"
+  ".csv", ".sql", ".c", ".h", ".txt", ".css", ".html", ".svg", ".log", ".kicad_sch", ".kicad_pro", ".kicad_pcb", ".lock"
 ]);
 const SKIP_DIRS = new Set([".git", "node_modules", ".venv", "tools", "dist", ".next", "coverage", "build", "test-results", "playwright-report"]);
 
