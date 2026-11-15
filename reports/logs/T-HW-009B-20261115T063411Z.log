@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\mechanical\source\render.py", line 246, in <module>
+    main()
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\mechanical\source\render.py", line 239, in main
+    assembly_pdf()
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\mechanical\source\render.py", line 149, in assembly_pdf
+    pdf.savefig(fig, bbox_inches="tight")
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 2680, in savefig
+    figure.savefig(self, format="pdf", backend="pdf", **kwargs)
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\matplotlib\figure.py", line 3515, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\matplotlib\backend_bases.py", line 2289, in print_figure
+    result = print_method(
+             ^^^^^^^^^^^^^
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\matplotlib\backend_bases.py", line 2146, in <lambda>
+    print_method = functools.wraps(meth)(lambda *args, **kwargs: meth(
+                                                                 ^^^^^
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 2712, in print_pdf
+    file = filename._ensure_file()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 2639, in _ensure_file
+    self._file = PdfFile(self._filename, metadata=self._metadata)  # init.
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\matplotlib\backends\backend_pdf.py", line 650, in __init__
+    fh, opened = cbook.to_filehandle(filename, "wb", return_opened=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\matplotlib\cbook.py", line 575, in to_filehandle
+    fh = open(fname, flag, encoding=encoding)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument: 'C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\hardware\\mechanical\\drawings\\assembly.pdf'

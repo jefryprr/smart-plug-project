@@ -139,7 +139,11 @@ def service_access_svg() -> None:
 
 
 def assembly_pdf() -> None:
-    with PdfPages(DRAWINGS / "assembly.pdf") as pdf:
+    target = DRAWINGS / "assembly.pdf"
+    temp = DRAWINGS / "assembly.tmp.pdf"
+    if temp.exists():
+        temp.unlink()
+    with PdfPages(temp) as pdf:
         for name in ["isometric", "front", "back", "top", "bottom", "exploded", "cutaway"]:
             image = plt.imread(RENDER / f"{name}.png")
             fig, ax = plt.subplots(figsize=(11, 8.5))
@@ -162,6 +166,9 @@ def assembly_pdf() -> None:
         )
         pdf.savefig(fig, bbox_inches="tight")
         plt.close(fig)
+    if target.exists():
+        target.unlink()
+    temp.replace(target)
 
 
 def write_fit_reports() -> None:

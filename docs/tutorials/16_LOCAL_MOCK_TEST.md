@@ -10,7 +10,7 @@ node scripts\e2e_api.mjs
 
 Atau manual:
 ```powershell
-npm run dev:api
+npm run api:dev
 npm run sim:dev
 ```
 

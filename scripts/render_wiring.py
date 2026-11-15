@@ -56,6 +56,8 @@ def main() -> int:
                 if drawing is None:
                     failures.append(f"{source.name}: SVG_PARSE_FAILED")
                 else:
+                    if pdf.exists():
+                        pdf.unlink()
                     renderPDF.drawToFile(drawing, str(pdf))
                     print(f"  PDF: {pdf.name} ({pdf.stat().st_size} bytes)")
             except Exception as error:  # noqa: BLE001

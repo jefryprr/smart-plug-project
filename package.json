@@ -20,7 +20,8 @@
     "api:dev": "npm run dev -w @smartplug/api",
     "web:dev": "npm run dev -w @smartplug/web",
     "sim:dev": "npm run dev -w @smartplug/device-simulator",
-    "validate": "node scripts/validate_all.mjs",
+    "validate": ".venv\\Scripts\\python.exe scripts\\validate_all.py --e2e",
+    "validate:quick": ".venv\\Scripts\\python.exe scripts\\validate_all.py",
     "manifest": "node scripts/generate_manifest.mjs"
   },
   "devDependencies": {
