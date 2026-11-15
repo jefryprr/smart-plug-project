@@ -26,6 +26,7 @@ Dengan koefisien konveksi/radiasi efektif kasar 5–10 W/(m²·K):
 - 180×120 (0.0852 m²) would give ~3.5–7.0 K at 3 W, but that size fails real clearance review.
 - Ini hanya estimasi; hotspot lokal dapat jauh lebih tinggi.
 - Enclosure tertutup, tidak ada ventilasi, dan komponen berdekatan dapat menaikkan ΔT.
+- Enclosure yang dipilih (MG Duradus ABS IP65, 220×120×70) belum terbukti flame-retardant/UL94 V-0; thermal aging dan hotspot lokal wajib diuji.
 
 ## 3. Hotspot yang wajib diukur
 

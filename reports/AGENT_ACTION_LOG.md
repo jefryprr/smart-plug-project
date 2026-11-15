@@ -39,6 +39,8 @@
 | 31 | Final validation gate | `.venv\Scripts\python.exe scripts\validate_all.py --e2e` | 23 PASS / 11 BLOCKED / 0 FAIL (before PSU swap) | `reports/TEST_MATRIX.csv`, `VALIDATION_SUMMARY.json` |
 | 32 | PSU replacement | Research HLK-5M05 datasheet/specs; update BOM/wiring/CAD/safety/ADR | 5 V 1 A / 5 W, 38×23×18 mm; efficiency ~70%; `PENDING_APPROVAL` | `research/PSU_HLK_5M05.md`, `docs/decisions/ADR-013-PSU-HLK-5M05.md` |
 
+| 33 | Indonesian procurement research | 48 BOM lines; EasyWare/Shopee/BigGo/CNC/Blibli checks; budget roll-up | CORE Rp756.987 (restock Rp705.519); FULL Rp895.976; 39 listing-verified + 9 estimated | `bom/BOM_PROCUREMENT.csv`, `research/PROCUREMENT_INDONESIA.md` |
+
 ## Commands that were not run (and why)
 
 - Android APK install/UI test — no emulator/device test was performed.

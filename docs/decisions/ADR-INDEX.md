@@ -15,6 +15,7 @@
 | `ADR-011-SYNTHETIC-DATA.md` | Label demo data | Accepted |
 | `ADR-012-NO-IRREVERSIBLE-EFUSE.md` | No eFuse/secure boot without approval | Accepted |
 | `ADR-013-PSU-HLK-5M05.md` | Hi-Link HLK-5M05 selected; IRM-05-5 fallback; PSU PENDING_APPROVAL | Accepted (user), component pending |
+| `ADR-014-PROCUREMENT-STAGING.md` | CORE first, FULL (OLED/RTC/RGB) later; no safety downgrade for budget | Proposed |
 
 ## Superseding
 

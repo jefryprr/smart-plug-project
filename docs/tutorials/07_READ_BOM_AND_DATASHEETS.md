@@ -2,9 +2,11 @@
 
 ## BOM
 
-- `bom/BOM_MASTER.csv` — semua baris, harga kosong.
-- `bom/BOM_SUMMARY.json` — `UNPRICED`, bukan Rp0.
+- `bom/BOM_MASTER.csv` — BOM rekayasa, harga tidak dimasukkan.
+- `bom/BOM_PROCUREMENT.csv` — daftar belanja bertanggal 2026-11-15; 39 listing-verified, 9 estimated.
+- `bom/BOM_SUMMARY.json` — `PROCUREMENT_PRICED_2026-11-15`; CORE/FULL totals.
 - `bom/COMPONENT_APPROVALS.yaml` — belum ada persetujuan fabrikasi.
+- `research/PROCUREMENT_INDONESIA.md` — seller, harga, stok, risiko.
 - `research/datasheets/MANIFEST.md` — hash/tautan.
 
 ## MPN vs nama pasaran

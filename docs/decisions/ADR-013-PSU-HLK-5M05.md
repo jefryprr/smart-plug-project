@@ -50,6 +50,7 @@ is weaker.
 - Official product/docs page: https://www.hlktech.net/index.php?id=1243
 - Local distributor datasheet: `research/datasheets/hlk-5m05_distributor.pdf`
 - Full study: `research/PSU_HLK_5M05.md`
+- Indonesian listing: Shopee / Marnov Electronic Rp49.000 (2026-11-15); CNC Store Bandung Rp63.300 out of stock.
 
 **Safety:** this ADR records a user-selected prototype part. It is not a safety
 approval or a production release.

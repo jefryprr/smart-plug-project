@@ -12,7 +12,7 @@
 ## Yang siap digital
 
 - API/web/simulator/firmware core tests.
-- BOM research (unpriced/unapproved).
+- BOM research + dated Indonesian procurement matrix (unapproved).
 - KiCad block/placement files, ERC 0 / DRC 0, placement-only Gerber/drill.
 - ESP-IDF v6.1 target build and `.bin`.
 - WireViz harnesses.

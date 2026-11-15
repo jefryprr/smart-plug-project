@@ -63,7 +63,7 @@ connectors:
     - 0V
     notes: 'Pin 1/2 = AC, pin 3 = -Vo, pin 4 = +Vo. Keep AC pins and SELV output separated; fuse/MOV upstream. Datasheet isolation 2500 VAC is a claim; batch/hipot unverified.'
   U2:
-    type: PZEM-004T V4 100 A split CT (DOCUMENTATION_DEFICIENT)
+    type: PZEM-004T V4 100 A CT, closed or split (DOCUMENTATION_DEFICIENT)
     pinlabels:
     - L
     - N

@@ -13,7 +13,7 @@
 ## 1. Ringkasan eksekusi
 
 Fase 1 menghasilkan artefak digital untuk bentuk produk inline smart outlet:
-riset komponen, BOM riset (unpriced), GPIO map, 6 harness WireViz, KiCad block
+riset komponen, BOM riset + matriks pengadaan Indonesia bertanggal, GPIO map, 6 harness WireViz, KiCad block
 schematic + placement-only PCB, CadQuery enclosure/assembly, firmware C core +
 host tests, dan dokumen keselamatan. Tidak ada klaim siap fabrikasi atau siap
 digunakan.
@@ -75,23 +75,39 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 
 ## 3. BOM dan persetujuan komponen
 
-- `bom/BOM_MASTER.csv` - **48 baris**, harga **kosong** (`UNPRICED`).
-- `bom/BOM_SUMMARY.json` - `subtotal_idr: null`, `priced_lines: 0`, `unpriced_lines: 48`.
+- `bom/BOM_MASTER.csv` - **48 baris**, BOM rekayasa; harga tidak dimasukkan ke BOM ini.
+- `bom/BOM_PROCUREMENT.csv` - **48 baris daftar belanja prototype**, 39 baris punya listing bertanggal, 9 baris `ESTIMATED`.
+- `bom/BOM_SUMMARY.json` - status `PROCUREMENT_PRICED_2026-11-15`; CORE Rp756.987, FULL Rp895.976.
+- `bom/BOM_PROCUREMENT.md` - tabel CORE/FULL, harga, seller, URL, verdict budget.
 - `bom/BOM_TOOLS_AND_TEST.csv` — 6 alat, belum dibeli.
 - `bom/BOM_CONSUMABLES.csv` — 5 item.
 - `bom/COMPONENT_APPROVALS.yaml` — tidak ada komponen `approved_for_fabrication`.
 - `research/candidates.csv` — 45 kandidat.
-- `research/COMPONENT_RESEARCH.md` — narasi dan skor bukti.
+- `research/COMPONENT_RESEARCH.md` — narasi, skor bukti, dan ringkasan sourcing.
+- `research/PROCUREMENT_INDONESIA.md` — riset pemasok, harga, stok, risiko, dan skenario budget.
 - `research/datasheets/MANIFEST.md` — 12 PDF tersimpan + hash (termasuk HLK-5M05), plus arsip PZEM V1.0 (docx/txt); sisanya link-only/licensed.
 
 **Status safety-critical:**
-- Socket/plug: `DOCUMENTATION_DEFICIENT`.
-- PZEM V4: `DOCUMENTATION_DEFICIENT`.
+- Socket/plug: `DOCUMENTATION_DEFICIENT` (Simon 16 A / BOSS BP16; sertifikasi/PE belum).
+- PZEM V4: `DOCUMENTATION_DEFICIENT` (100 A closed CT Rp150.000; batch belum).
 - Relay: modul optocoupler 2 channel off-board, 10 A class claim, dua SPDT independen (bukan DPST).
-- PE hardware/enclosure: `BLOCKED`; 220×120×70 sudah dikonfirmasi (Q06=C), tetapi material/PE/fit fisik belum divalidasi.
+- PE hardware/enclosure: `BLOCKED`; 220×120×70 sudah dikonfirmasi (Q06=C), enclosure ABS exact-size Rp99.684 tetapi flame rating/material belum divalidasi.
 - Fuse/MOV/TCO: `PENDING`/documentation deficient.
 
-**Konsekuensi:** rating final 8 A/1.840 W; batas beban eksplisit. Dua channel module tidak mechanically linked; residual risk harus diuji.
+**Konsekuensi:** rating final 8 A/1.840 W; batas beban eksplisit. Dua channel module tidak mechanically linked; residual risk harus diuji. Budget CORE hanya masuk Rp750.000 dengan harga restock EasyWare; FULL di atas budget.
+
+### 3A. Riset pengadaan Indonesia (2026-11-15)
+
+Riset harga mencakup 48 baris; 39 baris punya listing bertanggal dan 9 baris `ESTIMATED`. Detail ada di `research/PROCUREMENT_INDONESIA.md` dan `bom/BOM_PROCUREMENT.csv`.
+
+| Konfigurasi | Subtotal | + ongkir Rp40.000 | Status |
+|---|---:|---:|---|
+| Elektronik inti | Rp526.923 | — | di dalam budget |
+| CORE (safety/function minimum) | Rp756.987 | Rp796.987 | sedikit di atas cap |
+| CORE dengan restock EasyWare | Rp705.519 | Rp745.519 | masuk budget |
+| FULL (+ OLED/RTC/RGB/konektor) | Rp895.976 | Rp935.976 | di atas budget |
+
+**Keputusan:** ESP32-S3 N16R8 compatible Rp139.968 (deviasi Q08=B eksplisit), PZEM V4 100 A CT Rp150.000, HLK-5M05 Rp49.000, relay 2 channel Rp16.650, TMP102 breakout Rp50.000, ADuM1201+B0505S Rp64.400, enclosure 220x120x70 Rp99.684. Harga listing bukan quote dan bukan approval; status safety tidak berubah.
 
 ---
 
@@ -223,7 +239,7 @@ No mains assembly/energization was performed.
 - Host tests: `firmware/test/host/test_core.c` — 74 checks.
 - ESP-IDF minimal app: `firmware/main/app_main.c` — relay OFF at boot, button debounce, core state machine, ON blocked while sensors invalid.
 - Partition/config: `firmware/partitions.csv`, `sdkconfig.defaults`.
-- ESP-IDF build: `PASS` (v6.1, target esp32s3, 192.464-byte `.bin`, SHA-256 `96BDF60D09D621F2D55DE1824B76BEB806F62D69277FAC1431BD7490BF9ABFC8`); build only, no flash.
+- ESP-IDF build: `PASS` (v6.1, target esp32s3, 192.464-byte `.bin`, SHA-256 `4949EEEFE73526AC99E79AC8F8E97EB1E0790551D80ED922F32034C8F0321134`); build only, no flash.
 - OLED/RGB/PZEM/Wi-Fi/MQTT/OTA components: `NOT_IMPLEMENTED`.
 - Build evidence: `reports/FIRMWARE_BUILD.md`, `reports/logs/firmware-idf-build.log`.
 
@@ -282,8 +298,8 @@ See `reports/TEST_MATRIX.csv` / `VALIDATION_SUMMARY.json`.
 
 | Category | Status | Evidence |
 |---|---|---|
-| 01 Riset komponen | `PARTIAL` | 45 candidates, 48 BOM rows, unpriced |
-| 02 BOM | `PARTIAL` | CSV/MD/YAML/JSON; unpriced/unapproved |
+| 01 Riset komponen | `PARTIAL` | 45 candidates, 48 BOM rows; 39 priced listings + 9 estimates |
+| 02 BOM | `PARTIAL` | Engineering BOM unpriced; dated procurement matrix CORE/FULL |
 | 03 Datasheet | `PARTIAL` | 9+ PDFs hashed; PZEM/socket deficient |
 | 04 Arsitektur | `PASS` (digital) | Diagram PNG/SVG/PDF |
 | 05 Schematic | `PARTIAL` | Block text-only; ERC 0 but not component connectivity |

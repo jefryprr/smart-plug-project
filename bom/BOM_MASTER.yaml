@@ -1,12 +1,13 @@
 project: esp32-s3-iot-smart-plug
 design_revision: REV_A_PROVISIONAL
-generated_at: '2026-11-15T14:13:59.371477+00:00'
+generated_at: '2026-11-15T15:22:57.209100+00:00'
 items:
 - item_id: E-001
   reference_designators: U1
   category: MCU
-  description: ESP32-S3 DevKitC-1, N16R8 (16 MB flash, 8 MB PSRAM)
-  manufacturer: Espressif
+  description: ESP32-S3 DevKitC-1, N16R8 (official preferred; compatible board allowed
+    only as a documented deviation)
+  manufacturer: Espressif / documented compatible
   manufacturer_part_number: ESP32-S3-DevKitC-1-N16R8
   module_revision: v1.1 (planned)
   qty_per_unit: 1
@@ -20,21 +21,23 @@ items:
   datasheet_url: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html
   datasheet_revision: UNKNOWN
   approved_status: PENDING_APPROVAL
-  alternative_mpn: ESP32-S3-DevKitC-1-N8R8; third-party clone (not preferred)
+  alternative_mpn: Official Espressif ESP32-S3-DevKitC-1-N16R8 (preferred); N8R8
   footprint_id: ESP32-S3-DevKitC-1_2x20_P2.54
   mechanical_model: esp32s3_devkitc1_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: RGB pin differs between v1.0 (GPIO48) and v1.1 (GPIO38); board must be photographed
-    and revision verified. N16R8 uses octal PSRAM; avoid GPIO33-37.
+  notes: Q08=B remains the official ESP32-S3-DevKitC-1 N16R8 baseline. Official local
+    stock is unconfirmed; the priced prototype board is a compatible N16R8 at Rp139,968.
+    This is an explicit, not silent, deviation. Verify N16R8 marking, RGB GPIO (v1.0=48,
+    v1.1=38), regulator, USB, and pinout.
   source_evidence: Espressif user guide v1.1; verify exact board marking and USB/strapping
     pins on arrival.
 - item_id: E-002
   reference_designators: U2
   category: Metering
-  description: PZEM-004T V4 AC energy meter, 100 A split/open CT, TTL/Modbus
+  description: PZEM-004T V4 AC energy meter, 100 A CT (closed or split), TTL/Modbus
   manufacturer: Peacefair
-  manufacturer_part_number: PZEM-004T-V4-100A-SPLIT
+  manufacturer_part_number: PZEM-004T-V4-100A-CT
   module_revision: V4 (unverified batch)
   qty_per_unit: 1
   unit: pcs
@@ -52,10 +55,11 @@ items:
   mechanical_model: pzem004t_v4_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Off-board module with dedicated enclosure bracket; not on the low-voltage
-    PCB. Official Peacefair V4 datasheet for the exact batch is not verified. UART
-    level, isolation, terminal rating, and CT ratio must be measured. Do not confuse
-    CT rating with output current rating.
+  notes: Off-board module. The priced prototype uses a closed 100 A CT; a split CT
+    is electrically equivalent for non-invasive sensing and easier to install. Official
+    Peacefair V4 datasheet for the exact batch is not verified. UART level, isolation,
+    terminal rating, and CT ratio must be measured. Do not confuse CT rating with
+    output current rating.
   source_evidence: PRD retailer references are availability evidence only, not datasheet.
     Archive is historical and may not match the purchased V4.
 - item_id: E-003
@@ -92,7 +96,7 @@ items:
 - item_id: E-004
   reference_designators: U4
   category: Sensing
-  description: Digital temperature sensor, I2C, 3.3 V, SOT-563
+  description: Digital temperature sensor, I2C, 3.3 V (TMP102 bare or GY-TMP102 breakout)
   manufacturer: Texas Instruments
   manufacturer_part_number: TMP102AIDRLR
   module_revision: '-'
@@ -108,12 +112,14 @@ items:
   datasheet_revision: UNKNOWN
   approved_status: PENDING_APPROVAL
   alternative_mpn: MCP9808; DS18B20 (remote probe)
-  footprint_id: SOT-563-6
+  footprint_id: SOT-563-6 / OFF_BOARD_MODULE
   mechanical_model: TMP102_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Place near relay/terminal hotspot. Sensor failure must produce invalid state,
-    not a stale comfortable reading.
+  notes: The carrier design uses TMP102AIDRLR SOT-563; the priced prototype uses a
+    GY-TMP102 breakout for ease of assembly. Verify the actual IC marking/address.
+    Place at the relay/terminal hotspot and calibrate. Sensor failure must produce
+    invalid state, not a stale comfortable reading.
   source_evidence: TI TMP102 datasheet; accuracy and thermal response to be verified
     on bench.
 - item_id: E-005
@@ -166,9 +172,10 @@ items:
   mechanical_model: ADuM1201_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Mandatory provisional barrier between PZEM-side UART and SELV MCU. Final
-    working voltage/creepage must be reviewed. Do not connect PZEM GND directly to
-    MCU GND.
+  notes: Mandatory provisional barrier between PZEM-side UART and SELV MCU. The priced
+    prototype uses a CJMCU ADUM1201 module; module creepage/clearance is not certified.
+    Final working voltage/creepage must be reviewed. Do not connect PZEM GND directly
+    to MCU GND when the external barrier is fitted.
   source_evidence: ADI ADuM1201 datasheet; isolation rating is component-level, not
     final assembly proof.
 - item_id: E-007
@@ -194,8 +201,9 @@ items:
   mechanical_model: B0505S_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Provides isolated 5 V to the PZEM side. Output filtering and common-mode
-    path must be reviewed.
+  notes: Provides isolated 5 V to the PZEM side of the external ADUM barrier. Genuine
+    Mornsun B0505S-1WR3 is required; cheaper clones are rejected until isolation is
+    verified. Output filtering and common-mode path must be reviewed.
   source_evidence: Mornsun datasheet; exact revision to be recorded.
 - item_id: E-008
   reference_designators: U8
@@ -257,7 +265,7 @@ items:
   category: Switching
   description: 2-channel 5 V optocoupler relay module, 10 A class claim, off-board,
     active-low input
-  manufacturer: Generic module (TBD)
+  manufacturer: Generic module (Songle-class relay)
   manufacturer_part_number: 2CH-5V-OPTO-10A
   module_revision: TBD batch
   qty_per_unit: 1
@@ -277,10 +285,10 @@ items:
   mechanical_model: relay_module_2ch_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: User-selected common 2-channel module, off-board, mounted in enclosure. Two
-    independent SPDT channels (L/N); NOT mechanically linked DPST. 10A is a vendor
-    claim, not validated continuous rating. Final 8A/1840W. Active-LOW input; verify
-    JD-VCC/pinout. Do not claim safety-rated two-pole.
+  notes: User-selected common 2-channel module, off-board. Two independent SPDT channels
+    (L/N), NOT mechanically linked DPST. 10 A is a vendor claim, not a validated continuous
+    rating. Final 8 A/1840 W. Active-LOW input; verify JD-VCC/pinout. Priced module
+    is a generic optocoupler board; relay brand/batch/rating/lifecycle are unverified.
   source_evidence: Handsontec 2Ch relay datasheet; DigiKey TS0010D; verify exact batch/pinout/rating
     on arrival.
 - item_id: E-010A
@@ -599,7 +607,7 @@ items:
   reference_designators: DS1
   category: UI
   description: OLED 0.96 inch, 128x64, SSD1306, I2C, 3.3 V module
-  manufacturer: TBD
+  manufacturer: Generic (SSD1306)
   manufacturer_part_number: OLED-096-SSD1306-I2C
   module_revision: '-'
   qty_per_unit: 1
@@ -618,8 +626,9 @@ items:
   mechanical_model: oled096_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Verify controller, address, and 3.3 V operation. Do not assume SH1106 is
-    SSD1306-compatible.
+  notes: Priced EasyWare module is 0.96 inch 128x64 SSD1306 I2C. Verify controller,
+    address, and 3.3 V operation. Do not assume SH1106 is SSD1306-compatible. Deferred
+    in the CORE build.
   source_evidence: Generic module; no traceable manufacturer datasheet yet.
 - item_id: E-022
   reference_designators: LED1
@@ -931,8 +940,8 @@ items:
   reference_designators: X1
   category: Connectors
   description: Type F (Schuko) panel socket, 16 A / 250 V, 2P+E
-  manufacturer: TBD
-  manufacturer_part_number: SOCKET-TYPE-F-16A-TBD
+  manufacturer: Simon
+  manufacturer_part_number: SIMON-SCHUKO-16A
   module_revision: '-'
   qty_per_unit: 1
   unit: pcs
@@ -950,16 +959,16 @@ items:
   mechanical_model: type_f_socket_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Product identity, certification, contact material, retention, and PE continuity
-    are unverified. Do not use a universal socket without traceability. Q02 remains
-    an analysis decision.
+  notes: Priced Simon Schuko panel socket, 16 A/250 V. Exact model, certification,
+    contact material, retention, and PE continuity are unverified. Live parts must
+    be inaccessible. Q02 socket standard remains an analysis decision.
   source_evidence: No approved MPN. Retailer photos are not a datasheet.
 - item_id: E-035
   reference_designators: P1
   category: Connectors
   description: Type F (Schuko) cord plug, 16 A / 250 V, 3-core
-  manufacturer: TBD
-  manufacturer_part_number: PLUG-TYPE-F-16A-TBD
+  manufacturer: BOSS
+  manufacturer_part_number: BP16
   module_revision: '-'
   qty_per_unit: 1
   unit: pcs
@@ -977,8 +986,8 @@ items:
   mechanical_model: type_f_plug_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Mating, cable clamp, PE contact, and orientation must be verified. Cable
-    3x1.5 mm2 H05VV-F provisional.
+  notes: Priced BOSS BP16 Schuko plug, 16 A. Verify PE contact, cable clamp, 3x1.5
+    mm2 fit, and certification. Assembly quality is unverified.
   source_evidence: No approved MPN.
 - item_id: E-036
   reference_designators: CG1
@@ -1010,8 +1019,8 @@ items:
   reference_designators: ENC1
   category: Mechanical
   description: Enclosure, ABS/PC, 220 x 120 x 70 mm confirmed, flame-retardant grade
-  manufacturer: TBD
-  manufacturer_part_number: ENCLOSURE-220X120X70-TBD
+  manufacturer: MG Duradus
+  manufacturer_part_number: MG-220X120X70-ABS
   module_revision: '-'
   qty_per_unit: 1
   unit: pcs
@@ -1029,10 +1038,10 @@ items:
   mechanical_model: enclosure_220x120x70_confirmed
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Confirmed 220x120x70 enclosure (Q06=C, 2026-11-15) because 150x100 and 180x120
-    fail clearance review with off-board PZEM + 2-channel relay. 3D printed enclosure
-    is prototype-only and not certified for mains. Physical fit, material flammability,
-    impact, thermal aging, and wall thickness must be validated.
+  notes: Priced exact-size 220x120x70 ABS/IP65 junction box. Flame-retardant grade
+    is not verified; ABS may not be UL94 V-0. Enclosure remains BLOCKED pending material,
+    fit, thermal, impact, and PE review. 3D printed enclosure is prototype-only and
+    not certified for mains.
   source_evidence: No approved enclosure. CAD is parametric/provisional.
 - item_id: E-038
   reference_designators: PE1
@@ -1114,10 +1123,10 @@ items:
 - item_id: E-041
   reference_designators: PCB1
   category: PCB
-  description: Low-voltage carrier PCB, 2-layer FR4, 1.6 mm, 1 oz Cu, provisional
-    outline
-  manufacturer: TBD
-  manufacturer_part_number: PCB-CARRIER-REV-A
+  description: Prototype carrier board, 7x9 cm double-sided FR4 (custom 75x50 mm PCB
+    not fabricated)
+  manufacturer: Generic
+  manufacturer_part_number: PROTOBOARD-7X9
   module_revision: '-'
   qty_per_unit: 1
   unit: pcs
@@ -1131,18 +1140,19 @@ items:
   datasheet_revision: UNKNOWN
   approved_status: PROVISIONAL
   alternative_mpn: ''
-  footprint_id: PCB_CARRIER_REV_A
+  footprint_id: PROTOBOARD_7X9
   mechanical_model: pcb_carrier_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Mains modules off-board; carrier handles 5 V/3.3 V, I2C, UART isolation,
-    relay driver. Stackup/trace width/clearance are provisional and not released.
+  notes: The custom 75x50 mm carrier is placement-only and NOT_FOR_FABRICATION. The
+    priced prototype uses a 7x9 cm double-sided protoboard with header sockets. No
+    routed functional PCB exists yet.
   source_evidence: KiCad placement file generated; ERC/DRC blocked without KiCad CLI.
 - item_id: E-042
   reference_designators: LAB1
   category: Labels
   description: 'Safety/rating label set: rated voltage/current, warnings, serial/QR
-    placeholder'
+    placeholder (prototype label tape)'
   manufacturer: TBD
   manufacturer_part_number: LABEL-SET-REV-A
   module_revision: '-'
@@ -1162,15 +1172,16 @@ items:
   mechanical_model: label_set_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Rating must be derived from verified chain, not target. QR must not expose
-    a reusable secret. Final label requires regulatory review.
+  notes: Rating must be derived from a verified chain, not the target. Do not print
+    CE/SNI/UL marks. Use 'PROTOTYPE - NOT FOR USE'. QR must not expose a reusable
+    secret. Final label requires regulatory review.
   source_evidence: No approved label content yet.
 - item_id: E-043
   reference_designators: HS1
   category: Consumables
   description: Heat-shrink tubing assortment, flame-retardant
-  manufacturer: TBD
-  manufacturer_part_number: HEATSHRINK-ASSORT
+  manufacturer: Generic
+  manufacturer_part_number: HEATSHRINK-5MM
   module_revision: '-'
   qty_per_unit: 1
   unit: set
@@ -1194,7 +1205,7 @@ items:
   reference_designators: SC1
   category: Mechanical
   description: M3x8 machine screws, nylon washers
-  manufacturer: TBD
+  manufacturer: Generic
   manufacturer_part_number: M3X8-SCREW
   module_revision: '-'
   qty_per_unit: 8
@@ -1219,7 +1230,7 @@ items:
   reference_designators: INS1
   category: Mechanical
   description: M3 heat-set inserts for enclosure
-  manufacturer: TBD
+  manufacturer: Generic
   manufacturer_part_number: M3-INSERT
   module_revision: '-'
   qty_per_unit: 4
@@ -1244,8 +1255,8 @@ items:
   reference_designators: ST1
   category: Mechanical
   description: M3 nylon standoff set for carrier PCB
-  manufacturer: TBD
-  manufacturer_part_number: M3-STANDOFF
+  manufacturer: Generic
+  manufacturer_part_number: M3-STANDOFF-12-NYLON
   module_revision: '-'
   qty_per_unit: 4
   unit: pcs

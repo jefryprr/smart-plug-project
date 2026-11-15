@@ -139,3 +139,15 @@ the real load before approving it.
 - fallback to IRM-05-5 if any of these fail.
 
 Do not claim the PSU is safe, certified, or production-ready.
+
+## 9. Indonesian sourcing (2026-11-15)
+
+| Seller | Price | Stock | Note |
+|---|---:|---|---|
+| Shopee / Marnov Electronic | Rp49.000 | listed | Priced prototype unit. |
+| Shopee / Das_store22 | Rp49.900 | listed | Similar listing. |
+| CNC Store Bandung | Rp63.300 | **out of stock** | Local retailer page, useful reference. |
+
+The price spread (Rp49.000–Rp63.300) is large enough that counterfeit or
+different-batch units are likely. Buy from a seller with batch marking and
+photos, and reject unmarked modules. Price is not approval.

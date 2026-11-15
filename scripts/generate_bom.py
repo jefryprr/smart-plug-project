@@ -424,12 +424,641 @@ CONSUMABLES = [
     row("C-005", "-", "Consumables", "Kapton/polyimide tape and thermal pad", "TBD", "THERMAL-TAPE", status="PROVISIONAL", qty=1, notes="Do not rely on tape for insulation barriers.", evidence="Generic."),
 ]
 
+# ---------------------------------------------------------------------------
+# Indonesian prototype procurement matrix (dated 2026-11-15).
+#
+# This is deliberately separate from the engineering BOM. The engineering BOM
+# names the preferred part; the procurement row names what can actually be
+# bought in Indonesia today, at a dated listing price. A price is not an
+# approval and a listing is not a datasheet.
+# ---------------------------------------------------------------------------
+
+PROCUREMENT = [
+    {
+        "line_id": "E-001", "stage": "CORE",
+        "selected": "ESP32-S3 DevKitC-1 N16R8 compatible board, dual USB-C",
+        "qty": 1, "unit_price": 139968,
+        "seller": "Shopee / ALFA ELECTRONICS",
+        "url": "https://shopee.co.id/product/18800073/40152181733",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Compatible N16R8 board, not confirmed official Espressif. This is an explicit deviation from Q08=B; official EasyWare listing is Rp103,500 but out of stock. Verify N16R8 marking, RGB GPIO (v1.0=48, v1.1=38), regulator, USB, and pinout before use.",
+    },
+    {
+        "line_id": "E-002", "stage": "CORE",
+        "selected": "PZEM-004T V4.0 100 A CT, closed CT, no casing",
+        "qty": 1, "unit_price": 150000,
+        "seller": "Shopee / ALFA ELECTRONICS",
+        "url": "https://shopee.co.id/product/18800073/41719667847",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Closed CT is functionally non-invasive like split CT; only installation differs. EasyWare close-CT 100 A was Rp135,000 and open-CT Rp180,000, both out of stock. Verify V4 batch, CT ratio, UART levels, terminal rating, and voltage-input construction.",
+    },
+    {
+        "line_id": "E-003", "stage": "CORE",
+        "selected": "Hi-Link HLK-5M05, 5 V 1 A, 5 W",
+        "qty": 1, "unit_price": 49000,
+        "seller": "Shopee / Marnov Electronic",
+        "url": "https://shopee.co.id/product/29614947/7316405255",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Datasheet efficiency is only ~70% at 220 V full load. Batch certificate, isolation, creepage, and counterfeit status are unverified. CNC Store Bandung Rp63,300 was out of stock. Reject unmarked modules and require ripple/thermal/hipot tests.",
+    },
+    {
+        "line_id": "E-004", "stage": "CORE",
+        "selected": "GY-TMP102 breakout, I2C temperature sensor",
+        "qty": 1, "unit_price": 50000,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/12793026/7334661838",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Breakout for prototype; the carrier design still uses TMP102AIDRLR SOT-563. Verify the actual IC marking, I2C address, and 3.3 V operation. Place at the relay/terminal hotspot and calibrate.",
+    },
+    {
+        "line_id": "E-005", "stage": "FULL",
+        "selected": "DS3231SN RTC module with battery",
+        "qty": 1, "unit_price": 49500,
+        "seller": "EasyWare Store",
+        "url": "https://store.easyware.id/produk/modul-rtc-ds3231-real-time-clock-i2c-eeprom-at24c32-jam-presisi-arduino-esp32-baterai-cadangan/",
+        "stock": "IN_STOCK", "verification": "VERIFIED_STORE_PAGE",
+        "notes": "Shopee clones start around Rp53,000. Battery holder, crystal, and charge circuit quality vary. RTC drift and backup runtime require test. Deferred in the CORE build; SNTP-only operation must block ON when time is invalid.",
+    },
+    {
+        "line_id": "E-006", "stage": "CORE",
+        "selected": "CJMCU ADUM1201 digital isolator module",
+        "qty": 1, "unit_price": 25900,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/18800073/56958705695",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Module uses ADUM1201ARZ. Module PCB creepage/clearance and isolation are not certified; hipot review is required. Bare ADUM1201ARZ is the carrier alternate. Do not assume the module alone is a safety barrier.",
+    },
+    {
+        "line_id": "E-007", "stage": "CORE",
+        "selected": "Mornsun B0505S-1WR3, 5 V to 5 V, 1 W",
+        "qty": 1, "unit_price": 38500,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/119918417/20095650678",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Genuine Mornsun listing. Cheaper 22k clones are rejected for safety until isolation is verified. Needed only when the external ADUM barrier is used; it powers the PZEM-side of that barrier.",
+    },
+    {
+        "line_id": "E-008", "stage": "CORE",
+        "selected": "AO3400A SOT-23 N-channel MOSFET",
+        "qty": 1, "unit_price": 1500,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/57575514/14466280329",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Boot-safe low-side driver for active-LOW relay inputs. 100 kOhm pulldown and 1 kOhm gate resistor are mandatory. Verify pinout/marking.",
+    },
+    {
+        "line_id": "E-009", "stage": "FULL",
+        "selected": "SN74AHCT1G125DBVR SOT-23-5",
+        "qty": 1, "unit_price": 16389,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/639795892/48066765025",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "WS2812 3.3 V to 5 V data buffer. Deferred if the DevKit onboard RGB is used. Verify AHCT logic family and decoupling.",
+    },
+    {
+        "line_id": "E-010", "stage": "CORE",
+        "selected": "2-channel 5 V optocoupler relay module, 10 A class",
+        "qty": 1, "unit_price": 16650,
+        "seller": "Shopee / AIFRobotic",
+        "url": "https://shopee.co.id/product/214108565/5414791883",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Two independent SPDT channels, NOT mechanically linked. 10 A is a vendor claim; relay brand, batch, contact rating, and lifecycle are unverified. Final rating is 8 A only after thermal/lifecycle test. Verify active-LOW input and JD-VCC jumper.",
+    },
+    {
+        "line_id": "E-010A", "stage": "CORE",
+        "selected": "3D-printed relay bracket and standoffs, ABS/PC",
+        "qty": 1, "unit_price": 5000,
+        "seller": "In-house 3D print (filament + insert cost)",
+        "url": "",
+        "stock": "MADE", "verification": "ESTIMATED",
+        "notes": "Cost estimate only; not a certified part. Printed-material flame rating is unverified. Retain the module mechanically and keep it in the mains zone behind a barrier.",
+    },
+    {
+        "line_id": "E-010B", "stage": "CORE",
+        "selected": "3D-printed PZEM bracket and standoffs, ABS/PC",
+        "qty": 1, "unit_price": 5000,
+        "seller": "In-house 3D print (filament + insert cost)",
+        "url": "",
+        "stock": "MADE", "verification": "ESTIMATED",
+        "notes": "Cost estimate only; dimensions must be measured from the purchased PZEM batch. Keep PZEM in the mains zone, with CT and voltage terminals accessible only during service.",
+    },
+    {
+        "line_id": "E-011", "stage": "CORE",
+        "selected": "Littelfuse 5x20 mm 10 A 250 VAC slow-blow ceramic fuse",
+        "qty": 1, "unit_price": 18300,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/88911101/12944617615",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Listing says Littelfuse slow-blow; verify exact MPN/marking and breaking capacity. A 10 A fuse is backup protection, not the only overcurrent protection. 8 A continuous coordination and time-current curve still require review.",
+    },
+    {
+        "line_id": "E-012", "stage": "CORE",
+        "selected": "Panel-mount fuse holder, 5x20 mm",
+        "qty": 1, "unit_price": 5500,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/1550365600/44818920473",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Tool-access only; mount inside the enclosure. Verify voltage/current rating, contact quality, and touch protection. Schurter 0031.8201 remains the better documented alternate.",
+    },
+    {
+        "line_id": "E-013", "stage": "CORE",
+        "selected": "MOV 10D271K, 275 VAC class, 10 mm",
+        "qty": 1, "unit_price": 7500,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/1400052865/45311419818",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Generic MOV; EPCOS S10K275 remains preferred. End-of-life failure mode and thermal-fuse coordination are unverified. This is not a complete surge-protection design.",
+    },
+    {
+        "line_id": "E-014", "stage": "CORE",
+        "selected": "TF thermal fuse 99 C, 10 A / 250 V",
+        "qty": 1, "unit_price": 4995,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/15326449/25743012041",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Generic; Sefuse SF169E batch datasheet is still missing. Must be mechanically clamped to the hottest terminal/relay area, not left floating. One-shot and independent of firmware.",
+    },
+    {
+        "line_id": "E-015", "stage": "CORE",
+        "selected": "1N4007 diode, 10 pcs pack",
+        "qty": 1, "unit_price": 3900,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/66424740/14150584885",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Flyback diode only if a discrete coil driver is used; the relay module may already include one. Verify before fitting.",
+    },
+    {
+        "line_id": "E-016", "stage": "CORE",
+        "selected": "1 kOhm 0805 resistor (small pack)",
+        "qty": 1, "unit_price": 1000,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/52086903/6035376903",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Gate series resistor. Unit price is an allocated pack cost.",
+    },
+    {
+        "line_id": "E-017", "stage": "CORE",
+        "selected": "100 kOhm 0805 resistor (small pack)",
+        "qty": 1, "unit_price": 1000,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/44140220/4697369971",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Mandatory gate pulldown for boot-safe OFF. Unit price is an allocated pack cost.",
+    },
+    {
+        "line_id": "E-018", "stage": "FULL",
+        "selected": "330 Ohm 0805 resistor (small pack)",
+        "qty": 1, "unit_price": 1000,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/52086903/6035376903",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "WS2812 series resistor; deferred with the external RGB option.",
+    },
+    {
+        "line_id": "E-019", "stage": "CORE",
+        "selected": "100 uF 10 V electrolytic capacitor",
+        "qty": 1, "unit_price": 350,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/783130973/57809969353",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "5 V bulk near relay/PSU. Verify low-ESR/ripple rating; generic part.",
+    },
+    {
+        "line_id": "E-020", "stage": "CORE",
+        "selected": "100 nF 50 V MLCC (small pack)",
+        "qty": 1, "unit_price": 360,
+        "seller": "EasyWare Store",
+        "url": "https://store.easyware.id/produk/20-pcs-kapasitor-smd-0603-yageo-original-50v-np0-x7r-22pf-470pf-560pf-1nf-10nf-mlcc/",
+        "stock": "IN_STOCK", "verification": "VERIFIED_STORE_PAGE",
+        "notes": "Decoupling; allocated pack cost. Verify voltage rating and dielectric.",
+    },
+    {
+        "line_id": "E-021", "stage": "FULL",
+        "selected": "OLED 0.96 inch 128x64 SSD1306 I2C",
+        "qty": 1, "unit_price": 33300,
+        "seller": "EasyWare Store",
+        "url": "https://store.easyware.id/produk/oled-0-96-inch-128x64-ssd1306/",
+        "stock": "IN_STOCK", "verification": "VERIFIED_STORE_PAGE",
+        "notes": "Verify controller (SSD1306 vs SH1106), address, and 3.3 V operation. Deferred in the CORE build; the web UI/serial console remains the fallback.",
+    },
+    {
+        "line_id": "E-022", "stage": "FULL",
+        "selected": "CJMCU-2812-8 WS2812B module",
+        "qty": 1, "unit_price": 8500,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/65450634/10815777005",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "External indicator; the DevKit onboard RGB can substitute at zero extra cost. Level shift is required if the external LED is used.",
+    },
+    {
+        "line_id": "E-023", "stage": "CORE",
+        "selected": "6x6x5 mm tactile switch, 10 pcs",
+        "qty": 1, "unit_price": 7000,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/153780012/27155035831",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Panel cap/extension required. Debounce in firmware; long-press reset must remain reachable without mains access.",
+    },
+    {
+        "line_id": "E-024", "stage": "CORE",
+        "selected": "2x20 female header, 2.54 mm",
+        "qty": 1, "unit_price": 3250,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/1484861284/29479551658",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "For DevKitC-1. Verify pin length/orientation; keying recommended.",
+    },
+    {
+        "line_id": "E-025", "stage": "FULL",
+        "selected": "JST-XH 4-pin male/female cable",
+        "qty": 1, "unit_price": 12300,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/15316646/522424401",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "OLED connector; deferred with OLED. Can be soldered directly in the CORE build.",
+    },
+    {
+        "line_id": "E-026", "stage": "FULL",
+        "selected": "JST-XH 2-pin cable (estimated)",
+        "qty": 1, "unit_price": 5000,
+        "seller": "Shopee (similar listing)",
+        "url": "",
+        "stock": "ESTIMATED", "verification": "ESTIMATED",
+        "notes": "Button connector; can be soldered directly in the CORE build. No exact listing captured.",
+    },
+    {
+        "line_id": "E-027", "stage": "FULL",
+        "selected": "JST-XH 3-pin cable (estimated)",
+        "qty": 1, "unit_price": 5000,
+        "seller": "Shopee (similar listing)",
+        "url": "",
+        "stock": "ESTIMATED", "verification": "ESTIMATED",
+        "notes": "RGB connector; deferred with RGB. No exact listing captured.",
+    },
+    {
+        "line_id": "E-028", "stage": "FULL",
+        "selected": "JST-XH 6-pin cable (estimated)",
+        "qty": 1, "unit_price": 8000,
+        "seller": "Shopee (similar listing)",
+        "url": "",
+        "stock": "ESTIMATED", "verification": "ESTIMATED",
+        "notes": "Temp/RTC/expansion connector; can be soldered directly in the CORE build. No exact listing captured.",
+    },
+    {
+        "line_id": "E-029", "stage": "CORE",
+        "selected": "5.08 mm 2-pin PCB terminal block",
+        "qty": 1, "unit_price": 2450,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/27499686/47805816021",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Mains terminal; verify 300 V/10 A class, screw torque, and creepage. Generic 5EDR, not Phoenix. Ferrules and crimp required.",
+    },
+    {
+        "line_id": "E-030", "stage": "CORE",
+        "selected": "DIN-rail PE terminal block, 6 mm2",
+        "qty": 1, "unit_price": 10250,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/1308489298/27474313332",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "PE must be continuous, not switched or fused. Dedicated mechanical bond, lock washer, and test point. Exact PE path remains BLOCKED for engineer review.",
+    },
+    {
+        "line_id": "E-031", "stage": "CORE",
+        "selected": "5.08 mm 5-pin PCB terminal block",
+        "qty": 1, "unit_price": 11760,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/49844700/51063373298",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "PZEM isolated-side terminal; pinout must match the actual V4 batch. Do not assume wire colors.",
+    },
+    {
+        "line_id": "E-032", "stage": "CORE",
+        "selected": "5.08 mm 2-pin PCB terminal block",
+        "qty": 1, "unit_price": 2450,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/27499686/47805816021",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "SELV relay-coil terminal.",
+    },
+    {
+        "line_id": "E-033", "stage": "CORE",
+        "selected": "5.08 mm 2-pin PCB terminal block",
+        "qty": 1, "unit_price": 2450,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/27499686/47805816021",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "SELV 5 V input terminal; color-code/key to reduce miswiring.",
+    },
+    {
+        "line_id": "E-034", "stage": "CORE",
+        "selected": "Simon Schuko panel socket, 16 A / 250 V",
+        "qty": 1, "unit_price": 25026,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/1393930173/24138502361",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Brand Simon; exact model, certification, contact material, retention, and PE continuity are unverified. Live parts must be inaccessible. Q02 socket standard remains an analysis decision.",
+    },
+    {
+        "line_id": "E-035", "stage": "CORE",
+        "selected": "BOSS BP16 Schuko plug, 16 A",
+        "qty": 1, "unit_price": 14044,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/37155877/41075654392",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Verify PE contact, cable clamp, 3x1.5 mm2 fit, and certification. 16 A class, but assembly quality is unverified.",
+    },
+    {
+        "line_id": "E-036", "stage": "CORE",
+        "selected": "M16 cable gland, IP68, PA66",
+        "qty": 1, "unit_price": 2400,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/83275056/4659955289",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Strain relief must anchor the cable to the enclosure, not the PCB. Verify thread, seal, and flammability.",
+    },
+    {
+        "line_id": "E-037", "stage": "CORE",
+        "selected": "MG Duradus 220x120x70 ABS junction box, IP65",
+        "qty": 1, "unit_price": 99684,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/115758056/5491049261",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Exact confirmed size, ABS/IP65. Flame-retardant grade is not verified; ABS may not be UL94 V-0. Enclosure remains BLOCKED pending material, fit, thermal, impact, and PE review.",
+    },
+    {
+        "line_id": "E-038", "stage": "CORE",
+        "selected": "PE stud/screw/lock washer/nut kit (estimated)",
+        "qty": 1, "unit_price": 5000,
+        "seller": "Local hardware",
+        "url": "",
+        "stock": "ESTIMATED", "verification": "ESTIMATED",
+        "notes": "Dedicated PE bond; do not rely on solder mask or anodized surfaces. Engineer must approve the exact stack.",
+    },
+    {
+        "line_id": "E-039", "stage": "CORE",
+        "selected": "NYYHY 3x1.5 mm2 flexible cable, 0.5 m",
+        "qty": 0.5, "unit_price": 29000,
+        "seller": "Blibli / Supreme",
+        "url": "https://www.blibli.com/p/kabel-listrik-serabut-nyyhy-3x1-5-supreme-meteran/is--GUL-70047-00870-00001",
+        "stock": "IN_STOCK", "verification": "VERIFIED_STORE_PAGE",
+        "notes": "NYYHY 3x1.5 flexible cable, not H05VV-F. 8 A / 0.5 m is provisional. Verify conductor size, PE continuity, ferrules, and bend radius.",
+    },
+    {
+        "line_id": "E-040", "stage": "CORE",
+        "selected": "0.25 mm2 hookup wire assortment, 3 m",
+        "qty": 1, "unit_price": 5000,
+        "seller": "Local/Shopee",
+        "url": "",
+        "stock": "ESTIMATED", "verification": "ESTIMATED",
+        "notes": "SELV only. Keep away from the mains barrier.",
+    },
+    {
+        "line_id": "E-041", "stage": "CORE",
+        "selected": "7x9 cm double-sided prototype PCB",
+        "qty": 1, "unit_price": 5500,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/357992667/27501689102",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Prototype carrier only. The custom 75x50 mm PCB is not fabricated and remains NOT_FOR_FABRICATION. Use header sockets/protoboard for modules.",
+    },
+    {
+        "line_id": "E-042", "stage": "CORE",
+        "selected": "Label tape / printed safety labels (estimated)",
+        "qty": 1, "unit_price": 2000,
+        "seller": "Local/stationery",
+        "url": "",
+        "stock": "ESTIMATED", "verification": "ESTIMATED",
+        "notes": "Rating/warning content is not approved. Do not print CE/SNI/UL marks. Use 'PROTOTYPE - NOT FOR USE' and the verified rating only after tests.",
+    },
+    {
+        "line_id": "E-043", "stage": "CORE",
+        "selected": "Heat-shrink tubing 5 mm, 2 m",
+        "qty": 1, "unit_price": 5000,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/50487634/7301288986",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Flame-retardant grade unverified. Mains joints require insulation and strain relief.",
+    },
+    {
+        "line_id": "E-044", "stage": "CORE",
+        "selected": "M3x8 screws, 10 pcs",
+        "qty": 1, "unit_price": 2300,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/351001905/9007630331",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Use nylon washers; do not create conductive paths or reduce isolation distances.",
+    },
+    {
+        "line_id": "E-045", "stage": "CORE",
+        "selected": "M3 heat-set inserts, 10 pcs (estimated)",
+        "qty": 1, "unit_price": 5000,
+        "seller": "Shopee/local",
+        "url": "",
+        "stock": "ESTIMATED", "verification": "ESTIMATED",
+        "notes": "Insert depth and wall thickness must be verified in the purchased enclosure.",
+    },
+    {
+        "line_id": "E-046", "stage": "CORE",
+        "selected": "M3 nylon standoff, 12 mm, 10 pcs",
+        "qty": 1, "unit_price": 7500,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/46014019/1449079299",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Nylon avoids unintended conductive paths; verify thermal rating.",
+    },
+]
+
+CORE_RESTOCK_SAVINGS = {
+    "E-001": 139968 - 103500,
+    "E-002": 150000 - 135000,
+}
+SHIPPING_ESTIMATE_IDR = 40000
+BUDGET_CAP_IDR = 750000
+
+# Selected prototype/procurement variant overrides. These keep the engineering
+# BOM aligned with what is actually being bought, without pretending that a
+# listing price is an approval.
+PROCUREMENT_OVERRIDES = {
+    "E-001": {
+        "description": "ESP32-S3 DevKitC-1, N16R8 (official preferred; compatible board allowed only as a documented deviation)",
+        "manufacturer": "Espressif / documented compatible",
+        "alternative_mpn": "Official Espressif ESP32-S3-DevKitC-1-N16R8 (preferred); N8R8",
+        "notes": "Q08=B remains the official ESP32-S3-DevKitC-1 N16R8 baseline. Official local stock is unconfirmed; the priced prototype board is a compatible N16R8 at Rp139,968. This is an explicit, not silent, deviation. Verify N16R8 marking, RGB GPIO (v1.0=48, v1.1=38), regulator, USB, and pinout.",
+    },
+    "E-002": {
+        "description": "PZEM-004T V4 AC energy meter, 100 A CT (closed or split), TTL/Modbus",
+        "manufacturer_part_number": "PZEM-004T-V4-100A-CT",
+        "notes": "Off-board module. The priced prototype uses a closed 100 A CT; a split CT is electrically equivalent for non-invasive sensing and easier to install. Official Peacefair V4 datasheet for the exact batch is not verified. UART level, isolation, terminal rating, and CT ratio must be measured. Do not confuse CT rating with output current rating.",
+    },
+    "E-004": {
+        "description": "Digital temperature sensor, I2C, 3.3 V (TMP102 bare or GY-TMP102 breakout)",
+        "footprint_id": "SOT-563-6 / OFF_BOARD_MODULE",
+        "notes": "The carrier design uses TMP102AIDRLR SOT-563; the priced prototype uses a GY-TMP102 breakout for ease of assembly. Verify the actual IC marking/address. Place at the relay/terminal hotspot and calibrate. Sensor failure must produce invalid state, not a stale comfortable reading.",
+    },
+    "E-006": {
+        "notes": "Mandatory provisional barrier between PZEM-side UART and SELV MCU. The priced prototype uses a CJMCU ADUM1201 module; module creepage/clearance is not certified. Final working voltage/creepage must be reviewed. Do not connect PZEM GND directly to MCU GND when the external barrier is fitted.",
+    },
+    "E-007": {
+        "notes": "Provides isolated 5 V to the PZEM side of the external ADUM barrier. Genuine Mornsun B0505S-1WR3 is required; cheaper clones are rejected until isolation is verified. Output filtering and common-mode path must be reviewed.",
+    },
+    "E-010": {
+        "manufacturer": "Generic module (Songle-class relay)",
+        "notes": "User-selected common 2-channel module, off-board. Two independent SPDT channels (L/N), NOT mechanically linked DPST. 10 A is a vendor claim, not a validated continuous rating. Final 8 A/1840 W. Active-LOW input; verify JD-VCC/pinout. Priced module is a generic optocoupler board; relay brand/batch/rating/lifecycle are unverified.",
+    },
+    "E-021": {
+        "manufacturer": "Generic (SSD1306)",
+        "notes": "Priced EasyWare module is 0.96 inch 128x64 SSD1306 I2C. Verify controller, address, and 3.3 V operation. Do not assume SH1106 is SSD1306-compatible. Deferred in the CORE build.",
+    },
+    "E-034": {
+        "manufacturer": "Simon",
+        "manufacturer_part_number": "SIMON-SCHUKO-16A",
+        "approved_status": "DOCUMENTATION_DEFICIENT",
+        "notes": "Priced Simon Schuko panel socket, 16 A/250 V. Exact model, certification, contact material, retention, and PE continuity are unverified. Live parts must be inaccessible. Q02 socket standard remains an analysis decision.",
+    },
+    "E-035": {
+        "manufacturer": "BOSS",
+        "manufacturer_part_number": "BP16",
+        "approved_status": "DOCUMENTATION_DEFICIENT",
+        "notes": "Priced BOSS BP16 Schuko plug, 16 A. Verify PE contact, cable clamp, 3x1.5 mm2 fit, and certification. Assembly quality is unverified.",
+    },
+    "E-037": {
+        "manufacturer": "MG Duradus",
+        "manufacturer_part_number": "MG-220X120X70-ABS",
+        "notes": "Priced exact-size 220x120x70 ABS/IP65 junction box. Flame-retardant grade is not verified; ABS may not be UL94 V-0. Enclosure remains BLOCKED pending material, fit, thermal, impact, and PE review. 3D printed enclosure is prototype-only and not certified for mains.",
+    },
+    "E-041": {
+        "description": "Prototype carrier board, 7x9 cm double-sided FR4 (custom 75x50 mm PCB not fabricated)",
+        "manufacturer": "Generic",
+        "manufacturer_part_number": "PROTOBOARD-7X9",
+        "footprint_id": "PROTOBOARD_7X9",
+        "notes": "The custom 75x50 mm carrier is placement-only and NOT_FOR_FABRICATION. The priced prototype uses a 7x9 cm double-sided protoboard with header sockets. No routed functional PCB exists yet.",
+    },
+    "E-042": {
+        "description": "Safety/rating label set: rated voltage/current, warnings, serial/QR placeholder (prototype label tape)",
+        "notes": "Rating must be derived from a verified chain, not the target. Do not print CE/SNI/UL marks. Use 'PROTOTYPE - NOT FOR USE'. QR must not expose a reusable secret. Final label requires regulatory review.",
+    },
+    "E-043": {
+        "manufacturer": "Generic",
+        "manufacturer_part_number": "HEATSHRINK-5MM",
+    },
+    "E-044": {
+        "manufacturer": "Generic",
+        "manufacturer_part_number": "M3X8-SCREW",
+    },
+    "E-045": {
+        "manufacturer": "Generic",
+        "manufacturer_part_number": "M3-INSERT",
+    },
+    "E-046": {
+        "manufacturer": "Generic",
+        "manufacturer_part_number": "M3-STANDOFF-12-NYLON",
+    },
+}
+
+for _item in ROWS:
+    if _item["item_id"] in PROCUREMENT_OVERRIDES:
+        _item.update(PROCUREMENT_OVERRIDES[_item["item_id"]])
+
 
 def write_csv(path: Path, rows: list[dict]) -> None:
     with path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=FIELDS)
         writer.writeheader()
         writer.writerows(rows)
+
+
+def procurement_rows() -> list[dict]:
+    """Join the dated procurement matrix to the engineering BOM rows."""
+    by_id = {item["item_id"]: item for item in ROWS}
+    rows = []
+    for entry in PROCUREMENT:
+        item = by_id.get(entry["line_id"])
+        if item is None:
+            raise KeyError(f"procurement row {entry['line_id']} has no BOM row")
+        extended = round(float(entry["qty"]) * float(entry["unit_price"]))
+        rows.append(
+            {
+                "line_id": entry["line_id"],
+                "stage": entry["stage"],
+                "reference_designators": item["reference_designators"],
+                "category": item["category"],
+                "item": item["description"],
+                "selected_part": entry["selected"],
+                "qty": entry["qty"],
+                "unit": item["unit"],
+                "unit_price_idr": entry["unit_price"],
+                "extended_idr": extended,
+                "seller": entry["seller"],
+                "source_url": entry["url"],
+                "price_date": "2026-11-15",
+                "stock_status": entry["stock"],
+                "price_verification": entry["verification"],
+                "safety_status": item["approved_status"],
+                "notes": entry["notes"],
+            }
+        )
+    return rows
+
+
+def procurement_markdown(rows: list[dict], totals: dict) -> str:
+    lines = [
+        "# BOM Procurement — Indonesia (2026-11-15)",
+        "",
+        "> **Harga listing, bukan kutipan resmi.** Ini adalah daftar belanja prototipe, bukan persetujuan komponen.",
+        "> Harga dapat berubah; stok marketplace tidak stabil. Tidak ada harga rekaan: baris tanpa listing ditandai `ESTIMATED`.",
+        "",
+        f"- Budget cap: **Rp{BUDGET_CAP_IDR:,}**",
+        "- Baris: **39 CORE + 9 FULL**; 39 listing-verified, 9 `ESTIMATED`.",
+        f"- CORE subtotal: **Rp{totals['core_subtotal_idr']:,}**",
+        f"- CORE dengan harga restock EasyWare: **Rp{totals['core_restock_subtotal_idr']:,}**",
+        f"- FULL add-ons (OLED/RTC/RGB/konektor): **Rp{totals['full_addons_idr']:,}**",
+        f"- FULL subtotal: **Rp{totals['full_subtotal_idr']:,}**",
+        f"- Estimasi ongkir: **Rp{totals['shipping_estimate_idr']:,}** (belum termasuk pajak/impor)",
+        "",
+        "## CORE — safety/function minimum",
+        "",
+        "| Line | Part | Qty | Harga | Seller | Verifikasi |",
+        "|---|---|---:|---:|---|---|",
+    ]
+    for row in rows:
+        if row["stage"] != "CORE":
+            continue
+        lines.append(
+            f"| {row['line_id']} | {row['selected_part']} | {row['qty']:g} {row['unit']} | "
+            f"Rp{row['extended_idr']:,} | {row['seller']} | {row['price_verification']} |"
+        )
+    lines += [
+        "",
+        "## FULL add-ons — UI/time/expansion",
+        "",
+        "| Line | Part | Qty | Harga | Seller | Verifikasi |",
+        "|---|---|---:|---:|---|---|",
+    ]
+    for row in rows:
+        if row["stage"] != "FULL":
+            continue
+        lines.append(
+            f"| {row['line_id']} | {row['selected_part']} | {row['qty']:g} {row['unit']} | "
+            f"Rp{row['extended_idr']:,} | {row['seller']} | {row['price_verification']} |"
+        )
+    lines += [
+        "",
+        "## Budget verdict",
+        "",
+        f"- CORE + ongkir: **Rp{totals['core_all_in_idr']:,}**.",
+        f"- CORE restock + ongkir: **Rp{totals['core_restock_all_in_idr']:,}**.",
+        f"- FULL + ongkir: **Rp{totals['full_all_in_idr']:,}**.",
+        f"- Status: `{totals['verdict']}`.",
+        "",
+        "CORE hanya masuk budget jika ESP32-S3 dan PZEM dibeli pada harga restock EasyWare",
+        "(Rp103.500 dan Rp135.000). Harga marketplace saat ini membuat CORE sedikit di atas",
+        "Rp750.000 setelah ongkir. FULL (OLED + RTC + RGB) jelas di atas budget.",
+        "",
+        "Jangan menurunkan fuse, MOV, TCO, terminal, PE, enclosure, atau barrier isolasi",
+        "untuk mengejar budget. Lihat `research/PROCUREMENT_INDONESIA.md` untuk risiko stok.",
+        "",
+    ]
+    return "\n".join(lines)
 
 
 def main() -> None:
@@ -440,6 +1069,33 @@ def main() -> None:
     write_csv(BOM / "BOM_TOOLS_AND_TEST.csv", TOOLS)
     write_csv(BOM / "BOM_CONSUMABLES.csv", CONSUMABLES)
 
+    proc = procurement_rows()
+    proc_fields = [
+        "line_id", "stage", "reference_designators", "category", "item", "selected_part",
+        "qty", "unit", "unit_price_idr", "extended_idr", "seller", "source_url",
+        "price_date", "stock_status", "price_verification", "safety_status", "notes",
+    ]
+    with (BOM / "BOM_PROCUREMENT.csv").open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=proc_fields)
+        writer.writeheader()
+        writer.writerows(proc)
+
+    core_subtotal = sum(r["extended_idr"] for r in proc if r["stage"] == "CORE")
+    full_addons = sum(r["extended_idr"] for r in proc if r["stage"] == "FULL")
+    core_restock = core_subtotal - sum(CORE_RESTOCK_SAVINGS.values())
+    totals = {
+        "core_subtotal_idr": core_subtotal,
+        "core_restock_subtotal_idr": core_restock,
+        "full_addons_idr": full_addons,
+        "full_subtotal_idr": core_subtotal + full_addons,
+        "shipping_estimate_idr": SHIPPING_ESTIMATE_IDR,
+        "core_all_in_idr": core_subtotal + SHIPPING_ESTIMATE_IDR,
+        "core_restock_all_in_idr": core_restock + SHIPPING_ESTIMATE_IDR,
+        "full_all_in_idr": core_subtotal + full_addons + SHIPPING_ESTIMATE_IDR,
+        "verdict": "CORE_ACHIEVABLE_WITH_RESTOCK; FULL_OVER_BUDGET",
+    }
+    (BOM / "BOM_PROCUREMENT.md").write_text(procurement_markdown(proc, totals), encoding="utf-8")
+
     with (BOM / "BOM_MASTER.yaml").open("w", encoding="utf-8") as handle:
         import yaml
         yaml.safe_dump({"project": "esp32-s3-iot-smart-plug", "design_revision": "REV_A_PROVISIONAL", "generated_at": now, "items": ROWS}, handle, sort_keys=False, allow_unicode=True)
@@ -449,19 +1105,37 @@ def main() -> None:
         "design_revision": "REV_A_PROVISIONAL",
         "currency": "IDR",
         "generated_at": now,
-        "pricing_status": "UNPRICED",
-        "priced_lines": 0,
-        "unpriced_lines": len(ROWS),
+        "pricing_status": "PROCUREMENT_PRICED_2026-11-15",
+        "design_bom_pricing_status": "UNPRICED",
+        "procurement_matrix": "bom/BOM_PROCUREMENT.csv",
+        "procurement_report": "research/PROCUREMENT_INDONESIA.md",
+        "procurement_lines": len(proc),
+        "procurement_verified_lines": sum(1 for r in proc if r["price_verification"].startswith("VERIFIED")),
+        "procurement_estimated_lines": sum(1 for r in proc if r["price_verification"] == "ESTIMATED"),
         "subtotal_idr": None,
-        "prototype_1_unit": {"subtotal_idr": None, "status": "UNPRICED"},
+        "prototype_1_unit": {
+            "core_subtotal_idr": core_subtotal,
+            "core_restock_subtotal_idr": core_restock,
+            "full_addons_idr": full_addons,
+            "full_subtotal_idr": core_subtotal + full_addons,
+            "core_all_in_idr": core_subtotal + SHIPPING_ESTIMATE_IDR,
+            "core_restock_all_in_idr": core_restock + SHIPPING_ESTIMATE_IDR,
+            "full_all_in_idr": core_subtotal + full_addons + SHIPPING_ESTIMATE_IDR,
+            "status": totals["verdict"],
+        },
+        "budget_cap_idr": BUDGET_CAP_IDR,
+        "shipping_estimate_idr": SHIPPING_ESTIMATE_IDR,
         "batch_10_units": {"subtotal_idr": None, "status": "NOT_QUOTED"},
         "owned_components": {"market_cost_idr": None, "cash_out_cost_idr": None, "note": "Q28=B: none owned."},
         "notes": [
-            "No verified, dated Indonesian prices were obtained; prices are empty, not Rp0.",
-            "BOM is not approved for purchase. Safety-critical parts remain PENDING_APPROVAL, DOCUMENTATION_DEFICIENT, or BLOCKED.",
+            "Engineering BOM is still unpriced; dated prototype buy list is bom/BOM_PROCUREMENT.csv.",
+            "Prices are listing prices, not supplier quotes. Shipping/tax are separate estimates.",
+            "CORE excludes OLED, RTC, external RGB, and their connectors; FULL adds them.",
+            "CORE fits Rp750.000 only with EasyWare restock prices for ESP32-S3 and PZEM; buy-now is slightly over.",
+            "FULL is over budget; do not downgrade fuse, MOV, TCO, PE, terminal, enclosure, or isolation to meet it.",
             "Final rating is 8 A / about 1.840 W (user amendment), limited to electronics/SMPS loads; thermal/lifecycle tests are still required.",
-            "Batch 10-unit pricing cannot be quoted without actual supplier quotes."
-        ]
+            "Batch 10-unit pricing cannot be quoted without actual supplier quotes.",
+        ],
     }
     (BOM / "BOM_SUMMARY.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
 
@@ -470,7 +1144,9 @@ def main() -> None:
         "",
         f"**Generated:** {now}",
         "",
-        "> **UNPRICED / NOT APPROVED.** Harga kosong karena belum ada harga terverifikasi. Jangan membeli atau menganggap BOM ini final. Status safety-critical: lihat `COMPONENT_APPROVALS.yaml`.",
+        "> **DESIGN BOM (UNPRICED) / NOT APPROVED.** Ini adalah BOM rekayasa, bukan daftar belanja.",
+        "> Harga, stok, dan tautan pembelian ada di `BOM_PROCUREMENT.md` / `BOM_PROCUREMENT.csv`.",
+        "> Status safety-critical: lihat `COMPONENT_APPROVALS.yaml`.",
         "",
         "| Item | Ref | Category | Description | MPN | Qty | Status |",
         "|---|---|---|---|---|---:|---|",
@@ -483,10 +1159,10 @@ def main() -> None:
         "",
         "## Catatan",
         "",
-        "- Semua harga, stok, dan tautan pembelian sengaja kosong sampai ada kutipan nyata dengan tanggal.",
+        "- BOM ini tidak memuat harga; daftar belanja bertanggal ada di `BOM_PROCUREMENT.md`.",
         "- Komponen mains (socket, plug, relay, fuse, PSU, PE, enclosure) belum disetujui.",
         "- `qty_per_unit` adalah kebutuhan prototipe 1 unit; batch 10 unit belum dihitung.",
-        "- Lihat `research/COMPONENT_RESEARCH.md`, `research/UNKNOWN_SPECIFICATIONS.md`, dan `bom/ALTERNATES.md`.",
+        "- Lihat `research/COMPONENT_RESEARCH.md`, `research/PROCUREMENT_INDONESIA.md`, `research/UNKNOWN_SPECIFICATIONS.md`, dan `bom/COMPONENT_APPROVALS.yaml`.",
     ]
     (BOM / "BOM_MASTER.md").write_text("\n".join(md) + "\n", encoding="utf-8")
 
@@ -517,13 +1193,17 @@ def main() -> None:
         {"item_id": item["item_id"], "type": "datasheet", "url": item["datasheet_url"], "status": "UNVERIFIED" if item["datasheet_url"] else "MISSING"}
         for item in ROWS if item["datasheet_url"]
     ]
+    links += [
+        {"item_id": r["line_id"], "type": "purchase", "url": r["source_url"], "status": r["price_verification"]}
+        for r in proc if r["source_url"]
+    ]
     with (BOM / "PROCUREMENT_LINKS.csv").open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=["item_id", "type", "url", "status"])
         writer.writeheader()
         writer.writerows(links)
 
     print(f"Wrote {len(ROWS)} master rows, {len(TOOLS)} tools, {len(CONSUMABLES)} consumables.")
-    print("Pricing status: UNPRICED (no Rp0 placeholders).")
+    print(f"Procurement: {len(proc)} lines; CORE Rp{core_subtotal:,}; FULL add-ons Rp{full_addons:,}; verdict {totals['verdict']}.")
 
 
 if __name__ == "__main__":
