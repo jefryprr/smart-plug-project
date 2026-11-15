@@ -2,8 +2,8 @@
   "project": "esp32-s3-iot-smart-plug",
   "prd_version": "1.0",
   "design_revision": "REV_A_PROVISIONAL",
-  "generated_at": "2026-11-15T13:21:20.470Z",
-  "git_commit": "cd09f3777d6c41f1b2d032b7fd531f7186a37632",
+  "generated_at": "2026-11-15T13:21:55.846Z",
+  "git_commit": "f0f00b719f7a8b679e80cb2d913dc2f878411047",
   "manifest_note": "git_commit is the source commit at generation time; this manifest file is committed immediately after.",
   "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",
   "hardware_validation_status": "HARDWARE_VALIDATION_REQUIRED",
@@ -1437,8 +1437,8 @@
     {
       "category": 14,
       "path": "scripts/idf_env.ps1",
-      "sha256": "841a816d8bedfb7db6bbbcf55a74eb5cc0cdf97b11e31aa580bc3bb7d70c8ded",
-      "size_bytes": 2819,
+      "sha256": "2756149231a8d883a598fdb3ff921a8c223e608c6bf06c48ca0824303e51cbd4",
+      "size_bytes": 2894,
       "status": "PARTIAL",
       "tests": [
         "T-HW-017"
@@ -1451,8 +1451,8 @@
     {
       "category": 14,
       "path": "scripts/build_firmware.ps1",
-      "sha256": "549c04bd21e77de28efb8c39661d1d0d9ac5fb1aa73af7d5a224c43111592b2b",
-      "size_bytes": 1994,
+      "sha256": "e8dab7a5714970e829070b69d2508ba7d9493281e964f7d2b806c3b788f4c1ec",
+      "size_bytes": 2043,
       "status": "PARTIAL",
       "tests": [
         "T-HW-017"
