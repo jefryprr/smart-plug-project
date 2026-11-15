@@ -79,7 +79,7 @@ def dimensions_svg() -> None:
     ax.set_aspect("equal")
     ax.add_patch(Rectangle((0, 0), 220, 120, fill=False, linewidth=1.5))
     ax.annotate("", xy=(220, -8), xytext=(0, -8), arrowprops=dict(arrowstyle="<->", linewidth=1))
-    ax.text(110, -14, "220 mm (recommended, pending Q06 confirmation)", ha="center", fontsize=10)
+    ax.text(110, -14, "220 mm (Q06=C confirmed 2026-11-15)", ha="center", fontsize=10)
     ax.annotate("", xy=(228, 120), xytext=(228, 0), arrowprops=dict(arrowstyle="<->", linewidth=1))
     ax.text(234, 60, "120 mm (recommended)", va="center", rotation=90, fontsize=10)
     ax.text(5, 125, "Height 70 mm · wall 2.5 mm · corner R3 · 150x100 and 180x120 fail clearance review", fontsize=9)
@@ -207,14 +207,14 @@ def write_fit_reports() -> None:
     lines.append("")
     lines.append("## Interpretation")
     lines.append("- A `PASS` is not a safety or manufacturing release.")
-    lines.append("- The 150×100×70 and 180×120×70 presets fail clearance review; the working recommendation is 220×120×70 (Q06=C, pending user approval).")
+    lines.append("- The 150×100×70 and 180×120×70 presets fail clearance review; 220×120×70 is confirmed (Q06=C, 2026-11-15). Physical fit is still unverified.")
     lines.append("- Physical fit requires measured samples, tolerance stack, cable bend, and assembly trial.")
     (ROOT / "hardware" / "mechanical" / "FIT_ANALYSIS.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def write_mechanical_bom() -> None:
     rows = [
-        ("M-001", "Enclosure body + lid", "ABS/PC flame-retardant target, 220x120x70 recommended", "1 set", "BLOCKED"),
+        ("M-001", "Enclosure body + lid", "ABS/PC flame-retardant target, 220x120x70 confirmed", "1 set", "BLOCKED"),
         ("M-002", "M3x8 screws", "Stainless steel, pan head", "8 pcs", "PROVISIONAL"),
         ("M-003", "M3 heat-set inserts", "M3×5.7, brass", "4 pcs", "PROVISIONAL"),
         ("M-004", "M3 nylon standoffs", "M3, 8 mm", "4 pcs", "PROVISIONAL"),

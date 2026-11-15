@@ -4,7 +4,7 @@ design_revision: REV_A_PROVISIONAL
 material_id: "ABS/PC flame-retardant, UL94 V-0 target (not selected)"
 manufacturing_process: "FDM prototype / injection molding production TBD"
 
-# Top-level values are the Q06=B target (150 x 100 x 70 mm).
+# Top-level values are the rejected 150 x 100 x 70 comparison preset.
 enclosure_length_mm: 150.0
 width_mm: 100.0
 height_mm: 70.0
@@ -66,12 +66,12 @@ provenance:
   cable_gland_diameter_mm: datasheet
 
 # Recommended variant if the 150 x 100 x 70 target fails fit/clearance review.
-q06_status: "TARGET_150X100X70_FAILS; 180X120X70 FAILS REAL CLEARANCE REVIEW (PZEM/RELAY/SOCKET STACKING); RECOMMENDED 220X120X70; PENDING USER CONFIRMATION"
+q06_status: "CONFIRMED 2026-11-15: 220X120X70 (Q06=C). 150X100X70 FAILS; 180X120X70 REJECTED FOR REAL CLEARANCE (PZEM/RELAY/SOCKET STACKING). PHYSICAL FIT STILL UNVERIFIED."
 recommended:
   enclosure_length_mm: 220.0
   width_mm: 120.0
   height_mm: 70.0
-  note: "220x120x70 gives side-by-side space for the off-board PZEM + 2-channel relay module, barrier, fuse/terminals, and cable bend radius. 150x100 and 180x120 are retained as failed comparisons; Q06 change requires user confirmation."
+  note: "220x120x70 gives side-by-side space for the off-board PZEM + 2-channel relay module, barrier, fuse/terminals, and cable bend radius. Confirmed by the user on 2026-11-15 (Q06=C); 150x100 and 180x120 are retained as failed comparisons."
 
 notes:
   - "All module dimensions are APPROXIMATE until incoming inspection measures the actual parts."

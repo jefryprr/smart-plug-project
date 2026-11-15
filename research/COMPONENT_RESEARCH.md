@@ -19,7 +19,7 @@
 | Sensor suhu | TI TMP102AIDRLR | MCP9808; DS18B20 | **PENDING_APPROVAL** |
 | OLED | SSD1306 0.96" I2C | SH1106 1.3"; bare panel | **DOCUMENTATION_DEFICIENT** |
 | Socket/plug | Type F 16 A 2P+E (Q02 lean) | Type E/F combo; standar lokal | **DOCUMENTATION_DEFICIENT/BLOCKED** |
-| Enclosure | ABS/PC **220x120x70 recommended**, flame-retardant (150x100 and 180x120 fail clearance) | Hammond/Bud rated enclosure; 3D print prototype | **BLOCKED**; material belum dipilih |
+| Enclosure | ABS/PC **220x120x70 confirmed (Q06=C)**, flame-retardant (150x100 and 180x120 fail clearance) | Hammond/Bud rated enclosure; 3D print prototype | **BLOCKED**; material belum dipilih |
 | Isolasi UART | ADuM1201 + B0505S-1WR3 | Si8622 + R1SE-0505; optocoupler + isolated DC/DC | **PENDING_APPROVAL** |
 | RTC | DS3231MZ+ | PCF8523T; SNTP holdover | **PENDING_APPROVAL** |
 
@@ -149,7 +149,7 @@ Pengguna memilih **modul relay optocoupler 2 channel umum, 5 V, off-board** (buk
 | Socket | Type F 16 A 2P+E | DOCUMENTATION_DEFICIENT | Model, sertifikasi, material kontak, retensi, dan PE belum |
 | Socket | Type E/F combo | DOCUMENTATION_DEFICIENT | Kompatibilitas lebih luas, tetapi produk "universal" berisiko |
 | Plug | Type F 16 A 3-core | DOCUMENTATION_DEFICIENT | Mating/clamp/PE belum |
-| Enclosure | ABS/PC 220x120x70 recommended, UL94 V-0 | BLOCKED | Material, impact, thermal aging, wall thickness belum; 150x100/180x120 gagal clearance |
+| Enclosure | ABS/PC 220x120x70 confirmed (Q06=C), UL94 V-0 | BLOCKED | Material, impact, thermal aging, wall thickness belum; 150x100/180x120 gagal clearance |
 | Enclosure | Hammond/Bud rated | PENDING | Perlu ukuran dan rating yang cocok |
 | PE hardware | Stud/screw/lock washer | BLOCKED | Safety-critical; belum ada MPN |
 | 3D print | PLA/PETG prototype | PROTOTYPE_ONLY | Bukan enclosure listrik tersertifikasi |

@@ -22,7 +22,7 @@ Tidak ada Q01–Q28 yang masih `OPEN`. Beberapa jawaban adalah **arah** (D) yang
 | B-001 | `BLOCKER_SAFETY` | Socket/plug Type F/E-F MPN, sertifikasi, PE, retensi | Hardware engineer | Pilih produk terlacak; ukur/uji |
 | B-002 | `BLOCKER_SAFETY` | 2-channel optocoupler module: batch, active-low, contact rating, channel non-linkage | Hardware engineer | Verifikasi modul; uji tiap channel; final 8 A |
 | B-003 | `BLOCKER_SAFETY` | PZEM V4 batch datasheet/pinout/isolation; off-board bracket | Hardware engineer | Dapatkan manual batch; ukur; cetak bracket |
-| B-004 | `BLOCKER_SAFETY` | PE hardware/enclosure material; 150×100 and 180×120 fail clearance review | Mechanical engineer | Pilih part rated; konfirmasi 220×120; uji kontinuitas |
+| B-004 | `BLOCKER_SAFETY` | PE hardware/enclosure material; 220×120×70 decision confirmed but physical fit/material unverified | Mechanical engineer | Pilih part rated; cetak/ukur sample; uji kontinuitas/termal |
 | B-005 | `BLOCKER_SAFETY` | Clearance/creepage inputs/standard | Engineer | Isi worksheet; review |
 | B-006 | `BLOCKER_SAFETY` | No lab/engineer/physical tests | Project owner | Sediakan fasilitas |
 | B-007 | `BLOCKER_DESIGN` | Component-level schematic/footprints/routing; functional Gerber | Hardware engineer | KiCad 10.0.8 installed; ERC/DRC/placement-only Gerber done; complete real circuit |

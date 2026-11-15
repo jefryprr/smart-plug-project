@@ -48,7 +48,7 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 | Arus | **8 A final / ~1.840 W** (amendment pengguna); elektronik/SMPS saja |
 | Beban | Campuran elektronik/SMPS (Q04=B) |
 | Pemutusan | Dua channel L/N, bukan DPST linked (Q05=A) |
-| Ukuran | 220×120×70 recommended; 150×100 and 180×120 fail clearance review (Q06 pending C) |
+| Ukuran | 220×120×70 CONFIRMED (Q06=C, 2026-11-15); 150×100/180×120 fail clearance |
 | Budget | Rp500–750 ribu (Q07=B) |
 | Board | ESP32-S3-DevKitC-1 N16R8 resmi (Q08=B) |
 | Metering | Bandingkan; PZEM V4 provisional (Q09=D) |
@@ -88,7 +88,7 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 - Socket/plug: `DOCUMENTATION_DEFICIENT`.
 - PZEM V4: `DOCUMENTATION_DEFICIENT`.
 - Relay: modul optocoupler 2 channel off-board, 10 A class claim, dua SPDT independen (bukan DPST).
-- PE hardware/enclosure: `BLOCKED`; 220×120×70 recommended karena 150×100 dan 180×120 gagal clearance review.
+- PE hardware/enclosure: `BLOCKED`; 220×120×70 sudah dikonfirmasi (Q06=C), tetapi material/PE/fit fisik belum divalidasi.
 - Fuse/MOV/TCO: `PENDING`/documentation deficient.
 
 **Konsekuensi:** rating final 8 A/1.840 W; batas beban eksplisit. Dua channel module tidak mechanically linked; residual risk harus diuji.
@@ -122,7 +122,7 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 | Socket/plug | Type F/E-F 16 A class | `DOCUMENTATION_DEFICIENT` |
 | PE | Kontinu, tidak diputus | `PROVISIONAL` |
 | Isolation | ADuM1201 + B0505S | `PENDING` |
-| Enclosure | 220x120x70 recommended (150x100 and 180x120 fail clearance), ABS/PC FR | `BLOCKED` |
+| Enclosure | 220x120x70 CONFIRMED (Q06=C), ABS/PC FR; 150x100/180x120 rejected | `BLOCKED` (material/PE/fit) |
 | Clearance/creepage | TBD | `BLOCKED` |
 
 ---
@@ -292,7 +292,7 @@ See `reports/TEST_MATRIX.csv` / `VALIDATION_SUMMARY.json`.
 | 08 PCB | `PARTIAL` | Placement-only; DRC 0; routing blocked |
 | 09 Manufacturing | `PARTIAL/BLOCKED` | Placement-only Gerber/drill; functional board blocked |
 | 10 PCB visualization | `PARTIAL` | Placement preview only |
-| 11 Enclosure 3D | `PARTIAL` | 220×120 recommended PASS; 150×100/180×120 rejected; brackets exported |
+| 11 Enclosure 3D | `PARTIAL` | 220×120 confirmed PASS coarse; 150×100/180×120 rejected; brackets exported |
 | 12 Enclosure render | `PARTIAL` | Renders/drawings recommended; no physical fit |
 | 13 Firmware | `PARTIAL` | Core + ESP-IDF target build PASS; integration/flash blocked |
 | 14 Firmware config | `PARTIAL` | Partitions/sdkconfig accepted by build; no flash |

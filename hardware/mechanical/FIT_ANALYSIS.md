@@ -25,5 +25,5 @@
 
 ## Interpretation
 - A `PASS` is not a safety or manufacturing release.
-- The 150×100×70 and 180×120×70 presets fail clearance review; the working recommendation is 220×120×70 (Q06=C, pending user approval).
+- The 150×100×70 and 180×120×70 presets fail clearance review; 220×120×70 is confirmed (Q06=C, 2026-11-15). Physical fit is still unverified.
 - Physical fit requires measured samples, tolerance stack, cable bend, and assembly trial.

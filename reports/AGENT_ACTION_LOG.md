@@ -33,7 +33,7 @@
 | 25 | Final report/manifest | Python fill + Node SHA-256 | 26 categories, 97 artifacts, 0 missing | `deliverables/` |
 | 26 | KiCad CLI install/checks | Portable KiCad 10.0.8; `kicad-cli sch erc`, `pcb drc`, Gerber/drill | ERC 0; DRC 0; placement-only Gerber/drill | `reports/kicad/`, `hardware/manufacturing/provisional/` |
 | 27 | User amendment | 8 A final; off-board PZEM + 2-channel optocoupler module; brackets | BOM/wiring/GPIO/firmware/safety updated | `docs/decisions/`, `research/OFFBOARD_MODULES.md` |
-| 28 | Enclosure correction | AABB/stacking review; 150/180 rejected; 220 recommended | Coarse PASS for 220×120×70; brackets/STL/renders updated | `hardware/mechanical/` |
+| 28 | Enclosure correction | AABB/stacking review; 150/180 rejected; 220×120×70 confirmed by user | Coarse PASS for 220×120×70; brackets/STL/renders updated | `hardware/mechanical/` |
 | 29 | ESP-IDF v6.1 install/build | EIM/IDF tools on C; portable IDF in `tools/esp-idf`; `scripts/build_firmware.ps1` | Target build PASS; 192,464-byte `.bin`; no flash | `reports/FIRMWARE_BUILD.md` |
 | 30 | Android SDK/APK | SDK + Gradle cache on `D:\AI INSTALLS`; prebuild + `assembleDebug` | Debug APK PASS; 46,852,340 bytes; v2 debug signature; not installed | `reports/ANDROID_BUILD.md` |
 | 31 | Final validation gate | `.venv\Scripts\python.exe scripts\validate_all.py --e2e` | **23 PASS / 11 BLOCKED / 0 FAIL** | `reports/TEST_MATRIX.csv`, `VALIDATION_SUMMARY.json` |

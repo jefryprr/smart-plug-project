@@ -53,8 +53,8 @@ excluded from the AABB test. That is not a usable assembly.
 | 180 × 120 × 70 | **REJECTED** | PZEM/relay/socket stacking with ~0.5 mm gap; brackets/wiring ignored |
 | 220 × 120 × 70 | **PASS (coarse)** | side-by-side PZEM and relay, barrier at x≈−30, brackets/wiring clearance |
 
-The working recommendation is **220 × 120 × 70 mm**, pending user confirmation
-of the Q06 change. The mechanical package includes the updated STEP/STL,
+The working enclosure is **220 × 120 × 70 mm**, **confirmed by the user on
+2026-11-15 (Q06=C)**. The mechanical package includes the updated STEP/STL,
 mounting plan, dimensions, fit report, and PZEM/relay brackets. This is still a
 coarse digital fit, not a physical or thermal validation.
 

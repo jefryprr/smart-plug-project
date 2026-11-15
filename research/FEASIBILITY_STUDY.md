@@ -2,7 +2,7 @@
 
 **Design revision:** `REV_A_PROVISIONAL`
 **Tanggal:** 15 November 2026
-**Input keputusan:** Q01=B (inline), Q02=D (analisis; lean Type E/F), **Q03=8 A final (amendment)**, Q04=B (campuran elektronik/SMPS), Q05=A (tinjau dua kutub), **Q06=220×120×70 recommended karena 150×100 dan 180×120 gagal clearance**, Q07=B (Rp500–750 ribu), Q12=A (prototipe lab), Q26=A (hanya komputer).
+**Input keputusan:** Q01=B (inline), Q02=D (analisis; lean Type E/F), **Q03=8 A final (amendment)**, Q04=B (campuran elektronik/SMPS), Q05=A (tinjau dua kutub), **Q06=220×120×70 CONFIRMED (2026-11-15) karena 150×100 dan 180×120 gagal clearance**, Q07=B (Rp500–750 ribu), Q12=A (prototipe lab), Q26=A (hanya komputer).
 **Status keseluruhan:** `FEASIBLE_WITH_CAVEATS` untuk bentuk/prototype digital; `BLOCKED` untuk clearance, isolasi, PE, termal, dan fabrikasi.
 
 > Dokumen ini adalah analisis kelayakan, bukan persetujuan desain. Angka dimensi modul yang bertanda *approx* belum diukur pada sampel fisik. Tidak ada uji mains yang dilakukan.
@@ -13,7 +13,7 @@
 |---:|---|---|---|
 | 1 | Apakah seluruh modul muat? | Secara volume kasar ya; tetapi PZEM, PSU, relay, socket, fuse, terminal, dan barrier isolasi membuat tata letak padat. Perlu fit-check dengan dimensi terukur. | `GO_WITH_CAVEATS` |
 | 2 | Apakah jarak isolasi memadai? | Belum dapat dihitung: pollution degree, overvoltage category, material group, working voltage, dan altitude belum ditetapkan. Tidak boleh menebak angka creepage/clearance. | `BLOCKED` |
-| 3 | Apakah ventilasi memadai? | Enclosure 220×120×70 recommended memberi ruang side-by-side; relay module/terminal/PSU tetap hotspot. Ventilasi dan derating belum diuji. | `BLOCKED` |
+| 3 | Apakah ventilasi memadai? | Enclosure 220×120×70 confirmed memberi ruang side-by-side; relay module/terminal/PSU tetap hotspot. Ventilasi dan derating belum diuji. | `BLOCKED` |
 | 4 | Apakah pengamanan soket/terminal memadai? | Socket/terminal belum dipilih dan belum diuji retensi/tarikan. | `BLOCKED` |
 | 5 | Apakah jalur PE layak? | PE dapat dibuat langsung dari plug input ke socket output tanpa relay/fuse. Tetapi MPN terminal/stud dan uji kontinuitas belum ada. | `BLOCKED` |
 | 6 | Apakah pemutusan konduktor dua kutub layak? | Module 2-channel off-board: dua SPDT independen, 10 A class claim; bukan DPST linked. Rating final 8 A. Uji tiap channel. | `PROVISIONAL` |
@@ -27,7 +27,7 @@
 
 ## 2. Perhitungan ruang
 
-Target kerja: **220 × 120 × 70 mm** (recommended; 150×100 dan 180×120 gagal clearance dengan PZEM + module 2 channel). Asumsi dinding 2.5 mm dan tutup 2.5 mm:
+Target kerja: **220 × 120 × 70 mm** (confirmed; 150×100 dan 180×120 gagal clearance dengan PZEM + module 2 channel). Asumsi dinding 2.5 mm dan tutup 2.5 mm:
 
 - Internal kasar: 145 × 95 × 65 mm = **895 cm³**.
 - Volume envelope komponen (approx, belum terukur):

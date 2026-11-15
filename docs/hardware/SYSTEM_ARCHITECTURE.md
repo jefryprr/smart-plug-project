@@ -38,7 +38,7 @@ User command → API (auth/idempotency/TTL) → MQTT command → device core →
 - 3D-printed enclosure is prototype-only.
 - No relay/PSU/fuse/PE approval; no fabrication release.
 - Final rating **8 A/1.840 W**; 2-channel module is not a mechanically linked DPST.
-- 220×120×70 recommended; 150×100 and 180×120 fail clearance review with off-board modules.
+- 220×120×70 confirmed (Q06=C); 150×100 and 180×120 fail clearance review with off-board modules.
 
 ## 4. Offline behavior
 

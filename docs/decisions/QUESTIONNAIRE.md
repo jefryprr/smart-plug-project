@@ -19,7 +19,7 @@ Opsi `D` berarti "minta analisis/rekomendasi"; agen akan meneliti dan mengajukan
 | Q03 | Arus beban maksimum target | A. 6 A; B. 10 A; C. 16 A; D. Setelah evaluasi part/rating | **B (10 A)** untuk target awal; rating final = nilai terendah rantai plug–socket–relay–PCB–terminal–fuse–thermal. 16 A menaikkan biaya/termal secara signifikan. |
 | Q04 | Jenis beban | A. Resistif; B. Campuran elektronik rumah tangga termasuk SMPS; C. Motor/induktif; D. Semua dengan pembatasan eksplisit | **B** dengan batas tertulis. C memerlukan rating inrush/AC category dan uji tersendiri. Jangan menjanjikan "semua beban". |
 | Q05 | Konfigurasi pemutusan konduktor | A. Tinjau pemutusan dua kutub karena plug Type F reversibel; B. Satu kutub dengan pembuktian; C. Engineer memilih dari studi standar | **A** untuk ditinjau: dua kutub lebih konservatif pada plug reversibel. PE tidak pernah diputus. |
-| Q06 | Batas ukuran fisik target | A. ≤100×100×50 mm; B. ≤150×100×70 mm; C. Fleksibel, utamakan keselamatan/servis; D. Dimensi sendiri | **B** sebagai target kerja; **C** bila komponen safety tidak muat. |
+| Q06 | Batas ukuran fisik target | A. ≤100×100×50 mm; B. ≤150×100×70 mm; C. Fleksibel, utamakan keselamatan/servis; D. Dimensi sendiri | **C** — pengguna mengonfirmasi **220×120×70 mm** pada 2026-11-15 setelah 150×100 dan 180×120 gagal clearance. |
 | Q07 | Target biaya BOM | A. Rp350–500 ribu; B. Rp500–750 ribu; C. Fleksibel sampai tervalidasi; D. Anggaran lain | **B**, dengan catatan komponen safety dapat mendorong ke **C**. Harga aktual akan dicatat dengan tanggal dan sumber. |
 | Q08 | Status board ESP32-S3 N16R8 | A. Sudah punya (kirim foto); B. Akan beli DevKitC-1 resmi; C. Clone pihak ketiga (kirim model/revisi); D. Belum pasti | **B** (Espressif DevKitC-1 resmi) untuk ketertelusuran. Jika A/C, verifikasi foto, revisi, GPIO RGB, strapping, USB. |
 | Q09 | Modul PZEM-004T V4 Open CT | A. Sudah ada (foto); B. Akan beli sumber terverifikasi; C. Terbuka alternatif; D. Butuh perbandingan varian | **D**: bandingkan PZEM V4 split CT vs alternatif metering terisolasi. Jangan mengunci V4 sebelum manual batch nyata diperiksa. |
@@ -55,7 +55,7 @@ Opsi `D` berarti "minta analisis/rekomendasi"; agen akan meneliti dan mengajukan
 Salin dan isi:
 
 ```text
-Q01=B; Q02=D; Q03=B; Q04=B; Q05=A; Q06=B; Q07=B; Q08=B;
+Q01=B; Q02=D; Q03=8A_final; Q04=B; Q05=A; Q06=C_220x120x70; Q07=B; Q08=B;
 Q09=D; Q10=C; Q11=D; Q12=A; Q13=A; Q14=C; Q15=C; Q16=C;
 Q17=C; Q18=D; Q19=A; Q20=A; Q21=A; Q22=A; Q23=A; Q24=A;
 Q25=C; Q26=A; Q27=C; Q28=B

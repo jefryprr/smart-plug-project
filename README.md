@@ -7,7 +7,7 @@
 **Latest amendment (2026-11-15):**
 - Final load rating: **8 A / ~1.840 W**, electronics/SMPS only (not heaters/motors).
 - PZEM-004T V4 and a **common 2-channel 5 V optocoupler relay module** are **off-board**, with enclosure brackets. The module is two independent SPDT channels, **not** a mechanically linked DPST.
-- **150×100×70 and 180×120×70 fail** the clearance review with the off-board modules; **220×120×70 recommended** pending user confirmation. The earlier 180×120 “PASS” only stacked the relay above the PZEM with a 0.5 mm gap and ignored brackets; that is rejected.
+- **150×100×70 and 180×120×70 fail** the clearance review with the off-board modules; **220×120×70 is CONFIRMED** by the user (2026-11-15). The earlier 180×120 “PASS” only stacked the relay above the PZEM with a 0.5 mm gap and ignored brackets; that is rejected.
 - **KiCad 10.0.8 CLI installed**; ERC 0 on the text-only block schematic, DRC 0 on the placement-only PCB, provisional Gerber/drill exported. Component-level schematic/routing remains blocked.
 
 > **Safety first.** This repository contains a digital prototype, not a certified or physically validated mains product. No 230 VAC assembly was built, energized, or tested. Do not connect mains to a 3D-printed enclosure or an unapproved prototype. PE must remain continuous and is never switched. See `safety/` and `docs/tutorials/00_READ_FIRST.md`.
@@ -146,7 +146,7 @@ deliverables/          manifest + final report
 
 ## Next human actions
 
-1. Confirm the **220×120×70** enclosure change (Q06=C) and select/verify socket, plug, 2-channel relay module, fuse, PSU, terminal, PE hardware.
+1. Build/measure the **220×120×70** enclosure and select/verify socket, plug, 2-channel relay module, fuse, PSU, terminal, PE hardware.
 2. Complete the component-level KiCad schematic/PCB with approved footprints; run ERC/DRC on the real circuit.
 3. Flash the built firmware on a verified board; complete PZEM/OLED/Wi-Fi/MQTT/OTA integration and boot-waveform tests. Install the debug APK on an emulator/device and test the API flow.
 4. Provide lab/engineer for PE/thermal/isolation/load tests.
