@@ -4,7 +4,7 @@
 **Author/agent:** OpenCode (DeepSeek V4.1 Flash 1017)
 **PRD version:** 1.0
 **Design revision:** `REV_A_PROVISIONAL`
-**Source commit:** `{{GIT_COMMIT}}`
+**Source commit:** `cf37769c0efbd3fc0c8720f93806ab4105e515f9`
 **Manifest:** `deliverables/manifest.json`
 
 ---
@@ -148,7 +148,88 @@ Full machine-readable records: `requirements/traceability.yaml`.
 Summary: 80 total; 28 PASS, 25 PARTIAL, 24 NOT_STARTED, 3 BLOCKED.
 `PASS` means digital evidence only; it does not imply physical validation.
 
-{{FR_TABLE}}
+| FR | Priority | Phase | Status | Description | Key implementation | Tests |
+|---|---|---|---|---|---|---|
+| FR-001 | P0 | F1+F2 | PARTIAL | Real-time voltage monitoring | `apps/api/src/services/telemetry.ts`, `apps/web/src/components/ElectricalReadings.tsx` | T-SW-006 |
+| FR-002 | P0 | F1+F2 | PARTIAL | Real-time current monitoring | `apps/api/src/services/telemetry.ts`, `apps/web/src/components/ElectricalReadings.tsx` | T-SW-006 |
+| FR-003 | P0 | F1+F2 | PARTIAL | Real-time active power | `apps/api/src/services/telemetry.ts` | T-SW-006 |
+| FR-004 | P0 | F1+F2 | PASS | Energy consumption (kWh) | `packages/domain/src/index.ts`, `apps/api/src/services/telemetry.ts` | T-SW-008, DOMAIN-ENERGY |
+| FR-005 | P1 | F1+F2 | PARTIAL | Power factor monitoring | `apps/api/src/services/telemetry.ts`, `apps/web/src/components/ElectricalReadings.tsx` | T-SW-006 |
+| FR-006 | P0 | F2 | PASS | Electricity cost calculator | `packages/domain/src/index.ts`, `apps/api/src/services/energy.ts` | DOMAIN-COST |
+| FR-007 | P0 | F2 | PASS | Custom electricity tariff | `apps/api/src/routes/automation.ts`, `apps/api/src/services/energy.ts` | API-TARIFF |
+| FR-008 | P0 | F2 | PASS | Energy history | `apps/api/src/routes/telemetry.ts`, `apps/api/src/db/schema.ts` | API-TELEMETRY |
+| FR-009 | P1 | F2 | PASS | Energy analytics | `apps/api/src/services/energy.ts`, `apps/web/src/components/EnergyGraph.tsx` | API-ANALYTICS, T-SW-011 |
+| FR-010 | P1 | F2 | NOT_STARTED | Peak power tracking | — | — |
+| FR-011 | P1 | F2 | PASS | Energy budget monitoring | `apps/api/src/routes/automation.ts`, `apps/api/src/services/alerts.ts` | API-BUDGET, ALERT-BUDGET |
+| FR-012 | P2 | F2 | NOT_STARTED | Energy data CSV export | — | — |
+| FR-013 | P0 | F2 | PASS | Remote ON/OFF | `apps/api/src/services/commands.ts`, `apps/api/src/mqtt/bridge.ts` | API-COMMAND, INTEGRATION-COMMAND |
+| FR-014 | P0 | F1+F2 | PARTIAL | Local ON/OFF | `firmware/main/app_main.c`, `apps/api/src/services/commands.ts` | CORE-BUTTON |
+| FR-015 | P0 | F1 | PARTIAL | Physical ON/OFF button | `firmware/main/app_main.c` | CORE-BUTTON |
+| FR-016 | P0 | F1+F2 | PARTIAL | Scheduled ON/OFF | `packages/domain/src/index.ts`, `firmware/core/smartplug_core.c` | DOMAIN-SCHEDULE, CORE-SCHEDULE |
+| FR-017 | P1 | F1+F2 | PASS | Weekly scheduling | `packages/domain/src/index.ts`, `firmware/core/smartplug_core.c` | DOMAIN-SCHEDULE, CORE-SCHEDULE, API-AUTOMATION |
+| FR-018 | P0 | F1+F2 | NOT_STARTED | Countdown timer | — | — |
+| FR-019 | P1 | F1+F2 | NOT_STARTED | Automatic standby detection | — | — |
+| FR-020 | P1 | F1+F2 | NOT_STARTED | Automatic standby cut-off | — | — |
+| FR-021 | P1 | F1+F2 | NOT_STARTED | Idle detection | — | — |
+| FR-022 | P1 | F1+F2 | NOT_STARTED | Power threshold automation | — | — |
+| FR-023 | P0 | F1+F2 | PARTIAL | Power recovery settings | `firmware/main/app_main.c`, `docs/decisions/USER_ANSWERS.md` | CORE-BOOT |
+| FR-024 | P0 | F1+F2 | PARTIAL | Offline scheduling | `firmware/core/smartplug_core.c` | CORE-SCHEDULE |
+| FR-025 | P0 | F1+F2 | PASS | Automation priority management | `packages/domain/src/index.ts`, `firmware/core/smartplug_core.c` | DOMAIN-PRIORITY, CORE-PRIORITY |
+| FR-026 | P0 | F1 | PARTIAL | Overcurrent protection | `firmware/core/smartplug_core.c`, `apps/api/src/services/alerts.ts` | CORE-MEASUREMENT, ALERT-HIGH-POWER |
+| FR-027 | P0 | F1 | PARTIAL | Overtemperature protection | `firmware/core/smartplug_core.c`, `apps/api/src/services/alerts.ts` | CORE-MEASUREMENT, ALERT-TEMP |
+| FR-028 | P0 | F1+F2 | PASS | Overvoltage warning | `firmware/core/smartplug_core.c`, `packages/domain/src/index.ts` | CORE-MEASUREMENT, DOMAIN-MEASUREMENT |
+| FR-029 | P0 | F1+F2 | PASS | Undervoltage warning | `firmware/core/smartplug_core.c`, `packages/domain/src/index.ts` | CORE-MEASUREMENT, DOMAIN-MEASUREMENT |
+| FR-030 | P0 | F1 | BLOCKED | Surge protection | `safety/PROTECTION_COORDINATION.md`, `bom/BOM_MASTER.csv` | T-HW-013 |
+| FR-031 | P0 | F1 | BLOCKED | Thermal cutoff | `safety/THERMAL_RISK_AND_DERATING.md`, `bom/BOM_MASTER.csv` | T-HW-019 |
+| FR-032 | P0 | F1 | BLOCKED | Fuse protection | `safety/ELECTRICAL_RATING_CHAIN.md`, `safety/PROTECTION_COORDINATION.md` | T-HW-013 |
+| FR-033 | P0 | F1 | PARTIAL | Fail-safe startup | `firmware/main/app_main.c`, `firmware/core/smartplug_core.c` | CORE-BOOT |
+| FR-034 | P0 | F1 | PASS | Sensor failure detection | `firmware/core/smartplug_core.c`, `packages/domain/src/index.ts` | CORE-MEASUREMENT, DOMAIN-MEASUREMENT, ALERT-SENSOR |
+| FR-035 | P0 | F1+F2 | PASS | Electrical fault logging | `apps/api/src/services/audit.ts`, `apps/api/src/routes/operations.ts` | API-EVENTS |
+| FR-036 | P0 | F1 | PASS | Fault lockout | `firmware/core/smartplug_core.c`, `packages/domain/src/index.ts` | CORE-LOCKOUT, DOMAIN-LOCKOUT, API-LOCKOUT |
+| FR-037 | P0 | F1 | NOT_STARTED | OLED display | — | — |
+| FR-038 | P1 | F1 | NOT_STARTED | OLED page navigation | — | — |
+| FR-039 | P1 | F1 | NOT_STARTED | RGB NeoPixel status | — | — |
+| FR-040 | P2 | F1 | NOT_STARTED | RGB engineering debug | — | — |
+| FR-041 | P0 | F1 | NOT_STARTED | RGB fault indicator | — | — |
+| FR-042 | P2 | F1 | NOT_STARTED | RGB night mode | — | — |
+| FR-043 | P0 | F2 | PASS | Web dashboard | `apps/web/src/app`, `apps/web/src/components` | T-SW-011, T-SW-012 |
+| FR-044 | P0 | F2 | PARTIAL | Android application | `apps/android/App.tsx` | T-SW-013, T-SW-014 |
+| FR-045 | P1 | F2 | PASS | Device naming | `apps/api/src/routes/devices.ts`, `apps/web/src/components/DeviceSettings.tsx` | API-DEVICE-PATCH |
+| FR-046 | P0 | F2 | PASS | Device status dashboard | `apps/web/src/components/DeviceSummaryCard.tsx`, `apps/web/src/app/(app)/dashboard/page.tsx` | T-SW-011 |
+| FR-047 | P1 | F1+F2 | PASS | Engineering diagnostics dashboard | `apps/web/src/components/DeviceHealth.tsx`, `apps/api/src/routes/operations.ts` | API-DIAGNOSTICS, T-SW-011 |
+| FR-048 | P0 | F1 | NOT_STARTED | Wi-Fi connectivity | — | — |
+| FR-049 | P1 | F1+F2 | NOT_STARTED | BLE provisioning | — | — |
+| FR-050 | P1 | F1+F2 | NOT_STARTED | SoftAP setup | — | — |
+| FR-051 | P0 | F2 | PARTIAL | Hybrid local-cloud control | `apps/api/src/services/commands.ts`, `apps/api/src/mqtt/bridge.ts` | INTEGRATION-COMMAND |
+| FR-052 | P0 | F1+F2 | PASS | MQTT integration | `packages/mqtt-contract/src/index.ts`, `apps/api/src/mqtt/bridge.ts` | T-SW-003, T-SW-004, INTEGRATION-COMMAND |
+| FR-053 | P1 | F2 | NOT_STARTED | Home Assistant integration | — | — |
+| FR-054 | P0 | F2 | PASS | REST API | `packages/api-contract/openapi.yaml`, `apps/api/src` | T-SW-001, API-TESTS |
+| FR-055 | P0 | F2 | PARTIAL | Real-time synchronization | `apps/api/src/mqtt/bridge.ts`, `apps/web/src/lib/hooks.ts` | INTEGRATION-COMMAND |
+| FR-056 | P0 | F1 | NOT_STARTED | Wi-Fi auto reconnection | — | — |
+| FR-057 | P1 | F1+F2 | NOT_STARTED | Offline data buffering | — | — |
+| FR-058 | P0 | F2 | PARTIAL | Cloud database | `apps/api/src/db/schema.ts`, `database/migrations/001_init.sql` | T-SW-002 |
+| FR-059 | P1 | F2 | PARTIAL | Multi-device management | `apps/api/src/routes/devices.ts`, `apps/web/src/app/(app)/devices/page.tsx` | API-DEVICES |
+| FR-060 | P1 | F2 | NOT_STARTED | Power anomaly detection | — | — |
+| FR-061 | P1 | F2 | NOT_STARTED | Historical pattern analysis | — | — |
+| FR-062 | P0 | F1+F2 | PASS | High power alert | `apps/api/src/services/alerts.ts` | ALERT-HIGH-POWER |
+| FR-063 | P0 | F1+F2 | PARTIAL | High temperature alert | `apps/api/src/services/alerts.ts`, `firmware/core/smartplug_core.c` | ALERT-TEMP |
+| FR-064 | P1 | F2 | NOT_STARTED | Standby consumption alert | — | — |
+| FR-065 | P1 | F2 | PASS | Energy budget alert | `apps/api/src/services/alerts.ts` | ALERT-BUDGET |
+| FR-066 | P1 | F2 | PARTIAL | Telegram notification | `apps/api/src/services/notifications.ts` | API-NOTIFICATION |
+| FR-067 | P1 | F2 | NOT_STARTED | Android push notification | — | — |
+| FR-068 | P0 | F2 | PASS | Event history | `apps/api/src/routes/operations.ts`, `apps/web/src/app/(app)/devices/[id]/events/page.tsx` | API-EVENTS |
+| FR-069 | P0 | F1+F2 | PARTIAL | OTA firmware update | `apps/api/src/routes/operations.ts`, `firmware/partitions.csv` | API-OTA |
+| FR-070 | P0 | F1+F2 | PARTIAL | OTA rollback | `firmware/sdkconfig.defaults`, `firmware/partitions.csv` | T-SW-018 |
+| FR-071 | P0 | F1+F2 | PARTIAL | Firmware integrity verification | `security/OTA_SIGNING_AND_RECOVERY.md` | T-SW-018 |
+| FR-072 | P0 | F1 | PARTIAL | Watchdog system | `firmware/sdkconfig.defaults` | T-HW-017 |
+| FR-073 | P0 | F2 | PASS | Secure authentication | `apps/api/src/auth`, `apps/api/src/routes/auth.ts` | API-AUTH, SECURITY-NEGATIVE |
+| FR-074 | P0 | F2 | PASS | Role-based access control | `apps/api/src/services/access.ts`, `apps/api/src/routes` | API-RBAC |
+| FR-075 | P0 | F2 | PARTIAL | Encrypted communication | `security/THREAT_MODEL.md`, `infrastructure/reverse-proxy/Caddyfile` | T-SW-019 |
+| FR-076 | P0 | F1+F2 | PASS | Device pairing security | `apps/api/src/routes/auth.ts`, `apps/api/src/services/commands.ts` | API-PAIRING, T-SW-015 |
+| FR-077 | P0 | F1+F2 | PASS | Command validation | `firmware/core/smartplug_core.c`, `packages/domain/src/index.ts` | CORE-COMMAND, DOMAIN-COMMAND, API-COMMAND |
+| FR-078 | P0 | F2 | PASS | Activity and audit logging | `apps/api/src/services/audit.ts`, `apps/api/src/db/schema.ts` | API-AUDIT |
+| FR-079 | P0 | F1+F2 | NOT_STARTED | Factory reset | — | — |
+| FR-080 | P0 | F1+F2 | PARTIAL | Device diagnostics | `apps/api/src/routes/operations.ts`, `apps/web/src/components/DeviceHealth.tsx` | API-DIAGNOSTICS |
 
 ---
 
