@@ -112,12 +112,12 @@ ROWS = [
         evidence="PRD retailer references are availability evidence only, not datasheet. Archive is historical and may not match the purchased V4."
     ),
     row(
-        "E-003", "U3", "Power", "AC/DC 5 V 1 A isolated power module, 90-264 VAC input",
-        "Mean Well", "IRM-05-5", datasheet="https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF",
-        status="PENDING_APPROVAL", alt="Recom RAC01-05SC; Hi-Link HLK-PM01 (documentation deficient)",
-        footprint="OFF_BOARD_MODULE", mech="irm05_approx",
-        notes="Isolation withstand, leakage, no-load, thermal derating, and creepage must be reviewed in the final assembly. Fuse and MOV belong upstream.",
-        evidence="Mean Well IRM-05 series datasheet; exact revision to be recorded at purchase."
+        "E-003", "U3", "Power", "AC/DC 5 V 1 A isolated power module, 5 W, 90-264 VAC input",
+        "Hi-Link", "HLK-5M05", datasheet="https://www.hlktech.net/index.php?id=1243",
+        status="PENDING_APPROVAL", alt="Mean Well IRM-05-5 (better documentation/certification, larger); Recom RAC01-05SC (too low current)",
+        footprint="OFF_BOARD_MODULE", mech="hlk_5m05_approx",
+        notes="Selected by user. 38x23x18 mm, 4 pins (AC/AC/-Vo/+Vo), 5 V 1 A, 5 W. Datasheet claims 2500 VAC input-output isolation and UL/CE design compliance, but the exact batch certificate/isolation/creepage are unverified. Efficiency is only ~70% at 220 V full load, so ~2.1 W heat; thermal test is mandatory. Fuse and MOV belong upstream. Do not touch AC pins; keep mains creepage and barrier.",
+        evidence="Distributor copy of Hi-Link HLK-5M05 datasheet (3 pages) with dimension drawing; official product page; exact batch/certification must be verified."
     ),
     row(
         "E-004", "U4", "Sensing", "Digital temperature sensor, I2C, 3.3 V, SOT-563",

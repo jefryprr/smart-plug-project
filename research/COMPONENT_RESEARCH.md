@@ -12,7 +12,7 @@
 | MCU board | Espressif ESP32-S3-DevKitC-1 N16R8 resmi | N8R8 resmi; modul WROOM-1 bare | **PENDING_APPROVAL**; revisi board harus diverifikasi |
 | Metering | PZEM-004T V4 100 A split CT **dengan barrier isolasi wajib** | ADE7953 + CT + isolasi; HLW8032 + shunt | **DOCUMENTATION_DEFICIENT**; V4 belum final |
 | Relay/pemutus | **2-channel 5 V optocoupler module, off-board** (10 A class claim; final 8 A) | TE RT2 DPST-NO (earlier); Schneider Acti9 iCT 2P 16 A (besar) | **DOCUMENTATION_DEFICIENT**; dua SPDT tidak linked |
-| PSU | Mean Well IRM-05-5 | Recom RAC01-05SC; Hi-Link HLK-PM01 | **PENDING_APPROVAL** |
+| PSU | **Hi-Link HLK-5M05** (user-selected) | Mean Well IRM-05-5 (better docs, larger); Recom RAC01-05SC (too low current) | **PENDING_APPROVAL**; efficiency ~70%, isolation/cert batch unverified |
 | Fuse | Littelfuse 215 series 10 A time-lag | Schurter 0001.2510; Bel 5TT 10 | **PENDING_APPROVAL**; koordinasi belum |
 | MOV | EPCOS S10K275 | Littelfuse V275LA10P; Bourns MOV-10D271K | **PENDING_APPROVAL**; studi surge belum |
 | Thermal cutoff | Sefuse SF169E 99 °C 10 A | Therm-O-Disc one-shot; KSD301 (ditolak) | **DOCUMENTATION_DEFICIENT** |
@@ -66,9 +66,9 @@
 
 | Kandidat | Konfigurasi | Rating kelas | Kelebihan | Kekurangan | Skor |
 |---|---|---|---|---|---|
-| TE RT2 `RT444005` | DPST-NO (2 form A) | 8 A / 250 VAC (IEC), UL 10 A untuk varian tertentu | Dua kutub dalam satu relay, PCB mount, coil 5 V | 8 A < target 10 A; rating UL/IEC harus dicek per MPN | 4/5 |
-| Omron G2R-2A | DPST-NO | 5 A / 250 VAC | Dokumen baik, dua kutub | Terlalu rendah untuk 10 A; derating jadi ~4 A | 3/5 |
-| Schneider Acti9 iCT 2P 16 A | 2P contactor | 16 A / 250 VAC | Rating jelas, dua kutub, DIN rail | Besar, tidak muat 150×100×70; butuh enclosure lain | 3/5 |
+| TE RT2 `RT444005` | DPST-NO (2 form A) | 8 A / 250 VAC (IEC), UL 10 A untuk varian tertentu | Dua kutub dalam satu relay, PCB mount, coil 5 V | Target lama 10 A tidak tercapai; final 8 A; rating UL/IEC harus dicek per MPN | 4/5 (earlier) |
+| Omron G2R-2A | DPST-NO | 5 A / 250 VAC | Dokumen baik, dua kutub | Terlalu rendah untuk 8 A kontinu; derating jadi ~4 A | 3/5 |
+| Schneider Acti9 iCT 2P 16 A | 2P contactor | 16 A / 250 VAC | Rating jelas, dua kutub, DIN rail | Besar, tidak muat 220×120×70; butuh enclosure lain | 3/5 |
 | Dua Omron G5LE-1A | 2× SPST-NO | 10 A / 250 VAC masing-masing | Rating 10 A, murah | Tidak mechanically linked; kegagalan satu kontak tidak menjamin pemutusan dua kutub | 2/5 |
 | Hongfa HF115F-L | DPST latching | 10 A class (klaim seri) | Dua kutub, coil rendah | Latching dapat tetap ON setelah power loss; bukan fail-safe | 1/5 |
 
@@ -106,16 +106,17 @@ Pengguna memilih **modul relay optocoupler 2 channel umum, 5 V, off-board** (buk
 
 | Kandidat | Output | Isolasi | Ukuran | Kelebihan | Kekurangan | Skor |
 |---|---|---|---|---|---|---|
-| Mean Well IRM-05-5 | 5 V / 1 A, 5 W | Modul AC/DC | ~53.5×28.5×19 mm | Dokumen resmi, derating, proteksi | Harga lebih tinggi; perlu fuse/MOV upstream | 4/5 |
+| Hi-Link HLK-5M05 | 5 V / 1 A, 5 W | Modul AC/DC, 2500 VAC claim | 38×23×18 mm | Kecil, murah, 4-pin, user-selected | Efficiency ~70% → ~2.1 W heat; batch certification/isolation/creepage unverified | 3/5 |
+| Mean Well IRM-05-5 | 5 V / 1 A, 5 W | Modul AC/DC | ~53.5×28.5×19 mm | Dokumen resmi, efisiensi ~78%, thermal lebih baik | Lebih besar/mahal | 4/5 (fallback) |
 | Recom RAC01-05SC | 5 V / 0.2 A | Modul AC/DC | Kecil | Dokumen baik | Arus 0.2 A terlalu kecil untuk Wi-Fi + relay | 2/5 |
 | Hi-Link HLK-PM01 | 5 V / 0.6 A | Modul | Kecil/murah | Populer di Indonesia | Dokumentasi/kualitas batch bervariasi; isolation/creepage perlu verifikasi | 2/5 |
 | Mean Well IRM-10-5 | 5 V / 2 A | Modul | Lebih besar | Margin arus besar | Ukuran/termal lebih besar | 3/5 |
 
-**Power budget provisional:** ESP32-S3 + Wi-Fi peak ~0.35 A; OLED ~0.02 A; PZEM ~0.01 A; relay coil ~0.08 A; RGB ~0.02 A; sensor/RTC ~0.005 A; total ~0.49 A typical, ~0.7 A peak. IRM-05-5 1 A memberi margin ~30% pada peak. Ini belum diukur; harus diuji dengan beban nyata.
+**Power budget provisional:** ESP32-S3 + Wi-Fi peak ~0.35 A; OLED ~0.02 A; PZEM ~0.01 A; relay module 2 channel ~0.14 A typical / 0.16 A peak; RGB ~0.03 A; sensor/RTC ~0.003 A; total ~0.36 A typical, ~0.58 A peak. HLK-5M05 1 A gives ~42% margin at the estimate, but efficiency is only ~70% and heat is ~2.1 W at full load. This is not measured.
 
-**Sumber:** https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF
+**Sumber:** https://www.hlktech.net/index.php?id=1243 (official page); `research/datasheets/hlk-5m05_distributor.pdf` (3-page distributor copy, drawing 38×23×18, 4 pins); `research/PSU_HLK_5M05.md`.
 
-**Status:** `PENDING_APPROVAL`.
+**Status:** `PENDING_APPROVAL`; batch certificate, isolation/leakage, ripple/startup, and thermal test required.
 
 ## 5. Proteksi arus, surge, dan termal
 

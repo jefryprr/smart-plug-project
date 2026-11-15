@@ -12,7 +12,7 @@
 | U-005 | Relay | MPN/coil voltage/contact arrangement/rating UL-IEC/lifecycle RT444005 | Rating output, thermal, safety | Datasheet exact MPN, sample, lifecycle data |
 | U-006 | Relay | Inrush/inductive capability untuk beban Q04=B | Switching endurance, contact welding | Datasheet category, uji lab |
 | U-007 | Socket/plug | MPN, sertifikasi, material kontak, retensi, PE, dimensi | Q02, PE, mechanical, regulatory | Pilih produk terlacak; ukur dan uji retensi |
-| U-008 | PSU | Revisi IRM-05-5, isolation/leakage, thermal derating, no-load, short-circuit | Isolation, thermal, safety | Datasheet exact revision dan uji lab |
+| U-008 | PSU | HLK-5M05 batch certificate, actual isolation/leakage, creepage, thermal derating, ripple/startup | Isolation, thermal, safety | Batch datasheet + hipot/thermal/load test |
 | U-009 | Fuse | Breaking capacity, time-current, holder rating, coordination | Overcurrent protection | Datasheet dan perhitungan koordinasi |
 | U-010 | MOV | Clamping voltage, energy, end-of-life, thermal fuse coordination | Surge protection | Surge study dan datasheet |
 | U-011 | Thermal cutoff | Trip temperature, holding current, AC rating, batch approval | Thermal protection | Datasheet batch dan uji trip |

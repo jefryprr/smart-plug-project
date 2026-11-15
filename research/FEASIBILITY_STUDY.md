@@ -18,7 +18,7 @@
 | 5 | Apakah jalur PE layak? | PE dapat dibuat langsung dari plug input ke socket output tanpa relay/fuse. Tetapi MPN terminal/stud dan uji kontinuitas belum ada. | `BLOCKED` |
 | 6 | Apakah pemutusan konduktor dua kutub layak? | Module 2-channel off-board: dua SPDT independen, 10 A class claim; bukan DPST linked. Rating final 8 A. Uji tiap channel. | `PROVISIONAL` |
 | 7 | Apakah biaya layak? | Harga belum dikumpulkan. Komponen safety (PSU tersertifikasi, relay dua kutub, socket/plug ber-PE, enclosure flame-retardant) dapat melewati target B. | `REDESIGN_PENDING_QUOTES` |
-| 8 | Apakah suplai DC cukup? | Perkiraan peak ~0.7 A pada 5 V; IRM-05-5 1 A memberi margin ~30%. Belum diukur. | `GO_WITH_CAVEATS` |
+| 8 | Apakah suplai DC cukup? | Perkiraan peak ~0.58 A pada 5 V; HLK-5M05 1 A memberi margin ~42%, tetapi efisiensi ~70% dan panas ~2.1 W. Belum diukur. | `GO_WITH_CAVEATS` |
 | 9 | Apakah PZEM dan CT dapat dipasang? | Modul besar tetapi mungkin; CT harus mengelilingi satu konduktor. Pinout/isolasi batch belum pasti. | `BLOCKED` |
 | 10 | Apakah relay/terminal memadai? | Module 2-channel 10 A class claim (final 8 A); terminal/fuse holder belum rated/verified. | `PROVISIONAL` |
 | 11 | Apakah kabel/connector dapat ditahan dari tarikan? | Perlu cable gland, strain relief mekanik, ferrule, dan terminal; belum ada desain final. | `BLOCKED` |
@@ -27,18 +27,18 @@
 
 ## 2. Perhitungan ruang
 
-Target kerja: **220 × 120 × 70 mm** (confirmed; 150×100 dan 180×120 gagal clearance dengan PZEM + module 2 channel). Asumsi dinding 2.5 mm dan tutup 2.5 mm:
+Target kerja: **220 ? 120 ? 70 mm** (confirmed; 150?100 dan 180?120 gagal clearance dengan PZEM + module 2 channel). Asumsi dinding 2.5 mm dan tutup 2.5 mm:
 
-- Internal kasar: 145 × 95 × 65 mm = **895 cm³**.
+- Internal kasar: 215 ? 115 ? 65 mm = **1.607 cm?**.
 - Volume envelope komponen (approx, belum terukur):
   - PZEM-004T V4: 89 × 53 × 24 mm ≈ 113 cm³
-  - Mean Well IRM-05-5: 53.5 × 28.5 × 19 mm ≈ 29 cm³
+  - Hi-Link HLK-5M05: 38 ? 23 ? 18 mm ? 15.7 cm?
   - DevKitC-1: 68.6 × 25.4 × 10 mm ≈ 17 cm³
-  - Relay RT2: 29 × 12.7 × 15.7 mm ≈ 6 cm³
+  - Modul relay 2 channel: 50 ? 24 ? 18 mm ? 21.6 cm?
   - Socket internal: 50 × 50 × 20 mm ≈ 50 cm³
   - OLED + button + RGB ≈ 5 cm³
   - Fuse/MOV/terminal/PCB/wiring ≈ 65 cm³
-  - **Total ≈ 285 cm³ (32% volume internal).**
+  - **Total ? 288 cm? (18% volume internal).**
 - Kesimpulan: volume tidak mustahil, tetapi **clearance, barrier, bend radius, dan akses servis** mengurangi ruang efektif. Fit-check final harus memakai dimensi terukur, bukan *approx*.
 
 **Keputusan:** `GO_WITH_CAVEATS`; jika fit-check gagal, Q06 berubah menjadi C (dimensi fleksibel) atau Q01 berubah, bukan memaksa clearance turun.
@@ -52,7 +52,7 @@ Plug Type F (L,N,PE)
   └─ PE ────────────────────────────────────────→ socket PE (tidak diputus)
 
 L/N → PZEM voltage sense + CT around one conductor
-L/N → IRM-05-5 PSU → 5 V SELV → carrier → ESP32/OLED/relay coil
+L/N ? HLK-5M05 PSU ? 5 V SELV ? carrier ? ESP32/OLED/relay coils
 PZEM UART → ADuM1201 barrier + B0505S isolated 5 V → ESP32 UART
 ```
 
@@ -69,7 +69,7 @@ PZEM UART → ADuM1201 barrier + B0505S isolated 5 V → ESP32 UART
 |---|---|---|---|
 | Socket | 16 A class | MPN belum dipilih | `UNVERIFIED` |
 | Plug | 16 A class | MPN belum dipilih | `UNVERIFIED` |
-| Relay | 8 A / 250 VAC (RT2 IEC class) | Datasheet seri | `PENDING` |
+| Relay module | 2-channel 10 A class claim; final 8 A | Datasheet vendor | `PENDING` |
 | Fuse | 10 A time-lag | Datasheet seri | `PENDING` |
 | Terminal | 10 A class | MPN/rating belum | `UNVERIFIED` |
 | Kabel | 1.5 mm² H05VV-F | Perlu perhitungan/derating | `UNVERIFIED` |
@@ -85,12 +85,12 @@ PZEM UART → ADuM1201 barrier + B0505S isolated 5 V → ESP32 UART
 | ESP32-S3 DevKitC-1 + Wi-Fi | 180 mA | 350 mA |
 | OLED | 15 mA | 20 mA |
 | PZEM sisi terisolasi | 10 mA | 15 mA |
-| Relay coil 5 V (RT2 class) | 80 mA | 80 mA |
+| Modul relay 2 channel (coil + LED) | 140 mA | 160 mA |
 | WS2812 + level shifter | 10 mA | 30 mA |
 | TMP102 + RTC | 2 mA | 3 mA |
-| **Total** | **~297 mA** | **~498 mA** |
+| **Total** | **~357 mA** | **~578 mA** |
 
-Dengan IRM-05-5 1 A, peak ~50% (bukan 70%; angka ini revisi dari perkiraan awal). Margin baik, tetapi Wi-Fi burst dan inrush relay perlu diukur. Tambahkan 100 µF bulk dan 100 nF decoupling.
+Dengan HLK-5M05 1 A, peak ~58% (estimasi ~0.58 A); margin ~42%, tetapi efisiensi hanya ~70% dan panas ~2.1 W pada full load. Thermal/ripple/startup wajib diukur. Tambahkan 100 ?F bulk dan 100 nF decoupling.
 
 ## 6. Isolasi dan clearance
 
@@ -141,7 +141,7 @@ Input yang belum tersedia:
 ## 11. Biaya dan pengadaan
 
 - Harga belum dikumpulkan; BOM `UNPRICED`.
-- Komponen safety yang mungkin mendorong biaya: PSU Mean Well, relay dua kutub, socket/plug ber-PE, fuse holder, enclosure flame-retardant, PE hardware, barrier isolasi.
+- Komponen safety yang mungkin mendorong biaya: PSU HLK-5M05, relay dua kutub, socket/plug ber-PE, fuse holder, enclosure flame-retardant, PE hardware, barrier isolasi.
 - Target B (Rp500–750 ribu) belum dapat dikonfirmasi. Jika harga aktual melebihi, Q07 berubah ke C; jangan menurunkan safety.
 - Beberapa komponen (PZEM, socket, enclosure) `DOCUMENTATION_DEFICIENT`; perlu sampel dan inspeksi.
 

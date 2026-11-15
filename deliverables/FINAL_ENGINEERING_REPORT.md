@@ -13,6 +13,7 @@
 
 - User approved **8 A final** (~1.840 W at 230 V), limited to electronics/SMPS loads; not heaters/motors.
 - PZEM-004T V4 and a **common 2-channel 5 V optocoupler relay module** are **off-board**, with enclosure brackets. The module is two independent SPDT channels, **not** a mechanically linked DPST.
+- PSU replaced by user instruction: **Hi-Link HLK-5M05** (5 V 1 A / 5 W, 38×23×18 mm). Efficiency ~70% means ~2.1 W heat; isolation/certificate/batch are unverified (`PENDING_APPROVAL`). Study: `research/PSU_HLK_5M05.md`.
 - **150×100×70 FAILS** the coarse fit; **180×120×70 is rejected** because the PZEM/relay/socket would only stack with a 0.5 mm gap, ignoring brackets and wiring. **220×120×70 PASSES** side-by-side and is **CONFIRMED** by the user (Q06=C, 2026-11-15).
 - **KiCad 10.0.8 CLI installed**; ERC 0 on the block-level text-only schematic, DRC 0 on the placement-only PCB, provisional placement-only Gerber/drill exported. Component-level schematic/routing remains blocked.
 - **ESP-IDF v6.1 target build PASS** (esp32s3, 192,464-byte `.bin`, SHA-256 in `reports/FIRMWARE_BUILD.md`); no board was flashed. **Android debug APK PASS** (arm64-v8a, 46,852,340 bytes, v2 debug signature verified; not device-tested).
@@ -77,17 +78,17 @@ OFF (Q25=C), computer-only lab (Q26=A), digital parallel phases (Q27=C).
 
 ## 4. Research, components, approvals, datasheets
 
-- `research/COMPONENT_RESEARCH.md`: 44 candidates with evidence scores.
+- `research/COMPONENT_RESEARCH.md`: 45 candidates with evidence scores.
 - `research/candidates.csv`: all candidates, not just winners.
 - `bom/BOM_MASTER.csv`: 48 rows, **unpriced**, **unapproved**.
 - `bom/BOM_SUMMARY.json`: `UNPRICED`, no Rp0 placeholders.
 - `bom/COMPONENT_APPROVALS.yaml`: no `approved_for_fabrication`.
-- `research/datasheets/MANIFEST.md`: 11 PDFs hashed plus the PZEM-004T V1.0 archive; V4/socket/enclosure still marked deficient.
+- `research/datasheets/MANIFEST.md`: 12 PDFs hashed (including the HLK-5M05 distributor copy) plus the PZEM-004T V1.0 archive; V4/socket/enclosure/HLK batch still marked deficient.
 - `research/UNKNOWN_SPECIFICATIONS.md`: 26 open unknowns.
 
 **Recommended provisional parts:** Espressif DevKitC-1 N16R8, PZEM-004T V4 100 A
 split CT + ADuM1201/B0505S barrier, off-board 2-channel optocoupler relay module
-(10 A class claim), Mean Well IRM-05-5, Littelfuse 215 10 A, EPCOS S10K275,
+(10 A class claim), Hi-Link HLK-5M05 (user-selected; efficiency/isolation batch unverified), Littelfuse 215 10 A, EPCOS S10K275,
 Sefuse SF169E, TMP102, DS3231M,
 SSD1306, Type F 16 A socket (unapproved).
 

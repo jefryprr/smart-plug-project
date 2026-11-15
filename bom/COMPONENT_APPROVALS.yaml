@@ -1,6 +1,6 @@
 project: esp32-s3-iot-smart-plug
 design_revision: REV_A_PROVISIONAL
-generated_at: '2026-11-15T13:36:04.412703+00:00'
+generated_at: '2026-11-15T14:13:59.371477+00:00'
 approval_policy: User approved the research direction, not final MPNs. No component
   is approved for fabrication.
 approved_by: null
@@ -23,12 +23,14 @@ items:
     level, isolation, terminal rating, and CT ratio must be measured. Do not confuse
     CT rat
 - item_id: E-003
-  mpn: IRM-05-5
+  mpn: HLK-5M05
   status: PENDING_APPROVAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Isolation withstand, leakage, no-load, thermal derating, and creepage
-    must be reviewed in the final assembly. Fuse and MOV belong upstream.
+  blocking_reason: Selected by user. 38x23x18 mm, 4 pins (AC/AC/-Vo/+Vo), 5 V 1 A,
+    5 W. Datasheet claims 2500 VAC input-output isolation and UL/CE design compliance,
+    but the exact batch certificate/isolation/creepage are unverified. Efficiency
+    is only ~70% at
 - item_id: E-004
   mpn: TMP102AIDRLR
   status: PENDING_APPROVAL

@@ -1,6 +1,6 @@
 # BOM Master — REV_A_PROVISIONAL
 
-**Generated:** 2026-11-15T13:36:04.412703+00:00
+**Generated:** 2026-11-15T14:13:59.371477+00:00
 
 > **UNPRICED / NOT APPROVED.** Harga kosong karena belum ada harga terverifikasi. Jangan membeli atau menganggap BOM ini final. Status safety-critical: lihat `COMPONENT_APPROVALS.yaml`.
 
@@ -8,7 +8,7 @@
 |---|---|---|---|---|---:|---|
 | E-001 | U1 | MCU | ESP32-S3 DevKitC-1, N16R8 (16 MB flash, 8 MB PSRAM) | ESP32-S3-DevKitC-1-N16R8 | 1 pcs | PENDING_APPROVAL |
 | E-002 | U2 | Metering | PZEM-004T V4 AC energy meter, 100 A split/open CT, TTL/Modbus | PZEM-004T-V4-100A-SPLIT | 1 pcs | DOCUMENTATION_DEFICIENT |
-| E-003 | U3 | Power | AC/DC 5 V 1 A isolated power module, 90-264 VAC input | IRM-05-5 | 1 pcs | PENDING_APPROVAL |
+| E-003 | U3 | Power | AC/DC 5 V 1 A isolated power module, 5 W, 90-264 VAC input | HLK-5M05 | 1 pcs | PENDING_APPROVAL |
 | E-004 | U4 | Sensing | Digital temperature sensor, I2C, 3.3 V, SOT-563 | TMP102AIDRLR | 1 pcs | PENDING_APPROVAL |
 | E-005 | U5 | Sensing | I2C real-time clock with integrated crystal, 3.3 V | DS3231MZ+ | 1 pcs | PENDING_APPROVAL |
 | E-006 | U6 | Isolation | Dual-channel digital isolator for PZEM UART (2.5 kVrms class) | ADuM1201ARZ | 1 pcs | PENDING_APPROVAL |

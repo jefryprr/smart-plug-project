@@ -165,7 +165,7 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">Mean Well IRM-05-5 (5 V 1 A)</td>
+   <td balign="left">Hi-Link HLK-5M05 (5 V 1 A, 5 W, 4-pin)</td>
    <td balign="left">4-pin</td>
   </tr></table>
  </td></tr>
@@ -192,6 +192,11 @@ graph {
     <td port="p4r">4</td>
    </tr>
   </table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">Pin 1/2 = AC, pin 3 = -Vo, pin 4 = +Vo. Keep AC pins and SELV output separated; fuse/MOV upstream. Datasheet isolation 2500 VAC is a claim; batch/hipot unverified.</td>
+  </tr></table>
  </td></tr>
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]

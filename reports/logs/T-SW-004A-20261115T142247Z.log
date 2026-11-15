@@ -1,0 +1,13 @@
+
+> @smartplug/mqtt-contract@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 C:/Users/JEFRY PRATAMA/Zed/SMART-PLUG-V2/packages/mqtt-contract
+
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  21:23:04
+   Duration  661ms (import 84%, transform 7%, tests 6%, worker 3%)
+

@@ -23,7 +23,7 @@ DATE = "2026-11-15"
 SHEETS = [
     ("AC_INPUT_OUTPUT", ["AC_L_IN", "AC_N_IN", "PE", "AC_L_FUSED", "AC_N_OUT"], "Plug/socket, fuse, MOV, PE path. MAINS."),
     ("SAFETY_AND_SWITCH", ["AC_L_FUSED", "AC_L_SW", "AC_N_SW", "RELAY_IN1", "RELAY_IN2"], "Off-board 2-channel optocoupler relay module, thermal cutoff, MOSFET driver. MAINS + SELV. 8A final."),
-    ("AC_DC_POWER", ["AC_L_FUSED", "AC_N_IN", "+5V", "GND"], "Mean Well IRM-05-5 isolated PSU. MAINS + SELV."),
+    ("AC_DC_POWER", ["AC_L_FUSED", "AC_N_IN", "+5V", "GND"], "Hi-Link HLK-5M05 isolated PSU (5 V 1 A, 5 W). MAINS + SELV; batch isolation unverified."),
     ("PZEM_AND_CT", ["PZEM_L", "PZEM_N", "CT_P", "CT_N", "+5V_ISO", "GND_ISO", "PZEM_TX", "PZEM_RX"], "PZEM V4 + CT, off-board module with enclosure bracket, isolated UART side."),
     ("LOW_VOLTAGE_CONTROL", ["+3V3", "GND", "I2C_SDA", "I2C_SCL", "PZEM_TX", "PZEM_RX", "RELAY_CTRL"], "SELV control, level shifting, connectors."),
     ("ESP32S3_CARRIER", ["+5V", "GND", "+3V3", "I2C_SDA", "I2C_SCL", "PZEM_TX", "PZEM_RX", "RELAY_CTRL"], "ESP32-S3-DevKitC-1 carrier. SELV."),

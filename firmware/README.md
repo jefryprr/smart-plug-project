@@ -15,7 +15,7 @@
 | Exit code | 0 |
 | Binary | `firmware/build/smartplug.bin` |
 | Size | 192,464 bytes (0x2EFD0) |
-| SHA-256 | `7F115A5D7A72CF3992E5846789140DF4F0FEC44B3A1025BA02E0FC018917AB21` |
+| SHA-256 | `96BDF60D09D621F2D55DE1824B76BEB806F62D69277FAC1431BD7490BF9ABFC8` |
 | Log | `reports/logs/firmware-idf-build.log` |
 | Report | `reports/FIRMWARE_BUILD.md` |
 

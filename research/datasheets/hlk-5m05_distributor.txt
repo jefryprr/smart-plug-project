@@ -1,0 +1,98 @@
+HLK-5M05 Power module 
+5W Ultra-compact Power Module HLK-5M05 230V AC to 5V/5W DC 
+ 
+ 
+ 
+Description: 
+1. Product features:                           
+ Meet UL, CE requirements,                                          
+ Ultra-thin, ultra-small 
+ All voltage input (AC: 90 ~ 264V)                                   
+ Low ripple and low noise 
+ Output overload and short circuit protection. 
+ High efficiency, high power density. 
+ The product is designed to meet the requirements of EMC and Safety Test 
+ Low power consumption, environmental protection, no-load loss <0.1W 
+ 
+2. Environment Condition 
+Item Name Technical Criteria Unit 
+Operation 
+Temperature -20  to +60 ℃ 
+Store Temperature -40 to+80 ℃ 
+Relative humidity 5 to 95 % 
+Cooling way Cooling by radiation  
+Atmospheric 
+pressure 80 to 106 Kpa 
+Sea level elevation ≤2000 m 
+Vibration Vibration coefficient 10~500Hz, 2G10min./1cycle, 60min.each along X,Y,Z axes  
+ 
+3. Electrical Characteristic 
+1. Input characteristics (test at room temperature 20 ℃). 
+Item Name Technical Criteria Unit 
+Rated input voltage 100 - 240 VAc 
+Input voltage range 90 - 264 VAc 
+Maximum input current ≤0.2 A 
+Input current surge ≤10 A 
+maximum input voltage ≤270 VAc 
+Enter slow start ≤50 mS 
+Input Low Voltage 
+Efficiency 
+Vin=110VAc，Output full-load≥69 % 
+Input High Voltage 
+Efficiency 
+Vin=220VAc，output full-load≥70 % 
+Long-term reliability MTBF≥100，000 h 
+  
+2. Output  Characteristics( 5V/1000mA) Apply to Type: HLK-5M05 
+ 
+Item Name Technical Criteria Unit 
+Load rated output voltage +5 ±0.1 VDc 
+Full rated output voltage +5 ±0.2 VDc 
+Short-term maximum 
+output current 
+≥1200 mA 
+The maximum output 
+current for a long time 
+≥1000 mA 
+Voltage Regulation ±0.2   % 
+Load Regulation ±0.5 % 
+Output ripple and noise 
+(mVp-p) 
+≤70 
+Rated input voltage, full load. Using 20MHz of bandwidth, 
+The load side 10uF and 0.1uF capacitor to be tested. 
+mV 
+Switch overshoot 
+amplitude 
+(Rated input voltage and output load plus 10%)≤5 %VO 
+Output over-current 
+protection 
+150-200% of the output maximum load A 
+Output short circuit 
+protection 
+Direct short circuit at the normal output, automatically 
+resume normal operation after a short circuit removal 
+ 
+ 
+ 
+ 
+ 
+Safety Characteristics： 
+Products designed to meet UL, CE safety certification requirements. 
+ Safety and electromagnetic compatibility 
+o Designed with the input of 0.5A UL certified insurance; 
+o PCB board using double-sided copper clad plate production, material for the 94-
+V0 fire rating level; 
+o Safety standards: Compliance with UL1012, EN60950, UL60950 
+o Insulation voltage: I / P-O / P: 2500VAC 
+o Insulation resistance :I / PO / P> 100M Ohms / 500VDC 25 ℃70% RH 
+o Conduction and radiation :comply with EN55011, EN55022 (CISPR22) 
+o Electrostatic discharge :IEC / EN 61000-4-2 level 4 8kV / 15kV 
+o RF radiation Immunity: IEC / EN 61000-4-3 See Application Note 
+ 
+ Temperature safety design 
+o At room temperature, the capacitors of this power , the inner surface of the main 
+converter maximum temperature does not exceed 90 ℃; 
+o Shell maximum surface temperature does not exceed 60 ℃ 
+ 
+ 

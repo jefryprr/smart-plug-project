@@ -8,7 +8,7 @@
 | Block | Responsibility | Safety domain |
 |---|---|---|
 | AC input/output | Plug, fuse, MOV, thermal cutoff, off-board 2-channel relay module, socket, PE | MAINS |
-| AC/DC PSU | Isolated 5 V for SELV | Barrier |
+| AC/DC PSU | Hi-Link HLK-5M05, 5 V 1 A / 5 W (datasheet isolation claim; batch unverified) | Barrier |
 | PZEM + CT | Off-board module with bracket; voltage/current/energy | MAINS + isolated UART |
 | UART isolation | ADuM1201 + B0505S barrier | Barrier |
 | ESP32-S3 carrier | State machine, metering, UI, network | SELV |

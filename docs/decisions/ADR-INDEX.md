@@ -4,7 +4,7 @@
 |---|---|---|
 | `ADR-001-PRODUCT-FORM-FACTOR.md` | Inline outlet, lab prototype scope | Accepted |
 | `ADR-002-METERING-ARCHITECTURE.md` | PZEM V4 provisional + isolation barrier | Proposed/deficient |
-| `ADR-003-SWITCHING-ARCHITECTURE.md` | Two-pole review; 8 A provisional relay | Proposed |
+| `ADR-003-SWITCHING-ARCHITECTURE.md` | Two-pole review; off-board 2-channel module; 8 A final | Proposed |
 | `ADR-004-FIRMWARE-STACK.md` | ESP-IDF + portable C core | Accepted |
 | `ADR-005-BACKEND-STACK.md` | Next.js + Fastify + SQLite dev/Postgres target | Accepted |
 | `ADR-006-ANDROID-STACK.md` | Expo dev build | Accepted |
@@ -14,6 +14,7 @@
 | `ADR-010-TIME-ENERGY-SEMANTICS.md` | UTC, delta energy, tariff history | Accepted |
 | `ADR-011-SYNTHETIC-DATA.md` | Label demo data | Accepted |
 | `ADR-012-NO-IRREVERSIBLE-EFUSE.md` | No eFuse/secure boot without approval | Accepted |
+| `ADR-013-PSU-HLK-5M05.md` | Hi-Link HLK-5M05 selected; IRM-05-5 fallback; PSU PENDING_APPROVAL | Accepted (user), component pending |
 
 ## Superseding
 

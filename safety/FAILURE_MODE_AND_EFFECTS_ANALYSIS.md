@@ -12,7 +12,7 @@
 | FM-05 | Fuse holder overheats | Melting/fire | High | Medium | Medium (thermal) | Rated holder, torque, thermal cutoff, test | Medium |
 | FM-06 | MOV short at end-of-life | Fuse opens or fire | High | Low | Low | Thermal fuse coordination, rated MOV, test | Medium |
 | FM-07 | PSU failure | SELV off; relay drops | Medium | Medium | High | Isolated PSU, fuse, watchdog, safe OFF | Low/medium |
-| FM-08 | PSU isolation failure | Mains reaches SELV/USB | High | Low | Low | Certified PSU, barrier, hipot test | High until tested |
+| FM-08 | PSU isolation failure (HLK-5M05) | Mains reaches SELV/USB | High | Low | Low | Verified-isolation PSU, barrier, hipot/leakage test; batch certificate | High until tested |
 | FM-09 | PZEM UART isolation failure | Mains reaches ESP32 | High | Low | Low | ADuM1201 + B0505S, creepage, test | High until tested |
 | FM-10 | PZEM UART CRC/timeout | Wrong/stale reading | Medium | High | High | CRC, timeout, invalid state, no stale live | Low |
 | FM-11 | CT on wrong conductor | Wrong current/PF | Medium | Medium | Medium | Label, single-conductor guide, direction arrow, test | Medium |

@@ -1,0 +1,60 @@
+Rendering AC_HARNESS_ENGINEER_REVIEW.yaml ...
+WireViz 0.4.1
+Input file:   C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\AC_HARNESS_ENGINEER_REVIEW.yaml
+Output file:  C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\renders\AC_HARNESS_ENGINEER_REVIEW.[gv|png|svg]
+  PDF: AC_HARNESS_ENGINEER_REVIEW.pdf (48745 bytes)
+Rendering controller_harness.yaml ...
+WireViz 0.4.1
+Input file:   C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\controller_harness.yaml
+Output file:  C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\renders\controller_harness.[gv|png|svg]
+  PDF: controller_harness.pdf (43027 bytes)
+Rendering display_harness.yaml ...
+WireViz 0.4.1
+Input file:   C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\display_harness.yaml
+Output file:  C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\renders\display_harness.[gv|png|svg]
+  PDF: display_harness.pdf (46833 bytes)
+Rendering i2c_harness.yaml ...
+WireViz 0.4.1
+Input file:   C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\i2c_harness.yaml
+Output file:  C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\renders\i2c_harness.[gv|png|svg]
+  PDF: i2c_harness.pdf (47988 bytes)
+Rendering main_harness.yaml ...
+WireViz 0.4.1
+Input file:   C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\main_harness.yaml
+Output file:  C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\renders\main_harness.[gv|png|svg]
+Rendering metering_harness.yaml ...
+WireViz 0.4.1
+Input file:   C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\metering_harness.yaml
+Output file:  C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\renders\metering_harness.[gv|png|svg]
+  PDF: metering_harness.pdf (49401 bytes)
+
+FAILURES:
+  - main_harness.yaml: Warning: More than 2 colors specified for a gradient - ignoring remaining
+
+Warning: More than 2 colors specified for a gradient - ignoring remaining
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Scripts\wireviz.exe\__main__.py", line 10, in <module>
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\click\core.py", line 1653, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\click\core.py", line 1560, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\click\core.py", line 1414, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\click\core.py", line 911, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\wireviz\wv_cli.py", line 141, in wireviz
+    wv.parse(
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\wireviz\wireviz.py", line 385, in parse
+    harness.output(filename=output_file, fmt=output_formats, view=False)
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\wireviz\Harness.py", line 710, in output
+    Path(f"{filename}.tmp.svg").replace(f"{filename}.svg")
+  File "C:\Users\JEFRY PRATAMA\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\pathlib.py", line 1188, in replace
+    os.replace(self, target)
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\hardware\\wiring\\renders\\main_harness.tmp.svg' -> 'C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\hardware\\wiring\\renders\\main_harness.svg'
