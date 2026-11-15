@@ -98,7 +98,7 @@ def mounting_plan_svg() -> None:
     ax.set_aspect("equal")
     ax.add_patch(Rectangle((-110, -60), 220, 120, fill=False, linewidth=1.5))
     ax.add_patch(Rectangle((-105, -35), 100, 70, fill=False, linewidth=1, linestyle="--", color="#0f6b5c"))
-    ax.text(-106.5, 27, "Carrier PCB 75×50 (approx)", fontsize=8, color="#0f6b5c")
+    ax.text(-104, 37, "Carrier PCB 100x70 (approx)", fontsize=8, color="#0f6b5c")
     ax.add_patch(Rectangle((-26.5, -44.5), 53, 89, fill=False, linewidth=1, linestyle="--", color="#b42318"))
     ax.text(-25, 46, "PZEM off-board", fontsize=8, color="#b42318")
     ax.add_patch(Rectangle((27, -52), 50, 24, fill=False, linewidth=1, linestyle="--", color="#b42318"))

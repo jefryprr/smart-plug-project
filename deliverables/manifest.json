@@ -2,8 +2,8 @@
   "project": "esp32-s3-iot-smart-plug",
   "prd_version": "1.0",
   "design_revision": "REV_B_NO_TEMP",
-  "generated_at": "2026-11-15T18:42:54.149Z",
-  "git_commit": "e376e08b085dacb9cc77d35921b09b92c625ca3d",
+  "generated_at": "2026-11-15T18:43:50.773Z",
+  "git_commit": "d66986a9a4023f377680c4505146d06a8378c309",
   "manifest_note": "git_commit is the source commit at generation time; this manifest file is committed immediately after.",
   "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",
   "hardware_validation_status": "HARDWARE_VALIDATION_REQUIRED",
@@ -1439,7 +1439,7 @@
     {
       "category": 12,
       "path": "hardware/mechanical/drawings/assembly.pdf",
-      "sha256": "c27631a96b1baca3f1bc0b3db6f0a04916bd7e8983324caed15d65d4c3a7b740",
+      "sha256": "4f004ca1f18bf0c43a96b25003bab280028dd1c1fdf77c11027e47dc15d366b8",
       "size_bytes": 221106,
       "status": "PARTIAL",
       "tests": [
@@ -1453,7 +1453,7 @@
     {
       "category": 12,
       "path": "hardware/mechanical/drawings/dimensions.svg",
-      "sha256": "dfaa2c51913f9ce309c2fe7a1c843c27cc3d59e2045cb68ed268d175d951059b",
+      "sha256": "3a5a46aedee6b9a92c277e8e047864a420b576a08e9bd263151ef78b63709979",
       "size_bytes": 33953,
       "status": "PARTIAL",
       "tests": [
@@ -1467,8 +1467,8 @@
     {
       "category": 12,
       "path": "hardware/mechanical/drawings/mounting_plan.svg",
-      "sha256": "e113c6c13fe1bbccdb76c62dae6302b8e1dcf568e548add5d06ba580fb65842d",
-      "size_bytes": 35157,
+      "sha256": "7c5cb8dc67949102f93f79c8e3753b0ff593c61870f05a82a9df4b4c981c416f",
+      "size_bytes": 34711,
       "status": "PARTIAL",
       "tests": [
         "T-HW-009B"
