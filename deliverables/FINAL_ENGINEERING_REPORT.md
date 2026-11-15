@@ -4,7 +4,7 @@
 **Author/agent:** OpenCode (DeepSeek V4.1 Flash 1017)
 **PRD version:** 1.0
 **Design revision:** `REV_A_PROVISIONAL`
-**Source commit:** `cf37769c0efbd3fc0c8720f93806ab4105e515f9`
+**Source commit:** `8e63d9e9cdbc390e535439a5accba304b792e0a5`
 **Manifest:** `deliverables/manifest.json`
 
 ---
