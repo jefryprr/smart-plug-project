@@ -23,8 +23,9 @@
 - Firmware core: 74 host checks PASS.
 - API: 38 tests PASS.
 - Web: build + 5 Playwright tests PASS, axe no serious/critical on login/dashboard.
-- KiCad: native block/placement files parse, but ERC/DRC/Gerber BLOCKED.
-- ESP-IDF build, APK, Docker/Postgres: BLOCKED.
+- KiCad 10.0.8: ERC 0 on block schematic, DRC 0 on placement-only PCB, placement-only Gerber/drill exported.
+- ESP-IDF v6.1 target build: PASS (no flash).
+- Android debug APK: PASS (not installed); Docker/Postgres: BLOCKED.
 - Physical tests: BLOCKED (no hardware/lab).
 
 ## Urutan aman

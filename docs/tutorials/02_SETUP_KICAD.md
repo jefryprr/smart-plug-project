@@ -1,13 +1,13 @@
 # 02 — Setup KiCad
 
-**Status lingkungan:** `BLOCKED: KICAD_NOT_INSTALLED`
+**Status lingkungan:** `PASS: KICAD_10.0.8_PORTABLE`
 
 ## Instalasi
 
-1. Unduh KiCad resmi dari https://www.kicad.org/download/.
-2. Pilih versi stabil yang kompatibel dengan Windows 11.
+1. Unduh installer KiCad resmi 10.0.8 dari https://www.kicad.org/download/.
+2. Ekstrak installer secara portable ke `tools/kicad` (bukan instalasi penuh) bila disk terbatas.
 3. Catat versi dan hash installer.
-4. Tambahkan `kicad-cli` ke PATH (biasanya `C:\Program Files\KiCad\<versi>\bin`).
+4. Gunakan `tools/kicad/bin/kicad-cli.exe` atau tambahkan direktori itu ke PATH.
 
 ## Verifikasi
 

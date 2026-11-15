@@ -5,7 +5,7 @@
 ## Keputusan
 
 PRD menyarankan Circuit-Synth, tetapi generator yang dipakai adalah `hardware/generators/generate_kicad.py` (native S-expression) karena:
-- KiCad tidak terpasang untuk verifikasi round-trip.
+- KiCad portable tersedia, tetapi generator tidak memakai API Circuit-Synth.
 - File yang dihasilkan adalah block schematic, bukan schematic komponen penuh.
 - Menghindari klaim kompatibilitas API yang tidak diuji.
 

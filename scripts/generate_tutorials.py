@@ -36,8 +36,9 @@ TUTORIALS = {
 - Firmware core: 74 host checks PASS.
 - API: 38 tests PASS.
 - Web: build + 5 Playwright tests PASS, axe no serious/critical on login/dashboard.
-- KiCad: native block/placement files parse, but ERC/DRC/Gerber BLOCKED.
-- ESP-IDF build, APK, Docker/Postgres: BLOCKED.
+- KiCad 10.0.8: ERC 0 on block schematic, DRC 0 on placement-only PCB, placement-only Gerber/drill exported.
+- ESP-IDF v6.1 target build: PASS (no flash).
+- Android debug APK: PASS (not installed); Docker/Postgres: BLOCKED.
 - Physical tests: BLOCKED (no hardware/lab).
 
 ## Urutan aman
@@ -88,14 +89,14 @@ powershell -ExecutionPolicy Bypass -File firmware\\test\\host\\run_tests.ps1
 """,
 "02_SETUP_KICAD.md": """# 02 — Setup KiCad
 
-**Status lingkungan:** `BLOCKED: KICAD_NOT_INSTALLED`
+**Status lingkungan:** `PASS: KICAD_10.0.8_PORTABLE`
 
 ## Instalasi
 
-1. Unduh KiCad resmi dari https://www.kicad.org/download/.
-2. Pilih versi stabil yang kompatibel dengan Windows 11.
+1. Unduh installer KiCad resmi 10.0.8 dari https://www.kicad.org/download/.
+2. Ekstrak installer secara portable ke `tools/kicad` (bukan instalasi penuh) bila disk terbatas.
 3. Catat versi dan hash installer.
-4. Tambahkan `kicad-cli` ke PATH (biasanya `C:\\Program Files\\KiCad\\<versi>\\bin`).
+4. Gunakan `tools/kicad/bin/kicad-cli.exe` atau tambahkan direktori itu ke PATH.
 
 ## Verifikasi
 
@@ -131,7 +132,7 @@ Catat command, versi, exit code, dan temuan. Jangan mengecualikan rule untuk mem
 ## Keputusan
 
 PRD menyarankan Circuit-Synth, tetapi generator yang dipakai adalah `hardware/generators/generate_kicad.py` (native S-expression) karena:
-- KiCad tidak terpasang untuk verifikasi round-trip.
+- KiCad portable tersedia, tetapi generator tidak memakai API Circuit-Synth.
 - File yang dihasilkan adalah block schematic, bukan schematic komponen penuh.
 - Menghindari klaim kompatibilitas API yang tidak diuji.
 
@@ -282,11 +283,11 @@ Jangan membeli berdasarkan BOM ini.
 
 ## Saat ini
 
-- `hardware/kicad/smartplug.kicad_pcb` adalah placement-only 75×50 mm.
-- Tidak ada routing, net, footprint final, atau DRC.
+- `hardware/kicad/smartplug.kicad_pcb` adalah placement-only 75x50 mm.
+- DRC 0 untuk geometri placement; tidak ada routing, net, atau footprint final.
 - `hardware/pcb/render/placement_preview.png/.svg` adalah preview, bukan plot KiCad.
 
-## Setelah KiCad terpasang
+## Verifikasi KiCad (sudah dijalankan)
 
 1. Buka PCB, periksa outline/mounting.
 2. Jalankan DRC.
@@ -401,7 +402,7 @@ Jika ada keraguan pada PE/isolasi/rating, **jangan energisasi**.
 """,
 "14_SETUP_ESP_IDF.md": """# 14 — Setup ESP-IDF
 
-**Status lingkungan:** `BLOCKED: ESP_IDF_NOT_INSTALLED`
+**Status lingkungan:** `PASS: ESP_IDF_6.1_INSTALLED`
 
 ## Instalasi
 
@@ -430,7 +431,7 @@ Jika berhasil, catat hash binary dan ukuran.
 powershell -ExecutionPolicy Bypass -File firmware\\test\\host\\run_tests.ps1
 ```
 
-74 checks PASS. Ini bukan bukti build ESP-IDF.
+74 checks PASS. Target build ESP-IDF v6.1 juga PASS; lihat `reports/FIRMWARE_BUILD.md`. Ini bukan bukti flash/bench.
 
 ## Jangan
 
@@ -439,7 +440,7 @@ powershell -ExecutionPolicy Bypass -File firmware\\test\\host\\run_tests.ps1
 """,
 "15_FLASH_AND_CONFIGURE.md": """# 15 — Flash dan Konfigurasi
 
-**Status:** `BLOCKED` — no board, no ESP-IDF build.
+**Status:** `BLOCKED` — no board; firmware build exists but has not been flashed.
 
 ## Prasyarat
 
@@ -556,30 +557,27 @@ npx playwright test
 """,
 "19_BUILD_ANDROID_APK.md": """# 19 — Build Android APK
 
-**Status:** `BLOCKED: ANDROID_SDK_NOT_INSTALLED`
-**Yang sudah ada:** source `apps/android/App.tsx`, typecheck PASS, Expo Android bundle export PASS. **APK belum ada.**
+**Status:** `PASS: DEBUG_APK_BUILT` (not installed on a device)
+**Yang sudah ada:** source `apps/android/App.tsx`, typecheck PASS, Expo Android bundle export PASS, debug APK 46,852,340 bytes, SHA-256 `BAFCD8BDD9EB0F79DD0807ABF73D5BBE8C42087E26AD69FB086E6976B30C2B61`.
 
 ## Prasyarat
 
-- Android Studio/SDK, platform 35/36, build-tools, adb/emulator.
+- Android SDK di `D:\\AI INSTALLS\\Android\\Sdk` (platform 36/37, build-tools 36/37, NDK 27.1.12297006).
 - JDK 17.
+- Gradle cache di `D:\\AI INSTALLS\\gradle`.
 
 ## Build
 
 ```powershell
 cd apps\\android
 npm install
-npx expo prebuild --platform android
-npx expo run:android
-```
-
-Atau:
-```powershell
-cd apps\\android\\android
-.\\gradlew.bat assembleDebug
+npx expo prebuild --platform android --no-install
+cd android
+.\\gradlew.bat assembleDebug --console=plain "-PreactNativeArchitectures=arm64-v8a"
 ```
 
 APK: `apps/android/android/app/build/outputs/apk/debug/app-debug.apk`.
+Bukti build: `reports/ANDROID_BUILD.md`, `reports/logs/android-gradle-build.log`.
 
 ## Release
 
@@ -682,8 +680,8 @@ powershell -ExecutionPolicy Bypass -File firmware\\test\\host\\run_tests.ps1
 - Firmware core 74 checks PASS.
 - Web 5 Playwright tests PASS; axe login/dashboard PASS.
 - Static connectivity PASS.
-- KiCad ERC/DRC/Gerber BLOCKED.
-- ESP-IDF build, APK, Docker/Postgres BLOCKED.
+- KiCad ERC/DRC and placement-only Gerber PASS; component-level design still BLOCKED.
+- ESP-IDF v6.1 target build and Android debug APK PASS; Docker/Postgres remain BLOCKED.
 
 ## Arti status
 
@@ -724,15 +722,16 @@ Lihat:
 
 - API/web/simulator/firmware core tests.
 - BOM research (unpriced/unapproved).
-- KiCad block/placement files.
+- KiCad block/placement files, ERC 0 / DRC 0, placement-only Gerber/drill.
+- ESP-IDF v6.1 target build and `.bin`.
 - WireViz harnesses.
-- CadQuery enclosure/assembly.
+- CadQuery enclosure/assembly + PZEM/relay brackets.
 - Docs/runbooks.
 
 ## Yang belum
 
-- ERC/DRC/Gerber.
-- ESP-IDF build/APK/Docker/Postgres.
+- Component-level schematic/routing/functional Gerber.
+- Firmware integration/flash tests, Android device test, Docker/Postgres.
 - Physical mains/thermal/PE/isolation tests.
 - Engineering/regulatory sign-off.
 

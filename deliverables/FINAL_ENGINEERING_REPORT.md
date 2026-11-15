@@ -9,6 +9,16 @@
 
 ---
 
+## Amendment 2026-11-15 (post-initial-handoff)
+
+- User approved **8 A final** (~1.840 W at 230 V), limited to electronics/SMPS loads; not heaters/motors.
+- PZEM-004T V4 and a **common 2-channel 5 V optocoupler relay module** are **off-board**, with enclosure brackets. The module is two independent SPDT channels, **not** a mechanically linked DPST.
+- **150×100×70 FAILS** the coarse fit; **180×120×70 is rejected** because the PZEM/relay/socket would only stack with a 0.5 mm gap, ignoring brackets and wiring. **220×120×70 PASSES** side-by-side and is recommended pending user confirmation (Q06=C).
+- **KiCad 10.0.8 CLI installed**; ERC 0 on the block-level text-only schematic, DRC 0 on the placement-only PCB, provisional placement-only Gerber/drill exported. Component-level schematic/routing remains blocked.
+- **ESP-IDF v6.1 target build PASS** (esp32s3, 192,464-byte `.bin`, SHA-256 in `reports/FIRMWARE_BUILD.md`); no board was flashed. **Android debug APK PASS** (arm64-v8a, 46,852,340 bytes, v2 debug signature verified; not device-tested).
+
+---
+
 ## 1. Executive summary
 
 This package is a **digital engineering prototype** of an inline ESP32-S3 smart
@@ -23,10 +33,10 @@ tests, and documentation.
 **Fabrication:** `NOT_RELEASED`
 **Ready for use:** **NO**
 
-The digital tests pass where executable (19 PASS / 15 BLOCKED / 0 FAIL), but
-critical physical and toolchain gates remain blocked: KiCad ERC/DRC/Gerber,
-ESP-IDF build, Android APK, PostgreSQL deployment, and all mains/thermal/PE/
-isolation/load testing.
+The digital tests pass where executable (23 PASS / 11 BLOCKED / 0 FAIL), but
+critical physical and toolchain gates remain blocked: component-level
+schematic/routing, firmware integration/flash tests, Android device tests,
+PostgreSQL deployment, and all mains/thermal/PE/isolation/load testing.
 
 ---
 
@@ -49,15 +59,16 @@ control, lab tests by an unqualified person.
 
 All 28 answers are in `docs/decisions/USER_ANSWERS.md/.yaml`.
 
-Key decisions: inline outlet (Q01=B), target 10 A (Q03=B), mixed SMPS loads
-(Q04=B), review two-pole (Q05=A), ≤150×100×70 mm (Q06=B), official DevKitC-1
-N16R8 (Q08=B), PZEM comparison (Q09=D), relay study (Q10=C), lab prototype
-(Q12=A), ESP-IDF (Q23=A), Expo (Q24=A), default OFF (Q25=C), computer-only lab
-(Q26=A), digital parallel phases (Q27=C).
+Key decisions: inline outlet (Q01=B), **8 A final (amendment; 1.840 W)**, mixed
+SMPS loads (Q04=B), review two-pole (Q05=A), **220×120×70 recommended because
+150×100 fails fit and 180×120 fails real clearance**, official DevKitC-1 N16R8 (Q08=B), PZEM comparison and
+off-board (Q09=D), **common 2-channel optocoupler relay module off-board**
+(Q10 amendment), lab prototype (Q12=A), ESP-IDF (Q23=A), Expo (Q24=A), default
+OFF (Q25=C), computer-only lab (Q26=A), digital parallel phases (Q27=C).
 
 **Unresolved safety-critical blockers:**
 - Socket/plug MPN/certification/PE (Q02).
-- Relay 10 A DPST availability; provisional 8 A.
+- 2-channel relay module batch/rating/active-low verification; channels are not mechanically linked.
 - PZEM V4 batch datasheet/isolation/pinout.
 - PE hardware/enclosure material/clearance values.
 - No hardware/lab/engineer/regulatory sign-off.
@@ -66,17 +77,18 @@ N16R8 (Q08=B), PZEM comparison (Q09=D), relay study (Q10=C), lab prototype
 
 ## 4. Research, components, approvals, datasheets
 
-- `research/COMPONENT_RESEARCH.md`: 41 candidates with evidence scores.
+- `research/COMPONENT_RESEARCH.md`: 44 candidates with evidence scores.
 - `research/candidates.csv`: all candidates, not just winners.
-- `bom/BOM_MASTER.csv`: 46 rows, **unpriced**, **unapproved**.
+- `bom/BOM_MASTER.csv`: 48 rows, **unpriced**, **unapproved**.
 - `bom/BOM_SUMMARY.json`: `UNPRICED`, no Rp0 placeholders.
 - `bom/COMPONENT_APPROVALS.yaml`: no `approved_for_fabrication`.
-- `research/datasheets/MANIFEST.md`: 9 PDFs hashed; PZEM/socket/enclosure marked deficient.
+- `research/datasheets/MANIFEST.md`: 11 PDFs hashed plus the PZEM-004T V1.0 archive; V4/socket/enclosure still marked deficient.
 - `research/UNKNOWN_SPECIFICATIONS.md`: 26 open unknowns.
 
 **Recommended provisional parts:** Espressif DevKitC-1 N16R8, PZEM-004T V4 100 A
-split CT + ADuM1201/B0505S barrier, TE RT2 `RT444005` DPST-NO 8 A, Mean Well
-IRM-05-5, Littelfuse 215 10 A, EPCOS S10K275, Sefuse SF169E, TMP102, DS3231M,
+split CT + ADuM1201/B0505S barrier, off-board 2-channel optocoupler relay module
+(10 A class claim), Mean Well IRM-05-5, Littelfuse 215 10 A, EPCOS S10K275,
+Sefuse SF169E, TMP102, DS3231M,
 SSD1306, Type F 16 A socket (unapproved).
 
 ---
@@ -86,7 +98,7 @@ SSD1306, Type F 16 A socket (unapproved).
 - Diagram: `docs/hardware/SYSTEM_ARCHITECTURE.png/.svg/.pdf`.
 - Functional split: mains / isolation barrier / SELV / network.
 - PE continuous; no relay/fuse in PE.
-- Two-pole switching reviewed; provisional relay 8 A.
+- Two-channel L/N switching reviewed; off-board 2-channel module is **not** a mechanically linked DPST; final 8 A.
 - PZEM UART isolated; CT around one conductor.
 - Relay driver with 100 kΩ pulldown, flyback diode, boot-safe OFF.
 - Device is source of truth for commanded/fault/lockout; API stores shadow.
@@ -100,12 +112,13 @@ Details: `safety/ISOLATION_PLAN.md`, `safety/ELECTRICAL_RATING_CHAIN.md`,
 ## 6. Feasibility: size, cost, supply, trade-offs
 
 - `research/FEASIBILITY_STUDY.md`: 13 questions answered with `GO/REDESIGN/BLOCKED`.
-- 150×100×70 internal volume ~895 cm³; estimated component envelope ~285 cm³.
-- Coarse CAD fit passes, but dimensions are approximate; physical fit unverified.
-- Target 10 A **not met** by 8 A relay; final continuous rating 8 A or lower.
+- 150×100×70 internal volume ~895 cm³; with off-board PZEM + 2ch relay module the coarse fit **FAILS**.
+- 180×120×70: **rejected**; it only fit by stacking PZEM/relay/socket with a 0.5 mm gap and ignoring brackets/wiring.
+- 220×120×70 recommended: side-by-side coarse fit **PASS**; dimensions still approximate.
+- Final continuous rating **8 A / ~1.840 W**, electronics/SMPS only.
 - BOM unpriced; target Rp500–750k cannot be confirmed. Safety parts may push to Q07=C.
 - Supply/documentation risk: PZEM, socket/plug, enclosure, thermal cutoff.
-- Recommended larger 180×120×70 enclosure if measured fit/clearance requires it.
+- Larger 220×120×70 enclosure recommended after 150×100 and 180×120 clearance review failed.
 
 ---
 
@@ -117,24 +130,24 @@ Details: `safety/ISOLATION_PLAN.md`, `safety/ELECTRICAL_RATING_CHAIN.md`,
 | 02 | BOM | `bom/BOM_MASTER.csv`, `BOM_SUMMARY.json` | PARTIAL (unpriced) |
 | 03 | Datasheets | `research/datasheets/MANIFEST.md` | PARTIAL |
 | 04 | System architecture | `docs/hardware/SYSTEM_ARCHITECTURE.*` | PASS (digital) |
-| 05 | Schematic | `hardware/kicad/*.kicad_sch` | PARTIAL/BLOCKED (ERC) |
+| 05 | Schematic | `hardware/kicad/*.kicad_sch` | PARTIAL (block text; ERC 0) |
 | 06 | Wiring | `hardware/wiring/*.yaml`, `renders/` | PASS (render) |
 | 07 | GPIO mapping | `hardware/interfaces/gpio_map.*` | UNVERIFIED (board) |
-| 08 | PCB native | `hardware/kicad/smartplug.kicad_pcb` | PARTIAL/BLOCKED (DRC) |
-| 09 | PCB manufacturing | `hardware/manufacturing/provisional/` | BLOCKED |
+| 08 | PCB native | `hardware/kicad/smartplug.kicad_pcb` | PARTIAL (placement; DRC 0) |
+| 09 | PCB manufacturing | `hardware/manufacturing/provisional/` | PARTIAL/BLOCKED (placement-only Gerber) |
 | 10 | PCB visualization | `hardware/pcb/render/placement_preview.*` | PARTIAL |
 | 11 | Enclosure 3D | `hardware/mechanical/export/` | PARTIAL |
 | 12 | Enclosure rendering | `hardware/mechanical/render/`, `drawings/` | PARTIAL |
-| 13 | Firmware | `firmware/core/`, `firmware/main/` | PARTIAL |
+| 13 | Firmware | `firmware/core/`, `firmware/main/` | PARTIAL (target build PASS) |
 | 14 | Firmware config | `firmware/partitions.csv`, `sdkconfig.defaults` | PARTIAL |
 | 15 | Web | `apps/web/` | PASS (digital) |
-| 16 | Android | `apps/android/` | PARTIAL (APK blocked) |
+| 16 | Android | `apps/android/` | PASS (debug APK; not device-tested) |
 | 17 | Backend | `apps/api/` | PASS (digital) |
 | 18 | Database | `database/migrations/` | PARTIAL (Postgres schema only) |
 | 19 | MQTT | `packages/mqtt-contract/`, `infrastructure/broker/` | PASS (digital) |
 | 20 | Notifications | `apps/api/src/services/notifications.ts` | PARTIAL (mock) |
 | 21 | Deployment | `infrastructure/` | BLOCKED |
-| 22 | Automated testing | `tests/`, `reports/` | PARTIAL (19 PASS/15 BLOCKED) |
+| 22 | Automated testing | `tests/`, `reports/` | PARTIAL (23 PASS/11 BLOCKED) |
 | 23 | Engineering validation | `validation/` | PARTIAL |
 | 24 | Security audit | `security/` | PARTIAL |
 | 25 | Engineer documentation | `docs/tutorials/`, `docs/operations/` | PASS (digital) |
@@ -235,9 +248,9 @@ Summary: 80 total; 28 PASS, 25 PARTIAL, 24 NOT_STARTED, 3 BLOCKED.
 
 ## 9. ERC/DRC/netlist/GPIO/PCB/3D results
 
-- KiCad CLI: not installed; ERC/DRC/Gerber/drill **BLOCKED**.
+- KiCad CLI 10.0.8: ERC **0 violations** on the block-level text-only schematic; DRC **0 violations/0 unconnected** on the placement-only PCB; placement-only Gerber/drill exported.
 - Native KiCad files parse with `kiutils`: **PASS**.
-- Schematic is a system block schematic; not component-level.
+- Schematic is a system block schematic; not component-level connectivity.
 - PCB is placement-only 75×50 mm; no routing/nets/final footprints.
 - Static wiring check: PE PASS, relay contacts separate PASS, coil SELV PASS,
   isolator sides PASS, mains/SELV static separation PASS.
@@ -254,7 +267,7 @@ Summary: 80 total; 28 PASS, 25 PARTIAL, 24 NOT_STARTED, 3 BLOCKED.
   validation, energy delta, schedule, CRC16, JSON. **74 checks PASS** with Zig host.
 - ESP-IDF minimal app: relay OFF at boot, button debounce, core state machine,
   ON blocked while meter/temp invalid.
-- ESP-IDF target build: **BLOCKED**; no `.bin`.
+- ESP-IDF v6.1 target build: **PASS**, `firmware/build/smartplug.bin` (192,464 bytes); no flash/bench test.
 - PZEM/OLED/RGB/RTC/Wi-Fi/MQTT/OTA components: **NOT_IMPLEMENTED**.
 - Secure boot/flash encryption: not enabled (irreversible, no approval).
 
@@ -266,7 +279,7 @@ Summary: 80 total; 28 PASS, 25 PARTIAL, 24 NOT_STARTED, 3 BLOCKED.
 - Web: Next build PASS; 5 Playwright tests PASS; axe login/dashboard PASS.
 - MQTT: 11 contract tests PASS; aedes+simulator integration PASS.
 - DB: SQLite dev adapter tested; PostgreSQL schema/migrations exist, adapter missing.
-- Android: typecheck + Expo Android bundle PASS; **APK BLOCKED** (no SDK).
+- Android: typecheck + Expo Android bundle PASS; **debug APK built** (arm64-v8a, SHA-256 in `reports/ANDROID_BUILD.md`), not installed/tested on a device.
 - Notifications: mock test PASS; Telegram live not tested.
 - OTA: request event only; no signed image/rollback test.
 - Deployment: config only; no URL/TLS/cloud claim.
@@ -289,7 +302,7 @@ Summary: 80 total; 28 PASS, 25 PARTIAL, 24 NOT_STARTED, 3 BLOCKED.
 
 ## 13. Safety/regulatory review requirements
 
-- `safety/ELECTRICAL_RATING_CHAIN.md`: final rating 8 A or lower, not 10 A.
+- `safety/ELECTRICAL_RATING_CHAIN.md`: final rating **8 A/1.840 W**; module channels are not DPST.
 - `safety/ISOLATION_PLAN.md`: barrier unverified.
 - `safety/CLEARANCE_CREEPAGE_WORKSHEET.md`: inputs incomplete; no numbers invented.
 - `safety/POLARITY_AND_EARTH_ASSESSMENT.md`: PE continuous; test required.
@@ -310,9 +323,10 @@ KiCad parse, npm audit.
 
 **FAIL:** none in the executed digital gate.
 
-**BLOCKED:** KiCad ERC/DRC/Gerber, ESP-IDF build, Android APK, PostgreSQL/Docker,
-MQTT TLS/ACL production, Boot-safe waveform, PE continuity, thermal/fuse/surge,
-load/temperature, isolation review, HIL, deployment clean-room.
+**BLOCKED:** component-level schematic/routing/functional Gerber, firmware
+integration/flash tests, Android device tests, PostgreSQL/Docker, MQTT TLS/ACL production,
+boot-safe waveform, PE continuity, thermal/fuse/surge, load/temperature,
+isolation review, HIL, deployment clean-room.
 
 **UNVERIFIED:** physical dimensions, PZEM batch/protocol/isolation, relay rating/
 lifecycle, socket/plug/PE, enclosure material, clearance/creepage, energy accuracy,
@@ -337,13 +351,14 @@ See `reports/TEST_MATRIX.csv`, `reports/FAILURES.md`, `reports/VALIDATION_SUMMAR
 
 ## 16. Human action plan
 
-1. **Select/verify components:** socket/plug, relay 10 A DPST or accept 8 A, PZEM
-   batch, PSU, fuse/holder, MOV, thermal cutoff, terminal, enclosure, PE hardware.
-2. **Install tools:** KiCad + CLI, ESP-IDF, Android SDK, Docker/PostgreSQL.
+1. **Select/verify components:** socket/plug, 2-channel optocoupler relay module,
+   PZEM batch, PSU, fuse/holder, MOV, thermal cutoff, terminal, 220×120 enclosure,
+   PE hardware, PZEM/relay brackets.
+2. **Install tools:** Docker/PostgreSQL; ESP-IDF v6.1, KiCad 10.0.8, and Android SDK are installed.
 3. **Complete hardware design:** component schematic, footprints, routing, ERC/DRC,
    Gerber/drill, measured fit, clearance worksheet.
-4. **Build firmware:** ESP-IDF target, PZEM/OLED/RGB/RTC/Wi-Fi/MQTT/OTA, bench tests.
-5. **Build/verify Android APK** and push/provisioning.
+4. **Flash/test firmware:** flash the built image, then integrate PZEM/OLED/RGB/RTC/Wi-Fi/MQTT/OTA and run bench tests.
+5. **Install/test the debug APK** on emulator/device; add push/provisioning and release signing.
 6. **Implement PostgreSQL adapter** and deploy staging with TLS/MQTT ACL.
 7. **Lab tests:** PE continuity, insulation/hipot, thermal rise, load/inrush,
    relay lifecycle, enclosure material, EMC/regulatory.
@@ -353,8 +368,8 @@ See `reports/TEST_MATRIX.csv`, `reports/FAILURES.md`, `reports/VALIDATION_SUMMAR
 
 ## 17. User feedback needed
 
-- Approve changing final continuous rating from 10 A to **8 A or lower**, or approve
-  a larger 2P 16 A contactor/enclosure.
+- Confirm **8 A/1.840 W final** (already used in the amended design).
+- Confirm **220×120×70** enclosure change (Q06=C) because 150×100 fails fit and 180×120 fails real clearance with off-board PZEM + relay module.
 - Approve socket/plug product family (Type F vs Type E/F combo vs local standard).
 - Approve PZEM V4 vs ADE7953 alternative if V4 documentation remains deficient.
 - Approve enclosure material/size change if measured fit/clearance fails.
@@ -370,7 +385,7 @@ See `reports/TEST_MATRIX.csv`, `reports/FAILURES.md`, `reports/VALIDATION_SUMMAR
 - Screenshots: `docs/ui-ux/screenshots/`.
 - Datasheet hashes: `research/datasheets/MANIFEST.md`.
 - Known limitations: unpriced BOM, unapproved parts, block-level schematic,
-  placement-only PCB, approximate CAD, no ESP-IDF/APK/Postgres deployment,
+  placement-only PCB, approximate CAD, no firmware integration/Android device test/Postgres deployment,
   no physical validation, no certification.
 - This report does not replace `reports/PHASE_1_ENGINEERING_REPORT.md`,
   `reports/PHASE_2_SOFTWARE_REPORT.md`, or the safety documents.

@@ -1,0 +1,14 @@
+
+> @smartplug/api@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 C:/Users/JEFRY PRATAMA/Zed/SMART-PLUG-V2/apps/api
+
+
+ Test Files  2 passed (3)
+      Tests  37 passed (38)
+     Errors  1 error
+   Start at  20:02:37
+   Duration  14.71s (tests 61%, import 35%, transform 4%)
+

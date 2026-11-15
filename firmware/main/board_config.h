@@ -25,6 +25,16 @@
 #define PIN_RTC_INT 7
 #define PIN_TEMP_ALERT 12
 
+/*
+ * Relay module: common 2-channel 5 V optocoupler module, OFF-BOARD.
+ * Assumed ACTIVE-LOW inputs: the carrier MOSFET pulls IN1/IN2 low to turn ON.
+ * The MOSFET gate is driven by PIN_RELAY_CTRL with an external 100k pulldown,
+ * so the module is OFF at reset/boot. Verify the actual module before use.
+ */
+#define RELAY_MODULE_CHANNELS 2
+#define RELAY_MODULE_ACTIVE_LOW 1
+#define RELAY_MODULE_OFFBOARD 1
+
 #define RELAY_ACTIVE_LEVEL 1
 #define RELAY_SAFE_LEVEL 0
 #define BUTTON_ACTIVE_LEVEL 0

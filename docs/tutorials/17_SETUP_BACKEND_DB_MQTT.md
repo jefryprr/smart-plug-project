@@ -4,7 +4,7 @@
 
 ```powershell
 npm install
-npm run api:dev
+npm run dev:api
 ```
 
 API memakai SQLite (`data/smartplug.db`), seed demo. Health:

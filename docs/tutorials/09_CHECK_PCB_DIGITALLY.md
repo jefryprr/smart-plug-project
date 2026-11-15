@@ -4,11 +4,11 @@
 
 ## Saat ini
 
-- `hardware/kicad/smartplug.kicad_pcb` adalah placement-only 75×50 mm.
-- Tidak ada routing, net, footprint final, atau DRC.
+- `hardware/kicad/smartplug.kicad_pcb` adalah placement-only 75x50 mm.
+- DRC 0 untuk geometri placement; tidak ada routing, net, atau footprint final.
 - `hardware/pcb/render/placement_preview.png/.svg` adalah preview, bukan plot KiCad.
 
-## Setelah KiCad terpasang
+## Verifikasi KiCad (sudah dijalankan)
 
 1. Buka PCB, periksa outline/mounting.
 2. Jalankan DRC.

@@ -1,6 +1,6 @@
 risk_id,category,risk,likelihood,impact,mitigation,owner,status
 PR-01,Supply,PZEM V4 official batch datasheet unavailable,High,High,Switch to ADE7953 or approve alternate; quarantine samples,Hardware,OPEN
-PR-02,Supply,Relay 10 A DPST with traceable datasheet unavailable,Medium,High,Use 8 A relay and lower rating, or larger contactor,Hardware,OPEN
+PR-02,Supply,Common 2-channel optocoupler module lacks batch datasheet and its channels are not mechanically linked,High,High,Verify exact module and per-channel contact behavior; final 8 A; thermal/lifecycle test; do not claim DPST or observed OFF,Hardware,OPEN
 PR-03,Supply,ESP32-S3 DevKitC-1 N16R8 stock/price varies,Medium,Medium,Order from authorized distributor; verify revision,Hardware,OPEN
 PR-04,Supply,Socket/plug/enclosure documentation deficient,High,High,Select rated products; inspect samples,Hardware,OPEN
 PR-05,Schedule,KiCad/ESP-IDF/Android SDK installation time,High,Medium,Install in phases; document blockers,Project,OPEN

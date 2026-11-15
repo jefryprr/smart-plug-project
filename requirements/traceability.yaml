@@ -790,14 +790,15 @@ requirements:
   phase: F2
   implementation_paths:
   - apps/android/App.tsx
+  - reports/ANDROID_BUILD.md
   test_ids:
   - T-SW-013
   - T-SW-014
   status: PARTIAL
   evidence:
-  - Typecheck + Expo Android bundle export; APK blocked
+  - Typecheck + Expo bundle + debug APK PASS; device/UI test not performed
   blocked_by:
-  - BLOCK-ANDROID-SDK
+  - BLOCK-ANDROID-DEVICE-TEST
   risk_ids:
   - RR-10
   last_verified_at: '2026-11-15T00:00:00Z'
@@ -1238,13 +1239,14 @@ requirements:
   implementation_paths:
   - firmware/sdkconfig.defaults
   - firmware/partitions.csv
+  - reports/FIRMWARE_BUILD.md
   test_ids:
   - T-SW-018
   status: PARTIAL
   evidence:
-  - Config only; ESP-IDF build/test blocked
+  - Dual-OTA config accepted by ESP-IDF v6.1 build; OTA flow/test not implemented
   blocked_by:
-  - BLOCK-ESP-IDF
+  - BLOCK-OTA-INTEGRATION
   risk_ids:
   - RR-09
   last_verified_at: '2026-11-15T00:00:00Z'
@@ -1274,13 +1276,14 @@ requirements:
   phase: F1
   implementation_paths:
   - firmware/sdkconfig.defaults
+  - reports/FIRMWARE_BUILD.md
   test_ids:
   - T-HW-017
   status: PARTIAL
   evidence:
-  - Task WDT config only; no build/fault injection
+  - Task WDT config + target build PASS; no fault injection/board test
   blocked_by:
-  - BLOCK-ESP-IDF
+  - BLOCK-HARDWARE
   risk_ids:
   - RR-09
   last_verified_at: '2026-11-15T00:00:00Z'
@@ -1427,9 +1430,9 @@ requirements:
   - API-DIAGNOSTICS
   status: PARTIAL
   evidence:
-  - API/UI diagnostics; firmware counters minimal
+  - API/UI diagnostics; firmware target build PASS, counters minimal
   blocked_by:
-  - BLOCK-ESP-IDF
+  - BLOCK-FIRMWARE-INTEGRATION
   risk_ids:
   - RR-08
   last_verified_at: '2026-11-15T00:00:00Z'

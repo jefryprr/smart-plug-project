@@ -6,7 +6,7 @@
 **Design revision:** `REV_A_PROVISIONAL`
 **Phase 2 status:** `PARTIAL_DIGITAL` / `ENGINEERING_REVIEW_REQUIRED`
 **Deployment:** `BLOCKED` (no Docker/Postgres/VPS/domain/TLS)
-**Android APK:** `BLOCKED: ANDROID_SDK_NOT_INSTALLED`
+**Android APK:** `PASS` (debug, arm64-v8a, signature verified; not installed on device)
 
 ---
 
@@ -21,7 +21,7 @@
 | DB target | PostgreSQL 16 schema | schema only, no adapter |
 | MQTT | `mqtt` 5.16.1 client, `aedes` 1.2.0 test broker | contract/integration PASS |
 | Notifications | Telegram adapter + mock | mock tested; no live token |
-| Android | Expo SDK 58 / RN 0.88.1 | typecheck + bundle PASS; APK blocked |
+| Android | Expo SDK 58 / RN 0.88.1 | typecheck + bundle + debug APK PASS; not device-tested |
 | Deployment | Docker Compose + Caddy templates | not executed |
 
 ADRs: `docs/decisions/ADR-004` (firmware), `ADR-005` (backend), `ADR-006` (Android), `ADR-007` (deployment), `ADR-009` (local LAN), `ADR-010` (time/energy), `ADR-011` (synthetic data).
@@ -97,7 +97,7 @@ Schema: `apps/api/src/db/schema.ts` (SQLite), `database/migrations/001_init.sql`
 - Source: `apps/android/App.tsx` (login, devices, overview, readings, ON/OFF with ACK, settings).
 - `npm run typecheck` PASS.
 - `npx expo export --platform android` PASS: 596 modules, 1.5 MB Hermes bundle.
-- APK: **not produced**. `BLOCKED: ANDROID_SDK_NOT_INSTALLED`.
+- APK: **debug build PASS**. `apps/android/android/app/build/outputs/apk/debug/app-debug.apk`, 46,852,340 bytes, SHA-256 `BAFCD8BDD9EB0F79DD0807ABF73D5BBE8C42087E26AD69FB086E6976B30C2B61`; `arm64-v8a`; v2 debug signature verified. Not installed/tested on a device or emulator.
 - BLE provisioning/push: **not implemented**.
 - Token storage: SecureStore design.
 
@@ -155,7 +155,7 @@ Schema: `apps/api/src/db/schema.ts` (SQLite), `database/migrations/001_init.sql`
 | axe login/dashboard | PASS |
 | Static connectivity/GPIO/BOM | PASS |
 | npm audit | 0 known vulnerabilities |
-| Overall gate | 19 PASS / 15 BLOCKED / 0 FAIL |
+| Overall gate | 23 PASS / 11 BLOCKED / 0 FAIL (KiCad + ESP-IDF build now run) |
 
 See `reports/VALIDATION_SUMMARY.json`, `reports/TEST_MATRIX.csv`, `reports/FAILURES.md`.
 
@@ -178,7 +178,7 @@ See `reports/VALIDATION_SUMMARY.json`, `reports/TEST_MATRIX.csv`, `reports/FAILU
 - Changing relay/PSU/fuse/PE/enclosure requires full safety gate.
 - Changing API schema requires web/Android contract tests.
 - Changing time/energy rules requires analytics/automation tests.
-- Bottlenecks: no Postgres adapter, no TLS/ACL execution, no local LAN transport, no signed OTA, no Android APK.
+- Bottlenecks: no Postgres adapter, no TLS/ACL execution, no local LAN transport, no signed OTA, no Android device/emulator test (debug APK exists).
 
 ---
 
@@ -186,8 +186,8 @@ See `reports/VALIDATION_SUMMARY.json`, `reports/TEST_MATRIX.csv`, `reports/FAILU
 
 1. Implement PostgreSQL adapter; run migrations/contract tests.
 2. Deploy staging with TLS/MQTT ACL; run negative tests.
-3. Build ESP-IDF firmware; integrate PZEM/OLED/RGB/RTC/Wi-Fi/MQTT/OTA.
-4. Build Android APK; implement BLE provisioning/push.
+3. Flash the built ESP-IDF image; integrate PZEM/OLED/RGB/RTC/Wi-Fi/MQTT/OTA.
+4. Install/test the debug APK; implement BLE provisioning/push and release signing.
 5. Implement local LAN authenticated API/gateway.
 6. Add revoke-all-sessions, device credential rotation, signed OTA.
 7. Independent security review.

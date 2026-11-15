@@ -28,12 +28,12 @@ pins:
     external_pull: "100 kΩ pulldown to GND + 1 kΩ series"
     boot_default: "LOW (external pulldown)"
     hazard_if_high: "Relay coil energized -> output ON"
-    peripheral: power_controller
+    peripheral: power_controller, relay_module_2ch
     firmware_define: PIN_RELAY_CTRL
     schematic_ref: U1-IO4
     test: "T-HW-014 boot-safe waveform"
     verified_board_revision: null
-    notes: "Mandatory OFF at reset/boot. Verify no boot glitch."
+    notes: "Drives AO3400 gate; MOSFET pulls both IN1/IN2 of the off-board active-LOW 2-channel module low. Mandatory OFF at reset/boot; external pulldown. Verify module pinout/active-low before use."
   - function: relay_feedback_optional
     board_pin_name: IO11
     physical_header: "J1/J3 - verify pin number"

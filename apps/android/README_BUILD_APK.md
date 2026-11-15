@@ -1,7 +1,7 @@
 # Build APK — Smart Plug Android
 
-**Status lingkungan saat ini:** `BLOCKED: ANDROID_SDK_NOT_INSTALLED`
-**Artefak APK:** belum dibuat. Jangan mengklaim APK ada sampai build benar-benar menghasilkan file dan diuji.
+**Status lingkungan saat ini:** `PASS: DEBUG_APK_BUILT` (signature verified; not installed/tested on device)
+**Artefak APK:** `apps/android/android/app/build/outputs/apk/debug/app-debug.apk` — 46,852,340 bytes, SHA-256 `BAFCD8BDD9EB0F79DD0807ABF73D5BBE8C42087E26AD69FB086E6976B30C2B61`.
 
 Aplikasi memakai React Native + Expo (SDK 58) dengan development build. Sumber ada di `apps/android/App.tsx`.
 
@@ -11,12 +11,15 @@ Aplikasi memakai React Native + Expo (SDK 58) dengan development build. Sumber a
 |---|---|
 | Node.js | 24.x (tersedia) |
 | JDK | 17 (tersedia) |
-| Android SDK Platform | 35/36 (belum terpasang) |
-| Android Build Tools | 35/36 (belum terpasang) |
-| adb/emulator | belum terpasang |
+| Android SDK Platform | 36/37 (terpasang di D:) |
+| Android Build Tools | 36.0.0/37.0.0 (terpasang di D:) |
+| NDK | 27.1.12297006 (terpasang) |
+| adb | platform-tools terpasang; emulator belum diuji |
 | Expo CLI | melalui `npx expo` (paket lokal) |
 
-Android SDK dapat dipasang melalui Android Studio atau command-line tools. Instalasi SDK besar dan berada di luar repo; jangan menaruh path SDK absolut di source.
+Android SDK dipasang di `D:\AI INSTALLS\Android\Sdk`, Gradle cache di
+`D:\AI INSTALLS\gradle`. Jangan menaruh path SDK absolut di source atau commit
+`local.properties`.
 
 ## Build lokal (debug)
 
@@ -30,9 +33,15 @@ npx expo run:android
 Alternatif setelah prebuild:
 
 ```powershell
+$env:ANDROID_HOME = "D:\AI INSTALLS\Android\Sdk"
+$env:ANDROID_SDK_ROOT = $env:ANDROID_HOME
+$env:JAVA_HOME = "C:\Users\<user>\AppData\Local\Programs\Microsoft\jdk-17.0.10.7-hotspot"
+$env:GRADLE_USER_HOME = "D:\AI INSTALLS\gradle"
 cd apps/android/android
-.\gradlew.bat assembleDebug
+.\gradlew.bat assembleDebug --console=plain "-PreactNativeArchitectures=arm64-v8a"
 ```
+
+Build evidence: `reports/ANDROID_BUILD.md`, `reports/logs/android-gradle-build.log`.
 
 APK debug yang diharapkan:
 
@@ -41,6 +50,7 @@ apps/android/android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
 Debug APK diberi label **NOT_PRODUCTION**. Debug signing bukan release signing.
+The APK was built for `arm64-v8a` only and has not been installed on a device or emulator.
 
 ## Build release
 

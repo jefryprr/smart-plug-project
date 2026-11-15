@@ -1,7 +1,7 @@
 metadata:
   title: AC Harness — ENGINEER REVIEW ONLY (REV_A_PROVISIONAL)
   description: 'Subset mains untuk review engineer. BUKAN panduan energisasi untuk
-    pemula. PE tidak diputus. Rating relay/fuse/terminal belum final.
+    pemula. PE tidak diputus. Rating relay/fuse/terminal belum final. Modul relay 2 channel off-board; bukan DPST linked.
 
     '
   author: OpenCode
@@ -27,12 +27,17 @@ connectors:
     - IN
     - OUT
   K1:
-    type: DPST-NO relay 8 A class
+    type: 2-channel 5 V optocoupler relay module, off-board, active-LOW
     pinlabels:
-    - P1_11
-    - P1_14
-    - P2_21
-    - P2_24
+    - IN1
+    - IN2
+    - VCC
+    - GND
+    - COM1
+    - NO1
+    - COM2
+    - NO2
+    notes: 'Two independent SPDT channels, not a mechanically linked DPST. CH1 switches L, CH2 switches N. Final 8 A / 1.840 W. SELV input side (IN1/IN2/VCC/GND) is outside this mains-only harness.'
   X1:
     type: Type F socket output
     pinlabels:
@@ -108,9 +113,9 @@ connections:
   - W_L3:
     - 1
   - K1:
-    - P1_11
+    - COM1
 - - K1:
-    - P1_14
+    - NO1
   - W_L4:
     - 1
   - X1:
@@ -120,9 +125,9 @@ connections:
   - W_N1:
     - 1
   - K1:
-    - P2_21
+    - COM2
 - - K1:
-    - P2_24
+    - NO2
   - W_N2:
     - 1
   - X1:

@@ -24,8 +24,8 @@ presented as integrated.
 ## Build status
 
 - Host core: `PASS` with Zig 0.17.1.
-- ESP-IDF: `BLOCKED: ESP_IDF_NOT_INSTALLED`.
-- Hardware: `BLOCKED: NO_BOARD_OR_LAB`.
+- ESP-IDF v6.1 target build: `PASS` for the minimal app; see `reports/FIRMWARE_BUILD.md`.
+- Hardware/flash/boot test: `BLOCKED: NO_BOARD_OR_LAB`.
 
 ## Rule
 

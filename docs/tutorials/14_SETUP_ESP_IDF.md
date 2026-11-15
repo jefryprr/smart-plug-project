@@ -1,6 +1,6 @@
 # 14 — Setup ESP-IDF
 
-**Status lingkungan:** `BLOCKED: ESP_IDF_NOT_INSTALLED`
+**Status lingkungan:** `PASS: ESP_IDF_6.1_INSTALLED`
 
 ## Instalasi
 
@@ -29,7 +29,7 @@ Jika berhasil, catat hash binary dan ukuran.
 powershell -ExecutionPolicy Bypass -File firmware\test\host\run_tests.ps1
 ```
 
-74 checks PASS. Ini bukan bukti build ESP-IDF.
+74 checks PASS. Target build ESP-IDF v6.1 juga PASS; lihat `reports/FIRMWARE_BUILD.md`. Ini bukan bukti flash/bench.
 
 ## Jangan
 

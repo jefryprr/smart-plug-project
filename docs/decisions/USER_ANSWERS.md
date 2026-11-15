@@ -10,15 +10,15 @@
 |---|---|---|---|
 | Q01 | **B** — Smart outlet *inline* berkabel | CONFIRMED | Ruang lebih lega, servisabel, strain relief jelas; bukan plug dinding mini. |
 | Q02 | **D** — Analisis kompatibilitas Indonesia; lean **B** (Type E/F kombinasi ber-PE) | CONFIRMED (arah), PROVISIONAL (produk) | Produk soket/plug belum dipilih; wajib identitas model, rating, dan datasheet. |
-| Q03 | **B** — Target 10 A | CONFIRMED | Rating final = nilai terendah rantai komponen dan hasil uji termal. |
-| Q04 | **B** — Campuran elektronik rumah tangga termasuk SMPS | CONFIRMED | Beban motor/induktif tidak dijanjikan; perlu penilaian terpisah. |
+| Q03 | **8 A final** (amendment pengguna, 2026-11-15; sebelumnya target 10 A) | CONFIRMED | 8 A × 230 V ≈ 1.840 W. Cukup untuk elektronik/SMPS rumah tangga; bukan pemanas/motor besar. Rating final tetap nilai terendah rantai + uji termal. |
+| Q04 | **B** — Campuran elektronik rumah tangga termasuk SMPS | CONFIRMED | Beban motor/induktif/pemanas tidak dijanjikan; perlu penilaian terpisah. |
 | Q05 | **A** — Tinjau pemutusan dua kutub | CONFIRMED | Plug Type F reversibel; PE tidak pernah diputus. |
-| Q06 | **B** — Target ≤150×100×70 mm | CONFIRMED | Target mekanik; keselamatan dan servisabilitas menang bila tidak muat. |
+| Q06 | **B** — Target ≤150×100×70 mm; **220×120×70 direkomendasikan** | CONFIRMED (target), PENDING (perubahan ke C) | 150×100 gagal fit; 180×120 ditolak karena PZEM/relay/socket hanya bisa di-stack dengan gap tidak layak. 220×120 PASS; konfirmasi pengguna diperlukan. |
 | Q07 | **B** — BOM Rp500.000–750.000 | CONFIRMED | Optimasi, bukan alasan menurunkan komponen keselamatan. |
 | Q08 | **B** — Beli ESP32-S3-DevKitC-1 resmi | CONFIRMED | Ketertelusuran board dan revisi; N16R8. |
-| Q09 | **D** — Bandingkan varian metering | CONFIRMED (arah), PROVISIONAL (modul) | PZEM-004T V4 split CT jadi kandidat, bukan final, sampai manual batch diperiksa. |
-| Q10 | **C** — Studi 2–3 alternatif relay/pemutus | CONFIRMED (arah), PROVISIONAL (part) | Perlu rating kontak, inrush, isolasi, driver, fail-mode. |
-| Q11 | **D** — Pilih berdasar isolasi/dimensi/produksi; lean B/C | CONFIRMED (arah), PROVISIONAL (arsitektur) | Modul mains tidak dipaksa ke header biasa. |
+| Q09 | **D** — Bandingkan varian metering; **PZEM off-board** | CONFIRMED (arah), PROVISIONAL (modul) | PZEM-004T V4 split CT jadi kandidat, bukan final, sampai manual batch diperiksa. Modul berdiri sendiri di enclosure, tidak di PCB. |
+| Q10 | **2-channel optocoupler relay module umum**, off-board | CONFIRMED (arah), PROVISIONAL (part) | Modul 2 channel 5 V, kontak 10 A class (klaim umum), active-low, tidak di PCB; mounting di enclosure. Bukan DPST mekanis; risiko channel tidak linked harus ditinjau. |
+| Q11 | **D** — Pilih berdasar isolasi/dimensi/produksi; lean B/C; PZEM + relay off-board | CONFIRMED (arah), PROVISIONAL (arsitektur) | Modul mains tidak dipaksa ke header biasa; bracket/standoff mekanik. |
 | Q12 | **A** — Prototipe akademik di lab berpengalaman | CONFIRMED | Bukan produk konsumen; klaim berhenti di engineering/hardware validation. |
 | Q13 | **A** — OLED I²C kecil 0,96" | CONFIRMED | SSD1306 128×64, 3,3 V. |
 | Q14 | **C** — NeoPixel built-in + LED RGB panel | CONFIRMED | LED panel untuk visibilitas saat enclosure tertutup. |
@@ -45,12 +45,24 @@
 4. **Fase 2 digital boleh berjalan** dengan device simulator dan fixtures sintetik, sesuai Q27=C.
 5. **Perubahan pada Q03/Q04/Q05/Q08/Q09/Q10/Q12/Q25** wajib memicu impact analysis dan regresi artefak terkait.
 
+## Amendments 2026-11-15 (setelah eksekusi awal)
+
+Pengguna memberi instruksi baru dan saya catat sebagai amendment, bukan jawaban kuesioner baru:
+
+| Item | Sebelum | Sesudah | Dampak |
+|---|---|---|---|
+| Rating | Target 10 A | **8 A final** | Module 2 channel 10 A class; label 1.840 W; batas beban eksplisit |
+| Relay | DPST-NO PCB relay | **Modul optocoupler 2 channel off-board** | Dua channel L/N, active-low, bukan DPST mekanis; butuh bracket + driver MOSFET |
+| PZEM | Off-board (sudah) | **Eksplisit off-board + bracket** | Tidak masuk PCB; mounting di enclosure |
+| KiCad | Block/placement, CLI absent | **KiCad CLI 10.0.8 terpasang** | ERC/DRC/Gerber provisional dijalankan |
+| Toolchain | Belum ada | **Sedang dipasang** | ESP-IDF/Android mengikuti batas disk |
+
 ## Konflik yang diperiksa
 
 Tidak ada konflik eksplisit antarjawaban. Dua ketegangan yang dicatat:
 
-- **Q01=B (inline) vs Q06=B (≤150×100×70)** — PZEM-004T, relay dua kutub, PSU, fuse, terminal, dan socket ber-PE mungkin tidak muat dengan clearance memadai. Bila fit-check gagal, Q06 berubah menjadi **C** (fleksibel) setelah analisis, bukan memaksa komponen berbahaya menjadi rapat.
-- **Q03=B (10 A) vs Q07=B (Rp500–750 rb)** — Relay dua kutub 10 A, PSU tersertifikasi, fuse holder, terminal, dan socket ber-PE dapat mendorong biaya di atas target. Keselamatan diprioritaskan; harga aktual akan dilaporkan.
+- **Q01=B (inline) vs Q06=B (≤150×100×70)** — Dengan PZEM off-board + module relay 2 channel, 150×100 gagal dan 180×120 juga tidak memberi clearance layak. Rekomendasi: **220×120×70** (Q06=C) setelah konfirmasi pengguna; jangan memaksa clearance turun.
+- **Q03=8 A vs Q07=B (Rp500–750 rb)** — Module 2 channel, PSU tersertifikasi, fuse holder, terminal, socket ber-PE, dan bracket dapat mendorong biaya di atas target. Keselamatan diprioritaskan; harga aktual akan dilaporkan.
 
 ## Persetujuan
 

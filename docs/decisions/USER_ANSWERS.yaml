@@ -15,15 +15,15 @@ notes:
 questions:
   - {id: Q01, topic: product_form_factor, answer: B, label: inline_outlet, status: CONFIRMED, severity: BLOCKER_SAFETY, impact: [enclosure, strain_relief, mechanical_space]}
   - {id: Q02, topic: socket_and_plug_type, answer: D, label: indonesia_compatibility_analysis_with_lean_B, status: CONFIRMED_DIRECTION, severity: BLOCKER_SAFETY, impact: [connector_rating, earth_contacts, plug_reversibility]}
-  - {id: Q03, topic: target_max_load_current, answer: B, label: target_10A_final_rating_lowest_verified, status: CONFIRMED, severity: BLOCKER_SAFETY, impact: [relay, fuse, terminals, pcb_trace, thermal]}
+  - {id: Q03, topic: target_max_load_current, answer: "8A", label: final_8A_1840W_user_amendment, status: CONFIRMED, severity: BLOCKER_SAFETY, impact: [relay, fuse, terminals, pcb_trace, thermal], amendment: "User changed 10A target to 8A on 2026-11-15; final rating still lowest verified."}
   - {id: Q04, topic: supported_load_types, answer: B, label: mixed_electronics_smps, status: CONFIRMED, severity: BLOCKER_SAFETY, impact: [relay_rating, inrush, protection]}
   - {id: Q05, topic: conductor_disconnection, answer: A, label: review_two_pole, status: CONFIRMED, severity: BLOCKER_SAFETY, impact: [relay_poles, wiring, pe_path]}
-  - {id: Q06, topic: target_enclosure_size, answer: B, label: max_150x100x70, status: CONFIRMED, severity: BLOCKER_DESIGN, impact: [cad, module_placement, thermal_clearance]}
+  - {id: Q06, topic: target_enclosure_size, answer: B, label: max_150x100x70, status: CONFIRMED, severity: BLOCKER_DESIGN, impact: [cad, module_placement, thermal_clearance], amendment: "150x100x70 FAILS; 180x120x70 also rejected for real clearance (PZEM/relay/socket stacking); 220x120x70 recommended pending user confirmation of Q06=C."}
   - {id: Q07, topic: bom_budget_idr, answer: B, label: "500000-750000", status: CONFIRMED, severity: NON_BLOCKER, impact: [component_selection]}
   - {id: Q08, topic: esp32_s3_board_status, answer: B, label: buy_official_devkitc1_n16r8, status: CONFIRMED, severity: BLOCKER_SAFETY, impact: [gpio_map, footprint, rgb_pin, strapping_pins]}
-  - {id: Q09, topic: pzem_module_status, answer: D, label: compare_variants_pzem_provisional, status: CONFIRMED_DIRECTION, severity: BLOCKER_SAFETY, impact: [metering_interface, isolation, dimensions]}
-  - {id: Q10, topic: relay_or_switching_device, answer: C, label: study_2_3_alternatives, status: CONFIRMED_DIRECTION, severity: BLOCKER_SAFETY, impact: [contact_rating, driver, isolation, fail_mode]}
-  - {id: Q11, topic: module_placement, answer: D, label: choose_by_isolation_lean_B_C, status: CONFIRMED_DIRECTION, severity: BLOCKER_DESIGN, impact: [pcb_architecture, connectors, assembly]}
+  - {id: Q09, topic: pzem_module_status, answer: D, label: compare_variants_pzem_offboard_provisional, status: CONFIRMED_DIRECTION, severity: BLOCKER_SAFETY, impact: [metering_interface, isolation, dimensions], amendment: "PZEM must be off-board with an enclosure mount."}
+  - {id: Q10, topic: relay_or_switching_device, answer: "2CH_OPTO_MODULE", label: common_2_channel_optocoupler_relay_module_offboard, status: CONFIRMED_DIRECTION, severity: BLOCKER_SAFETY, impact: [contact_rating, driver, isolation, fail_mode], amendment: "User selected a common 2-channel optocoupler module, off-board, mounted in enclosure; not a mechanically linked DPST."}
+  - {id: Q11, topic: module_placement, answer: D, label: choose_by_isolation_lean_B_C_pzem_relay_offboard, status: CONFIRMED_DIRECTION, severity: BLOCKER_DESIGN, impact: [pcb_architecture, connectors, assembly], amendment: "PZEM and relay module are off-board with brackets/standoffs."}
   - {id: Q12, topic: safety_and_usage_target, answer: A, label: supervised_academic_lab, status: CONFIRMED, severity: BLOCKER_SAFETY, impact: [claims, standards, regulatory_plan]}
   - {id: Q13, topic: display, answer: A, label: small_i2c_oled_ssd1306, status: CONFIRMED, severity: NON_BLOCKER, impact: [ui_oled, bom]}
   - {id: Q14, topic: status_indicator, answer: C, label: builtin_neopixel_plus_external_rgb, status: CONFIRMED, severity: NON_BLOCKER, impact: [ui_rgb, bom, enclosure]}

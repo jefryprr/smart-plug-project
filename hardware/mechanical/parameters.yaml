@@ -66,11 +66,12 @@ provenance:
   cable_gland_diameter_mm: datasheet
 
 # Recommended variant if the 150 x 100 x 70 target fails fit/clearance review.
+q06_status: "TARGET_150X100X70_FAILS; 180X120X70 FAILS REAL CLEARANCE REVIEW (PZEM/RELAY/SOCKET STACKING); RECOMMENDED 220X120X70; PENDING USER CONFIRMATION"
 recommended:
-  enclosure_length_mm: 180.0
+  enclosure_length_mm: 220.0
   width_mm: 120.0
   height_mm: 70.0
-  note: "Larger enclosure gives room for barriers, cable bend radius, and thermal clearances. Requires user approval (Q06=C)."
+  note: "220x120x70 gives side-by-side space for the off-board PZEM + 2-channel relay module, barrier, fuse/terminals, and cable bend radius. 150x100 and 180x120 are retained as failed comparisons; Q06 change requires user confirmation."
 
 notes:
   - "All module dimensions are APPROXIMATE until incoming inspection measures the actual parts."

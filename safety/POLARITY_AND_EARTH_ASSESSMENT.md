@@ -14,11 +14,11 @@
 
 | Opsi | Deskripsi | Penilaian |
 |---|---|---|
-| A. Dua kutub | Relay DPST-NO memutus L dan N; PE kontinu | **Ditinjau**; konservatif untuk plug reversibel |
+| A. Dua kutub | 2-channel optocoupler module: CH1 L, CH2 N; PE kontinu; bukan DPST linked | **Ditinjau**; konservatif untuk plug reversibel, dengan residual risk channel tidak linked |
 | B. Satu kutub | Hanya L atau hanya N diputus | Hanya jika arsitektur keselamatan dan pemasangan membuktikan; belum |
 | C. Engineer memilih | Studi standar | Diperlukan jika A tidak memenuhi ruang/rating |
 
-**Rekomendasi:** pertahankan dua kutub sebagai arah desain. Jika relay DPST 8 A tidak memenuhi target arus, turunkan rating atau ganti contactor; jangan kembali ke satu kutub hanya untuk mengejar 10 A.
+**Rekomendasi:** pertahankan dua channel (L/N) sebagai arah desain, dengan rating final **8 A/1.840 W**. Module bukan DPST mechanically linked; uji tiap channel dan dokumentasikan residual risk. Jangan kembali ke satu kutub hanya untuk mengejar rating lebih tinggi.
 
 ## 3. PE path
 

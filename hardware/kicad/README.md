@@ -1,7 +1,11 @@
 # KiCad Native Files — REV_A_PROVISIONAL
 
 **Status:** `SYSTEM_BLOCK_SCHEMATIC_PROVISIONAL` + `PLACEMENT_ONLY_PCB`
-**ERC/DRC/Gerber:** `BLOCKED` (KiCad CLI not installed)
+**KiCad CLI:** 10.0.8 (portable extract in `tools/kicad`)
+**ERC:** 0 violations on the block-level text-only schematic (not component-level connectivity)
+**DRC:** 0 violations / 0 unconnected on the placement-only PCB
+**Gerber/drill:** provisional placement-only export; `NOT_FOR_FABRICATION`
+**Component-level schematic/routing:** `BLOCKED` (no approved MPNs/footprints)
 
 ## Files
 
@@ -22,9 +26,9 @@
 
 ## Important
 
-- This is **not** a component-level production schematic. It has text/labels and block structure, not every approved part/footprint/net.
-- The PCB is **placement-only**: outline, courtyards, mounting holes, warnings. No routing, nets, footprints final, or DRC.
-- The files parse with `kiutils`, but were **not opened in KiCad** (not installed).
+- This is **not** a component-level production schematic. It has text/labels and block structure, not every approved part/footprint/net. ERC is 0 because there are no electrical symbols to check; this is not proof of connectivity.
+- The PCB is **placement-only**: outline, courtyards, mounting holes, warnings. DRC is 0 for that geometry, but there is no routing/nets/component circuit.
+- Provisional Gerber/drill exist for mechanical review only. Do not order a functional board.
 - Do not fabricate.
 
 ## Regenerate
@@ -37,8 +41,11 @@
 ## When KiCad is installed
 
 ```powershell
+$env:PATH = "$PWD\tools\kicad\bin;$env:PATH"
 kicad-cli sch erc --output reports/kicad/erc.json hardware/kicad/smartplug.kicad_sch
 kicad-cli pcb drc --output reports/kicad/drc.json hardware/kicad/smartplug.kicad_pcb
+kicad-cli pcb export gerbers -o hardware/manufacturing/provisional/Gerber -l F.Cu,B.Cu,F.SilkS,B.SilkS,Edge.Cuts hardware/kicad/smartplug.kicad_pcb
+kicad-cli pcb export drill -o hardware/manufacturing/provisional/Drill --generate-map --map-format pdf hardware/kicad/smartplug.kicad_pcb
 ```
 
-Fix findings, add approved footprints/nets, route, re-run DRC, export Gerber/drill, then seek F4 release.
+Add approved footprints/nets, route, re-run DRC, export functional Gerber/drill, then seek F4 release.

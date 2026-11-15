@@ -10,7 +10,8 @@
  *
  * This is NOT a complete product firmware: PZEM, OLED, RGB, RTC, Wi-Fi,
  * MQTT, OTA, and provisioning are separate components and are not yet
- * integrated. ESP-IDF build is BLOCKED in this environment.
+ * integrated. The ESP-IDF v6.1 target build is verified for this minimal app;
+ * flashing, boot-waveform, and bench tests are still blocked without hardware.
  */
 #include <stdio.h>
 #include <string.h>
@@ -30,6 +31,12 @@ static sp_state_t g_state;
 static uint32_t g_command_sequence = 0;
 
 static void relay_init_safe(void) {
+    /*
+     * Off-board 2-channel optocoupler module is ACTIVE-LOW. This GPIO drives a
+     * MOSFET gate (external 100k pulldown). Gate LOW -> MOSFET off -> module
+     * inputs high -> both channels OFF. Never connect the module input directly
+     * to a floating GPIO.
+     */
     gpio_config_t config = {
         .pin_bit_mask = (1ULL << PIN_RELAY_CTRL),
         .mode = GPIO_MODE_OUTPUT,

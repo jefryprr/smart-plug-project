@@ -2,7 +2,7 @@
 
 **Design revision:** `REV_A_PROVISIONAL`
 **Tanggal:** 15 November 2026
-**Input keputusan:** Q01=B (inline), Q02=D (analisis; lean Type E/F), Q03=B (target 10 A), Q04=B (campuran elektronik/SMPS), Q05=A (tinjau dua kutub), Q06=B (≤150×100×70 mm), Q07=B (Rp500–750 ribu), Q12=A (prototipe lab), Q26=A (hanya komputer).
+**Input keputusan:** Q01=B (inline), Q02=D (analisis; lean Type E/F), **Q03=8 A final (amendment)**, Q04=B (campuran elektronik/SMPS), Q05=A (tinjau dua kutub), **Q06=220×120×70 recommended karena 150×100 dan 180×120 gagal clearance**, Q07=B (Rp500–750 ribu), Q12=A (prototipe lab), Q26=A (hanya komputer).
 **Status keseluruhan:** `FEASIBLE_WITH_CAVEATS` untuk bentuk/prototype digital; `BLOCKED` untuk clearance, isolasi, PE, termal, dan fabrikasi.
 
 > Dokumen ini adalah analisis kelayakan, bukan persetujuan desain. Angka dimensi modul yang bertanda *approx* belum diukur pada sampel fisik. Tidak ada uji mains yang dilakukan.
@@ -13,21 +13,21 @@
 |---:|---|---|---|
 | 1 | Apakah seluruh modul muat? | Secara volume kasar ya; tetapi PZEM, PSU, relay, socket, fuse, terminal, dan barrier isolasi membuat tata letak padat. Perlu fit-check dengan dimensi terukur. | `GO_WITH_CAVEATS` |
 | 2 | Apakah jarak isolasi memadai? | Belum dapat dihitung: pollution degree, overvoltage category, material group, working voltage, dan altitude belum ditetapkan. Tidak boleh menebak angka creepage/clearance. | `BLOCKED` |
-| 3 | Apakah ventilasi memadai? | Enclosure 150×100×70 memberi ruang, tetapi relay/terminal/PSU adalah hotspot. Ventilasi dan derating belum diuji. | `BLOCKED` |
+| 3 | Apakah ventilasi memadai? | Enclosure 220×120×70 recommended memberi ruang side-by-side; relay module/terminal/PSU tetap hotspot. Ventilasi dan derating belum diuji. | `BLOCKED` |
 | 4 | Apakah pengamanan soket/terminal memadai? | Socket/terminal belum dipilih dan belum diuji retensi/tarikan. | `BLOCKED` |
 | 5 | Apakah jalur PE layak? | PE dapat dibuat langsung dari plug input ke socket output tanpa relay/fuse. Tetapi MPN terminal/stud dan uji kontinuitas belum ada. | `BLOCKED` |
-| 6 | Apakah pemutusan konduktor dua kutub layak? | Relay DPST-NO 8 A tersedia secara komersial, tetapi target 10 A tidak tercapai. Perlu turunkan rating atau ganti contactor/enclosure. | `REDESIGN` |
+| 6 | Apakah pemutusan konduktor dua kutub layak? | Module 2-channel off-board: dua SPDT independen, 10 A class claim; bukan DPST linked. Rating final 8 A. Uji tiap channel. | `PROVISIONAL` |
 | 7 | Apakah biaya layak? | Harga belum dikumpulkan. Komponen safety (PSU tersertifikasi, relay dua kutub, socket/plug ber-PE, enclosure flame-retardant) dapat melewati target B. | `REDESIGN_PENDING_QUOTES` |
 | 8 | Apakah suplai DC cukup? | Perkiraan peak ~0.7 A pada 5 V; IRM-05-5 1 A memberi margin ~30%. Belum diukur. | `GO_WITH_CAVEATS` |
 | 9 | Apakah PZEM dan CT dapat dipasang? | Modul besar tetapi mungkin; CT harus mengelilingi satu konduktor. Pinout/isolasi batch belum pasti. | `BLOCKED` |
-| 10 | Apakah relay/terminal memadai? | Relay 8 A < target 10 A; terminal/fuse holder belum rated/verified. | `REDESIGN` |
+| 10 | Apakah relay/terminal memadai? | Module 2-channel 10 A class claim (final 8 A); terminal/fuse holder belum rated/verified. | `PROVISIONAL` |
 | 11 | Apakah kabel/connector dapat ditahan dari tarikan? | Perlu cable gland, strain relief mekanik, ferrule, dan terminal; belum ada desain final. | `BLOCKED` |
 | 12 | Apakah area OLED/tombol bebas dari bagian berbahaya? | Bisa, jika OLED/button ditempatkan di sisi SELV dengan barrier dan kabel pendek. Perlu layout final. | `GO_WITH_CAVEATS` |
 | 13 | Bagaimana layanan USB/debug dilindungi saat mains? | USB harus ditutup/dilarang saat mains aktif sampai isolasi tervalidasi. Service cover dan label wajib. | `BLOCKED` |
 
 ## 2. Perhitungan ruang
 
-Target eksternal: 150 × 100 × 70 mm. Asumsi dinding 2.5 mm dan tutup 2.5 mm:
+Target kerja: **220 × 120 × 70 mm** (recommended; 150×100 dan 180×120 gagal clearance dengan PZEM + module 2 channel). Asumsi dinding 2.5 mm dan tutup 2.5 mm:
 
 - Internal kasar: 145 × 95 × 65 mm = **895 cm³**.
 - Volume envelope komponen (approx, belum terukur):
@@ -47,8 +47,8 @@ Target eksternal: 150 × 100 × 70 mm. Asumsi dinding 2.5 mm dan tutup 2.5 mm:
 
 ```
 Plug Type F (L,N,PE)
-  ├─ L → fuse 10 A → MOV (L-N) → thermal cutoff → relay pole 1 → socket L
-  ├─ N → relay pole 2 → socket N
+  ├─ L → fuse 10 A → MOV (L-N) → thermal cutoff → relay module CH1 (COM1/NO1) → socket L
+  ├─ N → relay module CH2 (COM2/NO2) → socket N
   └─ PE ────────────────────────────────────────→ socket PE (tidak diputus)
 
 L/N → PZEM voltage sense + CT around one conductor
@@ -74,9 +74,9 @@ PZEM UART → ADuM1201 barrier + B0505S isolated 5 V → ESP32 UART
 | Terminal | 10 A class | MPN/rating belum | `UNVERIFIED` |
 | Kabel | 1.5 mm² H05VV-F | Perlu perhitungan/derating | `UNVERIFIED` |
 | PCB | tidak membawa mains | low-voltage carrier | `GO` |
-| Target kontinu | 10 A | Tidak tercapai oleh relay 8 A | `REDESIGN` |
+| Target kontinu | **8 A / 1.840 W** | Dipilih pengguna; thermal test required | `PROVISIONAL` |
 
-**Rekomendasi:** turunkan rating kontinu final menjadi **8 A atau lebih rendah** (tergantung uji termal dan derating), atau gunakan contactor 2P 16 A dengan enclosure lebih besar. Jangan memberi label 10 A pada relay 8 A.
+**Rekomendasi:** gunakan **8 A/1.840 W** sebagai rating final, electronics/SMPS only. Module 2-channel bukan DPST linked; uji tiap channel. Jangan memberi label 10 A atau safety-DPST.
 
 ## 5. Power budget SELV
 
@@ -116,7 +116,7 @@ Input yang belum tersedia:
 
 ## 8. Relay, fuse, MOV, thermal cutoff
 
-- Relay DPST-NO 8 A: dua kutub, tetapi rating di bawah target. Perlu uji lifecycle dan temperature rise.
+- Module 2-channel optocoupler: dua SPDT independen, 10 A class claim; bukan DPST. Perlu uji lifecycle per channel dan temperature rise.
 - Fuse 10 A: perlu breaking capacity, holder rating, time-current curve, dan koordinasi.
 - MOV 275 VAC: perlu surge study, thermal fuse coordination, dan end-of-life mode.
 - Thermal cutoff 99 °C 10 A: perlu datasheet batch, clamping, dan uji trip. Jangan mengandalkan firmware.

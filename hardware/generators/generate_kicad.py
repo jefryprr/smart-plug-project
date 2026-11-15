@@ -3,7 +3,8 @@
 
 This is a SYSTEM BLOCK schematic, not a component-level production schematic.
 It is generated honestly because component MPNs/footprints and clearance values
-are not approved. ERC/DRC and Gerber export are BLOCKED until KiCad CLI exists.
+are not approved. KiCad 10.0.8 CLI runs ERC/DRC and exports placement-only
+Gerber/drill, but this is not a functional circuit or fabrication release.
 """
 from __future__ import annotations
 
@@ -21,9 +22,9 @@ DATE = "2026-11-15"
 
 SHEETS = [
     ("AC_INPUT_OUTPUT", ["AC_L_IN", "AC_N_IN", "PE", "AC_L_FUSED", "AC_N_OUT"], "Plug/socket, fuse, MOV, PE path. MAINS."),
-    ("SAFETY_AND_SWITCH", ["AC_L_FUSED", "AC_L_SW", "AC_N_SW", "RELAY_CTRL", "RELAY_LOW"], "DPST-NO relay, thermal cutoff, driver. MAINS + SELV."),
+    ("SAFETY_AND_SWITCH", ["AC_L_FUSED", "AC_L_SW", "AC_N_SW", "RELAY_IN1", "RELAY_IN2"], "Off-board 2-channel optocoupler relay module, thermal cutoff, MOSFET driver. MAINS + SELV. 8A final."),
     ("AC_DC_POWER", ["AC_L_FUSED", "AC_N_IN", "+5V", "GND"], "Mean Well IRM-05-5 isolated PSU. MAINS + SELV."),
-    ("PZEM_AND_CT", ["PZEM_L", "PZEM_N", "CT_P", "CT_N", "+5V_ISO", "GND_ISO", "PZEM_TX", "PZEM_RX"], "PZEM V4 + CT, isolated side."),
+    ("PZEM_AND_CT", ["PZEM_L", "PZEM_N", "CT_P", "CT_N", "+5V_ISO", "GND_ISO", "PZEM_TX", "PZEM_RX"], "PZEM V4 + CT, off-board module with enclosure bracket, isolated UART side."),
     ("LOW_VOLTAGE_CONTROL", ["+3V3", "GND", "I2C_SDA", "I2C_SCL", "PZEM_TX", "PZEM_RX", "RELAY_CTRL"], "SELV control, level shifting, connectors."),
     ("ESP32S3_CARRIER", ["+5V", "GND", "+3V3", "I2C_SDA", "I2C_SCL", "PZEM_TX", "PZEM_RX", "RELAY_CTRL"], "ESP32-S3-DevKitC-1 carrier. SELV."),
     ("DISPLAY_AND_BUTTONS", ["+3V3", "GND", "I2C_SDA", "I2C_SCL", "BUTTON", "RGB_DATA"], "OLED, button, external RGB. SELV."),
@@ -38,7 +39,7 @@ def uid() -> str:
 
 def title_block() -> str:
     return (
-        f'  (title_block (title "Smart Plug — System Block Schematic") '
+        f'  (title_block (title "Smart Plug - System Block Schematic - 8A Final - Off-board PZEM/Relay") '
         f'(date "{DATE}") (rev "{REV}") (company "OpenCode Digital Engineering"))\n'
     )
 
@@ -93,9 +94,12 @@ def child_schematic(name: str, nets: list[str], note: str, page: int) -> str:
         y += 10
     y = 70
     for net in nets:
+        # Text net labels, not global labels: this is a block diagram, not a
+        # component-level electrical schematic. Text avoids pretending that
+        # unconnected labels are a validated netlist.
         parts.append(
-            f'  (global_label "{net}" (shape input) (at 30 {y} 0) (fields_autoplaced yes) '
-            f'(effects (font (size 1.5 1.5)) (justify left)) (uuid "{uid()}"))\n'
+            f'  (text "NET: {net}" (at 30 {y} 0) '
+            f'(effects (font (size 1.3 1.3)) (justify left)) (uuid "{uid()}"))\n'
         )
         y += 12
     parts.append(f'  (sheet_instances (path "/" (page "{page}")))\n')
@@ -121,8 +125,8 @@ def pcb() -> str:
         '  (setup (pad_to_mask_clearance 0))\n',
         '  (net 0 "")\n',
         '  (gr_rect (start 0 0) (end 75 50) (stroke (width 0.15) (type solid)) (fill none) (layer "Edge.Cuts") (uuid "' + uid() + '"))\n',
-        '  (gr_text "SMART PLUG — LOW-VOLTAGE CARRIER — PLACEMENT ONLY" (at 37.5 3) (layer "F.SilkS") (uuid "' + uid() + '") (effects (font (size 1.1 1.1) (thickness 0.2)) (justify center)))\n',
-        '  (gr_text "REV_A_PROVISIONAL — NO MAINS — NOT FOR FABRICATION" (at 37.5 47.5) (layer "F.SilkS") (uuid "' + uid() + '") (effects (font (size 0.9 0.9) (thickness 0.15)) (justify center)))\n',
+        '  (gr_text "SMART PLUG - LOW-VOLTAGE CARRIER - PLACEMENT ONLY" (at 37.5 3) (layer "F.SilkS") (uuid "' + uid() + '") (effects (font (size 1.1 1.1) (thickness 0.2))))\n',
+        '  (gr_text "REV_A_PROVISIONAL - NO MAINS - NOT FOR FABRICATION" (at 37.5 47.5) (layer "F.SilkS") (uuid "' + uid() + '") (effects (font (size 0.9 0.9) (thickness 0.15))))\n',
     ]
     # Courtyards
     courtyards = [
@@ -142,7 +146,7 @@ def pcb() -> str:
     # Mounting holes
     for x, y in [(3, 3), (72, 3), (3, 47), (72, 47)]:
         parts.append(
-            f'  (footprint "MountingHole:MountingHole_3.2mm_M3" (layer "F.Cu") (uuid "{uid()}") (at {x} {y})\n'
+            f'  (footprint "MountingHole_3.2mm_M3" (layer "F.Cu") (uuid "{uid()}") (at {x} {y})\n'
             f'    (attr exclude_from_pos_files exclude_from_bom)\n'
             f'    (fp_circle (center 0 0) (end 3.2 0) (stroke (width 0.15) (type solid)) (fill none) (layer "F.CrtYd"))\n'
             f'    (pad "" np_thru_hole circle (at 0 0) (size 3.2 3.2) (drill 3.2) (layers "*.Cu" "*.Mask"))\n'
@@ -200,7 +204,7 @@ def main() -> None:
     (KICAD / f"{PROJECT}.kicad_pcb").write_text(pcb(), encoding="utf-8")
     (KICAD / f"{PROJECT}.kicad_pro").write_text(project(), encoding="utf-8")
     print(f"Generated {PROJECT}.kicad_pro/.kicad_sch/.kicad_pcb + {len(SHEETS)} child sheets")
-    print("STATUS: SYSTEM_BLOCK_SCHEMATIC_PROVISIONAL; ERC/DRC/Gerber BLOCKED (KiCad CLI not installed).")
+    print("STATUS: SYSTEM_BLOCK_SCHEMATIC_PROVISIONAL; placement-only PCB; component-level circuit still BLOCKED.")
 
 
 if __name__ == "__main__":

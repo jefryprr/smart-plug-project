@@ -5,8 +5,8 @@
 
 | ID | Failure mode | Efek | Severity | Probability | Detection | Mitigasi | Residual risk |
 |---|---|---|---|---|---|---|---|
-| FM-01 | Relay contact weld | Beban tetap ON walau commanded OFF | High | Medium | Low tanpa feedback | Relay rated, fuse/thermal backup, optional feedback, label, manual disconnect | High; physical test required |
-| FM-02 | Relay fails open | Beban tidak menyala | Medium | Medium | Medium (state/telemetry) | Detect no current when commanded ON; alert | Low/medium |
+| FM-01 | Relay contact weld (one channel) | Beban tetap ON walau commanded OFF, atau satu konduktor tetap terhubung | High | Medium | Low tanpa feedback | Module rated, fuse/thermal backup, optional feedback, label, manual disconnect, two-channel review | High; physical test required |
+| FM-02 | Relay fails open (one channel) | Beban tidak menyala atau hanya satu kutub terbuka | Medium | Medium | Medium (state/telemetry) | Detect no current when commanded ON; alert; inspect both channels | Medium |
 | FM-03 | Relay coil driver stuck ON | Relay tidak bisa OFF | High | Low | Low | Gate pulldown, watchdog, independent cutoff, boot-safe test | Medium |
 | FM-04 | Fuse opens | Beban mati | Medium | Medium | Medium | Correct fuse, spare, service procedure | Low |
 | FM-05 | Fuse holder overheats | Melting/fire | High | Medium | Medium (thermal) | Rated holder, torque, thermal cutoff, test | Medium |
@@ -29,6 +29,7 @@
 | FM-22 | Enclosure material ignition | Fire spread | High | Low | Low | Flame-retardant rated material, thermal test | High until selected |
 | FM-23 | Command replay | Unintended ON | High | Medium | High | command_id, sequence, TTL, dedup | Low |
 | FM-24 | Cloud/API compromise | Unauthorized ON | High | Medium | Medium | Auth, RBAC, TLS, audit, local lockout | Medium |
+| FM-25 | Two module channels not mechanically linked | One channel opens/welds while the other stays; false two-pole assumption | High | Medium | Low | Do not claim DPST; thermal/fuse backup; test each channel; consider contactors | High until tested |
 
 ## Prioritas
 

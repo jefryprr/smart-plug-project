@@ -7,17 +7,18 @@
 The device needs OTA rollback, partition control, provisioning, watchdog, and a safety state machine. Arduino-ESP32 is simpler but the user chose ESP-IDF.
 
 ## Decision
-- Use **ESP-IDF** (exact version to pin when toolchain is installed) for ESP32-S3.
+- Use **ESP-IDF v6.1** (installed 2026-11-15) for ESP32-S3.
 - Keep safety/domain logic in a **portable C core** (`firmware/core`) with host tests.
 - Use dual OTA partitions, rollback config, HTTPS-only OTA, watchdog.
 - Do not enable secure boot/flash encryption/eFuse without explicit approval and a recovery plan.
-- Host tests use Zig `cc` because ESP-IDF is not installed; this tests the portable core, not the ESP-IDF build.
+- Host tests use Zig `cc`; this tests the portable core, not the target build.
+- The ESP-IDF v6.1 `esp32s3` target build is a separate gate (`T-HW-017`).
 
 ## Consequences
-- ESP-IDF build is `BLOCKED` in this environment; no `.bin` artifact.
+- ESP-IDF v6.1 target build produces `firmware/build/smartplug.bin`; this is a build artifact, not a hardware test.
 - Core logic is testable without hardware (74 checks pass).
 - ESP-IDF integration components (PZEM, OLED, Wi-Fi, MQTT, OTA) remain incomplete.
-- Pin/board revision must be verified before final GPIO.
+- Pin/board revision must be verified before final GPIO; flashing/boot-waveform tests remain `BLOCKED`.
 
 ## Alternatives
 - Arduino-ESP32: rejected for rollback/security/provisioning control.

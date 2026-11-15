@@ -21,9 +21,9 @@
 | kiutils | 1.4.8 | KiCad files parse | `kiutils` parse OK |
 | Zig | 0.17.1 portable | C host tests PASS | 74 checks |
 | Java | 17.0.10.7 | Available | `java -version` |
-| KiCad / kicad-cli | **NOT INSTALLED** | `BLOCKED` | no ERC/DRC/Gerber |
-| ESP-IDF | **NOT INSTALLED** | `BLOCKED` | no firmware `.bin` |
-| Android SDK | **NOT INSTALLED** | `BLOCKED` | no APK; Expo bundle only |
+| KiCad / kicad-cli | **10.0.8 portable** | ERC 0 / DRC 0 / placement Gerber | `tools/kicad/bin/kicad-cli.exe` |
+| ESP-IDF | **v6.1** | esp32s3 target build PASS | `tools/esp-idf`, tools in `C:\Espressif`; `.bin` hash in `reports/FIRMWARE_BUILD.md` |
+| Android SDK | **installed on D:** | debug APK built + signature verified | `D:\AI INSTALLS\Android\Sdk`; Gradle cache on D |
 | Docker | **NOT INSTALLED** | `BLOCKED` | compose not executed |
 | PostgreSQL | **NOT INSTALLED** | `BLOCKED` | schema only |
 | FreeRouting | **NOT INSTALLED** | `NOT_APPLICABLE` | no routed board |
@@ -34,9 +34,9 @@
 ## Deviations
 
 1. **Circuit-Synth not used.** `hardware/generators/generate_kicad.py` emits a native KiCad system block schematic and placement-only PCB. This is not a component-level production schematic.
-2. **KiCad ERC/DRC not run.** No KiCad CLI. The native files parse with `kiutils`, but were not opened in KiCad.
-3. **Firmware host tests use Zig `cc`.** This tests the portable core, not the ESP-IDF target build.
-4. **Android bundle export only.** `npx expo export --platform android` succeeded; no APK.
+2. **KiCad ERC/DRC run with KiCad 10.0.8.** ERC 0 on block-level text-only schematic; DRC 0 on placement-only PCB; Gerber/drill placement-only. Component-level schematic/routing still absent.
+3. **Firmware host tests use Zig `cc`.** This tests the portable core; the ESP-IDF v6.1 `esp32s3` build is recorded separately and is not a hardware test.
+4. **Android debug APK built.** `arm64-v8a`, debug v2 signature verified; not a release APK, not installed on a device.
 5. **Graphviz portable.** Downloaded and hash-recorded in `tools/downloads`; not a system install.
 
 ## Capability detection commands

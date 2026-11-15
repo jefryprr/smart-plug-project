@@ -32,7 +32,7 @@
 
 ## What is not covered
 
-- ESP-IDF build/unit test on target (`BLOCKED`).
+- ESP-IDF v6.1 target build (`PASS`; see `reports/FIRMWARE_BUILD.md`). Unit/fault-injection tests on target remain `BLOCKED` without hardware.
 - Hardware drivers (PZEM, OLED, RGB, button, RTC, Wi-Fi).
 - Physical sensor faults, relay weld, thermal, PE, isolation.
 - Android runtime/emulator.

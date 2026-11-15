@@ -1,0 +1,9 @@
+ESP-IDF environment ready: 6.1 at C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\tools\esp-idf\v6.1\esp-idf
+Remove-Item : Cannot remove item C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\reports\logs\firmware-idf-build.log: The 
+process cannot access the file 'C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\reports\logs\firmware-idf-build.log' because 
+it is being used by another process.
+At C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\scripts\build_firmware.ps1:14 char:23
++ if (Test-Path $log) { Remove-Item $log -Force }
++                       ~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (C:\Users\JEFRY ...e-idf-build.log:FileInfo) [Remove-Item], IOException
+    + FullyQualifiedErrorId : RemoveFileSystemItemIOError,Microsoft.PowerShell.Commands.RemoveItemCommand

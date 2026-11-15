@@ -1,6 +1,6 @@
 # BOM Master — REV_A_PROVISIONAL
 
-**Generated:** 2026-11-15T05:07:47.017407+00:00
+**Generated:** 2026-11-15T12:52:10.678571+00:00
 
 > **UNPRICED / NOT APPROVED.** Harga kosong karena belum ada harga terverifikasi. Jangan membeli atau menganggap BOM ini final. Status safety-critical: lihat `COMPONENT_APPROVALS.yaml`.
 
@@ -15,7 +15,9 @@
 | E-007 | U7 | Isolation | Isolated 5 V to 5 V DC/DC converter, 1 W, for PZEM barrier | B0505S-1WR3 | 1 pcs | PENDING_APPROVAL |
 | E-008 | U8 | Switching | N-channel MOSFET relay driver, logic-level, SOT-23 | AO3400A | 1 pcs | PENDING_APPROVAL |
 | E-009 | U9 | UI | Single buffer/level shifter for 3.3 V to 5 V WS2812 data | SN74AHCT1G125DBVR | 1 pcs | PENDING_APPROVAL |
-| E-010 | K1 | Switching | DPST-NO power PCB relay, 5 V DC coil, 8 A / 250 VAC class | RT444005 | 1 pcs | PENDING_APPROVAL |
+| E-010 | K1 | Switching | 2-channel 5 V optocoupler relay module, 10 A class claim, off-board, active-low input | 2CH-5V-OPTO-10A | 1 pcs | DOCUMENTATION_DEFICIENT |
+| E-010A | BRK1 | Mechanical | Relay module mounting bracket/standoffs, flame-retardant, M3 | BRACKET-2CH-RELAY | 1 pcs | PROVISIONAL |
+| E-010B | BRK2 | Mechanical | PZEM-004T mounting bracket/standoffs, flame-retardant, M3 | BRACKET-PZEM-V4 | 1 pcs | PROVISIONAL |
 | E-011 | F1 | Protection | Fuse, 5x20 mm, 10 A, 250 VAC, time-lag | 0215010.MXP | 1 pcs | PENDING_APPROVAL |
 | E-012 | FH1 | Protection | PCB fuse holder, 5x20 mm, 10 A / 250 VAC | 0031.8201 | 1 pcs | PENDING_APPROVAL |
 | E-013 | MOV1 | Protection | Metal-oxide varistor, 275 VAC, 10 mm, surge coordination study required | B72210S0271K101 | 1 pcs | PENDING_APPROVAL |
@@ -42,7 +44,7 @@
 | E-034 | X1 | Connectors | Type F (Schuko) panel socket, 16 A / 250 V, 2P+E | SOCKET-TYPE-F-16A-TBD | 1 pcs | DOCUMENTATION_DEFICIENT |
 | E-035 | P1 | Connectors | Type F (Schuko) cord plug, 16 A / 250 V, 3-core | PLUG-TYPE-F-16A-TBD | 1 pcs | DOCUMENTATION_DEFICIENT |
 | E-036 | CG1 | Mechanical | Cable gland, M16, IP68, PA66, UL94 V-0 | GLAND-M16-TBD | 1 pcs | PROVISIONAL |
-| E-037 | ENC1 | Mechanical | Enclosure, ABS/PC, target 150 x 100 x 70 mm, flame-retardant grade | ENCLOSURE-150X100X70-TBD | 1 pcs | BLOCKED |
+| E-037 | ENC1 | Mechanical | Enclosure, ABS/PC, 220 x 120 x 70 mm recommended, flame-retardant grade | ENCLOSURE-220X120X70-TBD | 1 pcs | BLOCKED |
 | E-038 | PE1 | Mechanical | PE bonding hardware: screw, lock washer, nut, dedicated stud | PE-HARDWARE-TBD | 1 pcs | BLOCKED |
 | E-039 | W1 | Cable | Mains cord, H05VV-F 3x1.5 mm2, 0.5 m provisional, brown/blue/green-yellow | H05VV-F-3G1.5 | 0.5 m | PROVISIONAL |
 | E-040 | W2 | Cable | Low-voltage hookup wire assortment, 0.25 mm2, 300 V | HOOKUP-0.25MM2 | 3 m | PROVISIONAL |

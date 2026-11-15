@@ -16,6 +16,10 @@
 | `omron_b3f.pdf` | https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3f.pdf | 711.882 | `BE9CF69E5F43FB7689448A2097C19858E5643C0E2E49CD77D018881543E27A1F` | UNKNOWN | Tombol |
 | `ti_sn74ahct1g125.pdf` | https://www.ti.com/lit/ds/symlink/sn74ahct1g125.pdf | 1.253.856 | `564B239F73FF629F960832FA7E1C64F6A651EEA28F64115ECEFCDB7AF22CA416` | UNKNOWN | Level shifter |
 | `vishay_1n4007.pdf` | https://www.vishay.com/docs/88503/1n4001.pdf | 74.632 | `56A77C6615C90C11993D37D94E67F335CF3A2D1FE00F25D2A1A4833834356D07` | UNKNOWN | Flyback diode |
+| `handsontec_2ch_relay.pdf` | https://www.handsontec.com/dataspecs/module/2Ch-relay.pdf | 804.350 | `4F16CC963C4F7E16D44F8B38F7FD270A7EA667B0E4E3F0AB382B8B5E4789FDC9` | UNKNOWN | Modul relay 2 channel 5 V; klaim vendor, bukan bukti batch |
+| `digikey_ts0010d_2ch_relay.pdf` | https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5773/TS0010D%20DATASHEET.pdf | 800.391 | `80D1A119D390BEBEABA3F923FFC589C23DBEC9993C074C68B16A8A5FB85F5372` | UNKNOWN | Modul relay 2 channel; pinout/level harus diverifikasi |
+| `pzem_004t_specification_archive.docx` | https://github.com/im-0/pzem-004t-original-docs | 503.825 | `C9D8BA228887196E922A259D3CB2645121F9ACEAFA5A36E85F2809C3A7C9AAC7` | UNKNOWN | Arsip spesifikasi **PZEM-004T V1.0**, bukan manual V4 |
+| `pzem_004t_specification_archive.txt` | Ekstraksi teks dari docx di atas | 8.306 | `B9B3D15177B9D4A742B2A9ADE978665FC8E94408D1068F18F6CB3372418438E3` | UNKNOWN | Teks bantu; encoding awal tidak sempurna |
 
 ## Link-only / belum tersimpan
 

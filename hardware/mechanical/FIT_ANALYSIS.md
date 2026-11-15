@@ -4,15 +4,18 @@
 
 ## Preset: provisional
 
-- Status: **PASS**
+- Status: **FAIL**
 - Modules checked: 12
 - Enclosure internal bounds (mm): (-72.5, -47.5, 2.5, 72.5, 47.5, 67.5)
+- AABB clashes:
+  - relay ↔ fuse
+  - relay ↔ terminals
 
 ## Preset: recommended
 
 - Status: **PASS**
 - Modules checked: 12
-- Enclosure internal bounds (mm): (-87.5, -57.5, 2.5, 87.5, 57.5, 67.5)
+- Enclosure internal bounds (mm): (-107.5, -57.5, 2.5, 107.5, 57.5, 67.5)
 
 ## Limitations
 - All module dimensions are approximate envelopes, not measured samples.
@@ -22,5 +25,5 @@
 
 ## Interpretation
 - A `PASS` is not a safety or manufacturing release.
-- If the 150×100×70 preset fails, use the `recommended` 180×120×70 preset after user approval (Q06=C).
+- The 150×100×70 and 180×120×70 presets fail clearance review; the working recommendation is 220×120×70 (Q06=C, pending user approval).
 - Physical fit requires measured samples, tolerance stack, cable bend, and assembly trial.
