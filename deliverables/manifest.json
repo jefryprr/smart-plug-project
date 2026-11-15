@@ -2,8 +2,8 @@
   "project": "esp32-s3-iot-smart-plug",
   "prd_version": "1.0",
   "design_revision": "REV_A_PROVISIONAL",
-  "generated_at": "2026-11-15T06:41:34.070Z",
-  "git_commit": "92d63f484e1a44d33c1db41477222c83a584cf00",
+  "generated_at": "2026-11-15T06:42:05.550Z",
+  "git_commit": "d940d4040d906b7bfbfe78b0e33a82c2d69addc9",
   "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",
   "hardware_validation_status": "HARDWARE_VALIDATION_REQUIRED",
   "digital_status": "PARTIAL_DIGITAL",
@@ -1110,8 +1110,8 @@
     {
       "category": 13,
       "path": "reports/logs/firmware-host-test.log",
-      "sha256": "ff2e9e48ac7982cbae442cb487ea13d90ee00f00d060a36f02d2a3cb24a6155c",
-      "size_bytes": 48,
+      "sha256": "f94c2f466716e461c09665aff00e872025a8c7f5766139584ef1eb4bdf0dab0a",
+      "size_bytes": 52,
       "status": "PARTIAL",
       "tests": [
         "T-HW-018"
@@ -1298,8 +1298,8 @@
     {
       "category": 17,
       "path": "reports/logs/T-SW-005-20261115T063742Z.log",
-      "sha256": "69903812746fdaa66af199b5fa7a1d8d6dbf81059caf84c2b19e48fa6e0ce174",
-      "size_bytes": 257,
+      "sha256": "1fd5ec05cf6191099f5b6482d8c55b8a68e2771be3e5274dffe8b2fff1b849eb",
+      "size_bytes": 244,
       "status": "PASS_DIGITAL",
       "tests": [
         "T-SW-001",
