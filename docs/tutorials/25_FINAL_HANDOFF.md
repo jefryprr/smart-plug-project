@@ -13,15 +13,16 @@
 
 - API/web/simulator/firmware core tests.
 - BOM research (unpriced/unapproved).
-- KiCad block/placement files.
+- KiCad block/placement files, ERC 0 / DRC 0, placement-only Gerber/drill.
+- ESP-IDF v6.1 target build and `.bin`.
 - WireViz harnesses.
-- CadQuery enclosure/assembly.
+- CadQuery enclosure/assembly + PZEM/relay brackets.
 - Docs/runbooks.
 
 ## Yang belum
 
-- ERC/DRC/Gerber.
-- ESP-IDF build/APK/Docker/Postgres.
+- Component-level schematic/routing/functional Gerber.
+- Firmware integration/flash tests, Android device test, Docker/Postgres.
 - Physical mains/thermal/PE/isolation tests.
 - Engineering/regulatory sign-off.
 

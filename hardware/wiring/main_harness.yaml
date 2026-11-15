@@ -35,15 +35,19 @@ connectors:
     - IN
     - OUT
   K1:
-    type: DPST-NO relay (RT2 class, 8 A TBD)
+    type: 2-channel 5V optocoupler relay module (off-board, active-LOW assumed)
     pinlabels:
-    - A1
-    - A2
-    - P1_11
-    - P1_14
-    - P2_21
-    - P2_24
-    notes: A1/A2 coil (SELV); P1/P2 are separate NO contacts.
+    - IN1
+    - IN2
+    - VCC
+    - GND
+    - COM1
+    - NO1
+    - COM2
+    - NO2
+    notes: 'Two independent SPDT channels: CH1 switches L, CH2 switches N. NOT a mechanically
+      linked DPST. IN1/IN2 are pulled LOW together by the carrier MOSFET; module active-LOW.
+      Verify JD-VCC/pinout and rating.'
   X1:
     type: Type F socket output (16 A class TBD)
     pinlabels:
@@ -118,12 +122,13 @@ connectors:
     - +5V
     - GND
     - +3V3
-    - RELAY_CTRL
-    - RELAY_LOW
+    - RELAY_IN1
+    - RELAY_IN2
     - RELAY_FB
     - PZEM_TX
     - PZEM_RX
-    notes: Carrier is SELV only. No mains on PCB.
+    notes: Carrier is SELV only. RELAY_IN1/IN2 are the same MOSFET drain net, exposed
+      as two pins for the off-board relay module inputs.
 cables:
   WL1:
     gauge: 1.5 mm2
@@ -236,20 +241,6 @@ cables:
     colors:
     - RD
     - BK
-  WREL:
-    gauge: 0.5 mm2
-    length: 0.20 m
-    color: OG
-    wirelabels:
-    - RELAY_CTRL
-    wirecount: 1
-  WREL_LOW:
-    gauge: 0.5 mm2
-    length: 0.20 m
-    color: GY
-    wirelabels:
-    - RELAY_LOW
-    wirecount: 1
   WPZEM_L:
     gauge: 0.5 mm2
     length: 0.20 m
@@ -332,6 +323,23 @@ cables:
     colors:
     - WH
     - BK
+  W_RELAY_MODULE:
+    gauge: 0.5 mm2
+    length: 0.25 m
+    wirecount: 4
+    color: GY
+    colors:
+    - RD
+    - BK
+    - OG
+    - GY
+    wirelabels:
+    - +5V
+    - GND
+    - IN1
+    - IN2
+    notes: To off-board 2-channel relay module. Keep in mains zone; do not route over
+      SELV logic.
 connections:
 - - P1:
     - L
@@ -351,30 +359,6 @@ connections:
     - L_MOV
   - MOV1:
     - L
-- - TF1:
-    - OUT
-  - WL3:
-    - L_TCO
-  - K1:
-    - P1_11
-- - K1:
-    - P1_14
-  - WL4:
-    - L_SW
-  - X1:
-    - L
-- - P1:
-    - N
-  - WN1:
-    - N_IN
-  - K1:
-    - P2_21
-- - K1:
-    - P2_24
-  - WN2:
-    - N_SW
-  - X1:
-    - N
 - - P1:
     - N
   - WN3:
@@ -426,18 +410,6 @@ connections:
   - U7:
     - +5V_IN
     - GND_IN
-- - J1:
-    - RELAY_CTRL
-  - WREL:
-    - RELAY_CTRL
-  - K1:
-    - A1
-- - J1:
-    - RELAY_LOW
-  - WREL_LOW:
-    - RELAY_LOW
-  - K1:
-    - A2
 - - F1:
     - OUT
   - WPZEM_L:
@@ -504,3 +476,42 @@ connections:
   - J1:
     - PZEM_TX
     - PZEM_RX
+- - TF1:
+    - OUT
+  - WL3:
+    - L_TCO
+  - K1:
+    - COM1
+- - K1:
+    - NO1
+  - WL4:
+    - L_SW
+  - X1:
+    - L
+- - P1:
+    - N
+  - WN1:
+    - N_IN
+  - K1:
+    - COM2
+- - K1:
+    - NO2
+  - WN2:
+    - N_SW
+  - X1:
+    - N
+- - J1:
+    - +5V
+    - GND
+    - RELAY_IN1
+    - RELAY_IN2
+  - W_RELAY_MODULE:
+    - +5V
+    - GND
+    - IN1
+    - IN2
+  - K1:
+    - VCC
+    - GND
+    - IN1
+    - IN2

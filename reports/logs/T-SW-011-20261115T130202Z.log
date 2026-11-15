@@ -1,0 +1,10 @@
+
+Running 5 tests using 1 worker
+
+  âœ“  1 [chromium] â€º tests\e2e\ui.spec.ts:6:3 â€º authentication and dashboard â€º login page and dashboard render real states (3.0s)
+  âœ“  2 [chromium] â€º tests\e2e\ui.spec.ts:23:3 â€º authentication and dashboard â€º device tabs show analytics, schedules, events, diagnostics, and settings (3.0s)
+  âœ“  3 [chromium] â€º tests\e2e\ui.spec.ts:52:3 â€º authentication and dashboard â€º ON/OFF command reaches the simulator and returns APPLIED (8.1s)
+  âœ“  4 [chromium] â€º tests\e2e\ui.spec.ts:67:3 â€º authentication and dashboard â€º no serious or critical axe violations on login and dashboard (3.3s)
+  âœ“  5 [chromium] â€º tests\e2e\ui.spec.ts:87:3 â€º mobile dashboard â€º mobile layout remains usable (1.6s)
+
+  5 passed (33.6s)

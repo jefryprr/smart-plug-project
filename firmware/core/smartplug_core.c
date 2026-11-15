@@ -1,5 +1,6 @@
 #include "smartplug_core.h"
 
+#include <inttypes.h>
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
@@ -479,7 +480,7 @@ int sp_format_telemetry(const sp_measurement_t *measurement,
         "\"quality\":\"%s\",\"measurements\":{\"voltage_v\":%s,\"current_a\":%s,"
         "\"active_power_w\":%s,\"energy_kwh_total\":%s,\"power_factor\":%s,"
         "\"frequency_hz\":%s},\"state\":{\"mode\":\"%s\",\"commanded_output\":\"%s\","
-        "\"observed_output\":%s,\"fault\":%s,\"lockout\":%s,\"state_version\":%u,"
+        "\"observed_output\":%s,\"fault\":%s,\"lockout\":%s,\"state_version\":%" PRIu32 ","
         "\"clock_valid\":%s,\"meter_valid\":%s,\"temperature_valid\":%s}}",
         state->device_id,
         (long long)measurement->sampled_at_ms,

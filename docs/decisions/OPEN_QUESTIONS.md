@@ -20,13 +20,13 @@ Tidak ada Q01–Q28 yang masih `OPEN`. Beberapa jawaban adalah **arah** (D) yang
 | ID | Severity | Blocker | Owner | Tindakan |
 |---|---|---|---|---|
 | B-001 | `BLOCKER_SAFETY` | Socket/plug Type F/E-F MPN, sertifikasi, PE, retensi | Hardware engineer | Pilih produk terlacak; ukur/uji |
-| B-002 | `BLOCKER_SAFETY` | Relay DPST 10 A tidak tersedia; provisional 8 A | Hardware engineer | Turunkan rating atau ganti contactor/enclosure |
-| B-003 | `BLOCKER_SAFETY` | PZEM V4 batch datasheet/pinout/isolation | Hardware engineer | Dapatkan manual batch; ukur |
-| B-004 | `BLOCKER_SAFETY` | PE hardware/enclosure material | Mechanical engineer | Pilih part rated; uji kontinuitas |
+| B-002 | `BLOCKER_SAFETY` | 2-channel optocoupler module: batch, active-low, contact rating, channel non-linkage | Hardware engineer | Verifikasi modul; uji tiap channel; final 8 A |
+| B-003 | `BLOCKER_SAFETY` | PZEM V4 batch datasheet/pinout/isolation; off-board bracket | Hardware engineer | Dapatkan manual batch; ukur; cetak bracket |
+| B-004 | `BLOCKER_SAFETY` | PE hardware/enclosure material; 150×100 and 180×120 fail clearance review | Mechanical engineer | Pilih part rated; konfirmasi 220×120; uji kontinuitas |
 | B-005 | `BLOCKER_SAFETY` | Clearance/creepage inputs/standard | Engineer | Isi worksheet; review |
 | B-006 | `BLOCKER_SAFETY` | No lab/engineer/physical tests | Project owner | Sediakan fasilitas |
-| B-007 | `BLOCKER_DESIGN` | KiCad CLI/ERC/DRC/Gerber | Hardware engineer | Install KiCad; selesaikan schematic/PCB |
-| B-008 | `BLOCKER_DESIGN` | ESP-IDF build | Firmware engineer | Install toolchain; build/test |
+| B-007 | `BLOCKER_DESIGN` | Component-level schematic/footprints/routing; functional Gerber | Hardware engineer | KiCad 10.0.8 installed; ERC/DRC/placement-only Gerber done; complete real circuit |
+| B-008 | `BLOCKER_DESIGN` | Flashing/boot-waveform on real ESP32-S3; PZEM/OLED/Wi-Fi/MQTT/OTA integration | Firmware engineer | ESP-IDF v6.1 build PASS; hardware bench still blocked |
 | B-009 | `BLOCKER_DESIGN` | Android SDK/APK | Mobile engineer | Install SDK; build APK |
 | B-010 | `BLOCKER_DESIGN` | PostgreSQL adapter/Docker deployment | Backend engineer | Implement/adapter; test |
 | B-011 | `BLOCKER_DESIGN` | MQTT TLS/ACL production | Backend/security | Deploy staging; negative tests |

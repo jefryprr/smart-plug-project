@@ -7,12 +7,12 @@
 
 | Block | Responsibility | Safety domain |
 |---|---|---|
-| AC input/output | Plug, fuse, MOV, thermal cutoff, relay, socket, PE | MAINS |
+| AC input/output | Plug, fuse, MOV, thermal cutoff, off-board 2-channel relay module, socket, PE | MAINS |
 | AC/DC PSU | Isolated 5 V for SELV | Barrier |
-| PZEM + CT | Voltage/current/energy measurement | MAINS + isolated UART |
+| PZEM + CT | Off-board module with bracket; voltage/current/energy | MAINS + isolated UART |
 | UART isolation | ADuM1201 + B0505S barrier | Barrier |
 | ESP32-S3 carrier | State machine, metering, UI, network | SELV |
-| Relay driver | MOSFET + pulldown + flyback | SELV→coil |
+| Relay driver | MOSFET + pulldown; pulls both active-LOW module inputs | SELV→coil |
 | UI | OLED, button, RGB | SELV |
 | Temperature/RTC | TMP102, DS3231 | SELV |
 | Network/backend | MQTT, API, DB, web, Android, notifications | Cloud/LAN |
@@ -37,6 +37,8 @@ User command → API (auth/idempotency/TTL) → MQTT command → device core →
 - USB/service access is restricted while mains is connected.
 - 3D-printed enclosure is prototype-only.
 - No relay/PSU/fuse/PE approval; no fabrication release.
+- Final rating **8 A/1.840 W**; 2-channel module is not a mechanically linked DPST.
+- 220×120×70 recommended; 150×100 and 180×120 fail clearance review with off-board modules.
 
 ## 4. Offline behavior
 

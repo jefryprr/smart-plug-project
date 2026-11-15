@@ -1,0 +1,32 @@
+Rendering AC_HARNESS_ENGINEER_REVIEW.yaml ...
+WireViz 0.4.1
+Input file:   C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\AC_HARNESS_ENGINEER_REVIEW.yaml
+Output file:  C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\renders\AC_HARNESS_ENGINEER_REVIEW.[gv|png|svg]
+  PDF: AC_HARNESS_ENGINEER_REVIEW.pdf (48745 bytes)
+Rendering controller_harness.yaml ...
+WireViz 0.4.1
+Input file:   C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\controller_harness.yaml
+Output file:  C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\renders\controller_harness.[gv|png|svg]
+  PDF: controller_harness.pdf (43027 bytes)
+Rendering display_harness.yaml ...
+WireViz 0.4.1
+Input file:   C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\display_harness.yaml
+Output file:  C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\renders\display_harness.[gv|png|svg]
+  PDF: display_harness.pdf (46833 bytes)
+Rendering i2c_harness.yaml ...
+WireViz 0.4.1
+Input file:   C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\i2c_harness.yaml
+Output file:  C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\renders\i2c_harness.[gv|png|svg]
+  PDF: i2c_harness.pdf (47988 bytes)
+Rendering main_harness.yaml ...
+WireViz 0.4.1
+Input file:   C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\main_harness.yaml
+Output file:  C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\renders\main_harness.[gv|png|svg]
+  PDF: main_harness.pdf (70085 bytes)
+Rendering metering_harness.yaml ...
+WireViz 0.4.1
+Input file:   C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\metering_harness.yaml
+Output file:  C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\renders\metering_harness.[gv|png|svg]
+  PDF: metering_harness.pdf (49401 bytes)
+
+Rendered 6 harnesses to C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\wiring\renders

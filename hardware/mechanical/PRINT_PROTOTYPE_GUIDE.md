@@ -5,10 +5,12 @@
 
 ## 1. Files
 
-- `export/body_bottom_provisional.stl`
-- `export/body_top_provisional.stl`
-- `export/assembly_provisional.step` (viewer/CAD)
-- `export/body_bottom_recommended.stl` / `body_top_recommended.stl` (larger variant)
+- `export/body_bottom_recommended.stl`
+- `export/body_top_recommended.stl`
+- `export/assembly_recommended.step` (viewer/CAD)
+- `export/pzem_bracket.stl` / `pzem_bracket.step`
+- `export/relay_module_bracket.stl` / `relay_module_bracket.step`
+- `export/body_bottom_provisional.stl` / `body_top_provisional.stl` (comparison only; 150×100 fails fit with off-board modules)
 
 ## 2. Suggested FDM settings (prototype only)
 
@@ -24,9 +26,9 @@
 
 ## 3. Assembly check (no power)
 
-1. Print both shells.
+1. Print both shells (recommended 220×120×70) and both module brackets.
 2. Install M3 heat-set inserts in the bottom bosses (temperature per insert datasheet).
-3. Test-fit the carrier PCB, DevKitC-1 envelope, OLED, button, and socket mock.
+3. Test-fit the carrier PCB, DevKitC-1 envelope, OLED, button, socket mock, PZEM on its bracket, and 2-channel relay module on its bracket.
 4. Check the isolation barrier and cable pass-through.
 5. Check the OLED window, button travel, RGB diffuser, and USB service cover.
 6. Check cable gland thread and strain relief.

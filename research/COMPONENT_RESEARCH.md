@@ -11,7 +11,7 @@
 |---|---|---|---|
 | MCU board | Espressif ESP32-S3-DevKitC-1 N16R8 resmi | N8R8 resmi; modul WROOM-1 bare | **PENDING_APPROVAL**; revisi board harus diverifikasi |
 | Metering | PZEM-004T V4 100 A split CT **dengan barrier isolasi wajib** | ADE7953 + CT + isolasi; HLW8032 + shunt | **DOCUMENTATION_DEFICIENT**; V4 belum final |
-| Relay/pemutus | TE RT2 `RT444005` DPST-NO 8 A / 250 VAC, 5 V coil | Dua Omron G5LE-1A (tidak linked); Schneider Acti9 iCT 2P 16 A (besar) | **PENDING_APPROVAL**; 8 A < target 10 A |
+| Relay/pemutus | **2-channel 5 V optocoupler module, off-board** (10 A class claim; final 8 A) | TE RT2 DPST-NO (earlier); Schneider Acti9 iCT 2P 16 A (besar) | **DOCUMENTATION_DEFICIENT**; dua SPDT tidak linked |
 | PSU | Mean Well IRM-05-5 | Recom RAC01-05SC; Hi-Link HLK-PM01 | **PENDING_APPROVAL** |
 | Fuse | Littelfuse 215 series 10 A time-lag | Schurter 0001.2510; Bel 5TT 10 | **PENDING_APPROVAL**; koordinasi belum |
 | MOV | EPCOS S10K275 | Littelfuse V275LA10P; Bourns MOV-10D271K | **PENDING_APPROVAL**; studi surge belum |
@@ -19,7 +19,7 @@
 | Sensor suhu | TI TMP102AIDRLR | MCP9808; DS18B20 | **PENDING_APPROVAL** |
 | OLED | SSD1306 0.96" I2C | SH1106 1.3"; bare panel | **DOCUMENTATION_DEFICIENT** |
 | Socket/plug | Type F 16 A 2P+E (Q02 lean) | Type E/F combo; standar lokal | **DOCUMENTATION_DEFICIENT/BLOCKED** |
-| Enclosure | ABS/PC 150×100×70, flame-retardant | Hammond/Bud rated enclosure; 3D print prototype | **BLOCKED**; material belum dipilih |
+| Enclosure | ABS/PC **220x120x70 recommended**, flame-retardant (150x100 and 180x120 fail clearance) | Hammond/Bud rated enclosure; 3D print prototype | **BLOCKED**; material belum dipilih |
 | Isolasi UART | ADuM1201 + B0505S-1WR3 | Si8622 + R1SE-0505; optocoupler + isolated DC/DC | **PENDING_APPROVAL** |
 | RTC | DS3231MZ+ | PCF8523T; SNTP holdover | **PENDING_APPROVAL** |
 
@@ -48,7 +48,7 @@
 | PZEM-004T V4 100 A split CT | **UNVERIFIED** untuk batch V4; barrier eksternal direncanakan | Manual resmi batch belum diperoleh; arsip historis tidak otomatis berlaku | Modul besar (~89×53×24 mm, approximate) | UART TTL/Modbus | Pinout/level/isolasi/CT ratio belum pasti; terminal voltage mains | 2/5 |
 | PZEM-004T V3 100 A | Sama, versi lebih lama | Lebih banyak arsip, tetapi bukan V4 | Mirip | UART | Membeli V3 bukan solusi dokumentasi V4 | 2/5 |
 | ADE7953 + CT + isolasi | Dapat dirancang dengan barrier yang jelas | Datasheet ADI tersedia | IC kecil, tapi butuh CT, burden, supply | SPI/I2C | Desain baru, kalibrasi, biaya, waktu | 4/5 |
-| HLW8032 + shunt | Sederhana | Datasheet tersedia | Kecil | UART | Shunt membawa arus beban; isolasi UART tetap perlu; tidak cocok untuk 10 A tanpa desain termal | 2/5 |
+| HLW8032 + shunt | Sederhana | Datasheet tersedia | Kecil | UART | Shunt membawa arus beban; isolasi UART tetap perlu; tidak cocok untuk 8 A kontinu tanpa desain termal | 2/5 |
 | Shelly EM (modul jadi) | Produk jadi | Dokumen terbatas | Modul | Wi-Fi/API | Bukan desain terbuka; integrasi dan sertifikasi tidak dapat diklaim | 1/5 |
 
 **Temuan:** CT 100 A hanya rating sensor, bukan izin arus output. PZEM V4 dengan CT berarti jalur arus utama tidak melalui modul, tetapi terminal tegangan tetap mains-referenced. Barrier UART `ADuM1201` + isolated DC/DC `B0505S` direncanakan sebagai solusi provisional; ini belum menggantikan review isolasi assembly.
@@ -73,6 +73,26 @@
 | Hongfa HF115F-L | DPST latching | 10 A class (klaim seri) | Dua kutub, coil rendah | Latching dapat tetap ON setelah power loss; bukan fail-safe | 1/5 |
 
 **Temuan:** Target 10 A tidak dapat diklaim dengan relay 8 A. Rating final harus 8 A atau lebih rendah setelah uji termal, atau ganti ke contactor 16 A dengan enclosure lebih besar. Relay latching ditolak untuk kebijakan fail-safe. Relay optocoupler modul pasar tidak otomatis aman: contact arrangement, isolation, dan rating harus diverifikasi.
+
+### 3A. Amendment pengguna: modul optocoupler 2 channel
+
+Pengguna memilih **modul relay optocoupler 2 channel umum, 5 V, off-board** (bukan relay PCB DPST). Modul ini biasanya berisi **dua relay SPDT independen**, bukan DPST yang mechanically linked.
+
+| Aspek | Temuan | Status |
+|---|---|---|
+| Konfigurasi | 2 channel SPDT (COM/NO/NC), biasanya aktif-LOW | `TYPICAL_MODULE` |
+| Rating klaim | AC 250 V / 10 A per channel (vendor) | `UNVERIFIED` untuk batch |
+| Input | 5 V, 15–20 mA per channel; optocoupler | `TYPICAL` |
+| Isolasi | Optocoupler coil/input; bukan bukti creepage mains di PCB modul | `REVIEW_REQUIRED` |
+| Kelebihan | Mudah diganti, mounting off-board, dua channel untuk L/N | — |
+| Risiko | Tidak mechanically linked; satu channel weld/stuck; modul pasar tanpa datasheet batch | High |
+| Keputusan | Gunakan **8 A final** dengan dua channel L/N, bracket di enclosure, driver MOSFET active-low | `PROVISIONAL` |
+
+**Sumber:**
+- Handsontec 2-channel 5 V optical isolated relay module datasheet: https://www.handsontec.com/dataspecs/module/2Ch-relay.pdf
+- DigiKey TS0010D 2-channel relay module datasheet: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5773/TS0010D%20DATASHEET.pdf
+- Envistia product/user guide (active-LOW, JD-VCC, 10 A SPDT): https://envistiamall.com/products/2-channel-10a-optoisolated-power-relay-module-5v-control
+- Catatan: halaman penjual bukan pengganti datasheet batch. Verifikasi pinout, level input, dan rating kontak saat barang tiba.
 
 **Sumber:**
 - https://www.mouser.com/datasheet/2/418/9/ENG_DS_RT2_3-576697.pdf
@@ -129,7 +149,7 @@
 | Socket | Type F 16 A 2P+E | DOCUMENTATION_DEFICIENT | Model, sertifikasi, material kontak, retensi, dan PE belum |
 | Socket | Type E/F combo | DOCUMENTATION_DEFICIENT | Kompatibilitas lebih luas, tetapi produk "universal" berisiko |
 | Plug | Type F 16 A 3-core | DOCUMENTATION_DEFICIENT | Mating/clamp/PE belum |
-| Enclosure | ABS/PC 150×100×70, UL94 V-0 | BLOCKED | Material, impact, thermal aging, wall thickness belum |
+| Enclosure | ABS/PC 220x120x70 recommended, UL94 V-0 | BLOCKED | Material, impact, thermal aging, wall thickness belum; 150x100/180x120 gagal clearance |
 | Enclosure | Hammond/Bud rated | PENDING | Perlu ukuran dan rating yang cocok |
 | PE hardware | Stud/screw/lock washer | BLOCKED | Safety-critical; belum ada MPN |
 | 3D print | PLA/PETG prototype | PROTOTYPE_ONLY | Bukan enclosure listrik tersertifikasi |

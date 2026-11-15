@@ -59,7 +59,7 @@ ROWS = [
     ("FR-041", "RGB fault indicator", "P0", "F1", "NOT_STARTED", [], [], [], ["BLOCK-RGB-FIRMWARE"], ["RR-14"]),
     ("FR-042", "RGB night mode", "P2", "F1", "NOT_STARTED", [], [], [], ["BLOCK-RGB-FIRMWARE"], ["RR-14"]),
     ("FR-043", "Web dashboard", "P0", "F2", "PASS", ["apps/web/src/app", "apps/web/src/components"], ["T-SW-011", "T-SW-012"], ["Next build + 5 Playwright tests + axe"], [], ["RR-10"]),
-    ("FR-044", "Android application", "P0", "F2", "PARTIAL", ["apps/android/App.tsx"], ["T-SW-013", "T-SW-014"], ["Typecheck + Expo Android bundle export; APK blocked"], ["BLOCK-ANDROID-SDK"], ["RR-10"]),
+    ("FR-044", "Android application", "P0", "F2", "PARTIAL", ["apps/android/App.tsx", "reports/ANDROID_BUILD.md"], ["T-SW-013", "T-SW-014"], ["Typecheck + Expo bundle + debug APK PASS; device/UI test not performed"], ["BLOCK-ANDROID-DEVICE-TEST"], ["RR-10"]),
     ("FR-045", "Device naming", "P1", "F2", "PASS", ["apps/api/src/routes/devices.ts", "apps/web/src/components/DeviceSettings.tsx"], ["API-DEVICE-PATCH"], ["Validation and UI rename"], [], ["RR-10"]),
     ("FR-046", "Device status dashboard", "P0", "F2", "PASS", ["apps/web/src/components/DeviceSummaryCard.tsx", "apps/web/src/app/(app)/dashboard/page.tsx"], ["T-SW-011"], ["Online/stale/offline/commanded UI + E2E"], [], ["RR-10"]),
     ("FR-047", "Engineering diagnostics dashboard", "P1", "F1+F2", "PASS", ["apps/web/src/components/DeviceHealth.tsx", "apps/api/src/routes/operations.ts"], ["API-DIAGNOSTICS", "T-SW-011"], ["Diagnostics API/UI; role check"], [], ["RR-10"]),
@@ -85,9 +85,9 @@ ROWS = [
     ("FR-067", "Android push notification", "P1", "F2", "NOT_STARTED", [], [], [], ["BLOCK-FCM"], ["RR-10"]),
     ("FR-068", "Event history", "P0", "F2", "PASS", ["apps/api/src/routes/operations.ts", "apps/web/src/app/(app)/devices/[id]/events/page.tsx"], ["API-EVENTS"], ["Pagination/filter test"], [], ["RR-10"]),
     ("FR-069", "OTA firmware update", "P0", "F1+F2", "PARTIAL", ["apps/api/src/routes/operations.ts", "firmware/partitions.csv"], ["API-OTA"], ["OTA request event only; no image delivery"], ["BLOCK-OTA"], ["RR-09"]),
-    ("FR-070", "OTA rollback", "P0", "F1+F2", "PARTIAL", ["firmware/sdkconfig.defaults", "firmware/partitions.csv"], ["T-SW-018"], ["Config only; ESP-IDF build/test blocked"], ["BLOCK-ESP-IDF"], ["RR-09"]),
+    ("FR-070", "OTA rollback", "P0", "F1+F2", "PARTIAL", ["firmware/sdkconfig.defaults", "firmware/partitions.csv", "reports/FIRMWARE_BUILD.md"], ["T-SW-018"], ["Dual-OTA config accepted by ESP-IDF v6.1 build; OTA flow/test not implemented"], ["BLOCK-OTA-INTEGRATION"], ["RR-09"]),
     ("FR-071", "Firmware integrity verification", "P0", "F1+F2", "PARTIAL", ["security/OTA_SIGNING_AND_RECOVERY.md"], ["T-SW-018"], ["Plan only; no signed image"], ["BLOCK-OTA"], ["RR-09"]),
-    ("FR-072", "Watchdog system", "P0", "F1", "PARTIAL", ["firmware/sdkconfig.defaults"], ["T-HW-017"], ["Task WDT config only; no build/fault injection"], ["BLOCK-ESP-IDF"], ["RR-09"]),
+    ("FR-072", "Watchdog system", "P0", "F1", "PARTIAL", ["firmware/sdkconfig.defaults", "reports/FIRMWARE_BUILD.md"], ["T-HW-017"], ["Task WDT config + target build PASS; no fault injection/board test"], ["BLOCK-HARDWARE"], ["RR-09"]),
     ("FR-073", "Secure authentication", "P0", "F2", "PASS", ["apps/api/src/auth", "apps/api/src/routes/auth.ts"], ["API-AUTH", "SECURITY-NEGATIVE"], ["Password hash, JWT, refresh rotation, negative tests"], [], ["RR-10"]),
     ("FR-074", "Role-based access control", "P0", "F2", "PASS", ["apps/api/src/services/access.ts", "apps/api/src/routes"], ["API-RBAC"], ["Owner/viewer/negative tests"], [], ["RR-10"]),
     ("FR-075", "Encrypted communication", "P0", "F2", "PARTIAL", ["security/THREAT_MODEL.md", "infrastructure/reverse-proxy/Caddyfile"], ["T-SW-019"], ["TLS config/docs; no deployed certificate"], ["BLOCK-DEPLOY"], ["RR-10"]),
@@ -95,7 +95,7 @@ ROWS = [
     ("FR-077", "Command validation", "P0", "F1+F2", "PASS", ["firmware/core/smartplug_core.c", "packages/domain/src/index.ts", "apps/api/src/services/commands.ts"], ["CORE-COMMAND", "DOMAIN-COMMAND", "API-COMMAND"], ["Replay/stale/expiry/wrong device/lockout tests"], [], ["RR-23"]),
     ("FR-078", "Activity and audit logging", "P0", "F2", "PASS", ["apps/api/src/services/audit.ts", "apps/api/src/db/schema.ts"], ["API-AUDIT"], ["Append-only audit table and tests"], [], ["RR-10"]),
     ("FR-079", "Factory reset", "P0", "F1+F2", "NOT_STARTED", [], [], [], ["BLOCK-NOT-IMPLEMENTED"], ["RR-10"]),
-    ("FR-080", "Device diagnostics", "P0", "F1+F2", "PARTIAL", ["apps/api/src/routes/operations.ts", "apps/web/src/components/DeviceHealth.tsx", "firmware/main/app_main.c"], ["API-DIAGNOSTICS"], ["API/UI diagnostics; firmware counters minimal"], ["BLOCK-ESP-IDF"], ["RR-08"]),
+    ("FR-080", "Device diagnostics", "P0", "F1+F2", "PARTIAL", ["apps/api/src/routes/operations.ts", "apps/web/src/components/DeviceHealth.tsx", "firmware/main/app_main.c"], ["API-DIAGNOSTICS"], ["API/UI diagnostics; firmware target build PASS, counters minimal"], ["BLOCK-FIRMWARE-INTEGRATION"], ["RR-08"]),
 ]
 
 

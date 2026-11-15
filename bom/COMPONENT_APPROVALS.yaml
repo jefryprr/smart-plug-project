@@ -1,6 +1,6 @@
 project: esp32-s3-iot-smart-plug
 design_revision: REV_A_PROVISIONAL
-generated_at: '2026-11-15T05:07:47.017407+00:00'
+generated_at: '2026-11-15T12:52:10.678571+00:00'
 approval_policy: User approved the research direction, not final MPNs. No component
   is approved for fabrication.
 approved_by: null
@@ -18,9 +18,10 @@ items:
   status: DOCUMENTATION_DEFICIENT
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Official Peacefair V4 datasheet for the exact batch is not verified.
-    UART level, isolation, terminal rating, and CT ratio must be measured. Do not
-    confuse CT rating with output current rating.
+  blocking_reason: Off-board module with dedicated enclosure bracket; not on the low-voltage
+    PCB. Official Peacefair V4 datasheet for the exact batch is not verified. UART
+    level, isolation, terminal rating, and CT ratio must be measured. Do not confuse
+    CT rat
 - item_id: E-003
   mpn: IRM-05-5
   status: PENDING_APPROVAL
@@ -62,8 +63,10 @@ items:
   status: PENDING_APPROVAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Gate pulldown 100k and series 1k are mandatory for boot-safe OFF.
-    Flyback diode across coil. Verify coil current and thermal.
+  blocking_reason: 'Low-side switch pulls both active-LOW module inputs down. Gate
+    pulldown 100k and series 1k are mandatory for boot-safe OFF. No carrier flyback
+    diode: the module has its own coil drivers. Verify total input current (~15-20
+    mA per channel), t'
 - item_id: E-009
   mpn: SN74AHCT1G125DBVR
   status: PENDING_APPROVAL
@@ -72,14 +75,28 @@ items:
   blocking_reason: WS2812B high-level threshold at 5 V may exceed 3.3 V logic. Level
     shift and 330 ohm series resistor.
 - item_id: E-010
-  mpn: RT444005
-  status: PENDING_APPROVAL
+  mpn: 2CH-5V-OPTO-10A
+  status: DOCUMENTATION_DEFICIENT
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: DPST-NO is required to review two-pole disconnection. 8 A IEC rating
-    is below the 10 A target; provisional continuous rating must be derated and thermally
-    tested. Do not substitute a single SPDT. Latching relays rejected for fail-safe
-    reaso
+  blocking_reason: User-selected common 2-channel module, off-board, mounted in enclosure.
+    Two independent SPDT channels (L/N); NOT mechanically linked DPST. 10A is a vendor
+    claim, not validated continuous rating. Final 8A/1840W. Active-LOW input; verify
+    JD-V
+- item_id: E-010A
+  mpn: BRACKET-2CH-RELAY
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Off-board module must be mechanically retained; no load on header/wires.
+    Keep in mains zone, away from SELV carrier.
+- item_id: E-010B
+  mpn: BRACKET-PZEM-V4
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: PZEM stands off the PCB in the mains zone; CT and voltage terminals
+    accessible. Do not mount on SELV carrier.
 - item_id: E-011
   mpn: 0215010.MXP
   status: PENDING_APPROVAL
@@ -256,13 +273,13 @@ items:
   blocking_reason: Strain relief must anchor the cable to the enclosure, not the PCB.
     Verify thread and sealing.
 - item_id: E-037
-  mpn: ENCLOSURE-150X100X70-TBD
+  mpn: ENCLOSURE-220X120X70-TBD
   status: BLOCKED
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: 3D printed enclosure is prototype-only and not certified for mains.
-    Material flammability, impact, thermal aging, and wall thickness must be reviewed.
-    Target dimensions may change to C if safety clearances do not fit.
+  blocking_reason: Working target because 150x100 and 180x120 fail clearance review
+    with off-board PZEM + 2-channel relay. Q06 change to C remains pending user confirmation.
+    3D printed enclosure is prototype-only and not certified for mains. Material flammabi
 - item_id: E-038
   mpn: PE-HARDWARE-TBD
   status: BLOCKED

@@ -1,6 +1,6 @@
 # 15 — Flash dan Konfigurasi
 
-**Status:** `BLOCKED` — no board, no ESP-IDF build.
+**Status:** `BLOCKED` — no board; firmware build exists but has not been flashed.
 
 ## Prasyarat
 

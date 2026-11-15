@@ -108,7 +108,7 @@ ROWS = [
         datasheet="https://github.com/im-0/pzem-004t-original-docs",
         status="DOCUMENTATION_DEFICIENT", alt="ADE7953 + CT + isolation; HLW8032 + shunt (not preferred)",
         footprint="OFF_BOARD_MODULE", mech="pzem004t_v4_approx",
-        notes="Official Peacefair V4 datasheet for the exact batch is not verified. UART level, isolation, terminal rating, and CT ratio must be measured. Do not confuse CT rating with output current rating.",
+        notes="Off-board module with dedicated enclosure bracket; not on the low-voltage PCB. Official Peacefair V4 datasheet for the exact batch is not verified. UART level, isolation, terminal rating, and CT ratio must be measured. Do not confuse CT rating with output current rating.",
         evidence="PRD retailer references are availability evidence only, not datasheet. Archive is historical and may not match the purchased V4."
     ),
     row(
@@ -157,7 +157,7 @@ ROWS = [
         "Alpha & Omega Semiconductor", "AO3400A", datasheet="https://www.aosmd.com/res/data_sheets/AO3400A.pdf",
         status="PENDING_APPROVAL", alt="2N7002 (lower current); ULN2003 (module driver)",
         footprint="SOT-23", mech="AO3400_approx",
-        notes="Gate pulldown 100k and series 1k are mandatory for boot-safe OFF. Flyback diode across coil. Verify coil current and thermal.",
+        notes="Low-side switch pulls both active-LOW module inputs down. Gate pulldown 100k and series 1k are mandatory for boot-safe OFF. No carrier flyback diode: the module has its own coil drivers. Verify total input current (~15-20 mA per channel), thermal, and module pinout.",
         evidence="AOS datasheet; boot waveform must be measured on a low-voltage fixture."
     ),
     row(
@@ -169,12 +169,25 @@ ROWS = [
         evidence="TI datasheet; verify LED timing and supply decoupling."
     ),
     row(
-        "E-010", "K1", "Switching", "DPST-NO power PCB relay, 5 V DC coil, 8 A / 250 VAC class",
-        "TE Connectivity (Schrack)", "RT444005", datasheet="https://www.mouser.com/datasheet/2/418/9/ENG_DS_RT2_3-576697.pdf",
-        status="PENDING_APPROVAL", alt="Two Omron G5LE-1A (not mechanically linked); Schneider Acti9 iCT 2P 16A (larger, off-board)",
-        footprint="RT2_DPST_NO", mech="RT2_approx",
-        notes="DPST-NO is required to review two-pole disconnection. 8 A IEC rating is below the 10 A target; provisional continuous rating must be derated and thermally tested. Do not substitute a single SPDT. Latching relays rejected for fail-safe reasons.",
-        evidence="TE RT2 datasheet (8 A, 250 VAC, 2 form A); exact MPN/coil voltage and UL/IEC ratings require verification."
+        "E-010", "K1", "Switching", "2-channel 5 V optocoupler relay module, 10 A class claim, off-board, active-low input",
+        "Generic module (TBD)", "2CH-5V-OPTO-10A", revision="TBD batch",
+        datasheet="https://www.handsontec.com/dataspecs/module/2Ch-relay.pdf",
+        status="DOCUMENTATION_DEFICIENT", alt="TE RT2 DPST-NO 8A PCB relay (earlier concept); 2P 16A contactor (larger)",
+        footprint="OFF_BOARD_MODULE", mech="relay_module_2ch_approx",
+        notes="User-selected common 2-channel module, off-board, mounted in enclosure. Two independent SPDT channels (L/N); NOT mechanically linked DPST. 10A is a vendor claim, not validated continuous rating. Final 8A/1840W. Active-LOW input; verify JD-VCC/pinout. Do not claim safety-rated two-pole.",
+        evidence="Handsontec 2Ch relay datasheet; DigiKey TS0010D; verify exact batch/pinout/rating on arrival."
+    ),
+    row(
+        "E-010A", "BRK1", "Mechanical", "Relay module mounting bracket/standoffs, flame-retardant, M3",
+        "TBD", "BRACKET-2CH-RELAY", status="PROVISIONAL", footprint="OFF_BOARD", mech="relay_bracket_approx",
+        notes="Off-board module must be mechanically retained; no load on header/wires. Keep in mains zone, away from SELV carrier.",
+        evidence="To be designed/printed; not certified."
+    ),
+    row(
+        "E-010B", "BRK2", "Mechanical", "PZEM-004T mounting bracket/standoffs, flame-retardant, M3",
+        "TBD", "BRACKET-PZEM-V4", status="PROVISIONAL", footprint="OFF_BOARD", mech="pzem_bracket_approx",
+        notes="PZEM stands off the PCB in the mains zone; CT and voltage terminals accessible. Do not mount on SELV carrier.",
+        evidence="To be designed/printed; dimensions approximate until sample measured."
     ),
     row(
         "E-011", "F1", "Protection", "Fuse, 5x20 mm, 10 A, 250 VAC, time-lag",
@@ -336,10 +349,10 @@ ROWS = [
         evidence="Generic part; exact datasheet pending."
     ),
     row(
-        "E-037", "ENC1", "Mechanical", "Enclosure, ABS/PC, target 150 x 100 x 70 mm, flame-retardant grade", "TBD", "ENCLOSURE-150X100X70-TBD",
+        "E-037", "ENC1", "Mechanical", "Enclosure, ABS/PC, 220 x 120 x 70 mm recommended, flame-retardant grade", "TBD", "ENCLOSURE-220X120X70-TBD",
         status="BLOCKED", alt="Hammond 1555/1591 series; polycarbonate enclosure with UL94 V-0",
-        footprint="OFF_BOARD", mech="enclosure_150x100x70_provisional",
-        notes="3D printed enclosure is prototype-only and not certified for mains. Material flammability, impact, thermal aging, and wall thickness must be reviewed. Target dimensions may change to C if safety clearances do not fit.",
+        footprint="OFF_BOARD", mech="enclosure_220x120x70_recommended",
+        notes="Working target because 150x100 and 180x120 fail clearance review with off-board PZEM + 2-channel relay. Q06 change to C remains pending user confirmation. 3D printed enclosure is prototype-only and not certified for mains. Material flammability, impact, thermal aging, and wall thickness must be reviewed.",
         evidence="No approved enclosure. CAD is parametric/provisional."
     ),
     row(
@@ -446,7 +459,7 @@ def main() -> None:
         "notes": [
             "No verified, dated Indonesian prices were obtained; prices are empty, not Rp0.",
             "BOM is not approved for purchase. Safety-critical parts remain PENDING_APPROVAL, DOCUMENTATION_DEFICIENT, or BLOCKED.",
-            "Target 10 A is not achieved by the provisional 8 A relay; final rating must be the lowest verified value.",
+            "Final rating is 8 A / about 1.840 W (user amendment), limited to electronics/SMPS loads; thermal/lifecycle tests are still required.",
             "Batch 10-unit pricing cannot be quoted without actual supplier quotes."
         ]
     }

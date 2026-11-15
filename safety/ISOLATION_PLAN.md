@@ -31,7 +31,7 @@ DOMAIN D — SERVICE/USB
 | PSU AC/DC | Mean Well IRM-05-5 | Isolation class UNKNOWN | Datasheet seri; exact revision belum | `PENDING` |
 | UART | ADuM1201ARZ | 2.5 kVrms class (component) | Datasheet link-only; assembly creepage belum | `PENDING` |
 | PZEM power | B0505S-1WR3 | 1 W isolated | Datasheet | `PENDING` |
-| Relay coil/contact | RT2 relay | 5 kV coil-contact class (series claim) | Datasheet seri; exact MPN | `PENDING` |
+| Relay module coil/contact | 2-channel optocoupler module | Optocoupler input/coil; mains contact barrier UNVERIFIED | Module datasheet/batch; creepage review | `DOCUMENTATION_DEFICIENT` |
 | PCB slots/barriers | Layout | TBD | Belum dirancang/diukur | `BLOCKED` |
 | Enclosure barrier | Mechanical wall | TBD | Belum ada | `BLOCKED` |
 
@@ -40,7 +40,7 @@ DOMAIN D — SERVICE/USB
 | Ground | Koneksi | Aturan |
 |---|---|---|
 | PE | Plug PE → dedicated terminal/stud → socket PE | Tidak melalui relay/fuse/PCB; kontinu |
-| Mains N | Relay pole 2 → socket N | Bukan "GND"; jangan disatukan dengan SELV GND |
+| Mains N | Relay module CH2 (COM2/NO2) → socket N | Bukan "GND"; jangan disatukan dengan SELV GND |
 | PZEM isolated GND | Hanya sisi B | Tidak boleh ke SELV GND |
 | SELV GND | Carrier/ESP32/OLED/sensor | Tidak boleh ke mains/PZEM GND |
 | USB GND | DevKitC-1 USB | Sama dengan SELV GND; akses dibatasi saat mains |

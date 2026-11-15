@@ -20,6 +20,15 @@ temp/
 .expo/
 firmware/build/
 firmware/sdkconfig
+firmware/sdkconfig.old
+*.kicad_prl
+apps/android/android/local.properties
+apps/android/android/.gradle/
+apps/android/android/app/build/
+apps/android/android/build/
+apps/android/android/app/debug.keystore
+*.jks
+*.keystore
 hardware/manufacturing/released/*
 !hardware/manufacturing/released/.gitkeep
 research/datasheets/*.pdf
@@ -27,8 +36,11 @@ research/datasheets/*.pdf
 tools/downloads/
 tools/graphviz/
 tools/zig/
+tools/kicad/
+tools/esp-idf/
 tools/*.exe
 tools/*.c
+reports/kicad/*.rpt
 data/*.db
 data/*.db-wal
 data/*.db-shm

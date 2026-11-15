@@ -1,7 +1,7 @@
 # Enclosure Material Review — REV_A_PROVISIONAL
 
 **Status:** `BLOCKED` — material and enclosure not selected.
-**Target:** ABS/PC flame-retardant, UL94 V-0, 150×100×70 mm (Q06=B).
+**Target:** ABS/PC flame-retardant, UL94 V-0, **220x120x70 mm recommended** (Q06 change pending confirmation). The 150x100 target fails fit and the 180x120 candidate fails real clearance with off-board PZEM + 2-channel relay.
 **Important:** A 3D-printed enclosure is a mechanical prototype, not a certified electrical enclosure.
 
 ## 1. Requirements

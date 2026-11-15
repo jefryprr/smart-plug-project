@@ -10,7 +10,7 @@ The Android app needs API login, device list, ON/OFF with ACK, readings, schedul
 - **React Native + Expo SDK 58** with a development build/prebuild.
 - SecureStore for the access token.
 - Local TypeScript types mirror the API contract; shared package bundling is not configured for Metro.
-- APK build is `BLOCKED: ANDROID_SDK_NOT_INSTALLED`; only a JS Android bundle export is claimed.
+- Debug APK build is `PASS` (`arm64-v8a`, v2 debug signature); it is not installed/tested on a device, not release-signed, and not a production artifact.
 
 ## Consequences
 - `npx expo export --platform android` succeeds (596 modules).

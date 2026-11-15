@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import trimesh
 from matplotlib.backends.backend_pdf import PdfPages
-from matplotlib.patches import Rectangle
+from matplotlib.patches import Circle, Rectangle
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 
 from components import fit_report, module_list
@@ -55,7 +55,7 @@ def set_view(ax, meshes: list[trimesh.Trimesh], elev: float, azim: float) -> Non
     ax.set_axis_off()
 
 
-def render_view(name: str, elev: float, azim: float, exploded: bool = False, cutaway: bool = False, preset: str = "provisional") -> None:
+def render_view(name: str, elev: float, azim: float, exploded: bool = False, cutaway: bool = False, preset: str = "recommended") -> None:
     top = load_mesh(f"body_top_{preset}.stl")
     bottom = load_mesh(f"body_bottom_{preset}.stl")
     fig = plt.figure(figsize=(12, 9), dpi=120)
@@ -77,16 +77,16 @@ def render_view(name: str, elev: float, azim: float, exploded: bool = False, cut
 def dimensions_svg() -> None:
     fig, ax = plt.subplots(figsize=(10, 7), dpi=120)
     ax.set_aspect("equal")
-    ax.add_patch(Rectangle((0, 0), 150, 100, fill=False, linewidth=1.5))
-    ax.annotate("", xy=(150, -8), xytext=(0, -8), arrowprops=dict(arrowstyle="<->", linewidth=1))
-    ax.text(75, -14, "150 mm (provisional)", ha="center", fontsize=10)
-    ax.annotate("", xy=(158, 100), xytext=(158, 0), arrowprops=dict(arrowstyle="<->", linewidth=1))
-    ax.text(164, 50, "100 mm (provisional)", va="center", rotation=90, fontsize=10)
-    ax.text(5, 105, "Height 70 mm (provisional) · wall 2.5 mm · corner R3", fontsize=9)
-    ax.set_xlim(-20, 185)
-    ax.set_ylim(-25, 120)
+    ax.add_patch(Rectangle((0, 0), 220, 120, fill=False, linewidth=1.5))
+    ax.annotate("", xy=(220, -8), xytext=(0, -8), arrowprops=dict(arrowstyle="<->", linewidth=1))
+    ax.text(110, -14, "220 mm (recommended, pending Q06 confirmation)", ha="center", fontsize=10)
+    ax.annotate("", xy=(228, 120), xytext=(228, 0), arrowprops=dict(arrowstyle="<->", linewidth=1))
+    ax.text(234, 60, "120 mm (recommended)", va="center", rotation=90, fontsize=10)
+    ax.text(5, 125, "Height 70 mm · wall 2.5 mm · corner R3 · 150x100 and 180x120 fail clearance review", fontsize=9)
+    ax.set_xlim(-20, 255)
+    ax.set_ylim(-25, 140)
     ax.axis("off")
-    ax.set_title("Enclosure external dimensions — REV_A_PROVISIONAL", fontsize=12)
+    ax.set_title("Enclosure external dimensions - REV_A_PROVISIONAL", fontsize=12)
     fig.tight_layout()
     fig.savefig(DRAWINGS / "dimensions.svg", format="svg")
     fig.savefig(DRAWINGS / "dimensions.png", dpi=150)
@@ -96,17 +96,21 @@ def dimensions_svg() -> None:
 def mounting_plan_svg() -> None:
     fig, ax = plt.subplots(figsize=(10, 7), dpi=120)
     ax.set_aspect("equal")
-    ax.add_patch(Rectangle((-75, -50), 150, 100, fill=False, linewidth=1.5))
-    ax.add_patch(Rectangle((-37.5, -25), 75, 50, fill=False, linewidth=1, linestyle="--", color="#0f6b5c"))
-    ax.text(-36, 27, "Carrier PCB 75×50 (approx)", fontsize=8, color="#0f6b5c")
-    for x, y in [(-32.5, -20), (32.5, -20), (-32.5, 20), (32.5, 20)]:
-        ax.add_patch(plt.Circle((x - 35, y), 1.6, fill=False, linewidth=1))
-    ax.axvline(5, color="#b42318", linewidth=2)
-    ax.text(6, 44, "Isolation barrier (provisional)", color="#b42318", fontsize=8)
-    ax.text(-73, -47, "SELV zone", fontsize=10, color="#0f6b5c")
-    ax.text(15, -47, "MAINS zone", fontsize=10, color="#b42318")
-    ax.set_xlim(-85, 85)
-    ax.set_ylim(-58, 58)
+    ax.add_patch(Rectangle((-110, -60), 220, 120, fill=False, linewidth=1.5))
+    ax.add_patch(Rectangle((-107.5, -25), 75, 50, fill=False, linewidth=1, linestyle="--", color="#0f6b5c"))
+    ax.text(-106.5, 27, "Carrier PCB 75×50 (approx)", fontsize=8, color="#0f6b5c")
+    ax.add_patch(Rectangle((-26.5, -44.5), 53, 89, fill=False, linewidth=1, linestyle="--", color="#b42318"))
+    ax.text(-25, 46, "PZEM off-board", fontsize=8, color="#b42318")
+    ax.add_patch(Rectangle((27, -52), 50, 24, fill=False, linewidth=1, linestyle="--", color="#b42318"))
+    ax.text(28, -56, "2CH relay module", fontsize=8, color="#b42318")
+    ax.add_patch(Rectangle((40, 35), 50, 20, fill=False, linewidth=1, linestyle="--", color="#b42318"))
+    ax.text(41, 57, "Socket body", fontsize=8, color="#b42318")
+    ax.axvline(-30, color="#b42318", linewidth=2)
+    ax.text(-29, 52, "Isolation barrier (provisional)", color="#b42318", fontsize=8)
+    ax.text(-108, -57, "SELV zone", fontsize=10, color="#0f6b5c")
+    ax.text(-27, -57, "MAINS zone", fontsize=10, color="#b42318")
+    ax.set_xlim(-120, 120)
+    ax.set_ylim(-68, 68)
     ax.axis("off")
     ax.set_title("Mounting plan — top view (provisional) — NOT A CLEARANCE DRAWING", fontsize=11)
     fig.tight_layout()
@@ -118,17 +122,17 @@ def mounting_plan_svg() -> None:
 def service_access_svg() -> None:
     fig, ax = plt.subplots(figsize=(10, 5), dpi=120)
     ax.set_aspect("equal")
-    ax.add_patch(Rectangle((-75, 0), 150, 70, fill=False, linewidth=1.5))
-    ax.add_patch(Rectangle((-70, 33), 30, 14, fill=False, linewidth=1, color="#175cd3"))
-    ax.text(-68, 36, "OLED window", fontsize=8, color="#175cd3")
-    ax.add_patch(plt.Circle((-20, 38), 6, fill=False, linewidth=1, color="#175cd3"))
-    ax.text(-31, 27, "Button", fontsize=8, color="#175cd3")
-    ax.add_patch(plt.Circle((-5, 40), 3, fill=False, linewidth=1, color="#175cd3"))
-    ax.text(-3, 31, "RGB", fontsize=8, color="#175cd3")
-    ax.add_patch(Rectangle((20, 15, ), 50, 50, fill=False, linewidth=1.2, color="#b42318"))
-    ax.text(30, 8, "Socket output (back)", fontsize=8, color="#b42318")
-    ax.text(-72, 4, "USB service (SELV side) — no USB while mains energized", fontsize=8, color="#9a5b00")
-    ax.set_xlim(-85, 85)
+    ax.add_patch(Rectangle((-110, 0), 220, 70, fill=False, linewidth=1.5))
+    ax.add_patch(Rectangle((-105, 33), 30, 14, fill=False, linewidth=1, color="#175cd3"))
+    ax.text(-103, 36, "OLED window", fontsize=8, color="#175cd3")
+    ax.add_patch(Circle((-35, 38), 6, fill=False, linewidth=1, color="#175cd3"))
+    ax.text(-46, 27, "Button", fontsize=8, color="#175cd3")
+    ax.add_patch(Circle((-15, 40), 3, fill=False, linewidth=1, color="#175cd3"))
+    ax.text(-13, 31, "RGB", fontsize=8, color="#175cd3")
+    ax.add_patch(Rectangle((30, 15), 50, 50, fill=False, linewidth=1.2, color="#b42318"))
+    ax.text(40, 8, "Socket output (back)", fontsize=8, color="#b42318")
+    ax.text(-107, 4, "USB service (SELV side) - no USB while mains energized", fontsize=8, color="#9a5b00")
+    ax.set_xlim(-120, 120)
     ax.set_ylim(-5, 80)
     ax.axis("off")
     ax.set_title("Service access — front view (provisional) — REVIEW REQUIRED", fontsize=11)
@@ -203,15 +207,15 @@ def write_fit_reports() -> None:
     lines.append("")
     lines.append("## Interpretation")
     lines.append("- A `PASS` is not a safety or manufacturing release.")
-    lines.append("- If the 150×100×70 preset fails, use the `recommended` 180×120×70 preset after user approval (Q06=C).")
+    lines.append("- The 150×100×70 and 180×120×70 presets fail clearance review; the working recommendation is 220×120×70 (Q06=C, pending user approval).")
     lines.append("- Physical fit requires measured samples, tolerance stack, cable bend, and assembly trial.")
     (ROOT / "hardware" / "mechanical" / "FIT_ANALYSIS.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def write_mechanical_bom() -> None:
     rows = [
-        ("M-001", "Enclosure body + lid", "ABS/PC flame-retardant target, 150×100×70 provisional", "1 set", "BLOCKED"),
-        ("M-002", "M3×8 screws", "Stainless steel, pan head", "8 pcs", "PROVISIONAL"),
+        ("M-001", "Enclosure body + lid", "ABS/PC flame-retardant target, 220x120x70 recommended", "1 set", "BLOCKED"),
+        ("M-002", "M3x8 screws", "Stainless steel, pan head", "8 pcs", "PROVISIONAL"),
         ("M-003", "M3 heat-set inserts", "M3×5.7, brass", "4 pcs", "PROVISIONAL"),
         ("M-004", "M3 nylon standoffs", "M3, 8 mm", "4 pcs", "PROVISIONAL"),
         ("M-005", "M16 cable gland", "IP68, PA66, UL94 V-0", "1 pcs", "PROVISIONAL"),
@@ -220,6 +224,8 @@ def write_mechanical_bom() -> None:
         ("M-008", "PE stud/screw/lock washer", "Dedicated protective earth bond", "1 set", "BLOCKED"),
         ("M-009", "Thermal pad / barrier", "Flame-retardant, placement TBD", "1 pcs", "PROVISIONAL"),
         ("M-010", "Safety/rating label", "Content TBD after rating chain", "1 pcs", "BLOCKED"),
+        ("M-011", "PZEM mounting plate", "Printed/FR plate, 58x94x2 mm, 4xM3", "1 pcs", "PROVISIONAL"),
+        ("M-012", "2-channel relay module mounting plate", "Printed/FR plate, 55x26x2 mm, 4xM3", "1 pcs", "PROVISIONAL"),
     ]
     path = ROOT / "hardware" / "mechanical" / "MECHANICAL_BOM.csv"
     with path.open("w", newline="", encoding="utf-8") as handle:

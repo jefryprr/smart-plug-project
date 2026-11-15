@@ -30,36 +30,40 @@ MODULES: dict[str, list[ModuleEnvelope]] = {
         ModuleEnvelope("oled", "OLED 0.96 module", (27, 27, 4), (-55, -34, 40), "SELV", "provisional"),
         ModuleEnvelope("button", "Panel button + cap", (12, 12, 8), (-20, -40, 34), "SELV", "provisional"),
         ModuleEnvelope("rgb", "External RGB diffuser", (6, 6, 3), (-5, -40, 40), "SELV", "provisional"),
-        ModuleEnvelope("pzem", "PZEM-004T V4 + CT (approx)", (53, 89, 24), (38.5, 0, 14.5), "MAINS", "provisional"),
+        ModuleEnvelope("pzem", "PZEM-004T V4 + CT (approx, off-board)", (53, 89, 24), (38.5, 0, 16.5), "MAINS", "provisional"),
+        ModuleEnvelope("pzem_bracket", "PZEM mounting bracket (approx)", (58, 94, 2), (38.5, 0, 3.5), "MAINS", "engineering_calculation"),
         ModuleEnvelope("psu", "Mean Well IRM-05-5", (53.5, 28.5, 19), (38.5, 0, 40), "MAINS", "datasheet"),
-        ModuleEnvelope("relay", "TE RT2 DPST-NO relay", (29, 12.7, 15.7), (38.5, -40, 38), "MAINS", "datasheet"),
+        ModuleEnvelope("relay", "2-channel optocoupler relay module (off-board, approx)", (50, 24, 18), (38.5, -35, 38), "MAINS", "provisional"),
+        ModuleEnvelope("relay_bracket", "Relay module mounting bracket (approx)", (55, 26, 2), (38.5, -34, 29), "MAINS", "engineering_calculation"),
         ModuleEnvelope("fuse", "Fuse holder 5x20 + MOV", (20, 10, 12), (62, -25, 48), "MAINS", "provisional"),
         ModuleEnvelope("terminals", "Mains terminals / PE stud", (18, 30, 10), (62, -30, 36), "MAINS", "provisional"),
-        ModuleEnvelope("socket", "Type F socket internal body (approx)", (50, 20, 35), (45, 37.5, 44), "MAINS", "provisional"),
+        ModuleEnvelope("socket", "Type F socket internal body (approx)", (50, 20, 35), (45, 37.5, 46), "MAINS", "provisional"),
         ModuleEnvelope("gland", "M16 cable gland (wall feature; not internal)", (16, 16, 12), (76, 0, 18), "MAINS", "datasheet"),
         ModuleEnvelope("barrier", "Internal isolation barrier", (2, 95, 50), (5, 0, 27.5), "MECHANICAL", "engineering_calculation"),
     ],
     "recommended": [
-        ModuleEnvelope("carrier", "Low-voltage carrier PCB (75x50)", (75, 50, 1.6), (-50, 0, 8), "SELV", "engineering_calculation"),
-        ModuleEnvelope("esp32", "ESP32-S3-DevKitC-1 (approx)", (68.6, 25.4, 10), (-49, 0, 13), "SELV", "datasheet_approx"),
-        ModuleEnvelope("oled", "OLED 0.96 module", (27, 27, 4), (-70, -42, 40), "SELV", "provisional"),
-        ModuleEnvelope("button", "Panel button + cap", (12, 12, 8), (-35, -48, 34), "SELV", "provisional"),
-        ModuleEnvelope("rgb", "External RGB diffuser", (6, 6, 3), (-15, -48, 40), "SELV", "provisional"),
-        ModuleEnvelope("pzem", "PZEM-004T V4 + CT (approx)", (53, 89, 24), (48, 0, 14.5), "MAINS", "provisional"),
-        ModuleEnvelope("psu", "Mean Well IRM-05-5", (53.5, 28.5, 19), (48, 0, 40), "MAINS", "datasheet"),
-        ModuleEnvelope("relay", "TE RT2 DPST-NO relay", (29, 12.7, 15.7), (48, -48, 38), "MAINS", "datasheet"),
-        ModuleEnvelope("fuse", "Fuse holder 5x20 + MOV", (20, 10, 12), (75, -30, 48), "MAINS", "provisional"),
-        ModuleEnvelope("terminals", "Mains terminals / PE stud", (18, 30, 10), (75, -35, 36), "MAINS", "provisional"),
-        ModuleEnvelope("socket", "Type F socket internal body (approx)", (50, 20, 35), (55, 45, 44), "MAINS", "provisional"),
-        ModuleEnvelope("gland", "M16 cable gland (wall feature; not internal)", (16, 16, 12), (96, 0, 18), "MAINS", "datasheet"),
-        ModuleEnvelope("barrier", "Internal isolation barrier", (2, 115, 50), (10, 0, 27.5), "MECHANICAL", "engineering_calculation"),
+        ModuleEnvelope("carrier", "Low-voltage carrier PCB (75x50)", (75, 50, 1.6), (-70, 0, 8), "SELV", "engineering_calculation"),
+        ModuleEnvelope("esp32", "ESP32-S3-DevKitC-1 (approx)", (68.6, 25.4, 10), (-68.5, 0, 13), "SELV", "datasheet_approx"),
+        ModuleEnvelope("oled", "OLED 0.96 module", (27, 27, 4), (-90, -42, 40), "SELV", "provisional"),
+        ModuleEnvelope("button", "Panel button + cap", (12, 12, 8), (-55, -48, 34), "SELV", "provisional"),
+        ModuleEnvelope("rgb", "External RGB diffuser", (6, 6, 3), (-35, -48, 40), "SELV", "provisional"),
+        ModuleEnvelope("pzem", "PZEM-004T V4 + CT (approx, off-board)", (53, 89, 24), (0, 0, 16.5), "MAINS", "provisional"),
+        ModuleEnvelope("pzem_bracket", "PZEM mounting bracket (approx)", (58, 94, 2), (0, 0, 3.5), "MAINS", "engineering_calculation"),
+        ModuleEnvelope("psu", "Mean Well IRM-05-5", (53.5, 28.5, 19), (60, 10, 40), "MAINS", "datasheet"),
+        ModuleEnvelope("relay", "2-channel optocoupler relay module (off-board, approx)", (50, 24, 18), (52, -40, 38), "MAINS", "provisional"),
+        ModuleEnvelope("relay_bracket", "Relay module mounting bracket (approx)", (55, 26, 2), (52, -39, 31), "MAINS", "engineering_calculation"),
+        ModuleEnvelope("fuse", "Fuse holder 5x20 + MOV", (20, 10, 12), (90, -15, 48), "MAINS", "provisional"),
+        ModuleEnvelope("terminals", "Mains terminals / PE stud", (18, 30, 10), (95, -40, 36), "MAINS", "provisional"),
+        ModuleEnvelope("socket", "Type F socket internal body (approx)", (50, 20, 35), (65, 45, 46), "MAINS", "provisional"),
+        ModuleEnvelope("gland", "M16 cable gland (wall feature; not internal)", (16, 16, 12), (116, 0, 18), "MAINS", "datasheet"),
+        ModuleEnvelope("barrier", "Internal isolation barrier", (2, 115, 50), (-30, 0, 27.5), "MECHANICAL", "engineering_calculation"),
     ],
 }
 
 
 def internal_bounds(preset: str) -> tuple[float, float, float, float, float, float]:
     if preset == "recommended":
-        length, width, height, wall = 180.0, 120.0, 70.0, 2.5
+        length, width, height, wall = 220.0, 120.0, 70.0, 2.5
     else:
         length, width, height, wall = 150.0, 100.0, 70.0, 2.5
     return (-length / 2 + wall, -width / 2 + wall, wall, length / 2 - wall, width / 2 - wall, height - wall)
@@ -80,7 +84,7 @@ EXEMPT_PAIRS = {("carrier", "esp32")}
 
 
 def fit_report(preset: str) -> dict:
-    modules = [m for m in MODULES[preset] if "gland" not in m.name]
+    modules = [m for m in MODULES[preset] if "gland" not in m.name and "bracket" not in m.name]
     bounds = internal_bounds(preset)
     outside: list[dict] = []
     clashes: list[dict] = []
@@ -97,12 +101,13 @@ def fit_report(preset: str) -> dict:
                 continue
             if overlaps(first.bounds, second.bounds):
                 clashes.append({"a": first.name, "b": second.name, "a_bounds": first.bounds, "b_bounds": second.bounds})
-    for module in modules:
-        if module.name == "barrier":
-            continue
-        b = module.bounds
-        if b[0] < 8.0 and b[3] > 4.0:
-            barrier_crossings.append({"module": module.name, "bounds": b})
+    barrier = next((module for module in modules if module.name == "barrier"), None)
+    if barrier is not None:
+        for module in modules:
+            if module.name == "barrier":
+                continue
+            if overlaps(module.bounds, barrier.bounds):
+                barrier_crossings.append({"module": module.name, "bounds": module.bounds})
     status = "PASS" if not outside and not clashes and not barrier_crossings else "FAIL"
     return {
         "preset": preset,

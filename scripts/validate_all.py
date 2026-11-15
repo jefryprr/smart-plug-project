@@ -46,7 +46,7 @@ def display_command(command: list[str]) -> str:
     return " ".join(parts)
 
 
-def run_step(test_id: str, area: str, command: list[str] | None, note: str, blocked: bool = False) -> dict:
+def run_step(test_id: str, area: str, command: list[str] | None, note: str, blocked: bool = False, timeout_s: int = 600) -> dict:
     if blocked or command is None:
         result = {
             "test_id": test_id,
@@ -71,7 +71,9 @@ def run_step(test_id: str, area: str, command: list[str] | None, note: str, bloc
             cwd=ROOT,
             capture_output=True,
             text=True,
-            timeout=600,
+            encoding="utf-8",
+            errors="replace",
+            timeout=timeout_s,
             shell=False,
         )
         output = (completed.stdout or "") + (completed.stderr or "")
@@ -149,6 +151,9 @@ def main() -> int:
         "Native files parse; ERC/DRC not run",
     )
     run_step("T-HW-008A", "PCB placement preview", [str(PYTHON), "scripts/render_pcb_preview.py"], "Preview parsed from .kicad_pcb")
+    run_step("T-HW-002", "Schematic ERC", [str(PYTHON), "scripts/run_kicad_check.py", "--mode", "erc"], "KiCad 10 ERC; block-level text-only schematic")
+    run_step("T-HW-006", "PCB DRC", [str(PYTHON), "scripts/run_kicad_check.py", "--mode", "drc"], "KiCad 10 DRC; placement-only PCB")
+    run_step("T-HW-008", "Gerber/drill export", [str(PYTHON), "scripts/run_kicad_check.py", "--mode", "gerber"], "Placement-only Gerber/drill; NOT_FOR_FABRICATION")
     run_step(
         "T-SW-001F",
         "OpenAPI parse",
@@ -163,19 +168,22 @@ def main() -> int:
         run_step("T-SW-011", "Playwright E2E", None, "Run with --e2e to start API/web/simulator", blocked=True)
 
     # Physical/tooling blockers
-    run_step("T-HW-002", "Schematic ERC", None, "KiCad CLI not installed", blocked=True)
-    run_step("T-HW-006", "PCB DRC", None, "KiCad CLI not installed", blocked=True)
-    run_step("T-HW-008", "Gerber/drill import", None, "KiCad CLI not installed; no fabrication package", blocked=True)
+    run_step(
+        "T-HW-017",
+        "ESP-IDF target build",
+        [POWERSHELL, "-ExecutionPolicy", "Bypass", "-NoProfile", "-File", str(ROOT / "scripts" / "build_firmware.ps1")],
+        "ESP-IDF v6.1, esp32s3, set-target + build; no flash",
+        timeout_s=1800,
+    )
     run_step("T-HW-011", "Mains isolation review", None, "No qualified reviewer/lab evidence", blocked=True)
     run_step("T-HW-012", "PE continuity", None, "No hardware/lab", blocked=True)
     run_step("T-HW-013", "Thermal/fuse/surge", None, "No lab", blocked=True)
     run_step("T-HW-014", "Boot-safe waveform", None, "No board/scope", blocked=True)
-    run_step("T-HW-017", "ESP-IDF clean build", None, "ESP-IDF not installed", blocked=True)
     run_step("T-HW-019", "Physical load/temperature", None, "No lab", blocked=True)
     run_step("T-SW-002", "PostgreSQL migration", None, "PostgreSQL/Docker not installed", blocked=True)
     run_step("T-SW-003", "MQTT broker auth/ACL", None, "Production broker/TLS not executed", blocked=True)
     run_step("T-SW-010", "Offline router/cloud test", None, "No deployed network stack", blocked=True)
-    run_step("T-SW-013", "Android APK build", None, "Android SDK not installed", blocked=True)
+    run_step("T-SW-013", "Android device/emulator test", None, "Debug APK built; no device/emulator install or UI test", blocked=True)
     run_step("T-SW-020", "Deployment clean-room", None, "Docker/Postgres not installed", blocked=True)
     run_step("T-SW-025", "Full system HIL", None, "No hardware/lab", blocked=True)
 

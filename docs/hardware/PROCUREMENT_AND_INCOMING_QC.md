@@ -19,7 +19,7 @@
 4. Inspect for damage, contamination, bent pins, cracked case, loose terminal.
 5. Verify connector pitch/pinout against the actual datasheet.
 6. For PZEM/CT: record CT ratio/marking, cable length, terminal labels; do not assume V3 docs.
-7. For relay: verify contact arrangement (DPST-NO), coil voltage/resistance, marking.
+7. For the off-board relay module: verify two independent SPDT channels (not DPST), active-LOW inputs, JD-VCC jumper/pinout, 5 V coil, contact marking, and per-channel continuity.
 8. For PSU: verify model/revision, input/output marking, isolation label.
 9. For socket/plug: verify PE contacts, shutter, retention, material marking.
 10. For enclosure: verify material/UL94 marking, wall thickness, dimensions.

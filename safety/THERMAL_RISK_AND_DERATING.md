@@ -8,7 +8,7 @@
 | Sumber | Perkiraan losses | Catatan |
 |---|---:|---|
 | PSU IRM-05-5 | ~1.0–1.7 W | Efisiensi ~75–85%, output 5 W; datasheet perlu |
-| Relay coil RT2 | ~0.4 W | 5 V coil, ~80 mA |
+| Relay module, 2 channels | ~0.4–0.8 W | Two 5 V coils + optocoupler input; measure exact batch |
 | Relay contact/terminal | UNKNOWN | Tergantung arus, contact resistance, terminal |
 | ESP32-S3 + Wi-Fi | ~0.5–1.0 W | Burst |
 | OLED/RGB/sensor | ~0.1 W | Kecil |
@@ -17,11 +17,12 @@
 
 ## 2. Perkiraan kenaikan suhu enclosure
 
-Luas permukaan eksternal kasar (150×100×70 mm):
-`2 × (150×100 + 150×70 + 100×70) = 65.000 mm² = 0.065 m²`.
+Luas permukaan eksternal kasar (220×120×70 mm recommended):
+`2 × (220×120 + 220×70 + 120×70) = 100.400 mm² = 0.1004 m²`.
 
 Dengan koefisien konveksi/radiasi efektif kasar 5–10 W/(m²·K):
-- 3 W → ΔT ≈ 3 / (0.065 × 5…10) ≈ **4.6–9.2 K**.
+- 3 W → ΔT ≈ 3 / (0.1004 × 5…10) ≈ **3.0–6.0 K**.
+- 180×120 (0.0852 m²) would give ~3.5–7.0 K, but that size fails real clearance review.
 - Ini hanya estimasi; hotspot lokal dapat jauh lebih tinggi.
 - Enclosure tertutup, tidak ada ventilasi, dan komponen berdekatan dapat menaikkan ΔT.
 
@@ -38,7 +39,7 @@ Dengan koefisien konveksi/radiasi efektif kasar 5–10 W/(m²·K):
 
 ## 4. Derating
 
-- Relay 8 A × 0.8 = 6.4 A pada ambient 40 °C, sebelum koreksi enclosure.
+- Module relay 10 A class claim × 0.8 = **8 A** pada ambient 40 °C, sebelum koreksi enclosure. Ini asumsi vendor, bukan hasil uji.
 - Jika temperature rise terminal > 30 K pada 6.4 A, turunkan rating.
 - Fuse 10 A tidak boleh dianggap rating kontinu 10 A.
 - Kabel 1.5 mm² harus dihitung dengan grouping/ambient.

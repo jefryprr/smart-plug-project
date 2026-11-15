@@ -9,7 +9,7 @@ The user wants an ESP32-S3 inline smart outlet, not a wall-mounted mini plug, an
 ## Decision
 - Form factor: **inline corded outlet** with a Type F/E-F socket (Q02 analysis pending).
 - Safety scope: **academic lab prototype**, supervised, not a consumer product.
-- Target enclosure: 150×100×70 mm (Q06=B), subject to fit/clearance review; recommended 180×120×70 if needed.
+- Target enclosure: 150×100×70 mm (Q06=B) **fails**; 180×120×70 was also **rejected** because PZEM/relay/socket only fit by stacking with an inadequate gap. **220×120×70 is recommended** pending user confirmation (Q06=C).
 - No `READY_FOR_USE` or `READY_FOR_FABRICATION` claim.
 
 ## Consequences

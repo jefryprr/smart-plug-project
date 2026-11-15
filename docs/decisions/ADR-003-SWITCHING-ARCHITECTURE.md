@@ -1,26 +1,53 @@
-# ADR-003 — Switching and Two-Pole Disconnection
+# ADR-003 — Switching and Two-Pole Disconnection (Amended)
 
-**Status:** Proposed / rating lower than target
-**Date:** 2026-11-15
-**Related:** Q03=B (10 A target), Q05=A (review two-pole), Q10=C
+**Status:** Accepted direction; component/rating `PROVISIONAL`
+**Date:** 2026-11-15 (amended after user instruction)
+**Related:** Q03=8 A final, Q05=A (two-pole review), Q10=2-channel optocoupler relay module.
 
 ## Context
-Type F plugs are reversible, so a single-pole switch can leave a live conductor. The target is 10 A, but the provisional DPST-NO relay (TE RT2 class) is 8 A / 250 VAC IEC class. A latching relay is not fail-safe.
+The user changed the rating from target 10 A to **8 A final** and selected a
+**common 2-channel 5 V optocoupler relay module**, mounted off-board in the
+enclosure. This is a change from the earlier TE RT2 DPST-NO PCB relay concept.
+The module is typically two independent SPDT relays, not a mechanically linked
+DPST. It must not be treated as a safety-rated two-pole disconnect without
+evidence.
 
 ## Decision
-- Review **two-pole disconnection** (L and N) with PE continuous.
-- Provisional relay: **TE RT2 `RT444005` DPST-NO, 5 V coil, 8 A class**, pending exact MPN/rating verification.
-- Final continuous rating: **8 A or lower** after thermal/derating; do not label 10 A.
-- Reject single SPDT, two unlinked relays, and latching relays as the sole disconnect.
-- If 10 A must be retained, use a 2P 16 A contactor and a larger enclosure (Q06=C) after approval.
+- Use a **2-channel 5 V optocoupler relay module**, off-board, with mechanical
+  mounting in the enclosure.
+- Channel 1 switches **L**, channel 2 switches **N**. PE remains continuous and
+  is never switched.
+- Module inputs are assumed **active-LOW** (common module); a MOSFET on the
+  carrier pulls both IN1/IN2 low when commanded ON. At boot the MOSFET is off
+  (pulldown), so module inputs are high and relays are OFF.
+- Final continuous rating: **8 A / ~1.840 W at 230 V**, limited to
+  electronics/SMPS loads. No heaters, kettles, irons, hair dryers, or large
+  motors.
+- Do not label the module as DPST, safety-rated, or mechanically linked.
+- If the module cannot be verified or one channel welds, the design remains
+  `ENGINEERING_REVIEW_REQUIRED`; do not claim two-pole safety.
 
 ## Consequences
-- Target 10 A is not met by the provisional relay.
-- Thermal/lifecycle/inrush tests are required.
-- PE never goes through the relay/fuse.
-- Firmware cannot claim physical OFF without contact feedback.
+- Module is larger than a PCB relay and needs a bracket/standoff, cable routing,
+  and clearance from PZEM/PSU.
+- Two independent channels reduce some single-channel failure modes but are not
+  a guarantee of simultaneous opening.
+- The module's 10 A claim is not a validated 8 A continuous rating; thermal and
+  lifecycle tests are required.
+- The optocoupler isolates coil/input, but the module PCB may not provide mains
+  creepage; keep it in the mains zone, off the SELV carrier.
+- `observed_output` remains null; no contact feedback.
 
 ## Alternatives
-- Omron G2R-2A (5 A): lower rating.
-- Schneider Acti9 iCT 2P 16 A: safer rating but large/DIN.
-- Two G5LE-1A: not mechanically linked; rejected for two-pole safety.
+- TE RT2 DPST-NO 8 A PCB relay: better mechanical linkage, smaller, but changed
+  by user instruction.
+- 2P 16 A contactor: larger, better rating, requires enclosure change.
+- Two separate relays: rejected as not mechanically linked.
+
+## Sources
+- Handsontec 2-channel 5 V optical isolated relay module datasheet (10 A class,
+  low-level input, 15–20 mA/channel): `research/datasheets/handsontec_2ch_relay.pdf`.
+- DigiKey TS0010D 2-channel relay module datasheet:
+  `research/datasheets/digikey_ts0010d_2ch_relay.pdf`.
+- Envistia product documentation (active-LOW, JD-VCC jumper; availability/candidate
+  source, not a safety certificate).

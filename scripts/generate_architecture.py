@@ -25,7 +25,7 @@ with dot.subgraph(name="cluster_mains") as mains:
     mains.node("F1", "Fuse 10 A\n+ holder", fillcolor="#ffd6d1")
     mains.node("MOV", "MOV 275 VAC\n(surge study)", fillcolor="#ffd6d1")
     mains.node("TF1", "Thermal cutoff\n99 °C one-shot", fillcolor="#ffd6d1")
-    mains.node("K1", "Relay DPST-NO\n8 A class TBD", fillcolor="#ffd6d1")
+    mains.node("K1", "2-ch opto relay module\n8 A final, off-board", fillcolor="#ffd6d1")
     mains.node("X1", "Socket Type F\n16 A class TBD", fillcolor="#ffd6d1")
 
 with dot.subgraph(name="cluster_barrier") as barrier:
@@ -65,7 +65,7 @@ dot.edge("CARR", "U1", label="3.3 V / GPIO")
 dot.edge("CARR", "UI", label="I2C / GPIO")
 dot.edge("CARR", "TEMP", label="I2C")
 dot.edge("U1", "DRV", label="RELAY_CTRL")
-dot.edge("DRV", "K1", label="coil (SELV)", style="dashed")
+dot.edge("DRV", "K1", label="active-LOW inputs\n(SELV)", style="dashed")
 dot.edge("U1", "MQTT", label="Wi-Fi")
 dot.edge("MQTT", "API", label="telemetry / ACK")
 dot.edge("API", "WEB", label="REST / WS")

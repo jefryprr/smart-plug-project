@@ -23,10 +23,11 @@
 | `e691081` | Refresh manifest source commit | Metadata | Clone compare | Hash-only |
 | `8241f43` | Add procurement QC, schematic wrapper, generator lockfile | Complete PRD 06.5/08.2 paths | Wrapper run; lockfile generated | No behavior change |
 | `c5fd35c` | Normalize KiCad/lockfile line endings | Fresh-clone hash match | 127/127 artifacts match | Line endings only |
+| uncommitted | 8 A final + off-board PZEM/2-channel module; KiCad 10.0.8 checks; ESP-IDF v6.1 build; 220×120 enclosure correction; Android debug APK | User amendment and toolchain completion | ERC 0, DRC 0, ESP-IDF build PASS, APK PASS, final gate in `VALIDATION_SUMMARY.json` | 150/180 enclosures rejected; debug APK is not release |
 
 ## Test status at handoff
 
-- Digital gate: 19 PASS / 15 BLOCKED / 0 FAIL.
+- Digital gate after amendment: 23 PASS / 11 BLOCKED / 0 FAIL (baseline was 19 PASS / 15 BLOCKED).
 - Requirements: 28 PASS / 25 PARTIAL / 24 NOT_STARTED / 3 BLOCKED.
 - No `READY_FOR_FABRICATION` or `READY_FOR_USE`.
 

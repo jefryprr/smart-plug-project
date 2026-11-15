@@ -5,15 +5,15 @@
 | ID | Assumption | Source/basis | Impact if wrong | Reviewer | Verification | Status |
 |---|---|---|---|---|---|---|
 | A-001 | Supply is 230 VAC / 50 Hz nominal | Indonesian household context | Voltage/current rating, PSU, MOV, clearance | Engineer | Measure at lab/site | `PROVISIONAL` |
-| A-002 | Load target is 10 A but final may be 8 A or lower | Q03=B + relay 8 A | Label/rating, tests, customer expectation | Engineer | Rating chain + thermal test | `PROVISIONAL` |
+| A-002 | Final continuous load rating is **8 A (≈1.840 W at 230 V)**, limited to electronics/SMPS; not heaters/motors | User amendment 2026-11-15 | Label/rating, thermal test, user expectation | Engineer | Rating chain + thermal test | `PROVISIONAL` |
 | A-003 | Loads are mixed electronics/SMPS, not motors | Q04=B | Relay inrush/lifecycle | Engineer | Load survey + inrush test | `PROVISIONAL` |
 | A-004 | Type F/E-F socket is appropriate for Indonesia | Q02=D lean B | Connector/PE/regulatory | Engineer/regulatory | Product selection + standard review | `OPEN` |
 | A-005 | Two-pole disconnection is safer for reversible plug | Q05=A | Relay size/rating | Engineer | Design review | `PROVISIONAL` |
-| A-006 | 150×100×70 mm fits modules with clearances | Q06=B | Enclosure/thermal/barrier | Mechanical engineer | Measured fit + thermal test | `PROVISIONAL` |
+| A-006 | **220×120×70 mm** is the working enclosure; 150×100 fails fit and 180×120 fails real clearance with off-board PZEM + 2-channel relay | Q06=B + amendment | Enclosure/thermal/barrier | Mechanical engineer | User confirmation + measured fit + thermal test | `PROVISIONAL` |
 | A-007 | ESP32-S3-DevKitC-1 N16R8 official board is used | Q08=B | GPIO/RGB/strapping/space | Hardware engineer | Photo/revision check | `OPEN` |
 | A-008 | PZEM-004T V4 split CT is representative | Q09=D | Metering/isolation | Hardware engineer | Batch datasheet + measurement | `OPEN` |
 | A-009 | ADuM1201 + B0505S barrier is sufficient for PZEM UART | Engineering judgment | Isolation safety | Engineer | Isolation review + hipot test | `OPEN` |
-| A-010 | TE RT2 8 A DPST-NO relay is adequate for prototype | Q10=C | Rating/thermal/lifecycle | Engineer | Exact MPN + thermal/lifecycle test | `OPEN` |
+| A-010 | Common 2-channel 5 V optocoupler relay module (10 A class claim) is adequate for 8 A prototype, with active-low inputs and two independent SPST channels | User amendment 2026-11-15 | Channel non-linkage, contact rating, isolation, lifecycle | Engineer | Exact module datasheet + thermal/lifecycle test | `OPEN` |
 | A-011 | Mean Well IRM-05-5 5 W is enough for peak load | Power budget | Brownout/thermal | Hardware engineer | Measured peak current | `PROVISIONAL` |
 | A-012 | 100 A CT is not an output current rating | PRD warning | Safety/rating | Engineer | Rating chain | `CONFIRMED` |
 | A-013 | PE can be routed directly without relay/fuse | Safety principle | Shock safety | Engineer | PE continuity test | `PROVISIONAL` |

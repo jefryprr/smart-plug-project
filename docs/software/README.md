@@ -10,7 +10,7 @@
 | API | `apps/api` | Fastify, SQLite adapter, auth/RBAC, commands, telemetry, energy, events |
 | Simulator | `apps/device-simulator` | MQTT device twin, state machine, ACK, telemetry |
 | Web | `apps/web` | Next.js dashboard |
-| Android | `apps/android` | Expo source (APK blocked) |
+| Android | `apps/android` | Expo source + generated project (debug APK built) |
 
 ## Run
 

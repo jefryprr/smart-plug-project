@@ -24,11 +24,15 @@ digunakan.
 - Web: build + 5 Playwright tests + axe login/dashboard.
 - Static wiring/GPIO/BOM crosscheck: PASS.
 - WireViz/CadQuery/KiCad-file parse: PASS.
+- KiCad 10.0.8 ERC/DRC: 0 violations (block/placement scope); placement-only Gerber/drill.
+- ESP-IDF v6.1 target build: PASS; `.bin` exists (no flash).
+- Android debug APK: PASS (arm64-v8a, v2 debug signature; no device test).
 
 **Yang tetap BLOCKED:**
-- KiCad ERC/DRC/Gerber/drill.
-- ESP-IDF target build, firmware `.bin`, OTA/rollback test.
+- Component-level schematic/connectivity/routing and functional Gerber.
+- Firmware flash/boot-waveform, OTA/rollback test, sensor/network integration.
 - Physical fit/thermal/PE/isolation/load tests.
+- Android device/emulator test and release signing.
 - Engineering/regulatory sign-off.
 
 ---
@@ -41,14 +45,14 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 |---|---|
 | Bentuk | Inline outlet berkabel (Q01=B) |
 | Soket | Analisis kompatibilitas; lean Type E/F (Q02=D) |
-| Arus | Target 10 A; rating final = nilai terendah (Q03=B) |
+| Arus | **8 A final / ~1.840 W** (amendment pengguna); elektronik/SMPS saja |
 | Beban | Campuran elektronik/SMPS (Q04=B) |
-| Pemutusan | Tinjau dua kutub (Q05=A) |
-| Ukuran | ≤150×100×70 mm (Q06=B) |
+| Pemutusan | Dua channel L/N, bukan DPST linked (Q05=A) |
+| Ukuran | 220×120×70 recommended; 150×100 and 180×120 fail clearance review (Q06 pending C) |
 | Budget | Rp500–750 ribu (Q07=B) |
 | Board | ESP32-S3-DevKitC-1 N16R8 resmi (Q08=B) |
 | Metering | Bandingkan; PZEM V4 provisional (Q09=D) |
-| Relay | Studi 2–3 alternatif (Q10=C) |
+| Relay | Modul optocoupler 2 channel off-board (amendment Q10) |
 | Modul | Pilih berdasar isolasi/dimensi (Q11=D) |
 | Safety | Prototipe lab (Q12=A) |
 | UI | OLED kecil, RGB built-in + panel (Q13=A, Q14=C) |
@@ -71,23 +75,23 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 
 ## 3. BOM dan persetujuan komponen
 
-- `bom/BOM_MASTER.csv` — **46 baris**, harga **kosong** (`UNPRICED`).
-- `bom/BOM_SUMMARY.json` — `subtotal_idr: null`, `priced_lines: 0`, `unpriced_lines: 46`.
+- `bom/BOM_MASTER.csv` - **48 baris**, harga **kosong** (`UNPRICED`).
+- `bom/BOM_SUMMARY.json` - `subtotal_idr: null`, `priced_lines: 0`, `unpriced_lines: 48`.
 - `bom/BOM_TOOLS_AND_TEST.csv` — 6 alat, belum dibeli.
 - `bom/BOM_CONSUMABLES.csv` — 5 item.
 - `bom/COMPONENT_APPROVALS.yaml` — tidak ada komponen `approved_for_fabrication`.
-- `research/candidates.csv` — 41 kandidat.
+- `research/candidates.csv` — 44 kandidat.
 - `research/COMPONENT_RESEARCH.md` — narasi dan skor bukti.
-- `research/datasheets/MANIFEST.md` — 9 PDF tersimpan + hash; sisanya link-only/licensed.
+- `research/datasheets/MANIFEST.md` — 11 PDF tersimpan + hash, plus arsip PZEM V1.0 (docx/txt); sisanya link-only/licensed.
 
 **Status safety-critical:**
 - Socket/plug: `DOCUMENTATION_DEFICIENT`.
 - PZEM V4: `DOCUMENTATION_DEFICIENT`.
-- Relay 10 A DPST: tidak ditemukan; provisional RT2 8 A.
-- PE hardware/enclosure: `BLOCKED`.
+- Relay: modul optocoupler 2 channel off-board, 10 A class claim, dua SPDT independen (bukan DPST).
+- PE hardware/enclosure: `BLOCKED`; 220×120×70 recommended karena 150×100 dan 180×120 gagal clearance review.
 - Fuse/MOV/TCO: `PENDING`/documentation deficient.
 
-**Konsekuensi:** target 10 A tidak tercapai oleh relay 8 A; rating final harus 8 A atau lebih rendah, atau ganti contactor/enclosure.
+**Konsekuensi:** rating final 8 A/1.840 W; batas beban eksplisit. Dua channel module tidak mechanically linked; residual risk harus diuji.
 
 ---
 
@@ -95,8 +99,8 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 
 | Keputusan | Trade-off | Alasan |
 |---|---|---|
-| Inline box 150×100×70 | Lebih besar dari wall plug | Ruang untuk PZEM/relay/PSU; prototype serviceable |
-| Dua kutub | Relay lebih besar/mahal, rating 8 A | Plug Type F reversibel; PE tidak diputus |
+| Inline box 220×120×70 | Lebih besar dari wall plug | Ruang side-by-side PZEM/relay/PSU + bracket; 150×100 dan 180×120 gagal clearance |
+| Dua channel | Module off-board, dua SPDT independen, 10 A claim | Plug Type F reversibel; PE tidak diputus; bukan DPST linked |
 | PZEM V4 + barrier UART | BOM/space tambahan | Modul belum terbukti isolated |
 | IRM-05-5 | Harga lebih tinggi | Dokumen resmi, 5 V 1 A |
 | ESP-IDF | Setup lebih berat | OTA rollback/security/provisioning |
@@ -110,15 +114,15 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 | Parameter | Proposed | Verified? |
 |---|---|---|
 | Input | 230 VAC / 50 Hz | `PROVISIONAL` |
-| Output target | 10 A | **Tidak tercapai** |
-| Output kontinu provisional | 8 A atau lebih rendah | `UNVERIFIED` |
-| Relay | TE RT2 DPST-NO 8 A class | `PENDING_APPROVAL` |
+| Output target | **8 A / ~1.840 W** | Dipilih pengguna; thermal test required |
+| Output kontinu provisional | 8 A | `UNVERIFIED` |
+| Relay module | 2-channel optocoupler, off-board, 10 A class claim | `DOCUMENTATION_DEFICIENT` |
 | Fuse | 10 A time-lag | `PENDING` |
 | PSU | 5 V 1 A | `PENDING` |
 | Socket/plug | Type F/E-F 16 A class | `DOCUMENTATION_DEFICIENT` |
 | PE | Kontinu, tidak diputus | `PROVISIONAL` |
 | Isolation | ADuM1201 + B0505S | `PENDING` |
-| Enclosure | 150×100×70, ABS/PC FR | `BLOCKED` |
+| Enclosure | 220x120x70 recommended (150x100 and 180x120 fail clearance), ABS/PC FR | `BLOCKED` |
 | Clearance/creepage | TBD | `BLOCKED` |
 
 ---
@@ -126,7 +130,7 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 ## 6. Arsitektur isolasi/proteksi
 
 ```
-Mains: Plug → Fuse → MOV → Thermal cutoff → Relay DPST → Socket
+Mains: Plug → Fuse → MOV → Thermal cutoff → 2-channel relay module (L/N) → Socket
 PE:    Plug PE ──────────────────────────────→ Socket PE (no relay/fuse)
 PSU:   Mains → IRM-05-5 → 5 V SELV
 Meter: PZEM V4 + CT around L → ADuM1201/B0505S barrier → ESP32 UART
@@ -165,18 +169,21 @@ Detailed docs:
 
 ## 8. ERC/DRC/toolchain commands dan status
 
-**KiCad CLI:** `NOT_INSTALLED`.
+**KiCad CLI:** `10.0.8` (portable extract `tools/kicad/bin/kicad-cli.exe`).
 
 ```powershell
+$env:PATH = "$PWD\tools\kicad\bin;$env:PATH"
 kicad-cli sch erc --output reports/kicad/erc.json hardware/kicad/smartplug.kicad_sch
 kicad-cli pcb drc --output reports/kicad/drc.json hardware/kicad/smartplug.kicad_pcb
+kicad-cli pcb export gerbers -o hardware/manufacturing/provisional/Gerber -l F.Cu,B.Cu,F.SilkS,B.SilkS,Edge.Cuts hardware/kicad/smartplug.kicad_pcb
+kicad-cli pcb export drill -o hardware/manufacturing/provisional/Drill --generate-map --map-format pdf hardware/kicad/smartplug.kicad_pcb
 ```
 
-- Status: `BLOCKED`.
+- ERC: **0 violations** on the block-level text-only schematic. This is not component-level connectivity.
+- DRC: **0 violations / 0 unconnected** on the placement-only PCB.
+- Gerber/drill: **placement-only provisional** exported; `NOT_FOR_FABRICATION`.
 - Native files parse with `kiutils`: `PASS`.
-- Schematic is a **system block schematic**, not component-level.
-- PCB is **placement-only** 75×50 mm, no routing/nets/footprints final.
-- Gerber/drill: `BLOCKED`; `hardware/manufacturing/provisional/Gerber/README_BLOCKED.md`.
+- Component-level schematic/routing: `BLOCKED` (no approved MPNs/footprints).
 
 ---
 
@@ -216,8 +223,9 @@ No mains assembly/energization was performed.
 - Host tests: `firmware/test/host/test_core.c` — 74 checks.
 - ESP-IDF minimal app: `firmware/main/app_main.c` — relay OFF at boot, button debounce, core state machine, ON blocked while sensors invalid.
 - Partition/config: `firmware/partitions.csv`, `sdkconfig.defaults`.
-- ESP-IDF build: `BLOCKED: ESP_IDF_NOT_INSTALLED`; no `.bin`.
+- ESP-IDF build: `PASS` (v6.1, target esp32s3, 192.464-byte `.bin`, SHA-256 `7F115A5D7A72CF3992E5846789140DF4F0FEC44B3A1025BA02E0FC018917AB21`); build only, no flash.
 - OLED/RGB/PZEM/Wi-Fi/MQTT/OTA components: `NOT_IMPLEMENTED`.
+- Build evidence: `reports/FIRMWARE_BUILD.md`, `reports/logs/firmware-idf-build.log`.
 
 Data model mirrors `DeviceState`, `Measurement`, `Health` in `packages/api-contract` and `packages/mqtt-contract`.
 
@@ -253,8 +261,8 @@ See `reports/TEST_MATRIX.csv` / `VALIDATION_SUMMARY.json`.
 | PE hardware/enclosure material | `BLOCKED` | Select rated parts |
 | Clearance/creepage | `BLOCKED` | Licensed standard + engineer |
 | Thermal/load/PE/isolation | `BLOCKED` | Qualified lab |
-| ESP-IDF build | `BLOCKED` | Install toolchain, build |
-| Android SDK/APK | `BLOCKED` | Install SDK, build |
+| ESP-IDF build | `PASS` (build only) | Flash/boot-waveform and integration still blocked |
+| Android SDK/APK | `PASS` (debug) | arm64-v8a APK built; device install/UI test still pending |
 | PostgreSQL/Docker | `BLOCKED` | Install, migrate, test |
 
 ---
@@ -274,29 +282,29 @@ See `reports/TEST_MATRIX.csv` / `VALIDATION_SUMMARY.json`.
 
 | Category | Status | Evidence |
 |---|---|---|
-| 01 Riset komponen | `PARTIAL` | 41 candidates, 46 BOM rows, unpriced |
+| 01 Riset komponen | `PARTIAL` | 44 candidates, 48 BOM rows, unpriced |
 | 02 BOM | `PARTIAL` | CSV/MD/YAML/JSON; unpriced/unapproved |
-| 03 Datasheet | `PARTIAL` | 9 PDFs hashed; PZEM/socket deficient |
+| 03 Datasheet | `PARTIAL` | 9+ PDFs hashed; PZEM/socket deficient |
 | 04 Arsitektur | `PASS` (digital) | Diagram PNG/SVG/PDF |
-| 05 Schematic | `PARTIAL/BLOCKED` | Native block schematic; ERC blocked |
+| 05 Schematic | `PARTIAL` | Block text-only; ERC 0 but not component connectivity |
 | 06 Wiring | `PASS` (render) | 6 harnesses; physical untested |
 | 07 GPIO | `UNVERIFIED` | Static crosscheck; board revision unknown |
-| 08 PCB | `PARTIAL/BLOCKED` | Placement-only; DRC/routing blocked |
-| 09 Manufacturing | `BLOCKED` | No Gerber/drill/DRC |
+| 08 PCB | `PARTIAL` | Placement-only; DRC 0; routing blocked |
+| 09 Manufacturing | `PARTIAL/BLOCKED` | Placement-only Gerber/drill; functional board blocked |
 | 10 PCB visualization | `PARTIAL` | Placement preview only |
-| 11 Enclosure 3D | `PARTIAL` | STEP/STL generated; dimensions approximate |
-| 12 Enclosure render | `PARTIAL` | Renders/drawings generated; no physical fit |
-| 13 Firmware | `PARTIAL` | Core built/tested; ESP-IDF blocked |
-| 14 Firmware config | `PARTIAL` | Partitions/sdkconfig; no build |
+| 11 Enclosure 3D | `PARTIAL` | 220×120 recommended PASS; 150×100/180×120 rejected; brackets exported |
+| 12 Enclosure render | `PARTIAL` | Renders/drawings recommended; no physical fit |
+| 13 Firmware | `PARTIAL` | Core + ESP-IDF target build PASS; integration/flash blocked |
+| 14 Firmware config | `PARTIAL` | Partitions/sdkconfig accepted by build; no flash |
 | 15 Web | `PASS` (digital) | Build/E2E/axe |
-| 16 Android | `PARTIAL` | Typecheck/bundle; APK blocked |
+| 16 Android | `PASS` (debug) | arm64-v8a APK built and signature-verified; not installed/tested |
 | 17 Backend | `PASS` (digital) | 38 tests |
 | 18 Database | `PARTIAL` | SQLite tested; Postgres schema only |
 | 19 MQTT | `PASS` (digital) | Contract + aedes integration |
 | 20 Notifications | `PARTIAL` | Mock test; Telegram not live |
 | 21 Deployment | `BLOCKED` | Compose config only |
-| 22 Testing | `PARTIAL` | 19 PASS / 15 BLOCKED |
-| 23 Validation | `PARTIAL` | Static checks; ERC/DRC blocked |
+| 22 Testing | `PARTIAL` | 23 PASS / 11 BLOCKED (KiCad + ESP-IDF build now run) |
+| 23 Validation | `PARTIAL` | Static + ERC/DRC/placement-only Gerber; component-level blocked |
 | 24 Security | `PARTIAL` | Threat model/audit; gaps |
 | 25 Docs | `PASS` (digital) | 26 tutorials + reports |
 | 26 Handoff | `PARTIAL` | Manifest/report generated; blockers explicit |
@@ -305,4 +313,4 @@ See `reports/TEST_MATRIX.csv` / `VALIDATION_SUMMARY.json`.
 
 ## 16. Kesimpulan Fase 1
 
-Fase 1 **belum** `DIGITAL_COMPLETE` karena ERC/DRC/Gerber, ESP-IDF build, dan beberapa komponen firmware/PCB belum ada. Yang dapat diklaim adalah **provisional digital completeness** untuk riset, BOM riset, wiring, CAD, firmware core, web/API, dan dokumentasi. Hardware tetap `ENGINEERING_REVIEW_REQUIRED` dan `HARDWARE_VALIDATION_REQUIRED`.
+Fase 1 **belum** `DIGITAL_COMPLETE` karena schematic/routing komponen, integrasi firmware (PZEM/OLED/Wi-Fi/MQTT/OTA), uji perangkat Android, dan deployment belum selesai. ERC/DRC/Gerber placement-only dan ESP-IDF v6.1 target build sudah `PASS` sebagai bukti digital. Yang dapat diklaim adalah **provisional digital completeness** untuk riset, BOM riset, wiring, CAD, firmware core, web/API, dan dokumentasi. Hardware tetap `ENGINEERING_REVIEW_REQUIRED` dan `HARDWARE_VALIDATION_REQUIRED`.
