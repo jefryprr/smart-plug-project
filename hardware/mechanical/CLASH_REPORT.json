@@ -54,7 +54,30 @@
         ]
       }
     ],
-    "barrier_crossings": [],
+    "barrier_crossings": [
+      {
+        "module": "carrier",
+        "bounds": [
+          -70.0,
+          -25.0,
+          7.2,
+          10.0,
+          25.0,
+          8.8
+        ]
+      },
+      {
+        "module": "esp32",
+        "bounds": [
+          -64.3,
+          -12.7,
+          8.0,
+          4.299999999999997,
+          12.7,
+          18.0
+        ]
+      }
+    ],
     "limitations": [
       "All module dimensions are approximate envelopes, not measured samples.",
       "No tolerance stack, cable bend, or thermal expansion is modeled.",

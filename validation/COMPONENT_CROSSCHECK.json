@@ -1,10 +1,10 @@
 {
   "status": "PASS",
-  "master_rows": 48,
-  "pcba_rows": 11,
+  "master_rows": 54,
+  "pcba_rows": 21,
   "missing_refs_in_master": [],
-  "unpriced_lines": 48,
-  "unapproved_lines": 48,
+  "unpriced_lines": 54,
+  "unapproved_lines": 54,
   "approved_for_fabrication": 0,
   "limitations": [
     "Engineering BOM is unpriced; bom/BOM_PROCUREMENT.csv is a dated listing matrix, not a supplier quote."

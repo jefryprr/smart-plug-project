@@ -4,11 +4,11 @@ graph {
 	graph [bgcolor="#FFFFFF" fontname=arial nodesep=0.33 rankdir=LR ranksep=2]
 	node [fillcolor="#FFFFFF" fontname=arial height=0 margin=0 shape=none style=filled width=0]
 	edge [fontname=arial style=bold]
-	J2 [label=<
+	J_OLED [label=<
 <table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">J2</td>
+   <td balign="left">J_OLED</td>
   </tr></table>
  </td></tr>
  <tr><td>
@@ -74,11 +74,11 @@ graph {
  </td></tr>
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
-	J3 [label=<
+	J_BTN [label=<
 <table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">J3</td>
+   <td balign="left">J_BTN</td>
   </tr></table>
  </td></tr>
  <tr><td>
@@ -128,11 +128,11 @@ graph {
  </td></tr>
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
-	J4 [label=<
+	J_RGB [label=<
 <table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">J4</td>
+   <td balign="left">J_RGB</td>
   </tr></table>
  </td></tr>
  <tr><td>
@@ -191,16 +191,16 @@ graph {
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
 	edge [color="#000000:#ff0000:#000000"]
-	J2:p1r:e -- W_OLED:w1:w
+	J_OLED:p1r:e -- W_OLED:w1:w
 	W_OLED:w1:e -- DS1:p1l:w
 	edge [color="#000000:#000000:#000000"]
-	J2:p2r:e -- W_OLED:w2:w
+	J_OLED:p2r:e -- W_OLED:w2:w
 	W_OLED:w2:e -- DS1:p2l:w
 	edge [color="#000000:#ffffff:#000000"]
-	J2:p3r:e -- W_OLED:w3:w
+	J_OLED:p3r:e -- W_OLED:w3:w
 	W_OLED:w3:e -- DS1:p3l:w
 	edge [color="#000000:#00ff00:#000000"]
-	J2:p4r:e -- W_OLED:w4:w
+	J_OLED:p4r:e -- W_OLED:w4:w
 	W_OLED:w4:e -- DS1:p4l:w
 	W_OLED [label=<
 <table border="0" cellspacing="0" cellpadding="0">
@@ -222,7 +222,7 @@ graph {
   <table border="0" cellspacing="0" cellborder="0">
    <tr><td>&nbsp;</td></tr>
    <tr>
-    <td>J2:1:+3V3</td>
+    <td>J_OLED:1:+3V3</td>
     <td>
      1:RD:+3V3
     </td>
@@ -238,7 +238,7 @@ graph {
     </td>
    </tr>
    <tr>
-    <td>J2:2:GND</td>
+    <td>J_OLED:2:GND</td>
     <td>
      2:BK:GND
     </td>
@@ -254,7 +254,7 @@ graph {
     </td>
    </tr>
    <tr>
-    <td>J2:3:SDA</td>
+    <td>J_OLED:3:SDA</td>
     <td>
      3:WH:SDA
     </td>
@@ -270,7 +270,7 @@ graph {
     </td>
    </tr>
    <tr>
-    <td>J2:4:SCL</td>
+    <td>J_OLED:4:SCL</td>
     <td>
      4:GN:SCL
     </td>
@@ -291,10 +291,10 @@ graph {
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
 	edge [color="#000000:#000000:#000000"]
-	J3:p1r:e -- W_BTN:w1:w
+	J_BTN:p1r:e -- W_BTN:w1:w
 	W_BTN:w1:e -- SW1:p1l:w
 	edge [color="#000000:#ff8000:#000000"]
-	J3:p2r:e -- W_BTN:w2:w
+	J_BTN:p2r:e -- W_BTN:w2:w
 	W_BTN:w2:e -- SW1:p2l:w
 	W_BTN [label=<
 <table border="0" cellspacing="0" cellpadding="0">
@@ -316,7 +316,7 @@ graph {
   <table border="0" cellspacing="0" cellborder="0">
    <tr><td>&nbsp;</td></tr>
    <tr>
-    <td>J3:1:GND</td>
+    <td>J_BTN:1:GND</td>
     <td>
      1:BK:GND
     </td>
@@ -332,7 +332,7 @@ graph {
     </td>
    </tr>
    <tr>
-    <td>J3:2:BTN</td>
+    <td>J_BTN:2:BTN</td>
     <td>
      2:OG:BTN
     </td>
@@ -353,13 +353,13 @@ graph {
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
 	edge [color="#000000:#ff0000:#000000"]
-	J4:p1r:e -- W_RGB:w1:w
+	J_RGB:p1r:e -- W_RGB:w1:w
 	W_RGB:w1:e -- LED1:p1l:w
 	edge [color="#000000:#000000:#000000"]
-	J4:p2r:e -- W_RGB:w2:w
+	J_RGB:p2r:e -- W_RGB:w2:w
 	W_RGB:w2:e -- LED1:p2l:w
 	edge [color="#000000:#00ff00:#000000"]
-	J4:p3r:e -- W_RGB:w3:w
+	J_RGB:p3r:e -- W_RGB:w3:w
 	W_RGB:w3:e -- LED1:p3l:w
 	W_RGB [label=<
 <table border="0" cellspacing="0" cellpadding="0">
@@ -381,7 +381,7 @@ graph {
   <table border="0" cellspacing="0" cellborder="0">
    <tr><td>&nbsp;</td></tr>
    <tr>
-    <td>J4:1:+5V</td>
+    <td>J_RGB:1:+5V</td>
     <td>
      1:RD:+5V
     </td>
@@ -397,7 +397,7 @@ graph {
     </td>
    </tr>
    <tr>
-    <td>J4:2:GND</td>
+    <td>J_RGB:2:GND</td>
     <td>
      2:BK:GND
     </td>
@@ -413,7 +413,7 @@ graph {
     </td>
    </tr>
    <tr>
-    <td>J4:3:DATA</td>
+    <td>J_RGB:3:DATA</td>
     <td>
      3:GN:DATA
     </td>

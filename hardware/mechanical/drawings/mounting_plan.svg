@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-11-15T22:20:44.327025</dc:date>
+    <dc:date>2026-11-16T01:40:06.870141</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -36,16 +36,16 @@ L 680.1 77.4
 L 39.9 77.4 
 L 39.9 426.6 
 z
-" clip-path="url(#pbb34fb1537)" style="fill: none; stroke: #000000; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p5118c39126)" style="fill: none; stroke: #000000; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
-    <path d="M 47.175 324.75 
-L 265.425 324.75 
-L 265.425 179.25 
-L 47.175 179.25 
-L 47.175 324.75 
+    <path d="M 54.45 353.85 
+L 345.45 353.85 
+L 345.45 150.15 
+L 54.45 150.15 
+L 54.45 353.85 
 z
-" clip-path="url(#pbb34fb1537)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #0f6b5c; stroke-linejoin: miter"/>
+" clip-path="url(#p5118c39126)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #0f6b5c; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 282.885 381.495 
@@ -54,7 +54,7 @@ L 437.115 122.505
 L 282.885 122.505 
 L 282.885 381.495 
 z
-" clip-path="url(#pbb34fb1537)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #b42318; stroke-linejoin: miter"/>
+" clip-path="url(#p5118c39126)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #b42318; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 438.57 403.32 
@@ -63,7 +63,7 @@ L 584.07 333.48
 L 438.57 333.48 
 L 438.57 403.32 
 z
-" clip-path="url(#pbb34fb1537)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #b42318; stroke-linejoin: miter"/>
+" clip-path="url(#p5118c39126)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #b42318; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
     <path d="M 476.4 150.15 
@@ -72,12 +72,12 @@ L 621.9 91.95
 L 476.4 91.95 
 L 476.4 150.15 
 z
-" clip-path="url(#pbb34fb1537)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #b42318; stroke-linejoin: miter"/>
+" clip-path="url(#p5118c39126)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #b42318; stroke-linejoin: miter"/>
    </g>
    <g id="line2d_1">
     <path d="M 272.7 449.88 
 L 272.7 54.12 
-" clip-path="url(#pbb34fb1537)" style="fill: none; stroke: #b42318; stroke-width: 2; stroke-linecap: square"/>
+" clip-path="url(#p5118c39126)" style="fill: none; stroke: #b42318; stroke-width: 2; stroke-linecap: square"/>
    </g>
    <g id="text_1">
     <!-- Carrier PCB 75×50 (approx) -->
@@ -1285,7 +1285,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pbb34fb1537">
+  <clipPath id="p5118c39126">
    <rect x="10.8" y="54.12" width="698.4" height="395.76"/>
   </clipPath>
  </defs>

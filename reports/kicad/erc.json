@@ -1,4 +1,4 @@
-ERC report (2026-11-15T22:20:51, Encoding UTF8)
+ERC report (2026-11-16T01:37:38, Encoding UTF8)
 Report includes: Errors, Warnings
 
 ***** Sheet /
@@ -17,9 +17,7 @@ Report includes: Errors, Warnings
 
 ***** Sheet /DISPLAY_AND_BUTTONS/
 
-***** Sheet /TEMP_SENSING/
-
-***** Sheet /SERVICE_AND_DEBUG/
+***** Sheet /RTC_ONLY/
 
  ** ERC messages: 0  Errors 0  Warnings 0
 

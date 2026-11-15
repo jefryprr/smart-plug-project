@@ -1,62 +1,69 @@
-# ADR-014 — Prototype Procurement Staging and Budget
+# ADR-014 — Prototype Procurement Staging and Budget (REV_B)
 
 **Status:** Proposed (procurement decision, not safety approval)  
-**Date:** 2026-11-15  
-**Related:** ADR-013, `bom/BOM_PROCUREMENT.csv`, `research/PROCUREMENT_INDONESIA.md`
+**Date:** 2026-11-16  
+**Related:** ADR-002, ADR-013, `bom/BOM_PROCUREMENT.csv`, `research/PROCUREMENT_INDONESIA.md`
 
 ## Context
 
 The user set a prototype BOM budget of **Rp500.000–750.000**. Dated Indonesian
-listing research for 48 BOM lines gives:
+listing research for 54 BOM lines gives:
 
-- electronics core (MCU, meter, PSU, sensor, isolation, relay, protection,
-  passives, protoboard): **Rp526.923**;
+- electronics core (MCU, meter, PSU, level shift, relay, protection, passives,
+  PCB): **Rp433.633**;
 - CORE safety/function build including enclosure, connectors, cable, and
-  mechanical parts: **Rp756.987** before shipping;
-- CORE all-in with an estimated Rp40.000 shipping: **Rp796.987**;
+  mechanical parts: **Rp698.297** before shipping;
+- CORE all-in with an estimated Rp40.000 shipping: **Rp738.297** — under the cap;
+- CORE with EasyWare restock prices for ESP32-S3 and PZEM: Rp646.829
+  (Rp686.829 all-in);
 - FULL build adding OLED, RTC, external RGB, and their connectors:
-  **Rp895.976** before shipping, **Rp935.976** all-in.
+  **Rp815.897** before shipping, **Rp855.897** all-in.
 
-CORE can reach **Rp705.519** (Rp745.519 all-in) only if the ESP32-S3 and PZEM
-are bought at EasyWare restock prices (Rp103.500 and Rp135.000). Both were out
-of stock on 2026-11-15. Marketplace substitutes are Rp139.968 and Rp150.000.
-
-The user also required that safety not be downgraded to meet budget.
+REV_B removes the **TMP102** and the external **ADuM1201 + B0505S** barrier.
+The PZEM-004T V4 internal optocouplers are the galvanic barrier; the carrier
+only level-shifts the 5 V TTL UART. There is no firmware temperature sensor;
+thermal protection is hardware-only (fuse + one-shot TCO).
 
 ## Decision
 
 1. Split procurement into **CORE** and **FULL** stages.
 2. Buy CORE first: PSU, PZEM 100 A CT, relay module, fuse/MOV/TCO, terminals,
-   PE, socket/plug, enclosure, ESP32-S3 N16R8, temperature sensor, isolation
-   barrier, wiring, and basic UI button.
-3. Defer OLED, DS3231 RTC, external WS2812B, level shifter, and their JST
-   connectors until CORE passes SELV and initial thermal tests.
+   PE, socket/plug, enclosure, ESP32-S3 N16R8, 74HCT125 level shift, wiring,
+   and basic UI button.
+3. Defer OLED, DS3231 RTC, external WS2812B, and their JST connectors until
+   CORE passes SELV and initial thermal tests.
 4. Prefer EasyWare restock prices for ESP32-S3 and PZEM; if unavailable, accept
-   the marketplace price or wait. Do not substitute the PZEM 10 A variant.
+   the marketplace price. CORE still fits at marketplace prices.
 5. Keep all safety-critical parts `PENDING_APPROVAL`, `DOCUMENTATION_DEFICIENT`,
    or `BLOCKED`. Price does not imply approval.
-6. Do not remove fuse, MOV, thermal cutoff, PE, terminals, enclosure, or the
-   UART isolation barrier to fit the budget.
+6. Do not remove fuse, MOV, TCO, PE, terminals, enclosure, relay rating, or
+   PZEM internal-isolation review to fit the budget.
+7. Do not add a firmware temperature requirement: no sensor is installed.
 
 ## Consequences
 
-- CORE is **slightly over** the Rp750.000 cap at current marketplace prices
-  (Rp796.987 all-in), but fits with restock prices (Rp745.519 all-in).
-- FULL is about **25% over** the cap and is a later stage.
+- CORE fits the Rp750.000 cap at current marketplace prices (Rp738.297 all-in).
+- FULL is about **14% over** the cap and is a later stage.
 - The ESP32-S3 compatible board is an explicit Q08=B deviation; official
   Espressif local stock is not confirmed.
+- PZEM internal isolation is a **single barrier**. Creepage, batch quality, and
+  hipot/leakage must be reviewed; USB must not be connected while mains is live.
+- Removing the temperature sensor increases residual thermal risk. The TCO,
+  fuse, enclosure thermal test, and load test become mandatory.
 - Prices are listings, not quotes. Stock, tax, and shipping can change.
 - The prototype remains `NOT_RELEASED` and `NOT_FOR_FABRICATION`.
 
 ## Alternatives
 
-- Increase the budget to ~Rp850.000–950.000 for FULL.
+- Increase the budget to ~Rp850.000–900.000 for FULL.
 - Build CORE only and use web/serial UI; add display/RTC later.
-- Use a cheaper sensor/RTC/enclosure, which changes the design and requires a
-  new review; not selected because it does not improve safety.
+- Restore a temperature sensor (TMP102/MCP9808/DS18B20) and external UART
+  isolation as a future safety revision; this adds cost and requires a new
+  schematic/PCB revision.
 
 ## Sources
 
-- `bom/BOM_PROCUREMENT.csv` (48 lines, dated 2026-11-15)
+- `bom/BOM_PROCUREMENT.csv` (54 lines, dated 2026-11-15/16)
 - `research/PROCUREMENT_INDONESIA.md`
 - `bom/BOM_SUMMARY.json`
+- `research/PZEM_INTERNAL_ISOLATION.md`

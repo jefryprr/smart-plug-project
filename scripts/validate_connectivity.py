@@ -155,22 +155,22 @@ def main() -> int:
         "note": "NO contacts must be separate nets before/after switching."
     }
     checks["relay_coil_selv"] = {
-        "status": "PASS" if "J1:RELAY_CTRL" in net_containing(nets, "K1:A1") and "J1:RELAY_LOW" in net_containing(nets, "K1:A2") else "FAIL",
-        "note": "Coil is driven from SELV only."
+        "status": "PASS" if {"K1:IN1", "K1:IN2"} <= set(net_containing(nets, "J1:RELAY_CTRL")) else "FAIL",
+        "note": "Relay module inputs are driven from SELV GPIO through the carrier MOSFET."
     }
-    side1 = {"U6:VDD1", "U6:GND1", "U6:TX1", "U6:RX1"}
-    side2 = {"U6:VDD2", "U6:GND2", "U6:TX2", "U6:RX2"}
+    pzem_mains = {"U2:L", "U2:N", "P1:L", "P1:N"}
+    pzem_ttl = {"U2:+5V", "U2:GND", "U2:TX", "U2:RX", "J1:PZEM_TX_3V3", "J1:PZEM_RX_3V3", "U9:1A", "U9:1Y"}
     isolation_failures = []
     for members in nets.values():
-        if any(node in side1 for node in members) and any(node in side2 for node in members):
+        if any(node in pzem_mains for node in members) and any(node in pzem_ttl for node in members):
             isolation_failures.append(members)
-    checks["uart_isolation"] = {
+    checks["pzem_isolation"] = {
         "status": "PASS" if not isolation_failures else "FAIL",
         "failures": isolation_failures,
-        "note": "No net may short isolator side 1 to side 2."
+        "note": "No net may short PZEM mains terminals to its TTL side. PZEM internal optocouplers are the barrier."
     }
-    mains_nodes = {"P1:L", "P1:N", "F1:IN", "F1:OUT", "TF1:IN", "TF1:OUT", "K1:P1_11", "K1:P1_14", "K1:P2_21", "K1:P2_24", "X1:L", "X1:N"}
-    selv_nodes = {"J1:+5V", "J1:GND", "J1:+3V3", "J1:RELAY_CTRL", "J1:RELAY_LOW", "U1:IO4"}
+    mains_nodes = {"P1:L", "P1:N", "F1:IN", "F1:OUT", "TF1:IN", "TF1:OUT", "K1:COM1", "K1:NO1", "K1:COM2", "K1:NO2", "X1:L", "X1:N", "U2:L", "U2:N"}
+    selv_nodes = {"J1:+5V", "J1:GND", "J1:RELAY_CTRL", "K1:IN1", "K1:IN2", "K1:VCC", "K1:GND", "U9:VCC", "U9:GND", "U9:1A", "U9:1Y"}
     cross_domain = []
     for members in nets.values():
         if any(node in mains_nodes for node in members) and any(node in selv_nodes for node in members):
@@ -185,7 +185,7 @@ def main() -> int:
     checks["overall_status"] = "PASS" if all(check.get("status") == "PASS" for check in checks.values() if isinstance(check, dict)) else "FAIL"
 
     with (VALIDATION / "WIRING_CONNECTIONS.csv").open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=["file", "connection", "from", "to", "cable", "wire"])
+        writer = csv.DictWriter(handle, fieldnames=["file", "connection", "from", "to", "cable", "wire", "status"])
         writer.writeheader()
         writer.writerows(rows)
 
@@ -198,7 +198,7 @@ def main() -> int:
     (VALIDATION / "CONNECTIVITY_DIFF.json").write_text(json.dumps(checks, indent=2), encoding="utf-8")
 
     lines = [
-        "# Isolation Boundary Check — REV_A_PROVISIONAL",
+        "# Isolation Boundary Check — REV_B_NO_TEMP",
         "",
         "**Status:** static wiring check only. Manual engineering review is still required.",
         "",
@@ -206,7 +206,7 @@ def main() -> int:
         f"- PE path: **{checks['pe_path']['status']}**",
         f"- Relay contacts separate: **{checks['relay_contacts_separate']['status']}**",
         f"- Relay coil SELV: **{checks['relay_coil_selv']['status']}**",
-        f"- UART isolator sides: **{checks['uart_isolation']['status']}**",
+        f"- PZEM internal isolation (static): **{checks['pzem_isolation']['status']}**",
         f"- Mains/SELV separation: **{checks['mains_selv_separation']['status']}**",
         f"- GPIO crosscheck: **{checks['gpio_crosscheck']['status']}**",
         f"- BOM crosscheck: **{checks['bom_crosscheck']['status']}**",

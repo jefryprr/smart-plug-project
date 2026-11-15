@@ -13,7 +13,7 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">Type F plug (mains input, 16 A class TBD)</td>
+   <td balign="left">Type F plug (mains input, 16 A class)</td>
    <td balign="left">3-pin</td>
   </tr></table>
  </td></tr>
@@ -33,11 +33,6 @@ graph {
    </tr>
   </table>
  </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">MPN belum disetujui. PE kontinu.</td>
-  </tr></table>
- </td></tr>
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
 	F1 [label=<
@@ -49,7 +44,7 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">Fuse holder + 10 A time-lag fuse</td>
+   <td balign="left">Fuse holder + 10 A time-lag ceramic fuse</td>
    <td balign="left">2-pin</td>
   </tr></table>
  </td></tr>
@@ -78,7 +73,7 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">Thermal cutoff 99 C one-shot</td>
+   <td balign="left">One-shot thermal cutoff 99 °C, 10 A</td>
    <td balign="left">2-pin</td>
   </tr></table>
  </td></tr>
@@ -93,64 +88,6 @@ graph {
     <td port="p2l">2</td>
     <td>OUT</td>
     <td port="p2r">2</td>
-   </tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	MOV1 [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">MOV1</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">MOV 275 VAC</td>
-   <td balign="left">2-pin</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1">
-   <tr>
-    <td port="p1l">1</td>
-    <td>L</td>
-   </tr>
-   <tr>
-    <td port="p2l">2</td>
-    <td>N</td>
-   </tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	X1 [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">X1</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">Type F socket output (16 A class TBD)</td>
-   <td balign="left">3-pin</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1">
-   <tr>
-    <td port="p1l">1</td>
-    <td>L</td>
-   </tr>
-   <tr>
-    <td port="p2l">2</td>
-    <td>N</td>
-   </tr>
-   <tr>
-    <td port="p3l">3</td>
-    <td>PE</td>
    </tr>
   </table>
  </td></tr>
@@ -193,181 +130,19 @@ graph {
    </tr>
   </table>
  </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">Pin 1/2 = AC, pin 3 = -Vo, pin 4 = +Vo. Keep AC pins and SELV output separated; fuse/MOV upstream. Datasheet isolation 2500 VAC is a claim; batch/hipot unverified.</td>
-  </tr></table>
- </td></tr>
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
-	J_5V [label=<
+	MOV1 [label=<
 <table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">J_5V</td>
+   <td balign="left">MOV1</td>
   </tr></table>
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">SELV 5 V distribution block (not a mains terminal)</td>
-   <td balign="left">6-pin</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1">
-   <tr>
-    <td port="p1l">1</td>
-    <td>+5V_IN</td>
-    <td port="p1r">1</td>
-   </tr>
-   <tr>
-    <td port="p2l">2</td>
-    <td>+5V_A</td>
-    <td port="p2r">2</td>
-   </tr>
-   <tr>
-    <td port="p3l">3</td>
-    <td>+5V_B</td>
-    <td port="p3r">3</td>
-   </tr>
-   <tr>
-    <td port="p4l">4</td>
-    <td>GND_IN</td>
-    <td port="p4r">4</td>
-   </tr>
-   <tr>
-    <td port="p5l">5</td>
-    <td>GND_A</td>
-    <td port="p5r">5</td>
-   </tr>
-   <tr>
-    <td port="p6l">6</td>
-    <td>GND_B</td>
-    <td port="p6r">6</td>
-   </tr>
-  </table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">Distribution only; keyed/color-coded. No mains.</td>
-  </tr></table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	J1 [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">J1</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">Low-voltage carrier connector</td>
-   <td balign="left">8-pin</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1">
-   <tr>
-    <td port="p1l">1</td>
-    <td>+5V</td>
-    <td port="p1r">1</td>
-   </tr>
-   <tr>
-    <td port="p2l">2</td>
-    <td>GND</td>
-    <td port="p2r">2</td>
-   </tr>
-   <tr>
-    <td port="p3l">3</td>
-    <td>+3V3</td>
-    <td port="p3r">3</td>
-   </tr>
-   <tr>
-    <td port="p4l">4</td>
-    <td>RELAY_IN1</td>
-    <td port="p4r">4</td>
-   </tr>
-   <tr>
-    <td port="p5l">5</td>
-    <td>RELAY_IN2</td>
-    <td port="p5r">5</td>
-   </tr>
-   <tr>
-    <td port="p6l">6</td>
-    <td>RELAY_FB</td>
-    <td port="p6r">6</td>
-   </tr>
-   <tr>
-    <td port="p7l">7</td>
-    <td>PZEM_TX</td>
-    <td port="p7r">7</td>
-   </tr>
-   <tr>
-    <td port="p8l">8</td>
-    <td>PZEM_RX</td>
-    <td port="p8r">8</td>
-   </tr>
-  </table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">Carrier is SELV only. RELAY_IN1/IN2 are the same MOSFET drain net, exposed as two pins for the off-board relay module inputs.</td>
-  </tr></table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	U7 [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">U7</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">B0505S-1WR3 isolated DC/DC</td>
-   <td balign="left">4-pin</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1">
-   <tr>
-    <td port="p1l">1</td>
-    <td>+5V_IN</td>
-    <td port="p1r">1</td>
-   </tr>
-   <tr>
-    <td port="p2l">2</td>
-    <td>GND_IN</td>
-    <td port="p2r">2</td>
-   </tr>
-   <tr>
-    <td port="p3l">3</td>
-    <td>+5V_ISO</td>
-    <td port="p3r">3</td>
-   </tr>
-   <tr>
-    <td port="p4l">4</td>
-    <td>GND_ISO</td>
-    <td port="p4r">4</td>
-   </tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	U2 [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">U2</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">PZEM-004T V4 100 A CT, closed or split (DOCUMENTATION_DEFICIENT)</td>
-   <td balign="left">8-pin</td>
+   <td balign="left">MOV 275 VAC (10D271K / S10K275)</td>
+   <td balign="left">2-pin</td>
   </tr></table>
  </td></tr>
  <tr><td>
@@ -375,189 +150,12 @@ graph {
    <tr>
     <td port="p1l">1</td>
     <td>L</td>
-    <td port="p1r">1</td>
    </tr>
    <tr>
     <td port="p2l">2</td>
     <td>N</td>
-    <td port="p2r">2</td>
-   </tr>
-   <tr>
-    <td port="p3l">3</td>
-    <td>CT_P</td>
-    <td port="p3r">3</td>
-   </tr>
-   <tr>
-    <td port="p4l">4</td>
-    <td>CT_N</td>
-    <td port="p4r">4</td>
-   </tr>
-   <tr>
-    <td port="p5l">5</td>
-    <td>+5V_ISO</td>
-    <td port="p5r">5</td>
-   </tr>
-   <tr>
-    <td port="p6l">6</td>
-    <td>GND_ISO</td>
-    <td port="p6r">6</td>
-   </tr>
-   <tr>
-    <td port="p7l">7</td>
-    <td>TX</td>
-    <td port="p7r">7</td>
-   </tr>
-   <tr>
-    <td port="p8l">8</td>
-    <td>RX</td>
-    <td port="p8r">8</td>
    </tr>
   </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	CT1 [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">CT1</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">Split CT connector (around one conductor only)</td>
-   <td balign="left">2-pin</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1">
-   <tr>
-    <td>CT_P</td>
-    <td port="p1r">1</td>
-   </tr>
-   <tr>
-    <td>CT_N</td>
-    <td port="p2r">2</td>
-   </tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	J_ISO [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">J_ISO</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">Isolated 5 V distribution block (PZEM side)</td>
-   <td balign="left">6-pin</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1">
-   <tr>
-    <td port="p1l">1</td>
-    <td>+5V_IN</td>
-    <td port="p1r">1</td>
-   </tr>
-   <tr>
-    <td port="p2l">2</td>
-    <td>+5V_A</td>
-    <td port="p2r">2</td>
-   </tr>
-   <tr>
-    <td port="p3l">3</td>
-    <td>+5V_B</td>
-    <td port="p3r">3</td>
-   </tr>
-   <tr>
-    <td port="p4l">4</td>
-    <td>GND_IN</td>
-    <td port="p4r">4</td>
-   </tr>
-   <tr>
-    <td port="p5l">5</td>
-    <td>GND_A</td>
-    <td port="p5r">5</td>
-   </tr>
-   <tr>
-    <td port="p6l">6</td>
-    <td>GND_B</td>
-    <td port="p6r">6</td>
-   </tr>
-  </table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">Never connect to SELV GND.</td>
-  </tr></table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	U6 [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">U6</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">ADuM1201 UART isolator</td>
-   <td balign="left">8-pin</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1">
-   <tr>
-    <td port="p1l">1</td>
-    <td>VDD1</td>
-    <td port="p1r">1</td>
-   </tr>
-   <tr>
-    <td port="p2l">2</td>
-    <td>GND1</td>
-    <td port="p2r">2</td>
-   </tr>
-   <tr>
-    <td port="p3l">3</td>
-    <td>TX1</td>
-    <td port="p3r">3</td>
-   </tr>
-   <tr>
-    <td port="p4l">4</td>
-    <td>RX1</td>
-    <td port="p4r">4</td>
-   </tr>
-   <tr>
-    <td port="p5l">5</td>
-    <td>VDD2</td>
-    <td port="p5r">5</td>
-   </tr>
-   <tr>
-    <td port="p6l">6</td>
-    <td>GND2</td>
-    <td port="p6r">6</td>
-   </tr>
-   <tr>
-    <td port="p7l">7</td>
-    <td>TX2</td>
-    <td port="p7r">7</td>
-   </tr>
-   <tr>
-    <td port="p8l">8</td>
-    <td>RX2</td>
-    <td port="p8r">8</td>
-   </tr>
-  </table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">Barrier: side 2 is PZEM isolated; side 1 is SELV.</td>
-  </tr></table>
  </td></tr>
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
@@ -570,7 +168,7 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">2-channel 5V optocoupler relay module (off-board, active-LOW assumed)</td>
+   <td balign="left">2-channel 5 V optocoupler relay module (off-board, active-LOW)</td>
    <td balign="left">8-pin</td>
   </tr></table>
  </td></tr>
@@ -618,28 +216,88 @@ graph {
    </tr>
   </table>
  </td></tr>
+</table>
+> fillcolor="#FFFFFF" shape=box style=filled]
+	X1 [label=<
+<table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">Two independent SPDT channels: CH1 switches L, CH2 switches N. NOT a mechanically linked DPST. IN1/IN2 are pulled LOW together by the carrier MOSFET; module active-LOW. Verify JD-VCC/pinout and rating.</td>
+   <td balign="left">X1</td>
   </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">Type F socket output (16 A class)</td>
+   <td balign="left">3-pin</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1">
+   <tr>
+    <td port="p1l">1</td>
+    <td>L</td>
+   </tr>
+   <tr>
+    <td port="p2l">2</td>
+    <td>N</td>
+   </tr>
+   <tr>
+    <td port="p3l">3</td>
+    <td>PE</td>
+   </tr>
+  </table>
+ </td></tr>
+</table>
+> fillcolor="#FFFFFF" shape=box style=filled]
+	J1 [label=<
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">J1</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">Carrier SELV connector</td>
+   <td balign="left">3-pin</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1">
+   <tr>
+    <td port="p1l">1</td>
+    <td>+5V</td>
+    <td port="p1r">1</td>
+   </tr>
+   <tr>
+    <td port="p2l">2</td>
+    <td>GND</td>
+    <td port="p2r">2</td>
+   </tr>
+   <tr>
+    <td port="p3l">3</td>
+    <td>RELAY_CTRL</td>
+    <td port="p3r">3</td>
+   </tr>
+  </table>
  </td></tr>
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
 	edge [color="#000000:#ffffff:#000000"]
-	P1:p1r:e -- WL1:w1:w
-	WL1:w1:e -- F1:p1l:w
-	WL1 [label=<
+	P1:p1r:e -- WL:w1:w
+	WL:w1:e -- F1:p1l:w
+	WL [label=<
 <table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WL1</td>
+   <td balign="left">WL</td>
   </tr></table>
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
    <td balign="left">1x</td>
    <td balign="left">1.5 mm²</td>
-   <td balign="left">0.08 m</td>
+   <td balign="left">0.15 m</td>
    <td balign="left">BN</td>
    <td balign="left" bgcolor="#895956" width="4"></td>
   </tr></table>
@@ -650,7 +308,7 @@ graph {
    <tr>
     <td>P1:1:L</td>
     <td>
-     1:L_IN
+     1
     </td>
     <td>F1:1:IN</td>
    </tr>
@@ -682,7 +340,7 @@ graph {
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
    <td balign="left">1x</td>
    <td balign="left">1.5 mm²</td>
-   <td balign="left">0.08 m</td>
+   <td balign="left">0.15 m</td>
    <td balign="left">BN</td>
    <td balign="left" bgcolor="#895956" width="4"></td>
   </tr></table>
@@ -693,7 +351,7 @@ graph {
    <tr>
     <td>F1:2:OUT</td>
     <td>
-     1:L_FUSED
+     1
     </td>
     <td>TF1:1:IN</td>
    </tr>
@@ -712,20 +370,20 @@ graph {
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
 	edge [color="#000000:#ffffff:#000000"]
-	F1:p2r:e -- WL_MOV:w1:w
-	WL_MOV:w1:e -- MOV1:p1l:w
-	WL_MOV [label=<
+	F1:p2r:e -- WPSU_L:w1:w
+	WPSU_L:w1:e -- PS1:p1l:w
+	WPSU_L [label=<
 <table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WL_MOV</td>
+   <td balign="left">WPSU_L</td>
   </tr></table>
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
    <td balign="left">1x</td>
-   <td balign="left">1.5 mm²</td>
-   <td balign="left">0.08 m</td>
+   <td balign="left">0.5 mm²</td>
+   <td balign="left">0.15 m</td>
    <td balign="left">BN</td>
    <td balign="left" bgcolor="#895956" width="4"></td>
   </tr></table>
@@ -736,7 +394,50 @@ graph {
    <tr>
     <td>F1:2:OUT</td>
     <td>
-     1:L_MOV
+     1
+    </td>
+    <td>PS1:1:AC_L</td>
+   </tr>
+   <tr>
+    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
+     <table cellspacing="0" cellborder="0" border="0">
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
+     </table>
+    </td>
+   </tr>
+   <tr><td>&nbsp;</td></tr>
+  </table>
+ </td></tr>
+</table>
+> fillcolor="#FFFFFF" shape=box style=filled]
+	edge [color="#000000:#ffffff:#000000"]
+	F1:p2r:e -- WMOV_L:w1:w
+	WMOV_L:w1:e -- MOV1:p1l:w
+	WMOV_L [label=<
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">WMOV_L</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">1x</td>
+   <td balign="left">0.5 mm²</td>
+   <td balign="left">0.1 m</td>
+   <td balign="left">BN</td>
+   <td balign="left" bgcolor="#895956" width="4"></td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellborder="0">
+   <tr><td>&nbsp;</td></tr>
+   <tr>
+    <td>F1:2:OUT</td>
+    <td>
+     1
     </td>
     <td>MOV1:1:L</td>
    </tr>
@@ -755,13 +456,228 @@ graph {
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
 	edge [color="#000000:#ffffff:#000000"]
-	P1:p2r:e -- WN3:w1:w
-	WN3:w1:e -- MOV1:p2l:w
-	WN3 [label=<
+	P1:p2r:e -- WN:w1:w
+	WN:w1:e -- K1:p7l:w
+	WN [label=<
 <table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WN3</td>
+   <td balign="left">WN</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">1x</td>
+   <td balign="left">1.5 mm²</td>
+   <td balign="left">0.15 m</td>
+   <td balign="left">BU</td>
+   <td balign="left" bgcolor="#0066FF" width="4"></td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellborder="0">
+   <tr><td>&nbsp;</td></tr>
+   <tr>
+    <td>P1:2:N</td>
+    <td>
+     1
+    </td>
+    <td>K1:7:COM2</td>
+   </tr>
+   <tr>
+    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
+     <table cellspacing="0" cellborder="0" border="0">
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
+     </table>
+    </td>
+   </tr>
+   <tr><td>&nbsp;</td></tr>
+  </table>
+ </td></tr>
+</table>
+> fillcolor="#FFFFFF" shape=box style=filled]
+	edge [color="#000000:#ffffff:#000000"]
+	P1:p2r:e -- WPSU_N:w1:w
+	WPSU_N:w1:e -- PS1:p2l:w
+	WPSU_N [label=<
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">WPSU_N</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">1x</td>
+   <td balign="left">0.5 mm²</td>
+   <td balign="left">0.15 m</td>
+   <td balign="left">BU</td>
+   <td balign="left" bgcolor="#0066FF" width="4"></td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellborder="0">
+   <tr><td>&nbsp;</td></tr>
+   <tr>
+    <td>P1:2:N</td>
+    <td>
+     1
+    </td>
+    <td>PS1:2:AC_N</td>
+   </tr>
+   <tr>
+    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
+     <table cellspacing="0" cellborder="0" border="0">
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
+     </table>
+    </td>
+   </tr>
+   <tr><td>&nbsp;</td></tr>
+  </table>
+ </td></tr>
+</table>
+> fillcolor="#FFFFFF" shape=box style=filled]
+	edge [color="#000000:#ffffff:#000000"]
+	P1:p2r:e -- WMOV_N:w1:w
+	WMOV_N:w1:e -- MOV1:p2l:w
+	WMOV_N [label=<
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">WMOV_N</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">1x</td>
+   <td balign="left">0.5 mm²</td>
+   <td balign="left">0.1 m</td>
+   <td balign="left">BU</td>
+   <td balign="left" bgcolor="#0066FF" width="4"></td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellborder="0">
+   <tr><td>&nbsp;</td></tr>
+   <tr>
+    <td>P1:2:N</td>
+    <td>
+     1
+    </td>
+    <td>MOV1:2:N</td>
+   </tr>
+   <tr>
+    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
+     <table cellspacing="0" cellborder="0" border="0">
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
+     </table>
+    </td>
+   </tr>
+   <tr><td>&nbsp;</td></tr>
+  </table>
+ </td></tr>
+</table>
+> fillcolor="#FFFFFF" shape=box style=filled]
+	edge [color="#000000:#ffffff:#000000"]
+	TF1:p2r:e -- WTF:w1:w
+	WTF:w1:e -- K1:p5l:w
+	WTF [label=<
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">WTF</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">1x</td>
+   <td balign="left">1.5 mm²</td>
+   <td balign="left">0.1 m</td>
+   <td balign="left">BN</td>
+   <td balign="left" bgcolor="#895956" width="4"></td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellborder="0">
+   <tr><td>&nbsp;</td></tr>
+   <tr>
+    <td>TF1:2:OUT</td>
+    <td>
+     1
+    </td>
+    <td>K1:5:COM1</td>
+   </tr>
+   <tr>
+    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
+     <table cellspacing="0" cellborder="0" border="0">
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
+     </table>
+    </td>
+   </tr>
+   <tr><td>&nbsp;</td></tr>
+  </table>
+ </td></tr>
+</table>
+> fillcolor="#FFFFFF" shape=box style=filled]
+	edge [color="#000000:#ffffff:#000000"]
+	K1:p6r:e -- WOUT_L:w1:w
+	WOUT_L:w1:e -- X1:p1l:w
+	WOUT_L [label=<
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">WOUT_L</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">1x</td>
+   <td balign="left">1.5 mm²</td>
+   <td balign="left">0.1 m</td>
+   <td balign="left">BN</td>
+   <td balign="left" bgcolor="#895956" width="4"></td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellborder="0">
+   <tr><td>&nbsp;</td></tr>
+   <tr>
+    <td>K1:6:NO1</td>
+    <td>
+     1
+    </td>
+    <td>X1:1:L</td>
+   </tr>
+   <tr>
+    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
+     <table cellspacing="0" cellborder="0" border="0">
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
+     </table>
+    </td>
+   </tr>
+   <tr><td>&nbsp;</td></tr>
+  </table>
+ </td></tr>
+</table>
+> fillcolor="#FFFFFF" shape=box style=filled]
+	edge [color="#000000:#ffffff:#000000"]
+	K1:p8r:e -- WOUT_N:w1:w
+	WOUT_N:w1:e -- X1:p2l:w
+	WOUT_N [label=<
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">WOUT_N</td>
   </tr></table>
  </td></tr>
  <tr><td>
@@ -777,11 +693,11 @@ graph {
   <table border="0" cellspacing="0" cellborder="0">
    <tr><td>&nbsp;</td></tr>
    <tr>
-    <td>P1:2:N</td>
+    <td>K1:8:NO2</td>
     <td>
-     1:N_MOV
+     1
     </td>
-    <td>MOV1:2:N</td>
+    <td>X1:2:N</td>
    </tr>
    <tr>
     <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
@@ -811,7 +727,7 @@ graph {
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
    <td balign="left">1x</td>
    <td balign="left">1.5 mm²</td>
-   <td balign="left">0.25 m</td>
+   <td balign="left">0.15 m</td>
    <td balign="left">GNYE</td>
    <td balign="left" bgcolor="#00FF00:#FFFF00:#00FF00" width="4"></td>
   </tr></table>
@@ -822,7 +738,7 @@ graph {
    <tr>
     <td>P1:3:PE</td>
     <td>
-     1:PE
+     1
     </td>
     <td>X1:3:PE</td>
    </tr>
@@ -838,166 +754,13 @@ graph {
    <tr><td>&nbsp;</td></tr>
   </table>
  </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">No relay/fuse. Dedicated PE stud/terminal.</td>
-  </tr></table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ffffff:#000000"]
-	F1:p2r:e -- WPSU_L:w1:w
-	WPSU_L:w1:e -- PS1:p1l:w
-	WPSU_L [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WPSU_L</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">1x</td>
-   <td balign="left">0.75 mm²</td>
-   <td balign="left">0.15 m</td>
-   <td balign="left">BN</td>
-   <td balign="left" bgcolor="#895956" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>F1:2:OUT</td>
-    <td>
-     1:PSU_L
-    </td>
-    <td>PS1:1:AC_L</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ffffff:#000000"]
-	P1:p2r:e -- WPSU_N:w1:w
-	WPSU_N:w1:e -- PS1:p2l:w
-	WPSU_N [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WPSU_N</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">1x</td>
-   <td balign="left">0.75 mm²</td>
-   <td balign="left">0.15 m</td>
-   <td balign="left">BU</td>
-   <td balign="left" bgcolor="#0066FF" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>P1:2:N</td>
-    <td>
-     1:PSU_N
-    </td>
-    <td>PS1:2:AC_N</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
 	edge [color="#000000:#ff0000:#000000"]
-	PS1:p3r:e -- W5V:w1:w
-	W5V:w1:e -- J_5V:p1l:w
-	edge [color="#000000:#000000:#000000"]
-	PS1:p4r:e -- W5V:w2:w
-	W5V:w2:e -- J_5V:p4l:w
-	W5V [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">W5V</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">2x</td>
-   <td balign="left">0.5 mm²</td>
-   <td balign="left">0.15 m</td>
-   <td balign="left">GY</td>
-   <td balign="left" bgcolor="#999999" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>PS1:3:+5V</td>
-    <td>
-     1:RD:+5V_IN
-    </td>
-    <td>J_5V:1:+5V_IN</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ff0000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr>
-    <td>PS1:4:0V</td>
-    <td>
-     2:BK:GND_IN
-    </td>
-    <td>J_5V:4:GND_IN</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w2" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ff0000:#000000"]
-	J_5V:p2r:e -- W5V_CARRIER:w1:w
+	PS1:p3r:e -- W5V_CARRIER:w1:w
 	W5V_CARRIER:w1:e -- J1:p1l:w
 	edge [color="#000000:#000000:#000000"]
-	J_5V:p5r:e -- W5V_CARRIER:w2:w
+	PS1:p4r:e -- W5V_CARRIER:w2:w
 	W5V_CARRIER:w2:e -- J1:p2l:w
 	W5V_CARRIER [label=<
 <table border="0" cellspacing="0" cellpadding="0">
@@ -1019,9 +782,9 @@ graph {
   <table border="0" cellspacing="0" cellborder="0">
    <tr><td>&nbsp;</td></tr>
    <tr>
-    <td>J_5V:2:+5V_A</td>
+    <td>PS1:3:+5V</td>
     <td>
-     1:RD:+5V_A
+     1:RD
     </td>
     <td>J1:1:+5V</td>
    </tr>
@@ -1035,9 +798,9 @@ graph {
     </td>
    </tr>
    <tr>
-    <td>J_5V:5:GND_A</td>
+    <td>PS1:4:0V</td>
     <td>
-     2:BK:GND_A
+     2:BK
     </td>
     <td>J1:2:GND</td>
    </tr>
@@ -1056,231 +819,16 @@ graph {
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
 	edge [color="#000000:#ff0000:#000000"]
-	J_5V:p3r:e -- W5V_ISO_IN:w1:w
-	W5V_ISO_IN:w1:e -- U7:p1l:w
+	PS1:p3r:e -- W5V_RELAY:w1:w
+	W5V_RELAY:w1:e -- K1:p3l:w
 	edge [color="#000000:#000000:#000000"]
-	J_5V:p6r:e -- W5V_ISO_IN:w2:w
-	W5V_ISO_IN:w2:e -- U7:p2l:w
-	W5V_ISO_IN [label=<
+	PS1:p4r:e -- W5V_RELAY:w2:w
+	W5V_RELAY:w2:e -- K1:p4l:w
+	W5V_RELAY [label=<
 <table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">W5V_ISO_IN</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">2x</td>
-   <td balign="left">0.5 mm²</td>
-   <td balign="left">0.12 m</td>
-   <td balign="left">GY</td>
-   <td balign="left" bgcolor="#999999" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>J_5V:3:+5V_B</td>
-    <td>
-     1:RD:+5V_B
-    </td>
-    <td>U7:1:+5V_IN</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ff0000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr>
-    <td>J_5V:6:GND_B</td>
-    <td>
-     2:BK:GND_B
-    </td>
-    <td>U7:2:GND_IN</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w2" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ffffff:#000000"]
-	F1:p2r:e -- WPZEM_L:w1:w
-	WPZEM_L:w1:e -- U2:p1l:w
-	WPZEM_L [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WPZEM_L</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">1x</td>
-   <td balign="left">0.5 mm²</td>
-   <td balign="left">0.2 m</td>
-   <td balign="left">BN</td>
-   <td balign="left" bgcolor="#895956" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>F1:2:OUT</td>
-    <td>
-     1:PZEM_L
-    </td>
-    <td>U2:1:L</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ffffff:#000000"]
-	P1:p2r:e -- WPZEM_N:w1:w
-	WPZEM_N:w1:e -- U2:p2l:w
-	WPZEM_N [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WPZEM_N</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">1x</td>
-   <td balign="left">0.5 mm²</td>
-   <td balign="left">0.2 m</td>
-   <td balign="left">BU</td>
-   <td balign="left" bgcolor="#0066FF" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>P1:2:N</td>
-    <td>
-     1:PZEM_N
-    </td>
-    <td>U2:2:N</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ffffff:#000000"]
-	CT1:p1r:e -- WCT:w1:w
-	WCT:w1:e -- U2:p3l:w
-	edge [color="#000000:#000000:#000000"]
-	CT1:p2r:e -- WCT:w2:w
-	WCT:w2:e -- U2:p4l:w
-	WCT [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WCT</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">2x</td>
-   <td balign="left">0.25 mm²</td>
-   <td balign="left">0.2 m</td>
-   <td balign="left">GY</td>
-   <td balign="left" bgcolor="#999999" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>CT1:1:CT_P</td>
-    <td>
-     1:WH:CT_P
-    </td>
-    <td>U2:3:CT_P</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr>
-    <td>CT1:2:CT_N</td>
-    <td>
-     2:BK:CT_N
-    </td>
-    <td>U2:4:CT_N</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w2" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">Shielded/twisted; route away from relay.</td>
-  </tr></table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ff0000:#000000"]
-	U7:p3r:e -- WISO_OUT:w1:w
-	WISO_OUT:w1:e -- J_ISO:p1l:w
-	edge [color="#000000:#000000:#000000"]
-	U7:p4r:e -- WISO_OUT:w2:w
-	WISO_OUT:w2:e -- J_ISO:p4l:w
-	WISO_OUT [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WISO_OUT</td>
+   <td balign="left">W5V_RELAY</td>
   </tr></table>
  </td></tr>
  <tr><td>
@@ -1296,502 +844,9 @@ graph {
   <table border="0" cellspacing="0" cellborder="0">
    <tr><td>&nbsp;</td></tr>
    <tr>
-    <td>U7:3:+5V_ISO</td>
+    <td>PS1:3:+5V</td>
     <td>
-     1:RD:+5V_ISO
-    </td>
-    <td>J_ISO:1:+5V_IN</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ff0000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr>
-    <td>U7:4:GND_ISO</td>
-    <td>
-     2:BK:GND_ISO
-    </td>
-    <td>J_ISO:4:GND_IN</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w2" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ff0000:#000000"]
-	J_ISO:p2r:e -- WISO_PZEM:w1:w
-	WISO_PZEM:w1:e -- U2:p5l:w
-	edge [color="#000000:#000000:#000000"]
-	J_ISO:p5r:e -- WISO_PZEM:w2:w
-	WISO_PZEM:w2:e -- U2:p6l:w
-	WISO_PZEM [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WISO_PZEM</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">2x</td>
-   <td balign="left">0.5 mm²</td>
-   <td balign="left">0.15 m</td>
-   <td balign="left">GY</td>
-   <td balign="left" bgcolor="#999999" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>J_ISO:2:+5V_A</td>
-    <td>
-     1:RD:+5V_ISO_PZEM
-    </td>
-    <td>U2:5:+5V_ISO</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ff0000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr>
-    <td>J_ISO:5:GND_A</td>
-    <td>
-     2:BK:GND_ISO_PZEM
-    </td>
-    <td>U2:6:GND_ISO</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w2" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ff0000:#000000"]
-	J_ISO:p3r:e -- WISO_U6:w1:w
-	WISO_U6:w1:e -- U6:p5l:w
-	edge [color="#000000:#000000:#000000"]
-	J_ISO:p6r:e -- WISO_U6:w2:w
-	WISO_U6:w2:e -- U6:p6l:w
-	WISO_U6 [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WISO_U6</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">2x</td>
-   <td balign="left">0.25 mm²</td>
-   <td balign="left">0.12 m</td>
-   <td balign="left">GY</td>
-   <td balign="left" bgcolor="#999999" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>J_ISO:3:+5V_B</td>
-    <td>
-     1:RD:+5V_ISO_U6
-    </td>
-    <td>U6:5:VDD2</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ff0000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr>
-    <td>J_ISO:6:GND_B</td>
-    <td>
-     2:BK:GND_ISO_U6
-    </td>
-    <td>U6:6:GND2</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w2" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ffffff:#000000"]
-	U2:p7r:e -- WUART_PZEM:w1:w
-	WUART_PZEM:w1:e -- U6:p3l:w
-	edge [color="#000000:#000000:#000000"]
-	U2:p8r:e -- WUART_PZEM:w2:w
-	WUART_PZEM:w2:e -- U6:p4l:w
-	WUART_PZEM [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WUART_PZEM</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">2x</td>
-   <td balign="left">0.25 mm²</td>
-   <td balign="left">0.15 m</td>
-   <td balign="left">GY</td>
-   <td balign="left" bgcolor="#999999" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>U2:7:TX</td>
-    <td>
-     1:WH:PZEM_TX
-    </td>
-    <td>U6:3:TX1</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr>
-    <td>U2:8:RX</td>
-    <td>
-     2:BK:PZEM_RX
-    </td>
-    <td>U6:4:RX1</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w2" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">PZEM side only; do not cross barrier.</td>
-  </tr></table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ffffff:#000000"]
-	U6:p7r:e -- WUART_SELV:w1:w
-	WUART_SELV:w1:e -- J1:p7l:w
-	edge [color="#000000:#000000:#000000"]
-	U6:p8r:e -- WUART_SELV:w2:w
-	WUART_SELV:w2:e -- J1:p8l:w
-	WUART_SELV [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WUART_SELV</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">2x</td>
-   <td balign="left">0.25 mm²</td>
-   <td balign="left">0.15 m</td>
-   <td balign="left">GY</td>
-   <td balign="left" bgcolor="#999999" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>U6:7:TX2</td>
-    <td>
-     1:WH:ISO_TX
-    </td>
-    <td>J1:7:PZEM_TX</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr>
-    <td>U6:8:RX2</td>
-    <td>
-     2:BK:ISO_RX
-    </td>
-    <td>J1:8:PZEM_RX</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w2" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ffffff:#000000"]
-	TF1:p2r:e -- WL3:w1:w
-	WL3:w1:e -- K1:p5l:w
-	WL3 [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WL3</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">1x</td>
-   <td balign="left">1.5 mm²</td>
-   <td balign="left">0.1 m</td>
-   <td balign="left">BN</td>
-   <td balign="left" bgcolor="#895956" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>TF1:2:OUT</td>
-    <td>
-     1:L_TCO
-    </td>
-    <td>K1:5:COM1</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ffffff:#000000"]
-	K1:p6r:e -- WL4:w1:w
-	WL4:w1:e -- X1:p1l:w
-	WL4 [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WL4</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">1x</td>
-   <td balign="left">1.5 mm²</td>
-   <td balign="left">0.1 m</td>
-   <td balign="left">BN</td>
-   <td balign="left" bgcolor="#895956" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>K1:6:NO1</td>
-    <td>
-     1:L_SW
-    </td>
-    <td>X1:1:L</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ffffff:#000000"]
-	P1:p2r:e -- WN1:w1:w
-	WN1:w1:e -- K1:p7l:w
-	WN1 [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WN1</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">1x</td>
-   <td balign="left">1.5 mm²</td>
-   <td balign="left">0.15 m</td>
-   <td balign="left">BU</td>
-   <td balign="left" bgcolor="#0066FF" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>P1:2:N</td>
-    <td>
-     1:N_IN
-    </td>
-    <td>K1:7:COM2</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ffffff:#000000"]
-	K1:p8r:e -- WN2:w1:w
-	WN2:w1:e -- X1:p2l:w
-	WN2 [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WN2</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">1x</td>
-   <td balign="left">1.5 mm²</td>
-   <td balign="left">0.1 m</td>
-   <td balign="left">BU</td>
-   <td balign="left" bgcolor="#0066FF" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>K1:8:NO2</td>
-    <td>
-     1:N_SW
-    </td>
-    <td>X1:2:N</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ff0000:#000000"]
-	J1:p1r:e -- W_RELAY_MODULE:w1:w
-	W_RELAY_MODULE:w1:e -- K1:p3l:w
-	edge [color="#000000:#000000:#000000"]
-	J1:p2r:e -- W_RELAY_MODULE:w2:w
-	W_RELAY_MODULE:w2:e -- K1:p4l:w
-	edge [color="#000000:#ff8000:#000000"]
-	J1:p4r:e -- W_RELAY_MODULE:w3:w
-	W_RELAY_MODULE:w3:e -- K1:p1l:w
-	edge [color="#000000:#999999:#000000"]
-	J1:p5r:e -- W_RELAY_MODULE:w4:w
-	W_RELAY_MODULE:w4:e -- K1:p2l:w
-	W_RELAY_MODULE [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">W_RELAY_MODULE</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">4x</td>
-   <td balign="left">0.5 mm²</td>
-   <td balign="left">0.25 m</td>
-   <td balign="left">GY</td>
-   <td balign="left" bgcolor="#999999" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>J1:1:+5V</td>
-    <td>
-     1:RD:+5V
+     1:RD
     </td>
     <td>K1:3:VCC</td>
    </tr>
@@ -1805,9 +860,9 @@ graph {
     </td>
    </tr>
    <tr>
-    <td>J1:2:GND</td>
+    <td>PS1:4:0V</td>
     <td>
-     2:BK:GND
+     2:BK
     </td>
     <td>K1:4:GND</td>
    </tr>
@@ -1820,34 +875,45 @@ graph {
      </table>
     </td>
    </tr>
+   <tr><td>&nbsp;</td></tr>
+  </table>
+ </td></tr>
+</table>
+> fillcolor="#FFFFFF" shape=box style=filled]
+	edge [color="#000000:#ffffff:#000000"]
+	J1:p3r:e -- WRELAY1:w1:w
+	WRELAY1:w1:e -- K1:p1l:w
+	WRELAY1 [label=<
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">WRELAY1</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">1x</td>
+   <td balign="left">0.25 mm²</td>
+   <td balign="left">0.1 m</td>
+   <td balign="left">WH</td>
+   <td balign="left" bgcolor="#FFFFFF" width="4"></td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellborder="0">
+   <tr><td>&nbsp;</td></tr>
    <tr>
-    <td>J1:4:RELAY_IN1</td>
+    <td>J1:3:RELAY_CTRL</td>
     <td>
-     3:OG:IN1
+     1
     </td>
     <td>K1:1:IN1</td>
    </tr>
    <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w3" height="6">
+    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
      <table cellspacing="0" cellborder="0" border="0">
       <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ff8000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr>
-    <td>J1:5:RELAY_IN2</td>
-    <td>
-     4:GY:IN2
-    </td>
-    <td>K1:2:IN2</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w4" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#999999" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
       <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
      </table>
     </td>
@@ -1855,10 +921,48 @@ graph {
    <tr><td>&nbsp;</td></tr>
   </table>
  </td></tr>
+</table>
+> fillcolor="#FFFFFF" shape=box style=filled]
+	edge [color="#000000:#ffffff:#000000"]
+	J1:p3r:e -- WRELAY2:w1:w
+	WRELAY2:w1:e -- K1:p2l:w
+	WRELAY2 [label=<
+<table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">To off-board 2-channel relay module. Keep in mains zone; do not route over SELV logic.</td>
+   <td balign="left">WRELAY2</td>
   </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">1x</td>
+   <td balign="left">0.25 mm²</td>
+   <td balign="left">0.1 m</td>
+   <td balign="left">GN</td>
+   <td balign="left" bgcolor="#00FF00" width="4"></td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellborder="0">
+   <tr><td>&nbsp;</td></tr>
+   <tr>
+    <td>J1:3:RELAY_CTRL</td>
+    <td>
+     1
+    </td>
+    <td>K1:2:IN2</td>
+   </tr>
+   <tr>
+    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
+     <table cellspacing="0" cellborder="0" border="0">
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
+     </table>
+    </td>
+   </tr>
+   <tr><td>&nbsp;</td></tr>
+  </table>
  </td></tr>
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]

@@ -1,4 +1,4 @@
-# Protection Coordination — REV_A_PROVISIONAL
+# Protection Coordination — REV_B_NO_TEMP
 
 **Status:** `BLOCKED_PENDING_CALCULATION_AND_LAB`
 **Prinsip:** fuse/thermal cutoff/MOV harus terkoordinasi; software bukan proteksi utama.

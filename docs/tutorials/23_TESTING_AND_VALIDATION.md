@@ -19,7 +19,7 @@ powershell -ExecutionPolicy Bypass -File firmware\test\host\run_tests.ps1
 - Firmware core 74 checks PASS.
 - Web 5 Playwright tests PASS; axe login/dashboard PASS.
 - Static connectivity PASS.
-- KiCad ERC/DRC and placement-only Gerber PASS; component-level design still BLOCKED.
+- KiCad ERC 0 and routed carrier DRC 0/0 PASS; physical validation still BLOCKED.
 - ESP-IDF v6.1 target build and Android debug APK PASS; Docker/Postgres remain BLOCKED.
 
 ## Arti status

@@ -5,7 +5,7 @@
       "P1:PE",
       "W_PE:1",
       "X1:PE",
-      "WPE:PE"
+      "WPE:1"
     ],
     "rule": "PE must connect input to output without relay/fuse/thermal cutoff."
   },
@@ -15,12 +15,12 @@
   },
   "relay_coil_selv": {
     "status": "PASS",
-    "note": "Coil is driven from SELV only."
+    "note": "Relay module inputs are driven from SELV GPIO through the carrier MOSFET."
   },
-  "uart_isolation": {
+  "pzem_isolation": {
     "status": "PASS",
     "failures": [],
-    "note": "No net may short isolator side 1 to side 2."
+    "note": "No net may short PZEM mains terminals to its TTL side. PZEM internal optocouplers are the barrier."
   },
   "mains_selv_separation": {
     "status": "PASS",
@@ -31,18 +31,18 @@
     "status": "PASS",
     "issues": [],
     "board_revision_verified": false,
-    "checked_defines": 11,
+    "checked_defines": 10,
     "limitations": [
       "Board revision is unverified; static compare only."
     ]
   },
   "bom_crosscheck": {
     "status": "PASS",
-    "master_rows": 48,
-    "pcba_rows": 11,
+    "master_rows": 54,
+    "pcba_rows": 21,
     "missing_refs_in_master": [],
-    "unpriced_lines": 48,
-    "unapproved_lines": 48,
+    "unpriced_lines": 54,
+    "unapproved_lines": 54,
     "approved_for_fabrication": 0,
     "limitations": [
       "Engineering BOM is unpriced; bom/BOM_PROCUREMENT.csv is a dated listing matrix, not a supplier quote."

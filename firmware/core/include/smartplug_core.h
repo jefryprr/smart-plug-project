@@ -62,6 +62,7 @@ typedef struct {
     bool clock_valid;
     bool meter_valid;
     bool temperature_valid;
+    bool temperature_required;
     uint32_t last_command_sequence;
     char last_command_id[SP_COMMAND_ID_MAX];
     uint32_t state_version;

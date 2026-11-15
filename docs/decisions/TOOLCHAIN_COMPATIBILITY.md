@@ -16,7 +16,7 @@
 | Vitest | 5.1.0 | 34+11+38 tests PASS | `npm test` |
 | Python | 3.11.15 (project `.venv`) | Available | `python --version` |
 | CadQuery | 2.8.0 / OCP 7.9.3.1.1 | STEP/STL generated | `enclosure.py` |
-| WireViz | 0.4.1 | 6 harnesses rendered | `render_wiring.py` |
+| WireViz | 0.4.1 | 5 harnesses rendered | `render_wiring.py` |
 | Graphviz | 16.1.1 portable | `dot` works | `SYSTEM_ARCHITECTURE.*` |
 | kiutils | 1.4.8 | KiCad files parse | `kiutils` parse OK |
 | Zig | 0.17.1 portable | C host tests PASS | 74 checks |
@@ -33,8 +33,8 @@
 
 ## Deviations
 
-1. **Circuit-Synth not used.** `hardware/generators/generate_kicad.py` emits a native KiCad system block schematic and placement-only PCB. This is not a component-level production schematic.
-2. **KiCad ERC/DRC run with KiCad 10.0.8.** ERC 0 on block-level text-only schematic; DRC 0 on placement-only PCB; Gerber/drill placement-only. Component-level schematic/routing still absent.
+1. **Circuit-Synth not used.** `hardware/generators/generate_kicad.py` emits a native KiCad system block schematic; `scripts/generate_carrier_pcb.py` and `scripts/route_carrier.py` generate the routed SELV carrier. The block schematic is not a production symbol-level schematic.
+2. **KiCad ERC/DRC run with KiCad 10.0.8.** ERC 0 on block-level schematic; DRC 0/0 on routed 100x70 SELV carrier; routed Gerber/drill/POS. Physical validation still absent.
 3. **Firmware host tests use Zig `cc`.** This tests the portable core; the ESP-IDF v6.1 `esp32s3` build is recorded separately and is not a hardware test.
 4. **Android debug APK built.** `arm64-v8a`, debug v2 signature verified; not a release APK, not installed on a device.
 5. **Graphviz portable.** Downloaded and hash-recorded in `tools/downloads`; not a system install.

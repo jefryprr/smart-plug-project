@@ -16,11 +16,10 @@
 | Fuse | Littelfuse 215 series 10 A time-lag | Schurter 0001.2510; Bel 5TT 10 | **PENDING_APPROVAL**; koordinasi belum |
 | MOV | EPCOS S10K275 | Littelfuse V275LA10P; Bourns MOV-10D271K | **PENDING_APPROVAL**; studi surge belum |
 | Thermal cutoff | Sefuse SF169E 99 °C 10 A | Therm-O-Disc one-shot; KSD301 (ditolak) | **DOCUMENTATION_DEFICIENT** |
-| Sensor suhu | TI TMP102AIDRLR | MCP9808; DS18B20 | **PENDING_APPROVAL** |
 | OLED | SSD1306 0.96" I2C | SH1106 1.3"; bare panel | **DOCUMENTATION_DEFICIENT** |
 | Socket/plug | Type F 16 A 2P+E (Q02 lean) | Type E/F combo; standar lokal | **DOCUMENTATION_DEFICIENT/BLOCKED** |
 | Enclosure | ABS/PC **220x120x70 confirmed (Q06=C)**, flame-retardant (150x100 and 180x120 fail clearance) | Hammond/Bud rated enclosure; 3D print prototype | **BLOCKED**; material belum dipilih |
-| Isolasi UART | ADuM1201 + B0505S-1WR3 | Si8622 + R1SE-0505; optocoupler + isolated DC/DC | **PENDING_APPROVAL** |
+| Isolasi UART | **PZEM internal optocoupler** | Tidak ada barrier eksternal; review creepage/hipot wajib | **DOCUMENTATION_DEFICIENT** |
 | RTC | DS3231MZ+ | PCF8523T; SNTP holdover | **PENDING_APPROVAL** |
 
 ## 1. MCU board
@@ -51,14 +50,12 @@
 | HLW8032 + shunt | Sederhana | Datasheet tersedia | Kecil | UART | Shunt membawa arus beban; isolasi UART tetap perlu; tidak cocok untuk 8 A kontinu tanpa desain termal | 2/5 |
 | Shelly EM (modul jadi) | Produk jadi | Dokumen terbatas | Modul | Wi-Fi/API | Bukan desain terbuka; integrasi dan sertifikasi tidak dapat diklaim | 1/5 |
 
-**Temuan:** CT 100 A hanya rating sensor, bukan izin arus output. PZEM V4 dengan CT berarti jalur arus utama tidak melalui modul, tetapi terminal tegangan tetap mains-referenced. Barrier UART `ADuM1201` + isolated DC/DC `B0505S` direncanakan sebagai solusi provisional; ini belum menggantikan review isolasi assembly.
+**Temuan:** CT 100 A hanya rating sensor, bukan izin arus output. PZEM V4 dengan CT berarti jalur arus utama tidak melalui modul, tetapi terminal tegangan tetap mains-referenced. REV_B memakai **optocoupler internal PZEM** sebagai barrier; tidak ada ADuM1201/B0505S eksternal. Creepage batch dan hipot assembly tetap wajib.
 
 **Sumber:**
 - https://github.com/im-0/pzem-004t-original-docs (arsip historis)
 - https://www.easyware.co.id/product/peacefair-pzem-004t-v4-ac-power-energy-meter-uart-modbus-original/ (ketersediaan, bukan datasheet)
 - https://www.analog.com/en/products/ade7953.html
-- https://www.analog.com/media/en/technical-documentation/data-sheets/ADuM1200_1201.pdf
-- https://www.mornsun-power.com/html/pdf/B0505S-1WR3.html
 
 **Status:** `DOCUMENTATION_DEFICIENT`. Jangan finalkan PZEM sebelum manual batch, pinout, level UART, isolasi, dan dimensi diukur.
 
@@ -135,7 +132,7 @@ Pengguna memilih **modul relay optocoupler 2 channel umum, 5 V, off-board** (buk
 
 | Fungsi | Kandidat | Kelebihan | Kekurangan | Skor |
 |---|---|---|---|---|
-| Suhu | TMP102AIDRLR | I2C, kecil, 3.3 V, datasheet TI | Perlu kalibrasi/posisi | 4/5 |
+| Suhu | **Tidak dipasang (REV_B)** | — | Tidak ada sensor suhu; proteksi termal hardware (fuse/TCO) | — |
 | Suhu | MCP9808 | Akurasi baik | Lebih mahal | 4/5 |
 | Suhu | DS18B20 | Probe remote | 1-wire, response lambat | 3/5 |
 | OLED | SSD1306 0.96" I2C | Umum, 3.3 V | Modul pasar tanpa datasheet pabrikan | 3/5 |
@@ -161,30 +158,30 @@ Pengguna memilih **modul relay optocoupler 2 channel umum, 5 V, off-board** (buk
 2. **Rating final 8 A** (user amendment 2026-11-15); relay module 2 channel tetap bukan DPST mechanically linked dan rating 10 A hanya klaim vendor.
 3. **PZEM V4 belum dapat diisolasi hanya dari nama modul.** Barrier UART dan pengukuran batch wajib.
 4. **Socket/plug/PE/enclosure adalah blocker keselamatan**, bukan item kosmetik.
-5. **Harga sudah dikumpulkan** untuk 48 baris di `bom/BOM_PROCUREMENT.csv`; 39 baris punya listing bertanggal, 9 baris `ESTIMATED`. Harga listing bukan quote dan bukan approval.
+5. **Harga sudah dikumpulkan** untuk 54 baris di `bom/BOM_PROCUREMENT.csv`; 43 baris punya listing bertanggal, 11 baris `ESTIMATED`. Harga listing bukan quote dan bukan approval.
 
-## 9. Sourcing Indonesia dan budget (2026-11-15)
+## 9. Sourcing Indonesia dan budget (2026-11-16, REV_B)
 
 Ringkasan lengkap ada di `research/PROCUREMENT_INDONESIA.md`; daftar belanja ada di `bom/BOM_PROCUREMENT.csv`.
 
 | Konfigurasi | Subtotal | + ongkir Rp40.000 | Status |
 |---|---:|---:|---|
-| Elektronik inti | Rp526.923 | — | di dalam budget |
-| CORE (safety/function minimum) | Rp756.987 | Rp796.987 | sedikit di atas cap |
-| CORE dengan restock EasyWare | Rp705.519 | Rp745.519 | masuk budget |
-| FULL (+ OLED/RTC/RGB/konektor) | Rp895.976 | Rp935.976 | di atas budget |
+| Elektronik inti | Rp433.633 | — | di dalam budget |
+| CORE (safety/function minimum) | Rp698.297 | Rp738.297 | **di bawah cap** |
+| CORE dengan restock EasyWare | Rp646.829 | Rp686.829 | margin lebih besar |
+| FULL (+ OLED/RTC/RGB/konektor) | Rp815.897 | Rp855.897 | di atas budget |
 
-**Keputusan pengadaan:**
+**Keputusan pengadaan REV_B:**
 
-- MCU: ESP32-S3 N16R8 compatible Rp139.968 (EasyWare official-compatible Rp103.500 sedang habis). Deviasi Q08=B dicatat eksplisit.
-- Metering: PZEM-004T V4 **100 A closed CT** Rp150.000 (EasyWare 100 A close CT Rp135.000 habis). Varian 10 A ditolak untuk 8 A kontinu.
-- PSU: HLK-5M05 Rp49.000 (CNC Store Rp63.300 habis).
+- MCU: ESP32-S3 N16R8 compatible Rp139.968 (EasyWare Rp103.500 habis). Deviasi Q08=B dicatat.
+- Metering: PZEM-004T V4 **100 A CT** Rp150.000. **Tidak ada ADuM1201/B0505S**; isolasi internal PZEM.
+- PSU: HLK-5M05 Rp49.000.
 - Relay: modul 2 channel optocoupler Rp16.650.
-- Suhu: GY-TMP102 breakout Rp50.000.
-- Isolasi: CJMCU ADUM1201 Rp25.900 + Mornsun B0505S-1WR3 Rp38.500.
-- Proteksi: Littelfuse 10 A slow-blow Rp18.300, holder Rp5.500, MOV 10D271K Rp7.500, TCO 99 °C Rp4.995.
-- Enclosure: MG Duradus 220x120x70 ABS IP65 Rp99.684 (ukuran exact; flame rating belum).
+- **Tidak ada TMP102/sensor suhu.** Proteksi termal hardware: fuse + TCO 99 °C.
+- Level shift: SN74HCT125N Rp8.750 + divider 10k/20k.
+- Proteksi: Littelfuse 10 A Rp18.300, holder Rp5.500, MOV 10D271K Rp7.500, TCO Rp4.995.
+- Enclosure: MG Duradus 220x120x70 ABS IP65 Rp99.684 (flame rating belum).
 - Socket/plug: Simon Schuko 16 A Rp25.026 + BOSS BP16 Rp14.044.
-- Kabel: NYYHY 3x1.5 Rp29.000/m (0.5 m).
+- PCB carrier 100x70 routed: Rp15.000 (5 pcs share, estimasi).
 
-**Budget verdict:** `CORE_ACHIEVABLE_WITH_RESTOCK; FULL_OVER_BUDGET`. Jangan menurunkan fuse/MOV/TCO/terminal/PE/enclosure/isolasi untuk memaksa FULL masuk Rp750.000.
+**Budget verdict:** `CORE_FITS_750K; FULL_OVER_BUDGET`. Jangan menurunkan fuse/MOV/TCO/terminal/PE/enclosure/isolasi untuk memaksa FULL masuk Rp750.000.

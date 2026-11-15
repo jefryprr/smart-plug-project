@@ -25,8 +25,8 @@ class ModuleEnvelope:
 # Positions are relative to the enclosure centre (x, y) and bottom (z=0).
 MODULES: dict[str, list[ModuleEnvelope]] = {
     "provisional": [
-        ModuleEnvelope("carrier", "Low-voltage carrier PCB (75x50)", (75, 50, 1.6), (-35, 0, 8), "SELV", "engineering_calculation"),
-        ModuleEnvelope("esp32", "ESP32-S3-DevKitC-1 (approx)", (68.6, 25.4, 10), (-34, 0, 13), "SELV", "datasheet_approx"),
+        ModuleEnvelope("carrier", "Low-voltage carrier PCB (80x50, provisional)", (80, 50, 1.6), (-30, 0, 8), "SELV", "engineering_calculation"),
+        ModuleEnvelope("esp32", "ESP32-S3-DevKitC-1 (2x22, approx)", (68.6, 25.4, 10), (-30, 0, 13), "SELV", "datasheet_approx"),
         ModuleEnvelope("oled", "OLED 0.96 module", (27, 27, 4), (-55, -34, 40), "SELV", "provisional"),
         ModuleEnvelope("button", "Panel button + cap", (12, 12, 8), (-20, -40, 34), "SELV", "provisional"),
         ModuleEnvelope("rgb", "External RGB diffuser", (6, 6, 3), (-5, -40, 40), "SELV", "provisional"),
@@ -42,21 +42,21 @@ MODULES: dict[str, list[ModuleEnvelope]] = {
         ModuleEnvelope("barrier", "Internal isolation barrier", (2, 95, 50), (5, 0, 27.5), "MECHANICAL", "engineering_calculation"),
     ],
     "recommended": [
-        ModuleEnvelope("carrier", "Low-voltage carrier PCB (75x50)", (75, 50, 1.6), (-70, 0, 8), "SELV", "engineering_calculation"),
-        ModuleEnvelope("esp32", "ESP32-S3-DevKitC-1 (approx)", (68.6, 25.4, 10), (-68.5, 0, 13), "SELV", "datasheet_approx"),
+        ModuleEnvelope("carrier", "Low-voltage carrier PCB (100x70, REV_B)", (100, 70, 1.6), (-55, 0, 8), "SELV", "engineering_calculation"),
+        ModuleEnvelope("esp32", "ESP32-S3-DevKitC-1 (2x22, approx)", (68.6, 25.4, 10), (-55, 0, 13), "SELV", "datasheet_approx"),
         ModuleEnvelope("oled", "OLED 0.96 module", (27, 27, 4), (-90, -42, 40), "SELV", "provisional"),
         ModuleEnvelope("button", "Panel button + cap", (12, 12, 8), (-55, -48, 34), "SELV", "provisional"),
         ModuleEnvelope("rgb", "External RGB diffuser", (6, 6, 3), (-35, -48, 40), "SELV", "provisional"),
-        ModuleEnvelope("pzem", "PZEM-004T V4 + CT (approx, off-board)", (53, 89, 24), (0, 0, 16.5), "MAINS", "provisional"),
-        ModuleEnvelope("pzem_bracket", "PZEM mounting bracket (approx)", (58, 94, 2), (0, 0, 3.5), "MAINS", "engineering_calculation"),
-        ModuleEnvelope("psu", "Hi-Link HLK-5M05 (38x23x18, approx)", (38, 23, 18), (60, 10, 40), "MAINS", "distributor_datasheet"),
-        ModuleEnvelope("relay", "2-channel optocoupler relay module (off-board, approx)", (50, 24, 18), (52, -40, 38), "MAINS", "provisional"),
-        ModuleEnvelope("relay_bracket", "Relay module mounting bracket (approx)", (55, 26, 2), (52, -39, 31), "MAINS", "engineering_calculation"),
-        ModuleEnvelope("fuse", "Fuse holder 5x20 + MOV", (20, 10, 12), (90, -15, 48), "MAINS", "provisional"),
-        ModuleEnvelope("terminals", "Mains terminals / PE stud", (18, 30, 10), (95, -40, 36), "MAINS", "provisional"),
-        ModuleEnvelope("socket", "Type F socket internal body (approx)", (50, 20, 35), (65, 45, 46), "MAINS", "provisional"),
+        ModuleEnvelope("pzem", "PZEM-004T V4 + CT (approx, off-board)", (53, 89, 24), (28, 0, 16.5), "MAINS", "provisional"),
+        ModuleEnvelope("pzem_bracket", "PZEM mounting bracket (approx)", (58, 94, 2), (28, 0, 3.5), "MAINS", "engineering_calculation"),
+        ModuleEnvelope("psu", "Hi-Link HLK-5M05 (38x23x18, approx)", (38, 23, 18), (80, 20, 40), "MAINS", "distributor_datasheet"),
+        ModuleEnvelope("relay", "2-channel optocoupler relay module (off-board, approx)", (50, 24, 18), (80, -35, 38), "MAINS", "provisional"),
+        ModuleEnvelope("relay_bracket", "Relay module mounting bracket (approx)", (55, 26, 2), (80, -34, 31), "MAINS", "engineering_calculation"),
+        ModuleEnvelope("fuse", "Fuse holder 5x20 + MOV", (20, 10, 12), (25, 52, 48), "MAINS", "provisional"),
+        ModuleEnvelope("terminals", "Mains terminals / PE stud", (20, 12, 10), (8, 51.5, 36), "MAINS", "provisional"),
+        ModuleEnvelope("socket", "Type F socket internal body (approx)", (50, 20, 35), (80, 45, 46), "MAINS", "provisional"),
         ModuleEnvelope("gland", "M16 cable gland (wall feature; not internal)", (16, 16, 12), (116, 0, 18), "MAINS", "datasheet"),
-        ModuleEnvelope("barrier", "Internal isolation barrier", (2, 115, 50), (-30, 0, 27.5), "MECHANICAL", "engineering_calculation"),
+        ModuleEnvelope("barrier", "Internal isolation barrier", (2, 100, 50), (-4, 0, 27.5), "MECHANICAL", "engineering_calculation"),
     ],
 }
 

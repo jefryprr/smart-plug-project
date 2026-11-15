@@ -23,6 +23,7 @@ static sp_state_t ready_state(void) {
     state.mode = SP_MODE_READY_OFF;
     state.meter_valid = true;
     state.temperature_valid = true;
+    state.temperature_required = true;
     state.clock_valid = true;
     return state;
 }
@@ -146,6 +147,14 @@ static void test_decisions(void) {
     sp_decide_command(&state, &cmd, NOW, 30000, &decision);
     CHECK(!decision.accepted);
     CHECK(strcmp(decision.reason_code, "TEMPERATURE_INVALID") == 0);
+
+    /* REV_B has no temperature sensor: hardware TCO/fuse only. ON is allowed
+     * when temperature monitoring is explicitly not required. */
+    state = ready_state();
+    state.temperature_required = false;
+    state.temperature_valid = false;
+    sp_decide_command(&state, &cmd, NOW, 30000, &decision);
+    CHECK(decision.accepted);
 
     state = ready_state();
     sp_decide_command(&state, &cmd, NOW, 30000, &decision);

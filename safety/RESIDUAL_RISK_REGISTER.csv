@@ -17,3 +17,6 @@ RR-15,CT wrong conductor,Wrong energy data,Label/single-conductor guide/directio
 RR-16,Price/stock unknown,Budget overrun or unsafe substitution,BOM unpriced + approval gate,bom/BOM_SUMMARY.json,Medium,Project,OPEN,Get dated quotes
 RR-17,Documentation deficient,Unverified PZEM/socket/enclosure,Mark DOCUMENTATION_DEFICIENT + sample inspection,research/UNKNOWN_SPECIFICATIONS.md,High,Hardware,BLOCKED,Obtain datasheets/samples
 RR-18,Regulatory noncompliance,Unsellable/unsafe product,Regulatory plan + lab review,safety/REGULATORY_PLAN_INDONESIA.md,High,Project,OPEN,Consult regulator/lab
+RR-15,No temperature sensor,Firmware cannot detect relay/terminal overheat; TCO/fuse only,HARDWARE TCO + fuse + thermal test + load limit + label,safety/THERMAL_RISK_AND_DERATING.md; safety/FMEA,High,Hardware,OPEN,Accept prototype risk and test; restore sensor in future revision
+
+RR-16,PZEM single isolation barrier,Internal optocoupler/creepage failure exposes ESP32 to mains,Batch inspection + creepage + hipot/leakage + no USB with mains,safety/ISOLATION_PLAN.md; research/PZEM_INTERNAL_ISOLATION.md,High,Engineer,BLOCKED,Hipot/leakage and creepage review

@@ -52,7 +52,7 @@ def main() -> int:
         if code != 0:
             return code
         count = erc_violations(REPORTS / "erc.json")
-        print(f"ERC violations: {count} (block-level text-only schematic; not component connectivity)")
+        print(f"ERC violations: {count} (block-level schematic; functional schematic/netlist separate)")
         if count != 0:
             return 1
 
@@ -61,7 +61,7 @@ def main() -> int:
         if code != 0:
             return code
         count = violations(REPORTS / "drc.json", "DRC violations")
-        print(f"DRC violations: {count} (placement-only geometry)")
+        print(f"DRC violations: {count} (routed SELV carrier)")
         if count != 0:
             return 1
 
@@ -82,7 +82,7 @@ def main() -> int:
             return code
         required = [GERBER / "smartplug-Edge_Cuts.gm1", GERBER / "smartplug-job.gbrjob", DRILL / "smartplug.drl"]
         missing = [str(path.relative_to(ROOT)) for path in required if not path.exists()]
-        print("Gerber/drill placement-only files present:", not missing)
+        print("Gerber/drill routed prototype files present:", not missing)
         if missing:
             print("MISSING:", missing)
             return 1

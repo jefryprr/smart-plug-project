@@ -1,4 +1,4 @@
-# Failure Mode and Effects Analysis (FMEA) — REV_A_PROVISIONAL
+# Failure Mode and Effects Analysis (FMEA) — REV_B
 
 **Status:** `DRAFT`
 **Skala:** Severity/Probability/Detection = High/Medium/Low (kualitatif). Tidak ada RPN numerik palsu.
@@ -13,10 +13,10 @@
 | FM-06 | MOV short at end-of-life | Fuse opens or fire | High | Low | Low | Thermal fuse coordination, rated MOV, test | Medium |
 | FM-07 | PSU failure | SELV off; relay drops | Medium | Medium | High | Isolated PSU, fuse, watchdog, safe OFF | Low/medium |
 | FM-08 | PSU isolation failure (HLK-5M05) | Mains reaches SELV/USB | High | Low | Low | Verified-isolation PSU, barrier, hipot/leakage test; batch certificate | High until tested |
-| FM-09 | PZEM UART isolation failure | Mains reaches ESP32 | High | Low | Low | ADuM1201 + B0505S, creepage, test | High until tested |
+| FM-09 | PZEM internal optocoupler isolation failure | Mains reaches ESP32/carrier | High | Low | Low | PZEM batch inspection, creepage, hipot/leakage; no external barrier | High until tested |
 | FM-10 | PZEM UART CRC/timeout | Wrong/stale reading | Medium | High | High | CRC, timeout, invalid state, no stale live | Low |
 | FM-11 | CT on wrong conductor | Wrong current/PF | Medium | Medium | Medium | Label, single-conductor guide, direction arrow, test | Medium |
-| FM-12 | Temperature sensor failure | No overtemp response | High | Medium | Medium | Sensor validity, independent thermal cutoff | Medium |
+| FM-12 | No temperature sensor installed (REV_B) | Firmware cannot detect overheat; only fuse/TCO respond | High | Medium | Low | Independent one-shot TCO, fuse, thermal test, label, load limits | High until tested |
 | FM-13 | MCU hang | No control/telemetry | Medium | Medium | High | Watchdog, relay default OFF, independent protection | Medium |
 | FM-14 | Boot GPIO float → relay ON | Unintended ON | High | Low | Medium | Pulldown, boot-safe test, relay driver default | Low after test |
 | FM-15 | OTA bad image | Boot loop/recovery loss | High | Medium | Medium | Dual OTA, rollback, signed image, default OFF | Medium |
@@ -30,6 +30,7 @@
 | FM-23 | Command replay | Unintended ON | High | Medium | High | command_id, sequence, TTL, dedup | Low |
 | FM-24 | Cloud/API compromise | Unauthorized ON | High | Medium | Medium | Auth, RBAC, TLS, audit, local lockout | Medium |
 | FM-25 | Two module channels not mechanically linked | One channel opens/welds while the other stays; false two-pole assumption | High | Medium | Low | Do not claim DPST; thermal/fuse backup; test each channel; consider contactors | High until tested |
+| FM-26 | Firmware allows ON with no thermal monitoring | Overheat not detected until TCO opens | High | Medium | Low | Treat as accepted prototype risk; TCO/fuse mandatory; thermal test; do not claim production safety | High until tested |
 
 ## Prioritas
 

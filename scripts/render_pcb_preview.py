@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
-"""Preview the placement-only KiCad PCB without KiCad CLI.
+"""Preview the routed SELV carrier; SVG is exported by KiCad CLI.
 
-This parses the actual .kicad_pcb text for board outline, courtyard rectangles,
-and silkscreen text. It is not a KiCad plot and proves nothing about copper,
-DRC, or manufacturing.
+The matplotlib preview is a coarse outline; carrier.svg is the KiCad plot.
 """
 from __future__ import annotations
 
@@ -40,7 +38,7 @@ def main() -> None:
     for content, x, y, _layer in texts:
         ax.text(float(x), float(y), content, fontsize=6, color="#14213d", ha="left", va="bottom")
     ax.set_xlim(-5, 105)
-    ax.set_ylim(-5, 70)
+    ax.set_ylim(-5, 75)
     ax.set_title("SMART PLUG — LOW-VOLTAGE CARRIER — PLACEMENT PREVIEW\nREV_A_PROVISIONAL · parsed from smartplug.kicad_pcb · NOT A KICAD PLOT · NOT FOR FABRICATION", fontsize=10)
     ax.set_xlabel("mm")
     ax.set_ylabel("mm")
@@ -50,7 +48,14 @@ def main() -> None:
     fig.savefig(OUT / "placement_preview.svg", format="svg", bbox_inches="tight")
     plt.close(fig)
     print(f"Wrote placement preview from {PCB.name}: {len(rects)} rects, {len(texts)} texts")
-    print("Copper/3D renders and Gerber remain BLOCKED: KiCad CLI is not installed.")
+        # Export the real routed SVG with KiCad CLI.
+    import subprocess
+    kicad = ROOT / "tools" / "kicad" / "bin" / "kicad-cli.exe"
+    if kicad.exists():
+        subprocess.run([str(kicad), "pcb", "export", "svg", "-o", str(OUT / "carrier.svg"),
+                        "-l", "F.Cu,B.Cu,F.SilkS,Edge.Cuts", "--page-size-mode", "2",
+                        "--mode-single", str(PCB)], check=False)
+        print(f"Wrote routed SVG: {OUT / 'carrier.svg'}")
 
 
 if __name__ == "__main__":

@@ -66,7 +66,7 @@ def render_view(name: str, elev: float, azim: float, exploded: bool = False, cut
     add_mesh(ax, top, COLOR_TOP, top_alpha, top_offset)
     set_view(ax, [bottom, top], elev, azim)
     ax.set_title(
-        f"Smart Plug enclosure — {name}\nREV_A_PROVISIONAL · {preset} · APPROXIMATE DIMENSIONS · NOT FOR MAINS",
+        f"Smart Plug enclosure — {name}\nREV_B_NO_TEMP · {preset} · APPROXIMATE DIMENSIONS · NOT FOR MAINS",
         fontsize=11,
     )
     fig.tight_layout()
@@ -86,7 +86,7 @@ def dimensions_svg() -> None:
     ax.set_xlim(-20, 255)
     ax.set_ylim(-25, 140)
     ax.axis("off")
-    ax.set_title("Enclosure external dimensions - REV_A_PROVISIONAL", fontsize=12)
+    ax.set_title("Enclosure external dimensions - REV_B_NO_TEMP", fontsize=12)
     fig.tight_layout()
     fig.savefig(DRAWINGS / "dimensions.svg", format="svg")
     fig.savefig(DRAWINGS / "dimensions.png", dpi=150)
@@ -97,7 +97,7 @@ def mounting_plan_svg() -> None:
     fig, ax = plt.subplots(figsize=(10, 7), dpi=120)
     ax.set_aspect("equal")
     ax.add_patch(Rectangle((-110, -60), 220, 120, fill=False, linewidth=1.5))
-    ax.add_patch(Rectangle((-107.5, -25), 75, 50, fill=False, linewidth=1, linestyle="--", color="#0f6b5c"))
+    ax.add_patch(Rectangle((-105, -35), 100, 70, fill=False, linewidth=1, linestyle="--", color="#0f6b5c"))
     ax.text(-106.5, 27, "Carrier PCB 75×50 (approx)", fontsize=8, color="#0f6b5c")
     ax.add_patch(Rectangle((-26.5, -44.5), 53, 89, fill=False, linewidth=1, linestyle="--", color="#b42318"))
     ax.text(-25, 46, "PZEM off-board", fontsize=8, color="#b42318")
@@ -153,7 +153,7 @@ def assembly_pdf() -> None:
             fig, ax = plt.subplots(figsize=(11, 8.5))
             ax.imshow(image)
             ax.axis("off")
-            ax.set_title(f"Assembly view: {name} — REV_A_PROVISIONAL — NOT FOR FABRICATION", fontsize=11)
+            ax.set_title(f"Assembly view: {name} — REV_B_NO_TEMP — NOT FOR FABRICATION", fontsize=11)
             pdf.savefig(fig, bbox_inches="tight")
             plt.close(fig)
         fig, ax = plt.subplots(figsize=(11, 8.5))
@@ -161,7 +161,7 @@ def assembly_pdf() -> None:
         ax.text(
             0.05, 0.95,
             "Smart Plug enclosure assembly\n"
-            "REV_A_PROVISIONAL\n\n"
+            "REV_B_NO_TEMP\n\n"
             "This drawing is a mechanical concept generated from CadQuery source.\n"
             "Module dimensions are approximate; no physical fit validation exists.\n"
             "3D printed enclosure is prototype-only and not a certified electrical enclosure.\n"
@@ -179,7 +179,7 @@ def write_fit_reports() -> None:
     report = {preset: fit_report(preset) for preset in ("provisional", "recommended")}
     (ROOT / "hardware" / "mechanical" / "CLASH_REPORT.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
 
-    lines = ["# Fit Analysis — REV_A_PROVISIONAL", ""]
+    lines = ["# Fit Analysis — REV_B_NO_TEMP", ""]
     lines.append("**Status:** coarse digital fit check only. Dimensions are approximate; no physical fit validation.")
     lines.append("")
     for preset, data in report.items():

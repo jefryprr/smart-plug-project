@@ -1,6 +1,6 @@
 project: esp32-s3-iot-smart-plug
-design_revision: REV_A_PROVISIONAL
-generated_at: '2026-11-15T15:22:57.209100+00:00'
+design_revision: REV_B_NO_TEMP
+generated_at: '2026-11-15T18:39:59.516266+00:00'
 approval_policy: User approved the research direction, not final MPNs. No component
   is approved for fabrication.
 approved_by: null
@@ -33,15 +33,6 @@ items:
     5 W. Datasheet claims 2500 VAC input-output isolation and UL/CE design compliance,
     but the exact batch certificate/isolation/creepage are unverified. Efficiency
     is only ~70% at
-- item_id: E-004
-  mpn: TMP102AIDRLR
-  status: PENDING_APPROVAL
-  approved_for_purchase: false
-  approved_for_fabrication: false
-  blocking_reason: 'The carrier design uses TMP102AIDRLR SOT-563; the priced prototype
-    uses a GY-TMP102 breakout for ease of assembly. Verify the actual IC marking/address.
-    Place at the relay/terminal hotspot and calibrate. Sensor failure must produce
-    invalid '
 - item_id: E-005
   mpn: DS3231MZ+
   status: PENDING_APPROVAL
@@ -49,23 +40,6 @@ items:
   approved_for_fabrication: false
   blocking_reason: Battery/supercap holder and drift budget must be selected. Invalid
     clock blocks automatic ON.
-- item_id: E-006
-  mpn: ADuM1201ARZ
-  status: PENDING_APPROVAL
-  approved_for_purchase: false
-  approved_for_fabrication: false
-  blocking_reason: Mandatory provisional barrier between PZEM-side UART and SELV MCU.
-    The priced prototype uses a CJMCU ADUM1201 module; module creepage/clearance is
-    not certified. Final working voltage/creepage must be reviewed. Do not connect
-    PZEM GND direc
-- item_id: E-007
-  mpn: B0505S-1WR3
-  status: PENDING_APPROVAL
-  approved_for_purchase: false
-  approved_for_fabrication: false
-  blocking_reason: Provides isolated 5 V to the PZEM side of the external ADUM barrier.
-    Genuine Mornsun B0505S-1WR3 is required; cheaper clones are rejected until isolation
-    is verified. Output filtering and common-mode path must be reviewed.
 - item_id: E-008
   mpn: AO3400A
   status: PENDING_APPROVAL
@@ -76,12 +50,13 @@ items:
     diode: the module has its own coil drivers. Verify total input current (~15-20
     mA per channel), t'
 - item_id: E-009
-  mpn: SN74AHCT1G125DBVR
+  mpn: SN74HCT125N
   status: PENDING_APPROVAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: WS2812B high-level threshold at 5 V may exceed 3.3 V logic. Level
-    shift and 330 ohm series resistor.
+  blocking_reason: Converts ESP32 3.3 V logic to 5 V for PZEM RX and WS2812 data.
+    74HCT input threshold is TTL-compatible. Tie unused inputs to GND; add 100 nF
+    at VCC. Do not use for galvanic isolation.
 - item_id: E-010
   mpn: 2CH-5V-OPTO-10A
   status: DOCUMENTATION_DEFICIENT
@@ -173,6 +148,44 @@ items:
   approved_for_purchase: false
   approved_for_fabrication: false
   blocking_reason: Place at each IC supply pin.
+- item_id: E-020A
+  mpn: GRM188R71H104KA93D
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Place within 5 mm of U9 VCC/GND. Required for clean 5V level-shift
+    edges.
+- item_id: E-018A
+  mpn: RC0805FR-0710KL
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: PZEM TX (5V) -> R4 -> ESP32 RX; R5 20k to GND gives ~3.33V. Verify
+    PZEM TX high level.
+- item_id: E-018B
+  mpn: RC0805FR-0720KL
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Divider bottom; add 100 nF at ESP32 RX if noise is observed.
+- item_id: E-018C
+  mpn: RC0805FR-074K7L
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: To 3.3V; OLED + RTC only. Verify bus capacitance and address conflicts.
+- item_id: E-018D
+  mpn: RC0805FR-074K7L
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: To 3.3V; keep I2C <=400 kHz for prototype.
+- item_id: E-018E
+  mpn: RC0805FR-0710KL
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Button to GND; external pullup in addition to MCU internal pullup.
 - item_id: E-021
   mpn: OLED-096-SSD1306-I2C
   status: DOCUMENTATION_DEFICIENT
@@ -196,36 +209,57 @@ items:
   blocking_reason: Debounce in firmware; long-press reset separated from short press.
     Button must remain reachable without mains access.
 - item_id: E-024
-  mpn: HDR-2X20-2.54-F
+  mpn: HDR-2X22-2.54-F
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Low-voltage module only. Verify DevKitC-1 pin length and orientation.
-    Anti-misinsertion keying recommended.
+  blocking_reason: ESP32-S3-DevKitC-1 has 2x22 headers (J1/J3), not 2x20. Verify pin
+    length/orientation and keying before inserting the board.
 - item_id: E-025
   mpn: B4B-XH-A
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Keyed low-voltage connector.
+  blocking_reason: PZEM TTL side is SELV via the module's internal optocouplers. Pin
+    order must match the purchased V4 batch; never assume colors.
 - item_id: E-026
-  mpn: B2B-XH-A
+  mpn: B4B-XH-A
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Low-voltage only.
+  blocking_reason: Active-LOW module inputs; both driven by one AO3400. JD-VCC jumper
+    on module. Keep coil current off the carrier ground return? Use short 5V/GND pair.
 - item_id: E-027
-  mpn: B3B-XH-A
+  mpn: B4B-XH-A
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Low-voltage only.
+  blocking_reason: Keyed low-voltage connector.
 - item_id: E-028
   mpn: B6B-XH-A
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Low-voltage only.
+  blocking_reason: DS3231 module; 32K may be left unconnected. INT to GPIO7.
+- item_id: E-047
+  mpn: B2B-XH-A
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Button to GND; 10k external pullup on carrier. Debounce in firmware.
+- item_id: E-048
+  mpn: B3B-XH-A
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Data from 74HCT125 through 330R. 5V power for WS2812.
+- item_id: E-049
+  mpn: B2B-XH-A
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: 5V/GND from HLK. Add 100uF bulk and 100nF at carrier entry. Keep
+    away from mains wiring.
 - item_id: E-029
   mpn: MKDS 3/2-5.08
   status: DOCUMENTATION_DEFICIENT
@@ -311,13 +345,13 @@ items:
   approved_for_fabrication: false
   blocking_reason: SELV only. Keep away from mains barrier.
 - item_id: E-041
-  mpn: PROTOBOARD-7X9
+  mpn: PCB-CARRIER-REV-B
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: The custom 75x50 mm carrier is placement-only and NOT_FOR_FABRICATION.
-    The priced prototype uses a 7x9 cm double-sided protoboard with header sockets.
-    No routed functional PCB exists yet.
+  blocking_reason: REV_B routed carrier with 2x22 DevKit socket, PZEM 5V/3.3V level
+    shift, relay driver, I2C OLED/RTC, button, RGB, and 5V input. DRC 0 but engineering
+    review/physical test still required. Mains modules remain off-board.
 - item_id: E-042
   mpn: LABEL-SET-REV-A
   status: BLOCKED

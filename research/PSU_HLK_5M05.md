@@ -86,7 +86,7 @@ the ESP32 Wi-Fi burst.
 | PZEM isolated side | 10 mA | 15 mA |
 | 2-channel relay module coils/LEDs | 140 mA | 160 mA |
 | RGB/level shifter | 10 mA | 30 mA |
-| TMP102/RTC | 2 mA | 3 mA |
+| RTC DS3231 | 2 mA | 3 mA |
 | **Total** | **~357 mA** | **~578 mA** |
 
 The 1 A output gives roughly **42% margin at the estimated peak**, but:

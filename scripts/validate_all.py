@@ -141,19 +141,19 @@ def main() -> int:
     # Static crosschecks and generated artifacts
     run_step("T-HW-003", "Connectivity crosscheck", [str(PYTHON), "scripts/validate_connectivity.py"], "Wiring/GPIO/BOM static diff")
     run_step("T-HW-004", "GPIO map generation", [str(PYTHON), "hardware/generators/generate_gpio_map.py"], "GPIO CSV/MD + crosscheck")
-    run_step("T-HW-010A", "WireViz render", [str(PYTHON), "scripts/render_wiring.py"], "6 harnesses SVG/PNG/PDF")
+    run_step("T-HW-010A", "WireViz render", [str(PYTHON), "scripts/render_wiring.py"], "5 harnesses SVG/PNG/PDF")
     run_step("T-HW-009A", "CadQuery export", [str(PYTHON), "hardware/mechanical/source/enclosure.py", "--preset", "both"], "STEP/STL bodies + assembly")
     run_step("T-HW-009B", "Mechanical render/fit", [str(PYTHON), "hardware/mechanical/source/render.py"], "Views/drawings/fit report")
     run_step(
         "T-HW-002A",
         "KiCad file parse",
-        [str(PYTHON), "-c", "from pathlib import Path; from kiutils.schematic import Schematic; from kiutils.board import Board; import glob; [Schematic.from_file(p) for p in glob.glob('hardware/kicad/*.kicad_sch')]; Board.from_file('hardware/kicad/smartplug.kicad_pcb'); print('kiutils parse OK')"],
+        [str(ROOT / "tools" / "kicad" / "bin" / "python.exe"), "-c", "import pcbnew; b=pcbnew.LoadBoard('hardware/kicad/smartplug.kicad_pcb'); print('pcbnew parse OK', b.GetNetCount(), 'nets')"],
         "Native files parse; ERC/DRC not run",
     )
     run_step("T-HW-008A", "PCB placement preview", [str(PYTHON), "scripts/render_pcb_preview.py"], "Preview parsed from .kicad_pcb")
     run_step("T-HW-002", "Schematic ERC", [str(PYTHON), "scripts/run_kicad_check.py", "--mode", "erc"], "KiCad 10 ERC; block-level text-only schematic")
-    run_step("T-HW-006", "PCB DRC", [str(PYTHON), "scripts/run_kicad_check.py", "--mode", "drc"], "KiCad 10 DRC; placement-only PCB")
-    run_step("T-HW-008", "Gerber/drill export", [str(PYTHON), "scripts/run_kicad_check.py", "--mode", "gerber"], "Placement-only Gerber/drill; NOT_FOR_FABRICATION")
+    run_step("T-HW-006", "PCB DRC", [str(PYTHON), "scripts/run_kicad_check.py", "--mode", "drc"], "KiCad 10 DRC; routed SELV carrier")
+    run_step("T-HW-008", "Gerber/drill export; routed carrier", [str(PYTHON), "scripts/run_kicad_check.py", "--mode", "gerber"], "Placement-only Gerber/drill; NOT_FOR_FABRICATION")
     run_step(
         "T-SW-001F",
         "OpenAPI parse",
@@ -199,7 +199,7 @@ def main() -> int:
 
     summary = {
         "project": "esp32-s3-iot-smart-plug",
-        "design_revision": "REV_A_PROVISIONAL",
+        "design_revision": "REV_B_NO_TEMP",
         "generated_at": START.isoformat(),
         "duration_s": round((datetime.now(timezone.utc) - START).total_seconds(), 2),
         "counts": counts,

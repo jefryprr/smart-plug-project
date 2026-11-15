@@ -21,7 +21,7 @@
 | 13 | Research/BOM/candidates | Python generators | 48 BOM rows, 45 candidates, unpriced | `research/`, `bom/` |
 | 14 | Safety documents | Markdown/CSV | 10 docs + risk register | `safety/` |
 | 15 | GPIO map | YAML + generator | Static crosscheck PASS; board UNVERIFIED | `hardware/interfaces/` |
-| 16 | Wiring harnesses | WireViz + Graphviz 16.1.1 | 6 harnesses SVG/PNG/PDF | `hardware/wiring/` |
+| 16 | Wiring harnesses | WireViz + Graphviz 16.1.1 | 5 harnesses SVG/PNG/PDF | `hardware/wiring/` |
 | 17 | KiCad native files | Python S-expression generator | 9 sheets + placement PCB; parse PASS; ERC/DRC later run in #26 | `hardware/kicad/` |
 | 18 | CadQuery enclosure | Python/OCP | STEP/STL + renders + fit report | `hardware/mechanical/` |
 | 19 | Firmware core | C99 + host tests | 74 checks, 0 failures | `firmware/core`, `firmware/test/host` |
@@ -34,12 +34,15 @@
 | 26 | KiCad CLI install/checks | Portable KiCad 10.0.8; `kicad-cli sch erc`, `pcb drc`, Gerber/drill | ERC 0; DRC 0; placement-only Gerber/drill | `reports/kicad/`, `hardware/manufacturing/provisional/` |
 | 27 | User amendment | 8 A final; off-board PZEM + 2-channel optocoupler module; brackets | BOM/wiring/GPIO/firmware/safety updated | `docs/decisions/`, `research/OFFBOARD_MODULES.md` |
 | 28 | Enclosure correction | AABB/stacking review; 150/180 rejected; 220×120×70 confirmed by user | Coarse PASS for 220×120×70; brackets/STL/renders updated | `hardware/mechanical/` |
-| 29 | ESP-IDF v6.1 install/build | EIM/IDF tools on C; portable IDF in `tools/esp-idf`; `scripts/build_firmware.ps1` | Target build PASS; 192,464-byte `.bin`; no flash | `reports/FIRMWARE_BUILD.md` |
+| 29 | ESP-IDF v6.1 install/build | EIM/IDF tools on C; portable IDF in `tools/esp-idf`; `scripts/build_firmware.ps1` | Target build PASS; 192,496-byte `.bin`; no flash | `reports/FIRMWARE_BUILD.md` |
 | 30 | Android SDK/APK | SDK + Gradle cache on `D:\AI INSTALLS`; prebuild + `assembleDebug` | Debug APK PASS; 46,852,340 bytes; v2 debug signature; not installed | `reports/ANDROID_BUILD.md` |
 | 31 | Final validation gate | `.venv\Scripts\python.exe scripts\validate_all.py --e2e` | 23 PASS / 11 BLOCKED / 0 FAIL (before PSU swap) | `reports/TEST_MATRIX.csv`, `VALIDATION_SUMMARY.json` |
 | 32 | PSU replacement | Research HLK-5M05 datasheet/specs; update BOM/wiring/CAD/safety/ADR | 5 V 1 A / 5 W, 38×23×18 mm; efficiency ~70%; `PENDING_APPROVAL` | `research/PSU_HLK_5M05.md`, `docs/decisions/ADR-013-PSU-HLK-5M05.md` |
 
-| 33 | Indonesian procurement research | 48 BOM lines; EasyWare/Shopee/BigGo/CNC/Blibli checks; budget roll-up | CORE Rp756.987 (restock Rp705.519); FULL Rp895.976; 39 listing-verified + 9 estimated | `bom/BOM_PROCUREMENT.csv`, `research/PROCUREMENT_INDONESIA.md` |
+| 33 | Indonesian procurement research | 54 BOM lines; EasyWare/Shopee/BigGo/CNC/Blibli checks; budget roll-up | CORE Rp698.297 (restock Rp646.829); FULL Rp815.897; 43 listing-verified + 11 estimated | `bom/BOM_PROCUREMENT.csv`, `research/PROCUREMENT_INDONESIA.md` |
+
+| 33 | Indonesian procurement research | 54 BOM lines; EasyWare/Shopee/BigGo/CNC/Blibli checks; budget roll-up | CORE Rp698.297 (restock Rp646.829); FULL Rp815.897; 43 listing-verified + 11 estimated | `bom/BOM_PROCUREMENT.csv`, `research/PROCUREMENT_INDONESIA.md` |
+| 34 | REV_B hardware redesign | Remove TMP102 + ADuM1201/B0505S; PZEM internal isolation; 74HCT125/divider; 2x22 socket; routed 100x70 carrier; no-temp firmware policy | DRC 0/0; ERC 0; routed Gerber/drill/POS; host tests 75 PASS; core ~Rp698k | `hardware/kicad/smartplug.kicad_pcb`, `hardware/schematic/`, `hardware/carrier/` |
 
 ## Commands that were not run (and why)
 

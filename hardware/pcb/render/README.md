@@ -1,17 +1,14 @@
-# PCB Render — Status
+# PCB Render — Status (REV_B)
 
-**Status:** `PARTIAL / BLOCKED`
+**Status:** `ROUTED_PREVIEW / NOT_FOR_FABRICATION`
 
 | Artifact | Status | Note |
 |---|---|---|
-| `placement_preview.png` | `PROVISIONAL` | Parsed from `smartplug.kicad_pcb`; not a KiCad plot |
+| `carrier.svg` | `ROUTED_PREVIEW` | KiCad CLI SVG of F.Cu/B.Cu/silkscreen/edge cuts |
+| `placement_preview.png` | `PROVISIONAL` | Coarse matplotlib outline; not a KiCad plot |
 | `placement_preview.svg` | `PROVISIONAL` | Same |
-| `front.png` | `BLOCKED` | Requires KiCad plot/render |
-| `back.png` | `BLOCKED` | Requires KiCad plot/render |
-| `top_copper.svg` | `BLOCKED` | Requires KiCad plot |
-| `bottom_copper.svg` | `BLOCKED` | Requires KiCad plot |
-| `assembly.png` | `BLOCKED` | Requires routed/placed PCB + KiCad render |
-| `3d_angled.png` | `BLOCKED` | Requires KiCad 3D render/STEP |
-| `pcb_model.step` | `BLOCKED` | Requires KiCad 3D export |
+| 3D STEP/render | `BLOCKED` | Not exported for the routed board |
 
-The placement preview is derived from the actual board outline and courtyards, but it does not show copper, routing, or a validated mechanical fit. Do not use it as fabrication evidence.
+The routed carrier is 100 × 70 mm, DRC 0/0 at 0.15 mm. The preview is not a
+fabrication release; use `hardware/manufacturing/provisional/` only after
+engineering review.
