@@ -1465,7 +1465,7 @@ Merged 2 ELF sections.
 Successfully created ESP32-S3 image.
 Generated C:/Users/JEFRY PRATAMA/Zed/SMART-PLUG-V2/firmware/build/bootloader/bootloader.bin
 [158/158] C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\firmware\build\bootloader" && C:\Espressif\python_env\idf6.1_py3.11_env\Scripts\python.exe "C:/Users/JEFRY PRATAMA/Zed/SMART-PLUG-V2/tools/esp-idf/v6.1/esp-idf/components/partition_table/check_sizes.py" --offset 0x8000 bootloader 0x0 "C:/Users/JEFRY PRATAMA/Zed/SMART-PLUG-V2/firmware/build/bootloader/bootloader.bin""
-Bootloader binary size 0x52d0 bytes. 0x2d30 bytes (35%) free.
+Bootloader binary size 0x52d0 bytes. 0x2d30 bytes (35%) free.
 [1076/1082] No install step for 'bootloader'
 [1077/1082] Completed 'bootloader'
 [1078/1082] Generating esp-idf/esp_system/ld/sections.ld
