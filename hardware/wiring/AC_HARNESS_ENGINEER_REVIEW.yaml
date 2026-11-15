@@ -1,0 +1,135 @@
+metadata:
+  title: AC Harness — ENGINEER REVIEW ONLY (REV_A_PROVISIONAL)
+  description: 'Subset mains untuk review engineer. BUKAN panduan energisasi untuk
+    pemula. PE tidak diputus. Rating relay/fuse/terminal belum final.
+
+    '
+  author: OpenCode
+  date: '2026-11-15'
+  rev: REV_A_PROVISIONAL
+options:
+  bgcolor: WH
+connectors:
+  P1:
+    type: Type F plug (mains input)
+    pinlabels:
+    - L
+    - N
+    - PE
+  F1:
+    type: Fuse 10 A + holder
+    pinlabels:
+    - IN
+    - OUT
+  TF1:
+    type: Thermal cutoff 99 C
+    pinlabels:
+    - IN
+    - OUT
+  K1:
+    type: DPST-NO relay 8 A class
+    pinlabels:
+    - P1_11
+    - P1_14
+    - P2_21
+    - P2_24
+  X1:
+    type: Type F socket output
+    pinlabels:
+    - L
+    - N
+    - PE
+cables:
+  W_L1:
+    gauge: 1.5 mm2
+    length: 0.08 m
+    color: BN
+    wirecount: 1
+    wirelabels:
+    - L_IN
+  W_L2:
+    gauge: 1.5 mm2
+    length: 0.08 m
+    color: BN
+    wirecount: 1
+    wirelabels:
+    - L_FUSED
+  W_L3:
+    gauge: 1.5 mm2
+    length: 0.10 m
+    color: BN
+    wirecount: 1
+    wirelabels:
+    - L_SW
+  W_N1:
+    gauge: 1.5 mm2
+    length: 0.15 m
+    color: BU
+    wirecount: 1
+    wirelabels:
+    - N_IN
+  W_N2:
+    gauge: 1.5 mm2
+    length: 0.10 m
+    color: BU
+    wirecount: 1
+    wirelabels:
+    - N_SW
+  W_PE:
+    gauge: 1.5 mm2
+    length: 0.25 m
+    color: GNYE
+    wirecount: 1
+    wirelabels:
+    - PE
+    notes: Dedicated PE; tidak melalui relay/fuse.
+  W_L4:
+    gauge: 1.5 mm2
+    length: 0.10 m
+    color: BN
+    wirecount: 1
+    wirelabels:
+    - L_OUT
+connections:
+- - P1:
+    - L
+  - W_L1:
+    - 1
+  - F1:
+    - IN
+- - F1:
+    - OUT
+  - W_L2:
+    - 1
+  - TF1:
+    - IN
+- - TF1:
+    - OUT
+  - W_L3:
+    - 1
+  - K1:
+    - P1_11
+- - K1:
+    - P1_14
+  - W_L4:
+    - 1
+  - X1:
+    - L
+- - P1:
+    - N
+  - W_N1:
+    - 1
+  - K1:
+    - P2_21
+- - K1:
+    - P2_24
+  - W_N2:
+    - 1
+  - X1:
+    - N
+- - P1:
+    - PE
+  - W_PE:
+    - 1
+  - X1:
+    - PE

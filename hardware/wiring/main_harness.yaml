@@ -1,0 +1,506 @@
+metadata:
+  title: Smart Plug — Main Harness (REV_A_PROVISIONAL)
+  description: 'Diagram harness sistem. Garis mains hanya untuk review engineer; bukan
+    instruksi energisasi untuk pemula. PE tidak boleh diputus. Semua konektor, warna,
+    dan panjang harus diverifikasi terhadap MPN final.
+
+    '
+  author: OpenCode — digital engineering
+  date: '2026-11-15'
+  rev: REV_A_PROVISIONAL
+options:
+  fontname: Arial
+  bgcolor: WH
+connectors:
+  P1:
+    type: Type F plug (mains input, 16 A class TBD)
+    pinlabels:
+    - L
+    - N
+    - PE
+    notes: MPN belum disetujui. PE kontinu.
+  F1:
+    type: Fuse holder + 10 A time-lag fuse
+    pinlabels:
+    - IN
+    - OUT
+  MOV1:
+    type: MOV 275 VAC
+    pinlabels:
+    - L
+    - N
+  TF1:
+    type: Thermal cutoff 99 C one-shot
+    pinlabels:
+    - IN
+    - OUT
+  K1:
+    type: DPST-NO relay (RT2 class, 8 A TBD)
+    pinlabels:
+    - A1
+    - A2
+    - P1_11
+    - P1_14
+    - P2_21
+    - P2_24
+    notes: A1/A2 coil (SELV); P1/P2 are separate NO contacts.
+  X1:
+    type: Type F socket output (16 A class TBD)
+    pinlabels:
+    - L
+    - N
+    - PE
+  PS1:
+    type: Mean Well IRM-05-5 (5 V 1 A)
+    pinlabels:
+    - AC_L
+    - AC_N
+    - +5V
+    - 0V
+  U2:
+    type: PZEM-004T V4 100 A split CT (DOCUMENTATION_DEFICIENT)
+    pinlabels:
+    - L
+    - N
+    - CT_P
+    - CT_N
+    - +5V_ISO
+    - GND_ISO
+    - TX
+    - RX
+  CT1:
+    type: Split CT connector (around one conductor only)
+    pinlabels:
+    - CT_P
+    - CT_N
+  U6:
+    type: ADuM1201 UART isolator
+    pinlabels:
+    - VDD1
+    - GND1
+    - TX1
+    - RX1
+    - VDD2
+    - GND2
+    - TX2
+    - RX2
+    notes: 'Barrier: side 2 is PZEM isolated; side 1 is SELV.'
+  U7:
+    type: B0505S-1WR3 isolated DC/DC
+    pinlabels:
+    - +5V_IN
+    - GND_IN
+    - +5V_ISO
+    - GND_ISO
+  J_5V:
+    type: SELV 5 V distribution block (not a mains terminal)
+    pinlabels:
+    - +5V_IN
+    - +5V_A
+    - +5V_B
+    - GND_IN
+    - GND_A
+    - GND_B
+    notes: Distribution only; keyed/color-coded. No mains.
+  J_ISO:
+    type: Isolated 5 V distribution block (PZEM side)
+    pinlabels:
+    - +5V_IN
+    - +5V_A
+    - +5V_B
+    - GND_IN
+    - GND_A
+    - GND_B
+    notes: Never connect to SELV GND.
+  J1:
+    type: Low-voltage carrier connector
+    pinlabels:
+    - +5V
+    - GND
+    - +3V3
+    - RELAY_CTRL
+    - RELAY_LOW
+    - RELAY_FB
+    - PZEM_TX
+    - PZEM_RX
+    notes: Carrier is SELV only. No mains on PCB.
+cables:
+  WL1:
+    gauge: 1.5 mm2
+    length: 0.08 m
+    color: BN
+    wirelabels:
+    - L_IN
+    wirecount: 1
+  WL2:
+    gauge: 1.5 mm2
+    length: 0.08 m
+    color: BN
+    wirelabels:
+    - L_FUSED
+    wirecount: 1
+  WL_MOV:
+    gauge: 1.5 mm2
+    length: 0.08 m
+    color: BN
+    wirelabels:
+    - L_MOV
+    wirecount: 1
+  WL3:
+    gauge: 1.5 mm2
+    length: 0.10 m
+    color: BN
+    wirelabels:
+    - L_TCO
+    wirecount: 1
+  WL4:
+    gauge: 1.5 mm2
+    length: 0.10 m
+    color: BN
+    wirelabels:
+    - L_SW
+    wirecount: 1
+  WN1:
+    gauge: 1.5 mm2
+    length: 0.15 m
+    color: BU
+    wirelabels:
+    - N_IN
+    wirecount: 1
+  WN2:
+    gauge: 1.5 mm2
+    length: 0.10 m
+    color: BU
+    wirelabels:
+    - N_SW
+    wirecount: 1
+  WN3:
+    gauge: 1.5 mm2
+    length: 0.10 m
+    color: BU
+    wirelabels:
+    - N_MOV
+    wirecount: 1
+  WPE:
+    gauge: 1.5 mm2
+    length: 0.25 m
+    color: GNYE
+    wirelabels:
+    - PE
+    notes: No relay/fuse. Dedicated PE stud/terminal.
+    wirecount: 1
+  WPSU_L:
+    gauge: 0.75 mm2
+    length: 0.15 m
+    color: BN
+    wirelabels:
+    - PSU_L
+    wirecount: 1
+  WPSU_N:
+    gauge: 0.75 mm2
+    length: 0.15 m
+    color: BU
+    wirelabels:
+    - PSU_N
+    wirecount: 1
+  W5V:
+    gauge: 0.5 mm2
+    length: 0.15 m
+    color: GY
+    wirelabels:
+    - +5V_IN
+    - GND_IN
+    wirecount: 2
+    colors:
+    - RD
+    - BK
+  W5V_CARRIER:
+    gauge: 0.5 mm2
+    length: 0.15 m
+    color: GY
+    wirelabels:
+    - +5V_A
+    - GND_A
+    wirecount: 2
+    colors:
+    - RD
+    - BK
+  W5V_ISO_IN:
+    gauge: 0.5 mm2
+    length: 0.12 m
+    color: GY
+    wirelabels:
+    - +5V_B
+    - GND_B
+    wirecount: 2
+    colors:
+    - RD
+    - BK
+  WREL:
+    gauge: 0.5 mm2
+    length: 0.20 m
+    color: OG
+    wirelabels:
+    - RELAY_CTRL
+    wirecount: 1
+  WREL_LOW:
+    gauge: 0.5 mm2
+    length: 0.20 m
+    color: GY
+    wirelabels:
+    - RELAY_LOW
+    wirecount: 1
+  WPZEM_L:
+    gauge: 0.5 mm2
+    length: 0.20 m
+    color: BN
+    wirelabels:
+    - PZEM_L
+    wirecount: 1
+  WPZEM_N:
+    gauge: 0.5 mm2
+    length: 0.20 m
+    color: BU
+    wirelabels:
+    - PZEM_N
+    wirecount: 1
+  WCT:
+    gauge: 0.25 mm2
+    length: 0.20 m
+    color: GY
+    wirelabels:
+    - CT_P
+    - CT_N
+    notes: Shielded/twisted; route away from relay.
+    wirecount: 2
+    colors:
+    - WH
+    - BK
+  WISO_OUT:
+    gauge: 0.5 mm2
+    length: 0.15 m
+    color: GY
+    wirelabels:
+    - +5V_ISO
+    - GND_ISO
+    wirecount: 2
+    colors:
+    - RD
+    - BK
+  WISO_PZEM:
+    gauge: 0.5 mm2
+    length: 0.15 m
+    color: GY
+    wirelabels:
+    - +5V_ISO_PZEM
+    - GND_ISO_PZEM
+    wirecount: 2
+    colors:
+    - RD
+    - BK
+  WISO_U6:
+    gauge: 0.25 mm2
+    length: 0.12 m
+    color: GY
+    wirelabels:
+    - +5V_ISO_U6
+    - GND_ISO_U6
+    wirecount: 2
+    colors:
+    - RD
+    - BK
+  WUART_PZEM:
+    gauge: 0.25 mm2
+    length: 0.15 m
+    color: GY
+    wirelabels:
+    - PZEM_TX
+    - PZEM_RX
+    notes: PZEM side only; do not cross barrier.
+    wirecount: 2
+    colors:
+    - WH
+    - BK
+  WUART_SELV:
+    gauge: 0.25 mm2
+    length: 0.15 m
+    color: GY
+    wirelabels:
+    - ISO_TX
+    - ISO_RX
+    wirecount: 2
+    colors:
+    - WH
+    - BK
+connections:
+- - P1:
+    - L
+  - WL1:
+    - L_IN
+  - F1:
+    - IN
+- - F1:
+    - OUT
+  - WL2:
+    - L_FUSED
+  - TF1:
+    - IN
+- - F1:
+    - OUT
+  - WL_MOV:
+    - L_MOV
+  - MOV1:
+    - L
+- - TF1:
+    - OUT
+  - WL3:
+    - L_TCO
+  - K1:
+    - P1_11
+- - K1:
+    - P1_14
+  - WL4:
+    - L_SW
+  - X1:
+    - L
+- - P1:
+    - N
+  - WN1:
+    - N_IN
+  - K1:
+    - P2_21
+- - K1:
+    - P2_24
+  - WN2:
+    - N_SW
+  - X1:
+    - N
+- - P1:
+    - N
+  - WN3:
+    - N_MOV
+  - MOV1:
+    - N
+- - P1:
+    - PE
+  - WPE:
+    - PE
+  - X1:
+    - PE
+- - F1:
+    - OUT
+  - WPSU_L:
+    - PSU_L
+  - PS1:
+    - AC_L
+- - P1:
+    - N
+  - WPSU_N:
+    - PSU_N
+  - PS1:
+    - AC_N
+- - PS1:
+    - +5V
+    - 0V
+  - W5V:
+    - +5V_IN
+    - GND_IN
+  - J_5V:
+    - +5V_IN
+    - GND_IN
+- - J_5V:
+    - +5V_A
+    - GND_A
+  - W5V_CARRIER:
+    - +5V_A
+    - GND_A
+  - J1:
+    - +5V
+    - GND
+- - J_5V:
+    - +5V_B
+    - GND_B
+  - W5V_ISO_IN:
+    - +5V_B
+    - GND_B
+  - U7:
+    - +5V_IN
+    - GND_IN
+- - J1:
+    - RELAY_CTRL
+  - WREL:
+    - RELAY_CTRL
+  - K1:
+    - A1
+- - J1:
+    - RELAY_LOW
+  - WREL_LOW:
+    - RELAY_LOW
+  - K1:
+    - A2
+- - F1:
+    - OUT
+  - WPZEM_L:
+    - PZEM_L
+  - U2:
+    - L
+- - P1:
+    - N
+  - WPZEM_N:
+    - PZEM_N
+  - U2:
+    - N
+- - CT1:
+    - CT_P
+    - CT_N
+  - WCT:
+    - CT_P
+    - CT_N
+  - U2:
+    - CT_P
+    - CT_N
+- - U7:
+    - +5V_ISO
+    - GND_ISO
+  - WISO_OUT:
+    - +5V_ISO
+    - GND_ISO
+  - J_ISO:
+    - +5V_IN
+    - GND_IN
+- - J_ISO:
+    - +5V_A
+    - GND_A
+  - WISO_PZEM:
+    - +5V_ISO_PZEM
+    - GND_ISO_PZEM
+  - U2:
+    - +5V_ISO
+    - GND_ISO
+- - J_ISO:
+    - +5V_B
+    - GND_B
+  - WISO_U6:
+    - +5V_ISO_U6
+    - GND_ISO_U6
+  - U6:
+    - VDD2
+    - GND2
+- - U2:
+    - TX
+    - RX
+  - WUART_PZEM:
+    - PZEM_TX
+    - PZEM_RX
+  - U6:
+    - TX1
+    - RX1
+- - U6:
+    - TX2
+    - RX2
+  - WUART_SELV:
+    - ISO_TX
+    - ISO_RX
+  - J1:
+    - PZEM_TX
+    - PZEM_RX

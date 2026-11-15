@@ -1,0 +1,46 @@
+{
+  "provisional": {
+    "preset": "provisional",
+    "status": "PASS",
+    "enclosure_internal_bounds_mm": [
+      -72.5,
+      -47.5,
+      2.5,
+      72.5,
+      47.5,
+      67.5
+    ],
+    "module_count": 12,
+    "outside_enclosure": [],
+    "clashes": [],
+    "barrier_crossings": [],
+    "limitations": [
+      "All module dimensions are approximate envelopes, not measured samples.",
+      "No tolerance stack, cable bend, or thermal expansion is modeled.",
+      "A PASS here is only a coarse digital fit check; it is not a mechanical validation.",
+      "Barrier crossing check is a simple AABB test, not a creepage/clearance calculation."
+    ]
+  },
+  "recommended": {
+    "preset": "recommended",
+    "status": "PASS",
+    "enclosure_internal_bounds_mm": [
+      -87.5,
+      -57.5,
+      2.5,
+      87.5,
+      57.5,
+      67.5
+    ],
+    "module_count": 12,
+    "outside_enclosure": [],
+    "clashes": [],
+    "barrier_crossings": [],
+    "limitations": [
+      "All module dimensions are approximate envelopes, not measured samples.",
+      "No tolerance stack, cable bend, or thermal expansion is modeled.",
+      "A PASS here is only a coarse digital fit check; it is not a mechanical validation.",
+      "Barrier crossing check is a simple AABB test, not a creepage/clearance calculation."
+    ]
+  }
+}

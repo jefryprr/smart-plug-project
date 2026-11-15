@@ -1,0 +1,24 @@
+# ADR-004 — Firmware Stack
+
+**Status:** Accepted (Q23=A)
+**Date:** 2026-11-15
+
+## Context
+The device needs OTA rollback, partition control, provisioning, watchdog, and a safety state machine. Arduino-ESP32 is simpler but the user chose ESP-IDF.
+
+## Decision
+- Use **ESP-IDF** (exact version to pin when toolchain is installed) for ESP32-S3.
+- Keep safety/domain logic in a **portable C core** (`firmware/core`) with host tests.
+- Use dual OTA partitions, rollback config, HTTPS-only OTA, watchdog.
+- Do not enable secure boot/flash encryption/eFuse without explicit approval and a recovery plan.
+- Host tests use Zig `cc` because ESP-IDF is not installed; this tests the portable core, not the ESP-IDF build.
+
+## Consequences
+- ESP-IDF build is `BLOCKED` in this environment; no `.bin` artifact.
+- Core logic is testable without hardware (74 checks pass).
+- ESP-IDF integration components (PZEM, OLED, Wi-Fi, MQTT, OTA) remain incomplete.
+- Pin/board revision must be verified before final GPIO.
+
+## Alternatives
+- Arduino-ESP32: rejected for rollback/security/provisioning control.
+- MicroPython: rejected for safety-critical deterministic control.

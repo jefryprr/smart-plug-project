@@ -1,0 +1,29 @@
+{
+  "name": "@smartplug/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.4.3",
+    "@fastify/helmet": "^13.2.0",
+    "@fastify/rate-limit": "^11.2.2",
+    "@smartplug/api-contract": "*",
+    "@smartplug/domain": "*",
+    "@smartplug/mqtt-contract": "*",
+    "fastify": "^5.12.8",
+    "jose": "^6.2.17",
+    "mqtt": "^5.16.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@smartplug/device-simulator": "*",
+    "aedes": "^1.2.0"
+  }
+}

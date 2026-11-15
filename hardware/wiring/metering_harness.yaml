@@ -1,0 +1,66 @@
+metadata:
+  title: "Metering & Isolation Sub-harness (REV_A_PROVISIONAL)"
+  description: "PZEM UART isolation path. Side 2 is isolated; never connect to SELV GND."
+  author: "OpenCode"
+  date: "2026-11-15"
+  rev: "REV_A_PROVISIONAL"
+options:
+  bgcolor: "WH"
+connectors:
+  CT1:
+    type: "Split CT"
+    pinlabels: [CT_P, CT_N]
+  U2:
+    type: "PZEM-004T V4 (documentation deficient)"
+    pinlabels: [L, N, CT_P, CT_N, +5V_ISO, GND_ISO, TX, RX]
+  U6:
+    type: "ADuM1201"
+    pinlabels: [VDD1, GND1, TX1, RX1, VDD2, GND2, TX2, RX2]
+  U7:
+    type: "B0505S-1WR3"
+    pinlabels: [+5V_IN, GND_IN, +5V_ISO, GND_ISO]
+  J1:
+    type: "Carrier SELV connector"
+    pinlabels: [+3V3, GND, PZEM_TX, PZEM_RX]
+cables:
+  W_CT:
+    gauge: 0.25 mm2
+    length: 0.20 m
+    wirecount: 2
+    color: GY
+    colors: [WH, BK]
+    wirelabels: [CT_P, CT_N]
+  W_UART_PZEM:
+    gauge: 0.25 mm2
+    length: 0.15 m
+    wirecount: 2
+    color: GY
+    colors: [WH, BK]
+    wirelabels: [PZEM_TX, PZEM_RX]
+  W_UART_SELV:
+    gauge: 0.25 mm2
+    length: 0.15 m
+    wirecount: 2
+    color: GY
+    colors: [WH, BK]
+    wirelabels: [ISO_TX, ISO_RX]
+  W_ISO_PWR:
+    gauge: 0.5 mm2
+    length: 0.15 m
+    wirecount: 2
+    color: GY
+    colors: [RD, BK]
+    wirelabels: [+5V_ISO, GND_ISO]
+  W_SELV_PWR:
+    gauge: 0.25 mm2
+    length: 0.10 m
+    wirecount: 2
+    color: GY
+    colors: [RD, BK]
+    wirelabels: [+3V3, GND]
+connections:
+  - [CT1: [CT_P, CT_N], W_CT: [1, 2], U2: [CT_P, CT_N]]
+  - [U2: [TX, RX], W_UART_PZEM: [1, 2], U6: [TX1, RX1]]
+  - [U6: [TX2, RX2], W_UART_SELV: [1, 2], J1: [PZEM_TX, PZEM_RX]]
+  - [U7: [+5V_ISO, GND_ISO], W_ISO_PWR: [1, 2], U2: [+5V_ISO, GND_ISO]]
+  - [J1: [+3V3, GND], W_SELV_PWR: [1, 2], U6: [VDD1, GND1]]

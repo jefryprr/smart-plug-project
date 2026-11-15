@@ -1,0 +1,78 @@
+# Mechanical parameters — REV_A_PROVISIONAL
+# Setiap nilai diberi provenance: measured | datasheet | engineering_calculation | provisional
+design_revision: REV_A_PROVISIONAL
+material_id: "ABS/PC flame-retardant, UL94 V-0 target (not selected)"
+manufacturing_process: "FDM prototype / injection molding production TBD"
+
+# Top-level values are the Q06=B target (150 x 100 x 70 mm).
+enclosure_length_mm: 150.0
+width_mm: 100.0
+height_mm: 70.0
+wall_thickness_mm: 2.5
+bottom_height_mm: 30.0
+top_height_mm: 40.0
+corner_radius_mm: 3.0
+pcb_outline: [75.0, 50.0]
+pcb_thickness_mm: 1.6
+mounting_holes: [[-32.5, -20.0], [32.5, -20.0], [-32.5, 20.0], [32.5, 20.0]]
+mounting_hole_diameter_mm: 3.2
+screw_sizes: "M3 x 8"
+insert_sizes: "M3 x 5.7 heat-set"
+cable_bend_radius_mm: 15.0
+bend_space_mm: 20.0
+thermal_clearances_mm: 8.0
+insulation_barrier_mm: 2.0
+assembly_clearance_mm: 3.0
+tolerance_xy_mm: 0.3
+tolerance_z_mm: 0.3
+socket_dimensions_mm: [50.0, 50.0, 35.0]
+plug_dimensions_mm: [40.0, 40.0, 50.0]
+oled_viewport_mm: [30.0, 14.0]
+button_travel_mm: 0.5
+status_led_viewport_mm: 5.0
+service_access: "USB service cutout on SELV side; cover required; no USB while mains"
+barrier_x_mm: 5.0
+barrier_height_mm: 50.0
+cable_gland_diameter_mm: 16.0
+
+provenance:
+  enclosure_length_mm: provisional
+  width_mm: provisional
+  height_mm: provisional
+  wall_thickness_mm: provisional
+  bottom_height_mm: engineering_calculation
+  top_height_mm: engineering_calculation
+  corner_radius_mm: provisional
+  pcb_outline: engineering_calculation
+  pcb_thickness_mm: datasheet
+  mounting_holes: engineering_calculation
+  mounting_hole_diameter_mm: datasheet
+  screw_sizes: datasheet
+  insert_sizes: datasheet
+  cable_bend_radius_mm: engineering_calculation
+  bend_space_mm: engineering_calculation
+  thermal_clearances_mm: engineering_calculation
+  insulation_barrier_mm: provisional
+  assembly_clearance_mm: engineering_calculation
+  tolerance_xy_mm: provisional
+  tolerance_z_mm: provisional
+  socket_dimensions_mm: provisional
+  plug_dimensions_mm: provisional
+  oled_viewport_mm: engineering_calculation
+  button_travel_mm: provisional
+  status_led_viewport_mm: engineering_calculation
+  barrier_x_mm: engineering_calculation
+  barrier_height_mm: engineering_calculation
+  cable_gland_diameter_mm: datasheet
+
+# Recommended variant if the 150 x 100 x 70 target fails fit/clearance review.
+recommended:
+  enclosure_length_mm: 180.0
+  width_mm: 120.0
+  height_mm: 70.0
+  note: "Larger enclosure gives room for barriers, cable bend radius, and thermal clearances. Requires user approval (Q06=C)."
+
+notes:
+  - "All module dimensions are APPROXIMATE until incoming inspection measures the actual parts."
+  - "3D printed enclosure is a mechanical prototype only; not a certified electrical enclosure."
+  - "No clearance/creepage number is claimed by these parameters."

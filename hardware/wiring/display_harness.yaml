@@ -1,0 +1,122 @@
+metadata:
+  title: Display & Button Sub-harness (REV_A_PROVISIONAL)
+  description: Low-voltage only. OLED, button, external RGB. No mains.
+  author: OpenCode
+  date: '2026-11-15'
+  rev: REV_A_PROVISIONAL
+options:
+  bgcolor: WH
+connectors:
+  J2:
+    type: Carrier display connector (JST-XH 4)
+    pinlabels:
+    - +3V3
+    - GND
+    - SDA
+    - SCL
+  DS1:
+    type: OLED SSD1306 0.96 I2C
+    pinlabels:
+    - VCC
+    - GND
+    - SDA
+    - SCL
+  J3:
+    type: Carrier button connector (JST-XH 3)
+    pinlabels:
+    - GND
+    - BTN
+  SW1:
+    type: Panel pushbutton
+    pinlabels:
+    - A
+    - B
+  J4:
+    type: Carrier RGB connector (JST-XH 3)
+    pinlabels:
+    - +5V
+    - GND
+    - DATA
+  LED1:
+    type: WS2812B external RGB
+    pinlabels:
+    - VCC
+    - GND
+    - DIN
+cables:
+  W_OLED:
+    gauge: 0.25 mm2
+    length: 0.12 m
+    wirecount: 4
+    color: GY
+    colors:
+    - RD
+    - BK
+    - WH
+    - GN
+    wirelabels:
+    - +3V3
+    - GND
+    - SDA
+    - SCL
+  W_BTN:
+    gauge: 0.25 mm2
+    length: 0.12 m
+    wirecount: 2
+    color: GY
+    colors:
+    - BK
+    - OG
+    wirelabels:
+    - GND
+    - BTN
+  W_RGB:
+    gauge: 0.25 mm2
+    length: 0.12 m
+    wirecount: 3
+    color: GY
+    colors:
+    - RD
+    - BK
+    - GN
+    wirelabels:
+    - +5V
+    - GND
+    - DATA
+connections:
+- - J2:
+    - +3V3
+    - GND
+    - SDA
+    - SCL
+  - W_OLED:
+    - 1
+    - 2
+    - 3
+    - 4
+  - DS1:
+    - VCC
+    - GND
+    - SDA
+    - SCL
+- - J3:
+    - GND
+    - BTN
+  - W_BTN:
+    - 1
+    - 2
+  - SW1:
+    - A
+    - B
+- - J4:
+    - +5V
+    - GND
+    - DATA
+  - W_RGB:
+    - 1
+    - 2
+    - 3
+  - LED1:
+    - VCC
+    - GND
+    - DIN

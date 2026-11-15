@@ -1,0 +1,48 @@
+{
+  "total": 80,
+  "by_status": {
+    "PARTIAL": 25,
+    "PASS": 28,
+    "NOT_STARTED": 24,
+    "BLOCKED": 3
+  },
+  "by_priority": {
+    "P0": 53,
+    "P1": 24,
+    "P2": 3
+  },
+  "p0_not_pass": [
+    "FR-001",
+    "FR-002",
+    "FR-003",
+    "FR-014",
+    "FR-015",
+    "FR-016",
+    "FR-018",
+    "FR-023",
+    "FR-024",
+    "FR-026",
+    "FR-027",
+    "FR-030",
+    "FR-031",
+    "FR-032",
+    "FR-033",
+    "FR-037",
+    "FR-041",
+    "FR-044",
+    "FR-048",
+    "FR-051",
+    "FR-055",
+    "FR-056",
+    "FR-058",
+    "FR-063",
+    "FR-069",
+    "FR-070",
+    "FR-071",
+    "FR-072",
+    "FR-075",
+    "FR-079",
+    "FR-080"
+  ],
+  "note": "PASS is digital evidence only; it does not imply hardware validation or safety sign-off."
+}

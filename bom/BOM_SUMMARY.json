@@ -1,0 +1,29 @@
+{
+  "project": "esp32-s3-iot-smart-plug",
+  "design_revision": "REV_A_PROVISIONAL",
+  "currency": "IDR",
+  "generated_at": "2026-11-15T05:07:47.017407+00:00",
+  "pricing_status": "UNPRICED",
+  "priced_lines": 0,
+  "unpriced_lines": 46,
+  "subtotal_idr": null,
+  "prototype_1_unit": {
+    "subtotal_idr": null,
+    "status": "UNPRICED"
+  },
+  "batch_10_units": {
+    "subtotal_idr": null,
+    "status": "NOT_QUOTED"
+  },
+  "owned_components": {
+    "market_cost_idr": null,
+    "cash_out_cost_idr": null,
+    "note": "Q28=B: none owned."
+  },
+  "notes": [
+    "No verified, dated Indonesian prices were obtained; prices are empty, not Rp0.",
+    "BOM is not approved for purchase. Safety-critical parts remain PENDING_APPROVAL, DOCUMENTATION_DEFICIENT, or BLOCKED.",
+    "Target 10 A is not achieved by the provisional 8 A relay; final rating must be the lowest verified value.",
+    "Batch 10-unit pricing cannot be quoted without actual supplier quotes."
+  ]
+}

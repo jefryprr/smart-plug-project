@@ -1,0 +1,19 @@
+risk_id,hazard,scenario,control,evidence,severity,owner,status,action
+RR-01,Electric shock,Contact with mains/USB/casing isolation failure,Isolation plan + PE + enclosure barrier + hipot test,safety/ISOLATION_PLAN.md; no physical test,High,Engineer,BLOCKED,Review and dielectric test by qualified lab
+RR-02,Electric shock,PE discontinuity or loose earth terminal,Dedicated PE stud/lock washer/continuity test,safety/POLARITY_AND_EARTH_ASSESSMENT.md,High,Engineer,BLOCKED,Select PE hardware and test continuity
+RR-03,Overcurrent/short circuit,Wire/PCB/terminal overheating/fire,Fuse + rating chain + coordination + lab test,safety/ELECTRICAL_RATING_CHAIN.md; safety/PROTECTION_COORDINATION.md,High,Engineer,BLOCKED,Calculate and test
+RR-04,Overheating,Relay/terminal/fuse hotspot,Thermal cutoff + derating + thermal test,safety/THERMAL_RISK_AND_DERATING.md,High,Engineer,BLOCKED,Thermal lab
+RR-05,Relay contact welding,Load stays ON after OFF,Relay rating + fuse/thermal backup + optional feedback + manual disconnect,safety/FAILURE_MODE_AND_EFFECTS_ANALYSIS.md,High,Engineer,BLOCKED,Lifecycle/inrush test
+RR-06,Reversible plug polarity,One conductor remains live,Two-pole switching review + PE continuous,safety/POLARITY_AND_EARTH_ASSESSMENT.md,High,Engineer,BLOCKED,Design review and reverse-plug test
+RR-07,Surge/transient,MOV/PSU/MCU damage/fire,Surge study + MOV coordination + test,safety/PROTECTION_COORDINATION.md,Medium,Engineer,BLOCKED,Surge lab
+RR-08,Sensor failure,Stale/incorrect current/temperature,CRC/timeout/invalid state + independent cutoff,firmware tests; safety/FAILURE_MODE_AND_EFFECTS_ANALYSIS.md,High,Firmware,IN_PROGRESS,Mock tests pass; physical sensor test blocked
+RR-09,OTA failure,Boot loop/relay ON,Dual OTA + rollback + signed image + default OFF,security/OTA plan; no ESP-IDF build,High,Firmware,BLOCKED,Build and test OTA
+RR-10,Compromised cloud,Unauthorized ON,Auth/RBAC/TLS/audit/local lockout,API tests; security docs,High,Software,IN_PROGRESS,Negative tests pass; deployment pending
+RR-11,Mechanical stress,Cable pull damages insulation,Strain relief/gland/anchor,safety docs; no physical test,High,Mechanical,BLOCKED,Mechanical test
+RR-12,Human misuse,Overload/chained adapters,Label/manual/limits,safety/REGULATORY_PLAN_INDONESIA.md,Medium,Product,OPEN,Write manual and label
+RR-13,Enclosure fire,3D print/ABS ignites,Flame-retardant rated enclosure + thermal test,safety/THERMAL_RISK_AND_DERATING.md,High,Mechanical,BLOCKED,Select rated enclosure
+RR-14,USB mains contact,Shock via USB during mains,Service cover/label/procedure/isolation,safety/ISOLATION_PLAN.md,High,Mechanical,BLOCKED,Design cover and test
+RR-15,CT wrong conductor,Wrong energy data,Label/single-conductor guide/direction,research docs,Medium,Hardware,OPEN,Physical CT test
+RR-16,Price/stock unknown,Budget overrun or unsafe substitution,BOM unpriced + approval gate,bom/BOM_SUMMARY.json,Medium,Project,OPEN,Get dated quotes
+RR-17,Documentation deficient,Unverified PZEM/socket/enclosure,Mark DOCUMENTATION_DEFICIENT + sample inspection,research/UNKNOWN_SPECIFICATIONS.md,High,Hardware,BLOCKED,Obtain datasheets/samples
+RR-18,Regulatory noncompliance,Unsellable/unsafe product,Regulatory plan + lab review,safety/REGULATORY_PLAN_INDONESIA.md,High,Project,OPEN,Consult regulator/lab

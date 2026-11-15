@@ -1,0 +1,45 @@
+{
+  "artifact": "validation/GPIO_CROSSCHECK.json",
+  "design_revision": "REV_A_PROVISIONAL",
+  "board": {
+    "model": "ESP32-S3-DevKitC-1-N16R8",
+    "manufacturer": "Espressif",
+    "revision": "v1.1 (planned, unverified)",
+    "flash_mb": 16,
+    "psram_mb": 8,
+    "logic_level_v": 3.3,
+    "usb": "native USB (GPIO19/20), reserved",
+    "verified_board_revision": null,
+    "verification_status": "UNVERIFIED",
+    "notes": [
+      "RGB GPIO differs between v1.0 (48) and v1.1 (38); do not assume.",
+      "Avoid strapping GPIO0/3/45/46.",
+      "Avoid GPIO26-37 (flash/PSRAM); N16R8 uses octal PSRAM.",
+      "External pulldown on relay control is mandatory for boot-safe OFF."
+    ]
+  },
+  "pin_count": 11,
+  "duplicate_or_reserved_issues": [],
+  "unverified_board_revision_issues": [
+    "BOARD_REVISION_UNVERIFIED:relay_control",
+    "BOARD_REVISION_UNVERIFIED:relay_feedback_optional",
+    "BOARD_REVISION_UNVERIFIED:button",
+    "BOARD_REVISION_UNVERIFIED:i2c_sda",
+    "BOARD_REVISION_UNVERIFIED:i2c_scl",
+    "BOARD_REVISION_UNVERIFIED:oled_reset",
+    "BOARD_REVISION_UNVERIFIED:external_rgb_data",
+    "BOARD_REVISION_UNVERIFIED:pzem_uart_tx",
+    "BOARD_REVISION_UNVERIFIED:pzem_uart_rx",
+    "BOARD_REVISION_UNVERIFIED:rtc_interrupt",
+    "BOARD_REVISION_UNVERIFIED:temperature_alert"
+  ],
+  "firmware_header": "firmware/main/board_config.h",
+  "schematic": "hardware/kicad/smartplug.kicad_sch",
+  "wiring": "hardware/wiring/main_harness.yaml",
+  "status": "UNVERIFIED",
+  "limitations": [
+    "Board revision is unverified; all GPIO assignments are PROVISIONAL.",
+    "No physical waveform or boot test was performed.",
+    "Firmware header crosscheck is static; it does not prove electrical behavior."
+  ]
+}

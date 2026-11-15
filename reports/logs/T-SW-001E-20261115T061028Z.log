@@ -1,0 +1,44 @@
+
+> @smartplug/web@0.1.0 build
+> next build
+
+â–² Next.js 16.4.6 (Turbopack)
+âœ“ Running next.config.mjs took 44ms
+
+  Creating an optimized production build ...
+âœ“ Compiled successfully in 776ms
+  Running TypeScript ...
+  Finished TypeScript in 2.8s ...
+  Collecting page data using 17 workers ...
+  Generating static pages using 17 workers (0/13) ...
+  Generating static pages using 17 workers (3/13) 
+  Generating static pages using 17 workers (6/13) 
+  Generating static pages using 17 workers (9/13) 
+âœ“ Generating static pages using 17 workers (13/13) in 1295ms
+  Finalizing page optimization ...
+
+Route (app)
+â”Œ â—‹ /
+â”œ â—‹ /_not-found
+â”œ â—‹ /admin/firmware-releases
+â”œ â—‹ /dashboard
+â”œ â—‹ /devices
+â”œ Æ’ /devices/[id]/analytics
+â”œ Æ’ /devices/[id]/automation
+â”œ Æ’ /devices/[id]/diagnostics
+â”œ Æ’ /devices/[id]/events
+â”œ Æ’ /devices/[id]/overview
+â”œ Æ’ /devices/[id]/schedules
+â”œ Æ’ /devices/[id]/settings
+â”œ â—‹ /login
+â”œ â—‹ /onboarding
+â”œ â—‹ /onboarding/pair-device
+â”œ â—‹ /settings/account
+â”œ â—‹ /settings/notifications
+â”œ â—‹ /settings/security
+â”” â—‹ /settings/tariffs
+
+
+â—‹  (Static)   prerendered as static content
+Æ’  (Dynamic)  server-rendered on demand
+

@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "Smart Plug",
+    "slug": "smartplug",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "android": {
+      "package": "com.smartplug.demo",
+      "versionCode": 1,
+      "permissions": ["INTERNET"]
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.smartplug.demo"
+    },
+    "plugins": ["expo-secure-store"],
+    "extra": {
+      "apiBaseUrl": "http://10.0.2.2:4000"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+# Template ACL. Replace DEVICE_ID and BACKEND_USER with real identities.
+# Device may publish only its own telemetry/state/event/ack/diag/availability
+# and subscribe only to its own command/config topics.
+user BACKEND_USER
+topic read smartplug/v1/+/telemetry
+topic read smartplug/v1/+/state
+topic read smartplug/v1/+/event
+topic read smartplug/v1/+/availability
+topic read smartplug/v1/+/ack
+topic read smartplug/v1/+/diag
+topic read smartplug/v1/+/config/reported
+topic write smartplug/v1/+/command
+topic write smartplug/v1/+/config/desired
+
+user DEVICE_ID
+topic write smartplug/v1/DEVICE_ID/telemetry
+topic write smartplug/v1/DEVICE_ID/state
+topic write smartplug/v1/DEVICE_ID/event
+topic write smartplug/v1/DEVICE_ID/ack
+topic write smartplug/v1/DEVICE_ID/diag
+topic write smartplug/v1/DEVICE_ID/availability
+topic write smartplug/v1/DEVICE_ID/config/reported
+topic read smartplug/v1/DEVICE_ID/command
+topic read smartplug/v1/DEVICE_ID/config/desired

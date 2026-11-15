@@ -1,0 +1,42 @@
+metadata:
+  title: Relay Coil Sub-harness (REV_A_PROVISIONAL)
+  description: SELV relay coil only. No mains. Coil low side returns to MOSFET drain
+    on carrier.
+  author: OpenCode
+  date: '2026-11-15'
+  rev: REV_A_PROVISIONAL
+options:
+  bgcolor: WH
+connectors:
+  J1:
+    type: Carrier SELV connector
+    pinlabels:
+    - RELAY_CTRL
+    - RELAY_LOW
+  K1:
+    type: Relay coil (SELV)
+    pinlabels:
+    - A1
+    - A2
+cables:
+  W_RELAY:
+    gauge: 0.5 mm2
+    length: 0.20 m
+    wirecount: 2
+    color: GY
+    colors:
+    - OG
+    - GY
+    wirelabels:
+    - RELAY_CTRL
+    - RELAY_LOW
+connections:
+- - J1:
+    - RELAY_CTRL
+    - RELAY_LOW
+  - W_RELAY:
+    - 1
+    - 2
+  - K1:
+    - A1
+    - A2

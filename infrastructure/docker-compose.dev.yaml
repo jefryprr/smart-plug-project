@@ -1,0 +1,86 @@
+# Development compose profile. NOT production-hardened.
+# Docker is not installed in the current environment; this file was not executed.
+name: smartplug-dev
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: smartplug
+      POSTGRES_USER: smartplug
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env.docker}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ../database/migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smartplug -d smartplug"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  mosquitto:
+    image: eclipse-mosquitto:2
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./broker/mosquitto.dev.conf:/mosquitto/config/mosquitto.conf:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mosquitto_sub -h localhost -t '$$SYS/broker/version' -C 1 -W 2 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ..
+      dockerfile: infrastructure/docker/Dockerfile.api
+    environment:
+      NODE_ENV: development
+      PORT: "4000"
+      HOST: 0.0.0.0
+      SQLITE_PATH: /app/data/smartplug.db
+      SEED_DEMO: "true"
+      MQTT_URL: mqtt://mosquitto:1883
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET in .env.docker}
+      WEB_ORIGIN: http://localhost:3000
+      RATE_LIMIT_ENABLED: "true"
+      LOG_LEVEL: info
+    volumes:
+      - apidata:/app/data
+    depends_on:
+      mosquitto:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+    ports:
+      - "4000:4000"
+
+  web:
+    build:
+      context: ..
+      dockerfile: infrastructure/docker/Dockerfile.web
+    environment:
+      PUBLIC_API_URL: http://api:4000
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
+
+  caddy:
+    image: caddy:2
+    volumes:
+      - ./reverse-proxy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    ports:
+      - "8080:80"
+      - "8443:443"
+    depends_on:
+      - web
+      - api
+
+volumes:
+  pgdata:
+  apidata:
+  caddy_data:
+  caddy_config:
