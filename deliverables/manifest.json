@@ -2,8 +2,8 @@
   "project": "esp32-s3-iot-smart-plug",
   "prd_version": "1.0",
   "design_revision": "REV_A_PROVISIONAL",
-  "generated_at": "2026-11-15T06:43:56.006Z",
-  "git_commit": "c9a5c4c6d57457ddb454b14cf2feba9567080678",
+  "generated_at": "2026-11-15T06:45:27.389Z",
+  "git_commit": "e691081a37bb1927b3b50479e82cbe7d52fe491b",
   "manifest_note": "git_commit is the source commit at generation time; this manifest file is committed immediately after.",
   "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",
   "hardware_validation_status": "HARDWARE_VALIDATION_REQUIRED",
@@ -14,7 +14,7 @@
   "ready_for_use": false,
   "summary": {
     "categories": 26,
-    "artifacts": 123,
+    "artifacts": 127,
     "missing_artifacts": 0,
     "test_counts": {
       "PASS": 19,
@@ -35,7 +35,7 @@
       "category": 1,
       "name": "Component research",
       "status": "PARTIAL",
-      "artifacts": 3,
+      "artifacts": 4,
       "release_classification": "DIGITAL_ONLY"
     },
     {
@@ -63,7 +63,7 @@
       "category": 5,
       "name": "Schematic",
       "status": "PARTIAL_BLOCKED",
-      "artifacts": 3,
+      "artifacts": 6,
       "release_classification": "NOT_FOR_FABRICATION"
     },
     {
@@ -258,6 +258,20 @@
       "release_classification": "DIGITAL_ONLY"
     },
     {
+      "category": 1,
+      "path": "docs/hardware/PROCUREMENT_AND_INCOMING_QC.md",
+      "sha256": "81d9ff74adaaf88d1a667528784249dbe4f89deceebd58a5f517399bed16a103",
+      "size_bytes": 2188,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-001"
+      ],
+      "evidence": [
+        "category-1"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
       "category": 2,
       "path": "bom/BOM_MASTER.csv",
       "sha256": "614dd25f6781d9b9622c4322764f2d83d7f1a9e690f69307a1641cab27a4ae03",
@@ -428,8 +442,8 @@
     {
       "category": 5,
       "path": "hardware/kicad/smartplug.kicad_sch",
-      "sha256": "8de84d1235095574fe8d2b92e3f925744a06d28cfbe234a551ca131ff8e035f7",
-      "size_bytes": 4975,
+      "sha256": "e1ff4629607785f0187c5d660f622c21a3cf5343186cd35da1bbf9585ecdf194",
+      "size_bytes": 5054,
       "status": "PARTIAL_BLOCKED",
       "tests": [
         "T-HW-002A"
@@ -442,8 +456,8 @@
     {
       "category": 5,
       "path": "hardware/kicad/smartplug.kicad_pro",
-      "sha256": "730ba5a0210175b1e11f2ceeb2189a19a9a78eed174a05d7c4ee4f11849cec1f",
-      "size_bytes": 1905,
+      "sha256": "5615a992127c6a9978363ef7f470e3ece482a51e063012e5a0e223a7daaa6ebb",
+      "size_bytes": 2005,
       "status": "PARTIAL_BLOCKED",
       "tests": [
         "T-HW-002A"
@@ -458,6 +472,48 @@
       "path": "hardware/kicad/README.md",
       "sha256": "dc147bec96e9612782fed5d1d9d1d01a15fe365b3dfdd4734a9db5abcd03ddf7",
       "size_bytes": 1781,
+      "status": "PARTIAL_BLOCKED",
+      "tests": [
+        "T-HW-002A"
+      ],
+      "evidence": [
+        "category-5"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 5,
+      "path": "hardware/generators/generate_schematic.py",
+      "sha256": "acab0ad5b782401f57b80d126e9f86fd2b954397a9034aaf9d01652f01b81403",
+      "size_bytes": 658,
+      "status": "PARTIAL_BLOCKED",
+      "tests": [
+        "T-HW-002A"
+      ],
+      "evidence": [
+        "category-5"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 5,
+      "path": "hardware/generators/requirements.lock",
+      "sha256": "421b6587eb5813fa87bfb7d2cde7057ad95ca4ff6d771608a4c5cd2f6b6724f7",
+      "size_bytes": 1018,
+      "status": "PARTIAL_BLOCKED",
+      "tests": [
+        "T-HW-002A"
+      ],
+      "evidence": [
+        "category-5"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 5,
+      "path": "hardware/generators/README.md",
+      "sha256": "7cd42b37e7d5f6935b01af35d3c30b9d99eabe0bf57d81074e182fdf62608d49",
+      "size_bytes": 1263,
       "status": "PARTIAL_BLOCKED",
       "tests": [
         "T-HW-002A"
@@ -661,8 +717,8 @@
     {
       "category": 8,
       "path": "hardware/kicad/smartplug.kicad_pcb",
-      "sha256": "849852bbfd2f42c2bfda4f0e0253530807f0257369070c313ac9f1afb358ccf2",
-      "size_bytes": 3986,
+      "sha256": "ebd546988b106d2495217414daaf87c09e15f311e200d30aaa57fdee2f9eebd3",
+      "size_bytes": 4034,
       "status": "PARTIAL_BLOCKED",
       "tests": [
         "T-HW-002A",
@@ -789,7 +845,7 @@
     {
       "category": 10,
       "path": "hardware/pcb/render/placement_preview.svg",
-      "sha256": "f8c4885a8f80816b293f153c1a3032855de6a885d4933ac9a59a48db45df7f81",
+      "sha256": "3c8dc37189dc55c66a988cf970f965677ffcaa6488dc885eaa661353c447b7c5",
       "size_bytes": 62002,
       "status": "PARTIAL",
       "tests": [
