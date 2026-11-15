@@ -398,3 +398,5 @@ See `reports/TEST_MATRIX.csv`, `reports/FAILURES.md`, `reports/VALIDATION_SUMMAR
   no physical validation, no certification.
 - This report does not replace `reports/PHASE_1_ENGINEERING_REPORT.md`,
   `reports/PHASE_2_SOFTWARE_REPORT.md`, or the safety documents.
+
+- **DevKitC-1 socket corrected:** two 1x22 sockets at 22.86 mm (ADR-015).

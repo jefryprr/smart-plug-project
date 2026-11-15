@@ -39,60 +39,65 @@ def mm(value: float) -> int:
 
 
 # ref, value, footprint library, footprint name, x, y, rotation
+# The DevKitC-1 has two separate 1x22 headers (J1 and J3), 22.86 mm apart.
+# Do not use a 2x22 socket: its rows are only 2.54 mm apart.
 COMPONENTS = [
-    ("J1", "ESP32-S3-DevKitC-1", "Connector_PinSocket_2.54mm", "PinSocket_2x22_P2.54mm_Vertical", 20.0, 10.0, 90.0),
-    ("J2", "PZEM_TTL", "Connector_JST", "JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical", 92.0, 22.0, 180.0),
-    ("J3", "RELAY", "Connector_JST", "JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical", 92.0, 36.0, 180.0),
-    ("J4", "OLED", "Connector_JST", "JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical", 8.0, 27.0, 0.0),
-    ("J5", "RTC", "Connector_JST", "JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical", 8.0, 40.0, 0.0),
-    ("J6", "BUTTON", "Connector_JST", "JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical", 8.0, 52.0, 0.0),
-    ("J7", "RGB", "Connector_JST", "JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical", 15.0, 62.0, 0.0),
-    ("J8", "5V_IN", "Connector_JST", "JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical", 27.0, 62.0, 0.0),
-    ("U9", "74HCT125N", "Package_DIP", "DIP-14_W7.62mm", 60.0, 36.0, 90.0),
-    ("Q1", "AO3400A", "Package_TO_SOT_SMD", "SOT-23", 80.0, 48.0, 0.0),
-    ("R1", "1k", "Resistor_SMD", "R_0805_2012Metric", 72.0, 44.0, 0.0),
-    ("R2", "100k", "Resistor_SMD", "R_0805_2012Metric", 72.0, 50.0, 0.0),
-    ("R3", "330R", "Resistor_SMD", "R_0805_2012Metric", 36.0, 58.0, 0.0),
-    ("R4", "10k", "Resistor_SMD", "R_0805_2012Metric", 80.0, 13.0, 0.0),
-    ("R5", "20k", "Resistor_SMD", "R_0805_2012Metric", 80.0, 17.0, 0.0),
-    ("R6", "4k7", "Resistor_SMD", "R_0805_2012Metric", 30.0, 27.0, 0.0),
-    ("R7", "4k7", "Resistor_SMD", "R_0805_2012Metric", 30.0, 31.0, 0.0),
-    ("R8", "10k", "Resistor_SMD", "R_0805_2012Metric", 20.0, 52.0, 0.0),
-    ("C1", "100uF", "Capacitor_SMD", "CP_Elec_6.3x5.4", 45.0, 62.0, 0.0),
-    ("C2", "100nF", "Capacitor_SMD", "C_0805_2012Metric", 50.0, 30.0, 0.0),
-    ("C3", "100nF", "Capacitor_SMD", "C_0805_2012Metric", 55.0, 33.0, 0.0),
+    ("J1A", "ESP32-S3-DevKitC-1 J1", "Connector_PinSocket_2.54mm", "PinSocket_1x22_P2.54mm_Vertical", 10.0, 10.0, 90.0),
+    ("J1B", "ESP32-S3-DevKitC-1 J3", "Connector_PinSocket_2.54mm", "PinSocket_1x22_P2.54mm_Vertical", 10.0, 32.86, 90.0),
+    ("J2", "PZEM_TTL", "Connector_JST", "JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical", 75.0, 6.0, 0.0),
+    ("J3", "RELAY", "Connector_JST", "JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical", 93.0, 57.0, 180.0),
+    ("J4", "OLED", "Connector_JST", "JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical", 10.0, 63.0, 0.0),
+    ("J5", "RTC", "Connector_JST", "JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical", 24.0, 63.0, 0.0),
+    ("J6", "BUTTON", "Connector_JST", "JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical", 43.0, 63.0, 0.0),
+    ("J7", "RGB", "Connector_JST", "JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical", 56.0, 63.0, 0.0),
+    ("J8", "5V_IN", "Connector_JST", "JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical", 70.0, 63.0, 0.0),
+    ("U9", "74HCT125N", "Package_DIP", "DIP-14_W7.62mm", 70.0, 34.0, 0.0),
+    ("Q1", "AO3400A", "Package_TO_SOT_SMD", "SOT-23", 85.0, 34.0, 0.0),
+    ("R1", "1k", "Resistor_SMD", "R_0805_2012Metric", 76.0, 28.0, 0.0),
+    ("R2", "100k", "Resistor_SMD", "R_0805_2012Metric", 84.0, 50.0, 0.0),
+    ("R3", "330R", "Resistor_SMD", "R_0805_2012Metric", 54.0, 54.0, 0.0),
+    ("R4", "10k", "Resistor_SMD", "R_0805_2012Metric", 80.0, 20.0, 0.0),
+    ("R5", "20k", "Resistor_SMD", "R_0805_2012Metric", 84.0, 20.0, 0.0),
+    ("R6", "4k7", "Resistor_SMD", "R_0805_2012Metric", 18.0, 50.0, 0.0),
+    ("R7", "4k7", "Resistor_SMD", "R_0805_2012Metric", 22.0, 50.0, 0.0),
+    ("R8", "10k", "Resistor_SMD", "R_0805_2012Metric", 40.0, 54.0, 0.0),
+    ("C1", "100uF", "Capacitor_SMD", "CP_Elec_6.3x5.4", 64.0, 56.0, 0.0),
+    ("C2", "100nF", "Capacitor_SMD", "C_0805_2012Metric", 56.0, 42.0, 0.0),
+    ("C3", "100nF", "Capacitor_SMD", "C_0805_2012Metric", 58.0, 48.0, 0.0),
 ]
 
 # Nets are defined as (reference, pad number) pairs.
+# J1A = DevKitC-1 J1, J1B = DevKitC-1 J3. Header pin numbers refer to the
+# official 1x22 tables, not odd/even socket numbering.
 NETS = {
-    "+5V": [("J1", 41), ("J8", 1), ("J2", 1), ("J3", 1), ("J7", 1), ("U9", 14), ("C1", 1), ("C2", 1), ("C3", 1)],
-    "+3V3": [("J1", 1), ("J1", 3), ("J4", 1), ("J5", 1), ("R6", 1), ("R7", 1), ("R8", 1)],
+    "+5V": [("J1A", 21), ("J8", 1), ("J2", 1), ("J3", 1), ("J7", 1), ("U9", 14), ("C1", 1), ("C2", 1), ("C3", 1)],
+    "+3V3": [("J1A", 1), ("J1A", 2), ("J4", 1), ("J5", 1), ("R6", 1), ("R7", 1), ("R8", 1)],
     "GND": [
-        ("J1", 2), ("J1", 42), ("J1", 43), ("J1", 44), ("J8", 2), ("J2", 4), ("J3", 2),
+        ("J1A", 22), ("J1B", 1), ("J1B", 21), ("J1B", 22), ("J8", 2), ("J2", 4), ("J3", 2),
         ("J4", 2), ("J5", 2), ("J6", 2), ("J7", 2), ("U9", 7), ("U9", 1), ("U9", 4),
         ("U9", 9), ("U9", 10), ("U9", 12), ("U9", 13), ("Q1", 2), ("C1", 2), ("C2", 2), ("C3", 2),
         ("R2", 2), ("R5", 2),
     ],
-    "SDA": [("J1", 23), ("J4", 3), ("J5", 3), ("R6", 2)],
-    "SCL": [("J1", 29), ("J4", 4), ("J5", 4), ("R7", 2)],
-    "RTC_INT": [("J1", 13), ("J5", 5)],
-    "BUTTON": [("J1", 9), ("J6", 1), ("R8", 2)],
-    "RELAY_CTRL": [("J1", 7), ("R1", 1)],
+    "SDA": [("J1A", 12), ("J4", 3), ("J5", 3), ("R6", 2)],
+    "SCL": [("J1A", 15), ("J4", 4), ("J5", 4), ("R7", 2)],
+    "RTC_INT": [("J1A", 7), ("J5", 5)],
+    "BUTTON": [("J1A", 5), ("J6", 1), ("R8", 2)],
+    "RELAY_CTRL": [("J1A", 4), ("R1", 1)],
     "RELAY_GATE": [("R1", 2), ("R2", 1), ("Q1", 1)],
     "RELAY_IN": [("Q1", 3), ("J3", 3), ("J3", 4)],
-    "PZEM_TX_3V3": [("J1", 19), ("U9", 2)],
+    "PZEM_TX_3V3": [("J1A", 10), ("U9", 2)],
     "PZEM_RX_5V": [("U9", 3), ("J2", 2)],
     "PZEM_TX_5V": [("J2", 3), ("R4", 1)],
-    "PZEM_RX_3V3": [("R4", 2), ("R5", 1), ("J1", 21)],
-    "RGB_DATA_3V3": [("J1", 31), ("U9", 5)],
+    "PZEM_RX_3V3": [("R4", 2), ("R5", 1), ("J1A", 11)],
+    "RGB_DATA_3V3": [("J1A", 16), ("U9", 5)],
     "RGB_DATA_5V": [("U9", 6), ("R3", 1)],
     "RGB_DATA_OUT": [("R3", 2), ("J7", 3)],
     "NC": [("J5", 6)],
 }
 
-# Pads that are not connected; explicit no-connect markers later.
-NO_CONNECT = [("J5", 6), ("U9", 8), ("U9", 11), ("J1", 5), ("J1", 11), ("J1", 15), ("J1", 17), ("J1", 25), ("J1", 27), ("J1", 33), ("J1", 35), ("J1", 37), ("J1", 39)]
-
+# Unused pads are left netless. J1A pins 3,6,8,9,13,14,17-20 and almost all
+# J1B pins are intentionally unconnected.
+NO_CONNECT = [("J5", 6), ("U9", 8), ("U9", 11)]
 
 def add_footprint(board, ref, value, lib, name, x, y, rot):
     fp = IO.FootprintLoad(str(FP_LIB / f"{lib}.pretty"), name)
@@ -102,9 +107,13 @@ def add_footprint(board, ref, value, lib, name, x, y, rot):
     fp.SetValue(value)
     fp.SetPosition(pcbnew.VECTOR2I(mm(x), mm(y)))
     fp.SetOrientationDegrees(rot)
-    # Slightly smaller annular pads on the 2.54 mm socket improve the routing
-    # corridor between pins while remaining well above the 0.64 mm header pin.
-    if ref == "J1":
+    # Reference/value text on silkscreen causes overlaps on this dense carrier.
+    # Keep them in the fab/assembly data instead; board-level labels are added
+    # separately below.
+    fp.Reference().SetVisible(False)
+    fp.Value().SetVisible(False)
+    # Slightly smaller annular pads on the 2.54 mm sockets improve routing.
+    if ref in {"J1A", "J1B"}:
         for pad in fp.Pads():
             pad.SetSize(pcbnew.VECTOR2I(mm(1.4), mm(1.4)))
     board.Add(fp)
@@ -114,8 +123,8 @@ def add_footprint(board, ref, value, lib, name, x, y, rot):
 def add_outline(board):
     rect = pcbnew.PCB_SHAPE(board)
     rect.SetShape(pcbnew.SHAPE_T_RECT)
-    rect.SetStart(pcbnew.VECTOR2I(mm(0.5), mm(0.5)))
-    rect.SetEnd(pcbnew.VECTOR2I(mm(BOARD_W - 0.5), mm(BOARD_H - 0.5)))
+    rect.SetStart(pcbnew.VECTOR2I(mm(0.0), mm(0.0)))
+    rect.SetEnd(pcbnew.VECTOR2I(mm(BOARD_W), mm(BOARD_H)))
     rect.SetLayer(pcbnew.Edge_Cuts)
     rect.SetWidth(mm(0.1))
     board.Add(rect)
@@ -209,11 +218,14 @@ def main():
         add_footprint(board, *comp)
     assign_nets(board)
     board.BuildListOfNets()
-    add_text(board, "SMART PLUG REV_B - SELV CARRIER", 45, 3.0, 1.2)
-    add_text(board, "NO MAINS ON THIS PCB - NOT CERTIFIED", 50, 68.0, 0.9)
-    add_text(board, "J1 pin1", 20, 7.0, 0.8)
-    add_text(board, "PZEM", 88, 15.0, 0.9)
-    add_text(board, "RELAY", 80, 29.0, 0.9)
+    add_text(board, "SMART PLUG REV_B - SELV CARRIER", 50, 3.5, 1.0)
+    add_text(board, "NO MAINS ON THIS PCB - NOT CERTIFIED", 50, 68.0, 0.8)
+    add_text(board, "ESP32-S3 J1A/J1B - 22.86 mm rows", 37, 21.5, 0.8)
+    add_text(board, "PZEM", 69, 3.0, 0.8)
+    add_text(board, "RELAY", 83, 3.0, 0.8)
+    add_text(board, "OLED  RTC  BTN  RGB  5V", 35, 57.0, 0.8)
+    add_text(board, "74HCT125", 73, 31.0, 0.8)
+    add_text(board, "PZEM DIVIDER", 70, 11.0, 0.8)
     pcbnew.SaveBoard(str(KICAD / "smartplug.kicad_pcb"), board)
     # SVG preview is exported separately via kicad-cli to avoid GUI plot API drift.
     (CARRIER / "placement.json").write_text(

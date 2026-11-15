@@ -90,16 +90,16 @@ graph {
  </td></tr>
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
-	J1 [label=<
+	J2 [label=<
 <table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">J1</td>
+   <td balign="left">J2</td>
   </tr></table>
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">Carrier SELV connector</td>
+   <td balign="left">Carrier PZEM connector (JST-XH 4)</td>
    <td balign="left">4-pin</td>
   </tr></table>
  </td></tr>
@@ -112,87 +112,18 @@ graph {
    </tr>
    <tr>
     <td port="p2l">2</td>
-    <td>GND</td>
+    <td>PZEM_RX_5V</td>
     <td port="p2r">2</td>
    </tr>
    <tr>
     <td port="p3l">3</td>
-    <td>PZEM_TX_3V3</td>
+    <td>PZEM_TX_5V</td>
     <td port="p3r">3</td>
    </tr>
    <tr>
     <td port="p4l">4</td>
-    <td>PZEM_RX_3V3</td>
-    <td port="p4r">4</td>
-   </tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	U9 [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">U9</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">74HCT125 level shifter (5 V)</td>
-   <td balign="left">10-pin</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1">
-   <tr>
-    <td port="p1l">1</td>
-    <td>VCC</td>
-    <td port="p1r">1</td>
-   </tr>
-   <tr>
-    <td port="p2l">2</td>
     <td>GND</td>
-    <td port="p2r">2</td>
-   </tr>
-   <tr>
-    <td port="p3l">3</td>
-    <td>1A</td>
-    <td port="p3r">3</td>
-   </tr>
-   <tr>
-    <td port="p4l">4</td>
-    <td>1Y</td>
     <td port="p4r">4</td>
-   </tr>
-   <tr>
-    <td port="p5l">5</td>
-    <td>2A</td>
-    <td port="p5r">5</td>
-   </tr>
-   <tr>
-    <td port="p6l">6</td>
-    <td>2Y</td>
-    <td port="p6r">6</td>
-   </tr>
-   <tr>
-    <td port="p7l">7</td>
-    <td>3A</td>
-    <td port="p7r">7</td>
-   </tr>
-   <tr>
-    <td port="p8l">8</td>
-    <td>3Y</td>
-    <td port="p8r">8</td>
-   </tr>
-   <tr>
-    <td port="p9l">9</td>
-    <td>4A</td>
-    <td port="p9r">9</td>
-   </tr>
-   <tr>
-    <td port="p10l">10</td>
-    <td>4Y</td>
-    <td port="p10r">10</td>
    </tr>
   </table>
  </td></tr>
@@ -226,7 +157,7 @@ graph {
    <tr>
     <td>CT1:1:CT_P</td>
     <td>
-     1:WH:CT_P
+     1:WH
     </td>
     <td>U2:3:CT_P</td>
    </tr>
@@ -242,7 +173,7 @@ graph {
    <tr>
     <td>CT1:2:CT_N</td>
     <td>
-     2:BK:CT_N
+     2:BK
     </td>
     <td>U2:4:CT_N</td>
    </tr>
@@ -261,23 +192,29 @@ graph {
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
 	edge [color="#000000:#ff0000:#000000"]
-	J1:p1r:e -- W_PWR:w1:w
-	W_PWR:w1:e -- U2:p5l:w
+	J2:p1r:e -- W_PZEM:w1:w
+	W_PZEM:w1:e -- U2:p5l:w
 	edge [color="#000000:#000000:#000000"]
-	J1:p2r:e -- W_PWR:w2:w
-	W_PWR:w2:e -- U2:p6l:w
-	W_PWR [label=<
+	J2:p4r:e -- W_PZEM:w2:w
+	W_PZEM:w2:e -- U2:p6l:w
+	edge [color="#000000:#ffffff:#000000"]
+	U2:p7r:e -- W_PZEM:w3:w
+	W_PZEM:w3:e -- J2:p3l:w
+	edge [color="#000000:#00ff00:#000000"]
+	U2:p8r:e -- W_PZEM:w4:w
+	W_PZEM:w4:e -- J2:p2l:w
+	W_PZEM [label=<
 <table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">W_PWR</td>
+   <td balign="left">W_PZEM</td>
   </tr></table>
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">2x</td>
-   <td balign="left">0.5 mm²</td>
-   <td balign="left">0.15 m</td>
+   <td balign="left">4x</td>
+   <td balign="left">0.25 mm²</td>
+   <td balign="left">0.2 m</td>
    <td balign="left">GY</td>
    <td balign="left" bgcolor="#999999" width="4"></td>
   </tr></table>
@@ -286,9 +223,9 @@ graph {
   <table border="0" cellspacing="0" cellborder="0">
    <tr><td>&nbsp;</td></tr>
    <tr>
-    <td>J1:1:+5V</td>
+    <td>J2:1:+5V</td>
     <td>
-     1:RD:+5V
+     1:RD
     </td>
     <td>U2:5:+5V</td>
    </tr>
@@ -302,9 +239,9 @@ graph {
     </td>
    </tr>
    <tr>
-    <td>J1:2:GND</td>
+    <td>J2:4:GND</td>
     <td>
-     2:BK:GND
+     2:BK
     </td>
     <td>U2:6:GND</td>
    </tr>
@@ -317,42 +254,15 @@ graph {
      </table>
     </td>
    </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ffffff:#000000"]
-	U2:p7r:e -- W_TX:w1:w
-	W_TX:w1:e -- J1:p4l:w
-	W_TX [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">W_TX</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">1x</td>
-   <td balign="left">0.25 mm²</td>
-   <td balign="left">0.1 m</td>
-   <td balign="left">GY</td>
-   <td balign="left" bgcolor="#999999" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
    <tr>
     <td>U2:7:TX</td>
     <td>
-     1:WH:PZEM_TX_3V3
+     3:WH
     </td>
-    <td>J1:4:PZEM_RX_3V3</td>
+    <td>J2:3:PZEM_TX_5V</td>
    </tr>
    <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
+    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w3" height="6">
      <table cellspacing="0" cellborder="0" border="0">
       <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
       <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
@@ -360,174 +270,18 @@ graph {
      </table>
     </td>
    </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ffff00:#000000"]
-	J1:p3r:e -- W_UART_3V3:w1:w
-	W_UART_3V3:w1:e -- U9:p3l:w
-	W_UART_3V3 [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">W_UART_3V3</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">1x</td>
-   <td balign="left">0.25 mm²</td>
-   <td balign="left">0.1 m</td>
-   <td balign="left">GY</td>
-   <td balign="left" bgcolor="#999999" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
    <tr>
-    <td>J1:3:PZEM_TX_3V3</td>
-    <td>
-     1:YE:PZEM_TX_3V3
-    </td>
-    <td>U9:3:1A</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffff00" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#0066ff:#000000"]
-	U9:p4r:e -- W_UART_5V:w1:w
-	W_UART_5V:w1:e -- U2:p8l:w
-	W_UART_5V [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">W_UART_5V</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">1x</td>
-   <td balign="left">0.25 mm²</td>
-   <td balign="left">0.1 m</td>
-   <td balign="left">GY</td>
-   <td balign="left" bgcolor="#999999" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>U9:4:1Y</td>
-    <td>
-     1:BU:PZEM_RX_5V
-    </td>
     <td>U2:8:RX</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#0066ff" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ffffff:#000000"]
-	U9:p1r:e -- W_LS_VCC:w1:w
-	W_LS_VCC:w1:e -- J1:p1l:w
-	W_LS_VCC [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">W_LS_VCC</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">1x</td>
-   <td balign="left">0.25 mm²</td>
-   <td balign="left">0.1 m</td>
-   <td balign="left">RD</td>
-   <td balign="left" bgcolor="#FF0000" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>U9:1:VCC</td>
     <td>
-     1:+5V
+     4:GN
     </td>
-    <td>J1:1:+5V</td>
+    <td>J2:2:PZEM_RX_5V</td>
    </tr>
    <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
+    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w4" height="6">
      <table cellspacing="0" cellborder="0" border="0">
       <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-     </table>
-    </td>
-   </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ffffff:#000000"]
-	U9:p2r:e -- W_LS_GND:w1:w
-	W_LS_GND:w1:e -- J1:p2l:w
-	W_LS_GND [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">W_LS_GND</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">1x</td>
-   <td balign="left">0.25 mm²</td>
-   <td balign="left">0.1 m</td>
-   <td balign="left">BK</td>
-   <td balign="left" bgcolor="#000000" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
-   <tr>
-    <td>U9:2:GND</td>
-    <td>
-     1:GND
-    </td>
-    <td>J1:2:GND</td>
-   </tr>
-   <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
-     <table cellspacing="0" cellborder="0" border="0">
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#00ff00" border="0"></td></tr>
       <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
      </table>
     </td>

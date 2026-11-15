@@ -280,7 +280,7 @@
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 2147483647,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.25,
+        "track_width": 0.3,
         "tuning_profile": "",
         "via_diameter": 0.8,
         "via_drill": 0.4,
@@ -320,43 +320,43 @@
   },
   "sheets": [
     [
-      "3f7985e2-8ef1-4b48-bf2f-6441b8a764ae",
+      "62ac95be-dc03-4065-b801-26bc7849ac8a",
       "Root"
     ],
     [
-      "aab1d963-c136-4855-8611-35a404bd442c",
+      "d9031d55-de37-4f3f-9bc0-adaa592d6ceb",
       "AC_INPUT_OUTPUT"
     ],
     [
-      "df8fe381-1233-4a26-84f5-02360ac4f1c2",
+      "fe9154ab-9ead-48df-a6f4-1c8a43c92c95",
       "SAFETY_AND_SWITCH"
     ],
     [
-      "d2aee8f9-32a4-42a0-a514-0e3e02d662f6",
+      "7b9e6247-c44e-490b-8461-c0ed65d6091a",
       "AC_DC_POWER"
     ],
     [
-      "fd073b59-dd8f-4d2a-a5d0-e2c5a15761da",
+      "bd1563d4-7dfa-453c-a90a-3214e01fa50d",
       "PZEM_AND_CT"
     ],
     [
-      "e78a0c99-474b-4fe7-a99a-f32329435cc4",
+      "80f886eb-ee8c-49c3-8029-68aa9eeb7701",
       "LOW_VOLTAGE_CONTROL"
     ],
     [
-      "ab371526-4dac-43bf-bdd5-0a3005546140",
+      "10ea7de9-3075-4d40-a5ed-316e69fe4a7d",
       "ESP32S3_CARRIER"
     ],
     [
-      "e6a9b4dc-9231-45b6-a834-f0d9c4b5c6ae",
+      "72413a22-fb66-42da-b5f0-c82d79fc222f",
       "DISPLAY_AND_BUTTONS"
     ],
     [
-      "e539d481-3bd5-4eac-85a3-c3bdde6c9d7d",
+      "425c0f58-4902-4def-94f4-c2b03a652957",
       "RTC_ONLY"
     ],
     [
-      "eddc6df3-a3fc-4a5f-8503-18e8ce80df35",
+      "870e80bf-5d4b-45f5-b62e-53b9bbc4d721",
       "SERVICE_AND_DEBUG"
     ]
   ],

@@ -73,7 +73,7 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">One-shot thermal cutoff 99 °C, 10 A</td>
+   <td balign="left">One-shot thermal cutoff 99 C, 10 A</td>
    <td balign="left">2-pin</td>
   </tr></table>
  </td></tr>
@@ -249,17 +249,17 @@ graph {
  </td></tr>
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
-	J1 [label=<
+	J8 [label=<
 <table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">J1</td>
+   <td balign="left">J8</td>
   </tr></table>
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">Carrier SELV connector</td>
-   <td balign="left">3-pin</td>
+   <td balign="left">Carrier 5 V input (JST-XH 2)</td>
+   <td balign="left">2-pin</td>
   </tr></table>
  </td></tr>
  <tr><td>
@@ -267,17 +267,45 @@ graph {
    <tr>
     <td port="p1l">1</td>
     <td>+5V</td>
-    <td port="p1r">1</td>
    </tr>
    <tr>
     <td port="p2l">2</td>
     <td>GND</td>
+   </tr>
+  </table>
+ </td></tr>
+</table>
+> fillcolor="#FFFFFF" shape=box style=filled]
+	J3 [label=<
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">J3</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">Carrier relay connector (JST-XH 4)</td>
+   <td balign="left">4-pin</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1">
+   <tr>
+    <td>+5V</td>
+    <td port="p1r">1</td>
+   </tr>
+   <tr>
+    <td>GND</td>
     <td port="p2r">2</td>
    </tr>
    <tr>
-    <td port="p3l">3</td>
-    <td>RELAY_CTRL</td>
+    <td>RELAY_IN1</td>
     <td port="p3r">3</td>
+   </tr>
+   <tr>
+    <td>RELAY_IN2</td>
+    <td port="p4r">4</td>
    </tr>
   </table>
  </td></tr>
@@ -758,10 +786,10 @@ graph {
 > fillcolor="#FFFFFF" shape=box style=filled]
 	edge [color="#000000:#ff0000:#000000"]
 	PS1:p3r:e -- W5V_CARRIER:w1:w
-	W5V_CARRIER:w1:e -- J1:p1l:w
+	W5V_CARRIER:w1:e -- J8:p1l:w
 	edge [color="#000000:#000000:#000000"]
 	PS1:p4r:e -- W5V_CARRIER:w2:w
-	W5V_CARRIER:w2:e -- J1:p2l:w
+	W5V_CARRIER:w2:e -- J8:p2l:w
 	W5V_CARRIER [label=<
 <table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
@@ -786,7 +814,7 @@ graph {
     <td>
      1:RD
     </td>
-    <td>J1:1:+5V</td>
+    <td>J8:1:+5V</td>
    </tr>
    <tr>
     <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
@@ -802,7 +830,7 @@ graph {
     <td>
      2:BK
     </td>
-    <td>J1:2:GND</td>
+    <td>J8:2:GND</td>
    </tr>
    <tr>
     <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w2" height="6">
@@ -819,10 +847,10 @@ graph {
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
 	edge [color="#000000:#ff0000:#000000"]
-	PS1:p3r:e -- W5V_RELAY:w1:w
+	J3:p1r:e -- W5V_RELAY:w1:w
 	W5V_RELAY:w1:e -- K1:p3l:w
 	edge [color="#000000:#000000:#000000"]
-	PS1:p4r:e -- W5V_RELAY:w2:w
+	J3:p2r:e -- W5V_RELAY:w2:w
 	W5V_RELAY:w2:e -- K1:p4l:w
 	W5V_RELAY [label=<
 <table border="0" cellspacing="0" cellpadding="0">
@@ -844,7 +872,7 @@ graph {
   <table border="0" cellspacing="0" cellborder="0">
    <tr><td>&nbsp;</td></tr>
    <tr>
-    <td>PS1:3:+5V</td>
+    <td>J3:1:+5V</td>
     <td>
      1:RD
     </td>
@@ -860,7 +888,7 @@ graph {
     </td>
    </tr>
    <tr>
-    <td>PS1:4:0V</td>
+    <td>J3:2:GND</td>
     <td>
      2:BK
     </td>
@@ -881,31 +909,34 @@ graph {
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
 	edge [color="#000000:#ffffff:#000000"]
-	J1:p3r:e -- WRELAY1:w1:w
-	WRELAY1:w1:e -- K1:p1l:w
-	WRELAY1 [label=<
+	J3:p3r:e -- WRELAY:w1:w
+	WRELAY:w1:e -- K1:p1l:w
+	edge [color="#000000:#00ff00:#000000"]
+	J3:p4r:e -- WRELAY:w2:w
+	WRELAY:w2:e -- K1:p2l:w
+	WRELAY [label=<
 <table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WRELAY1</td>
+   <td balign="left">WRELAY</td>
   </tr></table>
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">1x</td>
+   <td balign="left">2x</td>
    <td balign="left">0.25 mm²</td>
-   <td balign="left">0.1 m</td>
-   <td balign="left">WH</td>
-   <td balign="left" bgcolor="#FFFFFF" width="4"></td>
+   <td balign="left">0.15 m</td>
+   <td balign="left">GY</td>
+   <td balign="left" bgcolor="#999999" width="4"></td>
   </tr></table>
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellborder="0">
    <tr><td>&nbsp;</td></tr>
    <tr>
-    <td>J1:3:RELAY_CTRL</td>
+    <td>J3:3:RELAY_IN1</td>
     <td>
-     1
+     1:WH
     </td>
     <td>K1:1:IN1</td>
    </tr>
@@ -918,45 +949,18 @@ graph {
      </table>
     </td>
    </tr>
-   <tr><td>&nbsp;</td></tr>
-  </table>
- </td></tr>
-</table>
-> fillcolor="#FFFFFF" shape=box style=filled]
-	edge [color="#000000:#ffffff:#000000"]
-	J1:p3r:e -- WRELAY2:w1:w
-	WRELAY2:w1:e -- K1:p2l:w
-	WRELAY2 [label=<
-<table border="0" cellspacing="0" cellpadding="0">
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">WRELAY2</td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">1x</td>
-   <td balign="left">0.25 mm²</td>
-   <td balign="left">0.1 m</td>
-   <td balign="left">GN</td>
-   <td balign="left" bgcolor="#00FF00" width="4"></td>
-  </tr></table>
- </td></tr>
- <tr><td>
-  <table border="0" cellspacing="0" cellborder="0">
-   <tr><td>&nbsp;</td></tr>
    <tr>
-    <td>J1:3:RELAY_CTRL</td>
+    <td>J3:4:RELAY_IN2</td>
     <td>
-     1
+     2:GN
     </td>
     <td>K1:2:IN2</td>
    </tr>
    <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
+    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w2" height="6">
      <table cellspacing="0" cellborder="0" border="0">
       <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
-      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
+      <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#00ff00" border="0"></td></tr>
       <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
      </table>
     </td>

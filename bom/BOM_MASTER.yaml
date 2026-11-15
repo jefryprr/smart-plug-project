@@ -1,6 +1,6 @@
 project: esp32-s3-iot-smart-plug
 design_revision: REV_B_NO_TEMP
-generated_at: '2026-11-15T18:39:59.516266+00:00'
+generated_at: '2026-11-15T18:59:07.751599+00:00'
 items:
 - item_id: E-001
   reference_designators: U1
@@ -22,7 +22,7 @@ items:
   datasheet_revision: UNKNOWN
   approved_status: PENDING_APPROVAL
   alternative_mpn: Official Espressif ESP32-S3-DevKitC-1-N16R8 (preferred); N8R8
-  footprint_id: ESP32-S3-DevKitC-1_2x22_P2.54
+  footprint_id: ESP32-S3-DevKitC-1_2x22
   mechanical_model: esp32s3_devkitc1_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
@@ -752,11 +752,12 @@ items:
     must remain reachable without mains access.
   source_evidence: Omron B3F datasheet.
 - item_id: E-024
-  reference_designators: J1
+  reference_designators: J1A,J1B
   category: Connectors
-  description: 2x22 pin female header, 2.54 mm, for DevKitC-1
+  description: 2 pcs 1x22 female header strips (one 2x22 strip split into two rows),
+    2.54 mm, 22.86 mm row spacing for DevKitC-1
   manufacturer: TBD
-  manufacturer_part_number: HDR-2X22-2.54-F
+  manufacturer_part_number: HDR-1X22-2.54-F
   module_revision: '-'
   qty_per_unit: 1
   unit: pcs
@@ -770,12 +771,13 @@ items:
   datasheet_revision: UNKNOWN
   approved_status: PROVISIONAL
   alternative_mpn: ''
-  footprint_id: PinSocket_2x22_P2.54mm
-  mechanical_model: header_2x22_approx
+  footprint_id: PinSocket_1x22_P2.54mm
+  mechanical_model: header_1x22_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: ESP32-S3-DevKitC-1 has 2x22 headers (J1/J3), not 2x20. Verify pin length/orientation
-    and keying before inserting the board.
+  notes: 'DevKitC-1 has two separate 1x22 headers (J1/J3), 22.86 mm apart. Do NOT
+    use a 2x22 socket: its rows are only 2.54 mm apart and cannot accept the board.
+    Mark pin 1 and USB end; key or block reverse insertion.'
   source_evidence: Espressif DevKitC-1 v1.1 user guide header tables.
 - item_id: E-025
   reference_designators: J2
@@ -1290,9 +1292,9 @@ items:
   mechanical_model: pcb_carrier_100x70
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: REV_B routed carrier with 2x22 DevKit socket, PZEM 5V/3.3V level shift, relay
-    driver, I2C OLED/RTC, button, RGB, and 5V input. DRC 0 but engineering review/physical
-    test still required. Mains modules remain off-board.
+  notes: REV_B routed carrier with two 1x22 DevKit sockets at 22.86 mm spacing, PZEM
+    5V/3.3V level shift, relay driver, I2C OLED/RTC, button, RGB, and 5V input. DRC
+    0 but engineering review/physical test still required. Mains modules remain off-board.
   source_evidence: KiCad REV_B routed carrier; Gerber/drill exported; physical test
     not performed.
 - item_id: E-042

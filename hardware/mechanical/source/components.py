@@ -26,7 +26,7 @@ class ModuleEnvelope:
 MODULES: dict[str, list[ModuleEnvelope]] = {
     "provisional": [
         ModuleEnvelope("carrier", "Low-voltage carrier PCB (80x50, provisional)", (80, 50, 1.6), (-30, 0, 8), "SELV", "engineering_calculation"),
-        ModuleEnvelope("esp32", "ESP32-S3-DevKitC-1 (2x22, approx)", (68.6, 25.4, 10), (-30, 0, 13), "SELV", "datasheet_approx"),
+        ModuleEnvelope("esp32", "ESP32-S3-DevKitC-1 (two 1x22 rows, approx)", (68.6, 25.4, 10), (-30, 0, 13), "SELV", "datasheet_approx"),
         ModuleEnvelope("oled", "OLED 0.96 module", (27, 27, 4), (-55, -34, 40), "SELV", "provisional"),
         ModuleEnvelope("button", "Panel button + cap", (12, 12, 8), (-20, -40, 34), "SELV", "provisional"),
         ModuleEnvelope("rgb", "External RGB diffuser", (6, 6, 3), (-5, -40, 40), "SELV", "provisional"),
@@ -43,7 +43,7 @@ MODULES: dict[str, list[ModuleEnvelope]] = {
     ],
     "recommended": [
         ModuleEnvelope("carrier", "Low-voltage carrier PCB (100x70, REV_B)", (100, 70, 1.6), (-55, 0, 8), "SELV", "engineering_calculation"),
-        ModuleEnvelope("esp32", "ESP32-S3-DevKitC-1 (2x22, approx)", (68.6, 25.4, 10), (-55, 0, 13), "SELV", "datasheet_approx"),
+        ModuleEnvelope("esp32", "ESP32-S3-DevKitC-1 (two 1x22 rows, approx)", (68.6, 25.4, 10), (-55, 0, 13), "SELV", "datasheet_approx"),
         ModuleEnvelope("oled", "OLED 0.96 module", (27, 27, 4), (-90, -42, 40), "SELV", "provisional"),
         ModuleEnvelope("button", "Panel button + cap", (12, 12, 8), (-55, -48, 34), "SELV", "provisional"),
         ModuleEnvelope("rgb", "External RGB diffuser", (6, 6, 3), (-35, -48, 40), "SELV", "provisional"),

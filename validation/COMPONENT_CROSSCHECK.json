@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "master_rows": 54,
-  "pcba_rows": 21,
+  "pcba_rows": 22,
   "missing_refs_in_master": [],
   "unpriced_lines": 54,
   "unapproved_lines": 54,

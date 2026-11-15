@@ -2,7 +2,8 @@ reference_designators,description,manufacturer,mpn,qty,footprint,approved_status
 C1,100uF,TBD,TBD,1,CP_Elec_6.3x5.4,PROVISIONAL,REV_B routed carrier; vendor footprint/MPN review required
 C2,100nF,TBD,TBD,1,C_0805_2012Metric,PROVISIONAL,REV_B routed carrier; vendor footprint/MPN review required
 C3,100nF,TBD,TBD,1,C_0805_2012Metric,PROVISIONAL,REV_B routed carrier; vendor footprint/MPN review required
-J1,ESP32-S3-DevKitC-1,TBD,TBD,1,PinSocket_2x22_P2.54mm_Vertical,PROVISIONAL,REV_B routed carrier; vendor footprint/MPN review required
+J1A,ESP32-S3-DevKitC-1 J1,TBD,TBD,1,PinSocket_1x22_P2.54mm_Vertical,PROVISIONAL,REV_B routed carrier; vendor footprint/MPN review required
+J1B,ESP32-S3-DevKitC-1 J3,TBD,TBD,1,PinSocket_1x22_P2.54mm_Vertical,PROVISIONAL,REV_B routed carrier; vendor footprint/MPN review required
 J2,PZEM_TTL,TBD,TBD,1,JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical,PROVISIONAL,REV_B routed carrier; vendor footprint/MPN review required
 J3,RELAY,TBD,TBD,1,JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical,PROVISIONAL,REV_B routed carrier; vendor footprint/MPN review required
 J4,OLED,TBD,TBD,1,JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical,PROVISIONAL,REV_B routed carrier; vendor footprint/MPN review required

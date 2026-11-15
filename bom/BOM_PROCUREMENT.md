@@ -41,7 +41,7 @@
 | E-047 | JST-XH 2-pin cable for button | 1 pcs | Rp5,000 | Shopee (similar listing) | ESTIMATED |
 | E-049 | JST-XH 2-pin cable for 5V input | 1 pcs | Rp5,000 | Shopee (similar listing) | ESTIMATED |
 | E-023 | 6x6x5 mm tactile switch, 10 pcs | 1 pcs | Rp7,000 | Shopee | VERIFIED_AGGREGATOR |
-| E-024 | 2x22 female header, 2.54 mm for ESP32-S3-DevKitC-1 | 1 pcs | Rp3,250 | Shopee | VERIFIED_AGGREGATOR |
+| E-024 | 2x22 female header strip, split into two 1x22 rows | 1 pcs | Rp3,250 | Shopee | VERIFIED_AGGREGATOR |
 | E-025 | JST-XH 4-pin cable for PZEM TTL | 1 pcs | Rp12,300 | Shopee | VERIFIED_AGGREGATOR |
 | E-026 | JST-XH 4-pin cable for relay module | 1 pcs | Rp12,300 | Shopee | VERIFIED_AGGREGATOR |
 | E-029 | 5.08 mm 2-pin PCB terminal block | 1 pcs | Rp2,450 | Shopee | VERIFIED_AGGREGATOR |

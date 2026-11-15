@@ -29,7 +29,7 @@
 - The KiCad schematic is a **system block schematic** (text/labels), not a
   symbol-level production schematic. The functional schematic and pin/net table
   are in `hardware/schematic/` and `hardware/carrier/netlist.csv`.
-- The PCB is **routed**: 21 footprints, 18 nets, copper tracks, vias, B.Cu GND
+- The PCB is **routed**: 22 footprints, 18 nets, copper tracks, vias, B.Cu GND
   zone, 100 × 70 mm. DRC is 0/0 at 0.15 mm clearance.
 - It is **not released for fabrication**: no engineer sign-off, no physical fit,
   no hipot/thermal/load test, no vendor footprint review.

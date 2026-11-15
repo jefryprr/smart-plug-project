@@ -26,7 +26,7 @@ TRACK_W = 0.3
 POWER_W = 0.6
 CLEAR = 0.2
 CLEAR_PAD = 0.2
-VIA_COST = 8
+VIA_COST = 1000
 
 # Import the same net map used by the generator.
 import sys
@@ -92,14 +92,47 @@ class Router:
             layers.append(0)
         if pad.IsOnLayer(pcbnew.B_Cu):
             layers.append(1)
+        # Return every grid cell whose centre lies inside the pad bounding
+        # box. A single nearest cell can collapse two 0805 pads (1.825 mm
+        # apart) onto the same cell on a 0.5 mm grid, causing false shorts.
+        box = pad.GetBoundingBox()
+        x0 = pcbnew.ToMM(box.GetX())
+        y0 = pcbnew.ToMM(box.GetY())
+        x1 = x0 + pcbnew.ToMM(box.GetWidth())
+        y1 = y0 + pcbnew.ToMM(box.GetHeight())
         cells = []
-        # Use the grid cell nearest the pad centre only. The cell centre is
-        # within 0.35 mm of the pad centre, which lies inside the pad; this
-        # avoids long diagonal stubs that clip adjacent pads.
-        x, y = cx, cy
-        if 1 <= x < W - 1 and 1 <= y < H - 1:
-            for layer in layers:
-                cells.append((x, y, layer))
+        for ix in range(int(math.ceil(x0 / GRID)), int(math.floor(x1 / GRID)) + 1):
+            for iy in range(int(math.ceil(y0 / GRID)), int(math.floor(y1 / GRID)) + 1):
+                if 1 <= ix < W - 1 and 1 <= iy < H - 1:
+                    for layer in layers:
+                        cells.append((ix, iy, layer))
+        if not cells:
+            x, y = cx, cy
+            if 1 <= x < W - 1 and 1 <= y < H - 1:
+                for layer in layers:
+                    cells.append((x, y, layer))
+        return cells
+
+    def pad_ignore_cells(self, ref: str, padnum: int, netname: str) -> set[tuple[int, int, int]]:
+        """Allow escape only from the current net's own pad clearance ring."""
+        pad = self.by_ref[ref].FindPadByNumber(str(padnum))
+        box = pad.GetBoundingBox()
+        expand = CLEAR_PAD + 0.3
+        x0 = pcbnew.ToMM(box.GetX()) - expand
+        y0 = pcbnew.ToMM(box.GetY()) - expand
+        x1 = x0 + pcbnew.ToMM(box.GetWidth()) + 2 * expand
+        y1 = y0 + pcbnew.ToMM(box.GetHeight()) + 2 * expand
+        layers = []
+        if pad.IsOnLayer(pcbnew.F_Cu):
+            layers.append(0)
+        if pad.IsOnLayer(pcbnew.B_Cu):
+            layers.append(1)
+        cells = set()
+        for ix in range(int(math.ceil(x0 / GRID)), int(math.floor(x1 / GRID)) + 1):
+            for iy in range(int(math.ceil(y0 / GRID)), int(math.floor(y1 / GRID)) + 1):
+                for layer in layers:
+                    if self.owner[layer].get((ix, iy)) == netname:
+                        cells.add((ix, iy, layer))
         return cells
 
     def pad_xy(self, ref: str, padnum: int):
@@ -112,21 +145,21 @@ class Router:
             return True
         return not self.blocked[layer][self.idx(x, y)]
 
-    def astar(self, start_cells, goal_cells, netname: str, width: float):
+    def astar(self, start_cells, goal_cells, netname: str, width: float, ignore: set[tuple[int, int, int]] | None = None):
         start_set = set(start_cells)
         goal_set = set(goal_cells)
-        # Allow a one-cell escape halo around start/goal pads; otherwise a pad
-        # surrounded by previously routed tracks can be falsely unroutable.
-        halo = set()
-        for x, y, layer in start_set | goal_set:
-            for dx in range(-2, 3):
-                for dy in range(-2, 3):
-                    halo.add((x + dx, y + dy, layer))
-        ignore = halo
+        # Unblock only the clearance ring of the current net's own pads.
+        if ignore is None:
+            ignore = set()
+        ignore = set(ignore) | set(start_set) | set(goal_set)
         openq = []
         gscore = {}
         came = {}
         for x, y, layer in start_set:
+            # Start on F.Cu whenever possible; the B.Cu plane is reserved for
+            # the GND zone so it stays continuous.
+            if layer != 0:
+                continue
             if self.free(x, y, layer, ignore):
                 s = (x, y, layer)
                 gscore[s] = 0
@@ -245,9 +278,10 @@ class Router:
                     if best is None or d < best[0]:
                         best = (d, a, b)
             _, a, b = best
-            path = self.astar(self.pad_cells(*a), self.pad_cells(*b), netname, width)
+            ignore = self.pad_ignore_cells(*a, netname) | self.pad_ignore_cells(*b, netname)
+            path = self.astar(self.pad_cells(*a), self.pad_cells(*b), netname, width, ignore)
             if path is None:
-                path = self.astar(self.pad_cells(*b), self.pad_cells(*a), netname, width)
+                path = self.astar(self.pad_cells(*b), self.pad_cells(*a), netname, width, ignore)
             if path is None:
                 print(f"  FAIL {netname}: {a} -> {b}")
                 ok = False

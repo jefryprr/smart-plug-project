@@ -34,7 +34,7 @@ The PRD is the contract: `PRD.md`.
 | Firmware C core | 75 checks, Zig host build | PASS |
 | Web | Next build + 5 Playwright tests + axe | PASS |
 | Static wiring/GPIO/BOM | Python crosscheck | PASS |
-| WireViz | 5 harnesses rendered | PASS |
+| WireViz | 4 harnesses rendered | PASS |
 | CadQuery | STEP/STL + renders + brackets | PASS (digital) |
 | KiCad CLI | 10.0.8, ERC 0; routed carrier DRC 0/0; Gerber/drill | PASS (digital) |
 | ESP-IDF build | v6.1, target esp32s3, 192,496-byte `.bin` | PASS (build only) |

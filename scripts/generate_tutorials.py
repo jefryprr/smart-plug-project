@@ -152,7 +152,7 @@ Lakukan smoke test satu sheet, buka di KiCad, dan bandingkan hasilnya. Catat dev
 """,
 "04_SETUP_WIREVIZ.md": """# 04 — Setup WireViz
 
-**Status:** `PASS` — 5 harness dirender (SVG/PNG/PDF/GV).
+**Status:** `PASS` — 4 harness dirender (SVG/PNG/PDF/GV).
 
 ## Prasyarat
 
@@ -263,7 +263,7 @@ Jangan membeli berdasarkan BOM ini.
 ## Schematic
 
 - Root: `hardware/kicad/smartplug.kicad_sch` (9 blok).
-- Child: `AC_INPUT_OUTPUT`, `SAFETY_AND_SWITCH`, `AC_DC_POWER`, `PZEM_AND_CT`, `LOW_VOLTAGE_CONTROL`, `ESP32S3_CARRIER`, `DISPLAY_AND_BUTTONS`, `TEMP_SENSING`, `SERVICE_AND_DEBUG`.
+- Child: `AC_INPUT_OUTPUT`, `SAFETY_AND_SWITCH`, `AC_DC_POWER`, `PZEM_AND_CT`, `LOW_VOLTAGE_CONTROL`, `ESP32S3_CARRIER`, `DISPLAY_AND_BUTTONS`, `RTC_ONLY`, `SERVICE_AND_DEBUG`.
 - Ini **system block schematic**, bukan komponen penuh.
 
 ## GPIO

@@ -98,7 +98,7 @@ ROWS = [
         "Espressif", "ESP32-S3-DevKitC-1-N16R8", revision="v1.1 (planned)",
         datasheet="https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html",
         status="PENDING_APPROVAL", alt="ESP32-S3-DevKitC-1-N8R8; third-party clone (not preferred)",
-        footprint="ESP32-S3-DevKitC-1_2x22_P2.54", mech="esp32s3_devkitc1_approx",
+        footprint="ESP32-S3-DevKitC-1_2x22", mech="esp32s3_devkitc1_approx",
         notes="RGB pin differs between v1.0 (GPIO48) and v1.1 (GPIO38); board must be photographed and revision verified. N16R8 uses octal PSRAM; avoid GPIO33-37.",
         evidence="Espressif user guide v1.1; verify exact board marking and USB/strapping pins on arrival."
     ),
@@ -279,9 +279,9 @@ ROWS = [
         evidence="Omron B3F datasheet."
     ),
     row(
-        "E-024", "J1", "Connectors", "2x22 pin female header, 2.54 mm, for DevKitC-1", "TBD", "HDR-2X22-2.54-F",
-        status="PROVISIONAL", footprint="PinSocket_2x22_P2.54mm", mech="header_2x22_approx",
-        notes="ESP32-S3-DevKitC-1 has 2x22 headers (J1/J3), not 2x20. Verify pin length/orientation and keying before inserting the board.",
+        "E-024", "J1A,J1B", "Connectors", "2 pcs 1x22 female header strips (one 2x22 strip split into two rows), 2.54 mm, 22.86 mm row spacing for DevKitC-1", "TBD", "HDR-1X22-2.54-F",
+        status="PROVISIONAL", footprint="PinSocket_1x22_P2.54mm", mech="header_1x22_approx",
+        notes="DevKitC-1 has two separate 1x22 headers (J1/J3), 22.86 mm apart. Do NOT use a 2x22 socket: its rows are only 2.54 mm apart and cannot accept the board. Mark pin 1 and USB end; key or block reverse insertion.",
         evidence="Espressif DevKitC-1 v1.1 user guide header tables."
     ),
     row(
@@ -737,12 +737,12 @@ PROCUREMENT = [
     },
     {
         "line_id": "E-024", "stage": "CORE",
-        "selected": "2x22 female header, 2.54 mm for ESP32-S3-DevKitC-1",
+        "selected": "2x22 female header strip, split into two 1x22 rows",
         "qty": 1, "unit_price": 3250,
         "seller": "Shopee",
         "url": "https://shopee.co.id/product/1484861284/29479551658",
         "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "DevKitC-1 has 2x22 headers (J1/J3), not 2x20. Verify pin length/orientation; keying recommended.",
+        "notes": "DevKitC-1 has two 1x22 headers (J1/J3) 22.86 mm apart. Split the 2x22 strip into two rows or buy two 1x22 strips. Mark pin 1/USB end; prevent reverse insertion.",
     },
     {
         "line_id": "E-025", "stage": "CORE",
@@ -996,7 +996,7 @@ PROCUREMENT_OVERRIDES = {
         "manufacturer": "Generic",
         "manufacturer_part_number": "PCB-CARRIER-REV-B",
         "footprint_id": "PCB_CARRIER_REV_B",
-        "notes": "REV_B routed carrier with 2x22 DevKit socket, PZEM 5V/3.3V level shift, relay driver, I2C OLED/RTC, button, RGB, and 5V input. DRC 0 but engineering review/physical test still required. Mains modules remain off-board.",
+        "notes": "REV_B routed carrier with two 1x22 DevKit sockets at 22.86 mm spacing, PZEM 5V/3.3V level shift, relay driver, I2C OLED/RTC, button, RGB, and 5V input. DRC 0 but engineering review/physical test still required. Mains modules remain off-board.",
     },
     "E-042": {
         "description": "Safety/rating label set: rated voltage/current, warnings, serial/QR placeholder (prototype label tape)",

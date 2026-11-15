@@ -46,7 +46,7 @@ Tidak termasuk: ongkir aktual, pajak, bea impor, alat ukur/solder/crimp, jasa 3D
 | Shopee N16R8 compatible (ALFA) | Rp139.968 | listed | Dipakai di CORE; **bukan** board resmi. |
 | Official Espressif | belum ada stok lokal | — | Biaya impor tinggi. |
 
-**Keputusan:** board compatible Rp139.968 dengan deviasi Q08=B tercatat. Verifikasi marking N16R8, GPIO RGB (v1.0=48, v1.1=38), regulator, USB, dan pinout 2x22.
+**Keputusan:** board compatible Rp139.968 dengan deviasi Q08=B tercatat. Verifikasi marking N16R8, GPIO RGB (v1.0=48, v1.1=38), regulator, USB, dan pinout two 1x22 headers.
 
 ### 3.2 Metering — PZEM-004T V4 100 A CT
 
@@ -103,7 +103,7 @@ Tidak termasuk: ongkir aktual, pajak, bea impor, alat ukur/solder/crimp, jasa 3D
 
 | Part | Harga | Catatan |
 |---|---:|---|
-| 2x22 female header | Rp3.250 | DevKitC-1 memakai 2x22, bukan 2x20. |
+| 2x22 female header strip (split into two 1x22 rows) | Rp3.250 | DevKitC-1 memakai dua header 1x22 dengan jarak baris 22,86 mm. |
 | JST-XH 4-pin (PZEM/relay/OLED) | Rp12.300 | Empat kabel. |
 | JST-XH 6-pin (RTC) | Rp8.000 est. | 32K boleh NC. |
 | JST-XH 2-pin (button/5V) | Rp5.000 est. | Bisa solder langsung. |

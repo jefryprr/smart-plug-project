@@ -4,8 +4,7 @@
     "members": [
       "P1:PE",
       "W_PE:1",
-      "X1:PE",
-      "WPE:1"
+      "X1:PE"
     ],
     "rule": "PE must connect input to output without relay/fuse/thermal cutoff."
   },
@@ -15,7 +14,7 @@
   },
   "relay_coil_selv": {
     "status": "PASS",
-    "note": "Relay module inputs are driven from SELV GPIO through the carrier MOSFET."
+    "note": "Relay module inputs are driven from SELV GPIO through the carrier MOSFET; J3 pins 3/4 are tied on the PCB."
   },
   "pzem_isolation": {
     "status": "PASS",
@@ -39,7 +38,7 @@
   "bom_crosscheck": {
     "status": "PASS",
     "master_rows": 54,
-    "pcba_rows": 21,
+    "pcba_rows": 22,
     "missing_refs_in_master": [],
     "unpriced_lines": 54,
     "unapproved_lines": 54,
