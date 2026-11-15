@@ -2,8 +2,8 @@
   "project": "esp32-s3-iot-smart-plug",
   "prd_version": "1.0",
   "design_revision": "REV_A_PROVISIONAL",
-  "generated_at": "2026-11-15T06:45:27.389Z",
-  "git_commit": "e691081a37bb1927b3b50479e82cbe7d52fe491b",
+  "generated_at": "2026-11-15T06:45:48.885Z",
+  "git_commit": "8241f437d6bd23a1b1d8a516f3e95cd27cfda784",
   "manifest_note": "git_commit is the source commit at generation time; this manifest file is committed immediately after.",
   "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",
   "hardware_validation_status": "HARDWARE_VALIDATION_REQUIRED",
@@ -442,8 +442,8 @@
     {
       "category": 5,
       "path": "hardware/kicad/smartplug.kicad_sch",
-      "sha256": "e1ff4629607785f0187c5d660f622c21a3cf5343186cd35da1bbf9585ecdf194",
-      "size_bytes": 5054,
+      "sha256": "e2d15ef312e0972d9da92885cdc9297d5bdd3dff5da08b597b774dbf3bb263f4",
+      "size_bytes": 4975,
       "status": "PARTIAL_BLOCKED",
       "tests": [
         "T-HW-002A"
@@ -456,8 +456,8 @@
     {
       "category": 5,
       "path": "hardware/kicad/smartplug.kicad_pro",
-      "sha256": "5615a992127c6a9978363ef7f470e3ece482a51e063012e5a0e223a7daaa6ebb",
-      "size_bytes": 2005,
+      "sha256": "2b05dac66285e05f4bea8f5b5dff6556cdbc9723ea79a790b1c468bbc5a05dcc",
+      "size_bytes": 1905,
       "status": "PARTIAL_BLOCKED",
       "tests": [
         "T-HW-002A"
@@ -498,8 +498,8 @@
     {
       "category": 5,
       "path": "hardware/generators/requirements.lock",
-      "sha256": "421b6587eb5813fa87bfb7d2cde7057ad95ca4ff6d771608a4c5cd2f6b6724f7",
-      "size_bytes": 1018,
+      "sha256": "66ed6009e4aec3cbbf93dc87793e8d174c8dd869afaf03a38ba157f7b5e2a7fc",
+      "size_bytes": 962,
       "status": "PARTIAL_BLOCKED",
       "tests": [
         "T-HW-002A"
@@ -717,8 +717,8 @@
     {
       "category": 8,
       "path": "hardware/kicad/smartplug.kicad_pcb",
-      "sha256": "ebd546988b106d2495217414daaf87c09e15f311e200d30aaa57fdee2f9eebd3",
-      "size_bytes": 4034,
+      "sha256": "a46076650383fc2de359e629aa1973e99e8e7319e9d7aaa2d05dacb490561c19",
+      "size_bytes": 3986,
       "status": "PARTIAL_BLOCKED",
       "tests": [
         "T-HW-002A",
