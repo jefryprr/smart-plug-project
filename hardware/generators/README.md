@@ -1,0 +1,31 @@
+# Hardware Generators
+
+| Generator | Purpose | Output |
+|---|---|---|
+| `generate_kicad.py` | Native KiCad block schematic + placement PCB + project | `hardware/kicad/` |
+| `generate_schematic.py` | Compatibility wrapper; documented Circuit-Synth deviation | calls `generate_kicad.py` |
+| `generate_gpio_map.py` | GPIO YAML → CSV/MD + crosscheck | `hardware/interfaces/`, `validation/` |
+| `../scripts/generate_architecture.py` | Graphviz architecture diagram | `docs/hardware/` |
+| `../scripts/render_pcb_preview.py` | Preview parsed from `.kicad_pcb` | `hardware/pcb/render/` |
+
+## Environment
+
+- Python 3.11 `.venv`
+- `kiutils` 1.4.8, `cadquery` 2.8.0, `wireviz` 0.4.1, `graphviz` 16.1.1 portable
+- KiCad CLI: **not installed**; ERC/DRC/Gerber blocked.
+
+## Run
+
+```powershell
+.venv\Scripts\python.exe hardware\generators\generate_schematic.py
+.venv\Scripts\python.exe hardware\generators\generate_gpio_map.py
+```
+
+## Source of truth
+
+- Schematic: generator + `hardware/kicad/*.kicad_sch` (system block level).
+- PCB: `smartplug.kicad_pcb` (placement-only).
+- Mechanical: CadQuery source + `parameters.yaml`.
+- Wiring: WireViz YAML + renders.
+
+Do not hand-edit generated files without updating the generator; otherwise the next run will overwrite the change.
