@@ -26,7 +26,7 @@
 | A-020 | No lab/physical test capability (Q26=A) | User answer | All physical gates | Project owner | Facility confirmation | `CONFIRMED` |
 | A-021 | Demo data is synthetic and labeled | Environment constraint | Misleading results | Software engineer | Code/UI review | `CONFIRMED` |
 | A-022 | No irreversible eFuse action without approval | ADR-012 | Device recovery/security | Security engineer | Review | `CONFIRMED` |
-| A-023 | Indonesian procurement prices are 2026-11-15/16 listing snapshots, not supplier quotes; 43 lines listing-verified, 11 estimated | `bom/BOM_PROCUREMENT.csv` | Budget/schedule | Project owner | Re-quote before purchase | `PROVISIONAL` |
+| A-023 | Indonesian procurement prices are 2026-11-15/16 listing snapshots, not supplier quotes; 43 lines listing-verified, 13 estimated | `bom/BOM_PROCUREMENT.csv` | Budget/schedule | Project owner | Re-quote before purchase | `PROVISIONAL` |
 | A-024 | ESP32-S3 N16R8 compatible board at Rp139.968 is acceptable for prototype only as an explicit Q08=B deviation | Official local stock unconfirmed | GPIO/RGB/regulator/security | Hardware engineer | Board photo + pinout + RF test | `OPEN` |
 | A-025 | MG Duradus 220x120x70 ABS IP65 enclosure fits, but flame-retardant grade is unverified | Listing + fit CAD | Fire/mechanical safety | Mechanical engineer | Material certificate + thermal/impact test | `OPEN` |
 | A-026 | No temperature sensor is installed in REV_B; firmware must not require temperature validity | User instruction 2026-11-16 | Thermal safety/ON policy | Engineer | Thermal test + TCO/fuse review | `PROVISIONAL` |
