@@ -68,7 +68,7 @@ Demo pairing code: `123456` (single-use in the API; seed only).
 ### Local stack
 
 ```powershell
-npm run dev:api      # API on :4000, SQLite, seeded demo
+npm run api:dev      # API on :4000, SQLite, seeded demo
 npm run sim:dev      # device simulator (needs MQTT broker)
 npm run web:dev      # Next.js on :3000
 ```

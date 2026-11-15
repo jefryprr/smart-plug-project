@@ -31,6 +31,21 @@ START = datetime.now(timezone.utc)
 STAMP = START.strftime("%Y%m%dT%H%M%SZ")
 
 
+def display_command(command: list[str]) -> str:
+    """Record a portable command string, not the user's absolute PC path."""
+    parts: list[str] = []
+    for part in command:
+        value = part.replace(str(ROOT), ".")
+        if value == NPM:
+            value = "npm"
+        elif value == POWERSHELL:
+            value = "powershell"
+        elif value == str(PYTHON):
+            value = "python"
+        parts.append(value)
+    return " ".join(parts)
+
+
 def run_step(test_id: str, area: str, command: list[str] | None, note: str, blocked: bool = False) -> dict:
     if blocked or command is None:
         result = {
@@ -65,7 +80,7 @@ def run_step(test_id: str, area: str, command: list[str] | None, note: str, bloc
         result = {
             "test_id": test_id,
             "area": area,
-            "command": " ".join(command),
+            "command": display_command(command),
             "status": status,
             "exit_code": completed.returncode,
             "log": str(log_path.relative_to(ROOT)),
@@ -77,7 +92,7 @@ def run_step(test_id: str, area: str, command: list[str] | None, note: str, bloc
         result = {
             "test_id": test_id,
             "area": area,
-            "command": " ".join(command),
+            "command": display_command(command),
             "status": "FAIL",
             "exit_code": None,
             "log": str(log_path.relative_to(ROOT)),

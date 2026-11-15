@@ -25,9 +25,9 @@ export default defineConfig({
       reuseExistingServer: false
     },
     {
-      command: "npm run start -w @smartplug/web",
+      command: "node scripts/e2e_web.mjs",
       url: "http://127.0.0.1:3000/login",
-      timeout: 120_000,
+      timeout: 180_000,
       reuseExistingServer: false
     }
   ],

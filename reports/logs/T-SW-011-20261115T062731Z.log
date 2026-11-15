@@ -1,0 +1,19 @@
+Error: Process from config.webServer was not able to start. Exit code: 1
+
+[WebServer] node:internal/child_process:441
+[WebServer]     throw new ErrnoException(err, 'spawn');
+[WebServer]           ^
+[WebServer] 
+[WebServer] Error: spawn EINVAL
+[WebServer]     at ChildProcess.spawn (node:internal/child_process:441:11)
+[WebServer]     at spawn (node:child_process:796:9)
+[WebServer]     at file:///C:/Users/JEFRY%20PRATAMA/Zed/SMART-PLUG-V2/scripts/e2e_web.mjs:10:15
+[WebServer]     at ModuleJob.run (node:internal/modules/esm/module_job:437:25)
+[WebServer]     at async node:internal/modules/esm/loader:639:26
+[WebServer]     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+[WebServer]   errno: -4071,
+[WebServer]   code: 'EINVAL',
+[WebServer]   syscall: 'spawn'
+[WebServer] }
+[WebServer] 
+[WebServer] Node.js v24.15.0

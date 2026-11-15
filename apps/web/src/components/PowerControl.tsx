@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { CommandResponse, DeviceDetail } from "@smartplug/api-contract";
 import { api } from "@/lib/api";
 import { errorMessage } from "@/lib/hooks";
@@ -13,6 +13,13 @@ export function PowerControl({ device, onChanged }: { device: DeviceDetail; onCh
   const [pending, setPending] = useState<CommandResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const mounted = useRef(true);
+
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
 
   const offline = device.availability === "OFFLINE" || device.availability === "NEVER_SEEN";
   const locked = device.state.lockout || device.state.fault_code !== null;

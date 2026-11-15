@@ -2,7 +2,7 @@
 
 ```powershell
 npm install
-npm run dev:web
+npm run web:dev
 ```
 
 Buka http://localhost:3000. API harus jalan di port 4000.

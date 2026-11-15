@@ -1,9 +1,24 @@
-import { mkdirSync, rmSync } from "node:fs";
-import { spawn } from "node:child_process";
+import { existsSync, mkdirSync, rmSync } from "node:fs";
+import { execSync, spawn } from "node:child_process";
 import { createServer } from "node:net";
 import { once } from "node:events";
 import { Aedes } from "aedes";
-import { SimulatedDevice } from "../apps/device-simulator/dist/simulator.js";
+
+const requiredBuilds = [
+  "packages/domain/dist/index.js",
+  "packages/api-contract/dist/index.js",
+  "packages/mqtt-contract/dist/index.js",
+  "apps/device-simulator/dist/simulator.js"
+];
+if (requiredBuilds.some((path) => !existsSync(path))) {
+  console.log("Building workspace packages for E2E...");
+  execSync("npm run build -w @smartplug/domain", { stdio: "inherit" });
+  execSync("npm run build -w @smartplug/api-contract", { stdio: "inherit" });
+  execSync("npm run build -w @smartplug/mqtt-contract", { stdio: "inherit" });
+  execSync("npm run build -w @smartplug/device-simulator", { stdio: "inherit" });
+}
+
+const { SimulatedDevice } = await import("../apps/device-simulator/dist/simulator.js");
 
 mkdirSync("data", { recursive: true });
 for (const file of ["data/e2e.db", "data/e2e.db-wal", "data/e2e.db-shm"]) {

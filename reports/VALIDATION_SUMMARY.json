@@ -1,8 +1,8 @@
 {
   "project": "esp32-s3-iot-smart-plug",
   "design_revision": "REV_A_PROVISIONAL",
-  "generated_at": "2026-11-15T06:10:28.809402+00:00",
-  "duration_s": 118.59,
+  "generated_at": "2026-11-15T06:37:42.527336+00:00",
+  "duration_s": 140.01,
   "counts": {
     "PASS": 19,
     "BLOCKED": 15
@@ -13,192 +13,192 @@
     {
       "test_id": "T-SW-001A",
       "area": "TypeScript domain",
-      "command": "C:\\Program Files\\nodejs\\npm.CMD run typecheck -w @smartplug/domain",
+      "command": "npm run typecheck -w @smartplug/domain",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-001A-20261115T061028Z.log",
+      "log": "reports\\logs\\T-SW-001A-20261115T063742Z.log",
       "note": "Domain typecheck",
-      "duration_s": 2.12
+      "duration_s": 3.6
     },
     {
       "test_id": "T-SW-001B",
       "area": "TypeScript API",
-      "command": "C:\\Program Files\\nodejs\\npm.CMD run typecheck -w @smartplug/api",
+      "command": "npm run typecheck -w @smartplug/api",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-001B-20261115T061028Z.log",
+      "log": "reports\\logs\\T-SW-001B-20261115T063742Z.log",
       "note": "API typecheck",
-      "duration_s": 5.22
+      "duration_s": 8.34
     },
     {
       "test_id": "T-SW-001C",
       "area": "TypeScript web",
-      "command": "C:\\Program Files\\nodejs\\npm.CMD run typecheck -w @smartplug/web",
+      "command": "npm run typecheck -w @smartplug/web",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-001C-20261115T061028Z.log",
+      "log": "reports\\logs\\T-SW-001C-20261115T063742Z.log",
       "note": "Web typecheck",
-      "duration_s": 3.53
+      "duration_s": 5.74
     },
     {
       "test_id": "T-SW-001D",
       "area": "TypeScript simulator",
-      "command": "C:\\Program Files\\nodejs\\npm.CMD run typecheck -w @smartplug/device-simulator",
+      "command": "npm run typecheck -w @smartplug/device-simulator",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-001D-20261115T061028Z.log",
+      "log": "reports\\logs\\T-SW-001D-20261115T063742Z.log",
       "note": "Simulator typecheck",
-      "duration_s": 3.0
+      "duration_s": 4.79
     },
     {
       "test_id": "T-SW-007",
       "area": "Domain tests",
-      "command": "C:\\Program Files\\nodejs\\npm.CMD run test -w @smartplug/domain",
+      "command": "npm run test -w @smartplug/domain",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-007-20261115T061028Z.log",
+      "log": "reports\\logs\\T-SW-007-20261115T063742Z.log",
       "note": "34 domain tests incl. cost/energy",
-      "duration_s": 1.96
+      "duration_s": 3.08
     },
     {
       "test_id": "T-SW-004A",
       "area": "MQTT contract tests",
-      "command": "C:\\Program Files\\nodejs\\npm.CMD run test -w @smartplug/mqtt-contract",
+      "command": "npm run test -w @smartplug/mqtt-contract",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-004A-20261115T061028Z.log",
+      "log": "reports\\logs\\T-SW-004A-20261115T063742Z.log",
       "note": "11 contract/ACL tests",
-      "duration_s": 2.09
+      "duration_s": 1.98
     },
     {
       "test_id": "T-SW-005",
       "area": "API + simulator integration",
-      "command": "C:\\Program Files\\nodejs\\npm.CMD run test -w @smartplug/api",
+      "command": "npm run test -w @smartplug/api",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-005-20261115T061028Z.log",
+      "log": "reports\\logs\\T-SW-005-20261115T063742Z.log",
       "note": "38 API tests incl. aedes+simulator ACK",
-      "duration_s": 11.27
+      "duration_s": 14.39
     },
     {
       "test_id": "T-SW-004B",
       "area": "Simulator tests",
-      "command": "C:\\Program Files\\nodejs\\npm.CMD run test -w @smartplug/device-simulator",
+      "command": "npm run test -w @smartplug/device-simulator",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-004B-20261115T061028Z.log",
+      "log": "reports\\logs\\T-SW-004B-20261115T063742Z.log",
       "note": "4 simulator tests",
-      "duration_s": 2.64
+      "duration_s": 4.03
     },
     {
       "test_id": "T-HW-018",
       "area": "Firmware core host tests",
-      "command": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.EXE -ExecutionPolicy Bypass -File C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\firmware\\test\\host\\run_tests.ps1",
+      "command": "powershell -ExecutionPolicy Bypass -File .\\firmware\\test\\host\\run_tests.ps1",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-018-20261115T061028Z.log",
+      "log": "reports\\logs\\T-HW-018-20261115T063742Z.log",
       "note": "74 C checks; Zig cc host build",
-      "duration_s": 1.03
+      "duration_s": 1.48
     },
     {
       "test_id": "T-SW-001E",
       "area": "Next.js build",
-      "command": "C:\\Program Files\\nodejs\\npm.CMD run build -w @smartplug/web",
+      "command": "npm run build -w @smartplug/web",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-001E-20261115T061028Z.log",
+      "log": "reports\\logs\\T-SW-001E-20261115T063742Z.log",
       "note": "Next production build",
-      "duration_s": 11.2
+      "duration_s": 16.48
     },
     {
       "test_id": "T-HW-003",
       "area": "Connectivity crosscheck",
-      "command": "C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\.venv\\Scripts\\python.exe scripts/validate_connectivity.py",
+      "command": ".\\.venv\\Scripts\\python.exe scripts/validate_connectivity.py",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-003-20261115T061028Z.log",
+      "log": "reports\\logs\\T-HW-003-20261115T063742Z.log",
       "note": "Wiring/GPIO/BOM static diff",
-      "duration_s": 0.34
+      "duration_s": 0.53
     },
     {
       "test_id": "T-HW-004",
       "area": "GPIO map generation",
-      "command": "C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\.venv\\Scripts\\python.exe hardware/generators/generate_gpio_map.py",
+      "command": ".\\.venv\\Scripts\\python.exe hardware/generators/generate_gpio_map.py",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-004-20261115T061028Z.log",
+      "log": "reports\\logs\\T-HW-004-20261115T063742Z.log",
       "note": "GPIO CSV/MD + crosscheck",
-      "duration_s": 0.28
+      "duration_s": 0.34
     },
     {
       "test_id": "T-HW-010A",
       "area": "WireViz render",
-      "command": "C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\.venv\\Scripts\\python.exe scripts/render_wiring.py",
+      "command": ".\\.venv\\Scripts\\python.exe scripts/render_wiring.py",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-010A-20261115T061028Z.log",
+      "log": "reports\\logs\\T-HW-010A-20261115T063742Z.log",
       "note": "6 harnesses SVG/PNG/PDF",
-      "duration_s": 16.37
+      "duration_s": 19.45
     },
     {
       "test_id": "T-HW-009A",
       "area": "CadQuery export",
-      "command": "C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\.venv\\Scripts\\python.exe hardware/mechanical/source/enclosure.py --preset both",
+      "command": ".\\.venv\\Scripts\\python.exe hardware/mechanical/source/enclosure.py --preset both",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-009A-20261115T061028Z.log",
+      "log": "reports\\logs\\T-HW-009A-20261115T063742Z.log",
       "note": "STEP/STL bodies + assembly",
-      "duration_s": 12.77
+      "duration_s": 13.59
     },
     {
       "test_id": "T-HW-009B",
       "area": "Mechanical render/fit",
-      "command": "C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\.venv\\Scripts\\python.exe hardware/mechanical/source/render.py",
+      "command": ".\\.venv\\Scripts\\python.exe hardware/mechanical/source/render.py",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-009B-20261115T061028Z.log",
+      "log": "reports\\logs\\T-HW-009B-20261115T063742Z.log",
       "note": "Views/drawings/fit report",
-      "duration_s": 11.28
+      "duration_s": 11.8
     },
     {
       "test_id": "T-HW-002A",
       "area": "KiCad file parse",
-      "command": "C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\.venv\\Scripts\\python.exe -c from pathlib import Path; from kiutils.schematic import Schematic; from kiutils.board import Board; import glob; [Schematic.from_file(p) for p in glob.glob('hardware/kicad/*.kicad_sch')]; Board.from_file('hardware/kicad/smartplug.kicad_pcb'); print('kiutils parse OK')",
+      "command": ".\\.venv\\Scripts\\python.exe -c from pathlib import Path; from kiutils.schematic import Schematic; from kiutils.board import Board; import glob; [Schematic.from_file(p) for p in glob.glob('hardware/kicad/*.kicad_sch')]; Board.from_file('hardware/kicad/smartplug.kicad_pcb'); print('kiutils parse OK')",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-002A-20261115T061028Z.log",
+      "log": "reports\\logs\\T-HW-002A-20261115T063742Z.log",
       "note": "Native files parse; ERC/DRC not run",
-      "duration_s": 0.34
+      "duration_s": 0.36
     },
     {
       "test_id": "T-HW-008A",
       "area": "PCB placement preview",
-      "command": "C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\.venv\\Scripts\\python.exe scripts/render_pcb_preview.py",
+      "command": ".\\.venv\\Scripts\\python.exe scripts/render_pcb_preview.py",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-008A-20261115T061028Z.log",
+      "log": "reports\\logs\\T-HW-008A-20261115T063742Z.log",
       "note": "Preview parsed from .kicad_pcb",
-      "duration_s": 2.0
+      "duration_s": 1.89
     },
     {
       "test_id": "T-SW-001F",
       "area": "OpenAPI parse",
-      "command": "C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\.venv\\Scripts\\python.exe -c import yaml; d=yaml.safe_load(open('packages/api-contract/openapi.yaml', encoding='utf-8')); assert d['openapi'].startswith('3.'); assert len(d['paths'])>=18; print('OpenAPI paths:', len(d['paths']))",
+      "command": ".\\.venv\\Scripts\\python.exe -c import yaml; d=yaml.safe_load(open('packages/api-contract/openapi.yaml', encoding='utf-8')); assert d['openapi'].startswith('3.'); assert len(d['paths'])>=18; print('OpenAPI paths:', len(d['paths']))",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-001F-20261115T061028Z.log",
+      "log": "reports\\logs\\T-SW-001F-20261115T063742Z.log",
       "note": "OpenAPI structural check",
-      "duration_s": 0.28
+      "duration_s": 0.32
     },
     {
       "test_id": "T-SW-011",
       "area": "Playwright E2E",
-      "command": "C:\\Program Files\\nodejs\\npm.CMD exec playwright test",
+      "command": "npm exec playwright test",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-011-20261115T061028Z.log",
+      "log": "reports\\logs\\T-SW-011-20261115T063742Z.log",
       "note": "5 E2E tests incl. axe and command APPLIED",
-      "duration_s": 30.87
+      "duration_s": 27.8
     },
     {
       "test_id": "T-HW-002",
