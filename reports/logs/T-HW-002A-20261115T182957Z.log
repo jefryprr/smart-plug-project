@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\kiutils\board.py", line 169, in from_file
+    item = cls.from_sexpr(sexpr.parse_sexp(infile.read()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\kiutils\board.py", line 129, in from_sexpr
+    if item[0] == 'footprint': object.footprints.append(Footprint().from_sexpr(item))
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\kiutils\footprint.py", line 897, in from_sexpr
+    if item[0] == 'pad': object.pads.append(Pad.from_sexpr(item))
+                                            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\kiutils\footprint.py", line 523, in from_sexpr
+    if item[0] == 'net': object.net = Net().from_sexpr(item)
+                                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\kiutils\items\common.py", line 543, in from_sexpr
+    object.name = exp[2]
+                  ~~~^^^
+IndexError: list index out of range

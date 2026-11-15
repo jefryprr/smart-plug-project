@@ -41,7 +41,7 @@ tools/esp-idf/
 tools/*.exe
 tools/*.c
 tools/freerouting/
-logs/
+/logs/
 reports/kicad/*.rpt
 data/*.db
 data/*.db-wal
