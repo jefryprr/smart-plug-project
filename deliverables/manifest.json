@@ -2,8 +2,8 @@
   "project": "esp32-s3-iot-smart-plug",
   "prd_version": "1.0",
   "design_revision": "REV_A_PROVISIONAL",
-  "generated_at": "2026-11-15T06:40:47.900Z",
-  "git_commit": "231595e4cfb297a585f30c06cfe1ff426b86b0ca",
+  "generated_at": "2026-11-15T06:41:34.070Z",
+  "git_commit": "92d63f484e1a44d33c1db41477222c83a584cf00",
   "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",
   "hardware_validation_status": "HARDWARE_VALIDATION_REQUIRED",
   "digital_status": "PARTIAL_DIGITAL",
@@ -574,8 +574,8 @@
     {
       "category": 6,
       "path": "hardware/wiring/renders/main_harness.svg",
-      "sha256": "d077bdad676ef0b6b8b21c5bc2b9815f06afd9547fb6cc5b0f8e1c72034c1aeb",
-      "size_bytes": 169459,
+      "sha256": "e462ba75c34a9a5258e05336c383494d837def805470310196f38b1e34a107c7",
+      "size_bytes": 167789,
       "status": "PASS_DIGITAL",
       "tests": [
         "T-HW-003",
@@ -618,8 +618,8 @@
     {
       "category": 7,
       "path": "hardware/interfaces/gpio_map.csv",
-      "sha256": "14b5374611a10dbb9762bef4353061e0cf3a952fd389cd55f327f353b0ecca46",
-      "size_bytes": 2873,
+      "sha256": "07865b176ad880fe505827484214bbe317e3a702e49469a72bf397dc5a05be79",
+      "size_bytes": 2861,
       "status": "UNVERIFIED",
       "tests": [
         "T-HW-004"
@@ -632,8 +632,8 @@
     {
       "category": 7,
       "path": "hardware/interfaces/gpio_map.md",
-      "sha256": "a1400e0504b9287667c1b7845e44ba0e5987554ac3beb1ba3e1339625acbc646",
-      "size_bytes": 2266,
+      "sha256": "2e978bcc94e8d49ea74d14d3b154ad5fb53355cb02c45877f6076c664eb42ef2",
+      "size_bytes": 2228,
       "status": "UNVERIFIED",
       "tests": [
         "T-HW-004"
@@ -646,8 +646,8 @@
     {
       "category": 7,
       "path": "validation/GPIO_CROSSCHECK.json",
-      "sha256": "baf6ac44d60a830d598832a4e797768e60836e8f1d26f933b44f94bbb92c6904",
-      "size_bytes": 1770,
+      "sha256": "9bf2d32827d31181a0dbd87161e9e68889b10c3b5025f54eef78a9a006388fbc",
+      "size_bytes": 1726,
       "status": "UNVERIFIED",
       "tests": [
         "T-HW-004"
@@ -788,8 +788,8 @@
     {
       "category": 10,
       "path": "hardware/pcb/render/placement_preview.svg",
-      "sha256": "f11895b2016e72df11300341d71562d64dc91dadb6e20a6b523a38e10d2c37f9",
-      "size_bytes": 63953,
+      "sha256": "f8c4885a8f80816b293f153c1a3032855de6a885d4933ac9a59a48db45df7f81",
+      "size_bytes": 62002,
       "status": "PARTIAL",
       "tests": [
         "T-HW-008A"
@@ -984,8 +984,8 @@
     {
       "category": 12,
       "path": "hardware/mechanical/drawings/dimensions.svg",
-      "sha256": "3acd322390770db0574878173542181b2dcbeac49f04d90f84c9aef5be25d611",
-      "size_bytes": 29118,
+      "sha256": "85a7a4d752bd9a29f5d073680ac9711ce1505f187458407cef37b820f3eb7c88",
+      "size_bytes": 28104,
       "status": "PARTIAL",
       "tests": [
         "T-HW-009B"
@@ -998,8 +998,8 @@
     {
       "category": 12,
       "path": "hardware/mechanical/drawings/mounting_plan.svg",
-      "sha256": "a66964bbf29acf0d36f9285542e0f625ac2b524bf96199f3ce0d67b31e7eeb76",
-      "size_bytes": 31400,
+      "sha256": "8f0c6915f8fa16778094b01346175fe728688ad43cc95f3d65f1ebd4f7c83ace",
+      "size_bytes": 30342,
       "status": "PARTIAL",
       "tests": [
         "T-HW-009B"
@@ -1012,8 +1012,8 @@
     {
       "category": 12,
       "path": "hardware/mechanical/FIT_ANALYSIS.md",
-      "sha256": "84182a49632c90ffa6e51fce1c10b9bdd6d7eaf3f2dcdd649720072207a62721",
-      "size_bytes": 1036,
+      "sha256": "535c198de060ccda608c72b4417dcab2c96c1c0d7bd403d6bfa9930244179482",
+      "size_bytes": 1010,
       "status": "PARTIAL",
       "tests": [
         "T-HW-009B"
@@ -1026,8 +1026,8 @@
     {
       "category": 12,
       "path": "hardware/mechanical/CLASH_REPORT.json",
-      "sha256": "9e67ef1185a198f6150a168f4ead01f593c7d3d789615c25022964e33cee1b0d",
-      "size_bytes": 1363,
+      "sha256": "d98efd4cc8e73aec5d7e1725ea0a20611dd698022a552d43a0796a2cf301a0cc",
+      "size_bytes": 1318,
       "status": "PARTIAL",
       "tests": [
         "T-HW-009B"
@@ -1544,8 +1544,8 @@
     {
       "category": 22,
       "path": "reports/TEST_MATRIX.csv",
-      "sha256": "c05ffffac31a7dcc4fa6eb3696243d1b5d7b0e082b39c617e63a9e820525eac3",
-      "size_bytes": 4549,
+      "sha256": "2b088fc5c75050487a5b632ed0d8cb7054b56cd88532170b055a77319086594c",
+      "size_bytes": 4514,
       "status": "PARTIAL",
       "tests": [
         "ALL"
@@ -1558,8 +1558,8 @@
     {
       "category": 22,
       "path": "reports/VALIDATION_SUMMARY.json",
-      "sha256": "94c45ce3d1115b87cee47691938a913ae4a27e2b64ac385e9239bc82fd1c09b1",
-      "size_bytes": 10782,
+      "sha256": "18cce1098acf0710a1a67968906b2a45002f1bf90bd271e6e2f872666d94fe8f",
+      "size_bytes": 10429,
       "status": "PARTIAL",
       "tests": [
         "ALL"
@@ -1656,8 +1656,8 @@
     {
       "category": 22,
       "path": "reports/FAILURES.md",
-      "sha256": "39629957a828867748c5a5b3039420cb9b8ef179f45db164d33d89bdfd7278c0",
-      "size_bytes": 1272,
+      "sha256": "00346e75b3401653190f02ecb66cb9dd74de90565cb7818738fa087ed630ba24",
+      "size_bytes": 1249,
       "status": "PARTIAL",
       "tests": [
         "ALL"
@@ -1670,8 +1670,8 @@
     {
       "category": 23,
       "path": "validation/CONNECTIVITY_DIFF.json",
-      "sha256": "5a0939b29a49e5251bc781f33244f6cf0c0b0ba6807f3e73f9dca1fbd77fa8fe",
-      "size_bytes": 1322,
+      "sha256": "0eeda3899eef8bccd1bc529d61802e3ca4e9177ba9e27f94d7621c97a3e9341f",
+      "size_bytes": 1271,
       "status": "PARTIAL",
       "tests": [
         "T-HW-003",
@@ -1685,8 +1685,8 @@
     {
       "category": 23,
       "path": "validation/WIRING_CONNECTIONS.csv",
-      "sha256": "a32a8d92fa4f0562fd4a4aa72dedda08db22752816d65cc245a5d821694e681d",
-      "size_bytes": 7670,
+      "sha256": "85924557a0fa33db5be6d1a1111831d5b40c777ab86547d398501c32dfad7192",
+      "size_bytes": 7523,
       "status": "PARTIAL",
       "tests": [
         "T-HW-003",
@@ -1700,8 +1700,8 @@
     {
       "category": 23,
       "path": "validation/NETLIST_SCHEMATIC.csv",
-      "sha256": "7196d3e8f1cb4dff7f837111c0367e89f3b7036d09662e8e25d6862c51fc1347",
-      "size_bytes": 3675,
+      "sha256": "9ef8ec3230e2d30ef02fb40804f63e0cec7245ec367b04146977e4a13ff6f8e7",
+      "size_bytes": 3629,
       "status": "PARTIAL",
       "tests": [
         "T-HW-003",
@@ -1715,8 +1715,8 @@
     {
       "category": 23,
       "path": "validation/ISOLATION_BOUNDARY_CHECK.md",
-      "sha256": "602f844329fb71b3140e1c8f513921523b215ab861c9654db0ad1e2c4ede43bf",
-      "size_bytes": 692,
+      "sha256": "8f0f999be6bd786fd5cb9734168ad2233ebc647d464197803d50a5f96fcba5a5",
+      "size_bytes": 674,
       "status": "PARTIAL",
       "tests": [
         "T-HW-003",
@@ -1926,8 +1926,8 @@
     {
       "category": 26,
       "path": "deliverables/FINAL_ENGINEERING_REPORT.md",
-      "sha256": "eb16c6eebed82cc70d9512a53e60bc90356bb2396b108de40395fa22789e0817",
-      "size_bytes": 23190,
+      "sha256": "638b58475169218ac8b62a8000f9b37c52d084c0fbf7db40467a4bc9e1e7f031",
+      "size_bytes": 22814,
       "status": "PARTIAL",
       "tests": [
         "DOCUMENT_REVIEW"
@@ -1954,8 +1954,8 @@
     {
       "category": 26,
       "path": "README.md",
-      "sha256": "d5d3504d8ae7075a63c9e41961a74d84321f2466c9092452130206b79d2d4839",
-      "size_bytes": 5863,
+      "sha256": "1990f718f56e40b4615290a07895587e75d2e6db4a0b73450d59e6364c16fc60",
+      "size_bytes": 5720,
       "status": "PARTIAL",
       "tests": [
         "DOCUMENT_REVIEW"

@@ -1,11 +1,42 @@
 import { createHash } from "node:crypto";
-import { existsSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { execSync } from "node:child_process";
 import { basename, resolve } from "node:path";
 
 const ROOT = resolve(".");
 const OUT = resolve("deliverables/manifest.json");
 const CHECKSUMS = resolve("deliverables/CHECKSUMS.sha256");
+
+const TEXT_EXTENSIONS = new Set([
+  ".md", ".ts", ".tsx", ".js", ".mjs", ".py", ".yaml", ".yml", ".json",
+  ".csv", ".sql", ".c", ".h", ".txt", ".css", ".html", ".svg"
+]);
+const SKIP_DIRS = new Set([".git", "node_modules", ".venv", "tools", "dist", ".next", "coverage", "build", "test-results", "playwright-report"]);
+
+function normalizeTextFiles(dir = ROOT, count = { changed: 0 }) {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (SKIP_DIRS.has(entry.name)) continue;
+    const full = resolve(dir, entry.name);
+    if (entry.isDirectory()) {
+      normalizeTextFiles(full, count);
+      continue;
+    }
+    if (!entry.isFile()) continue;
+    const ext = entry.name.includes(".") ? entry.name.slice(entry.name.lastIndexOf(".")).toLowerCase() : "";
+    if (!TEXT_EXTENSIONS.has(ext)) continue;
+    const bytes = readFileSync(full);
+    if (!bytes.includes(0x0d)) continue;
+    const normalized = Buffer.from(bytes.toString("utf8").replace(/\r\n/g, "\n"), "utf8");
+    writeFileSync(full, normalized);
+    count.changed += 1;
+  }
+  return count;
+}
+
+const normalized = normalizeTextFiles();
+if (normalized.changed > 0) {
+  console.log(`Normalized ${normalized.changed} generated text files to LF before hashing.`);
+}
 
 function sha256(path) {
   return createHash("sha256").update(readFileSync(path)).digest("hex");
