@@ -27,10 +27,11 @@
 
 ## 2A. Budget and staging (2026-11-16)
 
-- Dated buy list: `bom/BOM_PROCUREMENT.csv` (43 listing-verified, 11 estimated).
-- CORE (safety/function minimum): **Rp698.297**; with Rp40.000 shipping: **Rp738.297** — under Rp750.000.
-- CORE with EasyWare restock prices: **Rp646.829**; all-in: **Rp686.829**.
-- FULL (+ OLED/RTC/RGB/connectors): **Rp815.897**; all-in: **Rp855.897**.
+- Dated buy list: `bom/BOM_PROCUREMENT.csv` (43 listing-verified, 13 estimated).
+- CORE (safety/function minimum): **Rp703.297**; with Rp40.000 shipping: **Rp743.297** — under Rp750.000.
+- CORE with EasyWare restock prices: **Rp651.829**; all-in: **Rp691.829**.
+- Mechanical addendum (gasket/vent/printed cover-key/PSU bracket/thermal pad): **~Rp28.000**; CORE + addendum all-in **~Rp771.297** at marketplace, **~Rp719.829** with restock.
+- FULL (+ OLED/RTC/RGB/connectors): **Rp820.897**; all-in: **Rp860.897**.
 - Buy CORE first; defer FULL until SELV/thermal checks pass. Do not downgrade safety parts to meet the cap.
 
 ## 3. Quarantine

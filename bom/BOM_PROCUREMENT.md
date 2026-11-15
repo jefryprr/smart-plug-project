@@ -4,11 +4,11 @@
 > Harga dapat berubah; stok marketplace tidak stabil. Tidak ada harga rekaan: baris tanpa listing ditandai `ESTIMATED`.
 
 - Budget cap: **Rp750,000**
-- Baris: **47 CORE + 7 FULL**; 43 listing-verified, 11 `ESTIMATED`.
-- CORE subtotal: **Rp698,297**
-- CORE dengan harga restock EasyWare: **Rp646,829**
+- Baris: **49 CORE + 7 FULL**; 43 listing-verified, 13 `ESTIMATED`.
+- CORE subtotal: **Rp703,297**
+- CORE dengan harga restock EasyWare: **Rp651,829**
 - FULL add-ons (OLED/RTC/RGB/konektor): **Rp117,600**
-- FULL subtotal: **Rp815,897**
+- FULL subtotal: **Rp820,897**
 - Estimasi ongkir: **Rp40,000** (belum termasuk pajak/impor)
 
 ## CORE — safety/function minimum
@@ -30,6 +30,8 @@
 | E-015 | 1N4007 diode, 10 pcs pack | 1 pcs | Rp3,900 | Shopee | VERIFIED_AGGREGATOR |
 | E-016 | 1 kOhm 0805 resistor (small pack) | 1 pcs | Rp1,000 | Shopee | VERIFIED_AGGREGATOR |
 | E-017 | 100 kOhm 0805 resistor (small pack) | 1 pcs | Rp1,000 | Shopee | VERIFIED_AGGREGATOR |
+| E-050 | PTC resettable fuse 1.1 A, 1206 (estimated) | 1 pcs | Rp2,000 | Shopee (estimated) | ESTIMATED |
+| E-051 | SMBJ5.0A TVS diode (estimated) | 1 pcs | Rp3,000 | Shopee (estimated) | ESTIMATED |
 | E-019 | 100 uF 10 V electrolytic capacitor | 1 pcs | Rp350 | Shopee | VERIFIED_AGGREGATOR |
 | E-020 | 100 nF 50 V MLCC (small pack) | 1 pcs | Rp360 | EasyWare Store | VERIFIED_STORE_PAGE |
 | E-020A | 100 nF 50 V MLCC at 74HCT125 (small pack) | 1 pcs | Rp360 | EasyWare Store | VERIFIED_STORE_PAGE |
@@ -77,14 +79,18 @@
 
 ## Budget verdict
 
-- CORE + ongkir: **Rp738,297**.
-- CORE restock + ongkir: **Rp686,829**.
-- FULL + ongkir: **Rp855,897**.
-- Status: `CORE_FITS_750K; FULL_OVER_BUDGET`.
+- CORE + ongkir: **Rp743,297**.
+- CORE restock + ongkir: **Rp691,829**.
+- FULL + ongkir: **Rp860,897**.
+- Mechanical addendum (gasket/vent/printed cover-key/PSU bracket/thermal pad): **Rp28,000** estimated, not in line items.
+- CORE + addendum + ongkir: **Rp771,297**.
+- CORE restock + addendum + ongkir: **Rp719,829**.
+- FULL + addendum + ongkir: **Rp888,897**.
+- Status: `CORE_ELECTRONICS_FITS_750K; CORE_WITH_MECH_OVER; FULL_OVER_BUDGET`.
 
-CORE hanya masuk budget jika ESP32-S3 dan PZEM dibeli pada harga restock EasyWare
-(Rp103.500 dan Rp135.000). Harga marketplace saat ini membuat CORE sedikit di atas
-Rp750.000 setelah ongkir. FULL (OLED + RTC + RGB) jelas di atas budget.
+CORE electronics (Rp703.297) fits Rp750.000 with Rp40.000 shipping (Rp743.297).
+The mechanical addendum (~Rp28.000) pushes the marketplace CORE to about Rp771.297 all-in;
+EasyWare restock prices bring it back to about Rp719.829. FULL is over budget.
 
 Jangan menurunkan fuse, MOV, TCO, terminal, PE, enclosure, atau barrier isolasi
 untuk mengejar budget. Lihat `research/PROCUREMENT_INDONESIA.md` untuk risiko stok.

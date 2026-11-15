@@ -10,7 +10,7 @@ A 2-layer SELV carrier for:
 - PZEM-004T V4 TTL: 5V/GND, 5V TX → 10k/20k divider → GPIO18, GPIO17 → 74HCT125 → PZEM RX
 - 2-channel relay module: 5V/GND/IN1/IN2; AO3400 pulls both inputs low
 - OLED (I2C), DS3231 RTC (I2C + INT), button, WS2812 data via 74HCT125
-- 5V input from HLK-5M05
+- 5V input from HLK-5M05 through a 1.1 A PTC and SMBJ5.0A TVS
 
 No mains. No TMP102. No ADuM1201/B0505S. PZEM internal optocouplers are the
 UART galvanic barrier.
@@ -48,7 +48,8 @@ Do not use a 2x22 IDC socket (2.54 mm rows); it will not fit. See
 
 - DRC: **0 violations / 0 unconnected** at 0.15 mm default clearance
 - ERC (block schematic): **0 violations**
-- Nets: 18; footprints: 22; board: 100 × 70 mm
+- Nets: 19; footprints: 27; board: 100 x 70 mm
+- 5 V input: 1.1 A PTC + SMBJ5.0A TVS; 3 fiducials for assembly
 - Gerber/drill/POS exported by KiCad 10.0.8
 
 ## What is not proven

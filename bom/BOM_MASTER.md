@@ -1,6 +1,6 @@
 # BOM Master — REV_B_NO_TEMP
 
-**Generated:** 2026-11-15T18:59:07.751599+00:00
+**Generated:** 2026-11-15T19:36:36.215222+00:00
 
 > **DESIGN BOM (UNPRICED) / NOT APPROVED.** Ini adalah BOM rekayasa, bukan daftar belanja.
 > Harga, stok, dan tautan pembelian ada di `BOM_PROCUREMENT.md` / `BOM_PROCUREMENT.csv`.
@@ -25,6 +25,8 @@
 | E-016 | R1 | Passives | Gate series resistor, 1 kohm, 1%, 0805 | RC0805FR-071KL | 1 pcs | PROVISIONAL |
 | E-017 | R2 | Passives | Gate pulldown resistor, 100 kohm, 1%, 0805 | RC0805FR-07100KL | 1 pcs | PROVISIONAL |
 | E-018 | R3 | Passives | WS2812 data series resistor, 330 ohm, 0805 | RC0805FR-07330RL | 1 pcs | PROVISIONAL |
+| E-050 | F2 | Protection | Resettable PTC fuse, 1.1 A hold, 1206, 5 V rail | 1206L110THYR | 1 pcs | PROVISIONAL |
+| E-051 | D1 | Protection | TVS diode, 5 V standoff, 400 W, SMB | SMBJ5.0A | 1 pcs | PROVISIONAL |
 | E-019 | C1 | Passives | Bulk capacitor, 100 uF, 10 V, low ESR, 6.3x5.4 mm | UWT1A101MCL1GS | 1 pcs | PROVISIONAL |
 | E-020 | C2 | Passives | Decoupling capacitor, 100 nF, 50 V, 0603 | GRM188R71H104KA93D | 1 pcs | PROVISIONAL |
 | E-020A | C3 | Passives | Decoupling capacitor, 100 nF, 50 V, 0603, at 74HCT125 VCC | GRM188R71H104KA93D | 1 pcs | PROVISIONAL |

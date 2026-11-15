@@ -1,4 +1,4 @@
-# Enclosure Material Review — REV_A_PROVISIONAL
+# Enclosure Material Review — REV_B
 
 **Status:** `BLOCKED` — material and enclosure not selected.
 **Target:** ABS/PC flame-retardant, UL94 V-0, **220x120x70 mm confirmed** (Q06=C, 2026-11-15). The 150x100 target fails fit and the 180x120 candidate fails real clearance with off-board PZEM + 2-channel relay; material/impact/thermal validation is still required.
@@ -12,10 +12,10 @@
 | Impact resistance | Suitable for indoor handheld/plug-in use | Izod/Charpy data | `OPEN` |
 | Thermal aging | 70 °C internal, long-term | Material datasheet + oven test | `OPEN` |
 | Electrical insulation | Adequate for mains barrier | Comparative tracking index (CTI), thickness | `OPEN` |
-| Wall thickness | ≥2.5 mm provisional | Mechanical calculation/test | `PROVISIONAL` |
+| Wall thickness | >=2.5 mm provisional; 60 mm body + 10 mm lid | Mechanical calculation/test | `PROVISIONAL` |
 | PE bonding | Dedicated metal stud, not plastic | Mechanical drawing + continuity test | `BLOCKED` |
 | Cable strain relief | Gland + internal anchor | Pull test | `BLOCKED` |
-| Service access | USB cover, fuse access | Mechanical design | `PROVISIONAL` |
+| Service access | Front USB cover 30x20, fuse access by opening lid | Mechanical design | `PROVISIONAL` |
 
 ## 2. Candidate materials
 

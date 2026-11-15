@@ -1,6 +1,6 @@
 project: esp32-s3-iot-smart-plug
 design_revision: REV_B_NO_TEMP
-generated_at: '2026-11-15T18:59:07.751599+00:00'
+generated_at: '2026-11-15T19:36:36.215222+00:00'
 items:
 - item_id: E-001
   reference_designators: U1
@@ -471,6 +471,58 @@ items:
   rating_verified: 'FALSE'
   notes: Place close to LED data input.
   source_evidence: Yageo datasheet.
+- item_id: E-050
+  reference_designators: F2
+  category: Protection
+  description: Resettable PTC fuse, 1.1 A hold, 1206, 5 V rail
+  manufacturer: Littelfuse
+  manufacturer_part_number: 1206L110THYR
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: Fuse_1206_3216Metric
+  mechanical_model: fuse_1206_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Protects the 5 V carrier rail and wiring. Hold current 1.1 A; verify trip
+    time and voltage drop. Not a substitute for the mains fuse.
+  source_evidence: Littelfuse 1206L series datasheet; exact batch to be verified.
+- item_id: E-051
+  reference_designators: D1
+  category: Protection
+  description: TVS diode, 5 V standoff, 400 W, SMB
+  manufacturer: Littelfuse
+  manufacturer_part_number: SMBJ5.0A
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: D_SMB
+  mechanical_model: smb_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Clamps 5 V rail transients from the HLK or cable. Cathode to +5V, anode to
+    GND. Verify standoff/clamping and layout.
+  source_evidence: Littelfuse SMBJ series datasheet; exact batch to be verified.
 - item_id: E-019
   reference_designators: C1
   category: Passives

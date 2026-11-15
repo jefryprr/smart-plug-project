@@ -1,6 +1,7 @@
 # Thermal Risk and Derating — REV_B_NO_TEMP
 
 **Status:** `BLOCKED_PENDING_THERMAL_TEST`
+**First-order calculation:** `safety/THERMAL_CALCULATION.md` (13–19 W loss, ~19–28 K rise, not a test).
 **Ambient target:** 25–40 °C (belum ditetapkan); enclosure internal lebih tinggi.
 
 ## 1. Perkiraan disipasi

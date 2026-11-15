@@ -64,19 +64,25 @@ COMPONENTS = [
     ("C1", "100uF", "Capacitor_SMD", "CP_Elec_6.3x5.4", 64.0, 56.0, 0.0),
     ("C2", "100nF", "Capacitor_SMD", "C_0805_2012Metric", 56.0, 42.0, 0.0),
     ("C3", "100nF", "Capacitor_SMD", "C_0805_2012Metric", 58.0, 48.0, 0.0),
+    ("F2", "1.1A PTC", "Fuse", "Fuse_1206_3216Metric", 80.0, 66.0, 0.0),
+    ("D1", "SMBJ5.0A", "Diode_SMD", "D_SMB", 87.0, 66.0, 0.0),
+    ("FID1", "FID", "Fiducial", "Fiducial_1mm_Mask2mm", 5.0, 35.0, 0.0),
+    ("FID2", "FID", "Fiducial", "Fiducial_1mm_Mask2mm", 95.0, 35.0, 0.0),
+    ("FID3", "FID", "Fiducial", "Fiducial_1mm_Mask2mm", 50.0, 40.0, 0.0),
 ]
 
 # Nets are defined as (reference, pad number) pairs.
 # J1A = DevKitC-1 J1, J1B = DevKitC-1 J3. Header pin numbers refer to the
 # official 1x22 tables, not odd/even socket numbering.
 NETS = {
-    "+5V": [("J1A", 21), ("J8", 1), ("J2", 1), ("J3", 1), ("J7", 1), ("U9", 14), ("C1", 1), ("C2", 1), ("C3", 1)],
+    "+5V_IN": [("J8", 1), ("F2", 1)],
+    "+5V": [("J1A", 21), ("F2", 2), ("D1", 1), ("J2", 1), ("J3", 1), ("J7", 1), ("U9", 14), ("C1", 1), ("C2", 1), ("C3", 1)],
     "+3V3": [("J1A", 1), ("J1A", 2), ("J4", 1), ("J5", 1), ("R6", 1), ("R7", 1), ("R8", 1)],
     "GND": [
         ("J1A", 22), ("J1B", 1), ("J1B", 21), ("J1B", 22), ("J8", 2), ("J2", 4), ("J3", 2),
         ("J4", 2), ("J5", 2), ("J6", 2), ("J7", 2), ("U9", 7), ("U9", 1), ("U9", 4),
         ("U9", 9), ("U9", 10), ("U9", 12), ("U9", 13), ("Q1", 2), ("C1", 2), ("C2", 2), ("C3", 2),
-        ("R2", 2), ("R5", 2),
+        ("R2", 2), ("R5", 2), ("D1", 2),
     ],
     "SDA": [("J1A", 12), ("J4", 3), ("J5", 3), ("R6", 2)],
     "SCL": [("J1A", 15), ("J4", 4), ("J5", 4), ("R7", 2)],
@@ -226,6 +232,7 @@ def main():
     add_text(board, "OLED  RTC  BTN  RGB  5V", 35, 57.0, 0.8)
     add_text(board, "74HCT125", 73, 31.0, 0.8)
     add_text(board, "PZEM DIVIDER", 70, 11.0, 0.8)
+    add_text(board, "5V PTC/TVS", 83, 62.0, 0.8)
     pcbnew.SaveBoard(str(KICAD / "smartplug.kicad_pcb"), board)
     # SVG preview is exported separately via kicad-cli to avoid GUI plot API drift.
     (CARRIER / "placement.json").write_text(

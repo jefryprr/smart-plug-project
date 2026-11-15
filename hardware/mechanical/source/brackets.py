@@ -33,6 +33,7 @@ def plate(length: float, width: float, hole_x: float, hole_y: float, name: str) 
 def main() -> None:
     plate(58, 94, 24, 42, "pzem_bracket")
     plate(55, 26, 22, 8, "relay_module_bracket")
+    plate(38, 23, 15, 8, "psu_bracket")
 
 
 if __name__ == "__main__":

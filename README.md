@@ -9,7 +9,8 @@
 - PZEM-004T V4 and a **common 2-channel 5 V optocoupler relay module** are **off-board**, with enclosure brackets. The module is two independent SPDT channels, **not** a mechanically linked DPST.
 - **150x100x70 and 180x120x70 fail** the clearance review with the off-board modules; **220x120x70 is CONFIRMED** by the user (2026-11-15). The earlier 180x120 PASS only stacked the relay above the PZEM with a 0.5 mm gap and ignored brackets; that is rejected.
 - **TMP102 and external ADuM1201/B0505S removed.** PZEM V4 internal optocouplers are the UART isolation barrier; the carrier level-shifts 5 V TTL with a 74HCT125 + 10k/20k divider. No firmware temperature sensor.
-- **KiCad 10.0.8:** ERC 0 on the block schematic; the SELV carrier is **routed 100x70 mm** with **DRC 0/0** at 0.15 mm; routed Gerber/drill/POS exported. Still `ENGINEERING_REVIEW_REQUIRED` / `NOT_FOR_FABRICATION`.
+- **KiCad 10.0.8:** ERC 0 on the block schematic; the SELV carrier is **routed 100x70 mm** (27 footprints, 19 nets) with **DRC 0/0** at 0.15 mm, a 1.1 A PTC + SMBJ5.0A TVS on 5 V, and three fiducials. Routed Gerber/drill/POS exported. Still `ENGINEERING_REVIEW_REQUIRED` / `NOT_FOR_FABRICATION`.
+- **Enclosure:** 220x120x70 with a 60 mm body + 10 mm lid, 4x M3 lid screws, 1 mm gasket, carrier standoffs, module bosses, mechanical barrier, right-wall socket/gland/vent, top OLED/button/RGB cutouts, front USB service cover, and a printed DevKit reverse-insertion key. Assembly STEP/STL and fit report generated; physical fit still unverified.
 
 > **Safety first.** This repository contains a digital prototype, not a certified or physically validated mains product. No 230 VAC assembly was built, energized, or tested. Do not connect mains to a 3D-printed enclosure or an unapproved prototype. PE must remain continuous and is never switched. See `safety/` and `docs/tutorials/00_READ_FIRST.md`.
 
@@ -35,8 +36,8 @@ The PRD is the contract: `PRD.md`.
 | Web | Next build + 5 Playwright tests + axe | PASS |
 | Static wiring/GPIO/BOM | Python crosscheck | PASS |
 | WireViz | 4 harnesses rendered | PASS |
-| CadQuery | STEP/STL + renders + brackets | PASS (digital) |
-| KiCad CLI | 10.0.8, ERC 0; routed carrier DRC 0/0; Gerber/drill | PASS (digital) |
+| CadQuery | Detailed 220x120x70 STEP/STL + renders + brackets + gasket/cover/key | PASS (digital) |
+| KiCad CLI | 10.0.8, ERC 0; routed carrier 27 footprints/19 nets, DRC 0/0; Gerber/drill | PASS (digital) |
 | ESP-IDF build | v6.1, target esp32s3, 192,496-byte `.bin` | PASS (build only) |
 | Android debug APK | 46,852,340-byte arm64-v8a APK, v2 signature verified | PASS (debug, not installed) |
 | npm audit | 0 known npm vulnerabilities | PASS |

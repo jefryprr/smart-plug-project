@@ -26,7 +26,7 @@ SHEETS = [
     ("AC_DC_POWER", ["AC_L_FUSED", "AC_N_IN", "+5V", "GND"], "Hi-Link HLK-5M05 isolated PSU (5 V 1 A, 5 W). MAINS + SELV; batch isolation unverified."),
     ("PZEM_AND_CT", ["PZEM_L", "PZEM_N", "CT_P", "CT_N", "+5V", "GND", "PZEM_TX_5V", "PZEM_RX_5V"], "PZEM V4 + CT, off-board. TTL side is SELV via the module's internal optocouplers; no external ADuM/B0505S."),
     ("LOW_VOLTAGE_CONTROL", ["+3V3", "GND", "I2C_SDA", "I2C_SCL", "PZEM_TX_3V3", "PZEM_RX_3V3", "PZEM_TX_5V", "PZEM_RX_5V", "RELAY_CTRL", "RELAY_GATE", "RGB_DATA_3V3", "RGB_DATA_5V"], "SELV control: 74HCT125 level shifter, PZEM 10k/20k divider, AO3400 relay driver."),
-    ("ESP32S3_CARRIER", ["+5V", "GND", "+3V3", "I2C_SDA", "I2C_SCL", "PZEM_TX_3V3", "PZEM_RX_3V3", "RELAY_CTRL", "RGB_DATA_3V3", "BUTTON", "RTC_INT"], "ESP32-S3-DevKitC-1 two 1x22 sockets, 22.86 mm rows. SELV."),
+    ("ESP32S3_CARRIER", ["+5V", "GND", "+3V3", "I2C_SDA", "I2C_SCL", "PZEM_TX_3V3", "PZEM_RX_3V3", "RELAY_CTRL", "RGB_DATA_3V3", "BUTTON", "RTC_INT"], "ESP32-S3-DevKitC-1 two 1x22 sockets, 22.86 mm rows. 5 V PTC + TVS. SELV."),
     ("DISPLAY_AND_BUTTONS", ["+3V3", "GND", "I2C_SDA", "I2C_SCL", "BUTTON", "RGB_DATA_OUT"], "OLED, button, external RGB. SELV."),
     ("RTC_ONLY", ["+3V3", "GND", "I2C_SDA", "I2C_SCL", "RTC_INT"], "DS3231 RTC only. No TMP102; no firmware temperature sensor."),
     ("SERVICE_AND_DEBUG", ["USB_DP", "USB_DM", "UART0_TX", "UART0_RX", "GND"], "USB/UART service. Restricted while mains energized."),

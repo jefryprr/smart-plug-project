@@ -15,9 +15,10 @@
 - PZEM-004T V4 and a **common 2-channel 5 V optocoupler relay module** are **off-board**, with enclosure brackets. The module is two independent SPDT channels, **not** a mechanically linked DPST.
 - PSU replaced by user instruction: **Hi-Link HLK-5M05** (5 V 1 A / 5 W, 38×23×18 mm). Efficiency ~70% means ~2.1 W heat; isolation/certificate/batch are unverified (`PENDING_APPROVAL`). Study: `research/PSU_HLK_5M05.md`.
 - **150×100×70 FAILS** the coarse fit; **180×120×70 is rejected** because the PZEM/relay/socket would only stack with a 0.5 mm gap, ignoring brackets and wiring. **220×120×70 PASSES** side-by-side and is **CONFIRMED** by the user (Q06=C, 2026-11-15).
-- **KiCad 10.0.8 CLI installed**; ERC 0 on the block-level schematic; the SELV carrier is routed at 100x70 mm with **DRC 0/0** at 0.15 mm clearance, and routed Gerber/drill/POS exported. The carrier remains `ENGINEERING_REVIEW_REQUIRED` / `NOT_FOR_FABRICATION`.
+- **Enclosure detailed:** 60 mm body + 10 mm lid, 4× M3 lid screws, 1 mm gasket, carrier standoffs, module bosses, mechanical barrier, right-wall socket/gland/M12 vent, top OLED/button/RGB cutouts, front USB service cover, and a printed DevKit reverse-insertion key. Assembly STEP/STL and fit report generated; physical fit/sealing/thermal are still unverified.
+- **KiCad 10.0.8 CLI installed**; ERC 0 on the block-level schematic; the SELV carrier is routed at 100x70 mm (27 footprints, 19 nets, 5 V PTC + TVS, 3 fiducials) with **DRC 0/0** at 0.15 mm clearance, and routed Gerber/drill/POS exported. The carrier remains `ENGINEERING_REVIEW_REQUIRED` / `NOT_FOR_FABRICATION`.
 - **ESP-IDF v6.1 target build PASS** (esp32s3, 192,496-byte `.bin`, SHA-256 in `reports/FIRMWARE_BUILD.md`); no board was flashed. **Android debug APK PASS** (arm64-v8a, 46,852,340 bytes, v2 debug signature verified; not device-tested).
-- **Indonesian procurement matrix added** (2026-11-16): 54 lines, 43 listing-verified + 11 estimated. CORE Rp698.297 (restock Rp646.829), FULL Rp815.897; budget verdict `CORE_FITS_750K; FULL_OVER_BUDGET`. Details: `research/PROCUREMENT_INDONESIA.md`, `bom/BOM_PROCUREMENT.md`.
+- **Indonesian procurement matrix added** (2026-11-16): 56 lines, 43 listing-verified + 13 estimated. CORE Rp703.297 (restock Rp651.829), FULL Rp820.897; budget verdict `CORE_ELECTRONICS_FITS_750K; CORE_WITH_MECH_OVER; FULL_OVER_BUDGET`. Details: `research/PROCUREMENT_INDONESIA.md`, `bom/BOM_PROCUREMENT.md`.
 
 ---
 
@@ -83,8 +84,8 @@ OFF (Q25=C), computer-only lab (Q26=A), digital parallel phases (Q27=C).
 - `research/candidates.csv`: all candidates, not just winners.
 - `research/PROCUREMENT_INDONESIA.md`: dated Indonesian supplier/price study, stock risks, and budget scenarios.
 - `bom/BOM_MASTER.csv`: 48 engineering rows, **unpriced**, **unapproved**.
-- `bom/BOM_PROCUREMENT.csv`: 54 dated prototype buy rows (43 listing-verified, 11 estimated).
-- `bom/BOM_SUMMARY.json`: `PROCUREMENT_PRICED_2026-11-15`; CORE Rp698.297, FULL Rp815.897.
+- `bom/BOM_PROCUREMENT.csv`: 56 dated prototype buy rows (43 listing-verified, 13 estimated).
+- `bom/BOM_SUMMARY.json`: `PROCUREMENT_PRICED_2026-11-15`; CORE Rp703.297, FULL Rp820.897.
 - `bom/COMPONENT_APPROVALS.yaml`: no `approved_for_fabrication`.
 - `research/datasheets/MANIFEST.md`: 12 PDFs hashed (including the HLK-5M05 distributor copy) plus the PZEM-004T V1.0 archive; V4/socket/enclosure/HLK batch still marked deficient.
 - `research/UNKNOWN_SPECIFICATIONS.md`: 31 open unknowns (including compatible board, enclosure flame rating, PZEM internal isolation, and relay batch).
@@ -96,9 +97,12 @@ off-board 2-channel optocoupler relay module (10 A class claim), Hi-Link HLK-5M0
 MOV 10D271K, generic 99 °C thermal fuse, DS3231 module, SSD1306 OLED,
 Simon Schuko 16 A socket, BOSS BP16 plug, MG Duradus 220x120x70 ABS enclosure.
 
-**Budget verdict:** CORE is Rp698.297 before shipping (Rp738.297 all-in), which fits
-the Rp750.000 cap. EasyWare restock prices drop CORE to Rp646.829 (Rp686.829 all-in).
-FULL is Rp815.897 (Rp855.897 all-in), over the cap; do not downgrade safety parts to force it.
+**Budget verdict:** CORE electronics is Rp703.297 before shipping (Rp743.297 all-in),
+which fits the Rp750.000 cap. The detailed enclosure adds an estimated **Rp28.000**
+mechanical addendum (gasket, vent, printed USB cover/key, PSU bracket, thermal pad),
+so marketplace CORE is about **Rp731.297 / Rp771.297 all-in**. EasyWare restock prices
+bring it to about **Rp679.829 / Rp719.829 all-in**. FULL is Rp820.897 (Rp860.897 all-in),
+or about Rp888.897 all-in with the addendum; do not downgrade safety parts to force it.
 
 ---
 
@@ -125,7 +129,7 @@ Details: `safety/ISOLATION_PLAN.md`, `safety/ELECTRICAL_RATING_CHAIN.md`,
 - 180×120×70: **rejected**; it only fit by stacking PZEM/relay/socket with a 0.5 mm gap and ignoring brackets/wiring.
 - 220×120×70 confirmed (Q06=C): side-by-side coarse fit **PASS**; dimensions still approximate.
 - Final continuous rating **8 A / ~1.840 W**, electronics/SMPS only.
-- BOM prices: CORE Rp698.297 (Rp738.297 all-in), CORE restock Rp646.829 (Rp686.829 all-in), FULL Rp815.897 (Rp855.897 all-in). Target Rp500–750k is only achievable for the CORE with EasyWare restock prices; FULL exceeds it. Safety parts are not downgraded.
+- BOM prices: CORE Rp703.297 (Rp743.297 all-in), CORE restock Rp651.829 (Rp691.829 all-in), FULL Rp820.897 (Rp860.897 all-in). The electronics CORE fits Rp750k at marketplace prices; the mechanical addendum pushes the marketplace CORE to ~Rp771k, while EasyWare restock brings it to ~Rp720k. FULL exceeds the cap. Safety parts are not downgraded.
 - Supply/documentation risk: PZEM batch, ESP32 official stock, HLK batch, socket/plug, enclosure flammability, thermal cutoff.
 - 220×120×70 enclosure confirmed after 150×100 and 180×120 clearance review failed.
 

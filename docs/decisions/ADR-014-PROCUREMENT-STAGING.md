@@ -7,17 +7,17 @@
 ## Context
 
 The user set a prototype BOM budget of **Rp500.000–750.000**. Dated Indonesian
-listing research for 54 BOM lines gives:
+listing research for 56 BOM lines gives:
 
 - electronics core (MCU, meter, PSU, level shift, relay, protection, passives,
   PCB): **Rp433.633**;
 - CORE safety/function build including enclosure, connectors, cable, and
-  mechanical parts: **Rp698.297** before shipping;
-- CORE all-in with an estimated Rp40.000 shipping: **Rp738.297** — under the cap;
-- CORE with EasyWare restock prices for ESP32-S3 and PZEM: Rp646.829
-  (Rp686.829 all-in);
+  mechanical parts: **Rp703.297** before shipping;
+- CORE all-in with an estimated Rp40.000 shipping: **Rp743.297** — under the cap;
+- CORE with EasyWare restock prices for ESP32-S3 and PZEM: Rp651.829
+  (Rp691.829 all-in);
 - FULL build adding OLED, RTC, external RGB, and their connectors:
-  **Rp815.897** before shipping, **Rp855.897** all-in.
+  **Rp820.897** before shipping, **Rp860.897** all-in.
 
 REV_B removes the **TMP102** and the external **ADuM1201 + B0505S** barrier.
 The PZEM-004T V4 internal optocouplers are the galvanic barrier; the carrier
@@ -42,7 +42,7 @@ thermal protection is hardware-only (fuse + one-shot TCO).
 
 ## Consequences
 
-- CORE fits the Rp750.000 cap at current marketplace prices (Rp738.297 all-in).
+- CORE fits the Rp750.000 cap at current marketplace prices (Rp743.297 all-in).
 - FULL is about **14% over** the cap and is a later stage.
 - The ESP32-S3 compatible board is an explicit Q08=B deviation; official
   Espressif local stock is not confirmed.
@@ -63,7 +63,7 @@ thermal protection is hardware-only (fuse + one-shot TCO).
 
 ## Sources
 
-- `bom/BOM_PROCUREMENT.csv` (54 lines, dated 2026-11-15/16)
+- `bom/BOM_PROCUREMENT.csv` (56 lines, dated 2026-11-15/16)
 - `research/PROCUREMENT_INDONESIA.md`
 - `bom/BOM_SUMMARY.json`
 - `research/PZEM_INTERNAL_ISOLATION.md`

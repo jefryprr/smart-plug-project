@@ -7,7 +7,7 @@
 
 ## What exists
 
-- `hardware/kicad/smartplug.kicad_pcb` — routed 100 × 70 mm SELV carrier.
+- `hardware/kicad/smartplug.kicad_pcb` — routed 100 × 70 mm SELV carrier, 27 footprints, 19 nets, 5 V PTC + TVS, 3 fiducials.
 - `hardware/kicad/smartplug.kicad_sch` + 9 child sheets — system block schematic.
 - `hardware/schematic/carrier_schematic.svg/.png` — functional block schematic.
 - `hardware/carrier/netlist.csv` — pin/net table.
@@ -17,7 +17,7 @@
 - `Gerber/*.gtl/*.gbl/*.gto/*.gbo/*.gm1` — routed copper/silkscreen/edge cuts.
 - `Drill/smartplug.drl`, `smartplug-drl_map.pdf`.
 - `hardware/pcb/render/placement_preview.png/.svg` — preview.
-- `bom/BOM_MASTER.csv` — 54 rows, unpriced engineering BOM.
+- `bom/BOM_MASTER.csv` — 56 rows, unpriced engineering BOM.
 - `bom/BOM_PROCUREMENT.csv` — dated prototype buy list.
 
 ## What is still missing
@@ -26,7 +26,7 @@
 |---|---|---|
 | Production component schematic | `PARTIAL` | Functional block schematic + netlist; no KiCad symbol-level schematic |
 | Footprint library review | `PARTIAL` | Standard KiCad footprints used; not vendor-certified |
-| Routing | `PASS_DIGITAL` | Routed, DRC 0/0 |
+| Routing | `PASS_DIGITAL` | Routed, DRC 0/0; 5 V PTC/TVS; 3 fiducials |
 | Functional Gerber | `PASS_DIGITAL` | Routed copper exported; not fabricated |
 | POSITION | `PROVISIONAL` | Assembly positions exist but no assembly release |
 | Mains clearance/creepage | `BLOCKED` | Carrier is SELV; mains modules off-board; assembly review required |
