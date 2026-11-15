@@ -2,8 +2,8 @@
   "project": "esp32-s3-iot-smart-plug",
   "prd_version": "1.0",
   "design_revision": "REV_B_NO_TEMP",
-  "generated_at": "2026-11-15T19:50:11.929Z",
-  "git_commit": "572704cffc9e50a71c6e52e61a761505f98fc70f",
+  "generated_at": "2026-11-15T19:50:30.101Z",
+  "git_commit": "62769a4b506131ed8d8c819fb2ee6ead13e744a3",
   "manifest_note": "git_commit is the source commit at generation time; this manifest file is committed immediately after.",
   "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",
   "hardware_validation_status": "HARDWARE_VALIDATION_REQUIRED",
@@ -1909,8 +1909,8 @@
     {
       "category": 13,
       "path": "reports/logs/firmware-idf-build.log",
-      "sha256": "abf84ea2dbede5eff17551cd42248aa392c8f35a64257599ff68bef16714d0ad",
-      "size_bytes": 175319,
+      "sha256": "894d500a4e081345b9d31894beccc25969f49b9122898586e27eb49dd0eaabaf",
+      "size_bytes": 175318,
       "status": "PARTIAL",
       "tests": [
         "T-HW-017",
