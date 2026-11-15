@@ -1,4 +1,4 @@
-# Fit Analysis — REV_A_PROVISIONAL
+# Fit Analysis — REV_B_NO_TEMP
 
 **Status:** coarse digital fit check only. Dimensions are approximate; no physical fit validation.
 
@@ -10,6 +10,9 @@
 - AABB clashes:
   - relay ↔ fuse
   - relay ↔ terminals
+- Barrier crossings:
+  - carrier: (-70.0, -25.0, 7.2, 10.0, 25.0, 8.8)
+  - esp32: (-64.3, -12.7, 8.0, 4.299999999999997, 12.7, 18.0)
 
 ## Preset: recommended
 

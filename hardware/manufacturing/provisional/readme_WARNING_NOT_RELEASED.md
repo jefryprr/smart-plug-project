@@ -1,23 +1,23 @@
-# WARNING — PROVISIONAL MANUFACTURING PACKAGE
+# WARNING — PROVISIONAL ROUTED PROTOTYPE
 
-**STATUS:** `NOT_FOR_FABRICATION`
-**DESIGN REVISION:** `REV_A_PROVISIONAL`
-**DATE:** 2026-11-15
+**STATUS:** `ROUTED_PROTOTYPE / ENGINEERING_REVIEW_REQUIRED / NOT_FOR_FABRICATION`  
+**DESIGN REVISION:** `REV_B_NO_TEMP`  
+**DATE:** 2026-11-16
 
-This directory contains **provisional placement-only** manufacturing geometry, not a functional circuit.
+This directory contains a **routed SELV carrier** (100 × 70 mm), not a released
+manufacturing package.
 
-- Gerber/drill were exported by KiCad 10.0.8 from a **placement-only low-voltage carrier** (75×50 mm).
-- The PCB has **no routing, no nets, no approved component footprints**; copper layers are essentially empty.
-- ERC is 0 on the text-only block schematic; DRC is 0 on the placement geometry. These do not prove a functional circuit.
-- The schematic is a **system block schematic**, not a component-level production schematic.
-- No component is approved for fabrication.
-- BOM is **UNPRICED/UNAPPROVED**.
+- Gerber/drill were exported by KiCad 10.0.8 from `hardware/kicad/smartplug.kicad_pcb`.
+- DRC is **0 violations / 0 unconnected** at 0.15 mm default clearance.
+- Copper is routed; there are real footprints, nets, vias, and a B.Cu GND zone.
+- The board is **SELV only**. PZEM, relay module, HLK-5M05, fuse/MOV/TCO, and
+  socket/plug remain off-board in the mains zone.
+- The schematic is a **system block schematic** (`hardware/kicad/`) plus a
+  functional schematic (`hardware/schematic/carrier_schematic.*`) and a
+  component/net table. It is not a production-certified schematic.
+- No component is approved for fabrication. BOM is `NOT_APPROVED`.
+- No physical fit, hipot, thermal, or load test has been performed.
 
-Do not send this directory to a PCB manufacturer for a functional board. It is only useful for mechanical/outline review and toolchain evidence.
-
-The valid next steps are:
-1. Select/verify all MPNs and footprints.
-2. Complete component-level schematic and connectivity.
-3. Route the PCB, run ERC/DRC on the real circuit.
-4. Re-export Gerber/drill/POS/BOM.
-5. Obtain `F4 FABRICATION_RELEASED` sign-off.
+Do not send this directory to a PCB manufacturer for a functional board until
+an engineer reviews the schematic, netlist, footprints, creepage, connector
+pinout, and assembly. The valid next step is `F4 FABRICATION_RELEASED`.

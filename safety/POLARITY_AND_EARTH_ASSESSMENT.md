@@ -1,4 +1,4 @@
-# Polarity and Protective Earth Assessment — REV_A_PROVISIONAL
+# Polarity and Protective Earth Assessment — REV_B_NO_TEMP
 
 **Status:** `BLOCKED_PENDING_ENGINEER_REVIEW`
 **Konteks:** Q02=D (analisis kompatibilitas Indonesia; lean Type E/F), Q05=A (tinjau pemutusan dua kutub).

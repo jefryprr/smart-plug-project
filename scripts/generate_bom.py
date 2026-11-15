@@ -98,7 +98,7 @@ ROWS = [
         "Espressif", "ESP32-S3-DevKitC-1-N16R8", revision="v1.1 (planned)",
         datasheet="https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html",
         status="PENDING_APPROVAL", alt="ESP32-S3-DevKitC-1-N8R8; third-party clone (not preferred)",
-        footprint="ESP32-S3-DevKitC-1_2x20_P2.54", mech="esp32s3_devkitc1_approx",
+        footprint="ESP32-S3-DevKitC-1_2x22_P2.54", mech="esp32s3_devkitc1_approx",
         notes="RGB pin differs between v1.0 (GPIO48) and v1.1 (GPIO38); board must be photographed and revision verified. N16R8 uses octal PSRAM; avoid GPIO33-37.",
         evidence="Espressif user guide v1.1; verify exact board marking and USB/strapping pins on arrival."
     ),
@@ -120,15 +120,6 @@ ROWS = [
         evidence="Distributor copy of Hi-Link HLK-5M05 datasheet (3 pages) with dimension drawing; official product page; exact batch/certification must be verified."
     ),
     row(
-        "E-004", "U4", "Sensing", "Digital temperature sensor, I2C, 3.3 V, SOT-563",
-        "Texas Instruments", "TMP102AIDRLR",
-        datasheet="https://www.ti.com/lit/ds/symlink/tmp102.pdf",
-        status="PENDING_APPROVAL", alt="MCP9808; DS18B20 (remote probe)",
-        footprint="SOT-563-6", mech="TMP102_approx",
-        notes="Place near relay/terminal hotspot. Sensor failure must produce invalid state, not a stale comfortable reading.",
-        evidence="TI TMP102 datasheet; accuracy and thermal response to be verified on bench."
-    ),
-    row(
         "E-005", "U5", "Sensing", "I2C real-time clock with integrated crystal, 3.3 V",
         "Analog Devices", "DS3231MZ+", datasheet="https://www.analog.com/media/en/technical-documentation/data-sheets/DS3231M.pdf",
         status="PENDING_APPROVAL", alt="PCF8523T + 32.768 kHz crystal; SNTP holdover only",
@@ -137,23 +128,7 @@ ROWS = [
         evidence="Analog Devices DS3231M datasheet; RTC drift and backup runtime require measurement."
     ),
     row(
-        "E-006", "U6", "Isolation", "Dual-channel digital isolator for PZEM UART (2.5 kVrms class)",
-        "Analog Devices", "ADuM1201ARZ", datasheet="https://www.analog.com/media/en/technical-documentation/data-sheets/ADuM1200_1201.pdf",
-        status="PENDING_APPROVAL", alt="Si8622; optocoupler pair (slower, more space)",
-        footprint="SOIC-8", mech="ADuM1201_approx",
-        notes="Mandatory provisional barrier between PZEM-side UART and SELV MCU. Final working voltage/creepage must be reviewed. Do not connect PZEM GND directly to MCU GND.",
-        evidence="ADI ADuM1201 datasheet; isolation rating is component-level, not final assembly proof."
-    ),
-    row(
-        "E-007", "U7", "Isolation", "Isolated 5 V to 5 V DC/DC converter, 1 W, for PZEM barrier",
-        "Mornsun", "B0505S-1WR3", datasheet="https://www.mornsun-power.com/html/pdf/B0505S-1WR3.html",
-        status="PENDING_APPROVAL", alt="RECOM R1SE-0505; Traco TMR 1-0511",
-        footprint="SIP-4", mech="B0505S_approx",
-        notes="Provides isolated 5 V to the PZEM side. Output filtering and common-mode path must be reviewed.",
-        evidence="Mornsun datasheet; exact revision to be recorded."
-    ),
-    row(
-        "E-008", "U8", "Switching", "N-channel MOSFET relay driver, logic-level, SOT-23",
+        "E-008", "Q1", "Switching", "N-channel MOSFET relay driver, logic-level, SOT-23",
         "Alpha & Omega Semiconductor", "AO3400A", datasheet="https://www.aosmd.com/res/data_sheets/AO3400A.pdf",
         status="PENDING_APPROVAL", alt="2N7002 (lower current); ULN2003 (module driver)",
         footprint="SOT-23", mech="AO3400_approx",
@@ -161,12 +136,12 @@ ROWS = [
         evidence="AOS datasheet; boot waveform must be measured on a low-voltage fixture."
     ),
     row(
-        "E-009", "U9", "UI", "Single buffer/level shifter for 3.3 V to 5 V WS2812 data",
-        "Texas Instruments", "SN74AHCT1G125DBVR", datasheet="https://www.ti.com/lit/ds/symlink/sn74ahct1g125.pdf",
-        status="PENDING_APPROVAL", alt="74HCT125; power WS2812 at 3.3 V if proven",
-        footprint="SOT-23-5", mech="SOT23_5_approx",
-        notes="WS2812B high-level threshold at 5 V may exceed 3.3 V logic. Level shift and 330 ohm series resistor.",
-        evidence="TI datasheet; verify LED timing and supply decoupling."
+        "E-009", "U9", "UI/Level shift", "Quad buffer/level shifter, 5 V powered, DIP-14, for PZEM TX and WS2812 data",
+        "Texas Instruments", "SN74HCT125N", datasheet="https://www.ti.com/lit/ds/symlink/sn74hct125.pdf",
+        status="PENDING_APPROVAL", alt="74HCT125 (any vendor); SN74AHCT1G125 for one channel",
+        footprint="DIP-14_W7.62mm", mech="DIP14_approx",
+        notes="Converts ESP32 3.3 V logic to 5 V for PZEM RX and WS2812 data. 74HCT input threshold is TTL-compatible. Tie unused inputs to GND; add 100 nF at VCC. Do not use for galvanic isolation.",
+        evidence="TI SN74HCT125 datasheet; verify 5 V output levels and PZEM input current."
     ),
     row(
         "E-010", "K1", "Switching", "2-channel 5 V optocoupler relay module, 10 A class claim, off-board, active-low input",
@@ -255,6 +230,36 @@ ROWS = [
         notes="Place at each IC supply pin.", evidence="Murata datasheet."
     ),
     row(
+        "E-020A", "C3", "Passives", "Decoupling capacitor, 100 nF, 50 V, 0603, at 74HCT125 VCC", "Murata", "GRM188R71H104KA93D",
+        datasheet="https://www.murata.com/", status="PROVISIONAL", footprint="C_0603_1608Metric", mech="C0603_approx",
+        notes="Place within 5 mm of U9 VCC/GND. Required for clean 5V level-shift edges.", evidence="Murata datasheet."
+    ),
+    row(
+        "E-018A", "R4", "Passives", "PZEM TX divider top resistor, 10 kohm, 1%, 0805", "Yageo", "RC0805FR-0710KL",
+        datasheet="https://www.yageo.com/", status="PROVISIONAL", footprint="R_0805_2012Metric", mech="R0805_approx",
+        notes="PZEM TX (5V) -> R4 -> ESP32 RX; R5 20k to GND gives ~3.33V. Verify PZEM TX high level.", evidence="Divider calculation; Yageo datasheet."
+    ),
+    row(
+        "E-018B", "R5", "Passives", "PZEM TX divider bottom resistor, 20 kohm, 1%, 0805", "Yageo", "RC0805FR-0720KL",
+        datasheet="https://www.yageo.com/", status="PROVISIONAL", footprint="R_0805_2012Metric", mech="R0805_approx",
+        notes="Divider bottom; add 100 nF at ESP32 RX if noise is observed.", evidence="Divider calculation; Yageo datasheet."
+    ),
+    row(
+        "E-018C", "R6", "Passives", "I2C SDA pullup, 4.7 kohm, 1%, 0805", "Yageo", "RC0805FR-074K7L",
+        datasheet="https://www.yageo.com/", status="PROVISIONAL", footprint="R_0805_2012Metric", mech="R0805_approx",
+        notes="To 3.3V; OLED + RTC only. Verify bus capacitance and address conflicts.", evidence="Yageo datasheet."
+    ),
+    row(
+        "E-018D", "R7", "Passives", "I2C SCL pullup, 4.7 kohm, 1%, 0805", "Yageo", "RC0805FR-074K7L",
+        datasheet="https://www.yageo.com/", status="PROVISIONAL", footprint="R_0805_2012Metric", mech="R0805_approx",
+        notes="To 3.3V; keep I2C <=400 kHz for prototype.", evidence="Yageo datasheet."
+    ),
+    row(
+        "E-018E", "R8", "Passives", "Button pullup, 10 kohm, 1%, 0805", "Yageo", "RC0805FR-0710KL",
+        datasheet="https://www.yageo.com/", status="PROVISIONAL", footprint="R_0805_2012Metric", mech="R0805_approx",
+        notes="Button to GND; external pullup in addition to MCU internal pullup.", evidence="Yageo datasheet."
+    ),
+    row(
         "E-021", "DS1", "UI", "OLED 0.96 inch, 128x64, SSD1306, I2C, 3.3 V module", "TBD", "OLED-096-SSD1306-I2C",
         status="DOCUMENTATION_DEFICIENT", alt="SH1106 1.3 inch (different controller); bare SSD1306 panel",
         footprint="OFF_BOARD_MODULE", mech="oled096_approx",
@@ -274,30 +279,47 @@ ROWS = [
         evidence="Omron B3F datasheet."
     ),
     row(
-        "E-024", "J1", "Connectors", "2x20 pin female header, 2.54 mm, for DevKitC-1", "TBD", "HDR-2X20-2.54-F",
-        status="PROVISIONAL", footprint="PinHeader_2x20_P2.54mm", mech="header_2x20_approx",
-        notes="Low-voltage module only. Verify DevKitC-1 pin length and orientation. Anti-misinsertion keying recommended.",
-        evidence="Generic header; mechanical fit to be checked."
+        "E-024", "J1", "Connectors", "2x22 pin female header, 2.54 mm, for DevKitC-1", "TBD", "HDR-2X22-2.54-F",
+        status="PROVISIONAL", footprint="PinSocket_2x22_P2.54mm", mech="header_2x22_approx",
+        notes="ESP32-S3-DevKitC-1 has 2x22 headers (J1/J3), not 2x20. Verify pin length/orientation and keying before inserting the board.",
+        evidence="Espressif DevKitC-1 v1.1 user guide header tables."
     ),
     row(
-        "E-025", "J2", "Connectors", "JST-XH 4-pin connector for OLED (3.3 V, GND, SDA, SCL)", "JST", "B4B-XH-A",
+        "E-025", "J2", "Connectors", "JST-XH 4-pin connector for PZEM TTL (5V, RX, TX, GND)", "JST", "B4B-XH-A",
+        status="PROVISIONAL", footprint="JST_XH_B4B-XH-A", mech="jst_xh_4_approx",
+        notes="PZEM TTL side is SELV via the module's internal optocouplers. Pin order must match the purchased V4 batch; never assume colors.",
+        evidence="PZEM V4 pinout; verify batch."
+    ),
+    row(
+        "E-026", "J3", "Connectors", "JST-XH 4-pin connector for relay module (5V, GND, IN1, IN2)", "JST", "B4B-XH-A",
+        status="PROVISIONAL", footprint="JST_XH_B4B-XH-A", mech="jst_xh_4_approx",
+        notes="Active-LOW module inputs; both driven by one AO3400. JD-VCC jumper on module. Keep coil current off the carrier ground return? Use short 5V/GND pair.",
+        evidence="Relay module pinout; verify batch."
+    ),
+    row(
+        "E-027", "J4", "Connectors", "JST-XH 4-pin connector for OLED (3.3V, GND, SDA, SCL)", "JST", "B4B-XH-A",
         status="PROVISIONAL", footprint="JST_XH_B4B-XH-A", mech="jst_xh_4_approx", notes="Keyed low-voltage connector.",
         evidence="JST datasheet."
     ),
     row(
-        "E-026", "J3", "Connectors", "JST-XH 2-pin connector for button", "JST", "B2B-XH-A",
-        status="PROVISIONAL", footprint="JST_XH_B2B-XH-A", mech="jst_xh_2_approx", notes="Low-voltage only.",
-        evidence="JST datasheet."
+        "E-028", "J5", "Connectors", "JST-XH 6-pin connector for RTC (3.3V, GND, SDA, SCL, INT, 32K)", "JST", "B6B-XH-A",
+        status="PROVISIONAL", footprint="JST_XH_B6B-XH-A", mech="jst_xh_6_approx",
+        notes="DS3231 module; 32K may be left unconnected. INT to GPIO7.", evidence="JST datasheet."
     ),
     row(
-        "E-027", "J4", "Connectors", "JST-XH 3-pin connector for external RGB (5 V, GND, DATA)", "JST", "B3B-XH-A",
-        status="PROVISIONAL", footprint="JST_XH_B3B-XH-A", mech="jst_xh_3_approx", notes="Low-voltage only.",
-        evidence="JST datasheet."
+        "E-047", "J6", "Connectors", "JST-XH 2-pin connector for button (BUTTON, GND)", "JST", "B2B-XH-A",
+        status="PROVISIONAL", footprint="JST_XH_B2B-XH-A", mech="jst_xh_2_approx",
+        notes="Button to GND; 10k external pullup on carrier. Debounce in firmware.", evidence="JST datasheet."
     ),
     row(
-        "E-028", "J5", "Connectors", "JST-XH 6-pin connector for temp/RTC/expansion", "JST", "B6B-XH-A",
-        status="PROVISIONAL", footprint="JST_XH_B6B-XH-A", mech="jst_xh_6_approx", notes="Low-voltage only.",
-        evidence="JST datasheet."
+        "E-048", "J7", "Connectors", "JST-XH 3-pin connector for RGB (5V, GND, DATA)", "JST", "B3B-XH-A",
+        status="PROVISIONAL", footprint="JST_XH_B3B-XH-A", mech="jst_xh_3_approx",
+        notes="Data from 74HCT125 through 330R. 5V power for WS2812.", evidence="JST datasheet."
+    ),
+    row(
+        "E-049", "J8", "Connectors", "JST-XH 2-pin connector for 5V input from HLK-5M05", "JST", "B2B-XH-A",
+        status="PROVISIONAL", footprint="JST_XH_B2B-XH-A", mech="jst_xh_2_approx",
+        notes="5V/GND from HLK. Add 100uF bulk and 100nF at carrier entry. Keep away from mains wiring.", evidence="JST datasheet."
     ),
     row(
         "E-029", "TB1", "Connectors", "Mains terminal block, 2-pin, 5.08 mm, 300 V / 10 A class", "Phoenix Contact", "MKDS 3/2-5.08",
@@ -373,10 +395,10 @@ ROWS = [
         notes="SELV only. Keep away from mains barrier.", evidence="Generic."
     ),
     row(
-        "E-041", "PCB1", "PCB", "Low-voltage carrier PCB, 2-layer FR4, 1.6 mm, 1 oz Cu, provisional outline", "TBD", "PCB-CARRIER-REV-A",
-        status="PROVISIONAL", footprint="PCB_CARRIER_REV_A", mech="pcb_carrier_approx",
-        notes="Mains modules off-board; carrier handles 5 V/3.3 V, I2C, UART isolation, relay driver. Stackup/trace width/clearance are provisional and not released.",
-        evidence="KiCad placement file generated; ERC/DRC blocked without KiCad CLI."
+        "E-041", "PCB1", "PCB", "SELV carrier PCB, 2-layer FR4, 1.6 mm, 1 oz Cu, 100 x 70 mm, routed", "TBD", "PCB-CARRIER-REV-B",
+        status="PROVISIONAL", footprint="PCB_CARRIER_REV_B", mech="pcb_carrier_100x70",
+        notes="Mains modules off-board. Carrier handles 5V/3.3V, PZEM 5V-to-3.3V level shift, relay driver, I2C OLED/RTC, button, RGB. Routed with DRC 0 but still engineering-review-required; not a certified mains assembly.",
+        evidence="KiCad REV_B routed carrier; Gerber/drill exported; physical test not performed."
     ),
     row(
         "E-042", "LAB1", "Labels", "Safety/rating label set: rated voltage/current, warnings, serial/QR placeholder", "TBD", "LABEL-SET-REV-A",
@@ -462,15 +484,6 @@ PROCUREMENT = [
         "notes": "Datasheet efficiency is only ~70% at 220 V full load. Batch certificate, isolation, creepage, and counterfeit status are unverified. CNC Store Bandung Rp63,300 was out of stock. Reject unmarked modules and require ripple/thermal/hipot tests.",
     },
     {
-        "line_id": "E-004", "stage": "CORE",
-        "selected": "GY-TMP102 breakout, I2C temperature sensor",
-        "qty": 1, "unit_price": 50000,
-        "seller": "Shopee",
-        "url": "https://shopee.co.id/product/12793026/7334661838",
-        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "Breakout for prototype; the carrier design still uses TMP102AIDRLR SOT-563. Verify the actual IC marking, I2C address, and 3.3 V operation. Place at the relay/terminal hotspot and calibrate.",
-    },
-    {
         "line_id": "E-005", "stage": "FULL",
         "selected": "DS3231SN RTC module with battery",
         "qty": 1, "unit_price": 49500,
@@ -478,24 +491,6 @@ PROCUREMENT = [
         "url": "https://store.easyware.id/produk/modul-rtc-ds3231-real-time-clock-i2c-eeprom-at24c32-jam-presisi-arduino-esp32-baterai-cadangan/",
         "stock": "IN_STOCK", "verification": "VERIFIED_STORE_PAGE",
         "notes": "Shopee clones start around Rp53,000. Battery holder, crystal, and charge circuit quality vary. RTC drift and backup runtime require test. Deferred in the CORE build; SNTP-only operation must block ON when time is invalid.",
-    },
-    {
-        "line_id": "E-006", "stage": "CORE",
-        "selected": "CJMCU ADUM1201 digital isolator module",
-        "qty": 1, "unit_price": 25900,
-        "seller": "Shopee",
-        "url": "https://shopee.co.id/product/18800073/56958705695",
-        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "Module uses ADUM1201ARZ. Module PCB creepage/clearance and isolation are not certified; hipot review is required. Bare ADUM1201ARZ is the carrier alternate. Do not assume the module alone is a safety barrier.",
-    },
-    {
-        "line_id": "E-007", "stage": "CORE",
-        "selected": "Mornsun B0505S-1WR3, 5 V to 5 V, 1 W",
-        "qty": 1, "unit_price": 38500,
-        "seller": "Shopee",
-        "url": "https://shopee.co.id/product/119918417/20095650678",
-        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "Genuine Mornsun listing. Cheaper 22k clones are rejected for safety until isolation is verified. Needed only when the external ADUM barrier is used; it powers the PZEM-side of that barrier.",
     },
     {
         "line_id": "E-008", "stage": "CORE",
@@ -507,13 +502,13 @@ PROCUREMENT = [
         "notes": "Boot-safe low-side driver for active-LOW relay inputs. 100 kOhm pulldown and 1 kOhm gate resistor are mandatory. Verify pinout/marking.",
     },
     {
-        "line_id": "E-009", "stage": "FULL",
-        "selected": "SN74AHCT1G125DBVR SOT-23-5",
-        "qty": 1, "unit_price": 16389,
+        "line_id": "E-009", "stage": "CORE",
+        "selected": "SN74HCT125N quad buffer, DIP-14",
+        "qty": 1, "unit_price": 8750,
         "seller": "Shopee",
-        "url": "https://shopee.co.id/product/639795892/48066765025",
+        "url": "https://shopee.co.id/product/30000367/29506172697",
         "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "WS2812 3.3 V to 5 V data buffer. Deferred if the DevKit onboard RGB is used. Verify AHCT logic family and decoupling.",
+        "notes": "Level-shifts ESP32 3.3V TX to PZEM 5V RX and RGB data to 5V. DIP-14 for hand assembly; tie unused inputs to GND, add 100nF at VCC. PZEM RX is not 5V-tolerant, so the RX divider is mandatory.",
     },
     {
         "line_id": "E-010", "stage": "CORE",
@@ -633,6 +628,87 @@ PROCUREMENT = [
         "notes": "Decoupling; allocated pack cost. Verify voltage rating and dielectric.",
     },
     {
+        "line_id": "E-020A", "stage": "CORE",
+        "selected": "100 nF 50 V MLCC at 74HCT125 (small pack)",
+        "qty": 1, "unit_price": 360,
+        "seller": "EasyWare Store",
+        "url": "https://store.easyware.id/produk/20-pcs-kapasitor-smd-0603-yageo-original-50v-np0-x7r-22pf-470pf-560pf-1nf-10nf-mlcc/",
+        "stock": "IN_STOCK", "verification": "VERIFIED_STORE_PAGE",
+        "notes": "Allocated pack cost; place at U9 VCC/GND.",
+    },
+    {
+        "line_id": "E-018A", "stage": "CORE",
+        "selected": "10 kOhm 0805 resistor (divider top)",
+        "qty": 1, "unit_price": 500,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/52086903/6035376903",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Allocated pack cost. PZEM TX divider top.",
+    },
+    {
+        "line_id": "E-018B", "stage": "CORE",
+        "selected": "20 kOhm 0805 resistor (divider bottom)",
+        "qty": 1, "unit_price": 500,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/52086903/6035376903",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Allocated pack cost. PZEM TX divider bottom; output ~3.33V.",
+    },
+    {
+        "line_id": "E-018C", "stage": "CORE",
+        "selected": "4.7 kOhm 0805 resistor (I2C SDA pullup)",
+        "qty": 1, "unit_price": 500,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/52086903/6035376903",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Allocated pack cost.",
+    },
+    {
+        "line_id": "E-018D", "stage": "CORE",
+        "selected": "4.7 kOhm 0805 resistor (I2C SCL pullup)",
+        "qty": 1, "unit_price": 500,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/52086903/6035376903",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Allocated pack cost.",
+    },
+    {
+        "line_id": "E-018E", "stage": "CORE",
+        "selected": "10 kOhm 0805 resistor (button pullup)",
+        "qty": 1, "unit_price": 500,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/52086903/6035376903",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Allocated pack cost.",
+    },
+    {
+        "line_id": "E-047", "stage": "CORE",
+        "selected": "JST-XH 2-pin cable for button",
+        "qty": 1, "unit_price": 5000,
+        "seller": "Shopee (similar listing)",
+        "url": "",
+        "stock": "ESTIMATED", "verification": "ESTIMATED",
+        "notes": "Can be soldered directly; exact listing not captured.",
+    },
+    {
+        "line_id": "E-048", "stage": "FULL",
+        "selected": "JST-XH 3-pin cable for RGB",
+        "qty": 1, "unit_price": 5000,
+        "seller": "Shopee (similar listing)",
+        "url": "",
+        "stock": "ESTIMATED", "verification": "ESTIMATED",
+        "notes": "Deferred with RGB; exact listing not captured.",
+    },
+    {
+        "line_id": "E-049", "stage": "CORE",
+        "selected": "JST-XH 2-pin cable for 5V input",
+        "qty": 1, "unit_price": 5000,
+        "seller": "Shopee (similar listing)",
+        "url": "",
+        "stock": "ESTIMATED", "verification": "ESTIMATED",
+        "notes": "Or direct solder to J8; exact listing not captured.",
+    },
+    {
         "line_id": "E-021", "stage": "FULL",
         "selected": "OLED 0.96 inch 128x64 SSD1306 I2C",
         "qty": 1, "unit_price": 33300,
@@ -661,48 +737,48 @@ PROCUREMENT = [
     },
     {
         "line_id": "E-024", "stage": "CORE",
-        "selected": "2x20 female header, 2.54 mm",
+        "selected": "2x22 female header, 2.54 mm for ESP32-S3-DevKitC-1",
         "qty": 1, "unit_price": 3250,
         "seller": "Shopee",
         "url": "https://shopee.co.id/product/1484861284/29479551658",
         "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "For DevKitC-1. Verify pin length/orientation; keying recommended.",
+        "notes": "DevKitC-1 has 2x22 headers (J1/J3), not 2x20. Verify pin length/orientation; keying recommended.",
     },
     {
-        "line_id": "E-025", "stage": "FULL",
-        "selected": "JST-XH 4-pin male/female cable",
+        "line_id": "E-025", "stage": "CORE",
+        "selected": "JST-XH 4-pin cable for PZEM TTL",
         "qty": 1, "unit_price": 12300,
         "seller": "Shopee",
         "url": "https://shopee.co.id/product/15316646/522424401",
         "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "OLED connector; deferred with OLED. Can be soldered directly in the CORE build.",
+        "notes": "PZEM TTL connector; pin order must match the V4 batch. Can be soldered directly if the cable is not available.",
     },
     {
-        "line_id": "E-026", "stage": "FULL",
-        "selected": "JST-XH 2-pin cable (estimated)",
-        "qty": 1, "unit_price": 5000,
-        "seller": "Shopee (similar listing)",
-        "url": "",
-        "stock": "ESTIMATED", "verification": "ESTIMATED",
-        "notes": "Button connector; can be soldered directly in the CORE build. No exact listing captured.",
+        "line_id": "E-026", "stage": "CORE",
+        "selected": "JST-XH 4-pin cable for relay module",
+        "qty": 1, "unit_price": 12300,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/15316646/522424401",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Relay module connector; 5V/GND/IN1/IN2. Verify module pinout.",
     },
     {
         "line_id": "E-027", "stage": "FULL",
-        "selected": "JST-XH 3-pin cable (estimated)",
-        "qty": 1, "unit_price": 5000,
-        "seller": "Shopee (similar listing)",
-        "url": "",
-        "stock": "ESTIMATED", "verification": "ESTIMATED",
-        "notes": "RGB connector; deferred with RGB. No exact listing captured.",
+        "selected": "JST-XH 4-pin cable for OLED",
+        "qty": 1, "unit_price": 12300,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/15316646/522424401",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "OLED connector; deferred with OLED.",
     },
     {
         "line_id": "E-028", "stage": "FULL",
-        "selected": "JST-XH 6-pin cable (estimated)",
+        "selected": "JST-XH 6-pin cable for RTC",
         "qty": 1, "unit_price": 8000,
         "seller": "Shopee (similar listing)",
         "url": "",
         "stock": "ESTIMATED", "verification": "ESTIMATED",
-        "notes": "Temp/RTC/expansion connector; can be soldered directly in the CORE build. No exact listing captured.",
+        "notes": "DS3231 connector; 32K may be left unconnected. No exact listing captured.",
     },
     {
         "line_id": "E-029", "stage": "CORE",
@@ -814,12 +890,12 @@ PROCUREMENT = [
     },
     {
         "line_id": "E-041", "stage": "CORE",
-        "selected": "7x9 cm double-sided prototype PCB",
-        "qty": 1, "unit_price": 5500,
-        "seller": "Shopee",
-        "url": "https://shopee.co.id/product/357992667/27501689102",
-        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "Prototype carrier only. The custom 75x50 mm PCB is not fabricated and remains NOT_FOR_FABRICATION. Use header sockets/protoboard for modules.",
+        "selected": "100 x 70 mm routed 2-layer carrier PCB (5 pcs batch share)",
+        "qty": 1, "unit_price": 15000,
+        "seller": "PCB fab (JLCPCB/PCBWay/local, estimate)",
+        "url": "",
+        "stock": "ESTIMATED", "verification": "ESTIMATED",
+        "notes": "Estimated per-board share for 5 pcs plus shipping; not a quote. Gerber/drill generated locally, but fabrication and electrical test not performed.",
     },
     {
         "line_id": "E-042", "stage": "CORE",
@@ -890,17 +966,6 @@ PROCUREMENT_OVERRIDES = {
         "manufacturer_part_number": "PZEM-004T-V4-100A-CT",
         "notes": "Off-board module. The priced prototype uses a closed 100 A CT; a split CT is electrically equivalent for non-invasive sensing and easier to install. Official Peacefair V4 datasheet for the exact batch is not verified. UART level, isolation, terminal rating, and CT ratio must be measured. Do not confuse CT rating with output current rating.",
     },
-    "E-004": {
-        "description": "Digital temperature sensor, I2C, 3.3 V (TMP102 bare or GY-TMP102 breakout)",
-        "footprint_id": "SOT-563-6 / OFF_BOARD_MODULE",
-        "notes": "The carrier design uses TMP102AIDRLR SOT-563; the priced prototype uses a GY-TMP102 breakout for ease of assembly. Verify the actual IC marking/address. Place at the relay/terminal hotspot and calibrate. Sensor failure must produce invalid state, not a stale comfortable reading.",
-    },
-    "E-006": {
-        "notes": "Mandatory provisional barrier between PZEM-side UART and SELV MCU. The priced prototype uses a CJMCU ADUM1201 module; module creepage/clearance is not certified. Final working voltage/creepage must be reviewed. Do not connect PZEM GND directly to MCU GND when the external barrier is fitted.",
-    },
-    "E-007": {
-        "notes": "Provides isolated 5 V to the PZEM side of the external ADUM barrier. Genuine Mornsun B0505S-1WR3 is required; cheaper clones are rejected until isolation is verified. Output filtering and common-mode path must be reviewed.",
-    },
     "E-010": {
         "manufacturer": "Generic module (Songle-class relay)",
         "notes": "User-selected common 2-channel module, off-board. Two independent SPDT channels (L/N), NOT mechanically linked DPST. 10 A is a vendor claim, not a validated continuous rating. Final 8 A/1840 W. Active-LOW input; verify JD-VCC/pinout. Priced module is a generic optocoupler board; relay brand/batch/rating/lifecycle are unverified.",
@@ -927,11 +992,11 @@ PROCUREMENT_OVERRIDES = {
         "notes": "Priced exact-size 220x120x70 ABS/IP65 junction box. Flame-retardant grade is not verified; ABS may not be UL94 V-0. Enclosure remains BLOCKED pending material, fit, thermal, impact, and PE review. 3D printed enclosure is prototype-only and not certified for mains.",
     },
     "E-041": {
-        "description": "Prototype carrier board, 7x9 cm double-sided FR4 (custom 75x50 mm PCB not fabricated)",
+        "description": "SELV carrier PCB, 2-layer FR4, 1.6 mm, 1 oz Cu, 100 x 70 mm, routed",
         "manufacturer": "Generic",
-        "manufacturer_part_number": "PROTOBOARD-7X9",
-        "footprint_id": "PROTOBOARD_7X9",
-        "notes": "The custom 75x50 mm carrier is placement-only and NOT_FOR_FABRICATION. The priced prototype uses a 7x9 cm double-sided protoboard with header sockets. No routed functional PCB exists yet.",
+        "manufacturer_part_number": "PCB-CARRIER-REV-B",
+        "footprint_id": "PCB_CARRIER_REV_B",
+        "notes": "REV_B routed carrier with 2x22 DevKit socket, PZEM 5V/3.3V level shift, relay driver, I2C OLED/RTC, button, RGB, and 5V input. DRC 0 but engineering review/physical test still required. Mains modules remain off-board.",
     },
     "E-042": {
         "description": "Safety/rating label set: rated voltage/current, warnings, serial/QR placeholder (prototype label tape)",
@@ -1002,13 +1067,15 @@ def procurement_rows() -> list[dict]:
 
 def procurement_markdown(rows: list[dict], totals: dict) -> str:
     lines = [
-        "# BOM Procurement — Indonesia (2026-11-15)",
+        "# BOM Procurement — Indonesia (2026-11-16)",
         "",
         "> **Harga listing, bukan kutipan resmi.** Ini adalah daftar belanja prototipe, bukan persetujuan komponen.",
         "> Harga dapat berubah; stok marketplace tidak stabil. Tidak ada harga rekaan: baris tanpa listing ditandai `ESTIMATED`.",
         "",
         f"- Budget cap: **Rp{BUDGET_CAP_IDR:,}**",
-        "- Baris: **39 CORE + 9 FULL**; 39 listing-verified, 9 `ESTIMATED`.",
+        f"- Baris: **{sum(1 for r in rows if r['stage']=='CORE')} CORE + {sum(1 for r in rows if r['stage']=='FULL')} FULL**; "
+        f"{sum(1 for r in rows if r['price_verification'].startswith('VERIFIED'))} listing-verified, "
+        f"{sum(1 for r in rows if r['price_verification']=='ESTIMATED')} `ESTIMATED`.",
         f"- CORE subtotal: **Rp{totals['core_subtotal_idr']:,}**",
         f"- CORE dengan harga restock EasyWare: **Rp{totals['core_restock_subtotal_idr']:,}**",
         f"- FULL add-ons (OLED/RTC/RGB/konektor): **Rp{totals['full_addons_idr']:,}**",
@@ -1092,20 +1159,20 @@ def main() -> None:
         "core_all_in_idr": core_subtotal + SHIPPING_ESTIMATE_IDR,
         "core_restock_all_in_idr": core_restock + SHIPPING_ESTIMATE_IDR,
         "full_all_in_idr": core_subtotal + full_addons + SHIPPING_ESTIMATE_IDR,
-        "verdict": "CORE_ACHIEVABLE_WITH_RESTOCK; FULL_OVER_BUDGET",
+        "verdict": "CORE_FITS_750K; FULL_OVER_BUDGET",
     }
     (BOM / "BOM_PROCUREMENT.md").write_text(procurement_markdown(proc, totals), encoding="utf-8")
 
     with (BOM / "BOM_MASTER.yaml").open("w", encoding="utf-8") as handle:
         import yaml
-        yaml.safe_dump({"project": "esp32-s3-iot-smart-plug", "design_revision": "REV_A_PROVISIONAL", "generated_at": now, "items": ROWS}, handle, sort_keys=False, allow_unicode=True)
+        yaml.safe_dump({"project": "esp32-s3-iot-smart-plug", "design_revision": "REV_B_NO_TEMP", "generated_at": now, "items": ROWS}, handle, sort_keys=False, allow_unicode=True)
 
     summary = {
         "project": "esp32-s3-iot-smart-plug",
-        "design_revision": "REV_A_PROVISIONAL",
+        "design_revision": "REV_B_NO_TEMP",
         "currency": "IDR",
         "generated_at": now,
-        "pricing_status": "PROCUREMENT_PRICED_2026-11-15",
+        "pricing_status": "PROCUREMENT_PRICED_2026-11-16",
         "design_bom_pricing_status": "UNPRICED",
         "procurement_matrix": "bom/BOM_PROCUREMENT.csv",
         "procurement_report": "research/PROCUREMENT_INDONESIA.md",
@@ -1131,7 +1198,7 @@ def main() -> None:
             "Engineering BOM is still unpriced; dated prototype buy list is bom/BOM_PROCUREMENT.csv.",
             "Prices are listing prices, not supplier quotes. Shipping/tax are separate estimates.",
             "CORE excludes OLED, RTC, external RGB, and their connectors; FULL adds them.",
-            "CORE fits Rp750.000 only with EasyWare restock prices for ESP32-S3 and PZEM; buy-now is slightly over.",
+            "CORE fits Rp750.000 at marketplace prices (Rp738.297 all-in); EasyWare restock gives more margin (Rp686.829 all-in).",
             "FULL is over budget; do not downgrade fuse, MOV, TCO, PE, terminal, enclosure, or isolation to meet it.",
             "Final rating is 8 A / about 1.840 W (user amendment), limited to electronics/SMPS loads; thermal/lifecycle tests are still required.",
             "Batch 10-unit pricing cannot be quoted without actual supplier quotes.",
@@ -1140,7 +1207,7 @@ def main() -> None:
     (BOM / "BOM_SUMMARY.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
 
     md = [
-        "# BOM Master — REV_A_PROVISIONAL",
+        "# BOM Master — REV_B_NO_TEMP",
         "",
         f"**Generated:** {now}",
         "",
@@ -1168,7 +1235,7 @@ def main() -> None:
 
     approvals = {
         "project": "esp32-s3-iot-smart-plug",
-        "design_revision": "REV_A_PROVISIONAL",
+        "design_revision": "REV_B_NO_TEMP",
         "generated_at": now,
         "approval_policy": "User approved the research direction, not final MPNs. No component is approved for fabrication.",
         "approved_by": None,

@@ -1,4 +1,4 @@
-# Electrical Rating Chain — REV_A_PROVISIONAL
+# Electrical Rating Chain — REV_B_NO_TEMP
 
 **Status:** `BLOCKED_PENDING_ENGINEER_REVIEW`
 **Rating final yang dipilih pengguna:** **8 A** (amendment 2026-11-15)
@@ -10,16 +10,16 @@
 
 | Elemen | Klaim/rencana | Sumber | Derating/ketidakpastian | Status |
 |---|---|---|---|---|
-| Plug input Type F | 16 A / 250 V class | MPN belum dipilih | Kontak/PE/clamp belum diukur | `UNVERIFIED` |
-| Kabel input H05VV-F 3×1.5 mm² | 16 A class (tergantung instalasi) | Standar kabel; panjang belum final | Bend radius, strain relief, ambient | `UNVERIFIED` |
-| Terminal L/N | 10 A class (rencana) | MPN belum final | Torsi, ferrule, creepage | `UNVERIFIED` |
-| Fuse | 10 A time-lag, 250 V | Littelfuse 215 series | Breaking capacity, holder, koordinasi | `PENDING` |
-| MOV | 275 VAC class | EPCOS S10K275 | Energy/clamping/end-of-life | `PENDING` |
-| Thermal cutoff | 99 °C, 10 A / 250 V | Sefuse SF169E | Batch datasheet, holding current | `DOCUMENTATION_DEFICIENT` |
+| Plug input Type F | BOSS BP16, 16 A / 250 V class | Shopee listing | Kontak/PE/clamp belum diukur | `DOCUMENTATION_DEFICIENT` |
+| Kabel input NYYHY 3×1.5 mm² | 16 A class (tergantung instalasi) | Supreme NYYHY; 0.5 m provisional | Bend radius, strain relief, ambient | `PROVISIONAL` |
+| Terminal L/N | 5.08 mm 2-pin, 10 A class (generic) | Shopee listing | Torsi, ferrule, creepage | `DOCUMENTATION_DEFICIENT` |
+| Fuse | 10 A time-lag, 250 V | Littelfuse 5x20 slow-blow | Breaking capacity, holder, koordinasi | `PENDING` |
+| MOV | 275 VAC class | 10D271K (generic) | Energy/clamping/end-of-life | `PENDING` |
+| Thermal cutoff | 99 °C, 10 A / 250 V | Generic TF 99 °C | Batch datasheet, holding current | `DOCUMENTATION_DEFICIENT` |
 | Relay module K1 | 2-channel 5 V optocoupler module, 10 A class claim, two independent SPDT channels, off-board | Handsontec/DigiKey module data | Channel non-linkage, exact contact rating, lifecycle, inrush, active-low behavior | `DOCUMENTATION_DEFICIENT` |
-| Terminal output | 10 A class | MPN belum final | Torsi/creepage | `UNVERIFIED` |
-| Socket output Type F | 16 A / 250 V class | MPN belum dipilih | Retensi/PE/contact material | `UNVERIFIED` |
-| PCB carrier | Tidak membawa mains | Desain off-board | Hanya SELV | `PROVISIONAL` |
+| Terminal output | 5.08 mm 2-pin, 10 A class | Shopee listing | Torsi/creepage | `DOCUMENTATION_DEFICIENT` |
+| Socket output Type F | Simon Schuko 16 A / 250 V | Shopee listing | Retensi/PE/contact material | `DOCUMENTATION_DEFICIENT` |
+| PCB carrier | 100×70 SELV carrier; no mains; routed DRC 0 | `hardware/kicad/smartplug.kicad_pcb` | Hanya SELV; belum diuji fisik | `ENGINEERING_REVIEW_REQUIRED` |
 | PE path | Kontinu, tidak diputus | Desain konsep | MPN/stud/torsi/uji | `BLOCKED` |
 
 ## 2. Perhitungan batas

@@ -1,0 +1,170 @@
+[
+  {
+    "ref": "J1",
+    "value": "ESP32-S3-DevKitC-1",
+    "footprint": "Connector_PinSocket_2.54mm:PinSocket_2x22_P2.54mm_Vertical",
+    "x": 20.0,
+    "y": 10.0,
+    "rot": 90.0
+  },
+  {
+    "ref": "J2",
+    "value": "PZEM_TTL",
+    "footprint": "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical",
+    "x": 92.0,
+    "y": 22.0,
+    "rot": 180.0
+  },
+  {
+    "ref": "J3",
+    "value": "RELAY",
+    "footprint": "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical",
+    "x": 92.0,
+    "y": 36.0,
+    "rot": 180.0
+  },
+  {
+    "ref": "J4",
+    "value": "OLED",
+    "footprint": "Connector_JST:JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical",
+    "x": 8.0,
+    "y": 27.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "J5",
+    "value": "RTC",
+    "footprint": "Connector_JST:JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical",
+    "x": 8.0,
+    "y": 40.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "J6",
+    "value": "BUTTON",
+    "footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+    "x": 8.0,
+    "y": 52.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "J7",
+    "value": "RGB",
+    "footprint": "Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical",
+    "x": 15.0,
+    "y": 62.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "J8",
+    "value": "5V_IN",
+    "footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+    "x": 27.0,
+    "y": 62.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "U9",
+    "value": "74HCT125N",
+    "footprint": "Package_DIP:DIP-14_W7.62mm",
+    "x": 60.0,
+    "y": 36.0,
+    "rot": 90.0
+  },
+  {
+    "ref": "Q1",
+    "value": "AO3400A",
+    "footprint": "Package_TO_SOT_SMD:SOT-23",
+    "x": 80.0,
+    "y": 48.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "R1",
+    "value": "1k",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "x": 72.0,
+    "y": 44.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "R2",
+    "value": "100k",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "x": 72.0,
+    "y": 50.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "R3",
+    "value": "330R",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "x": 36.0,
+    "y": 58.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "R4",
+    "value": "10k",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "x": 80.0,
+    "y": 13.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "R5",
+    "value": "20k",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "x": 80.0,
+    "y": 17.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "R6",
+    "value": "4k7",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "x": 30.0,
+    "y": 27.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "R7",
+    "value": "4k7",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "x": 30.0,
+    "y": 31.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "R8",
+    "value": "10k",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "x": 20.0,
+    "y": 52.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "C1",
+    "value": "100uF",
+    "footprint": "Capacitor_SMD:CP_Elec_6.3x5.4",
+    "x": 45.0,
+    "y": 62.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "C2",
+    "value": "100nF",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "x": 50.0,
+    "y": 30.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "C3",
+    "value": "100nF",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "x": 55.0,
+    "y": 33.0,
+    "rot": 0.0
+  }
+]

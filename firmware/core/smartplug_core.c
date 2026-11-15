@@ -54,6 +54,7 @@ void sp_state_init(sp_state_t *state, const char *device_id, int64_t now_ms) {
     state->clock_valid = false;
     state->meter_valid = false;
     state->temperature_valid = false;
+    state->temperature_required = false;
     state->last_command_sequence = 0;
     state->last_command_id[0] = '\0';
     state->state_version = 0;
@@ -181,7 +182,7 @@ void sp_decide_command(const sp_state_t *state,
         reject(decision, state, command->source, "METER_INVALID", REASON_METER);
         return;
     }
-    if (!state->temperature_valid) {
+    if (state->temperature_required && !state->temperature_valid) {
         reject(decision, state, command->source, "TEMPERATURE_INVALID", REASON_TEMP);
         return;
     }
@@ -481,7 +482,8 @@ int sp_format_telemetry(const sp_measurement_t *measurement,
         "\"active_power_w\":%s,\"energy_kwh_total\":%s,\"power_factor\":%s,"
         "\"frequency_hz\":%s},\"state\":{\"mode\":\"%s\",\"commanded_output\":\"%s\","
         "\"observed_output\":%s,\"fault\":%s,\"lockout\":%s,\"state_version\":%" PRIu32 ","
-        "\"clock_valid\":%s,\"meter_valid\":%s,\"temperature_valid\":%s}}",
+        "\"clock_valid\":%s,\"meter_valid\":%s,\"temperature_valid\":%s,"
+        "\"temperature_required\":%s}}",
         state->device_id,
         (long long)measurement->sampled_at_ms,
         measurement->quality == SP_QUALITY_VALID ? "VALID" :
@@ -500,7 +502,8 @@ int sp_format_telemetry(const sp_measurement_t *measurement,
         state->state_version,
         state->clock_valid ? "true" : "false",
         state->meter_valid ? "true" : "false",
-        state->temperature_valid ? "true" : "false");
+        state->temperature_valid ? "true" : "false",
+        state->temperature_required ? "true" : "false");
     return written;
 }
 

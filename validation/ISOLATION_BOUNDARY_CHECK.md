@@ -1,4 +1,4 @@
-# Isolation Boundary Check — REV_A_PROVISIONAL
+# Isolation Boundary Check — REV_B_NO_TEMP
 
 **Status:** static wiring check only. Manual engineering review is still required.
 
@@ -6,7 +6,7 @@
 - PE path: **PASS**
 - Relay contacts separate: **PASS**
 - Relay coil SELV: **PASS**
-- UART isolator sides: **PASS**
+- PZEM internal isolation (static): **PASS**
 - Mains/SELV separation: **PASS**
 - GPIO crosscheck: **PASS**
 - BOM crosscheck: **PASS**

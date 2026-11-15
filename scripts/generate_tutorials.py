@@ -36,7 +36,7 @@ TUTORIALS = {
 - Firmware core: 74 host checks PASS.
 - API: 38 tests PASS.
 - Web: build + 5 Playwright tests PASS, axe no serious/critical on login/dashboard.
-- KiCad 10.0.8: ERC 0 on block schematic, DRC 0 on placement-only PCB, placement-only Gerber/drill exported.
+- KiCad 10.0.8: ERC 0 on block schematic; routed 100x70 SELV carrier DRC 0/0; routed Gerber/drill/POS exported.
 - ESP-IDF v6.1 target build: PASS (no flash).
 - Android debug APK: PASS (not installed); Docker/Postgres: BLOCKED.
 - Physical tests: BLOCKED (no hardware/lab).
@@ -121,7 +121,7 @@ Catat command, versi, exit code, dan temuan. Jangan mengecualikan rule untuk mem
 
 ## Batas
 
-- File saat ini adalah **system block schematic** dan **placement-only PCB**.
+- File saat ini adalah **system block schematic** dan **routed SELV carrier 100x70**.
 - Belum ada footprint/routing/DRC/Gerber.
 - Jangan mengirim ke fabrikasi.
 """,
@@ -152,7 +152,7 @@ Lakukan smoke test satu sheet, buka di KiCad, dan bandingkan hasilnya. Catat dev
 """,
 "04_SETUP_WIREVIZ.md": """# 04 — Setup WireViz
 
-**Status:** `PASS` — 6 harness dirender (SVG/PNG/PDF/GV).
+**Status:** `PASS` — 5 harness dirender (SVG/PNG/PDF/GV).
 
 ## Prasyarat
 
@@ -234,8 +234,8 @@ Output: `hardware/mechanical/export/`, `render/`, `drawings/`, `FIT_ANALYSIS.md`
 ## BOM
 
 - `bom/BOM_MASTER.csv` — BOM rekayasa, harga tidak dimasukkan.
-- `bom/BOM_PROCUREMENT.csv` — daftar belanja bertanggal 2026-11-15; 39 listing-verified, 9 estimated.
-- `bom/BOM_SUMMARY.json` — `PROCUREMENT_PRICED_2026-11-15`; CORE/FULL totals.
+- `bom/BOM_PROCUREMENT.csv` — daftar belanja bertanggal 2026-11-16; 43 listing-verified, 11 estimated.
+- `bom/BOM_SUMMARY.json` — `PROCUREMENT_PRICED_2026-11-16`; CORE/FULL totals.
 - `bom/COMPONENT_APPROVALS.yaml` — belum ada persetujuan fabrikasi.
 - `research/PROCUREMENT_INDONESIA.md` — seller, harga, stok, risiko.
 - `research/datasheets/MANIFEST.md` — hash/tautan.
@@ -285,7 +285,7 @@ Jangan membeli berdasarkan BOM ini.
 
 ## Saat ini
 
-- `hardware/kicad/smartplug.kicad_pcb` adalah placement-only 75x50 mm.
+- `hardware/kicad/smartplug.kicad_pcb` adalah routed SELV carrier 100x70 mm (DRC 0/0).
 - DRC 0 untuk geometri placement; tidak ada routing, net, atau footprint final.
 - `hardware/pcb/render/placement_preview.png/.svg` adalah preview, bukan plot KiCad.
 
@@ -682,7 +682,7 @@ powershell -ExecutionPolicy Bypass -File firmware\\test\\host\\run_tests.ps1
 - Firmware core 74 checks PASS.
 - Web 5 Playwright tests PASS; axe login/dashboard PASS.
 - Static connectivity PASS.
-- KiCad ERC/DRC and placement-only Gerber PASS; component-level design still BLOCKED.
+- KiCad ERC 0 and routed carrier DRC 0/0 PASS; physical validation still BLOCKED.
 - ESP-IDF v6.1 target build and Android debug APK PASS; Docker/Postgres remain BLOCKED.
 
 ## Arti status
@@ -724,7 +724,7 @@ Lihat:
 
 - API/web/simulator/firmware core tests.
 - BOM research + dated Indonesian procurement matrix (unapproved).
-- KiCad block/placement files, ERC 0 / DRC 0, placement-only Gerber/drill.
+- KiCad block schematic + routed 100x70 carrier, ERC 0 / DRC 0/0, Gerber/drill/POS.
 - ESP-IDF v6.1 target build and `.bin`.
 - WireViz harnesses.
 - CadQuery enclosure/assembly + PZEM/relay brackets.

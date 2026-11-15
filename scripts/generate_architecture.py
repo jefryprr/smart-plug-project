@@ -31,15 +31,15 @@ with dot.subgraph(name="cluster_mains") as mains:
 with dot.subgraph(name="cluster_barrier") as barrier:
     barrier.attr(label="ISOLATION BARRIER (UNVERIFIED)", style="rounded,dashed", color="#9a5b00", bgcolor="#fff4df", fontcolor="#9a5b00")
     barrier.node("PS1", "PSU HLK-5M05\n5 V 1 A, 5 W", fillcolor="#ffe8b8")
-    barrier.node("U6", "ADuM1201\nUART isolator", fillcolor="#ffe8b8")
-    barrier.node("U7", "B0505S\nisolated 5 V", fillcolor="#ffe8b8")
+    barrier.node("PZEMISO", "PZEM-004T V4\ninternal optocouplers\n(no ADuM/B0505S)", fillcolor="#ffe8b8")
 
 with dot.subgraph(name="cluster_selv") as selv:
     selv.attr(label="DOMAIN C — SELV 5 V / 3.3 V", style="rounded", color="#067647", bgcolor="#e6f6ee", fontcolor="#067647")
     selv.node("U1", "ESP32-S3\nDevKitC-1 N16R8", fillcolor="#c9f2dd")
     selv.node("CARR", "Low-voltage carrier\nGPIO / I2C / UART", fillcolor="#c9f2dd")
     selv.node("UI", "OLED + button\n+ RGB", fillcolor="#c9f2dd")
-    selv.node("TEMP", "TMP102 + RTC\nDS3231", fillcolor="#c9f2dd")
+    selv.node("RTC", "DS3231 RTC\n(no temperature sensor)", fillcolor="#c9f2dd")
+    selv.node("LS", "74HCT125\n+ 10k/20k divider", fillcolor="#c9f2dd")
     selv.node("DRV", "Relay driver\nAO3400 + pulldown", fillcolor="#c9f2dd")
 
 with dot.subgraph(name="cluster_cloud") as cloud:
@@ -58,12 +58,12 @@ dot.edge("K1", "X1", label="L / N")
 dot.edge("P1", "X1", label="PE continuous\n(no relay/fuse)", style="bold", color="#067647")
 dot.edge("P1", "PS1", label="L/N")
 dot.edge("PS1", "CARR", label="+5 V SELV")
-dot.edge("P1", "U6", label="PZEM voltage/CT\n(not shown)", style="dashed", color="#9a5b00")
-dot.edge("U7", "U6", label="isolated 5 V", style="dashed", color="#9a5b00")
-dot.edge("U6", "CARR", label="isolated UART", style="dashed", color="#9a5b00")
+dot.edge("P1", "PZEMISO", label="PZEM voltage/CT\n(mains side)", style="dashed", color="#9a5b00")
+dot.edge("PZEMISO", "LS", label="TTL 5 V", style="dashed", color="#9a5b00")
+dot.edge("LS", "CARR", label="3.3 V UART", style="dashed", color="#9a5b00")
 dot.edge("CARR", "U1", label="3.3 V / GPIO")
 dot.edge("CARR", "UI", label="I2C / GPIO")
-dot.edge("CARR", "TEMP", label="I2C")
+dot.edge("CARR", "RTC", label="I2C / INT")
 dot.edge("U1", "DRV", label="RELAY_CTRL")
 dot.edge("DRV", "K1", label="active-LOW inputs\n(SELV)", style="dashed")
 dot.edge("U1", "MQTT", label="Wi-Fi")
@@ -72,7 +72,7 @@ dot.edge("API", "WEB", label="REST / WS")
 dot.edge("API", "APP", label="REST")
 dot.edge("API", "NOTIF", label="alerts")
 
-dot.attr(label="Smart Plug ESP32-S3 — Functional Architecture & Safety Boundaries\nREV_A_PROVISIONAL — NOT A WIRING DIAGRAM — NOT APPROVED FOR FABRICATION", labelloc="t", fontsize="14", fontcolor="#14213d")
+dot.attr(label="Smart Plug ESP32-S3 — Functional Architecture & Safety Boundaries\nREV_B — PZEM INTERNAL ISOLATION — NO TMP102 — NOT APPROVED FOR FABRICATION", labelloc="t", fontsize="14", fontcolor="#14213d")
 
 base = OUT / "SYSTEM_ARCHITECTURE"
 dot.render(filename=str(base), cleanup=True)

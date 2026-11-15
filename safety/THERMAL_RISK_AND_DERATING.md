@@ -1,4 +1,4 @@
-# Thermal Risk and Derating — REV_A_PROVISIONAL
+# Thermal Risk and Derating — REV_B_NO_TEMP
 
 **Status:** `BLOCKED_PENDING_THERMAL_TEST`
 **Ambient target:** 25–40 °C (belum ditetapkan); enclosure internal lebih tinggi.
@@ -37,7 +37,9 @@ Dengan koefisien konveksi/radiasi efektif kasar 5–10 W/(m²·K):
 5. PSU case.
 6. PZEM terminal/CT.
 7. Enclosure near relay/terminal.
-8. OLED/ESP32 (kurang kritis).
+8. ESP32 (kurang kritis).
+
+**Tidak ada sensor suhu di REV_B.** Firmware tidak dapat mendeteksi hotspot; proteksi termal hanya fuse + TCO one-shot. Thermal test tertutup dan load test menjadi wajib, bukan opsional.
 
 ## 4. Derating
 

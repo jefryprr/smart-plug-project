@@ -1,13 +1,13 @@
 metadata:
-  title: Display & Button Sub-harness (REV_A_PROVISIONAL)
+  title: Display & Button Sub-harness (REV_B_NO_TEMP)
   description: Low-voltage only. OLED, button, external RGB. No mains.
   author: OpenCode
-  date: '2026-11-15'
-  rev: REV_A_PROVISIONAL
+  date: '2026-11-16'
+  rev: REV_B_NO_TEMP
 options:
   bgcolor: WH
 connectors:
-  J2:
+  J_OLED:
     type: Carrier display connector (JST-XH 4)
     pinlabels:
     - +3V3
@@ -21,7 +21,7 @@ connectors:
     - GND
     - SDA
     - SCL
-  J3:
+  J_BTN:
     type: Carrier button connector (JST-XH 3)
     pinlabels:
     - GND
@@ -31,7 +31,7 @@ connectors:
     pinlabels:
     - A
     - B
-  J4:
+  J_RGB:
     type: Carrier RGB connector (JST-XH 3)
     pinlabels:
     - +5V
@@ -84,7 +84,7 @@ cables:
     - GND
     - DATA
 connections:
-- - J2:
+- - J_OLED:
     - +3V3
     - GND
     - SDA
@@ -99,7 +99,7 @@ connections:
     - GND
     - SDA
     - SCL
-- - J3:
+- - J_BTN:
     - GND
     - BTN
   - W_BTN:
@@ -108,7 +108,7 @@ connections:
   - SW1:
     - A
     - B
-- - J4:
+- - J_RGB:
     - +5V
     - GND
     - DATA

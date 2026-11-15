@@ -1,23 +1,23 @@
 # Final Engineering Report — ESP32-S3 IoT Smart Plug
 
-**Date:** 15 November 2026
+**Date:** 16 November 2026
 **Author/agent:** OpenCode (DeepSeek V4.1 Flash 1017)
 **PRD version:** 1.0
-**Design revision:** `REV_A_PROVISIONAL`
+**Design revision:** `REV_B_NO_TEMP`
 **Source commit:** `e394101979559d43747b934957f7596a174c87ea`
 **Manifest:** `deliverables/manifest.json`
 
 ---
 
-## Amendment 2026-11-15 (post-initial-handoff)
+## Amendment 2026-11-16 (REV_B)
 
 - User approved **8 A final** (~1.840 W at 230 V), limited to electronics/SMPS loads; not heaters/motors.
 - PZEM-004T V4 and a **common 2-channel 5 V optocoupler relay module** are **off-board**, with enclosure brackets. The module is two independent SPDT channels, **not** a mechanically linked DPST.
 - PSU replaced by user instruction: **Hi-Link HLK-5M05** (5 V 1 A / 5 W, 38×23×18 mm). Efficiency ~70% means ~2.1 W heat; isolation/certificate/batch are unverified (`PENDING_APPROVAL`). Study: `research/PSU_HLK_5M05.md`.
 - **150×100×70 FAILS** the coarse fit; **180×120×70 is rejected** because the PZEM/relay/socket would only stack with a 0.5 mm gap, ignoring brackets and wiring. **220×120×70 PASSES** side-by-side and is **CONFIRMED** by the user (Q06=C, 2026-11-15).
-- **KiCad 10.0.8 CLI installed**; ERC 0 on the block-level text-only schematic, DRC 0 on the placement-only PCB, provisional placement-only Gerber/drill exported. Component-level schematic/routing remains blocked.
-- **ESP-IDF v6.1 target build PASS** (esp32s3, 192,464-byte `.bin`, SHA-256 in `reports/FIRMWARE_BUILD.md`); no board was flashed. **Android debug APK PASS** (arm64-v8a, 46,852,340 bytes, v2 debug signature verified; not device-tested).
-- **Indonesian procurement matrix added** (2026-11-15): 48 lines, 39 listing-verified + 9 estimated. CORE Rp756.987 (restock Rp705.519), FULL Rp895.976; budget verdict `CORE_ACHIEVABLE_WITH_RESTOCK; FULL_OVER_BUDGET`. Details: `research/PROCUREMENT_INDONESIA.md`, `bom/BOM_PROCUREMENT.md`.
+- **KiCad 10.0.8 CLI installed**; ERC 0 on the block-level schematic; the SELV carrier is routed at 100x70 mm with **DRC 0/0** at 0.15 mm clearance, and routed Gerber/drill/POS exported. The carrier remains `ENGINEERING_REVIEW_REQUIRED` / `NOT_FOR_FABRICATION`.
+- **ESP-IDF v6.1 target build PASS** (esp32s3, 192,496-byte `.bin`, SHA-256 in `reports/FIRMWARE_BUILD.md`); no board was flashed. **Android debug APK PASS** (arm64-v8a, 46,852,340 bytes, v2 debug signature verified; not device-tested).
+- **Indonesian procurement matrix added** (2026-11-16): 54 lines, 43 listing-verified + 11 estimated. CORE Rp698.297 (restock Rp646.829), FULL Rp815.897; budget verdict `CORE_FITS_750K; FULL_OVER_BUDGET`. Details: `research/PROCUREMENT_INDONESIA.md`, `bom/BOM_PROCUREMENT.md`.
 
 ---
 
@@ -83,23 +83,22 @@ OFF (Q25=C), computer-only lab (Q26=A), digital parallel phases (Q27=C).
 - `research/candidates.csv`: all candidates, not just winners.
 - `research/PROCUREMENT_INDONESIA.md`: dated Indonesian supplier/price study, stock risks, and budget scenarios.
 - `bom/BOM_MASTER.csv`: 48 engineering rows, **unpriced**, **unapproved**.
-- `bom/BOM_PROCUREMENT.csv`: 48 dated prototype buy rows (39 listing-verified, 9 estimated).
-- `bom/BOM_SUMMARY.json`: `PROCUREMENT_PRICED_2026-11-15`; CORE Rp756.987, FULL Rp895.976.
+- `bom/BOM_PROCUREMENT.csv`: 54 dated prototype buy rows (43 listing-verified, 11 estimated).
+- `bom/BOM_SUMMARY.json`: `PROCUREMENT_PRICED_2026-11-15`; CORE Rp698.297, FULL Rp815.897.
 - `bom/COMPONENT_APPROVALS.yaml`: no `approved_for_fabrication`.
 - `research/datasheets/MANIFEST.md`: 12 PDFs hashed (including the HLK-5M05 distributor copy) plus the PZEM-004T V1.0 archive; V4/socket/enclosure/HLK batch still marked deficient.
-- `research/UNKNOWN_SPECIFICATIONS.md`: 30 open unknowns (including compatible-board, enclosure flame rating, isolation module, and relay-batch unknowns).
+- `research/UNKNOWN_SPECIFICATIONS.md`: 31 open unknowns (including compatible board, enclosure flame rating, PZEM internal isolation, and relay batch).
 
 **Recommended provisional parts:** Espressif-compatible DevKitC-1 N16R8 (explicit Q08=B
-deviation; official stock unconfirmed), PZEM-004T V4 100 A CT + ADuM1201/B0505S barrier,
+deviation; official stock unconfirmed), PZEM-004T V4 100 A CT with **internal optocoupler isolation** (no ADuM/B0505S), 74HCT125 + 10k/20k UART level shift,
 off-board 2-channel optocoupler relay module (10 A class claim), Hi-Link HLK-5M05
 (user-selected; efficiency/isolation batch unverified), Littelfuse 5x20 10 A slow-blow,
-MOV 10D271K, generic 99 °C thermal fuse, GY-TMP102 breakout, DS3231 module, SSD1306 OLED,
+MOV 10D271K, generic 99 °C thermal fuse, DS3231 module, SSD1306 OLED,
 Simon Schuko 16 A socket, BOSS BP16 plug, MG Duradus 220x120x70 ABS enclosure.
 
-**Budget verdict:** CORE Rp756.987 before shipping (Rp796.987 all-in); CORE drops to
-Rp705.519 (Rp745.519 all-in) only with EasyWare restock prices. FULL is Rp895.976
-(Rp935.976 all-in). Rp500–750k is not enough for the full feature set at verified listing
-prices; do not downgrade safety parts to force it.
+**Budget verdict:** CORE is Rp698.297 before shipping (Rp738.297 all-in), which fits
+the Rp750.000 cap. EasyWare restock prices drop CORE to Rp646.829 (Rp686.829 all-in).
+FULL is Rp815.897 (Rp855.897 all-in), over the cap; do not downgrade safety parts to force it.
 
 ---
 
@@ -109,7 +108,7 @@ prices; do not downgrade safety parts to force it.
 - Functional split: mains / isolation barrier / SELV / network.
 - PE continuous; no relay/fuse in PE.
 - Two-channel L/N switching reviewed; off-board 2-channel module is **not** a mechanically linked DPST; final 8 A.
-- PZEM UART isolated; CT around one conductor.
+- PZEM UART isolated by the module’s internal optocouplers; no external ADuM/B0505S. CT around one conductor. No TMP102/temperature sensor.
 - Relay driver with 100 kΩ pulldown, flyback diode, boot-safe OFF.
 - Device is source of truth for commanded/fault/lockout; API stores shadow.
 - UI shows `commanded` vs `observed`; `APPLIED` only after ACK.
@@ -126,7 +125,7 @@ Details: `safety/ISOLATION_PLAN.md`, `safety/ELECTRICAL_RATING_CHAIN.md`,
 - 180×120×70: **rejected**; it only fit by stacking PZEM/relay/socket with a 0.5 mm gap and ignoring brackets/wiring.
 - 220×120×70 confirmed (Q06=C): side-by-side coarse fit **PASS**; dimensions still approximate.
 - Final continuous rating **8 A / ~1.840 W**, electronics/SMPS only.
-- BOM prices: CORE Rp756.987 (Rp796.987 all-in), CORE restock Rp705.519 (Rp745.519 all-in), FULL Rp895.976 (Rp935.976 all-in). Target Rp500–750k is only achievable for the CORE with EasyWare restock prices; FULL exceeds it. Safety parts are not downgraded.
+- BOM prices: CORE Rp698.297 (Rp738.297 all-in), CORE restock Rp646.829 (Rp686.829 all-in), FULL Rp815.897 (Rp855.897 all-in). Target Rp500–750k is only achievable for the CORE with EasyWare restock prices; FULL exceeds it. Safety parts are not downgraded.
 - Supply/documentation risk: PZEM batch, ESP32 official stock, HLK batch, socket/plug, enclosure flammability, thermal cutoff.
 - 220×120×70 enclosure confirmed after 150×100 and 180×120 clearance review failed.
 
@@ -144,7 +143,7 @@ Details: `safety/ISOLATION_PLAN.md`, `safety/ELECTRICAL_RATING_CHAIN.md`,
 | 06 | Wiring | `hardware/wiring/*.yaml`, `renders/` | PASS (render) |
 | 07 | GPIO mapping | `hardware/interfaces/gpio_map.*` | UNVERIFIED (board) |
 | 08 | PCB native | `hardware/kicad/smartplug.kicad_pcb` | PARTIAL (placement; DRC 0) |
-| 09 | PCB manufacturing | `hardware/manufacturing/provisional/` | PARTIAL/BLOCKED (placement-only Gerber) |
+| 09 | PCB manufacturing | `hardware/manufacturing/provisional/` | PARTIAL (routed Gerber/drill; not released) |
 | 10 | PCB visualization | `hardware/pcb/render/placement_preview.*` | PARTIAL |
 | 11 | Enclosure 3D | `hardware/mechanical/export/` | PARTIAL |
 | 12 | Enclosure rendering | `hardware/mechanical/render/`, `drawings/` | PARTIAL |
@@ -258,12 +257,12 @@ Summary: 80 total; 28 PASS, 25 PARTIAL, 24 NOT_STARTED, 3 BLOCKED.
 
 ## 9. ERC/DRC/netlist/GPIO/PCB/3D results
 
-- KiCad CLI 10.0.8: ERC **0 violations** on the block-level text-only schematic; DRC **0 violations/0 unconnected** on the placement-only PCB; placement-only Gerber/drill exported.
+- KiCad CLI 10.0.8: ERC **0 violations** on the block-level schematic; routed SELV carrier **DRC 0 violations/0 unconnected** at 0.15 mm; routed Gerber/drill/POS exported.
 - Native KiCad files parse with `kiutils`: **PASS**.
 - Schematic is a system block schematic; not component-level connectivity.
-- PCB is placement-only 75×50 mm; no routing/nets/final footprints.
+- PCB is a routed 100×70 mm SELV carrier; DRC 0/0 at 0.15 mm; not released for fabrication.
 - Static wiring check: PE PASS, relay contacts separate PASS, coil SELV PASS,
-  isolator sides PASS, mains/SELV static separation PASS.
+  PZEM internal isolation review still required; mains/SELV static separation PASS.
 - GPIO map vs firmware defines: PASS static; board revision UNVERIFIED.
 - CadQuery STEP/STL + assembly + renders: generated; fit is coarse AABB and
   dimensions are approximate.
@@ -274,10 +273,10 @@ Summary: 80 total; 28 PASS, 25 PARTIAL, 24 NOT_STARTED, 3 BLOCKED.
 ## 10. Firmware status
 
 - Portable C core: state machine, priority, TTL/replay, lockout, measurement
-  validation, energy delta, schedule, CRC16, JSON. **74 checks PASS** with Zig host.
+  validation, energy delta, schedule, CRC16, JSON. **75 checks PASS** with Zig host.
 - ESP-IDF minimal app: relay OFF at boot, button debounce, core state machine,
   ON blocked while meter/temp invalid.
-- ESP-IDF v6.1 target build: **PASS**, `firmware/build/smartplug.bin` (192,464 bytes); no flash/bench test.
+- ESP-IDF v6.1 target build: **PASS**, `firmware/build/smartplug.bin` (192,496 bytes); no flash/bench test.
 - PZEM/OLED/RGB/RTC/Wi-Fi/MQTT/OTA components: **NOT_IMPLEMENTED**.
 - Secure boot/flash encryption: not enabled (irreversible, no approval).
 
@@ -395,7 +394,7 @@ See `reports/TEST_MATRIX.csv`, `reports/FAILURES.md`, `reports/VALIDATION_SUMMAR
 - Screenshots: `docs/ui-ux/screenshots/`.
 - Datasheet hashes: `research/datasheets/MANIFEST.md`.
 - Known limitations: procurement prices are listings not quotes, unapproved parts, block-level schematic,
-  placement-only PCB, approximate CAD, no firmware integration/Android device test/Postgres deployment,
+  routed prototype PCB (not released), approximate CAD, no firmware integration/Android device test/Postgres deployment,
   no physical validation, no certification.
 - This report does not replace `reports/PHASE_1_ENGINEERING_REPORT.md`,
   `reports/PHASE_2_SOFTWARE_REPORT.md`, or the safety documents.

@@ -13,7 +13,7 @@
 
 - API/web/simulator/firmware core tests.
 - BOM research + dated Indonesian procurement matrix (unapproved).
-- KiCad block/placement files, ERC 0 / DRC 0, placement-only Gerber/drill.
+- KiCad block schematic + routed 100x70 carrier, ERC 0 / DRC 0/0, Gerber/drill/POS.
 - ESP-IDF v6.1 target build and `.bin`.
 - WireViz harnesses.
 - CadQuery enclosure/assembly + PZEM/relay brackets.

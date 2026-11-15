@@ -17,7 +17,6 @@
 | pzem_uart_tx | 17 | output | none / HIGH (UART idle) | No direct hazard; isolated barrier | `PIN_PZEM_TX` |
 | pzem_uart_rx | 18 | input | 10 kΩ pullup / HIGH | No direct hazard; isolated barrier | `PIN_PZEM_RX` |
 | rtc_interrupt | 7 | input | 10 kΩ pullup / HIGH | No direct hazard; SELV | `PIN_RTC_INT` |
-| temperature_alert | 12 | input | 10 kΩ pullup / HIGH | No direct hazard; alert only | `PIN_TEMP_ALERT` |
 
 ## Reserved
 
@@ -33,6 +32,6 @@
 - Firmware header: `firmware/main/board_config.h`
 - Schematic: `hardware/kicad/smartplug.kicad_sch`
 - Wiring: `hardware/wiring/main_harness.yaml`
-- Issues: 11
+- Issues: 10
 
 **Catatan:** tabel ini adalah rencana, bukan bukti pengukuran. Boot-safe waveform dan I2C/UART scan wajib di bench low-voltage.

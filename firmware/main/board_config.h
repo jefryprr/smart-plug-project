@@ -23,7 +23,9 @@
 #define PIN_PZEM_TX 17
 #define PIN_PZEM_RX 18
 #define PIN_RTC_INT 7
-#define PIN_TEMP_ALERT 12
+
+/* No temperature sensor is installed in REV_B. Thermal protection is hardware
+ * only (fuse + one-shot thermal cutoff). Do not define a temperature GPIO. */
 
 /*
  * Relay module: common 2-channel 5 V optocoupler module, OFF-BOARD.

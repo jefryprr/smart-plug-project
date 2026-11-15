@@ -1,6 +1,6 @@
 # Amendment — 8 A Final, Off-Board Modules, Toolchains
 
-**Design revision:** `REV_A_PROVISIONAL`
+**Design revision:** `REV_B_NO_TEMP`
 **Date:** 2026-11-15
 **Status:** `PARTIAL_DIGITAL` / `ENGINEERING_REVIEW_REQUIRED` / `HARDWARE_VALIDATION_REQUIRED`
 **Fabrication:** `NOT_RELEASED`
@@ -63,8 +63,8 @@ coarse digital fit, not a physical or thermal validation.
 | Check | Result | Scope |
 |---|---|---|
 | `kicad-cli sch erc` | **0 violations** | text-only system block schematic |
-| `kicad-cli pcb drc` | **0 violations / 0 unconnected** | placement-only 75 × 50 mm carrier |
-| Gerber/drill | **exported** | placement-only, `NOT_FOR_FABRICATION` |
+| `kicad-cli pcb drc` | **0 violations / 0 unconnected** | routed 100 × 70 mm SELV carrier (0.15 mm) |
+| Gerber/drill/POS | **exported** | routed prototype, `NOT_FOR_FABRICATION` |
 | Component-level schematic/netlist | `BLOCKED` | no approved MPNs/footprints |
 | Functional routing/Gerber | `BLOCKED` | placement only |
 
@@ -109,8 +109,8 @@ Full study: `research/PSU_HLK_5M05.md`; datasheet:
 | Command | `powershell -ExecutionPolicy Bypass -File scripts\build_firmware.ps1` |
 | Result | **PASS** (exit 0) |
 | Binary | `firmware/build/smartplug.bin` |
-| Size | 192,464 bytes (0x2EFD0) |
-| SHA-256 | `4949EEEFE73526AC99E79AC8F8E97EB1E0790551D80ED922F32034C8F0321134` |
+| Size | 192,496 bytes (0x2EFF0) |
+| SHA-256 | `AE5F831D7B1B4D88F520BF3A2F830BB75F99FE6F86DC1563738A43CF45DE2B46` |
 | Log | `reports/logs/firmware-idf-build.log` |
 | Report | `reports/FIRMWARE_BUILD.md` |
 

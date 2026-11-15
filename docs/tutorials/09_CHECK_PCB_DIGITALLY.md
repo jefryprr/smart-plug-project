@@ -4,7 +4,7 @@
 
 ## Saat ini
 
-- `hardware/kicad/smartplug.kicad_pcb` adalah placement-only 75x50 mm.
+- `hardware/kicad/smartplug.kicad_pcb` adalah routed SELV carrier 100x70 mm (DRC 0/0).
 - DRC 0 untuk geometri placement; tidak ada routing, net, atau footprint final.
 - `hardware/pcb/render/placement_preview.png/.svg` adalah preview, bukan plot KiCad.
 

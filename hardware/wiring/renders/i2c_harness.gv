@@ -127,7 +127,7 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">TMP102</td>
+   <td balign="left">OLED SSD1306</td>
    <td balign="left">4-pin</td>
   </tr></table>
  </td></tr>
@@ -162,7 +162,7 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">DS3231M</td>
+   <td balign="left">DS3231 RTC</td>
    <td balign="left">4-pin</td>
   </tr></table>
  </td></tr>
@@ -289,22 +289,22 @@ graph {
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
 	edge [color="#000000:#ff0000:#000000"]
-	J_I2C:p5r:e -- W_TEMP:w1:w
-	W_TEMP:w1:e -- U4:p1l:w
+	J_I2C:p5r:e -- W_OLED:w1:w
+	W_OLED:w1:e -- U4:p1l:w
 	edge [color="#000000:#000000:#000000"]
-	J_I2C:p6r:e -- W_TEMP:w2:w
-	W_TEMP:w2:e -- U4:p2l:w
+	J_I2C:p6r:e -- W_OLED:w2:w
+	W_OLED:w2:e -- U4:p2l:w
 	edge [color="#000000:#ffffff:#000000"]
-	J_I2C:p7r:e -- W_TEMP:w3:w
-	W_TEMP:w3:e -- U4:p3l:w
+	J_I2C:p7r:e -- W_OLED:w3:w
+	W_OLED:w3:e -- U4:p3l:w
 	edge [color="#000000:#00ff00:#000000"]
-	J_I2C:p8r:e -- W_TEMP:w4:w
-	W_TEMP:w4:e -- U4:p4l:w
-	W_TEMP [label=<
+	J_I2C:p8r:e -- W_OLED:w4:w
+	W_OLED:w4:e -- U4:p4l:w
+	W_OLED [label=<
 <table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">W_TEMP</td>
+   <td balign="left">W_OLED</td>
   </tr></table>
  </td></tr>
  <tr><td>

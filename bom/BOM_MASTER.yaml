@@ -1,6 +1,6 @@
 project: esp32-s3-iot-smart-plug
-design_revision: REV_A_PROVISIONAL
-generated_at: '2026-11-15T15:22:57.209100+00:00'
+design_revision: REV_B_NO_TEMP
+generated_at: '2026-11-15T18:39:59.516266+00:00'
 items:
 - item_id: E-001
   reference_designators: U1
@@ -22,7 +22,7 @@ items:
   datasheet_revision: UNKNOWN
   approved_status: PENDING_APPROVAL
   alternative_mpn: Official Espressif ESP32-S3-DevKitC-1-N16R8 (preferred); N8R8
-  footprint_id: ESP32-S3-DevKitC-1_2x20_P2.54
+  footprint_id: ESP32-S3-DevKitC-1_2x22_P2.54
   mechanical_model: esp32s3_devkitc1_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
@@ -93,35 +93,6 @@ items:
     upstream. Do not touch AC pins; keep mains creepage and barrier.
   source_evidence: Distributor copy of Hi-Link HLK-5M05 datasheet (3 pages) with dimension
     drawing; official product page; exact batch/certification must be verified.
-- item_id: E-004
-  reference_designators: U4
-  category: Sensing
-  description: Digital temperature sensor, I2C, 3.3 V (TMP102 bare or GY-TMP102 breakout)
-  manufacturer: Texas Instruments
-  manufacturer_part_number: TMP102AIDRLR
-  module_revision: '-'
-  qty_per_unit: 1
-  unit: pcs
-  price_idr_per_unit: ''
-  tax_shipment_included: 'FALSE'
-  total_idr: ''
-  price_checked_at: ''
-  seller: ''
-  seller_url: ''
-  datasheet_url: https://www.ti.com/lit/ds/symlink/tmp102.pdf
-  datasheet_revision: UNKNOWN
-  approved_status: PENDING_APPROVAL
-  alternative_mpn: MCP9808; DS18B20 (remote probe)
-  footprint_id: SOT-563-6 / OFF_BOARD_MODULE
-  mechanical_model: TMP102_approx
-  supplier_stock_status: UNKNOWN
-  rating_verified: 'FALSE'
-  notes: The carrier design uses TMP102AIDRLR SOT-563; the priced prototype uses a
-    GY-TMP102 breakout for ease of assembly. Verify the actual IC marking/address.
-    Place at the relay/terminal hotspot and calibrate. Sensor failure must produce
-    invalid state, not a stale comfortable reading.
-  source_evidence: TI TMP102 datasheet; accuracy and thermal response to be verified
-    on bench.
 - item_id: E-005
   reference_designators: U5
   category: Sensing
@@ -149,64 +120,8 @@ items:
     blocks automatic ON.
   source_evidence: Analog Devices DS3231M datasheet; RTC drift and backup runtime
     require measurement.
-- item_id: E-006
-  reference_designators: U6
-  category: Isolation
-  description: Dual-channel digital isolator for PZEM UART (2.5 kVrms class)
-  manufacturer: Analog Devices
-  manufacturer_part_number: ADuM1201ARZ
-  module_revision: '-'
-  qty_per_unit: 1
-  unit: pcs
-  price_idr_per_unit: ''
-  tax_shipment_included: 'FALSE'
-  total_idr: ''
-  price_checked_at: ''
-  seller: ''
-  seller_url: ''
-  datasheet_url: https://www.analog.com/media/en/technical-documentation/data-sheets/ADuM1200_1201.pdf
-  datasheet_revision: UNKNOWN
-  approved_status: PENDING_APPROVAL
-  alternative_mpn: Si8622; optocoupler pair (slower, more space)
-  footprint_id: SOIC-8
-  mechanical_model: ADuM1201_approx
-  supplier_stock_status: UNKNOWN
-  rating_verified: 'FALSE'
-  notes: Mandatory provisional barrier between PZEM-side UART and SELV MCU. The priced
-    prototype uses a CJMCU ADUM1201 module; module creepage/clearance is not certified.
-    Final working voltage/creepage must be reviewed. Do not connect PZEM GND directly
-    to MCU GND when the external barrier is fitted.
-  source_evidence: ADI ADuM1201 datasheet; isolation rating is component-level, not
-    final assembly proof.
-- item_id: E-007
-  reference_designators: U7
-  category: Isolation
-  description: Isolated 5 V to 5 V DC/DC converter, 1 W, for PZEM barrier
-  manufacturer: Mornsun
-  manufacturer_part_number: B0505S-1WR3
-  module_revision: '-'
-  qty_per_unit: 1
-  unit: pcs
-  price_idr_per_unit: ''
-  tax_shipment_included: 'FALSE'
-  total_idr: ''
-  price_checked_at: ''
-  seller: ''
-  seller_url: ''
-  datasheet_url: https://www.mornsun-power.com/html/pdf/B0505S-1WR3.html
-  datasheet_revision: UNKNOWN
-  approved_status: PENDING_APPROVAL
-  alternative_mpn: RECOM R1SE-0505; Traco TMR 1-0511
-  footprint_id: SIP-4
-  mechanical_model: B0505S_approx
-  supplier_stock_status: UNKNOWN
-  rating_verified: 'FALSE'
-  notes: Provides isolated 5 V to the PZEM side of the external ADUM barrier. Genuine
-    Mornsun B0505S-1WR3 is required; cheaper clones are rejected until isolation is
-    verified. Output filtering and common-mode path must be reviewed.
-  source_evidence: Mornsun datasheet; exact revision to be recorded.
 - item_id: E-008
-  reference_designators: U8
+  reference_designators: Q1
   category: Switching
   description: N-channel MOSFET relay driver, logic-level, SOT-23
   manufacturer: Alpha & Omega Semiconductor
@@ -236,10 +151,11 @@ items:
     fixture.
 - item_id: E-009
   reference_designators: U9
-  category: UI
-  description: Single buffer/level shifter for 3.3 V to 5 V WS2812 data
+  category: UI/Level shift
+  description: Quad buffer/level shifter, 5 V powered, DIP-14, for PZEM TX and WS2812
+    data
   manufacturer: Texas Instruments
-  manufacturer_part_number: SN74AHCT1G125DBVR
+  manufacturer_part_number: SN74HCT125N
   module_revision: '-'
   qty_per_unit: 1
   unit: pcs
@@ -249,17 +165,19 @@ items:
   price_checked_at: ''
   seller: ''
   seller_url: ''
-  datasheet_url: https://www.ti.com/lit/ds/symlink/sn74ahct1g125.pdf
+  datasheet_url: https://www.ti.com/lit/ds/symlink/sn74hct125.pdf
   datasheet_revision: UNKNOWN
   approved_status: PENDING_APPROVAL
-  alternative_mpn: 74HCT125; power WS2812 at 3.3 V if proven
-  footprint_id: SOT-23-5
-  mechanical_model: SOT23_5_approx
+  alternative_mpn: 74HCT125 (any vendor); SN74AHCT1G125 for one channel
+  footprint_id: DIP-14_W7.62mm
+  mechanical_model: DIP14_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: WS2812B high-level threshold at 5 V may exceed 3.3 V logic. Level shift and
-    330 ohm series resistor.
-  source_evidence: TI datasheet; verify LED timing and supply decoupling.
+  notes: Converts ESP32 3.3 V logic to 5 V for PZEM RX and WS2812 data. 74HCT input
+    threshold is TTL-compatible. Tie unused inputs to GND; add 100 nF at VCC. Do not
+    use for galvanic isolation.
+  source_evidence: TI SN74HCT125 datasheet; verify 5 V output levels and PZEM input
+    current.
 - item_id: E-010
   reference_designators: K1
   category: Switching
@@ -603,6 +521,157 @@ items:
   rating_verified: 'FALSE'
   notes: Place at each IC supply pin.
   source_evidence: Murata datasheet.
+- item_id: E-020A
+  reference_designators: C3
+  category: Passives
+  description: Decoupling capacitor, 100 nF, 50 V, 0603, at 74HCT125 VCC
+  manufacturer: Murata
+  manufacturer_part_number: GRM188R71H104KA93D
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.murata.com/
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: C_0603_1608Metric
+  mechanical_model: C0603_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Place within 5 mm of U9 VCC/GND. Required for clean 5V level-shift edges.
+  source_evidence: Murata datasheet.
+- item_id: E-018A
+  reference_designators: R4
+  category: Passives
+  description: PZEM TX divider top resistor, 10 kohm, 1%, 0805
+  manufacturer: Yageo
+  manufacturer_part_number: RC0805FR-0710KL
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.yageo.com/
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: R_0805_2012Metric
+  mechanical_model: R0805_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: PZEM TX (5V) -> R4 -> ESP32 RX; R5 20k to GND gives ~3.33V. Verify PZEM TX
+    high level.
+  source_evidence: Divider calculation; Yageo datasheet.
+- item_id: E-018B
+  reference_designators: R5
+  category: Passives
+  description: PZEM TX divider bottom resistor, 20 kohm, 1%, 0805
+  manufacturer: Yageo
+  manufacturer_part_number: RC0805FR-0720KL
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.yageo.com/
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: R_0805_2012Metric
+  mechanical_model: R0805_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Divider bottom; add 100 nF at ESP32 RX if noise is observed.
+  source_evidence: Divider calculation; Yageo datasheet.
+- item_id: E-018C
+  reference_designators: R6
+  category: Passives
+  description: I2C SDA pullup, 4.7 kohm, 1%, 0805
+  manufacturer: Yageo
+  manufacturer_part_number: RC0805FR-074K7L
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.yageo.com/
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: R_0805_2012Metric
+  mechanical_model: R0805_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: To 3.3V; OLED + RTC only. Verify bus capacitance and address conflicts.
+  source_evidence: Yageo datasheet.
+- item_id: E-018D
+  reference_designators: R7
+  category: Passives
+  description: I2C SCL pullup, 4.7 kohm, 1%, 0805
+  manufacturer: Yageo
+  manufacturer_part_number: RC0805FR-074K7L
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.yageo.com/
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: R_0805_2012Metric
+  mechanical_model: R0805_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: To 3.3V; keep I2C <=400 kHz for prototype.
+  source_evidence: Yageo datasheet.
+- item_id: E-018E
+  reference_designators: R8
+  category: Passives
+  description: Button pullup, 10 kohm, 1%, 0805
+  manufacturer: Yageo
+  manufacturer_part_number: RC0805FR-0710KL
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: https://www.yageo.com/
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: R_0805_2012Metric
+  mechanical_model: R0805_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Button to GND; external pullup in addition to MCU internal pullup.
+  source_evidence: Yageo datasheet.
 - item_id: E-021
   reference_designators: DS1
   category: UI
@@ -685,9 +754,9 @@ items:
 - item_id: E-024
   reference_designators: J1
   category: Connectors
-  description: 2x20 pin female header, 2.54 mm, for DevKitC-1
+  description: 2x22 pin female header, 2.54 mm, for DevKitC-1
   manufacturer: TBD
-  manufacturer_part_number: HDR-2X20-2.54-F
+  manufacturer_part_number: HDR-2X22-2.54-F
   module_revision: '-'
   qty_per_unit: 1
   unit: pcs
@@ -701,17 +770,69 @@ items:
   datasheet_revision: UNKNOWN
   approved_status: PROVISIONAL
   alternative_mpn: ''
-  footprint_id: PinHeader_2x20_P2.54mm
-  mechanical_model: header_2x20_approx
+  footprint_id: PinSocket_2x22_P2.54mm
+  mechanical_model: header_2x22_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Low-voltage module only. Verify DevKitC-1 pin length and orientation. Anti-misinsertion
-    keying recommended.
-  source_evidence: Generic header; mechanical fit to be checked.
+  notes: ESP32-S3-DevKitC-1 has 2x22 headers (J1/J3), not 2x20. Verify pin length/orientation
+    and keying before inserting the board.
+  source_evidence: Espressif DevKitC-1 v1.1 user guide header tables.
 - item_id: E-025
   reference_designators: J2
   category: Connectors
-  description: JST-XH 4-pin connector for OLED (3.3 V, GND, SDA, SCL)
+  description: JST-XH 4-pin connector for PZEM TTL (5V, RX, TX, GND)
+  manufacturer: JST
+  manufacturer_part_number: B4B-XH-A
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: JST_XH_B4B-XH-A
+  mechanical_model: jst_xh_4_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: PZEM TTL side is SELV via the module's internal optocouplers. Pin order must
+    match the purchased V4 batch; never assume colors.
+  source_evidence: PZEM V4 pinout; verify batch.
+- item_id: E-026
+  reference_designators: J3
+  category: Connectors
+  description: JST-XH 4-pin connector for relay module (5V, GND, IN1, IN2)
+  manufacturer: JST
+  manufacturer_part_number: B4B-XH-A
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: JST_XH_B4B-XH-A
+  mechanical_model: jst_xh_4_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Active-LOW module inputs; both driven by one AO3400. JD-VCC jumper on module.
+    Keep coil current off the carrier ground return? Use short 5V/GND pair.
+  source_evidence: Relay module pinout; verify batch.
+- item_id: E-027
+  reference_designators: J4
+  category: Connectors
+  description: JST-XH 4-pin connector for OLED (3.3V, GND, SDA, SCL)
   manufacturer: JST
   manufacturer_part_number: B4B-XH-A
   module_revision: '-'
@@ -733,60 +854,10 @@ items:
   rating_verified: 'FALSE'
   notes: Keyed low-voltage connector.
   source_evidence: JST datasheet.
-- item_id: E-026
-  reference_designators: J3
-  category: Connectors
-  description: JST-XH 2-pin connector for button
-  manufacturer: JST
-  manufacturer_part_number: B2B-XH-A
-  module_revision: '-'
-  qty_per_unit: 1
-  unit: pcs
-  price_idr_per_unit: ''
-  tax_shipment_included: 'FALSE'
-  total_idr: ''
-  price_checked_at: ''
-  seller: ''
-  seller_url: ''
-  datasheet_url: ''
-  datasheet_revision: UNKNOWN
-  approved_status: PROVISIONAL
-  alternative_mpn: ''
-  footprint_id: JST_XH_B2B-XH-A
-  mechanical_model: jst_xh_2_approx
-  supplier_stock_status: UNKNOWN
-  rating_verified: 'FALSE'
-  notes: Low-voltage only.
-  source_evidence: JST datasheet.
-- item_id: E-027
-  reference_designators: J4
-  category: Connectors
-  description: JST-XH 3-pin connector for external RGB (5 V, GND, DATA)
-  manufacturer: JST
-  manufacturer_part_number: B3B-XH-A
-  module_revision: '-'
-  qty_per_unit: 1
-  unit: pcs
-  price_idr_per_unit: ''
-  tax_shipment_included: 'FALSE'
-  total_idr: ''
-  price_checked_at: ''
-  seller: ''
-  seller_url: ''
-  datasheet_url: ''
-  datasheet_revision: UNKNOWN
-  approved_status: PROVISIONAL
-  alternative_mpn: ''
-  footprint_id: JST_XH_B3B-XH-A
-  mechanical_model: jst_xh_3_approx
-  supplier_stock_status: UNKNOWN
-  rating_verified: 'FALSE'
-  notes: Low-voltage only.
-  source_evidence: JST datasheet.
 - item_id: E-028
   reference_designators: J5
   category: Connectors
-  description: JST-XH 6-pin connector for temp/RTC/expansion
+  description: JST-XH 6-pin connector for RTC (3.3V, GND, SDA, SCL, INT, 32K)
   manufacturer: JST
   manufacturer_part_number: B6B-XH-A
   module_revision: '-'
@@ -806,7 +877,83 @@ items:
   mechanical_model: jst_xh_6_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Low-voltage only.
+  notes: DS3231 module; 32K may be left unconnected. INT to GPIO7.
+  source_evidence: JST datasheet.
+- item_id: E-047
+  reference_designators: J6
+  category: Connectors
+  description: JST-XH 2-pin connector for button (BUTTON, GND)
+  manufacturer: JST
+  manufacturer_part_number: B2B-XH-A
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: JST_XH_B2B-XH-A
+  mechanical_model: jst_xh_2_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Button to GND; 10k external pullup on carrier. Debounce in firmware.
+  source_evidence: JST datasheet.
+- item_id: E-048
+  reference_designators: J7
+  category: Connectors
+  description: JST-XH 3-pin connector for RGB (5V, GND, DATA)
+  manufacturer: JST
+  manufacturer_part_number: B3B-XH-A
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: JST_XH_B3B-XH-A
+  mechanical_model: jst_xh_3_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Data from 74HCT125 through 330R. 5V power for WS2812.
+  source_evidence: JST datasheet.
+- item_id: E-049
+  reference_designators: J8
+  category: Connectors
+  description: JST-XH 2-pin connector for 5V input from HLK-5M05
+  manufacturer: JST
+  manufacturer_part_number: B2B-XH-A
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: JST_XH_B2B-XH-A
+  mechanical_model: jst_xh_2_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: 5V/GND from HLK. Add 100uF bulk and 100nF at carrier entry. Keep away from
+    mains wiring.
   source_evidence: JST datasheet.
 - item_id: E-029
   reference_designators: TB1
@@ -1123,10 +1270,9 @@ items:
 - item_id: E-041
   reference_designators: PCB1
   category: PCB
-  description: Prototype carrier board, 7x9 cm double-sided FR4 (custom 75x50 mm PCB
-    not fabricated)
+  description: SELV carrier PCB, 2-layer FR4, 1.6 mm, 1 oz Cu, 100 x 70 mm, routed
   manufacturer: Generic
-  manufacturer_part_number: PROTOBOARD-7X9
+  manufacturer_part_number: PCB-CARRIER-REV-B
   module_revision: '-'
   qty_per_unit: 1
   unit: pcs
@@ -1140,14 +1286,15 @@ items:
   datasheet_revision: UNKNOWN
   approved_status: PROVISIONAL
   alternative_mpn: ''
-  footprint_id: PROTOBOARD_7X9
-  mechanical_model: pcb_carrier_approx
+  footprint_id: PCB_CARRIER_REV_B
+  mechanical_model: pcb_carrier_100x70
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: The custom 75x50 mm carrier is placement-only and NOT_FOR_FABRICATION. The
-    priced prototype uses a 7x9 cm double-sided protoboard with header sockets. No
-    routed functional PCB exists yet.
-  source_evidence: KiCad placement file generated; ERC/DRC blocked without KiCad CLI.
+  notes: REV_B routed carrier with 2x22 DevKit socket, PZEM 5V/3.3V level shift, relay
+    driver, I2C OLED/RTC, button, RGB, and 5V input. DRC 0 but engineering review/physical
+    test still required. Mains modules remain off-board.
+  source_evidence: KiCad REV_B routed carrier; Gerber/drill exported; physical test
+    not performed.
 - item_id: E-042
   reference_designators: LAB1
   category: Labels

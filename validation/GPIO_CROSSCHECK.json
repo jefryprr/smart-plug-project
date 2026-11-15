@@ -18,7 +18,7 @@
       "External pulldown on relay control is mandatory for boot-safe OFF."
     ]
   },
-  "pin_count": 11,
+  "pin_count": 10,
   "duplicate_or_reserved_issues": [],
   "unverified_board_revision_issues": [
     "BOARD_REVISION_UNVERIFIED:relay_control",
@@ -30,8 +30,7 @@
     "BOARD_REVISION_UNVERIFIED:external_rgb_data",
     "BOARD_REVISION_UNVERIFIED:pzem_uart_tx",
     "BOARD_REVISION_UNVERIFIED:pzem_uart_rx",
-    "BOARD_REVISION_UNVERIFIED:rtc_interrupt",
-    "BOARD_REVISION_UNVERIFIED:temperature_alert"
+    "BOARD_REVISION_UNVERIFIED:rtc_interrupt"
   ],
   "firmware_header": "firmware/main/board_config.h",
   "schematic": "hardware/kicad/smartplug.kicad_sch",

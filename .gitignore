@@ -40,6 +40,8 @@ tools/kicad/
 tools/esp-idf/
 tools/*.exe
 tools/*.c
+tools/freerouting/
+logs/
 reports/kicad/*.rpt
 data/*.db
 data/*.db-wal

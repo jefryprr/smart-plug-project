@@ -25,7 +25,7 @@ Tidak ada Q01–Q28 yang masih `OPEN`. Beberapa jawaban adalah **arah** (D) yang
 | B-004 | `BLOCKER_SAFETY` | PE hardware/enclosure material; 220×120×70 decision confirmed but physical fit/material unverified | Mechanical engineer | Pilih part rated; cetak/ukur sample; uji kontinuitas/termal |
 | B-005 | `BLOCKER_SAFETY` | Clearance/creepage inputs/standard | Engineer | Isi worksheet; review |
 | B-006 | `BLOCKER_SAFETY` | No lab/engineer/physical tests | Project owner | Sediakan fasilitas |
-| B-007 | `BLOCKER_DESIGN` | Component-level schematic/footprints/routing; functional Gerber | Hardware engineer | KiCad 10.0.8 installed; ERC/DRC/placement-only Gerber done; complete real circuit |
+| B-007 | `BLOCKER_DESIGN` | Component-level schematic/footprints/routing; functional Gerber | Hardware engineer | KiCad 10.0.8 installed; ERC 0, routed carrier DRC 0/0, Gerber done; production schematic/footprint sign-off pending |
 | B-008 | `BLOCKER_DESIGN` | Flashing/boot-waveform on real ESP32-S3; PZEM/OLED/Wi-Fi/MQTT/OTA integration | Firmware engineer | ESP-IDF v6.1 build PASS; hardware bench still blocked |
 | B-009 | `BLOCKER_DESIGN` | Android SDK/APK | Mobile engineer | Install SDK; build APK |
 | B-010 | `BLOCKER_DESIGN` | PostgreSQL adapter/Docker deployment | Backend engineer | Implement/adapter; test |

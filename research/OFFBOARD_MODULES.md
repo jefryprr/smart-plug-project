@@ -20,13 +20,13 @@ user required **off the PCB**. This is not a mains assembly approval.
 | Item | Finding | Status |
 |---|---|---|
 | Function | AC voltage, current, active power, energy, frequency, power factor (V3/V4 family) | `TYPICAL` |
-| Variant | Use the **split-CT** version so load current does not pass through the module | `PROVISIONAL` |
+| Variant | Use the **100 A CT** version (closed or split) so load current does not pass through the module | `PROVISIONAL` |
 | Voltage input | 80–260 VAC L/N terminals | `UNVERIFIED` for purchased batch |
 | TTL interface | 4-pin: **5V, RX, TX, GND**; passive interface needs all four | `TYPICAL`, verify batch |
-| Logic level | 5 V TTL; ESP32-S3 is 3.3 V — level shifting/isolation required | `BLOCKED` until barrier chosen |
+| Logic level | 5 V TTL; ESP32-S3 is 3.3 V — 74HCT125 TX + 10k/20k RX divider required | `PROVISIONAL` |
 | Protocol | Modbus-RTU-like UART; exact register map/version must be checked | `UNVERIFIED` |
 | CT placement | Clamp around **L only**, never around L and N together | `REQUIRED` |
-| Power | Supplied from isolated 5 V side (`B0505S` plan) | `PENDING` |
+| Power | Supplied from SELV 5 V; PZEM internal optocouplers isolate mains | `DOCUMENTATION_DEFICIENT` |
 | Accuracy | Not revenue-grade; low-current accuracy at 8 A with a 100 A CT is unverified | `UNVERIFIED` |
 | Dimensions | ~53 × 89 × 24 mm envelope (approximate, not measured) | `PROVISIONAL` |
 | Mounting | Dedicated plate, 58 × 94 × 2 mm, 4× M3, cable-tie slot | `PROVISIONAL` |
@@ -46,10 +46,10 @@ the whole module as mains until the isolation barrier is proven.
 
 ### PZEM open items
 
-- Confirm the purchased variant is split-CT, not the 10 A pass-through version.
+- Confirm the purchased variant is 100 A CT, not the 10 A pass-through version.
 - Measure the actual module and CT before printing the bracket.
 - Obtain the batch manual; verify pin order, UART baud, register map, and supply.
-- Decide the UART barrier (ADuM1201 + B0505S or equivalent) and review creepage.
+- Review PZEM internal optocoupler creepage and perform hipot/leakage; no external barrier.
 - Calibrate/compare against a reference meter; do not claim billing accuracy.
 - Verify CT orientation and that only L passes through the jaw.
 

@@ -1,6 +1,6 @@
-# Firmware ESP32-S3 — REV_A_PROVISIONAL
+# Firmware ESP32-S3 — REV_B_NO_TEMP
 
-**Host core tests:** `PASS` — 74 checks, 0 failures (compiled with Zig 0.17.1 `zig cc`).
+**Host core tests:** `PASS` — 75 checks, 0 failures (compiled with Zig 0.17.1 `zig cc`).
 **ESP-IDF build:** `PASS` — ESP-IDF v6.1, target `esp32s3`; `.bin` exists. No board was flashed.
 **Target:** ESP32-S3-DevKitC-1 N16R8, revision unverified.
 **Load rating:** 8 A / ~1.840 W final (electronics/SMPS only).
@@ -14,8 +14,8 @@
 | Command | `powershell -ExecutionPolicy Bypass -File scripts\build_firmware.ps1` |
 | Exit code | 0 |
 | Binary | `firmware/build/smartplug.bin` |
-| Size | 192,464 bytes (0x2EFD0) |
-| SHA-256 | `4949EEEFE73526AC99E79AC8F8E97EB1E0790551D80ED922F32034C8F0321134` |
+| Size | 192,496 bytes (0x2EFF0) |
+| SHA-256 | `AE5F831D7B1B4D88F520BF3A2F830BB75F99FE6F86DC1563738A43CF45DE2B46` |
 | Log | `reports/logs/firmware-idf-build.log` |
 | Report | `reports/FIRMWARE_BUILD.md` |
 
@@ -25,8 +25,8 @@ and sensor integration remain `BLOCKED` without a board and lab procedure.
 ## What is implemented
 
 - `core/smartplug_core.c` — portable C state machine, command priority, TTL/replay/sequence checks, lockout, measurement validation, energy delta, weekly schedule evaluation, CRC16 Modbus, telemetry JSON formatting.
-- `test/host/test_core.c` — 74 host assertions covering safe/unsafe command paths, sensor failures, energy reset/gap, schedule, CRC, and JSON NaN handling.
-- `main/app_main.c` — minimal boot-safe local app: relay GPIO forced OFF, debounced button, core state machine, ON refused while meter/temperature are not valid.
+- `test/host/test_core.c` — 75 host assertions covering safe/unsafe command paths, sensor failures, energy reset/gap, schedule, CRC, and JSON NaN handling.
+- `main/app_main.c` — minimal boot-safe local app: relay GPIO forced OFF, debounced button, core state machine, ON refused while meter is invalid; no temperature sensor is installed in REV_B.
 - `main/board_config.h` — provisional GPIO profile; **not final** until board revision is verified.
 - `components/smartplug_core/CMakeLists.txt` — ESP-IDF component wrapper for the portable core.
 - `partitions.csv`, `sdkconfig.defaults` — dual OTA partitions, 16 MB flash, rollback enabled, HTTPS OTA only.
@@ -74,7 +74,7 @@ relay coil/load simulator and a qualified procedure.
 3. `BOOT_SAFE` never accepts ON.
 4. Lockout/fault rejects ON; OFF remains accepted.
 5. Auto ON requires valid clock.
-6. ON requires valid meter and temperature; missing sensors default to invalid.
+6. ON requires a valid meter. REV_B has no temperature sensor; temperature validity is not required, and thermal protection is hardware-only (fuse + TCO).
 7. Command replay, stale sequence, wrong device, expiry, and future timestamps are rejected.
 8. OTA/rollback config defaults to OFF; no eFuse/secure boot action is automated.
 

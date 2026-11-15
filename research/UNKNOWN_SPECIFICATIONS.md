@@ -33,8 +33,9 @@
 | U-026 | Deployment | VPS/domain/TLS belum ada | Production deploy | Infrastruktur dan izin pengguna |
 | U-027 | MCU | Board N16R8 compatible vs official Espressif; regulator/RGB/strapping/RF belum diukur | GPIO, firmware, safety | Foto, pinout, RF, dan uji beban |
 | U-028 | Enclosure | MG Duradus ABS IP65; flame rating/UL94 belum ada | Fire/mechanical safety | Sertifikat material + thermal/impact test |
-| U-029 | Isolation | CJMCU ADuM1201 dan B0505S module; creepage/hipot belum | Isolation safety | Hipot/leakage + creepage review |
-| U-030 | Relay | Modul 2 channel generic; relay brand/contact rating/lifecycle belum | Switching safety | Buka module, catat relay MPN, uji 8 A/lifecycle |
+| U-029 | Isolation | PZEM internal optocoupler creepage/hipot; no external ADuM/B0505S | Isolation safety | Hipot/leakage + creepage review |
+| U-030 | Thermal | No temperature sensor in REV_B; TCO/fuse only | Thermal safety | Thermal test + TCO batch data |
+| U-031 | UART | PZEM 5V TX divider and 74HCT125 RX drive levels | UART reliability | Bench 9600-baud test |
 
 ## Aturan penutupan
 

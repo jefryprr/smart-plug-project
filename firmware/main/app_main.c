@@ -6,7 +6,7 @@
  *   - force the relay GPIO to a safe OFF level before anything else
  *   - run the portable smartplug_core state machine
  *   - handle a debounced physical button as a local toggle
- *   - refuse ON while meter/temperature validity is not established
+ *   - refuse ON while meter validity is not established (no temperature sensor)
  *
  * This is NOT a complete product firmware: PZEM, OLED, RGB, RTC, Wi-Fi,
  * MQTT, OTA, and provisioning are separate components and are not yet
@@ -113,14 +113,16 @@ void app_main(void) {
     g_state.commanded_output = SP_OUTPUT_OFF;
     g_state.clock_valid = false;
     g_state.meter_valid = false;       /* PZEM not integrated yet -> ON rejected */
-    g_state.temperature_valid = false; /* TMP102 not integrated yet -> ON rejected */
+    g_state.temperature_valid = false; /* no temperature sensor installed */
+    g_state.temperature_required = false; /* hardware TCO/fuse only; no firmware thermal monitor */
     g_state.lockout = false;
 
-    ESP_LOGW(TAG, "BOOT_SAFE: relay OFF; meter/temp not valid; ON will be rejected");
+    ESP_LOGW(TAG, "BOOT_SAFE: relay OFF; meter not valid; no temperature sensor (hardware TCO only)");
     vTaskDelay(pdMS_TO_TICKS(2000));
 
     /* Only a safe local OFF state is entered automatically. ON remains blocked
-     * until meter and temperature services establish validity. */
+     * until the meter service establishes validity. No temperature sensor is
+     * installed; thermal protection is hardware-only (fuse + TCO). */
     g_state.mode = SP_MODE_READY_OFF;
 
     for (;;) {

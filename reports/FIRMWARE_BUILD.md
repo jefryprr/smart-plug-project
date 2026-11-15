@@ -1,8 +1,8 @@
 # Firmware Build — ESP-IDF v6.1 / ESP32-S3
 
 **Status:** `PASS` (target build only)
-**Date:** 2026-11-15
-**Design revision:** `REV_A_PROVISIONAL`
+**Date:** 2026-11-16
+**Design revision:** `REV_B_NO_TEMP`
 
 ## Result
 
@@ -17,10 +17,10 @@
 | Command | `powershell -ExecutionPolicy Bypass -File scripts\build_firmware.ps1` |
 | Exit code | 0 |
 | Binary | `firmware/build/smartplug.bin` (mirror: `D:\AI INSTALLS\artifacts\smartplug.bin`) |
-| Size | 192,464 bytes (0x2EFD0) |
-| SHA-256 | `4949EEEFE73526AC99E79AC8F8E97EB1E0790551D80ED922F32034C8F0321134` |
+| Size | 192,496 bytes (0x2EFF0) |
+| SHA-256 | `AE5F831D7B1B4D88F520BF3A2F830BB75F99FE6F86DC1563738A43CF45DE2B46` |
 | Log | `reports/logs/firmware-idf-build.log` |
-| Partition free | 0x5D1030 of 0x600000 bytes (97%) |
+| Partition free | 0x5D1010 of 0x600000 bytes (97%) |
 | Bootloader free | 0x2D30 of 0x8000 bytes (35%) |
 
 **Reproducibility note:** the hash is per-build, not a byte-for-byte reproducibility

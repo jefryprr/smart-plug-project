@@ -58,14 +58,17 @@ Pengguna memberi instruksi baru dan saya catat sebagai amendment, bukan jawaban 
 | PSU | Mean Well IRM-05-5 | **Hi-Link HLK-5M05** | 5 V 1 A / 5 W, 38×23×18 mm; efficiency ~70%, isolation/cert batch unverified |
 | KiCad | Block/placement, CLI absent | **KiCad CLI 10.0.8 terpasang** | ERC/DRC/Gerber provisional dijalankan |
 | Toolchain | Belum ada | **Sedang dipasang** | ESP-IDF/Android mengikuti batas disk |
-| Komponen/procurement | BOM unpriced | **Daftar belanja Indonesia 2026-11-15** | 39 baris listing-verified, 9 estimated; CORE Rp756.987 (restock Rp705.519), FULL Rp895.976; safety tetap unapproved |
+| Sensor suhu | GY-TMP102 | **Dihapus** | Tidak ada sensor suhu; proteksi termal hardware (fuse/TCO) |
+| Isolasi UART | ADuM1201 + B0505S | **Dihapus** | PZEM internal optocoupler; level shift 74HCT125 + divider |
+| PCB | Placement-only 75x50 | **Routed SELV carrier 100x70 REV_B** | DRC 0/0, Gerber/drill; belum difabrikasi |
+| Komponen/procurement | BOM unpriced | **Daftar belanja Indonesia 2026-11-16** | 43 baris listing-verified, 11 estimated; CORE Rp698.297 (restock Rp646.829), FULL Rp815.897; safety tetap unapproved |
 
 ## Konflik yang diperiksa
 
 Tidak ada konflik eksplisit antarjawaban. Dua ketegangan yang dicatat:
 
 - **Q01=B (inline) vs Q06=C (220×120×70)** — Dengan PZEM off-board + module relay 2 channel, 150×100 gagal dan 180×120 tidak memberi clearance layak. Pengguna mengonfirmasi **220×120×70**; jangan memaksa clearance turun.
-- **Q03=8 A vs Q07=B (Rp500–750 rb)** — Harga listing 2026-11-15: elektronik inti Rp526.923; CORE lengkap Rp756.987 (Rp796.987 dengan ongkir); FULL Rp895.976 (Rp935.976 dengan ongkir). CORE hanya masuk Rp750.000 jika ESP32-S3 dan PZEM dibeli pada harga restock EasyWare (Rp705.519 + ongkir Rp40.000 = Rp745.519). Keselamatan diprioritaskan; FULL tidak dipaksa masuk budget dengan menurunkan fuse/MOV/TCO/PE/enclosure/isolasi.
+- **Q03=8 A vs Q07=B (Rp500–750 rb)** — Harga listing 2026-11-15: elektronik inti Rp433.633; CORE lengkap Rp698.297 (Rp738.297 dengan ongkir); FULL Rp815.897 (Rp855.897 dengan ongkir). CORE masuk Rp750.000 bahkan tanpa restock (Rp698.297 + ongkir Rp40.000 = Rp738.297); restock memberi margin Rp686.829. Keselamatan diprioritaskan; FULL tidak dipaksa masuk budget dengan menurunkan fuse/MOV/TCO/PE/enclosure/isolasi.
 
 ## Persetujuan
 

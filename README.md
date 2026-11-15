@@ -1,14 +1,15 @@
 # ESP32-S3 IoT Smart Plug — Digital Engineering Package
 
-**Design revision:** `REV_A_PROVISIONAL`
+**Design revision:** `REV_B_NO_TEMP`
 **Project status:** `PARTIAL_DIGITAL` / `ENGINEERING_REVIEW_REQUIRED` / `HARDWARE_VALIDATION_REQUIRED`
 **Fabrication:** `NOT_RELEASED` — do not send this repo to a PCB manufacturer.
 
-**Latest amendment (2026-11-15):**
+**Latest amendment (2026-11-16):**
 - Final load rating: **8 A / ~1.840 W**, electronics/SMPS only (not heaters/motors).
 - PZEM-004T V4 and a **common 2-channel 5 V optocoupler relay module** are **off-board**, with enclosure brackets. The module is two independent SPDT channels, **not** a mechanically linked DPST.
-- **150×100×70 and 180×120×70 fail** the clearance review with the off-board modules; **220×120×70 is CONFIRMED** by the user (2026-11-15). The earlier 180×120 “PASS” only stacked the relay above the PZEM with a 0.5 mm gap and ignored brackets; that is rejected.
-- **KiCad 10.0.8 CLI installed**; ERC 0 on the text-only block schematic, DRC 0 on the placement-only PCB, provisional Gerber/drill exported. Component-level schematic/routing remains blocked.
+- **150x100x70 and 180x120x70 fail** the clearance review with the off-board modules; **220x120x70 is CONFIRMED** by the user (2026-11-15). The earlier 180x120 PASS only stacked the relay above the PZEM with a 0.5 mm gap and ignored brackets; that is rejected.
+- **TMP102 and external ADuM1201/B0505S removed.** PZEM V4 internal optocouplers are the UART isolation barrier; the carrier level-shifts 5 V TTL with a 74HCT125 + 10k/20k divider. No firmware temperature sensor.
+- **KiCad 10.0.8:** ERC 0 on the block schematic; the SELV carrier is **routed 100x70 mm** with **DRC 0/0** at 0.15 mm; routed Gerber/drill/POS exported. Still `ENGINEERING_REVIEW_REQUIRED` / `NOT_FOR_FABRICATION`.
 
 > **Safety first.** This repository contains a digital prototype, not a certified or physically validated mains product. No 230 VAC assembly was built, energized, or tested. Do not connect mains to a 3D-printed enclosure or an unapproved prototype. PE must remain continuous and is never switched. See `safety/` and `docs/tutorials/00_READ_FIRST.md`.
 
@@ -17,7 +18,7 @@
 ## What this is
 
 A full digital engineering package for an inline ESP32-S3 smart outlet:
-research, BOM, safety analysis, GPIO map, wiring harnesses, KiCad block/placement files,
+research, BOM, safety analysis, GPIO map, wiring harnesses, KiCad block schematic + routed SELV carrier,
 CadQuery enclosure, portable firmware core, backend API, MQTT contract, web dashboard,
 Android source, device simulator, tests, and handoff documentation.
 
@@ -30,13 +31,13 @@ The PRD is the contract: `PRD.md`.
 | Domain logic | 34 Vitest tests | PASS |
 | MQTT contract | 11 tests | PASS |
 | API + simulator | 38 tests incl. full command→ACK | PASS |
-| Firmware C core | 74 checks, Zig host build | PASS |
+| Firmware C core | 75 checks, Zig host build | PASS |
 | Web | Next build + 5 Playwright tests + axe | PASS |
 | Static wiring/GPIO/BOM | Python crosscheck | PASS |
-| WireViz | 6 harnesses rendered | PASS |
+| WireViz | 5 harnesses rendered | PASS |
 | CadQuery | STEP/STL + renders + brackets | PASS (digital) |
-| KiCad CLI | 10.0.8, ERC/DRC/Gerber run | PASS (block/placement) |
-| ESP-IDF build | v6.1, target esp32s3, 192,464-byte `.bin` | PASS (build only) |
+| KiCad CLI | 10.0.8, ERC 0; routed carrier DRC 0/0; Gerber/drill | PASS (digital) |
+| ESP-IDF build | v6.1, target esp32s3, 192,496-byte `.bin` | PASS (build only) |
 | Android debug APK | 46,852,340-byte arm64-v8a APK, v2 signature verified | PASS (debug, not installed) |
 | npm audit | 0 known npm vulnerabilities | PASS |
 
@@ -44,7 +45,7 @@ The PRD is the contract: `PRD.md`.
 
 | Area | Reason |
 |---|---|
-| Component-level schematic/routing | Block/placement only; no approved MPNs/footprints |
+| Production schematic/footprint review | Functional schematic/netlist exists; no vendor footprint or engineer sign-off |
 | Firmware integration/flash | Build exists; PZEM/OLED/Wi-Fi/MQTT/OTA and boot-waveform tests are absent |
 | Android device test | APK exists; not installed on emulator/device; debug/arm64 only |
 | PostgreSQL/Docker deployment | Docker/Postgres not installed; API Postgres adapter missing |
@@ -148,7 +149,7 @@ deliverables/          manifest + final report
 
 ## Next human actions
 
-1. Build/measure the **220×120×70** enclosure and select/verify socket, plug, 2-channel relay module, fuse, PSU, terminal, PE hardware.
+1. Build/measure the **220x120x70** enclosure and select/verify socket, plug, 2-channel relay module, fuse, PSU, terminal, PE hardware.
 2. Complete the component-level KiCad schematic/PCB with approved footprints; run ERC/DRC on the real circuit.
 3. Flash the built firmware on a verified board; complete PZEM/OLED/Wi-Fi/MQTT/OTA integration and boot-waveform tests. Install the debug APK on an emulator/device and test the API flow.
 4. Provide lab/engineer for PE/thermal/isolation/load tests.

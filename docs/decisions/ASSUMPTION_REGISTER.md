@@ -11,8 +11,8 @@
 | A-005 | Two-pole disconnection is safer for reversible plug | Q05=A | Relay size/rating | Engineer | Design review | `PROVISIONAL` |
 | A-006 | **220×120×70 mm** is the confirmed enclosure; 150×100 fails fit and 180×120 fails real clearance with off-board PZEM + 2-channel relay | Q06=C confirmed 2026-11-15 | Enclosure/thermal/barrier | Mechanical engineer | Measured fit + tolerance stack + thermal test | `CONFIRMED_DECISION`; physical fit `UNVERIFIED` |
 | A-007 | ESP32-S3-DevKitC-1 N16R8 official board is used | Q08=B | GPIO/RGB/strapping/space | Hardware engineer | Photo/revision check | `OPEN` |
-| A-008 | PZEM-004T V4 split CT is representative | Q09=D | Metering/isolation | Hardware engineer | Batch datasheet + measurement | `OPEN` |
-| A-009 | ADuM1201 + B0505S barrier is sufficient for PZEM UART | Engineering judgment | Isolation safety | Engineer | Isolation review + hipot test | `OPEN` |
+| A-008 | PZEM-004T V4 100 A CT (closed or split) is representative | Q09=D + procurement | Metering/isolation | Hardware engineer | Batch datasheet + measurement | `OPEN` |
+| A-009 | PZEM-004T V4 internal optocouplers are sufficient as the UART galvanic barrier; no external ADuM/B0505S | User decision + Tasmota/Components101 evidence | Isolation safety (single barrier) | Engineer | Creepage + hipot/leakage test | `PROVISIONAL` |
 | A-010 | Common 2-channel 5 V optocoupler relay module (10 A class claim) is adequate for 8 A prototype, with active-low inputs and two independent SPST channels | User amendment 2026-11-15 | Channel non-linkage, contact rating, isolation, lifecycle | Engineer | Exact module datasheet + thermal/lifecycle test | `OPEN` |
 | A-011 | Hi-Link HLK-5M05 5 V/1 A is enough for the estimated peak (~0.58 A), but efficiency ~70% and isolation/certification are unverified | User selection + power budget | Brownout/thermal/isolation | Hardware engineer | Measured peak/ripple/temperature/hipot | `PROVISIONAL` |
 | A-012 | 100 A CT is not an output current rating | PRD warning | Safety/rating | Engineer | Rating chain | `CONFIRMED` |
@@ -26,9 +26,11 @@
 | A-020 | No lab/physical test capability (Q26=A) | User answer | All physical gates | Project owner | Facility confirmation | `CONFIRMED` |
 | A-021 | Demo data is synthetic and labeled | Environment constraint | Misleading results | Software engineer | Code/UI review | `CONFIRMED` |
 | A-022 | No irreversible eFuse action without approval | ADR-012 | Device recovery/security | Security engineer | Review | `CONFIRMED` |
-| A-023 | Indonesian procurement prices are 2026-11-15 listing snapshots, not supplier quotes; 39 lines listing-verified, 9 estimated | `bom/BOM_PROCUREMENT.csv` | Budget/schedule | Project owner | Re-quote before purchase | `PROVISIONAL` |
+| A-023 | Indonesian procurement prices are 2026-11-15/16 listing snapshots, not supplier quotes; 43 lines listing-verified, 11 estimated | `bom/BOM_PROCUREMENT.csv` | Budget/schedule | Project owner | Re-quote before purchase | `PROVISIONAL` |
 | A-024 | ESP32-S3 N16R8 compatible board at Rp139.968 is acceptable for prototype only as an explicit Q08=B deviation | Official local stock unconfirmed | GPIO/RGB/regulator/security | Hardware engineer | Board photo + pinout + RF test | `OPEN` |
 | A-025 | MG Duradus 220x120x70 ABS IP65 enclosure fits, but flame-retardant grade is unverified | Listing + fit CAD | Fire/mechanical safety | Mechanical engineer | Material certificate + thermal/impact test | `OPEN` |
+| A-026 | No temperature sensor is installed in REV_B; firmware must not require temperature validity | User instruction 2026-11-16 | Thermal safety/ON policy | Engineer | Thermal test + TCO/fuse review | `PROVISIONAL` |
+| A-027 | 74HCT125 + 10k/20k divider are sufficient for PZEM 5V TTL to ESP32 3.3V | TI datasheet + divider calculation | UART reliability | Hardware engineer | Bench UART test at 9600 baud | `PROVISIONAL` |
 
 ## Rules
 

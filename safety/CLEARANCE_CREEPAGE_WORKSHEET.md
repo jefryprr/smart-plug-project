@@ -1,4 +1,4 @@
-# Clearance & Creepage Worksheet — REV_A_PROVISIONAL
+# Clearance & Creepage Worksheet — REV_B_NO_TEMP
 
 **Status:** `BLOCKED_INPUTS_INCOMPLETE`
 **Catatan:** Dokumen ini **tidak** menetapkan angka clearance/creepage. Angka harus diturunkan dari IEC 60664-1 (edisi yang berlaku) oleh engineer kompeten, berdasarkan input di bawah. Jangan memakai angka contoh dari internet.

@@ -32,6 +32,6 @@ Catat command, versi, exit code, dan temuan. Jangan mengecualikan rule untuk mem
 
 ## Batas
 
-- File saat ini adalah **system block schematic** dan **placement-only PCB**.
+- File saat ini adalah **system block schematic** dan **routed SELV carrier 100x70**.
 - Belum ada footprint/routing/DRC/Gerber.
 - Jangan mengirim ke fabrikasi.

@@ -21,7 +21,7 @@ board:
 pins:
   - function: relay_control
     board_pin_name: IO4
-    physical_header: "J1/J3 - verify pin number"
+    physical_header: "J1 pin 4 (2x22 header)"
     esp_gpio: 4
     direction: output
     voltage_level: "3.3 V"
@@ -36,7 +36,7 @@ pins:
     notes: "Drives AO3400 gate; MOSFET pulls both IN1/IN2 of the off-board active-LOW 2-channel module low. Mandatory OFF at reset/boot; external pulldown. Verify module pinout/active-low before use."
   - function: relay_feedback_optional
     board_pin_name: IO11
-    physical_header: "J1/J3 - verify pin number"
+    physical_header: "J1 2x22 header - verify pin number"
     esp_gpio: 11
     direction: input
     voltage_level: "3.3 V"
@@ -51,7 +51,7 @@ pins:
     notes: "Optional. observed_output stays null if not installed."
   - function: button
     board_pin_name: IO5
-    physical_header: "J1/J3 - verify pin number"
+    physical_header: "J1 2x22 header - verify pin number"
     esp_gpio: 5
     direction: input
     voltage_level: "3.3 V"
@@ -66,29 +66,29 @@ pins:
     notes: "Debounce 30-50 ms; short press toggle, long press reset with confirmation."
   - function: i2c_sda
     board_pin_name: IO8
-    physical_header: "J1/J3 - verify pin number"
+    physical_header: "J1 2x22 header - verify pin number"
     esp_gpio: 8
     direction: bidirectional
     voltage_level: "3.3 V"
     external_pull: "4.7 kΩ to 3.3 V"
     boot_default: "HIGH (pullup)"
     hazard_if_high: "No direct hazard; SELV"
-    peripheral: ui_oled, temp_sensing, rtc
+    peripheral: ui_oled, rtc
     firmware_define: PIN_I2C_SDA
     schematic_ref: U1-IO8
     test: "T-HW-004 GPIO crosscheck; I2C scan"
     verified_board_revision: null
-    notes: "OLED, TMP102, DS3231 share bus. Check address conflicts."
+    notes: "OLED and DS3231 share bus. Check address conflicts."
   - function: i2c_scl
     board_pin_name: IO9
-    physical_header: "J1/J3 - verify pin number"
+    physical_header: "J1 2x22 header - verify pin number"
     esp_gpio: 9
     direction: output
     voltage_level: "3.3 V"
     external_pull: "4.7 kΩ to 3.3 V"
     boot_default: "HIGH (pullup)"
     hazard_if_high: "No direct hazard; SELV"
-    peripheral: ui_oled, temp_sensing, rtc
+    peripheral: ui_oled, rtc
     firmware_define: PIN_I2C_SCL
     schematic_ref: U1-IO9
     test: "T-HW-004; I2C scan"
@@ -96,7 +96,7 @@ pins:
     notes: "Keep below 400 kHz for prototype."
   - function: oled_reset
     board_pin_name: IO6
-    physical_header: "J1/J3 - verify pin number"
+    physical_header: "J1 2x22 header - verify pin number"
     esp_gpio: 6
     direction: output
     voltage_level: "3.3 V"
@@ -111,7 +111,7 @@ pins:
     notes: "Optional if module has RC reset; keep for recovery."
   - function: external_rgb_data
     board_pin_name: IO10
-    physical_header: "J1/J3 - verify pin number"
+    physical_header: "J1 2x22 header - verify pin number"
     esp_gpio: 10
     direction: output
     voltage_level: "3.3 V -> 5 V level shifter"
@@ -126,7 +126,7 @@ pins:
     notes: "WS2812B data via 74AHCT1G125; brightness limited."
   - function: pzem_uart_tx
     board_pin_name: IO17
-    physical_header: "J1/J3 - verify pin number"
+    physical_header: "J1 2x22 header - verify pin number"
     esp_gpio: 17
     direction: output
     voltage_level: "3.3 V"
@@ -138,10 +138,10 @@ pins:
     schematic_ref: U1-IO17
     test: "T-HW-015 UART disconnect/CRC"
     verified_board_revision: null
-    notes: "Through ADuM1201 to PZEM RX. Never direct-connect PZEM GND."
+    notes: "ESP32 3.3V TX -> 74HCT125 (5V) -> PZEM RX. No external galvanic barrier; PZEM internal optocouplers isolate mains. Verify PZEM RX current."
   - function: pzem_uart_rx
     board_pin_name: IO18
-    physical_header: "J1/J3 - verify pin number"
+    physical_header: "J1 2x22 header - verify pin number"
     esp_gpio: 18
     direction: input
     voltage_level: "3.3 V"
@@ -153,10 +153,10 @@ pins:
     schematic_ref: U1-IO18
     test: "T-HW-015"
     verified_board_revision: null
-    notes: "Through ADuM1201 from PZEM TX. Verify PZEM UART level first."
+    notes: "PZEM TX 5V -> 10k/20k divider -> ESP32 RX (3.3V). Never connect 5V directly to ESP32."
   - function: rtc_interrupt
     board_pin_name: IO7
-    physical_header: "J1/J3 - verify pin number"
+    physical_header: "J1 2x22 header - verify pin number"
     esp_gpio: 7
     direction: input
     voltage_level: "3.3 V"
@@ -169,21 +169,7 @@ pins:
     test: "T-HW-004; RTC alarm test"
     verified_board_revision: null
     notes: "Optional; SNTP + RTC polling fallback."
-  - function: temperature_alert
-    board_pin_name: IO12
-    physical_header: "J1/J3 - verify pin number"
-    esp_gpio: 12
-    direction: input
-    voltage_level: "3.3 V"
-    external_pull: "10 kΩ pullup"
-    boot_default: "HIGH"
-    hazard_if_high: "No direct hazard; alert only"
-    peripheral: safety_monitor
-    firmware_define: PIN_TEMP_ALERT
-    schematic_ref: U1-IO12
-    test: "T-HW-015 sensor failure injection"
-    verified_board_revision: null
-    notes: "TMP102 alert is open-drain. Do not rely on it as sole overtemp protection."
+
 
 reserved:
   - pins: [0, 3, 45, 46]

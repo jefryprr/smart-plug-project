@@ -10,11 +10,12 @@
 | AC input/output | Plug, fuse, MOV, thermal cutoff, off-board 2-channel relay module, socket, PE | MAINS |
 | AC/DC PSU | Hi-Link HLK-5M05, 5 V 1 A / 5 W (datasheet isolation claim; batch unverified) | Barrier |
 | PZEM + CT | Off-board module with bracket; voltage/current/energy | MAINS + isolated UART |
-| UART isolation | ADuM1201 (CJMCU module or bare) + B0505S barrier | Barrier |
+| UART level shift | 74HCT125 (3.3 V -> 5 V TX) + 10k/20k divider (5 V -> 3.3 V RX) | SELV |
+| PZEM isolation | PZEM-004T V4 internal optocouplers; no external ADuM/B0505S | Barrier |
 | ESP32-S3 carrier | State machine, metering, UI, network | SELV |
 | Relay driver | MOSFET + pulldown; pulls both active-LOW module inputs | SELV→coil |
 | UI | OLED, button, RGB | SELV |
-| Temperature/RTC | TMP102, DS3231 | SELV |
+| RTC | DS3231 only; no temperature sensor (REV_B) | SELV |
 | Network/backend | MQTT, API, DB, web, Android, notifications | Cloud/LAN |
 | Power controller | Priority, lockout, fail-safe | Firmware |
 | Safety monitor | Sensor validity, overcurrent/overtemp policy | Firmware (supplementary) |
