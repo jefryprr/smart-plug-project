@@ -1,13 +1,19 @@
 item_id,description,specification,qty,status
-M-001,Enclosure body + lid,"ABS/PC flame-retardant target, 220x120x70 confirmed",1 set,BLOCKED
-M-002,M3x8 screws,"Stainless steel, pan head",8 pcs,PROVISIONAL
-M-003,M3 heat-set inserts,"M3×5.7, brass",4 pcs,PROVISIONAL
-M-004,M3 nylon standoffs,"M3, 8 mm",4 pcs,PROVISIONAL
+M-001,Enclosure body + lid,"220x120x70, 60 mm body + 10 mm lid, ABS/PC FR target",1 set,BLOCKED
+M-002,M3x16 lid screws,"Stainless steel, pan head, 4 pcs",4 pcs,PROVISIONAL
+M-003,M3 heat-set inserts,"M3x5.7 brass, 4 pcs",4 pcs,PROVISIONAL
+M-004,M3x8 module screws,"Stainless steel, pan head",12 pcs,PROVISIONAL
 M-005,M16 cable gland,"IP68, PA66, UL94 V-0",1 pcs,PROVISIONAL
-M-006,Type F panel socket,"16 A / 250 V, 2P+E",1 pcs,DOCUMENTATION_DEFICIENT
+M-006,Type F panel socket,"16 A / 250 V, 2P+E, 45x45 bezel",1 pcs,DOCUMENTATION_DEFICIENT
 M-007,Type F cord plug,"16 A / 250 V, 3-core",1 pcs,DOCUMENTATION_DEFICIENT
 M-008,PE stud/screw/lock washer,Dedicated protective earth bond,1 set,BLOCKED
 M-009,Thermal pad / barrier,"Flame-retardant, placement TBD",1 pcs,PROVISIONAL
 M-010,Safety/rating label,Content TBD after rating chain,1 pcs,BLOCKED
 M-011,PZEM mounting plate,"Printed/FR plate, 58x94x2 mm, 4xM3",1 pcs,PROVISIONAL
-M-012,2-channel relay module mounting plate,"Printed/FR plate, 55x26x2 mm, 4xM3",1 pcs,PROVISIONAL
+M-012,Relay module mounting plate,"Printed/FR plate, 55x26x2 mm, 4xM3",1 pcs,PROVISIONAL
+M-013,HLK-5M05 mounting plate,"Printed/FR plate, 38x23x2 mm",1 pcs,PROVISIONAL
+M-014,Lid gasket,"Silicone/EPDM 1.0 mm, 216x116 frame",1 pcs,PROVISIONAL
+M-015,M12 ePTFE pressure vent,"IP67, M12x1.5",1 pcs,PROVISIONAL
+M-016,USB service cover,"Printed, 36x26x3 mm, gasket",1 pcs,PROVISIONAL
+M-017,DevKit reverse-insertion key,"Printed bracket, 2xM3",1 pcs,PROVISIONAL
+M-018,Cable ties / anchors,"PA66, 100 mm",8 pcs,PROVISIONAL

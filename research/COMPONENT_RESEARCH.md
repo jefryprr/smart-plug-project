@@ -158,7 +158,7 @@ Pengguna memilih **modul relay optocoupler 2 channel umum, 5 V, off-board** (buk
 2. **Rating final 8 A** (user amendment 2026-11-15); relay module 2 channel tetap bukan DPST mechanically linked dan rating 10 A hanya klaim vendor.
 3. **PZEM V4 belum dapat diisolasi hanya dari nama modul.** Barrier UART dan pengukuran batch wajib.
 4. **Socket/plug/PE/enclosure adalah blocker keselamatan**, bukan item kosmetik.
-5. **Harga sudah dikumpulkan** untuk 54 baris di `bom/BOM_PROCUREMENT.csv`; 43 baris punya listing bertanggal, 11 baris `ESTIMATED`. Harga listing bukan quote dan bukan approval.
+5. **Harga sudah dikumpulkan** untuk 56 baris di `bom/BOM_PROCUREMENT.csv`; 43 baris punya listing bertanggal, 13 baris `ESTIMATED`. Harga listing bukan quote dan bukan approval.
 
 ## 9. Sourcing Indonesia dan budget (2026-11-16, REV_B)
 
@@ -167,9 +167,11 @@ Ringkasan lengkap ada di `research/PROCUREMENT_INDONESIA.md`; daftar belanja ada
 | Konfigurasi | Subtotal | + ongkir Rp40.000 | Status |
 |---|---:|---:|---|
 | Elektronik inti | Rp433.633 | — | di dalam budget |
-| CORE (safety/function minimum) | Rp698.297 | Rp738.297 | **di bawah cap** |
-| CORE dengan restock EasyWare | Rp646.829 | Rp686.829 | margin lebih besar |
-| FULL (+ OLED/RTC/RGB/konektor) | Rp815.897 | Rp855.897 | di atas budget |
+| CORE (safety/function minimum) | Rp703.297 | Rp743.297 | **di bawah cap** |
+| CORE + mechanical addendum | Rp731.297 | Rp771.297 | ~Rp21k over cap |
+| CORE dengan restock EasyWare | Rp651.829 | Rp691.829 | margin lebih besar |
+| CORE restock + addendum | Rp679.829 | Rp719.829 | masuk budget |
+| FULL (+ OLED/RTC/RGB/konektor) | Rp820.897 | Rp860.897 | di atas budget |
 
 **Keputusan pengadaan REV_B:**
 
@@ -184,4 +186,4 @@ Ringkasan lengkap ada di `research/PROCUREMENT_INDONESIA.md`; daftar belanja ada
 - Socket/plug: Simon Schuko 16 A Rp25.026 + BOSS BP16 Rp14.044.
 - PCB carrier 100x70 routed: Rp15.000 (5 pcs share, estimasi).
 
-**Budget verdict:** `CORE_FITS_750K; FULL_OVER_BUDGET`. Jangan menurunkan fuse/MOV/TCO/terminal/PE/enclosure/isolasi untuk memaksa FULL masuk Rp750.000.
+**Budget verdict:** `CORE_ELECTRONICS_FITS_750K; CORE_WITH_MECH_OVER; FULL_OVER_BUDGET`. Jangan menurunkan fuse/MOV/TCO/terminal/PE/enclosure/isolasi untuk memaksa FULL masuk Rp750.000.

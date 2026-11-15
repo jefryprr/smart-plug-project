@@ -10,7 +10,7 @@ PR-08,Technical,MQTT/TLS/ACL not executed,High,High,Staging deploy with TLS/ACL 
 PR-09,Technical,No physical fit/thermal/PE test,High,High,Lab/engineer review before fabrication,Hardware,BLOCKED
 PR-10,Security,No secure boot/flash encryption/signed OTA,Medium,High,Decision + recovery plan + tests,Security,OPEN
 PR-11,Security,"SessionStorage XSS exposure",Medium,Medium,"CSP review, httpOnly BFF option",Frontend,OPEN
-PR-12,Cost,"CORE Rp698.297 (Rp738.297 all-in) fits Rp750.000; restock gives more margin; FULL Rp815.897 (Rp855.897 all-in) is over",High,Medium,"Use bom/BOM_PROCUREMENT.csv; wait for restock or stage FULL; do not downgrade safety",Project,OPEN
+PR-12,Cost,"CORE electronics Rp703.297 (Rp743.297 all-in) fits; mechanical addendum ~Rp28k raises marketplace CORE to ~Rp771.297; restock ~Rp719.829; FULL Rp820.897 (Rp860.897 all-in) is over",High,Medium,"Use bom/BOM_PROCUREMENT.csv; wait for restock or stage FULL; do not downgrade safety",Project,OPEN
 PR-13,Regulatory,Consumer sale without SNI/certification,Low,High,Do not market; regulatory plan,Project,OPEN
 PR-14,Safety,Relay contact weld / stuck ON,Medium,High,Fuse/thermal backup, feedback, lab test,Hardware,BLOCKED
 PR-15,Safety,PE discontinuity,Low,High,Dedicated PE + continuity test,Hardware,BLOCKED

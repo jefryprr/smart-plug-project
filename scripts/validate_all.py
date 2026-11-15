@@ -142,7 +142,7 @@ def main() -> int:
     run_step("T-HW-003", "Connectivity crosscheck", [str(PYTHON), "scripts/validate_connectivity.py"], "Wiring/GPIO/BOM static diff")
     run_step("T-HW-004", "GPIO map generation", [str(PYTHON), "hardware/generators/generate_gpio_map.py"], "GPIO CSV/MD + crosscheck")
     run_step("T-HW-010A", "WireViz render", [str(PYTHON), "scripts/render_wiring.py"], "4 harnesses SVG/PNG/PDF")
-    run_step("T-HW-009A", "CadQuery export", [str(PYTHON), "hardware/mechanical/source/enclosure.py", "--preset", "both"], "STEP/STL bodies + assembly")
+    run_step("T-HW-009A", "CadQuery export", [str(PYTHON), "hardware/mechanical/source/enclosure.py", "--preset", "recommended"], "STEP/STL bodies + assembly")
     run_step("T-HW-009B", "Mechanical render/fit", [str(PYTHON), "hardware/mechanical/source/render.py"], "Views/drawings/fit report")
     run_step(
         "T-HW-002A",

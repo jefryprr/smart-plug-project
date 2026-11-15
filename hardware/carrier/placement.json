@@ -174,5 +174,45 @@
     "x": 58.0,
     "y": 48.0,
     "rot": 0.0
+  },
+  {
+    "ref": "F2",
+    "value": "1.1A PTC",
+    "footprint": "Fuse:Fuse_1206_3216Metric",
+    "x": 80.0,
+    "y": 66.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "D1",
+    "value": "SMBJ5.0A",
+    "footprint": "Diode_SMD:D_SMB",
+    "x": 87.0,
+    "y": 66.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "FID1",
+    "value": "FID",
+    "footprint": "Fiducial:Fiducial_1mm_Mask2mm",
+    "x": 5.0,
+    "y": 35.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "FID2",
+    "value": "FID",
+    "footprint": "Fiducial:Fiducial_1mm_Mask2mm",
+    "x": 95.0,
+    "y": 35.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "FID3",
+    "value": "FID",
+    "footprint": "Fiducial:Fiducial_1mm_Mask2mm",
+    "x": 50.0,
+    "y": 40.0,
+    "rot": 0.0
   }
 ]

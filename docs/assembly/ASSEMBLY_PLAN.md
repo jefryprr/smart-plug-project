@@ -1,25 +1,80 @@
-# Assembly Plan — REV_A_PROVISIONAL
+# Assembly Plan — REV_B
 
-**Status:** `DIGITAL_PLAN_ONLY`; no physical assembly performed.
+**Status:** `DIGITAL_PLAN_ONLY`; no physical assembly performed.  
+**Design revision:** `REV_B_NO_TEMP`  
+**Safety:** mains work is qualified-personnel/lab only. This plan is not an energization procedure.
 
 ## Three separate scopes
 
-1. **Mechanical assembly, no energy** — anyone trained for basic tools.
+1. **Mechanical assembly, no energy** — trained person with basic tools.
 2. **Low-voltage assembly** — trained person, ESD/solder QC.
-3. **Mains assembly** — qualified personnel only, lab procedure, engineer sign-off.
+3. **Mains assembly and test** — qualified personnel only, lab procedure, engineer sign-off.
 
-Never combine scope 3 with scope 1/2 in one unsupervised session.
+Never combine scope 3 with scope 1/2 in one unsupervised session. PE is never switched or fused.
 
-## Order
+## 1. Incoming inspection
 
-1. Incoming inspection: photos, marking, dimensions, datasheet match.
-2. Mechanical: inserts, standoffs, carrier, OLED/button/RGB, gland, PE stud.
-3. Low-voltage: headers, I2C/UART, relay driver, sensors; continuity/ESD QC.
-4. Mains modules: fuse/MOV/TCO/relay/PSU/terminal/socket; ferrules, torque, strain relief.
-5. Inspection: PE continuity, clearance, barrier, no loose metal, label.
-6. Lab: insulation/hipot, thermal rise, load/inrush, relay lifecycle.
-7. Sign-off: `safety/REVIEW_SIGNOFF_TEMPLATE.md`.
-8. Only then consider energization under lab procedure.
+1. Photograph every module and label the bag with lot/serial.
+2. Verify ESP32-S3 DevKitC-1 **N16R8**, two 1×22 headers, **22.86 mm row spacing**, USB ports and pin 1.
+3. Verify PZEM-004T **V4 100 A CT**, optocouplers, TTL pin order, CT ratio.
+4. Verify HLK-5M05 marking, 5 V/1 A, isolation claim, AC pin order.
+5. Verify relay module is 2-channel, active-LOW, two independent SPDT channels, not a linked DPST.
+6. Verify fuse 10 A 250 VAC ceramic, holder rating, MOV 275 VAC, TCO 99 °C one-shot, terminals, socket/plug, PE hardware.
+7. Verify enclosure 220×120×70, wall, flame grade, lid screws, gasket, M16 gland, M12 vent.
+8. Quarantine any mismatch; update `parameters.yaml`/`components.py` and re-run fit if dimensions differ.
+
+## 2. Mechanical preparation (no energy)
+
+1. Print/acquire body, lid, gasket, USB cover, DevKit key, PZEM/relay/PSU brackets.
+2. Install 4× M3 heat-set inserts in the lid bosses; install module inserts where used.
+3. Deburr the socket, gland, vent, USB, and top cutouts.
+4. Test-fit the gasket frame on the body rim; verify it is not pinched.
+5. Mount the carrier on the four standoffs with M3×8 screws; do not over-torque.
+6. Install the DevKit key on the two left carrier holes. Insert the DevKit **pin 1 / USB end** per the silkscreen; confirm the key blocks a reversed board.
+7. Install the RTC module near J5, the OLED/button/RGB on the lid, and route their JST cables with service loops.
+8. Mount PZEM, relay, HLK-5M05, fuse/MOV, terminals, CT, and socket on their brackets/bosses.
+9. Install the PE stud and bond hardware; PE must be a dedicated metal path, not a plastic boss alone.
+10. Install the M16 gland, M12 vent, and USB cover; check thread engagement and gasket seating.
+
+## 3. Low-voltage assembly
+
+1. Solder/assemble the carrier: two 1×22 sockets, JST connectors, 74HCT125, PTC, TVS, divider, pullups, MOSFET, passives, fiducials.
+2. Inspect for bridges, tombstones, wrong values, and damaged pads.
+3. Verify 5 V PTC/TVS orientation, 74HCT125 pin 1, MOSFET pinout, and PZEM divider values.
+4. Continuity/ESD check: +5V, +3V3, GND, UART, I2C, relay gate; no short between rails.
+5. Connect J8 (5 V), J2 (PZEM TTL), J3 (relay), J4 (OLED), J5 (RTC), J6 (button), J7 (RGB).
+6. Keep PZEM/relay/5 V cables away from the mains side except through the barrier grommets.
+7. Do **not** connect USB while mains is present.
+
+## 4. Mains assembly (qualified personnel only)
+
+1. Follow the lab procedure and `safety/` documents; do not improvise.
+2. Use ferrules, correct wire gauge, strain relief, and torque per terminal datasheet.
+3. Wire L/N/PE, fuse, MOV, TCO, relay contacts, PZEM voltage sense, HLK input, socket, and PE stud.
+4. PE: plug PE → dedicated stud/terminal → socket PE; no relay, fuse, or switch in the PE path.
+5. Keep SELV and mains separated by the barrier; all crossings through grommets.
+6. Inspect clearance/creepage, loose strands, contamination, and terminal retention.
+7. Install the lid gasket and lid; tighten 4× M3×16 screws evenly.
+8. Verify the USB cover is closed and labelled “MAINS OFF”.
+
+## 5. Inspection before any energy
+
+- PE continuity and bond torque.
+- No L/N–PE short; no SELV–mains short.
+- Fuse/MOV/TCO/relay/socket/terminal ratings and orientation.
+- Barrier intact; no cable bypass.
+- Gasket seating; lid screws; gland/vent/socket retention.
+- Labels: 8 A limit, 230 VAC, PE, “no USB with mains”, model/revision.
+- Record photos and measurements.
+
+## 6. Lab tests (qualified lab only)
+
+1. Isolation/hipot and leakage, including PZEM internal barrier.
+2. PE continuity and earth bond.
+3. Thermal rise at 8 A in the closed enclosure, ambient 40 °C.
+4. Load/inrush, relay lifecycle, fuse/TCO coordination.
+5. EMC/pre-compliance as required.
+6. Only after pass and engineer sign-off consider `F4 FABRICATION_RELEASED` / `READY_FOR_USE`.
 
 ## Stop conditions
 

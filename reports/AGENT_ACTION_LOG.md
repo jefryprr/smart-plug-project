@@ -39,10 +39,10 @@
 | 31 | Final validation gate | `.venv\Scripts\python.exe scripts\validate_all.py --e2e` | 23 PASS / 11 BLOCKED / 0 FAIL (before PSU swap) | `reports/TEST_MATRIX.csv`, `VALIDATION_SUMMARY.json` |
 | 32 | PSU replacement | Research HLK-5M05 datasheet/specs; update BOM/wiring/CAD/safety/ADR | 5 V 1 A / 5 W, 38×23×18 mm; efficiency ~70%; `PENDING_APPROVAL` | `research/PSU_HLK_5M05.md`, `docs/decisions/ADR-013-PSU-HLK-5M05.md` |
 
-| 33 | Indonesian procurement research | 54 BOM lines; EasyWare/Shopee/BigGo/CNC/Blibli checks; budget roll-up | CORE Rp698.297 (restock Rp646.829); FULL Rp815.897; 43 listing-verified + 11 estimated | `bom/BOM_PROCUREMENT.csv`, `research/PROCUREMENT_INDONESIA.md` |
+| 33 | Indonesian procurement research | 56 BOM lines; EasyWare/Shopee/BigGo/CNC/Blibli checks; budget roll-up | CORE Rp703.297 (restock Rp651.829); FULL Rp820.897; 43 listing-verified + 13 estimated | `bom/BOM_PROCUREMENT.csv`, `research/PROCUREMENT_INDONESIA.md` |
 
-| 33 | Indonesian procurement research | 54 BOM lines; EasyWare/Shopee/BigGo/CNC/Blibli checks; budget roll-up | CORE Rp698.297 (restock Rp646.829); FULL Rp815.897; 43 listing-verified + 11 estimated | `bom/BOM_PROCUREMENT.csv`, `research/PROCUREMENT_INDONESIA.md` |
-| 34 | REV_B hardware redesign | Remove TMP102 + ADuM1201/B0505S; PZEM internal isolation; 74HCT125/divider; two 1x22 sockets at 22.86 mm; routed 100x70 carrier; no-temp firmware policy | DRC 0/0; ERC 0; routed Gerber/drill/POS; host tests 75 PASS; core ~Rp698k | `hardware/kicad/smartplug.kicad_pcb`, `hardware/schematic/`, `hardware/carrier/` |
+| 33 | Indonesian procurement research | 56 BOM lines; EasyWare/Shopee/BigGo/CNC/Blibli checks; budget roll-up | CORE Rp703.297 (restock Rp651.829); FULL Rp820.897; 43 listing-verified + 13 estimated | `bom/BOM_PROCUREMENT.csv`, `research/PROCUREMENT_INDONESIA.md` |
+| 34 | REV_B hardware redesign | Remove TMP102 + ADuM1201/B0505S; PZEM internal isolation; 74HCT125/divider; two 1x22 sockets at 22.86 mm; routed 100x70 carrier; 5 V PTC/TVS; fiducials; detailed 220x120x70 enclosure (60+10, gasket, vent, USB cover, DevKit key); no-temp firmware policy | DRC 0/0; ERC 0; routed Gerber/drill/POS; host tests 75 PASS; electronics CORE ~Rp703k | `hardware/kicad/smartplug.kicad_pcb`, `hardware/schematic/`, `hardware/carrier/`, `hardware/mechanical/` |
 
 ## Commands that were not run (and why)
 

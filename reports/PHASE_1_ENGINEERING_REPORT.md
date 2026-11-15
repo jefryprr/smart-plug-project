@@ -75,9 +75,9 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 
 ## 3. BOM dan persetujuan komponen
 
-- `bom/BOM_MASTER.csv` - **54 baris**, BOM rekayasa; harga tidak dimasukkan ke BOM ini.
-- `bom/BOM_PROCUREMENT.csv` - **54 baris daftar belanja prototype**, 43 baris punya listing bertanggal, 11 baris `ESTIMATED`.
-- `bom/BOM_SUMMARY.json` - status `PROCUREMENT_PRICED_2026-11-16`; CORE Rp698.297, FULL Rp815.897.
+- `bom/BOM_MASTER.csv` - **56 baris**, BOM rekayasa; harga tidak dimasukkan ke BOM ini.
+- `bom/BOM_PROCUREMENT.csv` - **56 baris daftar belanja prototype**, 43 baris punya listing bertanggal, 13 baris `ESTIMATED`.
+- `bom/BOM_SUMMARY.json` - status `PROCUREMENT_PRICED_2026-11-16`; CORE Rp703.297, FULL Rp820.897.
 - `bom/BOM_PROCUREMENT.md` - tabel CORE/FULL, harga, seller, URL, verdict budget.
 - `bom/BOM_TOOLS_AND_TEST.csv` — 6 alat, belum dibeli.
 - `bom/BOM_CONSUMABLES.csv` — 5 item.
@@ -94,18 +94,19 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 - PE hardware/enclosure: `BLOCKED`; 220×120×70 sudah dikonfirmasi (Q06=C), enclosure ABS exact-size Rp99.684 tetapi flame rating/material belum divalidasi.
 - Fuse/MOV/TCO: `PENDING`/documentation deficient.
 
-**Konsekuensi:** rating final 8 A/1.840 W; batas beban eksplisit. Dua channel module tidak mechanically linked; residual risk harus diuji. Budget CORE masuk Rp750.000 (Rp738.297 all-in); restock memberi margin; FULL di atas budget.
+**Konsekuensi:** rating final 8 A/1.840 W; batas beban eksplisit. Dua channel module tidak mechanically linked; residual risk harus diuji. Budget CORE elektronik masuk Rp750.000 (Rp743.297 all-in); addendum mekanik ~Rp28k membuat marketplace ~Rp771.297 all-in, restock ~Rp719.829; FULL di atas budget.
 
 ### 3A. Riset pengadaan Indonesia (2026-11-15)
 
-Riset harga mencakup 54 baris; 43 baris punya listing bertanggal dan 11 baris `ESTIMATED`. Detail ada di `research/PROCUREMENT_INDONESIA.md` dan `bom/BOM_PROCUREMENT.csv`.
+Riset harga mencakup 56 baris; 43 baris punya listing bertanggal dan 13 baris `ESTIMATED`. Detail ada di `research/PROCUREMENT_INDONESIA.md` dan `bom/BOM_PROCUREMENT.csv`.
 
 | Konfigurasi | Subtotal | + ongkir Rp40.000 | Status |
 |---|---:|---:|---|
 | Elektronik inti | Rp433.633 | — | di dalam budget |
-| CORE (safety/function minimum) | Rp698.297 | Rp738.297 | di bawah cap |
-| CORE dengan restock EasyWare | Rp646.829 | Rp686.829 | masuk budget |
-| FULL (+ OLED/RTC/RGB/konektor) | Rp815.897 | Rp855.897 | di atas budget |
+| CORE (safety/function minimum) | Rp703.297 | Rp743.297 | di bawah cap |
+| CORE + mechanical addendum | Rp731.297 | Rp771.297 | ~Rp21k di atas cap |
+| CORE dengan restock EasyWare | Rp651.829 | Rp691.829 | masuk budget |
+| FULL (+ OLED/RTC/RGB/konektor) | Rp820.897 | Rp860.897 | di atas budget |
 
 **Keputusan:** ESP32-S3 N16R8 compatible Rp139.968 (deviasi Q08=B eksplisit), PZEM V4 100 A CT Rp150.000 dengan **isolasi internal** (tanpa ADuM/B0505S), HLK-5M05 Rp49.000, relay 2 channel Rp16.650, 74HCT125 + divider, **tanpa TMP102**, enclosure 220x120x70 Rp99.684, PCB carrier 100x70 routed. Harga listing bukan quote dan bukan approval; status safety tidak berubah.
 
@@ -134,6 +135,7 @@ Riset harga mencakup 54 baris; 43 baris punya listing bertanggal dan 11 baris `E
 | Output kontinu provisional | 8 A | `UNVERIFIED` |
 | Relay module | 2-channel optocoupler, off-board, 10 A class claim | `DOCUMENTATION_DEFICIENT` |
 | Fuse | 10 A time-lag | `PENDING` |
+| 5 V PTC/TVS | 1.1 A hold PTC + SMBJ5.0A | `PROVISIONAL` |
 | PSU | Hi-Link HLK-5M05, 5 V 1 A / 5 W | `PENDING_APPROVAL`; thermal/cert test |
 | Socket/plug | Type F/E-F 16 A class | `DOCUMENTATION_DEFICIENT` |
 | PE | Kontinu, tidak diputus | `PROVISIONAL` |
@@ -198,10 +200,10 @@ kicad-cli pcb export drill -o hardware/manufacturing/provisional/Drill --generat
 ```
 
 - ERC: **0 violations** on the block-level text-only schematic. This is not component-level connectivity.
-- DRC: **0 violations / 0 unconnected** on the routed 100?70 SELV carrier (0.15 mm).
+- DRC: **0 violations / 0 unconnected** on the routed 100x70 SELV carrier (0.15 mm), 27 footprints, 19 nets, 5 V PTC + TVS, 3 fiducials.
 - Gerber/drill/POS: **routed provisional** exported; `NOT_FOR_FABRICATION`.
-- Native files parse with `kiutils`: `PASS`.
-- Component-level schematic/routing: `BLOCKED` (no approved MPNs/footprints).
+- Native files parse with KiCad `pcbnew`: `PASS` (19 nets).
+- Production symbol-level schematic and vendor footprint review: `PENDING`; functional schematic/netlist and routed carrier exist.
 
 ---
 
@@ -209,7 +211,8 @@ kicad-cli pcb export drill -o hardware/manufacturing/provisional/Drill --generat
 
 - `docs/hardware/SYSTEM_ARCHITECTURE.png/.svg/.pdf`
 - `hardware/wiring/renders/*.png/.svg/.pdf` (4 harness)
-- `hardware/mechanical/render/isometric.png`, `front.png`, `back.png`, `top.png`, `bottom.png`, `exploded.png`, `cutaway.png`
+- `hardware/mechanical/render/*.png` (60 mm body + 10 mm lid, gasket, socket/gland/vent, top UI, USB cover, DevKit key)
+- `hardware/mechanical/export/body_bottom_recommended.step/.stl`, `body_top_recommended.step/.stl`, `gasket`, `usb_cover`, `devkit_key`, `assembly_recommended.step`
 - `hardware/mechanical/drawings/dimensions.svg`, `mounting_plan.svg`, `service_access.svg`, `assembly.pdf`
 - `hardware/pcb/render/placement_preview.png/.svg`
 - `docs/ui-ux/screenshots/*` (12 web screenshots)
@@ -241,7 +244,7 @@ No mains assembly/energization was performed.
 - Host tests: `firmware/test/host/test_core.c` — 75 checks.
 - ESP-IDF minimal app: `firmware/main/app_main.c` — relay OFF at boot, button debounce, core state machine, ON blocked while sensors invalid.
 - Partition/config: `firmware/partitions.csv`, `sdkconfig.defaults`.
-- ESP-IDF build: `PASS` (v6.1, target esp32s3, 192.496-byte `.bin`, SHA-256 `2F646505F0C08C1CB9BE28E299BFCAB770BFE8D5BB385C0A67A710D34605E43C`); build only, no flash.
+- ESP-IDF build: `PASS` (v6.1, target esp32s3, 192.496-byte `.bin`, SHA-256 `498356348097F45F7853747C08037B05801D34BACAC65392BA466D857EFBCF0E`); build only, no flash.
 - OLED/RGB/PZEM/Wi-Fi/MQTT/OTA components: `NOT_IMPLEMENTED`.
 - Build evidence: `reports/FIRMWARE_BUILD.md`, `reports/logs/firmware-idf-build.log`.
 

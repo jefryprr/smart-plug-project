@@ -31,6 +31,11 @@
 | A-025 | MG Duradus 220x120x70 ABS IP65 enclosure fits, but flame-retardant grade is unverified | Listing + fit CAD | Fire/mechanical safety | Mechanical engineer | Material certificate + thermal/impact test | `OPEN` |
 | A-026 | No temperature sensor is installed in REV_B; firmware must not require temperature validity | User instruction 2026-11-16 | Thermal safety/ON policy | Engineer | Thermal test + TCO/fuse review | `PROVISIONAL` |
 | A-027 | 74HCT125 + 10k/20k divider are sufficient for PZEM 5V TTL to ESP32 3.3V | TI datasheet + divider calculation | UART reliability | Hardware engineer | Bench UART test at 9600 baud | `PROVISIONAL` |
+| A-028 | 5 V rail needs a 1.1 A PTC plus SMBJ5.0A TVS; the HLK-5M05 alone is not treated as sufficient protection | Engineering judgment | 5 V wiring/transient protection | Hardware engineer | Bench trip/clamp test; verify PTC hold current | `PROVISIONAL` |
+| A-029 | Enclosure 60 mm body + 10 mm lid, 1 mm gasket, M12 vent, printed USB cover and DevKit key are adequate for a prototype | Mechanical concept + CadQuery | Fit/sealing/thermal/service | Mechanical engineer | Print, measure, gasket/thermal/impact test | `PROVISIONAL` |
+| A-030 | OLED/button/RGB on the top lid above J4/J6/J7 is acceptable ergonomically | Layout choice | User access/cable length | Product/mechanical | User review and physical fit | `OPEN` |
+| A-031 | The printed DevKit key blocks reverse insertion without touching the correct board | Geometry concept | DevKit damage risk | Mechanical engineer | Print and insertion trial both orientations | `OPEN` |
+| A-032 | First-order enclosure thermal estimate is 13-19 W loss and ~19-28 K rise; the M12 vent is not credited | Engineering calculation | Thermal safety | Thermal engineer | Closed-box 8 A/40 C test | `UNVERIFIED` |
 
 ## Rules
 

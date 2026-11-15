@@ -1,6 +1,6 @@
 project: esp32-s3-iot-smart-plug
 design_revision: REV_B_NO_TEMP
-generated_at: '2026-11-15T18:59:07.751599+00:00'
+generated_at: '2026-11-15T19:36:36.215222+00:00'
 approval_policy: User approved the research direction, not final MPNs. No component
   is approved for fabrication.
 approved_by: null
@@ -136,6 +136,20 @@ items:
   approved_for_purchase: false
   approved_for_fabrication: false
   blocking_reason: Place close to LED data input.
+- item_id: E-050
+  mpn: 1206L110THYR
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Protects the 5 V carrier rail and wiring. Hold current 1.1 A; verify
+    trip time and voltage drop. Not a substitute for the mains fuse.
+- item_id: E-051
+  mpn: SMBJ5.0A
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Clamps 5 V rail transients from the HLK or cable. Cathode to +5V,
+    anode to GND. Verify standoff/clamping and layout.
 - item_id: E-019
   mpn: UWT1A101MCL1GS
   status: PROVISIONAL

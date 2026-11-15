@@ -16,6 +16,8 @@ PE → socket PE (tidak diputus)
 | Perangkat | Fungsi | Rating | Karakteristik | Koordinasi |
 |---|---|---|---|---|
 | Fuse F1 | Short-circuit backup | 10 A, 250 V, time-lag | Time-current TBD | Harus melindungi kabel/terminal; jangan menganggap proteksi overload presisi |
+| PTC F2 (5 V) | SELV 5 V wiring backup | 1.1 A hold, 1206 | Trip/time TBD | Bukan proteksi mains; melindungi wiring/rail 5 V |
+| TVS D1 (5 V) | SELV transient clamp | SMBJ5.0A, 5 V standoff | Clamping TBD | Melindungi rail 5 V dari transient; bukan pengganti isolasi |
 | Holder FH1 | Mounting | 10 A class TBD | TBD | Rating, sentuhan, akses servis |
 | MOV1 | Transient clamping | 275 VAC class | Energy/clamping TBD | Perlu thermal fuse/koordinasi end-of-life |
 | Thermal cutoff TF1 | Independent overtemp | 99 °C, 10 A class TBD | One-shot | Dipasang di hotspot; trip mengunci OFF |

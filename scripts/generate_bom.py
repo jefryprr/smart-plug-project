@@ -220,6 +220,18 @@ ROWS = [
         notes="Place close to LED data input.", evidence="Yageo datasheet."
     ),
     row(
+        "E-050", "F2", "Protection", "Resettable PTC fuse, 1.1 A hold, 1206, 5 V rail", "Littelfuse", "1206L110THYR",
+        status="PROVISIONAL", footprint="Fuse_1206_3216Metric", mech="fuse_1206_approx",
+        notes="Protects the 5 V carrier rail and wiring. Hold current 1.1 A; verify trip time and voltage drop. Not a substitute for the mains fuse.",
+        evidence="Littelfuse 1206L series datasheet; exact batch to be verified."
+    ),
+    row(
+        "E-051", "D1", "Protection", "TVS diode, 5 V standoff, 400 W, SMB", "Littelfuse", "SMBJ5.0A",
+        status="PROVISIONAL", footprint="D_SMB", mech="smb_approx",
+        notes="Clamps 5 V rail transients from the HLK or cable. Cathode to +5V, anode to GND. Verify standoff/clamping and layout.",
+        evidence="Littelfuse SMBJ series datasheet; exact batch to be verified."
+    ),
+    row(
         "E-019", "C1", "Passives", "Bulk capacitor, 100 uF, 10 V, low ESR, 6.3x5.4 mm", "Nichicon", "UWT1A101MCL1GS",
         datasheet="https://www.nichicon.co.jp/english/products/pdfs/e-uwt.pdf", status="PROVISIONAL",
         footprint="CP_6.3x5.4", mech="cap_6.3_approx", notes="5 V rail decoupling near relay/PSU.", evidence="Nichicon datasheet."
@@ -610,6 +622,22 @@ PROCUREMENT = [
         "notes": "WS2812 series resistor; deferred with the external RGB option.",
     },
     {
+        "line_id": "E-050", "stage": "CORE",
+        "selected": "PTC resettable fuse 1.1 A, 1206 (estimated)",
+        "qty": 1, "unit_price": 2000,
+        "seller": "Shopee (estimated)", "url": "",
+        "stock": "ESTIMATED", "verification": "ESTIMATED",
+        "notes": "5 V rail protection. Exact MPN/hold current to be verified; allocated estimate.",
+    },
+    {
+        "line_id": "E-051", "stage": "CORE",
+        "selected": "SMBJ5.0A TVS diode (estimated)",
+        "qty": 1, "unit_price": 3000,
+        "seller": "Shopee (estimated)", "url": "",
+        "stock": "ESTIMATED", "verification": "ESTIMATED",
+        "notes": "5 V rail transient clamp. Exact marking/standoff to be verified; allocated estimate.",
+    },
+    {
         "line_id": "E-019", "stage": "CORE",
         "selected": "100 uF 10 V electrolytic capacitor",
         "qty": 1, "unit_price": 350,
@@ -950,6 +978,7 @@ CORE_RESTOCK_SAVINGS = {
 }
 SHIPPING_ESTIMATE_IDR = 40000
 BUDGET_CAP_IDR = 750000
+MECH_ADDENDUM_IDR = 28000
 
 # Selected prototype/procurement variant overrides. These keep the engineering
 # BOM aligned with what is actually being bought, without pretending that a
@@ -1115,11 +1144,15 @@ def procurement_markdown(rows: list[dict], totals: dict) -> str:
         f"- CORE + ongkir: **Rp{totals['core_all_in_idr']:,}**.",
         f"- CORE restock + ongkir: **Rp{totals['core_restock_all_in_idr']:,}**.",
         f"- FULL + ongkir: **Rp{totals['full_all_in_idr']:,}**.",
+        f"- Mechanical addendum (gasket/vent/printed cover-key/PSU bracket/thermal pad): **Rp{totals['mechanical_addendum_estimate_idr']:,}** estimated, not in line items.",
+        f"- CORE + addendum + ongkir: **Rp{totals['core_with_addendum_all_in_idr']:,}**.",
+        f"- CORE restock + addendum + ongkir: **Rp{totals['core_restock_with_addendum_all_in_idr']:,}**.",
+        f"- FULL + addendum + ongkir: **Rp{totals['full_with_addendum_all_in_idr']:,}**.",
         f"- Status: `{totals['verdict']}`.",
         "",
-        "CORE hanya masuk budget jika ESP32-S3 dan PZEM dibeli pada harga restock EasyWare",
-        "(Rp103.500 dan Rp135.000). Harga marketplace saat ini membuat CORE sedikit di atas",
-        "Rp750.000 setelah ongkir. FULL (OLED + RTC + RGB) jelas di atas budget.",
+        "CORE electronics (Rp703.297) fits Rp750.000 with Rp40.000 shipping (Rp743.297).",
+        "The mechanical addendum (~Rp28.000) pushes the marketplace CORE to about Rp771.297 all-in;",
+        "EasyWare restock prices bring it back to about Rp719.829. FULL is over budget.",
         "",
         "Jangan menurunkan fuse, MOV, TCO, terminal, PE, enclosure, atau barrier isolasi",
         "untuk mengejar budget. Lihat `research/PROCUREMENT_INDONESIA.md` untuk risiko stok.",
@@ -1159,7 +1192,11 @@ def main() -> None:
         "core_all_in_idr": core_subtotal + SHIPPING_ESTIMATE_IDR,
         "core_restock_all_in_idr": core_restock + SHIPPING_ESTIMATE_IDR,
         "full_all_in_idr": core_subtotal + full_addons + SHIPPING_ESTIMATE_IDR,
-        "verdict": "CORE_FITS_750K; FULL_OVER_BUDGET",
+        "mechanical_addendum_estimate_idr": MECH_ADDENDUM_IDR,
+        "core_with_addendum_all_in_idr": core_subtotal + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR,
+        "core_restock_with_addendum_all_in_idr": core_restock + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR,
+        "full_with_addendum_all_in_idr": core_subtotal + full_addons + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR,
+        "verdict": "CORE_ELECTRONICS_FITS_750K; CORE_WITH_MECH_OVER; FULL_OVER_BUDGET",
     }
     (BOM / "BOM_PROCUREMENT.md").write_text(procurement_markdown(proc, totals), encoding="utf-8")
 
@@ -1188,6 +1225,10 @@ def main() -> None:
             "core_all_in_idr": core_subtotal + SHIPPING_ESTIMATE_IDR,
             "core_restock_all_in_idr": core_restock + SHIPPING_ESTIMATE_IDR,
             "full_all_in_idr": core_subtotal + full_addons + SHIPPING_ESTIMATE_IDR,
+            "mechanical_addendum_estimate_idr": MECH_ADDENDUM_IDR,
+            "core_with_addendum_all_in_idr": core_subtotal + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR,
+            "core_restock_with_addendum_all_in_idr": core_restock + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR,
+            "full_with_addendum_all_in_idr": core_subtotal + full_addons + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR,
             "status": totals["verdict"],
         },
         "budget_cap_idr": BUDGET_CAP_IDR,
@@ -1198,7 +1239,7 @@ def main() -> None:
             "Engineering BOM is still unpriced; dated prototype buy list is bom/BOM_PROCUREMENT.csv.",
             "Prices are listing prices, not supplier quotes. Shipping/tax are separate estimates.",
             "CORE excludes OLED, RTC, external RGB, and their connectors; FULL adds them.",
-            "CORE fits Rp750.000 at marketplace prices (Rp738.297 all-in); EasyWare restock gives more margin (Rp686.829 all-in).",
+            "CORE electronics fits Rp750.000 at marketplace prices (Rp743.297 all-in); the mechanical addendum (~Rp28.000) makes it about Rp771.297 all-in. EasyWare restock gives about Rp719.829 all-in with the addendum.",
             "FULL is over budget; do not downgrade fuse, MOV, TCO, PE, terminal, enclosure, or isolation to meet it.",
             "Final rating is 8 A / about 1.840 W (user amendment), limited to electronics/SMPS loads; thermal/lifecycle tests are still required.",
             "Batch 10-unit pricing cannot be quoted without actual supplier quotes.",

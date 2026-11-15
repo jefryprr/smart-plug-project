@@ -18,7 +18,7 @@
 | Exit code | 0 |
 | Binary | `firmware/build/smartplug.bin` (mirror: `D:\AI INSTALLS\artifacts\smartplug.bin`) |
 | Size | 192,496 bytes (0x2EFF0) |
-| SHA-256 | `2F646505F0C08C1CB9BE28E299BFCAB770BFE8D5BB385C0A67A710D34605E43C` |
+| SHA-256 | `498356348097F45F7853747C08037B05801D34BACAC65392BA466D857EFBCF0E` |
 | Log | `reports/logs/firmware-idf-build.log` |
 | Partition free | 0x5D1010 of 0x600000 bytes (97%) |
 | Bootloader free | 0x2D30 of 0x8000 bytes (35%) |

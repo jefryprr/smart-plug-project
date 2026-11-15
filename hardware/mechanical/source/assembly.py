@@ -5,17 +5,16 @@ from pathlib import Path
 
 import cadquery as cq
 
-from enclosure import build_assembly, export_preset
+from enclosure import build_assembly
 
 ROOT = Path(__file__).resolve().parents[3]
 EXPORT = ROOT / "hardware" / "mechanical" / "export"
 
 
 def main() -> None:
-    for preset in ("provisional", "recommended"):
-        assy = build_assembly(preset)
-        assy.save(str(EXPORT / f"assembly_{preset}.step"))
-        print(f"assembly_{preset}.step written")
+    assy = build_assembly()
+    assy.save(str(EXPORT / "assembly_recommended.step"))
+    print("assembly_recommended.step written")
 
 
 if __name__ == "__main__":

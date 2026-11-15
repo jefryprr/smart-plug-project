@@ -33,7 +33,7 @@ def main():
     box(d, 0.0, 5.2, 3.2, 1.2, "MAINS INPUT", "L / N / PE, fuse, MOV, TCO", "#ffe8e8")
     box(d, 0.0, 2.8, 3.2, 1.4, "HLK-5M05", "90-264 VAC -> 5 V 1 A\ninternal isolation claim", "#fff4d6")
     box(d, 0.0, 0.2, 3.2, 1.6, "PZEM-004T V4", "100 A CT, internal optocoupler\nTTL side = SELV", "#fff4d6")
-    box(d, 4.2, 2.5, 3.6, 2.0, "ESP32-S3 CARRIER", "DevKitC-1 two 1x22 sockets, 22.86 mm rows\nSELV only", "#e8f4ff")
+    box(d, 4.2, 2.5, 3.6, 2.0, "ESP32-S3 CARRIER", "DevKitC-1 two 1x22 sockets, 22.86 mm rows\n5 V PTC + TVS, 3 fiducials, SELV only", "#e8f4ff")
     box(d, 9.0, 5.0, 3.0, 1.4, "RELAY MODULE", "2x SPDT, active-LOW\nNOT mechanically linked", "#ffe8e8")
     box(d, 9.0, 3.0, 3.0, 1.2, "SOCKET", "Type F 16 A, PE continuous", "#ffe8e8")
     box(d, 4.2, 0.2, 1.7, 1.2, "OLED", "SSD1306", "#e8ffe8")
@@ -66,6 +66,7 @@ def main():
     d.add(elm.Label("PZEM TX 5 V -> 10k/20k divider -> GPIO18", fontsize=7).at((5.8, 1.55)))
     d.add(elm.Label("GPIO17 -> 74HCT125 (5 V) -> PZEM RX", fontsize=7).at((5.8, 1.25)))
     d.add(elm.Label("No external ADuM/B0505S: PZEM internal optocouplers are the barrier", fontsize=7).at((5.8, 1.95)))
+    d.add(elm.Label("5 V input: 1.1 A PTC + SMBJ5.0A TVS", fontsize=7).at((5.8, 2.25)))
 
     # Isolation boundary note
     d.add(elm.Label("Isolation barrier: PZEM / HLK internal; verify creepage + hipot", fontsize=7).at((6.0, 6.7)))
