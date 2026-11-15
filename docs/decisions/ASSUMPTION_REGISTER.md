@@ -14,7 +14,7 @@
 | A-008 | PZEM-004T V4 split CT is representative | Q09=D | Metering/isolation | Hardware engineer | Batch datasheet + measurement | `OPEN` |
 | A-009 | ADuM1201 + B0505S barrier is sufficient for PZEM UART | Engineering judgment | Isolation safety | Engineer | Isolation review + hipot test | `OPEN` |
 | A-010 | Common 2-channel 5 V optocoupler relay module (10 A class claim) is adequate for 8 A prototype, with active-low inputs and two independent SPST channels | User amendment 2026-11-15 | Channel non-linkage, contact rating, isolation, lifecycle | Engineer | Exact module datasheet + thermal/lifecycle test | `OPEN` |
-| A-011 | Mean Well IRM-05-5 5 W is enough for peak load | Power budget | Brownout/thermal | Hardware engineer | Measured peak current | `PROVISIONAL` |
+| A-011 | Hi-Link HLK-5M05 5 V/1 A is enough for the estimated peak (~0.58 A), but efficiency ~70% and isolation/certification are unverified | User selection + power budget | Brownout/thermal/isolation | Hardware engineer | Measured peak/ripple/temperature/hipot | `PROVISIONAL` |
 | A-012 | 100 A CT is not an output current rating | PRD warning | Safety/rating | Engineer | Rating chain | `CONFIRMED` |
 | A-013 | PE can be routed directly without relay/fuse | Safety principle | Shock safety | Engineer | PE continuity test | `PROVISIONAL` |
 | A-014 | 3D printed enclosure is prototype-only | PRD/material review | Fire/mechanical safety | Mechanical engineer | Material/enclosure review | `CONFIRMED` |

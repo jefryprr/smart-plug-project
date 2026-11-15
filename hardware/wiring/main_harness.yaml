@@ -55,12 +55,13 @@ connectors:
     - N
     - PE
   PS1:
-    type: Mean Well IRM-05-5 (5 V 1 A)
+    type: Hi-Link HLK-5M05 (5 V 1 A, 5 W, 4-pin)
     pinlabels:
     - AC_L
     - AC_N
     - +5V
     - 0V
+    notes: 'Pin 1/2 = AC, pin 3 = -Vo, pin 4 = +Vo. Keep AC pins and SELV output separated; fuse/MOV upstream. Datasheet isolation 2500 VAC is a claim; batch/hipot unverified.'
   U2:
     type: PZEM-004T V4 100 A split CT (DOCUMENTATION_DEFICIENT)
     pinlabels:

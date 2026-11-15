@@ -80,9 +80,9 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 - `bom/BOM_TOOLS_AND_TEST.csv` — 6 alat, belum dibeli.
 - `bom/BOM_CONSUMABLES.csv` — 5 item.
 - `bom/COMPONENT_APPROVALS.yaml` — tidak ada komponen `approved_for_fabrication`.
-- `research/candidates.csv` — 44 kandidat.
+- `research/candidates.csv` — 45 kandidat.
 - `research/COMPONENT_RESEARCH.md` — narasi dan skor bukti.
-- `research/datasheets/MANIFEST.md` — 11 PDF tersimpan + hash, plus arsip PZEM V1.0 (docx/txt); sisanya link-only/licensed.
+- `research/datasheets/MANIFEST.md` — 12 PDF tersimpan + hash (termasuk HLK-5M05), plus arsip PZEM V1.0 (docx/txt); sisanya link-only/licensed.
 
 **Status safety-critical:**
 - Socket/plug: `DOCUMENTATION_DEFICIENT`.
@@ -102,7 +102,7 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 | Inline box 220×120×70 | Lebih besar dari wall plug | Ruang side-by-side PZEM/relay/PSU + bracket; 150×100 dan 180×120 gagal clearance |
 | Dua channel | Module off-board, dua SPDT independen, 10 A claim | Plug Type F reversibel; PE tidak diputus; bukan DPST linked |
 | PZEM V4 + barrier UART | BOM/space tambahan | Modul belum terbukti isolated |
-| IRM-05-5 | Harga lebih tinggi | Dokumen resmi, 5 V 1 A |
+| HLK-5M05 | Kecil/murah, 38×23×18 mm | 5 V 1 A, 5 W; efficiency ~70%, isolation/cert batch unverified |
 | ESP-IDF | Setup lebih berat | OTA rollback/security/provisioning |
 | SQLite dev + Postgres target | Dua adapter | Tes lokal tanpa Docker; produksi belum |
 | Synthetic demo | Bukan data nyata | Tidak ada hardware; label wajib |
@@ -118,7 +118,7 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 | Output kontinu provisional | 8 A | `UNVERIFIED` |
 | Relay module | 2-channel optocoupler, off-board, 10 A class claim | `DOCUMENTATION_DEFICIENT` |
 | Fuse | 10 A time-lag | `PENDING` |
-| PSU | 5 V 1 A | `PENDING` |
+| PSU | Hi-Link HLK-5M05, 5 V 1 A / 5 W | `PENDING_APPROVAL`; thermal/cert test |
 | Socket/plug | Type F/E-F 16 A class | `DOCUMENTATION_DEFICIENT` |
 | PE | Kontinu, tidak diputus | `PROVISIONAL` |
 | Isolation | ADuM1201 + B0505S | `PENDING` |
@@ -132,7 +132,7 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 ```
 Mains: Plug → Fuse → MOV → Thermal cutoff → 2-channel relay module (L/N) → Socket
 PE:    Plug PE ──────────────────────────────→ Socket PE (no relay/fuse)
-PSU:   Mains → IRM-05-5 → 5 V SELV
+PSU:   Mains → HLK-5M05 → 5 V SELV
 Meter: PZEM V4 + CT around L → ADuM1201/B0505S barrier → ESP32 UART
 SELV:  ESP32 carrier → OLED/button/RGB/TMP102/RTC; relay driver
 ```
@@ -223,7 +223,7 @@ No mains assembly/energization was performed.
 - Host tests: `firmware/test/host/test_core.c` — 74 checks.
 - ESP-IDF minimal app: `firmware/main/app_main.c` — relay OFF at boot, button debounce, core state machine, ON blocked while sensors invalid.
 - Partition/config: `firmware/partitions.csv`, `sdkconfig.defaults`.
-- ESP-IDF build: `PASS` (v6.1, target esp32s3, 192.464-byte `.bin`, SHA-256 `7F115A5D7A72CF3992E5846789140DF4F0FEC44B3A1025BA02E0FC018917AB21`); build only, no flash.
+- ESP-IDF build: `PASS` (v6.1, target esp32s3, 192.464-byte `.bin`, SHA-256 `96BDF60D09D621F2D55DE1824B76BEB806F62D69277FAC1431BD7490BF9ABFC8`); build only, no flash.
 - OLED/RGB/PZEM/Wi-Fi/MQTT/OTA components: `NOT_IMPLEMENTED`.
 - Build evidence: `reports/FIRMWARE_BUILD.md`, `reports/logs/firmware-idf-build.log`.
 
@@ -282,7 +282,7 @@ See `reports/TEST_MATRIX.csv` / `VALIDATION_SUMMARY.json`.
 
 | Category | Status | Evidence |
 |---|---|---|
-| 01 Riset komponen | `PARTIAL` | 44 candidates, 48 BOM rows, unpriced |
+| 01 Riset komponen | `PARTIAL` | 45 candidates, 48 BOM rows, unpriced |
 | 02 BOM | `PARTIAL` | CSV/MD/YAML/JSON; unpriced/unapproved |
 | 03 Datasheet | `PARTIAL` | 9+ PDFs hashed; PZEM/socket deficient |
 | 04 Arsitektur | `PASS` (digital) | Diagram PNG/SVG/PDF |

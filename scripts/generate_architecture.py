@@ -30,7 +30,7 @@ with dot.subgraph(name="cluster_mains") as mains:
 
 with dot.subgraph(name="cluster_barrier") as barrier:
     barrier.attr(label="ISOLATION BARRIER (UNVERIFIED)", style="rounded,dashed", color="#9a5b00", bgcolor="#fff4df", fontcolor="#9a5b00")
-    barrier.node("PS1", "PSU IRM-05-5\n5 V 1 A", fillcolor="#ffe8b8")
+    barrier.node("PS1", "PSU HLK-5M05\n5 V 1 A, 5 W", fillcolor="#ffe8b8")
     barrier.node("U6", "ADuM1201\nUART isolator", fillcolor="#ffe8b8")
     barrier.node("U7", "B0505S\nisolated 5 V", fillcolor="#ffe8b8")
 

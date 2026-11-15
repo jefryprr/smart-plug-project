@@ -18,7 +18,7 @@
 | 10 | Full command→ACK integration | aedes + bridge + simulator | PASS | `apps/api/test/integration.test.ts` |
 | 11 | Implement web | Next.js 16 | build PASS; 5 Playwright PASS; axe PASS | `apps/web`, screenshots |
 | 12 | Implement Android source | Expo 58 | typecheck PASS; Android bundle PASS | `apps/android` |
-| 13 | Research/BOM/candidates | Python generators | 48 BOM rows, 44 candidates, unpriced | `research/`, `bom/` |
+| 13 | Research/BOM/candidates | Python generators | 48 BOM rows, 45 candidates, unpriced | `research/`, `bom/` |
 | 14 | Safety documents | Markdown/CSV | 10 docs + risk register | `safety/` |
 | 15 | GPIO map | YAML + generator | Static crosscheck PASS; board UNVERIFIED | `hardware/interfaces/` |
 | 16 | Wiring harnesses | WireViz + Graphviz 16.1.1 | 6 harnesses SVG/PNG/PDF | `hardware/wiring/` |
@@ -36,7 +36,8 @@
 | 28 | Enclosure correction | AABB/stacking review; 150/180 rejected; 220×120×70 confirmed by user | Coarse PASS for 220×120×70; brackets/STL/renders updated | `hardware/mechanical/` |
 | 29 | ESP-IDF v6.1 install/build | EIM/IDF tools on C; portable IDF in `tools/esp-idf`; `scripts/build_firmware.ps1` | Target build PASS; 192,464-byte `.bin`; no flash | `reports/FIRMWARE_BUILD.md` |
 | 30 | Android SDK/APK | SDK + Gradle cache on `D:\AI INSTALLS`; prebuild + `assembleDebug` | Debug APK PASS; 46,852,340 bytes; v2 debug signature; not installed | `reports/ANDROID_BUILD.md` |
-| 31 | Final validation gate | `.venv\Scripts\python.exe scripts\validate_all.py --e2e` | **23 PASS / 11 BLOCKED / 0 FAIL** | `reports/TEST_MATRIX.csv`, `VALIDATION_SUMMARY.json` |
+| 31 | Final validation gate | `.venv\Scripts\python.exe scripts\validate_all.py --e2e` | 23 PASS / 11 BLOCKED / 0 FAIL (before PSU swap) | `reports/TEST_MATRIX.csv`, `VALIDATION_SUMMARY.json` |
+| 32 | PSU replacement | Research HLK-5M05 datasheet/specs; update BOM/wiring/CAD/safety/ADR | 5 V 1 A / 5 W, 38×23×18 mm; efficiency ~70%; `PENDING_APPROVAL` | `research/PSU_HLK_5M05.md`, `docs/decisions/ADR-013-PSU-HLK-5M05.md` |
 
 ## Commands that were not run (and why)
 

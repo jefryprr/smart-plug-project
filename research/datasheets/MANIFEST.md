@@ -20,6 +20,8 @@
 | `digikey_ts0010d_2ch_relay.pdf` | https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5773/TS0010D%20DATASHEET.pdf | 800.391 | `80D1A119D390BEBEABA3F923FFC589C23DBEC9993C074C68B16A8A5FB85F5372` | UNKNOWN | Modul relay 2 channel; pinout/level harus diverifikasi |
 | `pzem_004t_specification_archive.docx` | https://github.com/im-0/pzem-004t-original-docs | 503.825 | `C9D8BA228887196E922A259D3CB2645121F9ACEAFA5A36E85F2809C3A7C9AAC7` | UNKNOWN | Arsip spesifikasi **PZEM-004T V1.0**, bukan manual V4 |
 | `pzem_004t_specification_archive.txt` | Ekstraksi teks dari docx di atas | 8.306 | `B9B3D15177B9D4A742B2A9ADE978665FC8E94408D1068F18F6CB3372418438E3` | UNKNOWN | Teks bantu; encoding awal tidak sempurna |
+| `hlk-5m05_distributor.pdf` | https://5.imimg.com/data5/JI/JR/RP/SELLER-1833510/hlk-5m05-power-module.pdf | 402.045 | `A1E73EC3659C32744649CE44BACEE48E9AC9913FC237D044F574AFD85046FE37` | UNKNOWN | **Distributor copy** of Hi-Link HLK-5M05 datasheet; 3 pages; drawing 38×23×18 mm, 4 pins; not an official batch certificate |
+| `hlk-5m05_distributor.txt` | Ekstraksi teks dari PDF di atas | 3.286 | `E386C5BB8826F9910D899E369369C28CE2298613099726D309905EB57193641E` | UNKNOWN | Teks bantu; dimensi/pinout ada di gambar PDF |
 
 ## Link-only / belum tersimpan
 
@@ -42,5 +44,5 @@
 
 - Hash di atas dihitung dari file yang benar-benar diunduh pada tanggal tersebut.
 - PDF dapat direvisi pabrikan tanpa mengubah nama file; selalu catat tanggal akses dan revisi.
-- Untuk PZEM, socket, enclosure, dan thermal cutoff, **tidak ada dokumen pabrikan batch** yang cukup. Statusnya tetap `DOCUMENTATION_DEFICIENT`.
+- Untuk PZEM, socket, enclosure, thermal cutoff, dan HLK-5M05, **tidak ada dokumen pabrikan batch/sertifikat** yang cukup. Statusnya tetap `DOCUMENTATION_DEFICIENT`/`PENDING_APPROVAL`.
 - Jangan mengunduh/mereproduksi standar IEC berbayar tanpa lisensi.

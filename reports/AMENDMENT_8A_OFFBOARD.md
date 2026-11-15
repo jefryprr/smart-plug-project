@@ -73,6 +73,32 @@ block/placement files parse and pass their limited checks. See
 `reports/kicad/`, `hardware/kicad/README.md`, and
 `hardware/manufacturing/provisional/`.
 
+## 4A. PSU replacement — Hi-Link HLK-5M05
+
+The user replaced the Mean Well IRM-05-5 with the **Hi-Link HLK-5M05**.
+
+| Parameter | HLK-5M05 |
+|---|---|
+| Input | 90–264 VAC (rated 100–240) |
+| Output | 5 VDC / 1 A / 5 W |
+| Efficiency | ≥70% at 220 V full load |
+| No-load | <0.1 W |
+| Ripple | ≤70 mVp-p |
+| Isolation | 2500 VAC input–output (datasheet claim) |
+| Dimensions | **38 × 23 × 18 mm**, ~32 g, 4 pins |
+| Pinout | 1/2 = AC, 3 = −Vo, 4 = +Vo |
+| Operating temp | −20 to +60 °C |
+| Protection | OCP 150–200%, short-circuit auto-recovery |
+
+At 5 W output and 70% efficiency the module dissipates about **2.1 W**, higher
+than the IRM-05-5. The smaller case and 60 °C limit make the enclosure thermal
+test mandatory. The datasheet says “designed to meet” UL/CE, but the batch
+certificate, isolation/leakage, creepage, and counterfeit status are
+**unverified**. It is `PENDING_APPROVAL`, not a certified barrier.
+
+Full study: `research/PSU_HLK_5M05.md`; datasheet:
+`research/datasheets/hlk-5m05_distributor.pdf`.
+
 ## 5. ESP-IDF v6.1 target build
 
 | Item | Value |
@@ -84,7 +110,7 @@ block/placement files parse and pass their limited checks. See
 | Result | **PASS** (exit 0) |
 | Binary | `firmware/build/smartplug.bin` |
 | Size | 192,464 bytes (0x2EFD0) |
-| SHA-256 | `7F115A5D7A72CF3992E5846789140DF4F0FEC44B3A1025BA02E0FC018917AB21` |
+| SHA-256 | `96BDF60D09D621F2D55DE1824B76BEB806F62D69277FAC1431BD7490BF9ABFC8` |
 | Log | `reports/logs/firmware-idf-build.log` |
 | Report | `reports/FIRMWARE_BUILD.md` |
 

@@ -1,7 +1,7 @@
 item_id,type,url,status
 E-001,datasheet,https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html,UNVERIFIED
 E-002,datasheet,https://github.com/im-0/pzem-004t-original-docs,UNVERIFIED
-E-003,datasheet,https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF,UNVERIFIED
+E-003,datasheet,https://www.hlktech.net/index.php?id=1243,UNVERIFIED
 E-004,datasheet,https://www.ti.com/lit/ds/symlink/tmp102.pdf,UNVERIFIED
 E-005,datasheet,https://www.analog.com/media/en/technical-documentation/data-sheets/DS3231M.pdf,UNVERIFIED
 E-006,datasheet,https://www.analog.com/media/en/technical-documentation/data-sheets/ADuM1200_1201.pdf,UNVERIFIED

@@ -1,6 +1,6 @@
 project: esp32-s3-iot-smart-plug
 design_revision: REV_A_PROVISIONAL
-generated_at: '2026-11-15T13:36:04.412703+00:00'
+generated_at: '2026-11-15T14:13:59.371477+00:00'
 items:
 - item_id: E-001
   reference_designators: U1
@@ -61,9 +61,9 @@ items:
 - item_id: E-003
   reference_designators: U3
   category: Power
-  description: AC/DC 5 V 1 A isolated power module, 90-264 VAC input
-  manufacturer: Mean Well
-  manufacturer_part_number: IRM-05-5
+  description: AC/DC 5 V 1 A isolated power module, 5 W, 90-264 VAC input
+  manufacturer: Hi-Link
+  manufacturer_part_number: HLK-5M05
   module_revision: '-'
   qty_per_unit: 1
   unit: pcs
@@ -73,18 +73,22 @@ items:
   price_checked_at: ''
   seller: ''
   seller_url: ''
-  datasheet_url: https://www.meanwell.com/Upload/PDF/IRM-05/IRM-05-SPEC.PDF
+  datasheet_url: https://www.hlktech.net/index.php?id=1243
   datasheet_revision: UNKNOWN
   approved_status: PENDING_APPROVAL
-  alternative_mpn: Recom RAC01-05SC; Hi-Link HLK-PM01 (documentation deficient)
+  alternative_mpn: Mean Well IRM-05-5 (better documentation/certification, larger);
+    Recom RAC01-05SC (too low current)
   footprint_id: OFF_BOARD_MODULE
-  mechanical_model: irm05_approx
+  mechanical_model: hlk_5m05_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Isolation withstand, leakage, no-load, thermal derating, and creepage must
-    be reviewed in the final assembly. Fuse and MOV belong upstream.
-  source_evidence: Mean Well IRM-05 series datasheet; exact revision to be recorded
-    at purchase.
+  notes: Selected by user. 38x23x18 mm, 4 pins (AC/AC/-Vo/+Vo), 5 V 1 A, 5 W. Datasheet
+    claims 2500 VAC input-output isolation and UL/CE design compliance, but the exact
+    batch certificate/isolation/creepage are unverified. Efficiency is only ~70% at
+    220 V full load, so ~2.1 W heat; thermal test is mandatory. Fuse and MOV belong
+    upstream. Do not touch AC pins; keep mains creepage and barrier.
+  source_evidence: Distributor copy of Hi-Link HLK-5M05 datasheet (3 pages) with dimension
+    drawing; official product page; exact batch/certification must be verified.
 - item_id: E-004
   reference_designators: U4
   category: Sensing

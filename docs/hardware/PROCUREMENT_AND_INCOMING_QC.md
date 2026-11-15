@@ -20,7 +20,7 @@
 5. Verify connector pitch/pinout against the actual datasheet.
 6. For PZEM/CT: record CT ratio/marking, cable length, terminal labels; do not assume V3 docs.
 7. For the off-board relay module: verify two independent SPDT channels (not DPST), active-LOW inputs, JD-VCC jumper/pinout, 5 V coil, contact marking, and per-channel continuity.
-8. For PSU: verify model/revision, input/output marking, isolation label.
+8. For the HLK-5M05 PSU: verify 4-pin marking (AC/AC/−Vo/+Vo), 38×23×18 mm body, 5 V/1 A/5 W label, input range, batch/certificate, ripple/startup, no-load, isolation/leakage, and thermal rise. Treat unmarked/counterfeit modules as rejected.
 9. For socket/plug: verify PE contacts, shutter, retention, material marking.
 10. For enclosure: verify material/UL94 marking, wall thickness, dimensions.
 

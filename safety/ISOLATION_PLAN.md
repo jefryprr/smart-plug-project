@@ -16,7 +16,7 @@ DOMAIN B — PZEM ISOLATED SIDE (provisional)
   Barrier: ADuM1201 (UART) + B0505S (power)
 
 DOMAIN C — SELV (5 V / 3.3 V)
-  IRM-05-5 output → carrier → ESP32-S3, OLED, button, RGB, TMP102, RTC
+  HLK-5M05 output → carrier → ESP32-S3, OLED, button, RGB, TMP102, RTC
   Relay coil driver (SELV side)
 
 DOMAIN D — SERVICE/USB
@@ -28,7 +28,7 @@ DOMAIN D — SERVICE/USB
 
 | Barrier | Komponen | Rating | Bukti | Status |
 |---|---|---|---|---|
-| PSU AC/DC | Mean Well IRM-05-5 | Isolation class UNKNOWN | Datasheet seri; exact revision belum | `PENDING` |
+| PSU AC/DC | Hi-Link HLK-5M05 | Datasheet claims 2500 VAC input-output; batch/hipot unverified | Distributor datasheet; exact batch/certificate required | `DOCUMENTATION_DEFICIENT` |
 | UART | ADuM1201ARZ | 2.5 kVrms class (component) | Datasheet link-only; assembly creepage belum | `PENDING` |
 | PZEM power | B0505S-1WR3 | 1 W isolated | Datasheet | `PENDING` |
 | Relay module coil/contact | 2-channel optocoupler module | Optocoupler input/coil; mains contact barrier UNVERIFIED | Module datasheet/batch; creepage review | `DOCUMENTATION_DEFICIENT` |

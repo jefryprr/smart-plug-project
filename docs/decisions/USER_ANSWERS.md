@@ -55,6 +55,7 @@ Pengguna memberi instruksi baru dan saya catat sebagai amendment, bukan jawaban 
 | Relay | DPST-NO PCB relay | **Modul optocoupler 2 channel off-board** | Dua channel L/N, active-low, bukan DPST mekanis; butuh bracket + driver MOSFET |
 | PZEM | Off-board (sudah) | **Eksplisit off-board + bracket** | Tidak masuk PCB; mounting di enclosure |
 | Enclosure | Target 150×100×70 | **220×120×70 CONFIRMED** | 150/180 gagal clearance; pengguna menyetujui Q06=C pada 2026-11-15 |
+| PSU | Mean Well IRM-05-5 | **Hi-Link HLK-5M05** | 5 V 1 A / 5 W, 38×23×18 mm; efficiency ~70%, isolation/cert batch unverified |
 | KiCad | Block/placement, CLI absent | **KiCad CLI 10.0.8 terpasang** | ERC/DRC/Gerber provisional dijalankan |
 | Toolchain | Belum ada | **Sedang dipasang** | ESP-IDF/Android mengikuti batas disk |
 

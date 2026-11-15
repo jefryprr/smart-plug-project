@@ -123,6 +123,7 @@ deliverables/          manifest + final report
 ## Key documents
 
 - Off-board modules: `research/OFFBOARD_MODULES.md`
+- PSU study: `research/PSU_HLK_5M05.md`
 - Decisions: `docs/decisions/USER_ANSWERS.md`, `ASSUMPTION_REGISTER.md`, `ADR-*.md`
 - Safety: `safety/ELECTRICAL_RATING_CHAIN.md`, `ISOLATION_PLAN.md`, `CLEARANCE_CREEPAGE_WORKSHEET.md`, `RESIDUAL_RISK_REGISTER.csv`
 - Phase 1: `reports/PHASE_1_ENGINEERING_REPORT.md`
