@@ -2,8 +2,8 @@
   "project": "esp32-s3-iot-smart-plug",
   "prd_version": "1.0",
   "design_revision": "REV_A_PROVISIONAL",
-  "generated_at": "2026-11-15T06:45:48.885Z",
-  "git_commit": "8241f437d6bd23a1b1d8a516f3e95cd27cfda784",
+  "generated_at": "2026-11-15T06:47:34.733Z",
+  "git_commit": "c5fd35ce1509efe8f97e2024c528dc671d91eb25",
   "manifest_note": "git_commit is the source commit at generation time; this manifest file is committed immediately after.",
   "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",
   "hardware_validation_status": "HARDWARE_VALIDATION_REQUIRED",
@@ -14,7 +14,7 @@
   "ready_for_use": false,
   "summary": {
     "categories": 26,
-    "artifacts": 127,
+    "artifacts": 129,
     "missing_artifacts": 0,
     "test_counts": {
       "PASS": 19,
@@ -182,7 +182,7 @@
       "category": 22,
       "name": "Automated testing",
       "status": "PARTIAL",
-      "artifacts": 9,
+      "artifacts": 10,
       "release_classification": "DIGITAL_ONLY"
     },
     {
@@ -203,7 +203,7 @@
       "category": 25,
       "name": "Engineer documentation",
       "status": "PASS_DIGITAL",
-      "artifacts": 7,
+      "artifacts": 8,
       "release_classification": "DIGITAL_ONLY"
     },
     {
@@ -1725,6 +1725,20 @@
       "release_classification": "DIGITAL_ONLY"
     },
     {
+      "category": 22,
+      "path": "reports/CHANGELOG.md",
+      "sha256": "cbb5c202ada359da0dba41075a9ca3442c818837f3ff0d114078b42b4a345600",
+      "size_bytes": 3106,
+      "status": "PARTIAL",
+      "tests": [
+        "ALL"
+      ],
+      "evidence": [
+        "category-22"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
       "category": 23,
       "path": "validation/CONNECTIVITY_DIFF.json",
       "sha256": "0eeda3899eef8bccd1bc529d61802e3ca4e9177ba9e27f94d7621c97a3e9341f",
@@ -1971,6 +1985,20 @@
       "path": "docs/assembly/ASSEMBLY_PLAN.md",
       "sha256": "6b1bda04950671ac09fa2c2f0e77d5c0eb4bcdf82f0101eed5a960bbbdeea796",
       "size_bytes": 1433,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/decisions/ADR-INDEX.md",
+      "sha256": "5eaddfbdc285ee15ffd4f7ada468f60f89f391243398c745a7fc83cffb3433c1",
+      "size_bytes": 1190,
       "status": "PASS_DIGITAL",
       "tests": [
         "DOCUMENT_REVIEW"
