@@ -142,6 +142,7 @@ const manifest = {
   design_revision: "REV_A_PROVISIONAL",
   generated_at: new Date().toISOString(),
   git_commit: gitCommit(),
+  manifest_note: "git_commit is the source commit at generation time; this manifest file is committed immediately after.",
   device_hardware_status: "ENGINEERING_REVIEW_REQUIRED",
   hardware_validation_status: "HARDWARE_VALIDATION_REQUIRED",
   digital_status: "PARTIAL_DIGITAL",
