@@ -9,7 +9,7 @@
 | A-003 | Loads are mixed electronics/SMPS, not motors | Q04=B | Relay inrush/lifecycle | Engineer | Load survey + inrush test | `PROVISIONAL` |
 | A-004 | Type F/E-F socket is appropriate for Indonesia | Q02=D lean B | Connector/PE/regulatory | Engineer/regulatory | Product selection + standard review | `OPEN` |
 | A-005 | Two-pole disconnection is safer for reversible plug | Q05=A | Relay size/rating | Engineer | Design review | `PROVISIONAL` |
-| A-006 | **220×120×70 mm** is the working enclosure; 150×100 fails fit and 180×120 fails real clearance with off-board PZEM + 2-channel relay | Q06=B + amendment | Enclosure/thermal/barrier | Mechanical engineer | User confirmation + measured fit + thermal test | `PROVISIONAL` |
+| A-006 | **220×120×70 mm** is the confirmed enclosure; 150×100 fails fit and 180×120 fails real clearance with off-board PZEM + 2-channel relay | Q06=C confirmed 2026-11-15 | Enclosure/thermal/barrier | Mechanical engineer | Measured fit + tolerance stack + thermal test | `CONFIRMED_DECISION`; physical fit `UNVERIFIED` |
 | A-007 | ESP32-S3-DevKitC-1 N16R8 official board is used | Q08=B | GPIO/RGB/strapping/space | Hardware engineer | Photo/revision check | `OPEN` |
 | A-008 | PZEM-004T V4 split CT is representative | Q09=D | Metering/isolation | Hardware engineer | Batch datasheet + measurement | `OPEN` |
 | A-009 | ADuM1201 + B0505S barrier is sufficient for PZEM UART | Engineering judgment | Isolation safety | Engineer | Isolation review + hipot test | `OPEN` |

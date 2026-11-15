@@ -2,8 +2,8 @@
   "project": "esp32-s3-iot-smart-plug",
   "prd_version": "1.0",
   "design_revision": "REV_A_PROVISIONAL",
-  "generated_at": "2026-11-15T13:21:55.846Z",
-  "git_commit": "f0f00b719f7a8b679e80cb2d913dc2f878411047",
+  "generated_at": "2026-11-15T13:37:12.529Z",
+  "git_commit": "e05e37f588c32525a3a7cfb26d00309c27f5e5b3",
   "manifest_note": "git_commit is the source commit at generation time; this manifest file is committed immediately after.",
   "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",
   "hardware_validation_status": "HARDWARE_VALIDATION_REQUIRED",
@@ -218,8 +218,8 @@
     {
       "category": 1,
       "path": "research/COMPONENT_RESEARCH.md",
-      "sha256": "329122835840d3c32c418613f5c091b342a37bbebaa99e7e614c5c1749c6a004",
-      "size_bytes": 12697,
+      "sha256": "f5c57fde955d13e05618c139979d5e90902886e33174ae9d5c4471ab646d4db4",
+      "size_bytes": 12709,
       "status": "PARTIAL",
       "tests": [
         "T-HW-001"
@@ -232,8 +232,8 @@
     {
       "category": 1,
       "path": "research/OFFBOARD_MODULES.md",
-      "sha256": "2785c0745353abe62734d004fafa1cd7738f484e1a56cc7e507add8929a5643e",
-      "size_bytes": 8422,
+      "sha256": "67fc517264bbd5b8a1a75b1c41066537b2702dbac289d8e4c95006a7cdbb5f0c",
+      "size_bytes": 8429,
       "status": "PARTIAL",
       "tests": [
         "T-HW-001"
@@ -246,8 +246,8 @@
     {
       "category": 1,
       "path": "research/FEASIBILITY_STUDY.md",
-      "sha256": "ec8e68420d66f6fb95fe9caa08154925b56de836f50310e520ffaaf296c30c49",
-      "size_bytes": 9943,
+      "sha256": "cc6ecb88bd9ad1ad46e8ff5e4b9d00b055b4277cd75ea940b282a2c59b683f19",
+      "size_bytes": 9950,
       "status": "PARTIAL",
       "tests": [
         "T-HW-001"
@@ -260,7 +260,7 @@
     {
       "category": 1,
       "path": "research/candidates.csv",
-      "sha256": "f1990fc0aec7f150c18597a2e4463fab63f3aee7dad456f3b8ef5dc19da2378f",
+      "sha256": "0ad375eef019ba9ccda5bf2ff8a001b5a173373b7fcf6329519c76619957cf95",
       "size_bytes": 10774,
       "status": "PARTIAL",
       "tests": [
@@ -274,8 +274,8 @@
     {
       "category": 1,
       "path": "bom/COMPONENT_APPROVALS.yaml",
-      "sha256": "fa3773f763292b3f638857fe48b832a77976d4e0f479170d8b1e10f72341be3d",
-      "size_bytes": 12774,
+      "sha256": "e870d7bb07ec1aa3317992a1bfee9403e7fbf2d286e68d3d2641043f630b2eb9",
+      "size_bytes": 12778,
       "status": "PARTIAL",
       "tests": [
         "T-HW-001"
@@ -302,8 +302,8 @@
     {
       "category": 2,
       "path": "bom/BOM_MASTER.csv",
-      "sha256": "3f1d8666c52c65608265843d9f31fde09d6cf43384cfa01a757f8d4b26428e7d",
-      "size_bytes": 19016,
+      "sha256": "9a5babdcabcb3670eb7000f3c29394b69858ad4a1859b2af76c5b7845ea8898f",
+      "size_bytes": 19012,
       "status": "PARTIAL",
       "tests": [
         "T-HW-001"
@@ -316,8 +316,8 @@
     {
       "category": 2,
       "path": "bom/BOM_MASTER.md",
-      "sha256": "655bf6b1d09d78eb98a22f26a98111d9e5046070529da8038e1fd23851b34fe5",
-      "size_bytes": 6610,
+      "sha256": "9d78b33e371f8a9fc6da6233a214dc8c0d4ef5abf081a386ac4c4585aee22c5c",
+      "size_bytes": 6608,
       "status": "PARTIAL",
       "tests": [
         "T-HW-001"
@@ -330,8 +330,8 @@
     {
       "category": 2,
       "path": "bom/BOM_MASTER.yaml",
-      "sha256": "f737d21037c920bb75c5f8068c1d0fd26aea3f1d6e07ab4e528dc5af38cfd44b",
-      "size_bytes": 40832,
+      "sha256": "11dbcee5413309fe455edddd218af3ca1cb583a79aaa6632ba13cf0beed65063",
+      "size_bytes": 40828,
       "status": "PARTIAL",
       "tests": [
         "T-HW-001"
@@ -344,7 +344,7 @@
     {
       "category": 2,
       "path": "bom/BOM_SUMMARY.json",
-      "sha256": "13d4a6f0f311856765510ba2f35bac3497c8fc0bc43ca94e83150e3106ad6b7f",
+      "sha256": "b546c50d62dd403e045e11679569666ab1ea22ee5544cc1445f733d0350e2078",
       "size_bytes": 988,
       "status": "PARTIAL",
       "tests": [
@@ -414,8 +414,8 @@
     {
       "category": 4,
       "path": "docs/hardware/SYSTEM_ARCHITECTURE.md",
-      "sha256": "810e2424aee3d0b65caee746bef417613f2ccd6030fdceb66605417fae704436",
-      "size_bytes": 2844,
+      "sha256": "08e762713f1355fd4ec71eb299229396848aa9a4bd320bc467d55ed67b92bd81",
+      "size_bytes": 2850,
       "status": "PASS_DIGITAL",
       "tests": [
         "DOCUMENT_REVIEW"
@@ -1021,8 +1021,8 @@
     {
       "category": 11,
       "path": "hardware/mechanical/parameters.yaml",
-      "sha256": "b432bc6e576c7422f6ee256ec936ef9388f36e2eed02b51589c125e35d2323f2",
-      "size_bytes": 3103,
+      "sha256": "ba63a10ce1082182c69081af782055ddbec38cb51526f479578f0d6399cefc7e",
+      "size_bytes": 3134,
       "status": "PARTIAL",
       "tests": [
         "T-HW-009A"
@@ -1175,7 +1175,7 @@
     {
       "category": 12,
       "path": "hardware/mechanical/drawings/assembly.pdf",
-      "sha256": "94e553aa78256110c364b71cb3437e15cbbe014a4beee1c8f9c6245da450b1a3",
+      "sha256": "855b375dfa36a7c138a7a6e5f8cf2df1969c04756eac998da3942376bf33d3b9",
       "size_bytes": 223131,
       "status": "PARTIAL",
       "tests": [
@@ -1189,8 +1189,8 @@
     {
       "category": 12,
       "path": "hardware/mechanical/drawings/dimensions.svg",
-      "sha256": "1b4cc03f2a6ca12572859b4a794841574c18b607be2a52bb7cf1cdb3d0c810fa",
-      "size_bytes": 35302,
+      "sha256": "7f0c95ce8510accc11b140b2ea98726c071974c65b96290f3d17d869c3bf9444",
+      "size_bytes": 34429,
       "status": "PARTIAL",
       "tests": [
         "T-HW-009B"
@@ -1203,7 +1203,7 @@
     {
       "category": 12,
       "path": "hardware/mechanical/drawings/mounting_plan.svg",
-      "sha256": "fbe880c9c67a2ae0051e489ff471a9132433ef6d07c1363fab670e92143d3738",
+      "sha256": "c77bd9e25c6ebc225c779990130230a9c0276e473dea2c1f9dd3d84e70c50eeb",
       "size_bytes": 35162,
       "status": "PARTIAL",
       "tests": [
@@ -1217,8 +1217,8 @@
     {
       "category": 12,
       "path": "hardware/mechanical/FIT_ANALYSIS.md",
-      "sha256": "49be64a28c6d422bbc634f7ccce09ada68a75d4d93b376fce1c34d690e5a70e9",
-      "size_bytes": 1106,
+      "sha256": "349ce4b615b55f95589ebc2f2d7059301194131fc9933526859795a075d9c7b0",
+      "size_bytes": 1112,
       "status": "PARTIAL",
       "tests": [
         "T-HW-009B"
@@ -1983,8 +1983,8 @@
     {
       "category": 22,
       "path": "reports/PHASE_1_ENGINEERING_REPORT.md",
-      "sha256": "e6d72b5aa92680e20a1010e02d819517c4bd827d4b33d173d0df9410195d7809",
-      "size_bytes": 13832,
+      "sha256": "1652cab490e9377e398d81dbfed33ef9052403494811e5d97618f548ea01a705",
+      "size_bytes": 13851,
       "status": "PARTIAL",
       "tests": [
         "ALL"
@@ -2011,8 +2011,8 @@
     {
       "category": 22,
       "path": "reports/AGENT_ACTION_LOG.md",
-      "sha256": "7a157015adcdaa88deb6ad035c947594d72706eae50d7bab99d4cf9dc094befb",
-      "size_bytes": 4737,
+      "sha256": "0da552f57b53f752ff1dafd4b74fda9715b6311bea4257918c33c8ded25d72cc",
+      "size_bytes": 4752,
       "status": "PARTIAL",
       "tests": [
         "ALL"
@@ -2053,8 +2053,8 @@
     {
       "category": 22,
       "path": "reports/AMENDMENT_8A_OFFBOARD.md",
-      "sha256": "5df5edfbe13a98205971145d993318c5e6ace2aeee7bfda9e2cd5a5845e967db",
-      "size_bytes": 6629,
+      "sha256": "819ca2fca25c3b5291ffc01e55483cb32b323199aa12ee0e806bba7dbb0a3d53",
+      "size_bytes": 6628,
       "status": "PARTIAL",
       "tests": [
         "ALL"
@@ -2407,8 +2407,8 @@
     {
       "category": 26,
       "path": "deliverables/FINAL_ENGINEERING_REPORT.md",
-      "sha256": "e02dbde977bbc50caa3421af2f8c69aca22aa013e36537dc050dd66ed011d247",
-      "size_bytes": 25098,
+      "sha256": "d5792ca640f2662348184c95caf85bba87e2f37f21719d5c2b06b6e0090a1f9d",
+      "size_bytes": 25103,
       "status": "PARTIAL",
       "tests": [
         "DOCUMENT_REVIEW"
@@ -2435,8 +2435,8 @@
     {
       "category": 26,
       "path": "README.md",
-      "sha256": "7c4dec8cc485327de8c23038d81406194d18e7e31802764f63b7c9c666e2d964",
-      "size_bytes": 7352,
+      "sha256": "55942d989154fe854afb959df2811b90408b1845a93b3db6e652bdce3e5593ab",
+      "size_bytes": 7343,
       "status": "PARTIAL",
       "tests": [
         "DOCUMENT_REVIEW"
@@ -2922,7 +2922,7 @@
     "project": "esp32-s3-iot-smart-plug",
     "design_revision": "REV_A_PROVISIONAL",
     "currency": "IDR",
-    "generated_at": "2026-11-15T12:52:10.678571+00:00",
+    "generated_at": "2026-11-15T13:36:04.412703+00:00",
     "pricing_status": "UNPRICED",
     "priced_lines": 0,
     "unpriced_lines": 48,

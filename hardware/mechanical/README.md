@@ -32,8 +32,8 @@
 - Fit analysis is a coarse AABB check; no tolerance stack, cable bend, thermal expansion, or assembly tool access is modeled.
 - The **150×100×70** target **FAILS** the coarse fit with off-board PZEM + 2-channel relay module (relay/fuse/terminal clashes). It is kept for comparison only.
 - The intermediate **180×120×70** candidate is **rejected**: the PZEM, relay, and socket only appeared to fit by stacking with a 0.5 mm vertical gap, ignoring brackets and wiring. It is not a valid working target.
-- The **recommended 220×120×70** preset **PASSES** the coarse fit with side-by-side PZEM/relay placement. It is the working mechanical target pending user confirmation (Q06=C).
-- `render/` and `drawings/` depict the recommended 220×120×70 enclosure. The 150×100×70 STEP/STL is still exported for comparison.
+- The **220×120×70** preset **PASSES** the coarse fit with side-by-side PZEM/relay placement. It is **confirmed by the user (Q06=C, 2026-11-15)**; physical fit and tolerance stack are still unverified.
+- `render/` and `drawings/` depict the confirmed 220×120×70 enclosure. The 150×100×70 STEP/STL is still exported for comparison.
 - The enclosure is a mechanical concept. It is **not** a certified electrical enclosure and must not be used for mains until material, clearance, PE, and thermal review are complete.
 - `cutaway.png` is an approximate transparent render, not a true section view.
 

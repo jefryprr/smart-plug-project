@@ -130,7 +130,7 @@ rating, not a flammability certificate, and not a tolerance-stack validation.
 - [ ] Record batch markings and download the matching manuals.
 - [ ] Verify PZEM pin order, UART levels, baud, register map, and CT type.
 - [ ] Verify relay active-LOW inputs, JD-VCC behavior, and COM/NO/NC continuity.
-- [ ] Confirm 180 × 120 × 70 enclosure (Q06 change) and print both brackets.
+- [ ] Build/measure the confirmed 220 × 120 × 70 enclosure and print both brackets.
 - [ ] Test-fit with actual modules and cable bend radius.
 - [ ] Review creepage/clearance and the SELV/mains barrier.
 - [ ] Run thermal, load, inrush, and per-channel weld tests in a qualified lab.

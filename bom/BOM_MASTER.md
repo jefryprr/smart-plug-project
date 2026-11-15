@@ -1,6 +1,6 @@
 # BOM Master — REV_A_PROVISIONAL
 
-**Generated:** 2026-11-15T12:52:10.678571+00:00
+**Generated:** 2026-11-15T13:36:04.412703+00:00
 
 > **UNPRICED / NOT APPROVED.** Harga kosong karena belum ada harga terverifikasi. Jangan membeli atau menganggap BOM ini final. Status safety-critical: lihat `COMPONENT_APPROVALS.yaml`.
 
@@ -44,7 +44,7 @@
 | E-034 | X1 | Connectors | Type F (Schuko) panel socket, 16 A / 250 V, 2P+E | SOCKET-TYPE-F-16A-TBD | 1 pcs | DOCUMENTATION_DEFICIENT |
 | E-035 | P1 | Connectors | Type F (Schuko) cord plug, 16 A / 250 V, 3-core | PLUG-TYPE-F-16A-TBD | 1 pcs | DOCUMENTATION_DEFICIENT |
 | E-036 | CG1 | Mechanical | Cable gland, M16, IP68, PA66, UL94 V-0 | GLAND-M16-TBD | 1 pcs | PROVISIONAL |
-| E-037 | ENC1 | Mechanical | Enclosure, ABS/PC, 220 x 120 x 70 mm recommended, flame-retardant grade | ENCLOSURE-220X120X70-TBD | 1 pcs | BLOCKED |
+| E-037 | ENC1 | Mechanical | Enclosure, ABS/PC, 220 x 120 x 70 mm confirmed, flame-retardant grade | ENCLOSURE-220X120X70-TBD | 1 pcs | BLOCKED |
 | E-038 | PE1 | Mechanical | PE bonding hardware: screw, lock washer, nut, dedicated stud | PE-HARDWARE-TBD | 1 pcs | BLOCKED |
 | E-039 | W1 | Cable | Mains cord, H05VV-F 3x1.5 mm2, 0.5 m provisional, brown/blue/green-yellow | H05VV-F-3G1.5 | 0.5 m | PROVISIONAL |
 | E-040 | W2 | Cable | Low-voltage hookup wire assortment, 0.25 mm2, 300 V | HOOKUP-0.25MM2 | 3 m | PROVISIONAL |

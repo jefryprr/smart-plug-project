@@ -1,6 +1,6 @@
 project: esp32-s3-iot-smart-plug
 design_revision: REV_A_PROVISIONAL
-generated_at: '2026-11-15T12:52:10.678571+00:00'
+generated_at: '2026-11-15T13:36:04.412703+00:00'
 items:
 - item_id: E-001
   reference_designators: U1
@@ -1005,7 +1005,7 @@ items:
 - item_id: E-037
   reference_designators: ENC1
   category: Mechanical
-  description: Enclosure, ABS/PC, 220 x 120 x 70 mm recommended, flame-retardant grade
+  description: Enclosure, ABS/PC, 220 x 120 x 70 mm confirmed, flame-retardant grade
   manufacturer: TBD
   manufacturer_part_number: ENCLOSURE-220X120X70-TBD
   module_revision: '-'
@@ -1022,13 +1022,13 @@ items:
   approved_status: BLOCKED
   alternative_mpn: Hammond 1555/1591 series; polycarbonate enclosure with UL94 V-0
   footprint_id: OFF_BOARD
-  mechanical_model: enclosure_220x120x70_recommended
+  mechanical_model: enclosure_220x120x70_confirmed
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Working target because 150x100 and 180x120 fail clearance review with off-board
-    PZEM + 2-channel relay. Q06 change to C remains pending user confirmation. 3D
-    printed enclosure is prototype-only and not certified for mains. Material flammability,
-    impact, thermal aging, and wall thickness must be reviewed.
+  notes: Confirmed 220x120x70 enclosure (Q06=C, 2026-11-15) because 150x100 and 180x120
+    fail clearance review with off-board PZEM + 2-channel relay. 3D printed enclosure
+    is prototype-only and not certified for mains. Physical fit, material flammability,
+    impact, thermal aging, and wall thickness must be validated.
   source_evidence: No approved enclosure. CAD is parametric/provisional.
 - item_id: E-038
   reference_designators: PE1

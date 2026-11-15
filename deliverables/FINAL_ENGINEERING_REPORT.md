@@ -13,7 +13,7 @@
 
 - User approved **8 A final** (~1.840 W at 230 V), limited to electronics/SMPS loads; not heaters/motors.
 - PZEM-004T V4 and a **common 2-channel 5 V optocoupler relay module** are **off-board**, with enclosure brackets. The module is two independent SPDT channels, **not** a mechanically linked DPST.
-- **150×100×70 FAILS** the coarse fit; **180×120×70 is rejected** because the PZEM/relay/socket would only stack with a 0.5 mm gap, ignoring brackets and wiring. **220×120×70 PASSES** side-by-side and is recommended pending user confirmation (Q06=C).
+- **150×100×70 FAILS** the coarse fit; **180×120×70 is rejected** because the PZEM/relay/socket would only stack with a 0.5 mm gap, ignoring brackets and wiring. **220×120×70 PASSES** side-by-side and is **CONFIRMED** by the user (Q06=C, 2026-11-15).
 - **KiCad 10.0.8 CLI installed**; ERC 0 on the block-level text-only schematic, DRC 0 on the placement-only PCB, provisional placement-only Gerber/drill exported. Component-level schematic/routing remains blocked.
 - **ESP-IDF v6.1 target build PASS** (esp32s3, 192,464-byte `.bin`, SHA-256 in `reports/FIRMWARE_BUILD.md`); no board was flashed. **Android debug APK PASS** (arm64-v8a, 46,852,340 bytes, v2 debug signature verified; not device-tested).
 
@@ -60,7 +60,7 @@ control, lab tests by an unqualified person.
 All 28 answers are in `docs/decisions/USER_ANSWERS.md/.yaml`.
 
 Key decisions: inline outlet (Q01=B), **8 A final (amendment; 1.840 W)**, mixed
-SMPS loads (Q04=B), review two-pole (Q05=A), **220×120×70 recommended because
+SMPS loads (Q04=B), review two-pole (Q05=A), **220×120×70 confirmed because
 150×100 fails fit and 180×120 fails real clearance**, official DevKitC-1 N16R8 (Q08=B), PZEM comparison and
 off-board (Q09=D), **common 2-channel optocoupler relay module off-board**
 (Q10 amendment), lab prototype (Q12=A), ESP-IDF (Q23=A), Expo (Q24=A), default
@@ -114,11 +114,11 @@ Details: `safety/ISOLATION_PLAN.md`, `safety/ELECTRICAL_RATING_CHAIN.md`,
 - `research/FEASIBILITY_STUDY.md`: 13 questions answered with `GO/REDESIGN/BLOCKED`.
 - 150×100×70 internal volume ~895 cm³; with off-board PZEM + 2ch relay module the coarse fit **FAILS**.
 - 180×120×70: **rejected**; it only fit by stacking PZEM/relay/socket with a 0.5 mm gap and ignoring brackets/wiring.
-- 220×120×70 recommended: side-by-side coarse fit **PASS**; dimensions still approximate.
+- 220×120×70 confirmed (Q06=C): side-by-side coarse fit **PASS**; dimensions still approximate.
 - Final continuous rating **8 A / ~1.840 W**, electronics/SMPS only.
 - BOM unpriced; target Rp500–750k cannot be confirmed. Safety parts may push to Q07=C.
 - Supply/documentation risk: PZEM, socket/plug, enclosure, thermal cutoff.
-- Larger 220×120×70 enclosure recommended after 150×100 and 180×120 clearance review failed.
+- 220×120×70 enclosure confirmed after 150×100 and 180×120 clearance review failed.
 
 ---
 
@@ -369,7 +369,7 @@ See `reports/TEST_MATRIX.csv`, `reports/FAILURES.md`, `reports/VALIDATION_SUMMAR
 ## 17. User feedback needed
 
 - Confirm **8 A/1.840 W final** (already used in the amended design).
-- Confirm **220×120×70** enclosure change (Q06=C) because 150×100 fails fit and 180×120 fails real clearance with off-board PZEM + relay module.
+- **220×120×70 is confirmed (Q06=C).** Build/measure the enclosure; 150×100 fails fit and 180×120 fails real clearance with off-board PZEM + relay module.
 - Approve socket/plug product family (Type F vs Type E/F combo vs local standard).
 - Approve PZEM V4 vs ADE7953 alternative if V4 documentation remains deficient.
 - Approve enclosure material/size change if measured fit/clearance fails.

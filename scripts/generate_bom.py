@@ -349,10 +349,10 @@ ROWS = [
         evidence="Generic part; exact datasheet pending."
     ),
     row(
-        "E-037", "ENC1", "Mechanical", "Enclosure, ABS/PC, 220 x 120 x 70 mm recommended, flame-retardant grade", "TBD", "ENCLOSURE-220X120X70-TBD",
+        "E-037", "ENC1", "Mechanical", "Enclosure, ABS/PC, 220 x 120 x 70 mm confirmed, flame-retardant grade", "TBD", "ENCLOSURE-220X120X70-TBD",
         status="BLOCKED", alt="Hammond 1555/1591 series; polycarbonate enclosure with UL94 V-0",
-        footprint="OFF_BOARD", mech="enclosure_220x120x70_recommended",
-        notes="Working target because 150x100 and 180x120 fail clearance review with off-board PZEM + 2-channel relay. Q06 change to C remains pending user confirmation. 3D printed enclosure is prototype-only and not certified for mains. Material flammability, impact, thermal aging, and wall thickness must be reviewed.",
+        footprint="OFF_BOARD", mech="enclosure_220x120x70_confirmed",
+        notes="Confirmed 220x120x70 enclosure (Q06=C, 2026-11-15) because 150x100 and 180x120 fail clearance review with off-board PZEM + 2-channel relay. 3D printed enclosure is prototype-only and not certified for mains. Physical fit, material flammability, impact, thermal aging, and wall thickness must be validated.",
         evidence="No approved enclosure. CAD is parametric/provisional."
     ),
     row(

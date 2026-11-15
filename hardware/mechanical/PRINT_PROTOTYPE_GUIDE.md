@@ -26,7 +26,7 @@
 
 ## 3. Assembly check (no power)
 
-1. Print both shells (recommended 220×120×70) and both module brackets.
+1. Print both shells (confirmed 220×120×70) and both module brackets.
 2. Install M3 heat-set inserts in the bottom bosses (temperature per insert datasheet).
 3. Test-fit the carrier PCB, DevKitC-1 envelope, OLED, button, socket mock, PZEM on its bracket, and 2-channel relay module on its bracket.
 4. Check the isolation barrier and cable pass-through.

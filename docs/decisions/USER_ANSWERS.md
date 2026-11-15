@@ -13,7 +13,7 @@
 | Q03 | **8 A final** (amendment pengguna, 2026-11-15; sebelumnya target 10 A) | CONFIRMED | 8 A × 230 V ≈ 1.840 W. Cukup untuk elektronik/SMPS rumah tangga; bukan pemanas/motor besar. Rating final tetap nilai terendah rantai + uji termal. |
 | Q04 | **B** — Campuran elektronik rumah tangga termasuk SMPS | CONFIRMED | Beban motor/induktif/pemanas tidak dijanjikan; perlu penilaian terpisah. |
 | Q05 | **A** — Tinjau pemutusan dua kutub | CONFIRMED | Plug Type F reversibel; PE tidak pernah diputus. |
-| Q06 | **B** — Target ≤150×100×70 mm; **220×120×70 direkomendasikan** | CONFIRMED (target), PENDING (perubahan ke C) | 150×100 gagal fit; 180×120 ditolak karena PZEM/relay/socket hanya bisa di-stack dengan gap tidak layak. 220×120 PASS; konfirmasi pengguna diperlukan. |
+| Q06 | **C** — Fleksibel; **220×120×70 CONFIRMED** (amandemen pengguna 2026-11-15) | CONFIRMED | 150×100 gagal fit; 180×120 ditolak karena PZEM/relay/socket hanya bisa di-stack dengan gap tidak layak. 220×120 PASS coarse; validasi fisik tetap wajib. |
 | Q07 | **B** — BOM Rp500.000–750.000 | CONFIRMED | Optimasi, bukan alasan menurunkan komponen keselamatan. |
 | Q08 | **B** — Beli ESP32-S3-DevKitC-1 resmi | CONFIRMED | Ketertelusuran board dan revisi; N16R8. |
 | Q09 | **D** — Bandingkan varian metering; **PZEM off-board** | CONFIRMED (arah), PROVISIONAL (modul) | PZEM-004T V4 split CT jadi kandidat, bukan final, sampai manual batch diperiksa. Modul berdiri sendiri di enclosure, tidak di PCB. |
@@ -54,6 +54,7 @@ Pengguna memberi instruksi baru dan saya catat sebagai amendment, bukan jawaban 
 | Rating | Target 10 A | **8 A final** | Module 2 channel 10 A class; label 1.840 W; batas beban eksplisit |
 | Relay | DPST-NO PCB relay | **Modul optocoupler 2 channel off-board** | Dua channel L/N, active-low, bukan DPST mekanis; butuh bracket + driver MOSFET |
 | PZEM | Off-board (sudah) | **Eksplisit off-board + bracket** | Tidak masuk PCB; mounting di enclosure |
+| Enclosure | Target 150×100×70 | **220×120×70 CONFIRMED** | 150/180 gagal clearance; pengguna menyetujui Q06=C pada 2026-11-15 |
 | KiCad | Block/placement, CLI absent | **KiCad CLI 10.0.8 terpasang** | ERC/DRC/Gerber provisional dijalankan |
 | Toolchain | Belum ada | **Sedang dipasang** | ESP-IDF/Android mengikuti batas disk |
 
@@ -61,7 +62,7 @@ Pengguna memberi instruksi baru dan saya catat sebagai amendment, bukan jawaban 
 
 Tidak ada konflik eksplisit antarjawaban. Dua ketegangan yang dicatat:
 
-- **Q01=B (inline) vs Q06=B (≤150×100×70)** — Dengan PZEM off-board + module relay 2 channel, 150×100 gagal dan 180×120 juga tidak memberi clearance layak. Rekomendasi: **220×120×70** (Q06=C) setelah konfirmasi pengguna; jangan memaksa clearance turun.
+- **Q01=B (inline) vs Q06=C (220×120×70)** — Dengan PZEM off-board + module relay 2 channel, 150×100 gagal dan 180×120 tidak memberi clearance layak. Pengguna mengonfirmasi **220×120×70**; jangan memaksa clearance turun.
 - **Q03=8 A vs Q07=B (Rp500–750 rb)** — Module 2 channel, PSU tersertifikasi, fuse holder, terminal, socket ber-PE, dan bracket dapat mendorong biaya di atas target. Keselamatan diprioritaskan; harga aktual akan dilaporkan.
 
 ## Persetujuan
