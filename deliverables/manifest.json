@@ -1,0 +1,2483 @@
+{
+  "project": "esp32-s3-iot-smart-plug",
+  "prd_version": "1.0",
+  "design_revision": "REV_A_PROVISIONAL",
+  "generated_at": "2026-11-15T06:20:56.129Z",
+  "git_commit": "aa66f052807e951f757c6dd499cf777c60552126",
+  "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",
+  "hardware_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+  "digital_status": "PARTIAL_DIGITAL",
+  "phase_1_status": "PARTIAL_PROVISIONAL",
+  "phase_2_status": "PARTIAL_DIGITAL",
+  "fabrication_release": "NOT_RELEASED",
+  "ready_for_use": false,
+  "summary": {
+    "categories": 26,
+    "artifacts": 123,
+    "missing_artifacts": 0,
+    "test_counts": {
+      "PASS": 19,
+      "BLOCKED": 15
+    },
+    "test_overall": "PASS",
+    "traceability": {
+      "PARTIAL": 25,
+      "PASS": 28,
+      "NOT_STARTED": 24,
+      "BLOCKED": 3
+    },
+    "bom_pricing_status": "UNPRICED",
+    "bom_rows": 46
+  },
+  "category_status": [
+    {
+      "category": 1,
+      "name": "Component research",
+      "status": "PARTIAL",
+      "artifacts": 3,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 2,
+      "name": "BOM",
+      "status": "PARTIAL",
+      "artifacts": 6,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 3,
+      "name": "Datasheets",
+      "status": "PARTIAL",
+      "artifacts": 2,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 4,
+      "name": "System architecture",
+      "status": "PASS_DIGITAL",
+      "artifacts": 4,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 5,
+      "name": "Schematic",
+      "status": "PARTIAL_BLOCKED",
+      "artifacts": 3,
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 6,
+      "name": "Wiring diagram",
+      "status": "PASS_DIGITAL",
+      "artifacts": 9,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 7,
+      "name": "GPIO mapping",
+      "status": "UNVERIFIED",
+      "artifacts": 4,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 8,
+      "name": "PCB native design",
+      "status": "PARTIAL_BLOCKED",
+      "artifacts": 2,
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 9,
+      "name": "PCB manufacturing",
+      "status": "BLOCKED",
+      "artifacts": 6,
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 10,
+      "name": "PCB visualization",
+      "status": "PARTIAL",
+      "artifacts": 3,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 11,
+      "name": "Enclosure 3D",
+      "status": "PARTIAL",
+      "artifacts": 8,
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 12,
+      "name": "Enclosure rendering",
+      "status": "PARTIAL",
+      "artifacts": 8,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 13,
+      "name": "Firmware ESP32-S3",
+      "status": "PARTIAL",
+      "artifacts": 6,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 14,
+      "name": "Firmware configuration",
+      "status": "PARTIAL",
+      "artifacts": 3,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 15,
+      "name": "Web Next.js",
+      "status": "PASS_DIGITAL",
+      "artifacts": 4,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 16,
+      "name": "Android",
+      "status": "PARTIAL_BLOCKED",
+      "artifacts": 3,
+      "release_classification": "NOT_PRODUCTION"
+    },
+    {
+      "category": 17,
+      "name": "Backend",
+      "status": "PASS_DIGITAL",
+      "artifacts": 3,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 18,
+      "name": "Database",
+      "status": "PARTIAL",
+      "artifacts": 4,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 19,
+      "name": "MQTT integration",
+      "status": "PASS_DIGITAL",
+      "artifacts": 7,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 20,
+      "name": "Notification system",
+      "status": "PARTIAL",
+      "artifacts": 2,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 21,
+      "name": "Deployment",
+      "status": "BLOCKED",
+      "artifacts": 3,
+      "release_classification": "CONFIG_ONLY"
+    },
+    {
+      "category": 22,
+      "name": "Automated testing",
+      "status": "PARTIAL",
+      "artifacts": 9,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 23,
+      "name": "Engineering validation",
+      "status": "PARTIAL",
+      "artifacts": 4,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 24,
+      "name": "Security audit",
+      "status": "PARTIAL",
+      "artifacts": 7,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "name": "Engineer documentation",
+      "status": "PASS_DIGITAL",
+      "artifacts": 7,
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "name": "Final handoff",
+      "status": "PARTIAL",
+      "artifacts": 3,
+      "release_classification": "DIGITAL_ONLY"
+    }
+  ],
+  "artifacts": [
+    {
+      "category": 1,
+      "path": "research/COMPONENT_RESEARCH.md",
+      "sha256": "027da3894092788aacfdad5bbe668038b9dfd9a889753a7cbd509cb5c3715100",
+      "size_bytes": 11067,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-001"
+      ],
+      "evidence": [
+        "category-1"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 1,
+      "path": "research/candidates.csv",
+      "sha256": "dc3cebaf695f2875587a86ea08cc97bd73f0980da806017e3c3832b732156d07",
+      "size_bytes": 9501,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-001"
+      ],
+      "evidence": [
+        "category-1"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 1,
+      "path": "bom/COMPONENT_APPROVALS.yaml",
+      "sha256": "24f57add3fe9b06fcfc6dc964825bf448ec603400e178cdd72fe3c8b6b1f2dbc",
+      "size_bytes": 12352,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-001"
+      ],
+      "evidence": [
+        "category-1"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 2,
+      "path": "bom/BOM_MASTER.csv",
+      "sha256": "0b9dbcc5bfc0a16e8912743d8b2fdd75365f5e5beb31c40cd9bb89616871ed56",
+      "size_bytes": 17963,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-001"
+      ],
+      "evidence": [
+        "category-2"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 2,
+      "path": "bom/BOM_MASTER.md",
+      "sha256": "5aadd1fa5fd1f5c1ec34b3528ca85860ea8220a6e86f5841b19a42a9f71fde29",
+      "size_bytes": 6357,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-001"
+      ],
+      "evidence": [
+        "category-2"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 2,
+      "path": "bom/BOM_MASTER.yaml",
+      "sha256": "874eb53629be8de619442f9518a8a65a4f3c4dbd58b6c01f16658541f11fd6d1",
+      "size_bytes": 39993,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-001"
+      ],
+      "evidence": [
+        "category-2"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 2,
+      "path": "bom/BOM_SUMMARY.json",
+      "sha256": "31a1b9d4f6900801e2c4d0205eded04a542c7bfecee8250de0b13512bf964f77",
+      "size_bytes": 989,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-001"
+      ],
+      "evidence": [
+        "category-2"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 2,
+      "path": "bom/BOM_TOOLS_AND_TEST.csv",
+      "sha256": "82a9dc8d9f75c72dfe3371ecc0d55fd141f3e13013f4e63a40a6b9a3d505e21a",
+      "size_bytes": 1683,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-001"
+      ],
+      "evidence": [
+        "category-2"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 2,
+      "path": "bom/BOM_CONSUMABLES.csv",
+      "sha256": "6adba36ac08311d688d8a006959644aed79473b40ae07b7809f1d75332637975",
+      "size_bytes": 1330,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-001"
+      ],
+      "evidence": [
+        "category-2"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 3,
+      "path": "research/datasheets/MANIFEST.md",
+      "sha256": "a014f5a0361941c80e7fc79fdc5abaa6716dbfdf10a6517dbf7db6c3d07fa40b",
+      "size_bytes": 4617,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-3"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 3,
+      "path": "research/UNKNOWN_SPECIFICATIONS.md",
+      "sha256": "06c3136c1bb8da644c280f5cf9374e1d332634ee2419e72a49cfaa1d37b57bcc",
+      "size_bytes": 4263,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-3"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 4,
+      "path": "docs/hardware/SYSTEM_ARCHITECTURE.md",
+      "sha256": "7980c5f6ba05974c1c195166385f8d33dc3f52cd00ff055e7823a177efc4febd",
+      "size_bytes": 2591,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-4"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 4,
+      "path": "docs/hardware/SYSTEM_ARCHITECTURE.png",
+      "sha256": "dcdfc582e1dc056c995977bab8743af1b338158f0d081ab7e135bbe060ec0d8c",
+      "size_bytes": 69702,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-4"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 4,
+      "path": "docs/hardware/SYSTEM_ARCHITECTURE.svg",
+      "sha256": "d1f5d000c2ee90a700c130c815746fc2462777afe105f0bd9d996a6c90538526",
+      "size_bytes": 25290,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-4"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 4,
+      "path": "docs/hardware/SYSTEM_ARCHITECTURE.pdf",
+      "sha256": "5e4273858fd2251b29b85e66960d0e2b24ea3efd595ba6fa4e97e7fa4b48da02",
+      "size_bytes": 37355,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-4"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 5,
+      "path": "hardware/kicad/smartplug.kicad_sch",
+      "sha256": "3937c78e42f7eb42d5c3bebebe8086961898ea5fac91a5aa3f31dc54d54ebaea",
+      "size_bytes": 5054,
+      "status": "PARTIAL_BLOCKED",
+      "tests": [
+        "T-HW-002A"
+      ],
+      "evidence": [
+        "category-5"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 5,
+      "path": "hardware/kicad/smartplug.kicad_pro",
+      "sha256": "3f7581a48d335f973b297a68a8dcea011d23bd5755735d45522f77bcaa8dbcc7",
+      "size_bytes": 2005,
+      "status": "PARTIAL_BLOCKED",
+      "tests": [
+        "T-HW-002A"
+      ],
+      "evidence": [
+        "category-5"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 5,
+      "path": "hardware/kicad/README.md",
+      "sha256": "dc147bec96e9612782fed5d1d9d1d01a15fe365b3dfdd4734a9db5abcd03ddf7",
+      "size_bytes": 1781,
+      "status": "PARTIAL_BLOCKED",
+      "tests": [
+        "T-HW-002A"
+      ],
+      "evidence": [
+        "category-5"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 6,
+      "path": "hardware/wiring/main_harness.yaml",
+      "sha256": "64bd89db36a64def85529a88c39319f2340ea3906ea7b4ef89616c14eba7e045",
+      "size_bytes": 7923,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-HW-003",
+        "T-HW-010A"
+      ],
+      "evidence": [
+        "category-6"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 6,
+      "path": "hardware/wiring/AC_HARNESS_ENGINEER_REVIEW.yaml",
+      "sha256": "e42d92ee62cae7b7066cac06594238870eab8e981b8bd8b67d33767e7cb2a641",
+      "size_bytes": 2052,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-HW-003",
+        "T-HW-010A"
+      ],
+      "evidence": [
+        "category-6"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 6,
+      "path": "hardware/wiring/display_harness.yaml",
+      "sha256": "7244ef59a2a1f16e09b516c70f5461bd1da29fa56e485cae37e4730de8ad9771",
+      "size_bytes": 1747,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-HW-003",
+        "T-HW-010A"
+      ],
+      "evidence": [
+        "category-6"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 6,
+      "path": "hardware/wiring/metering_harness.yaml",
+      "sha256": "2f2ac016404c7f7c6910b64378bda159c7123a9bd751fb60f3b85635d9117919",
+      "size_bytes": 1706,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-HW-003",
+        "T-HW-010A"
+      ],
+      "evidence": [
+        "category-6"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 6,
+      "path": "hardware/wiring/controller_harness.yaml",
+      "sha256": "ca6b813ca75ff5094834b0d565d0f54903d959076757cc70c7acd26f98258e86",
+      "size_bytes": 735,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-HW-003",
+        "T-HW-010A"
+      ],
+      "evidence": [
+        "category-6"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 6,
+      "path": "hardware/wiring/i2c_harness.yaml",
+      "sha256": "8a4449efe79932eccbbdf7a17b96a98ddb260c6c563af0ef4ce91d8442302355",
+      "size_bytes": 1889,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-HW-003",
+        "T-HW-010A"
+      ],
+      "evidence": [
+        "category-6"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 6,
+      "path": "hardware/wiring/renders/main_harness.png",
+      "sha256": "a863833dcabd23d15d857f305989af723b48796dc206b59398422266397a5718",
+      "size_bytes": 1024996,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-HW-003",
+        "T-HW-010A"
+      ],
+      "evidence": [
+        "category-6"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 6,
+      "path": "hardware/wiring/renders/main_harness.svg",
+      "sha256": "d077bdad676ef0b6b8b21c5bc2b9815f06afd9547fb6cc5b0f8e1c72034c1aeb",
+      "size_bytes": 169459,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-HW-003",
+        "T-HW-010A"
+      ],
+      "evidence": [
+        "category-6"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 6,
+      "path": "hardware/wiring/renders/main_harness.pdf",
+      "sha256": "6061dfa5f63e0273136e140043a9d62da98039c111454f66ad6eb31e1ee42f6b",
+      "size_bytes": 69183,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-HW-003",
+        "T-HW-010A"
+      ],
+      "evidence": [
+        "category-6"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 7,
+      "path": "hardware/interfaces/gpio_map.yaml",
+      "sha256": "e1c44cd57355bb5487f4a4abb6a3302dab9a6644ed0d6dc2bc28fa866b474d4b",
+      "size_bytes": 7056,
+      "status": "UNVERIFIED",
+      "tests": [
+        "T-HW-004"
+      ],
+      "evidence": [
+        "category-7"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 7,
+      "path": "hardware/interfaces/gpio_map.csv",
+      "sha256": "14b5374611a10dbb9762bef4353061e0cf3a952fd389cd55f327f353b0ecca46",
+      "size_bytes": 2873,
+      "status": "UNVERIFIED",
+      "tests": [
+        "T-HW-004"
+      ],
+      "evidence": [
+        "category-7"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 7,
+      "path": "hardware/interfaces/gpio_map.md",
+      "sha256": "a1400e0504b9287667c1b7845e44ba0e5987554ac3beb1ba3e1339625acbc646",
+      "size_bytes": 2266,
+      "status": "UNVERIFIED",
+      "tests": [
+        "T-HW-004"
+      ],
+      "evidence": [
+        "category-7"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 7,
+      "path": "validation/GPIO_CROSSCHECK.json",
+      "sha256": "baf6ac44d60a830d598832a4e797768e60836e8f1d26f933b44f94bbb92c6904",
+      "size_bytes": 1770,
+      "status": "UNVERIFIED",
+      "tests": [
+        "T-HW-004"
+      ],
+      "evidence": [
+        "category-7"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 8,
+      "path": "hardware/kicad/smartplug.kicad_pcb",
+      "sha256": "201e3d571d1a97647cb242f067c40364d600c9269432cb6b5b89bae4129129d1",
+      "size_bytes": 4034,
+      "status": "PARTIAL_BLOCKED",
+      "tests": [
+        "T-HW-002A",
+        "T-HW-008A"
+      ],
+      "evidence": [
+        "category-8"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 8,
+      "path": "hardware/pcb/render/placement_preview.png",
+      "sha256": "ee698c931c63cb114c0381f33493b4e5a2e4475255debd343dba90ff545f29de",
+      "size_bytes": 69837,
+      "status": "PARTIAL_BLOCKED",
+      "tests": [
+        "T-HW-002A",
+        "T-HW-008A"
+      ],
+      "evidence": [
+        "category-8"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 9,
+      "path": "hardware/manufacturing/provisional/readme_WARNING_NOT_RELEASED.md",
+      "sha256": "dafd05ec45a3e52b68be9629c08c7c408d457b2b60a27f93ee9f28c1cef57e0e",
+      "size_bytes": 1034,
+      "status": "BLOCKED",
+      "tests": [
+        "T-HW-008"
+      ],
+      "evidence": [
+        "category-9"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 9,
+      "path": "hardware/manufacturing/provisional/fabrication_notes.md",
+      "sha256": "1cab73942256a14fc052b0284f709ed4da79a0f11b7c30b4a08fbd3c8c1aed06",
+      "size_bytes": 2042,
+      "status": "BLOCKED",
+      "tests": [
+        "T-HW-008"
+      ],
+      "evidence": [
+        "category-9"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 9,
+      "path": "hardware/manufacturing/provisional/BOM_PCBA.csv",
+      "sha256": "7fc6c0dbc06bece59b91b1422ce6ac74c02ab1eb943c2517a379aaec44fbb876",
+      "size_bytes": 1132,
+      "status": "BLOCKED",
+      "tests": [
+        "T-HW-008"
+      ],
+      "evidence": [
+        "category-9"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 9,
+      "path": "hardware/manufacturing/provisional/POSITION_NOT_APPLICABLE.md",
+      "sha256": "7f1b3844f5f576cc503be996200f5f9bc2967a7f4371dfc7edff6be0ecaa5fc6",
+      "size_bytes": 449,
+      "status": "BLOCKED",
+      "tests": [
+        "T-HW-008"
+      ],
+      "evidence": [
+        "category-9"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 9,
+      "path": "hardware/manufacturing/provisional/Gerber/README_BLOCKED.md",
+      "sha256": "ee1ac9d0760a9d157e376f7788c8c9eb7a9e96219703f0afde593b7eb870a29e",
+      "size_bytes": 544,
+      "status": "BLOCKED",
+      "tests": [
+        "T-HW-008"
+      ],
+      "evidence": [
+        "category-9"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 9,
+      "path": "hardware/manufacturing/provisional/Drill/README_BLOCKED.md",
+      "sha256": "bfbd4ce6389dd12222a6484d7896d9f52b25124bc9d92788c0d534956d6709b2",
+      "size_bytes": 247,
+      "status": "BLOCKED",
+      "tests": [
+        "T-HW-008"
+      ],
+      "evidence": [
+        "category-9"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 10,
+      "path": "hardware/pcb/render/placement_preview.png",
+      "sha256": "ee698c931c63cb114c0381f33493b4e5a2e4475255debd343dba90ff545f29de",
+      "size_bytes": 69837,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-008A"
+      ],
+      "evidence": [
+        "category-10"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 10,
+      "path": "hardware/pcb/render/placement_preview.svg",
+      "sha256": "39649acd0c458ccf8d83bda7b61fb70b1a6966778c3449e259271fdb34a03223",
+      "size_bytes": 63953,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-008A"
+      ],
+      "evidence": [
+        "category-10"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 10,
+      "path": "hardware/pcb/render/README.md",
+      "sha256": "198610b0f7e19d421ce64846c19867f730f6b3c89f98fefee75a375d59a64898",
+      "size_bytes": 863,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-008A"
+      ],
+      "evidence": [
+        "category-10"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 11,
+      "path": "hardware/mechanical/source/enclosure.py",
+      "sha256": "34c6f61421a7bdf6a64ee3e85fce7c4bea5e21bcaac31aaa0267b1a010a4e02d",
+      "size_bytes": 6769,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-009A"
+      ],
+      "evidence": [
+        "category-11"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 11,
+      "path": "hardware/mechanical/source/components.py",
+      "sha256": "5636e5fd0d8149896e09650317dd4f8aec2d6b083e431dcf7d06dc69d1025a21",
+      "size_bytes": 6823,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-009A"
+      ],
+      "evidence": [
+        "category-11"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 11,
+      "path": "hardware/mechanical/parameters.yaml",
+      "sha256": "6510d5af9d552576da0a25dde17fcb0daaf19588b3a4c69824de0661b5e4e27d",
+      "size_bytes": 2834,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-009A"
+      ],
+      "evidence": [
+        "category-11"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 11,
+      "path": "hardware/mechanical/export/body_bottom_provisional.step",
+      "sha256": "08508de065fd5a3bdb4904e2c4dacbce73c8d5b0caa345424e4971ebdc6a987f",
+      "size_bytes": 285522,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-009A"
+      ],
+      "evidence": [
+        "category-11"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 11,
+      "path": "hardware/mechanical/export/body_top_provisional.step",
+      "sha256": "08ea3095eabc0da8cfcaa860d69dbb7960cc430ae2275e393db96791b70d5b1d",
+      "size_bytes": 103392,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-009A"
+      ],
+      "evidence": [
+        "category-11"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 11,
+      "path": "hardware/mechanical/export/body_bottom_provisional.stl",
+      "sha256": "4c7f106f711dd803c82677daf101cae13e0d1731723c2a93c0a2b1b8d7cbbc24",
+      "size_bytes": 373484,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-009A"
+      ],
+      "evidence": [
+        "category-11"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 11,
+      "path": "hardware/mechanical/export/body_top_provisional.stl",
+      "sha256": "bd9555668e2964e98d5c06fd05c42f8dc1c870fb51e0a7045e6b412fd9935a75",
+      "size_bytes": 98684,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-009A"
+      ],
+      "evidence": [
+        "category-11"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 11,
+      "path": "hardware/mechanical/export/assembly_provisional.step",
+      "sha256": "b98c4d0da4577db2a8785c6966f197ac11898c13590ca973be2c5e1625f72153",
+      "size_bytes": 618759,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-009A"
+      ],
+      "evidence": [
+        "category-11"
+      ],
+      "release_classification": "NOT_FOR_FABRICATION"
+    },
+    {
+      "category": 12,
+      "path": "hardware/mechanical/render/isometric.png",
+      "sha256": "8f38faf1ae379b4cea95afb3034e554c7b6f39c535ee64238857d76d29737a16",
+      "size_bytes": 53703,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-009B"
+      ],
+      "evidence": [
+        "category-12"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 12,
+      "path": "hardware/mechanical/render/front.png",
+      "sha256": "ad13b22370d18b966ca02a9e3d17afe90d479e1a81e04a1537d466e7dfd7c264",
+      "size_bytes": 34487,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-009B"
+      ],
+      "evidence": [
+        "category-12"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 12,
+      "path": "hardware/mechanical/render/exploded.png",
+      "sha256": "e470de541c40f1d7393e56bd8481d0b62345fbf0ef4aa4200b28df8eb291db35",
+      "size_bytes": 67939,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-009B"
+      ],
+      "evidence": [
+        "category-12"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 12,
+      "path": "hardware/mechanical/drawings/assembly.pdf",
+      "sha256": "96c6c0213fd370c51446a054aa151de68d149cdbc78ca60efa087cd4484482fc",
+      "size_bytes": 242697,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-009B"
+      ],
+      "evidence": [
+        "category-12"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 12,
+      "path": "hardware/mechanical/drawings/dimensions.svg",
+      "sha256": "a5e6abe6898a6a14ba399589b2f1f313f464b993cc7e2f8aa49c7808f1896b9e",
+      "size_bytes": 29118,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-009B"
+      ],
+      "evidence": [
+        "category-12"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 12,
+      "path": "hardware/mechanical/drawings/mounting_plan.svg",
+      "sha256": "cb2aa2b4afed5de4c5389835f6260ffdcc4631f33488d834000d5d335c5c1011",
+      "size_bytes": 31400,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-009B"
+      ],
+      "evidence": [
+        "category-12"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 12,
+      "path": "hardware/mechanical/FIT_ANALYSIS.md",
+      "sha256": "84182a49632c90ffa6e51fce1c10b9bdd6d7eaf3f2dcdd649720072207a62721",
+      "size_bytes": 1036,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-009B"
+      ],
+      "evidence": [
+        "category-12"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 12,
+      "path": "hardware/mechanical/CLASH_REPORT.json",
+      "sha256": "9e67ef1185a198f6150a168f4ead01f593c7d3d789615c25022964e33cee1b0d",
+      "size_bytes": 1363,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-009B"
+      ],
+      "evidence": [
+        "category-12"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 13,
+      "path": "firmware/core/smartplug_core.c",
+      "sha256": "7f162a111a1a07851ad7deac6b608096565ac423d9e9bd2f8b9315314aef03b8",
+      "size_bytes": 20215,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-018"
+      ],
+      "evidence": [
+        "category-13"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 13,
+      "path": "firmware/core/include/smartplug_core.h",
+      "sha256": "231d409a9b639926b413f84ded9f632c22b042b458de85023ece40473cce4bf6",
+      "size_bytes": 5783,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-018"
+      ],
+      "evidence": [
+        "category-13"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 13,
+      "path": "firmware/main/app_main.c",
+      "sha256": "9acce70df516d42055a8804cae701368c593e0948218631bac90d736bf56c0c0",
+      "size_bytes": 4429,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-018"
+      ],
+      "evidence": [
+        "category-13"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 13,
+      "path": "firmware/test/host/test_core.c",
+      "sha256": "5ceff0ac8c9453f167027e6b5240ad10cd2a4cd92514092b0a911d2f75f32a43",
+      "size_bytes": 10780,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-018"
+      ],
+      "evidence": [
+        "category-13"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 13,
+      "path": "firmware/README.md",
+      "sha256": "84170311973444b3dff273d8c5dea5b1f2942ed49941844f9146233771107ac6",
+      "size_bytes": 2921,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-018"
+      ],
+      "evidence": [
+        "category-13"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 13,
+      "path": "reports/logs/firmware-host-test.log",
+      "sha256": "ff2e9e48ac7982cbae442cb487ea13d90ee00f00d060a36f02d2a3cb24a6155c",
+      "size_bytes": 48,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-018"
+      ],
+      "evidence": [
+        "category-13"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 14,
+      "path": "firmware/partitions.csv",
+      "sha256": "cdd8457a24e0f7920786aaa61d2e877d9a98c46cacff77aac077b8cf3153791f",
+      "size_bytes": 315,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-017"
+      ],
+      "evidence": [
+        "category-14"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 14,
+      "path": "firmware/sdkconfig.defaults",
+      "sha256": "9bf1f55322d050699d786c0e4197747c85fc2c9decb3bc159ba73f8f566456aa",
+      "size_bytes": 439,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-017"
+      ],
+      "evidence": [
+        "category-14"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 14,
+      "path": "firmware/main/board_config.h",
+      "sha256": "34a85371fb4f24cc9a271d1e9abda3ab51013226aa2a697415ba0e7e91f4e19e",
+      "size_bytes": 869,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-017"
+      ],
+      "evidence": [
+        "category-14"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 15,
+      "path": "apps/web/src/app/(app)/dashboard/page.tsx",
+      "sha256": "86aa5535d8873063d5dd11465a8603124de69fafe0f5238072c2a83cf06047ea",
+      "size_bytes": 3144,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-SW-011",
+        "T-SW-012"
+      ],
+      "evidence": [
+        "category-15"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 15,
+      "path": "apps/web/src/components/PowerControl.tsx",
+      "sha256": "417189fcd978b0ab381a443b9a4ea23f3f96fb98d66591b822826613274f004b",
+      "size_bytes": 5116,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-SW-011",
+        "T-SW-012"
+      ],
+      "evidence": [
+        "category-15"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 15,
+      "path": "apps/web/src/app/globals.css",
+      "sha256": "d972edcddc0237b493decf9c337da4545d413e2b9bffef029c529573b3eefc7a",
+      "size_bytes": 17844,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-SW-011",
+        "T-SW-012"
+      ],
+      "evidence": [
+        "category-15"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 15,
+      "path": "docs/ui-ux/screenshots/02-dashboard.png",
+      "sha256": "01d66fbc6ec3e396154211810231493d29e75de99c32e6987d8988f684cdee6a",
+      "size_bytes": 53397,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-SW-011",
+        "T-SW-012"
+      ],
+      "evidence": [
+        "category-15"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 16,
+      "path": "apps/android/App.tsx",
+      "sha256": "d024ccb3f6895e98664462df5e3a831aac9c731919a678d2186eaf9549d290c9",
+      "size_bytes": 22716,
+      "status": "PARTIAL_BLOCKED",
+      "tests": [
+        "T-SW-013"
+      ],
+      "evidence": [
+        "category-16"
+      ],
+      "release_classification": "NOT_PRODUCTION"
+    },
+    {
+      "category": 16,
+      "path": "apps/android/README_BUILD_APK.md",
+      "sha256": "0f8bec2af9c0abbc71c37e014176781b9c2018b66fe952ab40085b31f32a248d",
+      "size_bytes": 3058,
+      "status": "PARTIAL_BLOCKED",
+      "tests": [
+        "T-SW-013"
+      ],
+      "evidence": [
+        "category-16"
+      ],
+      "release_classification": "NOT_PRODUCTION"
+    },
+    {
+      "category": 16,
+      "path": "apps/android/app.json",
+      "sha256": "ff54124e23f88da5cba953e6e46336f4a92a764e133db99cb6ba40809383d26b",
+      "size_bytes": 514,
+      "status": "PARTIAL_BLOCKED",
+      "tests": [
+        "T-SW-013"
+      ],
+      "evidence": [
+        "category-16"
+      ],
+      "release_classification": "NOT_PRODUCTION"
+    },
+    {
+      "category": 17,
+      "path": "apps/api/src/app.ts",
+      "sha256": "95b33a1b315743b67f98d7dd24df0bf881b8fae19923fb190549a8af92efb30f",
+      "size_bytes": 5064,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-SW-001",
+        "T-SW-005"
+      ],
+      "evidence": [
+        "category-17"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 17,
+      "path": "packages/api-contract/openapi.yaml",
+      "sha256": "2ea956e48f2c3e4720ca1950d8e1caf49ffe02154aebc1445e5a5df8a7135b58",
+      "size_bytes": 29396,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-SW-001",
+        "T-SW-005"
+      ],
+      "evidence": [
+        "category-17"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 17,
+      "path": "reports/logs/T-SW-005-20261115T061028Z.log",
+      "sha256": "adc58e4a0833ba5403ce5e452844e719f865b8a7dbf86aa4e929446e1f7f5b26",
+      "size_bytes": 256,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-SW-001",
+        "T-SW-005"
+      ],
+      "evidence": [
+        "category-17"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 18,
+      "path": "database/migrations/001_init.sql",
+      "sha256": "663eb4269cccc189e9772caa74ff8c7b8437b16e0bf08b319023514c3efd2c6c",
+      "size_bytes": 10642,
+      "status": "PARTIAL",
+      "tests": [
+        "T-SW-002"
+      ],
+      "evidence": [
+        "category-18"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 18,
+      "path": "database/migrations/002_indexes.sql",
+      "sha256": "091338676bb75bef8e0dce3a5dd243ede567c81dbcb34b130cb1f2db52e6576e",
+      "size_bytes": 1770,
+      "status": "PARTIAL",
+      "tests": [
+        "T-SW-002"
+      ],
+      "evidence": [
+        "category-18"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 18,
+      "path": "database/migrations/down/001_init.down.sql",
+      "sha256": "54dafe45da69c53c5d9b2b1c1495821b41aec27e5c8aa2e24a148b29d3a76701",
+      "size_bytes": 1059,
+      "status": "PARTIAL",
+      "tests": [
+        "T-SW-002"
+      ],
+      "evidence": [
+        "category-18"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 18,
+      "path": "database/seeds/demo.sql",
+      "sha256": "581634970ce31cde60471b16b78f338a673debb3c80d479a15dba094cc2af5a0",
+      "size_bytes": 2939,
+      "status": "PARTIAL",
+      "tests": [
+        "T-SW-002"
+      ],
+      "evidence": [
+        "category-18"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 19,
+      "path": "packages/mqtt-contract/src/index.ts",
+      "sha256": "9c67928ea873f352603841a68cc35d47692e002ea8954d47895922e381a640e3",
+      "size_bytes": 9603,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-SW-004A",
+        "T-SW-005"
+      ],
+      "evidence": [
+        "category-19"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 19,
+      "path": "packages/mqtt-contract/fixtures/telemetry.json",
+      "sha256": "e95031576442690512ea92af9e7e623969eebe5e08b579caf2673a2fc130b195",
+      "size_bytes": 579,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-SW-004A",
+        "T-SW-005"
+      ],
+      "evidence": [
+        "category-19"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 19,
+      "path": "packages/mqtt-contract/fixtures/command.json",
+      "sha256": "9dfa7441691827d7fdaaf2b43803c7112a223aec3b17b43ab854f6b450683385",
+      "size_bytes": 305,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-SW-004A",
+        "T-SW-005"
+      ],
+      "evidence": [
+        "category-19"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 19,
+      "path": "packages/mqtt-contract/fixtures/ack.json",
+      "sha256": "578f8894c00bbd9f7d1bcac69f1bbd8aa1c72435837a4b91fd009f739377e088",
+      "size_bytes": 263,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-SW-004A",
+        "T-SW-005"
+      ],
+      "evidence": [
+        "category-19"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 19,
+      "path": "apps/api/src/mqtt/bridge.ts",
+      "sha256": "7af96430b13793f2c0fe38e32c40494d8428e7073e6814968ec12260add9dcee",
+      "size_bytes": 7311,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-SW-004A",
+        "T-SW-005"
+      ],
+      "evidence": [
+        "category-19"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 19,
+      "path": "infrastructure/broker/mosquitto.prod.conf",
+      "sha256": "253e8ccd612c92fbed5f8835ab9ddc468276f2ba8110a21d3a80b4a8d3cdf151",
+      "size_bytes": 464,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-SW-004A",
+        "T-SW-005"
+      ],
+      "evidence": [
+        "category-19"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 19,
+      "path": "infrastructure/broker/aclfile.template",
+      "sha256": "59398be8aae2f56362bddb6112e0b28e86dc1594c60618b649880c17841ac077",
+      "size_bytes": 955,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "T-SW-004A",
+        "T-SW-005"
+      ],
+      "evidence": [
+        "category-19"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 20,
+      "path": "apps/api/src/services/notifications.ts",
+      "sha256": "1cb38bad67600f843a71399679a40f5a7c0a37234cd6237f1782b5767d73cf3b",
+      "size_bytes": 3386,
+      "status": "PARTIAL",
+      "tests": [
+        "API-NOTIFICATION"
+      ],
+      "evidence": [
+        "category-20"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 20,
+      "path": "security/PROVISIONING_SECURITY.md",
+      "sha256": "09ba36d58263a17c6f3fa1ec08d22241121c9b6cef3782c9652b291b718bcdb6",
+      "size_bytes": 2105,
+      "status": "PARTIAL",
+      "tests": [
+        "API-NOTIFICATION"
+      ],
+      "evidence": [
+        "category-20"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 21,
+      "path": "infrastructure/docker-compose.dev.yaml",
+      "sha256": "75c91fc7581dcb45b45dc2c997b1703a87590ac2e64968f511192f9ed20a7166",
+      "size_bytes": 2096,
+      "status": "BLOCKED",
+      "tests": [
+        "T-SW-020"
+      ],
+      "evidence": [
+        "category-21"
+      ],
+      "release_classification": "CONFIG_ONLY"
+    },
+    {
+      "category": 21,
+      "path": "infrastructure/deployment/README.md",
+      "sha256": "4a42e2be5bd3462940ec14e217bffe7a6e5efc1554e74939d5058dba201b5eab",
+      "size_bytes": 1989,
+      "status": "BLOCKED",
+      "tests": [
+        "T-SW-020"
+      ],
+      "evidence": [
+        "category-21"
+      ],
+      "release_classification": "CONFIG_ONLY"
+    },
+    {
+      "category": 21,
+      "path": "infrastructure/reverse-proxy/Caddyfile",
+      "sha256": "025fbdab21d4bd4e60e3944c1e9aa6750da3b7c54f22e552ad528dc096ee3d8e",
+      "size_bytes": 435,
+      "status": "BLOCKED",
+      "tests": [
+        "T-SW-020"
+      ],
+      "evidence": [
+        "category-21"
+      ],
+      "release_classification": "CONFIG_ONLY"
+    },
+    {
+      "category": 22,
+      "path": "reports/TEST_MATRIX.csv",
+      "sha256": "3ccb181c966feb5e88cf2287cafd65c86a265a102b7979d21c8005508c4ae720",
+      "size_bytes": 5227,
+      "status": "PARTIAL",
+      "tests": [
+        "ALL"
+      ],
+      "evidence": [
+        "category-22"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 22,
+      "path": "reports/VALIDATION_SUMMARY.json",
+      "sha256": "a5f19ecb981c1ea0cd0e492e497ce83c130f0a7c3baafcc71ae4ff602f3b9644",
+      "size_bytes": 11531,
+      "status": "PARTIAL",
+      "tests": [
+        "ALL"
+      ],
+      "evidence": [
+        "category-22"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 22,
+      "path": "reports/UNIT_TEST_RESULTS.md",
+      "sha256": "91e4db7eb39449c995b86711b1b25e469dc5db034a16653d6e40425ca0fd4516",
+      "size_bytes": 2220,
+      "status": "PARTIAL",
+      "tests": [
+        "ALL"
+      ],
+      "evidence": [
+        "category-22"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 22,
+      "path": "reports/INTEGRATION_TEST_RESULTS.md",
+      "sha256": "f95fe595428fba766db8ae1c6167c277cf131b07243ca60357288f31bb23956e",
+      "size_bytes": 2405,
+      "status": "PARTIAL",
+      "tests": [
+        "ALL"
+      ],
+      "evidence": [
+        "category-22"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 22,
+      "path": "reports/SECURITY_TEST_RESULTS.md",
+      "sha256": "11357a4bbd24e5c33071e25bed7637b2f4692e0a819957e47ac5f526f4605e5f",
+      "size_bytes": 2608,
+      "status": "PARTIAL",
+      "tests": [
+        "ALL"
+      ],
+      "evidence": [
+        "category-22"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 22,
+      "path": "reports/PHASE_1_ENGINEERING_REPORT.md",
+      "sha256": "38d24e517cc33a428182442140bc2d66f5ef238a7ab2a89be8c7c2abfe7c1fe6",
+      "size_bytes": 11928,
+      "status": "PARTIAL",
+      "tests": [
+        "ALL"
+      ],
+      "evidence": [
+        "category-22"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 22,
+      "path": "reports/PHASE_2_SOFTWARE_REPORT.md",
+      "sha256": "b6b23254b4ad2c052d1ab0d92beeedcd06d85110aed730d0c398a6e9fd0cd80c",
+      "size_bytes": 7684,
+      "status": "PARTIAL",
+      "tests": [
+        "ALL"
+      ],
+      "evidence": [
+        "category-22"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 22,
+      "path": "reports/AGENT_ACTION_LOG.md",
+      "sha256": "9ed39500add51c18924d41bd228ae1e6ced0715108a6246241130a394a64d996",
+      "size_bytes": 3617,
+      "status": "PARTIAL",
+      "tests": [
+        "ALL"
+      ],
+      "evidence": [
+        "category-22"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 22,
+      "path": "reports/FAILURES.md",
+      "sha256": "e5c24a2afdcf4ea2a35686dbc719fc774af59c2d90f298e94480b6a08104b92b",
+      "size_bytes": 1272,
+      "status": "PARTIAL",
+      "tests": [
+        "ALL"
+      ],
+      "evidence": [
+        "category-22"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 23,
+      "path": "validation/CONNECTIVITY_DIFF.json",
+      "sha256": "5a0939b29a49e5251bc781f33244f6cf0c0b0ba6807f3e73f9dca1fbd77fa8fe",
+      "size_bytes": 1322,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-003",
+        "T-HW-004"
+      ],
+      "evidence": [
+        "category-23"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 23,
+      "path": "validation/WIRING_CONNECTIONS.csv",
+      "sha256": "a32a8d92fa4f0562fd4a4aa72dedda08db22752816d65cc245a5d821694e681d",
+      "size_bytes": 7670,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-003",
+        "T-HW-004"
+      ],
+      "evidence": [
+        "category-23"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 23,
+      "path": "validation/NETLIST_SCHEMATIC.csv",
+      "sha256": "7196d3e8f1cb4dff7f837111c0367e89f3b7036d09662e8e25d6862c51fc1347",
+      "size_bytes": 3675,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-003",
+        "T-HW-004"
+      ],
+      "evidence": [
+        "category-23"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 23,
+      "path": "validation/ISOLATION_BOUNDARY_CHECK.md",
+      "sha256": "602f844329fb71b3140e1c8f513921523b215ab861c9654db0ad1e2c4ede43bf",
+      "size_bytes": 692,
+      "status": "PARTIAL",
+      "tests": [
+        "T-HW-003",
+        "T-HW-004"
+      ],
+      "evidence": [
+        "category-23"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 24,
+      "path": "security/THREAT_MODEL.md",
+      "sha256": "3c66f38a600a80f8d6965f65761f470a753542e3a8875ac524a02f2f3b187207",
+      "size_bytes": 5782,
+      "status": "PARTIAL",
+      "tests": [
+        "SECURITY-NEGATIVE"
+      ],
+      "evidence": [
+        "category-24"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 24,
+      "path": "security/SECURITY_AUDIT_REPORT.md",
+      "sha256": "e8f8a10485d6f741dfc199bc2be48fbd2728a0d503dd58d0e1dd790c91be47f7",
+      "size_bytes": 3334,
+      "status": "PARTIAL",
+      "tests": [
+        "SECURITY-NEGATIVE"
+      ],
+      "evidence": [
+        "category-24"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 24,
+      "path": "security/API_AUTHORIZATION_MATRIX.csv",
+      "sha256": "8fe63dc542e62f8bf1eb7e33d4ce3fe43d567b5c2e0b6fd34fbb52fd81076742",
+      "size_bytes": 2361,
+      "status": "PARTIAL",
+      "tests": [
+        "SECURITY-NEGATIVE"
+      ],
+      "evidence": [
+        "category-24"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 24,
+      "path": "security/MQTT_ACL_PLAN.md",
+      "sha256": "ee555c7798f6f95da438ad71d946b03cbbcb651e74b311d2ab386f8aa51a4f5a",
+      "size_bytes": 2054,
+      "status": "PARTIAL",
+      "tests": [
+        "SECURITY-NEGATIVE"
+      ],
+      "evidence": [
+        "category-24"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 24,
+      "path": "security/DEVICE_SECURITY_PLAN.md",
+      "sha256": "d1a36021dc93704b0333dac11b1b6fb204692ceef6d65c3148e686f54a77fb18",
+      "size_bytes": 2661,
+      "status": "PARTIAL",
+      "tests": [
+        "SECURITY-NEGATIVE"
+      ],
+      "evidence": [
+        "category-24"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 24,
+      "path": "security/SBOM.json",
+      "sha256": "43c90d588c28fb4f150bc6efd49bfac81b487220c809363fae4d7f5984151e55",
+      "size_bytes": 126360,
+      "status": "PARTIAL",
+      "tests": [
+        "SECURITY-NEGATIVE"
+      ],
+      "evidence": [
+        "category-24"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 24,
+      "path": "security/DEPENDENCY_AUDIT.json",
+      "sha256": "c435daf6c696c108d34a7b0dff81332ffc45531d5883ad7d193c26de2f94956d",
+      "size_bytes": 391,
+      "status": "PARTIAL",
+      "tests": [
+        "SECURITY-NEGATIVE"
+      ],
+      "evidence": [
+        "category-24"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/tutorials/README.md",
+      "sha256": "8616d7a27fbf5b7204a4e32f96e4e055f441a4fe41f8f952c1d78b04c057ff76",
+      "size_bytes": 1777,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/tutorials/00_READ_FIRST.md",
+      "sha256": "30c5c490b176cc069bdf23dae31a326efdda83169685e44f13b94ec32f618a33",
+      "size_bytes": 1291,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/tutorials/12_MAINS_ASSEMBLY_FOR_QUALIFIED_PERSONNEL.md",
+      "sha256": "e56969b52465abc15d111abbad0c86d3d8724239103f2c99ec4d70cddb2592f7",
+      "size_bytes": 793,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/tutorials/23_TESTING_AND_VALIDATION.md",
+      "sha256": "c1dfdb1bb76a3c3101227f9204665553f2355ae2086c221eff0c4a60d21895b7",
+      "size_bytes": 738,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/README.md",
+      "sha256": "39ce2fa8af2514cb0ba765b14b9429f88b08b562f299fbab7bc7c65849b5f2b1",
+      "size_bytes": 2146,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/software/README.md",
+      "sha256": "d88029878cff223ab296b13b14b3aa584979fb4fcc910f3acb32b4b09eed2ebd",
+      "size_bytes": 1786,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/assembly/ASSEMBLY_PLAN.md",
+      "sha256": "6b1bda04950671ac09fa2c2f0e77d5c0eb4bcdf82f0101eed5a960bbbdeea796",
+      "size_bytes": 1433,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": "deliverables/FINAL_ENGINEERING_REPORT.md",
+      "sha256": "760cea14ec542586fc1b901a825c698a2d99c911a2dba9e170879be57c161806",
+      "size_bytes": 23190,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": "deliverables/README.md",
+      "sha256": "788f0089ec488ad68d0885107c18f69c1018128429ca82c5de8a03376d5b530d",
+      "size_bytes": 659,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": "README.md",
+      "sha256": "d7479c81bcc5690ae3b92c03c5ad578ca99de1facd79b764c92a8876c8e8c5f6",
+      "size_bytes": 5720,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    }
+  ],
+  "missing_artifacts": [],
+  "blockers": [
+    {
+      "id": "BLOCK-KICAD",
+      "kind": "TOOLCHAIN",
+      "status": "BLOCKED",
+      "action_required": "Install KiCad + kicad-cli, run ERC/DRC, export Gerber/drill"
+    },
+    {
+      "id": "BLOCK-ESP-IDF",
+      "kind": "TOOLCHAIN",
+      "status": "BLOCKED",
+      "action_required": "Install ESP-IDF, build target firmware, test OTA/rollback"
+    },
+    {
+      "id": "BLOCK-ANDROID-SDK",
+      "kind": "TOOLCHAIN",
+      "status": "BLOCKED",
+      "action_required": "Install Android SDK, build/install APK"
+    },
+    {
+      "id": "BLOCK-POSTGRES",
+      "kind": "DEPLOYMENT",
+      "status": "BLOCKED",
+      "action_required": "Implement PostgreSQL adapter, run migrations, test"
+    },
+    {
+      "id": "BLOCK-DOCKER",
+      "kind": "DEPLOYMENT",
+      "status": "BLOCKED",
+      "action_required": "Install Docker, run compose, TLS/MQTT ACL tests"
+    },
+    {
+      "id": "BLOCK-PHYSICAL-MAINS-LAB",
+      "kind": "PHYSICAL_MAINS_LAB",
+      "status": "BLOCKED",
+      "action_required": "Qualified lab/engineer for PE/isolation/thermal/load tests"
+    },
+    {
+      "id": "BLOCK-COMPONENT-APPROVAL",
+      "kind": "COMPONENT_APPROVAL",
+      "status": "BLOCKED",
+      "action_required": "Select/verify socket, plug, relay, fuse, PSU, terminal, PE, enclosure"
+    },
+    {
+      "id": "BLOCK-CLEARANCE",
+      "kind": "SAFETY_REVIEW",
+      "status": "BLOCKED",
+      "action_required": "Complete clearance/creepage worksheet with licensed standard and engineer"
+    },
+    {
+      "id": "BLOCK-REGULATORY",
+      "kind": "REGULATORY",
+      "status": "BLOCKED",
+      "action_required": "Classify product, consult SNI/lab, do not market"
+    },
+    {
+      "id": "BLOCK-TELEGRAM-TOKEN",
+      "kind": "CREDENTIAL",
+      "status": "BLOCKED",
+      "action_required": "Provide Telegram token/chat via secret store with user approval"
+    },
+    {
+      "id": "BLOCK-SIGNED-OTA",
+      "kind": "SECURITY",
+      "status": "BLOCKED",
+      "action_required": "Implement signing key policy, signed image, rollback test"
+    }
+  ],
+  "test_summary": {
+    "project": "esp32-s3-iot-smart-plug",
+    "design_revision": "REV_A_PROVISIONAL",
+    "generated_at": "2026-11-15T06:10:28.809402+00:00",
+    "duration_s": 118.59,
+    "counts": {
+      "PASS": 19,
+      "BLOCKED": 15
+    },
+    "overall": "PASS",
+    "note": "PASS is digital evidence only; BLOCKED items require hardware/lab/tooling.",
+    "steps": [
+      {
+        "test_id": "T-SW-001A",
+        "area": "TypeScript domain",
+        "command": "C:\\Program Files\\nodejs\\npm.CMD run typecheck -w @smartplug/domain",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-SW-001A-20261115T061028Z.log",
+        "note": "Domain typecheck",
+        "duration_s": 2.12
+      },
+      {
+        "test_id": "T-SW-001B",
+        "area": "TypeScript API",
+        "command": "C:\\Program Files\\nodejs\\npm.CMD run typecheck -w @smartplug/api",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-SW-001B-20261115T061028Z.log",
+        "note": "API typecheck",
+        "duration_s": 5.22
+      },
+      {
+        "test_id": "T-SW-001C",
+        "area": "TypeScript web",
+        "command": "C:\\Program Files\\nodejs\\npm.CMD run typecheck -w @smartplug/web",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-SW-001C-20261115T061028Z.log",
+        "note": "Web typecheck",
+        "duration_s": 3.53
+      },
+      {
+        "test_id": "T-SW-001D",
+        "area": "TypeScript simulator",
+        "command": "C:\\Program Files\\nodejs\\npm.CMD run typecheck -w @smartplug/device-simulator",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-SW-001D-20261115T061028Z.log",
+        "note": "Simulator typecheck",
+        "duration_s": 3
+      },
+      {
+        "test_id": "T-SW-007",
+        "area": "Domain tests",
+        "command": "C:\\Program Files\\nodejs\\npm.CMD run test -w @smartplug/domain",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-SW-007-20261115T061028Z.log",
+        "note": "34 domain tests incl. cost/energy",
+        "duration_s": 1.96
+      },
+      {
+        "test_id": "T-SW-004A",
+        "area": "MQTT contract tests",
+        "command": "C:\\Program Files\\nodejs\\npm.CMD run test -w @smartplug/mqtt-contract",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-SW-004A-20261115T061028Z.log",
+        "note": "11 contract/ACL tests",
+        "duration_s": 2.09
+      },
+      {
+        "test_id": "T-SW-005",
+        "area": "API + simulator integration",
+        "command": "C:\\Program Files\\nodejs\\npm.CMD run test -w @smartplug/api",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-SW-005-20261115T061028Z.log",
+        "note": "38 API tests incl. aedes+simulator ACK",
+        "duration_s": 11.27
+      },
+      {
+        "test_id": "T-SW-004B",
+        "area": "Simulator tests",
+        "command": "C:\\Program Files\\nodejs\\npm.CMD run test -w @smartplug/device-simulator",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-SW-004B-20261115T061028Z.log",
+        "note": "4 simulator tests",
+        "duration_s": 2.64
+      },
+      {
+        "test_id": "T-HW-018",
+        "area": "Firmware core host tests",
+        "command": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.EXE -ExecutionPolicy Bypass -File C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\firmware\\test\\host\\run_tests.ps1",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-HW-018-20261115T061028Z.log",
+        "note": "74 C checks; Zig cc host build",
+        "duration_s": 1.03
+      },
+      {
+        "test_id": "T-SW-001E",
+        "area": "Next.js build",
+        "command": "C:\\Program Files\\nodejs\\npm.CMD run build -w @smartplug/web",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-SW-001E-20261115T061028Z.log",
+        "note": "Next production build",
+        "duration_s": 11.2
+      },
+      {
+        "test_id": "T-HW-003",
+        "area": "Connectivity crosscheck",
+        "command": "C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\.venv\\Scripts\\python.exe scripts/validate_connectivity.py",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-HW-003-20261115T061028Z.log",
+        "note": "Wiring/GPIO/BOM static diff",
+        "duration_s": 0.34
+      },
+      {
+        "test_id": "T-HW-004",
+        "area": "GPIO map generation",
+        "command": "C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\.venv\\Scripts\\python.exe hardware/generators/generate_gpio_map.py",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-HW-004-20261115T061028Z.log",
+        "note": "GPIO CSV/MD + crosscheck",
+        "duration_s": 0.28
+      },
+      {
+        "test_id": "T-HW-010A",
+        "area": "WireViz render",
+        "command": "C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\.venv\\Scripts\\python.exe scripts/render_wiring.py",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-HW-010A-20261115T061028Z.log",
+        "note": "6 harnesses SVG/PNG/PDF",
+        "duration_s": 16.37
+      },
+      {
+        "test_id": "T-HW-009A",
+        "area": "CadQuery export",
+        "command": "C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\.venv\\Scripts\\python.exe hardware/mechanical/source/enclosure.py --preset both",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-HW-009A-20261115T061028Z.log",
+        "note": "STEP/STL bodies + assembly",
+        "duration_s": 12.77
+      },
+      {
+        "test_id": "T-HW-009B",
+        "area": "Mechanical render/fit",
+        "command": "C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\.venv\\Scripts\\python.exe hardware/mechanical/source/render.py",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-HW-009B-20261115T061028Z.log",
+        "note": "Views/drawings/fit report",
+        "duration_s": 11.28
+      },
+      {
+        "test_id": "T-HW-002A",
+        "area": "KiCad file parse",
+        "command": "C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\.venv\\Scripts\\python.exe -c from pathlib import Path; from kiutils.schematic import Schematic; from kiutils.board import Board; import glob; [Schematic.from_file(p) for p in glob.glob('hardware/kicad/*.kicad_sch')]; Board.from_file('hardware/kicad/smartplug.kicad_pcb'); print('kiutils parse OK')",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-HW-002A-20261115T061028Z.log",
+        "note": "Native files parse; ERC/DRC not run",
+        "duration_s": 0.34
+      },
+      {
+        "test_id": "T-HW-008A",
+        "area": "PCB placement preview",
+        "command": "C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\.venv\\Scripts\\python.exe scripts/render_pcb_preview.py",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-HW-008A-20261115T061028Z.log",
+        "note": "Preview parsed from .kicad_pcb",
+        "duration_s": 2
+      },
+      {
+        "test_id": "T-SW-001F",
+        "area": "OpenAPI parse",
+        "command": "C:\\Users\\JEFRY PRATAMA\\Zed\\SMART-PLUG-V2\\.venv\\Scripts\\python.exe -c import yaml; d=yaml.safe_load(open('packages/api-contract/openapi.yaml', encoding='utf-8')); assert d['openapi'].startswith('3.'); assert len(d['paths'])>=18; print('OpenAPI paths:', len(d['paths']))",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-SW-001F-20261115T061028Z.log",
+        "note": "OpenAPI structural check",
+        "duration_s": 0.28
+      },
+      {
+        "test_id": "T-SW-011",
+        "area": "Playwright E2E",
+        "command": "C:\\Program Files\\nodejs\\npm.CMD exec playwright test",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "reports\\logs\\T-SW-011-20261115T061028Z.log",
+        "note": "5 E2E tests incl. axe and command APPLIED",
+        "duration_s": 30.87
+      },
+      {
+        "test_id": "T-HW-002",
+        "area": "Schematic ERC",
+        "command": "",
+        "status": "BLOCKED",
+        "exit_code": null,
+        "log": "",
+        "note": "KiCad CLI not installed",
+        "duration_s": 0
+      },
+      {
+        "test_id": "T-HW-006",
+        "area": "PCB DRC",
+        "command": "",
+        "status": "BLOCKED",
+        "exit_code": null,
+        "log": "",
+        "note": "KiCad CLI not installed",
+        "duration_s": 0
+      },
+      {
+        "test_id": "T-HW-008",
+        "area": "Gerber/drill import",
+        "command": "",
+        "status": "BLOCKED",
+        "exit_code": null,
+        "log": "",
+        "note": "KiCad CLI not installed; no fabrication package",
+        "duration_s": 0
+      },
+      {
+        "test_id": "T-HW-011",
+        "area": "Mains isolation review",
+        "command": "",
+        "status": "BLOCKED",
+        "exit_code": null,
+        "log": "",
+        "note": "No qualified reviewer/lab evidence",
+        "duration_s": 0
+      },
+      {
+        "test_id": "T-HW-012",
+        "area": "PE continuity",
+        "command": "",
+        "status": "BLOCKED",
+        "exit_code": null,
+        "log": "",
+        "note": "No hardware/lab",
+        "duration_s": 0
+      },
+      {
+        "test_id": "T-HW-013",
+        "area": "Thermal/fuse/surge",
+        "command": "",
+        "status": "BLOCKED",
+        "exit_code": null,
+        "log": "",
+        "note": "No lab",
+        "duration_s": 0
+      },
+      {
+        "test_id": "T-HW-014",
+        "area": "Boot-safe waveform",
+        "command": "",
+        "status": "BLOCKED",
+        "exit_code": null,
+        "log": "",
+        "note": "No board/scope",
+        "duration_s": 0
+      },
+      {
+        "test_id": "T-HW-017",
+        "area": "ESP-IDF clean build",
+        "command": "",
+        "status": "BLOCKED",
+        "exit_code": null,
+        "log": "",
+        "note": "ESP-IDF not installed",
+        "duration_s": 0
+      },
+      {
+        "test_id": "T-HW-019",
+        "area": "Physical load/temperature",
+        "command": "",
+        "status": "BLOCKED",
+        "exit_code": null,
+        "log": "",
+        "note": "No lab",
+        "duration_s": 0
+      },
+      {
+        "test_id": "T-SW-002",
+        "area": "PostgreSQL migration",
+        "command": "",
+        "status": "BLOCKED",
+        "exit_code": null,
+        "log": "",
+        "note": "PostgreSQL/Docker not installed",
+        "duration_s": 0
+      },
+      {
+        "test_id": "T-SW-003",
+        "area": "MQTT broker auth/ACL",
+        "command": "",
+        "status": "BLOCKED",
+        "exit_code": null,
+        "log": "",
+        "note": "Production broker/TLS not executed",
+        "duration_s": 0
+      },
+      {
+        "test_id": "T-SW-010",
+        "area": "Offline router/cloud test",
+        "command": "",
+        "status": "BLOCKED",
+        "exit_code": null,
+        "log": "",
+        "note": "No deployed network stack",
+        "duration_s": 0
+      },
+      {
+        "test_id": "T-SW-013",
+        "area": "Android APK build",
+        "command": "",
+        "status": "BLOCKED",
+        "exit_code": null,
+        "log": "",
+        "note": "Android SDK not installed",
+        "duration_s": 0
+      },
+      {
+        "test_id": "T-SW-020",
+        "area": "Deployment clean-room",
+        "command": "",
+        "status": "BLOCKED",
+        "exit_code": null,
+        "log": "",
+        "note": "Docker/Postgres not installed",
+        "duration_s": 0
+      },
+      {
+        "test_id": "T-SW-025",
+        "area": "Full system HIL",
+        "command": "",
+        "status": "BLOCKED",
+        "exit_code": null,
+        "log": "",
+        "note": "No hardware/lab",
+        "duration_s": 0
+      }
+    ]
+  },
+  "traceability_summary": {
+    "total": 80,
+    "by_status": {
+      "PARTIAL": 25,
+      "PASS": 28,
+      "NOT_STARTED": 24,
+      "BLOCKED": 3
+    },
+    "by_priority": {
+      "P0": 53,
+      "P1": 24,
+      "P2": 3
+    },
+    "p0_not_pass": [
+      "FR-001",
+      "FR-002",
+      "FR-003",
+      "FR-014",
+      "FR-015",
+      "FR-016",
+      "FR-018",
+      "FR-023",
+      "FR-024",
+      "FR-026",
+      "FR-027",
+      "FR-030",
+      "FR-031",
+      "FR-032",
+      "FR-033",
+      "FR-037",
+      "FR-041",
+      "FR-044",
+      "FR-048",
+      "FR-051",
+      "FR-055",
+      "FR-056",
+      "FR-058",
+      "FR-063",
+      "FR-069",
+      "FR-070",
+      "FR-071",
+      "FR-072",
+      "FR-075",
+      "FR-079",
+      "FR-080"
+    ],
+    "note": "PASS is digital evidence only; it does not imply hardware validation or safety sign-off."
+  },
+  "bom_summary": {
+    "project": "esp32-s3-iot-smart-plug",
+    "design_revision": "REV_A_PROVISIONAL",
+    "currency": "IDR",
+    "generated_at": "2026-11-15T05:07:47.017407+00:00",
+    "pricing_status": "UNPRICED",
+    "priced_lines": 0,
+    "unpriced_lines": 46,
+    "subtotal_idr": null,
+    "prototype_1_unit": {
+      "subtotal_idr": null,
+      "status": "UNPRICED"
+    },
+    "batch_10_units": {
+      "subtotal_idr": null,
+      "status": "NOT_QUOTED"
+    },
+    "owned_components": {
+      "market_cost_idr": null,
+      "cash_out_cost_idr": null,
+      "note": "Q28=B: none owned."
+    },
+    "notes": [
+      "No verified, dated Indonesian prices were obtained; prices are empty, not Rp0.",
+      "BOM is not approved for purchase. Safety-critical parts remain PENDING_APPROVAL, DOCUMENTATION_DEFICIENT, or BLOCKED.",
+      "Target 10 A is not achieved by the provisional 8 A relay; final rating must be the lowest verified value.",
+      "Batch 10-unit pricing cannot be quoted without actual supplier quotes."
+    ]
+  },
+  "toolchain": {
+    "node": "v24.15.0",
+    "npm": "11.12.1",
+    "python": "3.11.15 (.venv)",
+    "kicad": "NOT_INSTALLED",
+    "esp_idf": "NOT_INSTALLED",
+    "android_sdk": "NOT_INSTALLED",
+    "docker": "NOT_INSTALLED",
+    "postgres": "NOT_INSTALLED",
+    "zig": "0.17.1 (portable)",
+    "cadquery": "2.8.0",
+    "wireviz": "0.4.1",
+    "graphviz": "16.1.1 (portable)"
+  }
+}

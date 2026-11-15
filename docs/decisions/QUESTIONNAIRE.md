@@ -1,6 +1,6 @@
 # Kuesioner Pra-Eksekusi — Smart Plug ESP32-S3
 
-**Status:** `AWAITING_USER_DECISIONS`
+**Status:** `ANSWERED` — see `USER_ANSWERS.md` (2026-11-15)
 **Tanggal:** 15 November 2026
 **PRD:** v1.0
 **Aturan:** Jawaban boleh ringkas, misalnya `Q01=B; Q02=B; Q03=B; ...`.
