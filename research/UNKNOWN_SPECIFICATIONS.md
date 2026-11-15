@@ -5,7 +5,7 @@
 
 | ID | Area | Unknown | Dampak | Cara menutup |
 |---|---|---|---|---|
-| U-001 | MCU board | Revisi fisik ESP32-S3-DevKitC-1 (v1.0/v1.1/clone), GPIO RGB, panjang header, regulator | GPIO map, footprint, boot-safe, LED | Foto depan-belakang, marking, pengukuran, cek dokumen Espressif |
+| U-001 | MCU board | Revisi fisik ESP32-S3-DevKitC-1 (v1.0/v1.1/clone), GPIO RGB, regulator; header **row spacing 22.86 mm and 1x22 layout verified from official v1.1 DXF** | GPIO map, footprint, boot-safe, LED | Foto depan-belakang, marking, pengukuran sample, cek dokumen Espressif |
 | U-002 | MCU board | Konsumsi arus Wi-Fi peak dan inrush | Power budget, PSU, decoupling | Pengukuran dengan USB meter/scope |
 | U-003 | PZEM | Batch/V4 asli, pinout, level UART, baud/parity, CRC, register, isolasi, CT ratio, dimensi | Metering, isolasi, firmware driver, space | Manual batch, pengukuran, inspeksi, uji isolated supply |
 | U-004 | PZEM | Rating terminal tegangan dan current path | Rating chain, clearance | Datasheet batch dan inspeksi |

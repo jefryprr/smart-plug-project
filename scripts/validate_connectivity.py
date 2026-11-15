@@ -151,15 +151,15 @@ def main() -> int:
         "rule": "PE must connect input to output without relay/fuse/thermal cutoff."
     }
     checks["relay_contacts_separate"] = {
-        "status": "PASS" if "K1:P1_14" not in net_containing(nets, "K1:P1_11") and "K1:P2_24" not in net_containing(nets, "K1:P2_21") else "FAIL",
+        "status": "PASS" if "K1:NO1" not in net_containing(nets, "K1:COM1") and "K1:NO2" not in net_containing(nets, "K1:COM2") else "FAIL",
         "note": "NO contacts must be separate nets before/after switching."
     }
     checks["relay_coil_selv"] = {
-        "status": "PASS" if {"K1:IN1", "K1:IN2"} <= set(net_containing(nets, "J1:RELAY_CTRL")) else "FAIL",
-        "note": "Relay module inputs are driven from SELV GPIO through the carrier MOSFET."
+        "status": "PASS" if "K1:IN1" in net_containing(nets, "J3:RELAY_IN1") and "K1:IN2" in net_containing(nets, "J3:RELAY_IN2") else "FAIL",
+        "note": "Relay module inputs are driven from SELV GPIO through the carrier MOSFET; J3 pins 3/4 are tied on the PCB."
     }
     pzem_mains = {"U2:L", "U2:N", "P1:L", "P1:N"}
-    pzem_ttl = {"U2:+5V", "U2:GND", "U2:TX", "U2:RX", "J1:PZEM_TX_3V3", "J1:PZEM_RX_3V3", "U9:1A", "U9:1Y"}
+    pzem_ttl = {"U2:+5V", "U2:GND", "U2:TX", "U2:RX", "J2:PZEM_TX_5V", "J2:PZEM_RX_5V", "U9:1A", "U9:1Y"}
     isolation_failures = []
     for members in nets.values():
         if any(node in pzem_mains for node in members) and any(node in pzem_ttl for node in members):
@@ -170,7 +170,7 @@ def main() -> int:
         "note": "No net may short PZEM mains terminals to its TTL side. PZEM internal optocouplers are the barrier."
     }
     mains_nodes = {"P1:L", "P1:N", "F1:IN", "F1:OUT", "TF1:IN", "TF1:OUT", "K1:COM1", "K1:NO1", "K1:COM2", "K1:NO2", "X1:L", "X1:N", "U2:L", "U2:N"}
-    selv_nodes = {"J1:+5V", "J1:GND", "J1:RELAY_CTRL", "K1:IN1", "K1:IN2", "K1:VCC", "K1:GND", "U9:VCC", "U9:GND", "U9:1A", "U9:1Y"}
+    selv_nodes = {"J8:+5V", "J8:GND", "J3:+5V", "J3:GND", "J3:RELAY_IN1", "J3:RELAY_IN2", "K1:IN1", "K1:IN2", "K1:VCC", "K1:GND", "U9:VCC", "U9:GND", "U9:1A", "U9:1Y"}
     cross_domain = []
     for members in nets.values():
         if any(node in mains_nodes for node in members) and any(node in selv_nodes for node in members):

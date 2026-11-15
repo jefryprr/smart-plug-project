@@ -21,7 +21,7 @@
 | 13 | Research/BOM/candidates | Python generators | 48 BOM rows, 45 candidates, unpriced | `research/`, `bom/` |
 | 14 | Safety documents | Markdown/CSV | 10 docs + risk register | `safety/` |
 | 15 | GPIO map | YAML + generator | Static crosscheck PASS; board UNVERIFIED | `hardware/interfaces/` |
-| 16 | Wiring harnesses | WireViz + Graphviz 16.1.1 | 5 harnesses SVG/PNG/PDF | `hardware/wiring/` |
+| 16 | Wiring harnesses | WireViz + Graphviz 16.1.1 | 4 harnesses SVG/PNG/PDF | `hardware/wiring/` |
 | 17 | KiCad native files | Python S-expression generator | 9 sheets + placement PCB; parse PASS; ERC/DRC later run in #26 | `hardware/kicad/` |
 | 18 | CadQuery enclosure | Python/OCP | STEP/STL + renders + fit report | `hardware/mechanical/` |
 | 19 | Firmware core | C99 + host tests | 74 checks, 0 failures | `firmware/core`, `firmware/test/host` |
@@ -42,7 +42,7 @@
 | 33 | Indonesian procurement research | 54 BOM lines; EasyWare/Shopee/BigGo/CNC/Blibli checks; budget roll-up | CORE Rp698.297 (restock Rp646.829); FULL Rp815.897; 43 listing-verified + 11 estimated | `bom/BOM_PROCUREMENT.csv`, `research/PROCUREMENT_INDONESIA.md` |
 
 | 33 | Indonesian procurement research | 54 BOM lines; EasyWare/Shopee/BigGo/CNC/Blibli checks; budget roll-up | CORE Rp698.297 (restock Rp646.829); FULL Rp815.897; 43 listing-verified + 11 estimated | `bom/BOM_PROCUREMENT.csv`, `research/PROCUREMENT_INDONESIA.md` |
-| 34 | REV_B hardware redesign | Remove TMP102 + ADuM1201/B0505S; PZEM internal isolation; 74HCT125/divider; 2x22 socket; routed 100x70 carrier; no-temp firmware policy | DRC 0/0; ERC 0; routed Gerber/drill/POS; host tests 75 PASS; core ~Rp698k | `hardware/kicad/smartplug.kicad_pcb`, `hardware/schematic/`, `hardware/carrier/` |
+| 34 | REV_B hardware redesign | Remove TMP102 + ADuM1201/B0505S; PZEM internal isolation; 74HCT125/divider; two 1x22 sockets at 22.86 mm; routed 100x70 carrier; no-temp firmware policy | DRC 0/0; ERC 0; routed Gerber/drill/POS; host tests 75 PASS; core ~Rp698k | `hardware/kicad/smartplug.kicad_pcb`, `hardware/schematic/`, `hardware/carrier/` |
 
 ## Commands that were not run (and why)
 

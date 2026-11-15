@@ -1,6 +1,6 @@
 # 04 — Setup WireViz
 
-**Status:** `PASS` — 5 harness dirender (SVG/PNG/PDF/GV).
+**Status:** `PASS` — 4 harness dirender (SVG/PNG/PDF/GV).
 
 ## Prasyarat
 

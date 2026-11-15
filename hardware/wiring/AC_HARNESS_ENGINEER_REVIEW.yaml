@@ -1,12 +1,12 @@
 metadata:
-  title: AC Harness — ENGINEER REVIEW ONLY (REV_A_PROVISIONAL)
+  title: AC Harness — ENGINEER REVIEW ONLY (REV_B_NO_TEMP)
   description: 'Subset mains untuk review engineer. BUKAN panduan energisasi untuk
     pemula. PE tidak diputus. Rating relay/fuse/terminal belum final. Modul relay 2 channel off-board; bukan DPST linked.
 
     '
   author: OpenCode
-  date: '2026-11-15'
-  rev: REV_A_PROVISIONAL
+  date: '2026-11-16'
+  rev: REV_B_NO_TEMP
 options:
   bgcolor: WH
 connectors:

@@ -6,7 +6,7 @@
 
 A 2-layer SELV carrier for:
 
-- ESP32-S3-DevKitC-1 (2×22 socket)
+- ESP32-S3-DevKitC-1 (two 1x22 sockets, 22.86 mm row spacing; pin 1 / USB end marked)
 - PZEM-004T V4 TTL: 5V/GND, 5V TX → 10k/20k divider → GPIO18, GPIO17 → 74HCT125 → PZEM RX
 - 2-channel relay module: 5V/GND/IN1/IN2; AO3400 pulls both inputs low
 - OLED (I2C), DS3231 RTC (I2C + INT), button, WS2812 data via 74HCT125
@@ -14,6 +14,27 @@ A 2-layer SELV carrier for:
 
 No mains. No TMP102. No ADuM1201/B0505S. PZEM internal optocouplers are the
 UART galvanic barrier.
+
+## DevKit header map
+
+| Carrier | DevKit header | Pin | Signal |
+|---|---|---|---|
+| J1A | J1 | 1, 2 | +3V3 |
+| J1A | J1 | 4 | GPIO4 / RELAY_CTRL |
+| J1A | J1 | 5 | GPIO5 / BUTTON |
+| J1A | J1 | 7 | GPIO7 / RTC_INT |
+| J1A | J1 | 10 | GPIO17 / PZEM_TX_3V3 |
+| J1A | J1 | 11 | GPIO18 / PZEM_RX_3V3 |
+| J1A | J1 | 12 | GPIO8 / SDA |
+| J1A | J1 | 15 | GPIO9 / SCL |
+| J1A | J1 | 16 | GPIO10 / RGB_DATA_3V3 |
+| J1A | J1 | 21 | +5V |
+| J1A | J1 | 22 | GND |
+| J1B | J3 | 1, 21, 22 | GND |
+
+Row spacing is **22.86 mm**. Pin 1 is at the left end; USB is at the right end.
+Do not use a 2x22 IDC socket (2.54 mm rows); it will not fit. See
+`docs/decisions/ADR-015-DEVKITC-1-SOCKET.md`.
 
 ## Files
 
@@ -27,7 +48,7 @@ UART galvanic barrier.
 
 - DRC: **0 violations / 0 unconnected** at 0.15 mm default clearance
 - ERC (block schematic): **0 violations**
-- Nets: 18; footprints: 21; board: 100 × 70 mm
+- Nets: 18; footprints: 22; board: 100 × 70 mm
 - Gerber/drill/POS exported by KiCad 10.0.8
 
 ## What is not proven

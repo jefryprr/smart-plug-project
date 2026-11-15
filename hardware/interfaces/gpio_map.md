@@ -14,8 +14,8 @@
 | i2c_scl | 9 | output | 4.7 kΩ to 3.3 V / HIGH (pullup) | No direct hazard; SELV | `PIN_I2C_SCL` |
 | oled_reset | 6 | output | 10 kΩ pullup / HIGH | No direct hazard; SELV | `PIN_OLED_RESET` |
 | external_rgb_data | 10 | output | 330 Ω series; no pullup / LOW | No direct hazard; SELV | `PIN_RGB_DATA` |
-| pzem_uart_tx | 17 | output | none / HIGH (UART idle) | No direct hazard; isolated barrier | `PIN_PZEM_TX` |
-| pzem_uart_rx | 18 | input | 10 kΩ pullup / HIGH | No direct hazard; isolated barrier | `PIN_PZEM_RX` |
+| pzem_uart_tx | 17 | output | none / HIGH (UART idle) | No direct hazard; SELV via PZEM internal isolation | `PIN_PZEM_TX` |
+| pzem_uart_rx | 18 | input | 10 kΩ pullup / HIGH | No direct hazard; SELV via PZEM internal isolation | `PIN_PZEM_RX` |
 | rtc_interrupt | 7 | input | 10 kΩ pullup / HIGH | No direct hazard; SELV | `PIN_RTC_INT` |
 
 ## Reserved

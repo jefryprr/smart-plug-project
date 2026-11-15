@@ -1,6 +1,6 @@
 project: esp32-s3-iot-smart-plug
 design_revision: REV_B_NO_TEMP
-generated_at: '2026-11-15T18:39:59.516266+00:00'
+generated_at: '2026-11-15T18:59:07.751599+00:00'
 approval_policy: User approved the research direction, not final MPNs. No component
   is approved for fabrication.
 approved_by: null
@@ -209,12 +209,13 @@ items:
   blocking_reason: Debounce in firmware; long-press reset separated from short press.
     Button must remain reachable without mains access.
 - item_id: E-024
-  mpn: HDR-2X22-2.54-F
+  mpn: HDR-1X22-2.54-F
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: ESP32-S3-DevKitC-1 has 2x22 headers (J1/J3), not 2x20. Verify pin
-    length/orientation and keying before inserting the board.
+  blocking_reason: 'DevKitC-1 has two separate 1x22 headers (J1/J3), 22.86 mm apart.
+    Do NOT use a 2x22 socket: its rows are only 2.54 mm apart and cannot accept the
+    board. Mark pin 1 and USB end; key or block reverse insertion.'
 - item_id: E-025
   mpn: B4B-XH-A
   status: PROVISIONAL
@@ -349,9 +350,10 @@ items:
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: REV_B routed carrier with 2x22 DevKit socket, PZEM 5V/3.3V level
-    shift, relay driver, I2C OLED/RTC, button, RGB, and 5V input. DRC 0 but engineering
-    review/physical test still required. Mains modules remain off-board.
+  blocking_reason: REV_B routed carrier with two 1x22 DevKit sockets at 22.86 mm spacing,
+    PZEM 5V/3.3V level shift, relay driver, I2C OLED/RTC, button, RGB, and 5V input.
+    DRC 0 but engineering review/physical test still required. Mains modules remain
+    off-boar
 - item_id: E-042
   mpn: LABEL-SET-REV-A
   status: BLOCKED

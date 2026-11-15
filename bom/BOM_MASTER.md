@@ -1,6 +1,6 @@
 # BOM Master — REV_B_NO_TEMP
 
-**Generated:** 2026-11-15T18:39:59.516266+00:00
+**Generated:** 2026-11-15T18:59:07.751599+00:00
 
 > **DESIGN BOM (UNPRICED) / NOT APPROVED.** Ini adalah BOM rekayasa, bukan daftar belanja.
 > Harga, stok, dan tautan pembelian ada di `BOM_PROCUREMENT.md` / `BOM_PROCUREMENT.csv`.
@@ -36,7 +36,7 @@
 | E-021 | DS1 | UI | OLED 0.96 inch, 128x64, SSD1306, I2C, 3.3 V module | OLED-096-SSD1306-I2C | 1 pcs | DOCUMENTATION_DEFICIENT |
 | E-022 | LED1 | UI | Addressable RGB LED, WS2812B, 5050, 5 V | WS2812B-5050 | 1 pcs | PENDING_APPROVAL |
 | E-023 | SW1 | UI | Tactile pushbutton, 6x6 mm, through-hole, panel cap | B3F-1000 | 1 pcs | PENDING_APPROVAL |
-| E-024 | J1 | Connectors | 2x22 pin female header, 2.54 mm, for DevKitC-1 | HDR-2X22-2.54-F | 1 pcs | PROVISIONAL |
+| E-024 | J1A,J1B | Connectors | 2 pcs 1x22 female header strips (one 2x22 strip split into two rows), 2.54 mm, 22.86 mm row spacing for DevKitC-1 | HDR-1X22-2.54-F | 1 pcs | PROVISIONAL |
 | E-025 | J2 | Connectors | JST-XH 4-pin connector for PZEM TTL (5V, RX, TX, GND) | B4B-XH-A | 1 pcs | PROVISIONAL |
 | E-026 | J3 | Connectors | JST-XH 4-pin connector for relay module (5V, GND, IN1, IN2) | B4B-XH-A | 1 pcs | PROVISIONAL |
 | E-027 | J4 | Connectors | JST-XH 4-pin connector for OLED (3.3V, GND, SDA, SCL) | B4B-XH-A | 1 pcs | PROVISIONAL |

@@ -1,7 +1,6 @@
 metadata:
-  title: PZEM Metering Sub-harness (REV_B, internal isolation)
-  description: PZEM V4 TTL side is SELV via its internal optocouplers. No ADuM/B0505S.
-    The 10k/20k divider and 74HCT125 are on the carrier.
+  title: PZEM Metering Harness (REV_B, internal isolation)
+  description: 'PZEM-004T V4 5 V TTL harness to carrier J2. The 10k/20k divider and 74HCT125 are on the carrier, not in this cable. PZEM internal optocouplers are the mains barrier.'
   author: OpenCode
   date: '2026-11-16'
   rev: REV_B_NO_TEMP
@@ -10,150 +9,28 @@ options:
 connectors:
   CT1:
     type: CT, 100 A, closed or split
-    pinlabels:
-    - CT_P
-    - CT_N
+    pinlabels: [CT_P, CT_N]
   U2:
     type: PZEM-004T V4 (internal optocoupler isolation)
-    pinlabels:
-    - L
-    - N
-    - CT_P
-    - CT_N
-    - +5V
-    - GND
-    - TX
-    - RX
-  U9:
-    type: 74HCT125 level shifter (5 V)
-    pinlabels:
-    - VCC
-    - GND
-    - 1A
-    - 1Y
-    - 2A
-    - 2Y
-    - 3A
-    - 3Y
-    - 4A
-    - 4Y
-  J1:
-    type: Carrier SELV connector
-    pinlabels:
-    - +5V
-    - GND
-    - PZEM_TX_3V3
-    - PZEM_RX_3V3
+    pinlabels: [L, N, CT_P, CT_N, +5V, GND, TX, RX]
+  J2:
+    type: Carrier PZEM connector (JST-XH 4)
+    pinlabels: [+5V, PZEM_RX_5V, PZEM_TX_5V, GND]
 cables:
   W_CT:
     gauge: 0.25 mm2
     length: 0.20 m
     wirecount: 2
     color: GY
-    colors:
-    - WH
-    - BK
-    wirelabels:
-    - CT_P
-    - CT_N
-  W_PWR:
-    gauge: 0.5 mm2
-    length: 0.15 m
-    wirecount: 2
+    colors: [WH, BK]
+  W_PZEM:
+    gauge: 0.25 mm2
+    length: 0.20 m
+    wirecount: 4
     color: GY
-    colors:
-    - RD
-    - BK
-    wirelabels:
-    - +5V
-    - GND
-  W_TX:
-    gauge: 0.25 mm2
-    length: 0.10 m
-    wirecount: 1
-    color: GY
-    colors:
-    - WH
-    wirelabels:
-    - PZEM_TX_3V3
-  W_UART_3V3:
-    gauge: 0.25 mm2
-    length: 0.10 m
-    wirecount: 1
-    color: GY
-    colors:
-    - YE
-    wirelabels:
-    - PZEM_TX_3V3
-  W_UART_5V:
-    gauge: 0.25 mm2
-    length: 0.10 m
-    wirecount: 1
-    color: GY
-    colors:
-    - BU
-    wirelabels:
-    - PZEM_RX_5V
-  W_LS_VCC:
-    gauge: 0.25 mm2
-    length: 0.10 m
-    wirecount: 1
-    color: RD
-    wirelabels:
-    - +5V
-  W_LS_GND:
-    gauge: 0.25 mm2
-    length: 0.10 m
-    wirecount: 1
-    color: BK
-    wirelabels:
-    - GND
+    colors: [RD, BK, WH, GN]
 connections:
-- - CT1:
-    - CT_P
-    - CT_N
-  - W_CT:
-    - 1
-    - 2
-  - U2:
-    - CT_P
-    - CT_N
-- - J1:
-    - +5V
-    - GND
-  - W_PWR:
-    - 1
-    - 2
-  - U2:
-    - +5V
-    - GND
-- - U2:
-    - TX
-  - W_TX:
-    - 1
-  - J1:
-    - PZEM_RX_3V3
-- - J1:
-    - PZEM_TX_3V3
-  - W_UART_3V3:
-    - 1
-  - U9:
-    - 1A
-- - U9:
-    - 1Y
-  - W_UART_5V:
-    - 1
-  - U2:
-    - RX
-- - U9:
-    - VCC
-  - W_LS_VCC:
-    - 1
-  - J1:
-    - +5V
-- - U9:
-    - GND
-  - W_LS_GND:
-    - 1
-  - J1:
-    - GND
+  - [CT1: [CT_P, CT_N], W_CT: [1, 2], U2: [CT_P, CT_N]]
+  - [J2: [+5V, GND], W_PZEM: [1, 2], U2: [+5V, GND]]
+  - [U2: TX, W_PZEM: [3], J2: PZEM_TX_5V]
+  - [U2: RX, W_PZEM: [4], J2: PZEM_RX_5V]

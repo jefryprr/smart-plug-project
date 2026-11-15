@@ -13,7 +13,7 @@
 ## 1. Ringkasan eksekusi
 
 Fase 1 menghasilkan artefak digital untuk bentuk produk inline smart outlet:
-riset komponen, BOM riset + matriks pengadaan Indonesia bertanggal, GPIO map, 5 harness WireViz, KiCad block
+riset komponen, BOM riset + matriks pengadaan Indonesia bertanggal, GPIO map, 4 harness WireViz, KiCad block
 schematic + routed 100?70 SELV carrier, CadQuery enclosure/assembly, firmware C core +
 host tests, dan dokumen keselamatan. Tidak ada klaim siap fabrikasi atau siap
 digunakan.
@@ -143,6 +143,8 @@ Riset harga mencakup 54 baris; 43 baris punya listing bertanggal dan 11 baris `E
 
 ---
 
+**Koreksi antarmuka DevKitC-1:** carrier memakai dua socket 1x22 dengan jarak baris **22,86 mm** (J1A=J1, J1B=J3). Socket 2x22 IDC sebelumnya tidak kompatibel secara fisik. Lihat `docs/decisions/ADR-015-DEVKITC-1-SOCKET.md`.
+
 ## 6. Arsitektur isolasi/proteksi
 
 ```
@@ -206,7 +208,7 @@ kicad-cli pcb export drill -o hardware/manufacturing/provisional/Drill --generat
 ## 9. Gambar dan render
 
 - `docs/hardware/SYSTEM_ARCHITECTURE.png/.svg/.pdf`
-- `hardware/wiring/renders/*.png/.svg/.pdf` (5 harness)
+- `hardware/wiring/renders/*.png/.svg/.pdf` (4 harness)
 - `hardware/mechanical/render/isometric.png`, `front.png`, `back.png`, `top.png`, `bottom.png`, `exploded.png`, `cutaway.png`
 - `hardware/mechanical/drawings/dimensions.svg`, `mounting_plan.svg`, `service_access.svg`, `assembly.pdf`
 - `hardware/pcb/render/placement_preview.png/.svg`
@@ -239,7 +241,7 @@ No mains assembly/energization was performed.
 - Host tests: `firmware/test/host/test_core.c` — 75 checks.
 - ESP-IDF minimal app: `firmware/main/app_main.c` — relay OFF at boot, button debounce, core state machine, ON blocked while sensors invalid.
 - Partition/config: `firmware/partitions.csv`, `sdkconfig.defaults`.
-- ESP-IDF build: `PASS` (v6.1, target esp32s3, 192.496-byte `.bin`, SHA-256 `AE5F831D7B1B4D88F520BF3A2F830BB75F99FE6F86DC1563738A43CF45DE2B46`); build only, no flash.
+- ESP-IDF build: `PASS` (v6.1, target esp32s3, 192.496-byte `.bin`, SHA-256 `2F646505F0C08C1CB9BE28E299BFCAB770BFE8D5BB385C0A67A710D34605E43C`); build only, no flash.
 - OLED/RGB/PZEM/Wi-Fi/MQTT/OTA components: `NOT_IMPLEMENTED`.
 - Build evidence: `reports/FIRMWARE_BUILD.md`, `reports/logs/firmware-idf-build.log`.
 
@@ -303,7 +305,7 @@ See `reports/TEST_MATRIX.csv` / `VALIDATION_SUMMARY.json`.
 | 03 Datasheet | `PARTIAL` | 9+ PDFs hashed; PZEM/socket deficient |
 | 04 Arsitektur | `PASS` (digital) | Diagram PNG/SVG/PDF |
 | 05 Schematic | `PARTIAL` | Block text-only; ERC 0 but not component connectivity |
-| 06 Wiring | `PASS` (render) | 5 harnesses; physical untested |
+| 06 Wiring | `PASS` (render) | 4 harnesses; physical untested |
 | 07 GPIO | `UNVERIFIED` | Static crosscheck; board revision unknown |
 | 08 PCB | `PARTIAL` | Placement-only; DRC 0; routing blocked |
 | 09 Manufacturing | `PARTIAL/BLOCKED` | Placement-only Gerber/drill; functional board blocked |
