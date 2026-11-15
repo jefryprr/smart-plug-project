@@ -1,15 +1,17 @@
 # BOM Master — REV_A_PROVISIONAL
 
-**Generated:** 2026-11-15T14:13:59.371477+00:00
+**Generated:** 2026-11-15T15:22:57.209100+00:00
 
-> **UNPRICED / NOT APPROVED.** Harga kosong karena belum ada harga terverifikasi. Jangan membeli atau menganggap BOM ini final. Status safety-critical: lihat `COMPONENT_APPROVALS.yaml`.
+> **DESIGN BOM (UNPRICED) / NOT APPROVED.** Ini adalah BOM rekayasa, bukan daftar belanja.
+> Harga, stok, dan tautan pembelian ada di `BOM_PROCUREMENT.md` / `BOM_PROCUREMENT.csv`.
+> Status safety-critical: lihat `COMPONENT_APPROVALS.yaml`.
 
 | Item | Ref | Category | Description | MPN | Qty | Status |
 |---|---|---|---|---|---:|---|
-| E-001 | U1 | MCU | ESP32-S3 DevKitC-1, N16R8 (16 MB flash, 8 MB PSRAM) | ESP32-S3-DevKitC-1-N16R8 | 1 pcs | PENDING_APPROVAL |
-| E-002 | U2 | Metering | PZEM-004T V4 AC energy meter, 100 A split/open CT, TTL/Modbus | PZEM-004T-V4-100A-SPLIT | 1 pcs | DOCUMENTATION_DEFICIENT |
+| E-001 | U1 | MCU | ESP32-S3 DevKitC-1, N16R8 (official preferred; compatible board allowed only as a documented deviation) | ESP32-S3-DevKitC-1-N16R8 | 1 pcs | PENDING_APPROVAL |
+| E-002 | U2 | Metering | PZEM-004T V4 AC energy meter, 100 A CT (closed or split), TTL/Modbus | PZEM-004T-V4-100A-CT | 1 pcs | DOCUMENTATION_DEFICIENT |
 | E-003 | U3 | Power | AC/DC 5 V 1 A isolated power module, 5 W, 90-264 VAC input | HLK-5M05 | 1 pcs | PENDING_APPROVAL |
-| E-004 | U4 | Sensing | Digital temperature sensor, I2C, 3.3 V, SOT-563 | TMP102AIDRLR | 1 pcs | PENDING_APPROVAL |
+| E-004 | U4 | Sensing | Digital temperature sensor, I2C, 3.3 V (TMP102 bare or GY-TMP102 breakout) | TMP102AIDRLR | 1 pcs | PENDING_APPROVAL |
 | E-005 | U5 | Sensing | I2C real-time clock with integrated crystal, 3.3 V | DS3231MZ+ | 1 pcs | PENDING_APPROVAL |
 | E-006 | U6 | Isolation | Dual-channel digital isolator for PZEM UART (2.5 kVrms class) | ADuM1201ARZ | 1 pcs | PENDING_APPROVAL |
 | E-007 | U7 | Isolation | Isolated 5 V to 5 V DC/DC converter, 1 W, for PZEM barrier | B0505S-1WR3 | 1 pcs | PENDING_APPROVAL |
@@ -41,23 +43,23 @@
 | E-031 | TB3 | Connectors | Isolated-side PZEM terminal, 5-pin, 5.08 mm | MKDS 3/5-5.08 | 1 pcs | DOCUMENTATION_DEFICIENT |
 | E-032 | TB4 | Connectors | Relay coil terminal, 2-pin, 5.08 mm (SELV) | MKDS 3/2-5.08 | 1 pcs | PROVISIONAL |
 | E-033 | TB5 | Connectors | 5 V input terminal, 2-pin, 5.08 mm (SELV) | MKDS 3/2-5.08 | 1 pcs | PROVISIONAL |
-| E-034 | X1 | Connectors | Type F (Schuko) panel socket, 16 A / 250 V, 2P+E | SOCKET-TYPE-F-16A-TBD | 1 pcs | DOCUMENTATION_DEFICIENT |
-| E-035 | P1 | Connectors | Type F (Schuko) cord plug, 16 A / 250 V, 3-core | PLUG-TYPE-F-16A-TBD | 1 pcs | DOCUMENTATION_DEFICIENT |
+| E-034 | X1 | Connectors | Type F (Schuko) panel socket, 16 A / 250 V, 2P+E | SIMON-SCHUKO-16A | 1 pcs | DOCUMENTATION_DEFICIENT |
+| E-035 | P1 | Connectors | Type F (Schuko) cord plug, 16 A / 250 V, 3-core | BP16 | 1 pcs | DOCUMENTATION_DEFICIENT |
 | E-036 | CG1 | Mechanical | Cable gland, M16, IP68, PA66, UL94 V-0 | GLAND-M16-TBD | 1 pcs | PROVISIONAL |
-| E-037 | ENC1 | Mechanical | Enclosure, ABS/PC, 220 x 120 x 70 mm confirmed, flame-retardant grade | ENCLOSURE-220X120X70-TBD | 1 pcs | BLOCKED |
+| E-037 | ENC1 | Mechanical | Enclosure, ABS/PC, 220 x 120 x 70 mm confirmed, flame-retardant grade | MG-220X120X70-ABS | 1 pcs | BLOCKED |
 | E-038 | PE1 | Mechanical | PE bonding hardware: screw, lock washer, nut, dedicated stud | PE-HARDWARE-TBD | 1 pcs | BLOCKED |
 | E-039 | W1 | Cable | Mains cord, H05VV-F 3x1.5 mm2, 0.5 m provisional, brown/blue/green-yellow | H05VV-F-3G1.5 | 0.5 m | PROVISIONAL |
 | E-040 | W2 | Cable | Low-voltage hookup wire assortment, 0.25 mm2, 300 V | HOOKUP-0.25MM2 | 3 m | PROVISIONAL |
-| E-041 | PCB1 | PCB | Low-voltage carrier PCB, 2-layer FR4, 1.6 mm, 1 oz Cu, provisional outline | PCB-CARRIER-REV-A | 1 pcs | PROVISIONAL |
-| E-042 | LAB1 | Labels | Safety/rating label set: rated voltage/current, warnings, serial/QR placeholder | LABEL-SET-REV-A | 1 pcs | BLOCKED |
-| E-043 | HS1 | Consumables | Heat-shrink tubing assortment, flame-retardant | HEATSHRINK-ASSORT | 1 set | PROVISIONAL |
+| E-041 | PCB1 | PCB | Prototype carrier board, 7x9 cm double-sided FR4 (custom 75x50 mm PCB not fabricated) | PROTOBOARD-7X9 | 1 pcs | PROVISIONAL |
+| E-042 | LAB1 | Labels | Safety/rating label set: rated voltage/current, warnings, serial/QR placeholder (prototype label tape) | LABEL-SET-REV-A | 1 pcs | BLOCKED |
+| E-043 | HS1 | Consumables | Heat-shrink tubing assortment, flame-retardant | HEATSHRINK-5MM | 1 set | PROVISIONAL |
 | E-044 | SC1 | Mechanical | M3x8 machine screws, nylon washers | M3X8-SCREW | 8 pcs | PROVISIONAL |
 | E-045 | INS1 | Mechanical | M3 heat-set inserts for enclosure | M3-INSERT | 4 pcs | PROVISIONAL |
-| E-046 | ST1 | Mechanical | M3 nylon standoff set for carrier PCB | M3-STANDOFF | 4 pcs | PROVISIONAL |
+| E-046 | ST1 | Mechanical | M3 nylon standoff set for carrier PCB | M3-STANDOFF-12-NYLON | 4 pcs | PROVISIONAL |
 
 ## Catatan
 
-- Semua harga, stok, dan tautan pembelian sengaja kosong sampai ada kutipan nyata dengan tanggal.
+- BOM ini tidak memuat harga; daftar belanja bertanggal ada di `BOM_PROCUREMENT.md`.
 - Komponen mains (socket, plug, relay, fuse, PSU, PE, enclosure) belum disetujui.
 - `qty_per_unit` adalah kebutuhan prototipe 1 unit; batch 10 unit belum dihitung.
-- Lihat `research/COMPONENT_RESEARCH.md`, `research/UNKNOWN_SPECIFICATIONS.md`, dan `bom/ALTERNATES.md`.
+- Lihat `research/COMPONENT_RESEARCH.md`, `research/PROCUREMENT_INDONESIA.md`, `research/UNKNOWN_SPECIFICATIONS.md`, dan `bom/COMPONENT_APPROVALS.yaml`.

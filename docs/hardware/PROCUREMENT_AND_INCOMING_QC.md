@@ -1,6 +1,7 @@
 # Procurement and Incoming Inspection (QC)
 
 **Status:** `BLOCKED` — no purchase has been made; prices/MPNs unapproved.
+**Dated buy list:** `bom/BOM_PROCUREMENT.md` / `.csv` (2026-11-15, listing prices, not quotes).
 **Rule:** Do not connect any incoming part to mains. Incoming QC is visual/mechanical/electrical at **low voltage** only, unless a qualified lab procedure says otherwise.
 
 ## 1. Before ordering
@@ -18,11 +19,19 @@
 3. Measure dimensions with calipers; update `hardware/mechanical/source/components.py`.
 4. Inspect for damage, contamination, bent pins, cracked case, loose terminal.
 5. Verify connector pitch/pinout against the actual datasheet.
-6. For PZEM/CT: record CT ratio/marking, cable length, terminal labels; do not assume V3 docs.
+6. For PZEM/CT: record CT ratio/marking, closed-vs-split type, cable length, terminal labels; do not assume V3 docs.
 7. For the off-board relay module: verify two independent SPDT channels (not DPST), active-LOW inputs, JD-VCC jumper/pinout, 5 V coil, contact marking, and per-channel continuity.
 8. For the HLK-5M05 PSU: verify 4-pin marking (AC/AC/−Vo/+Vo), 38×23×18 mm body, 5 V/1 A/5 W label, input range, batch/certificate, ripple/startup, no-load, isolation/leakage, and thermal rise. Treat unmarked/counterfeit modules as rejected.
 9. For socket/plug: verify PE contacts, shutter, retention, material marking.
 10. For enclosure: verify material/UL94 marking, wall thickness, dimensions.
+
+## 2A. Budget and staging (2026-11-15)
+
+- Dated buy list: `bom/BOM_PROCUREMENT.csv` (39 listing-verified, 9 estimated).
+- CORE (safety/function minimum): **Rp756.987**; with Rp40.000 shipping: **Rp796.987**.
+- CORE with EasyWare restock prices: **Rp705.519**; all-in: **Rp745.519**.
+- FULL (+ OLED/RTC/RGB/connectors): **Rp895.976**; all-in: **Rp935.976**.
+- Buy CORE first; defer FULL until SELV/thermal checks pass. Do not downgrade safety parts to meet the cap.
 
 ## 3. Quarantine
 

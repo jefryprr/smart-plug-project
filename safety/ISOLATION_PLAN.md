@@ -29,8 +29,8 @@ DOMAIN D — SERVICE/USB
 | Barrier | Komponen | Rating | Bukti | Status |
 |---|---|---|---|---|
 | PSU AC/DC | Hi-Link HLK-5M05 | Datasheet claims 2500 VAC input-output; batch/hipot unverified | Distributor datasheet; exact batch/certificate required | `DOCUMENTATION_DEFICIENT` |
-| UART | ADuM1201ARZ | 2.5 kVrms class (component) | Datasheet link-only; assembly creepage belum | `PENDING` |
-| PZEM power | B0505S-1WR3 | 1 W isolated | Datasheet | `PENDING` |
+| UART | ADuM1201ARZ (bare or CJMCU module) | 2.5 kVrms class (component); module creepage unverified | Datasheet + module inspection; assembly creepage belum | `PENDING` |
+| PZEM power | Mornsun B0505S-1WR3 | 1 W isolated; genuine Mornsun preferred | Datasheet; clone rejected | `PENDING` |
 | Relay module coil/contact | 2-channel optocoupler module | Optocoupler input/coil; mains contact barrier UNVERIFIED | Module datasheet/batch; creepage review | `DOCUMENTATION_DEFICIENT` |
 | PCB slots/barriers | Layout | TBD | Belum dirancang/diukur | `BLOCKED` |
 | Enclosure barrier | Mechanical wall | TBD | Belum ada | `BLOCKED` |

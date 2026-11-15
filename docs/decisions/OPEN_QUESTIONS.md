@@ -40,4 +40,4 @@ Tidak ada Q01–Q28 yang masih `OPEN`. Beberapa jawaban adalah **arah** (D) yang
 1. Blocker safety tidak ditutup dengan asumsi.
 2. Setiap perubahan Q02/Q03/Q04/Q05/Q08/Q09/Q10/Q12/Q25 memicu impact analysis.
 3. `READY_FOR_FABRICATION`/`READY_FOR_USE` tidak diberikan sampai gate F4/F5/F6.
-4. BOM tetap `UNPRICED`/`UNAPPROVED` sampai ada kutipan dan persetujuan.
+4. BOM tetap `UNAPPROVED`; harga pengadaan ada di `bom/BOM_PROCUREMENT.csv` tetapi bukan kutipan dan bukan approval.

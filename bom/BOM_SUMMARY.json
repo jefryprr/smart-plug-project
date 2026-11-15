@@ -2,15 +2,27 @@
   "project": "esp32-s3-iot-smart-plug",
   "design_revision": "REV_A_PROVISIONAL",
   "currency": "IDR",
-  "generated_at": "2026-11-15T14:13:59.371477+00:00",
-  "pricing_status": "UNPRICED",
-  "priced_lines": 0,
-  "unpriced_lines": 48,
+  "generated_at": "2026-11-15T15:22:57.209100+00:00",
+  "pricing_status": "PROCUREMENT_PRICED_2026-11-15",
+  "design_bom_pricing_status": "UNPRICED",
+  "procurement_matrix": "bom/BOM_PROCUREMENT.csv",
+  "procurement_report": "research/PROCUREMENT_INDONESIA.md",
+  "procurement_lines": 48,
+  "procurement_verified_lines": 39,
+  "procurement_estimated_lines": 9,
   "subtotal_idr": null,
   "prototype_1_unit": {
-    "subtotal_idr": null,
-    "status": "UNPRICED"
+    "core_subtotal_idr": 756987,
+    "core_restock_subtotal_idr": 705519,
+    "full_addons_idr": 138989,
+    "full_subtotal_idr": 895976,
+    "core_all_in_idr": 796987,
+    "core_restock_all_in_idr": 745519,
+    "full_all_in_idr": 935976,
+    "status": "CORE_ACHIEVABLE_WITH_RESTOCK; FULL_OVER_BUDGET"
   },
+  "budget_cap_idr": 750000,
+  "shipping_estimate_idr": 40000,
   "batch_10_units": {
     "subtotal_idr": null,
     "status": "NOT_QUOTED"
@@ -21,8 +33,11 @@
     "note": "Q28=B: none owned."
   },
   "notes": [
-    "No verified, dated Indonesian prices were obtained; prices are empty, not Rp0.",
-    "BOM is not approved for purchase. Safety-critical parts remain PENDING_APPROVAL, DOCUMENTATION_DEFICIENT, or BLOCKED.",
+    "Engineering BOM is still unpriced; dated prototype buy list is bom/BOM_PROCUREMENT.csv.",
+    "Prices are listing prices, not supplier quotes. Shipping/tax are separate estimates.",
+    "CORE excludes OLED, RTC, external RGB, and their connectors; FULL adds them.",
+    "CORE fits Rp750.000 only with EasyWare restock prices for ESP32-S3 and PZEM; buy-now is slightly over.",
+    "FULL is over budget; do not downgrade fuse, MOV, TCO, PE, terminal, enclosure, or isolation to meet it.",
     "Final rating is 8 A / about 1.840 W (user amendment), limited to electronics/SMPS loads; thermal/lifecycle tests are still required.",
     "Batch 10-unit pricing cannot be quoted without actual supplier quotes."
   ]

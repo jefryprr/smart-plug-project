@@ -18,10 +18,15 @@
 | Exit code | 0 |
 | Binary | `firmware/build/smartplug.bin` (mirror: `D:\AI INSTALLS\artifacts\smartplug.bin`) |
 | Size | 192,464 bytes (0x2EFD0) |
-| SHA-256 | `96BDF60D09D621F2D55DE1824B76BEB806F62D69277FAC1431BD7490BF9ABFC8` |
+| SHA-256 | `4949EEEFE73526AC99E79AC8F8E97EB1E0790551D80ED922F32034C8F0321134` |
 | Log | `reports/logs/firmware-idf-build.log` |
 | Partition free | 0x5D1030 of 0x600000 bytes (97%) |
 | Bootloader free | 0x2D30 of 0x8000 bytes (35%) |
+
+**Reproducibility note:** the hash is per-build, not a byte-for-byte reproducibility
+claim. ESP-IDF embeds build/version metadata, so a rebuild of identical source can
+produce a different hash at the same size. Use the current hash only to identify
+this artifact; do not treat it as a deterministic source hash.
 
 The build log ends with:
 

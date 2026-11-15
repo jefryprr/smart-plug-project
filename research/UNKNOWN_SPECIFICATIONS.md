@@ -23,7 +23,7 @@
 | U-016 | PCB | Stackup, copper thickness, trace width, via current, clearance | Thermal, DRC | Perhitungan arus/termal dan DRC KiCad |
 | U-017 | Display | Controller SSD1306 vs SH1106, address, dimensi, viewport | UI, firmware | Inspeksi modul dan datasheet |
 | U-018 | RTC | Drift, backup runtime, battery/supercap selection | Offline schedule | Datasheet dan uji drift |
-| U-019 | Cost | Harga/stock/ongkir semua komponen | BOM, budget | Kutipan supplier bertanggal |
+| U-019 | Cost | Harga/stock/ongkir semua komponen | BOM, budget | Snapshot 2026-11-15 ada di `bom/BOM_PROCUREMENT.csv`; ongkir/pajak aktual dan stok saat beli masih UNKNOWN |
 | U-020 | Test lab | Tidak ada multimeter/lab (Q26=A) | Semua uji fisik | Sediakan alat dan personel kompeten |
 | U-021 | Regulatory | Klasifikasi SNI/IEC, lab, label, sertifikasi | Klaim pasar | Konsultasi lembaga/regulatory specialist |
 | U-022 | Firmware toolchain | ESP-IDF belum terpasang; versi target belum dipilih | Build/OTA/security | Pasang versi stabil, lock, build |
@@ -31,6 +31,10 @@
 | U-024 | Android | Android SDK tidak terpasang; APK belum dibuat | Build APK | Pasang SDK, build, uji emulator |
 | U-025 | Push notification | FCM/Expo credentials belum ada | Android push | Akun/credential dan izin |
 | U-026 | Deployment | VPS/domain/TLS belum ada | Production deploy | Infrastruktur dan izin pengguna |
+| U-027 | MCU | Board N16R8 compatible vs official Espressif; regulator/RGB/strapping/RF belum diukur | GPIO, firmware, safety | Foto, pinout, RF, dan uji beban |
+| U-028 | Enclosure | MG Duradus ABS IP65; flame rating/UL94 belum ada | Fire/mechanical safety | Sertifikat material + thermal/impact test |
+| U-029 | Isolation | CJMCU ADuM1201 dan B0505S module; creepage/hipot belum | Isolation safety | Hipot/leakage + creepage review |
+| U-030 | Relay | Modul 2 channel generic; relay brand/contact rating/lifecycle belum | Switching safety | Buka module, catat relay MPN, uji 8 A/lifecycle |
 
 ## Aturan penutupan
 

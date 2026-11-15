@@ -106,8 +106,8 @@ hardware/
   mechanical/          CadQuery enclosure + exports/renders
   manufacturing/       provisional, NOT released
   pcb/render/          placement preview (not a KiCad plot)
-research/              component research, off-board module study, candidates, datasheets
-bom/                   BOM master + tools + approvals (unpriced)
+research/              component research, procurement, off-board module study, candidates, datasheets
+bom/                   engineering BOM + dated procurement matrix + tools + approvals
 safety/                rating chain, isolation, clearance, FMEA, PE, standards
 security/              threat model, authorization, MQTT ACL, SBOM, audit
 database/              PostgreSQL migrations + dev seed
@@ -124,6 +124,7 @@ deliverables/          manifest + final report
 
 - Off-board modules: `research/OFFBOARD_MODULES.md`
 - PSU study: `research/PSU_HLK_5M05.md`
+- Procurement Indonesia: `research/PROCUREMENT_INDONESIA.md`, `bom/BOM_PROCUREMENT.md`
 - Decisions: `docs/decisions/USER_ANSWERS.md`, `ASSUMPTION_REGISTER.md`, `ADR-*.md`
 - Safety: `safety/ELECTRICAL_RATING_CHAIN.md`, `ISOLATION_PLAN.md`, `CLEARANCE_CREEPAGE_WORKSHEET.md`, `RESIDUAL_RISK_REGISTER.csv`
 - Phase 1: `reports/PHASE_1_ENGINEERING_REPORT.md`

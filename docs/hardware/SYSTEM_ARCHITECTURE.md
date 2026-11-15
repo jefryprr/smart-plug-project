@@ -10,7 +10,7 @@
 | AC input/output | Plug, fuse, MOV, thermal cutoff, off-board 2-channel relay module, socket, PE | MAINS |
 | AC/DC PSU | Hi-Link HLK-5M05, 5 V 1 A / 5 W (datasheet isolation claim; batch unverified) | Barrier |
 | PZEM + CT | Off-board module with bracket; voltage/current/energy | MAINS + isolated UART |
-| UART isolation | ADuM1201 + B0505S barrier | Barrier |
+| UART isolation | ADuM1201 (CJMCU module or bare) + B0505S barrier | Barrier |
 | ESP32-S3 carrier | State machine, metering, UI, network | SELV |
 | Relay driver | MOSFET + pulldown; pulls both active-LOW module inputs | SELV→coil |
 | UI | OLED, button, RGB | SELV |

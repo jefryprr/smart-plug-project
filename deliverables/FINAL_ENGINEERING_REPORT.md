@@ -4,7 +4,7 @@
 **Author/agent:** OpenCode (DeepSeek V4.1 Flash 1017)
 **PRD version:** 1.0
 **Design revision:** `REV_A_PROVISIONAL`
-**Source commit:** `8e63d9e9cdbc390e535439a5accba304b792e0a5`
+**Source commit:** `e394101979559d43747b934957f7596a174c87ea`
 **Manifest:** `deliverables/manifest.json`
 
 ---
@@ -17,6 +17,7 @@
 - **150×100×70 FAILS** the coarse fit; **180×120×70 is rejected** because the PZEM/relay/socket would only stack with a 0.5 mm gap, ignoring brackets and wiring. **220×120×70 PASSES** side-by-side and is **CONFIRMED** by the user (Q06=C, 2026-11-15).
 - **KiCad 10.0.8 CLI installed**; ERC 0 on the block-level text-only schematic, DRC 0 on the placement-only PCB, provisional placement-only Gerber/drill exported. Component-level schematic/routing remains blocked.
 - **ESP-IDF v6.1 target build PASS** (esp32s3, 192,464-byte `.bin`, SHA-256 in `reports/FIRMWARE_BUILD.md`); no board was flashed. **Android debug APK PASS** (arm64-v8a, 46,852,340 bytes, v2 debug signature verified; not device-tested).
+- **Indonesian procurement matrix added** (2026-11-15): 48 lines, 39 listing-verified + 9 estimated. CORE Rp756.987 (restock Rp705.519), FULL Rp895.976; budget verdict `CORE_ACHIEVABLE_WITH_RESTOCK; FULL_OVER_BUDGET`. Details: `research/PROCUREMENT_INDONESIA.md`, `bom/BOM_PROCUREMENT.md`.
 
 ---
 
@@ -80,17 +81,25 @@ OFF (Q25=C), computer-only lab (Q26=A), digital parallel phases (Q27=C).
 
 - `research/COMPONENT_RESEARCH.md`: 45 candidates with evidence scores.
 - `research/candidates.csv`: all candidates, not just winners.
-- `bom/BOM_MASTER.csv`: 48 rows, **unpriced**, **unapproved**.
-- `bom/BOM_SUMMARY.json`: `UNPRICED`, no Rp0 placeholders.
+- `research/PROCUREMENT_INDONESIA.md`: dated Indonesian supplier/price study, stock risks, and budget scenarios.
+- `bom/BOM_MASTER.csv`: 48 engineering rows, **unpriced**, **unapproved**.
+- `bom/BOM_PROCUREMENT.csv`: 48 dated prototype buy rows (39 listing-verified, 9 estimated).
+- `bom/BOM_SUMMARY.json`: `PROCUREMENT_PRICED_2026-11-15`; CORE Rp756.987, FULL Rp895.976.
 - `bom/COMPONENT_APPROVALS.yaml`: no `approved_for_fabrication`.
 - `research/datasheets/MANIFEST.md`: 12 PDFs hashed (including the HLK-5M05 distributor copy) plus the PZEM-004T V1.0 archive; V4/socket/enclosure/HLK batch still marked deficient.
-- `research/UNKNOWN_SPECIFICATIONS.md`: 26 open unknowns.
+- `research/UNKNOWN_SPECIFICATIONS.md`: 30 open unknowns (including compatible-board, enclosure flame rating, isolation module, and relay-batch unknowns).
 
-**Recommended provisional parts:** Espressif DevKitC-1 N16R8, PZEM-004T V4 100 A
-split CT + ADuM1201/B0505S barrier, off-board 2-channel optocoupler relay module
-(10 A class claim), Hi-Link HLK-5M05 (user-selected; efficiency/isolation batch unverified), Littelfuse 215 10 A, EPCOS S10K275,
-Sefuse SF169E, TMP102, DS3231M,
-SSD1306, Type F 16 A socket (unapproved).
+**Recommended provisional parts:** Espressif-compatible DevKitC-1 N16R8 (explicit Q08=B
+deviation; official stock unconfirmed), PZEM-004T V4 100 A CT + ADuM1201/B0505S barrier,
+off-board 2-channel optocoupler relay module (10 A class claim), Hi-Link HLK-5M05
+(user-selected; efficiency/isolation batch unverified), Littelfuse 5x20 10 A slow-blow,
+MOV 10D271K, generic 99 °C thermal fuse, GY-TMP102 breakout, DS3231 module, SSD1306 OLED,
+Simon Schuko 16 A socket, BOSS BP16 plug, MG Duradus 220x120x70 ABS enclosure.
+
+**Budget verdict:** CORE Rp756.987 before shipping (Rp796.987 all-in); CORE drops to
+Rp705.519 (Rp745.519 all-in) only with EasyWare restock prices. FULL is Rp895.976
+(Rp935.976 all-in). Rp500–750k is not enough for the full feature set at verified listing
+prices; do not downgrade safety parts to force it.
 
 ---
 
@@ -117,8 +126,8 @@ Details: `safety/ISOLATION_PLAN.md`, `safety/ELECTRICAL_RATING_CHAIN.md`,
 - 180×120×70: **rejected**; it only fit by stacking PZEM/relay/socket with a 0.5 mm gap and ignoring brackets/wiring.
 - 220×120×70 confirmed (Q06=C): side-by-side coarse fit **PASS**; dimensions still approximate.
 - Final continuous rating **8 A / ~1.840 W**, electronics/SMPS only.
-- BOM unpriced; target Rp500–750k cannot be confirmed. Safety parts may push to Q07=C.
-- Supply/documentation risk: PZEM, socket/plug, enclosure, thermal cutoff.
+- BOM prices: CORE Rp756.987 (Rp796.987 all-in), CORE restock Rp705.519 (Rp745.519 all-in), FULL Rp895.976 (Rp935.976 all-in). Target Rp500–750k is only achievable for the CORE with EasyWare restock prices; FULL exceeds it. Safety parts are not downgraded.
+- Supply/documentation risk: PZEM batch, ESP32 official stock, HLK batch, socket/plug, enclosure flammability, thermal cutoff.
 - 220×120×70 enclosure confirmed after 150×100 and 180×120 clearance review failed.
 
 ---
@@ -127,8 +136,8 @@ Details: `safety/ISOLATION_PLAN.md`, `safety/ELECTRICAL_RATING_CHAIN.md`,
 
 | No. | Category | Key path | Status |
 |---:|---|---|---|
-| 01 | Component research | `research/COMPONENT_RESEARCH.md`, `candidates.csv` | PARTIAL |
-| 02 | BOM | `bom/BOM_MASTER.csv`, `BOM_SUMMARY.json` | PARTIAL (unpriced) |
+| 01 | Component research | `research/COMPONENT_RESEARCH.md`, `PROCUREMENT_INDONESIA.md`, `candidates.csv` | PARTIAL (dated sourcing) |
+| 02 | BOM | `bom/BOM_MASTER.csv`, `BOM_PROCUREMENT.csv`, `BOM_SUMMARY.json` | PARTIAL (procurement priced; safety unapproved) |
 | 03 | Datasheets | `research/datasheets/MANIFEST.md` | PARTIAL |
 | 04 | System architecture | `docs/hardware/SYSTEM_ARCHITECTURE.*` | PASS (digital) |
 | 05 | Schematic | `hardware/kicad/*.kicad_sch` | PARTIAL (block text; ERC 0) |
@@ -385,7 +394,7 @@ See `reports/TEST_MATRIX.csv`, `reports/FAILURES.md`, `reports/VALIDATION_SUMMAR
 - Test logs: `reports/logs/`.
 - Screenshots: `docs/ui-ux/screenshots/`.
 - Datasheet hashes: `research/datasheets/MANIFEST.md`.
-- Known limitations: unpriced BOM, unapproved parts, block-level schematic,
+- Known limitations: procurement prices are listings not quotes, unapproved parts, block-level schematic,
   placement-only PCB, approximate CAD, no firmware integration/Android device test/Postgres deployment,
   no physical validation, no certification.
 - This report does not replace `reports/PHASE_1_ENGINEERING_REPORT.md`,

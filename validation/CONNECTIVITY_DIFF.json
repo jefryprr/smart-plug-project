@@ -45,7 +45,7 @@
     "unapproved_lines": 48,
     "approved_for_fabrication": 0,
     "limitations": [
-      "No prices were verified; BOM is unpriced and not approved."
+      "Engineering BOM is unpriced; bom/BOM_PROCUREMENT.csv is a dated listing matrix, not a supplier quote."
     ]
   },
   "overall_status": "PASS"

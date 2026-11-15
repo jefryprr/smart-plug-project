@@ -17,7 +17,7 @@
 | 4 | Apakah pengamanan soket/terminal memadai? | Socket/terminal belum dipilih dan belum diuji retensi/tarikan. | `BLOCKED` |
 | 5 | Apakah jalur PE layak? | PE dapat dibuat langsung dari plug input ke socket output tanpa relay/fuse. Tetapi MPN terminal/stud dan uji kontinuitas belum ada. | `BLOCKED` |
 | 6 | Apakah pemutusan konduktor dua kutub layak? | Module 2-channel off-board: dua SPDT independen, 10 A class claim; bukan DPST linked. Rating final 8 A. Uji tiap channel. | `PROVISIONAL` |
-| 7 | Apakah biaya layak? | Harga belum dikumpulkan. Komponen safety (PSU tersertifikasi, relay dua kutub, socket/plug ber-PE, enclosure flame-retardant) dapat melewati target B. | `REDESIGN_PENDING_QUOTES` |
+| 7 | Apakah biaya layak? | Harga sudah dikumpulkan (2026-11-15). Elektronik inti Rp526.923; CORE Rp756.987 (restock Rp705.519); FULL Rp895.976. CORE hanya masuk Rp750.000 dengan restock EasyWare; FULL di atas budget. | `GO_WITH_CAVEATS` / `FULL_OVER_BUDGET` |
 | 8 | Apakah suplai DC cukup? | Perkiraan peak ~0.58 A pada 5 V; HLK-5M05 1 A memberi margin ~42%, tetapi efisiensi ~70% dan panas ~2.1 W. Belum diukur. | `GO_WITH_CAVEATS` |
 | 9 | Apakah PZEM dan CT dapat dipasang? | Modul besar tetapi mungkin; CT harus mengelilingi satu konduktor. Pinout/isolasi batch belum pasti. | `BLOCKED` |
 | 10 | Apakah relay/terminal memadai? | Module 2-channel 10 A class claim (final 8 A); terminal/fuse holder belum rated/verified. | `PROVISIONAL` |
@@ -140,10 +140,11 @@ Input yang belum tersedia:
 
 ## 11. Biaya dan pengadaan
 
-- Harga belum dikumpulkan; BOM `UNPRICED`.
-- Komponen safety yang mungkin mendorong biaya: PSU HLK-5M05, relay dua kutub, socket/plug ber-PE, fuse holder, enclosure flame-retardant, PE hardware, barrier isolasi.
-- Target B (Rp500–750 ribu) belum dapat dikonfirmasi. Jika harga aktual melebihi, Q07 berubah ke C; jangan menurunkan safety.
-- Beberapa komponen (PZEM, socket, enclosure) `DOCUMENTATION_DEFICIENT`; perlu sampel dan inspeksi.
+- Harga sudah dikumpulkan untuk 48 baris: `bom/BOM_PROCUREMENT.csv`; 39 listing-verified, 9 `ESTIMATED`.
+- Elektronik inti Rp526.923; CORE Rp756.987 (Rp796.987 dengan ongkir); CORE restock EasyWare Rp705.519 (Rp745.519 dengan ongkir); FULL Rp895.976 (Rp935.976 dengan ongkir).
+- Komponen safety yang mendorong biaya: PZEM 100 A Rp150.000, ESP32 Rp139.968, enclosure Rp99.684, HLK-5M05 Rp49.000, barrier ADuM+B0505S Rp64.400, fuse/MOV/TCO Rp36.295, terminal/PE Rp29.360.
+- Target B (Rp500–750 ribu) hanya tercapai untuk CORE dengan harga restock EasyWare; FULL tidak. Jangan menurunkan safety untuk memaksa FULL masuk budget.
+- Beberapa komponen (PZEM, socket, enclosure, HLK, TCO) `DOCUMENTATION_DEFICIENT`; perlu sampel dan inspeksi.
 
 ## 12. Kesimpulan dan gate
 

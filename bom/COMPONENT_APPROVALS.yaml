@@ -1,6 +1,6 @@
 project: esp32-s3-iot-smart-plug
 design_revision: REV_A_PROVISIONAL
-generated_at: '2026-11-15T14:13:59.371477+00:00'
+generated_at: '2026-11-15T15:22:57.209100+00:00'
 approval_policy: User approved the research direction, not final MPNs. No component
   is approved for fabrication.
 approved_by: null
@@ -11,17 +11,19 @@ items:
   status: PENDING_APPROVAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: RGB pin differs between v1.0 (GPIO48) and v1.1 (GPIO38); board
-    must be photographed and revision verified. N16R8 uses octal PSRAM; avoid GPIO33-37.
+  blocking_reason: Q08=B remains the official ESP32-S3-DevKitC-1 N16R8 baseline. Official
+    local stock is unconfirmed; the priced prototype board is a compatible N16R8 at
+    Rp139,968. This is an explicit, not silent, deviation. Verify N16R8 marking, RGB
+    GPIO (v1
 - item_id: E-002
-  mpn: PZEM-004T-V4-100A-SPLIT
+  mpn: PZEM-004T-V4-100A-CT
   status: DOCUMENTATION_DEFICIENT
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Off-board module with dedicated enclosure bracket; not on the low-voltage
-    PCB. Official Peacefair V4 datasheet for the exact batch is not verified. UART
-    level, isolation, terminal rating, and CT ratio must be measured. Do not confuse
-    CT rat
+  blocking_reason: Off-board module. The priced prototype uses a closed 100 A CT;
+    a split CT is electrically equivalent for non-invasive sensing and easier to install.
+    Official Peacefair V4 datasheet for the exact batch is not verified. UART level,
+    isolation,
 - item_id: E-003
   mpn: HLK-5M05
   status: PENDING_APPROVAL
@@ -36,8 +38,10 @@ items:
   status: PENDING_APPROVAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Place near relay/terminal hotspot. Sensor failure must produce
-    invalid state, not a stale comfortable reading.
+  blocking_reason: 'The carrier design uses TMP102AIDRLR SOT-563; the priced prototype
+    uses a GY-TMP102 breakout for ease of assembly. Verify the actual IC marking/address.
+    Place at the relay/terminal hotspot and calibrate. Sensor failure must produce
+    invalid '
 - item_id: E-005
   mpn: DS3231MZ+
   status: PENDING_APPROVAL
@@ -51,15 +55,17 @@ items:
   approved_for_purchase: false
   approved_for_fabrication: false
   blocking_reason: Mandatory provisional barrier between PZEM-side UART and SELV MCU.
-    Final working voltage/creepage must be reviewed. Do not connect PZEM GND directly
-    to MCU GND.
+    The priced prototype uses a CJMCU ADUM1201 module; module creepage/clearance is
+    not certified. Final working voltage/creepage must be reviewed. Do not connect
+    PZEM GND direc
 - item_id: E-007
   mpn: B0505S-1WR3
   status: PENDING_APPROVAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Provides isolated 5 V to the PZEM side. Output filtering and common-mode
-    path must be reviewed.
+  blocking_reason: Provides isolated 5 V to the PZEM side of the external ADUM barrier.
+    Genuine Mornsun B0505S-1WR3 is required; cheaper clones are rejected until isolation
+    is verified. Output filtering and common-mode path must be reviewed.
 - item_id: E-008
   mpn: AO3400A
   status: PENDING_APPROVAL
@@ -81,10 +87,10 @@ items:
   status: DOCUMENTATION_DEFICIENT
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: User-selected common 2-channel module, off-board, mounted in enclosure.
-    Two independent SPDT channels (L/N); NOT mechanically linked DPST. 10A is a vendor
-    claim, not validated continuous rating. Final 8A/1840W. Active-LOW input; verify
-    JD-V
+  blocking_reason: User-selected common 2-channel module, off-board. Two independent
+    SPDT channels (L/N), NOT mechanically linked DPST. 10 A is a vendor claim, not
+    a validated continuous rating. Final 8 A/1840 W. Active-LOW input; verify JD-VCC/pinout.
+    Priced
 - item_id: E-010A
   mpn: BRACKET-2CH-RELAY
   status: PROVISIONAL
@@ -172,8 +178,9 @@ items:
   status: DOCUMENTATION_DEFICIENT
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Verify controller, address, and 3.3 V operation. Do not assume
-    SH1106 is SSD1306-compatible.
+  blocking_reason: Priced EasyWare module is 0.96 inch 128x64 SSD1306 I2C. Verify
+    controller, address, and 3.3 V operation. Do not assume SH1106 is SSD1306-compatible.
+    Deferred in the CORE build.
 - item_id: E-022
   mpn: WS2812B-5050
   status: PENDING_APPROVAL
@@ -253,20 +260,20 @@ items:
   approved_for_fabrication: false
   blocking_reason: Keyed/color-coded to reduce miswiring.
 - item_id: E-034
-  mpn: SOCKET-TYPE-F-16A-TBD
+  mpn: SIMON-SCHUKO-16A
   status: DOCUMENTATION_DEFICIENT
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Product identity, certification, contact material, retention, and
-    PE continuity are unverified. Do not use a universal socket without traceability.
-    Q02 remains an analysis decision.
+  blocking_reason: Priced Simon Schuko panel socket, 16 A/250 V. Exact model, certification,
+    contact material, retention, and PE continuity are unverified. Live parts must
+    be inaccessible. Q02 socket standard remains an analysis decision.
 - item_id: E-035
-  mpn: PLUG-TYPE-F-16A-TBD
+  mpn: BP16
   status: DOCUMENTATION_DEFICIENT
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Mating, cable clamp, PE contact, and orientation must be verified.
-    Cable 3x1.5 mm2 H05VV-F provisional.
+  blocking_reason: Priced BOSS BP16 Schuko plug, 16 A. Verify PE contact, cable clamp,
+    3x1.5 mm2 fit, and certification. Assembly quality is unverified.
 - item_id: E-036
   mpn: GLAND-M16-TBD
   status: PROVISIONAL
@@ -275,14 +282,14 @@ items:
   blocking_reason: Strain relief must anchor the cable to the enclosure, not the PCB.
     Verify thread and sealing.
 - item_id: E-037
-  mpn: ENCLOSURE-220X120X70-TBD
+  mpn: MG-220X120X70-ABS
   status: BLOCKED
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Confirmed 220x120x70 enclosure (Q06=C, 2026-11-15) because 150x100
-    and 180x120 fail clearance review with off-board PZEM + 2-channel relay. 3D printed
-    enclosure is prototype-only and not certified for mains. Physical fit, material
-    flammabil
+  blocking_reason: 'Priced exact-size 220x120x70 ABS/IP65 junction box. Flame-retardant
+    grade is not verified; ABS may not be UL94 V-0. Enclosure remains BLOCKED pending
+    material, fit, thermal, impact, and PE review. 3D printed enclosure is prototype-only
+    and '
 - item_id: E-038
   mpn: PE-HARDWARE-TBD
   status: BLOCKED
@@ -304,21 +311,23 @@ items:
   approved_for_fabrication: false
   blocking_reason: SELV only. Keep away from mains barrier.
 - item_id: E-041
-  mpn: PCB-CARRIER-REV-A
+  mpn: PROTOBOARD-7X9
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Mains modules off-board; carrier handles 5 V/3.3 V, I2C, UART isolation,
-    relay driver. Stackup/trace width/clearance are provisional and not released.
+  blocking_reason: The custom 75x50 mm carrier is placement-only and NOT_FOR_FABRICATION.
+    The priced prototype uses a 7x9 cm double-sided protoboard with header sockets.
+    No routed functional PCB exists yet.
 - item_id: E-042
   mpn: LABEL-SET-REV-A
   status: BLOCKED
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Rating must be derived from verified chain, not target. QR must
-    not expose a reusable secret. Final label requires regulatory review.
+  blocking_reason: Rating must be derived from a verified chain, not the target. Do
+    not print CE/SNI/UL marks. Use 'PROTOTYPE - NOT FOR USE'. QR must not expose a
+    reusable secret. Final label requires regulatory review.
 - item_id: E-043
-  mpn: HEATSHRINK-ASSORT
+  mpn: HEATSHRINK-5MM
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
@@ -336,7 +345,7 @@ items:
   approved_for_fabrication: false
   blocking_reason: Insert depth and wall thickness must be verified in CAD.
 - item_id: E-046
-  mpn: M3-STANDOFF
+  mpn: M3-STANDOFF-12-NYLON
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false

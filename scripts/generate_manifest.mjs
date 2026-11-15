@@ -52,8 +52,8 @@ function gitCommit() {
 }
 
 const CATEGORIES = [
-  { category: 1, name: "Component research", status: "PARTIAL", paths: ["research/COMPONENT_RESEARCH.md", "research/OFFBOARD_MODULES.md", "research/PSU_HLK_5M05.md", "research/FEASIBILITY_STUDY.md", "research/candidates.csv", "bom/COMPONENT_APPROVALS.yaml", "docs/hardware/PROCUREMENT_AND_INCOMING_QC.md"], tests: ["T-HW-001"], release: "DIGITAL_ONLY" },
-  { category: 2, name: "BOM", status: "PARTIAL", paths: ["bom/BOM_MASTER.csv", "bom/BOM_MASTER.md", "bom/BOM_MASTER.yaml", "bom/BOM_SUMMARY.json", "bom/BOM_TOOLS_AND_TEST.csv", "bom/BOM_CONSUMABLES.csv"], tests: ["T-HW-001"], release: "DIGITAL_ONLY" },
+  { category: 1, name: "Component research", status: "PARTIAL", paths: ["research/COMPONENT_RESEARCH.md", "research/PROCUREMENT_INDONESIA.md", "research/OFFBOARD_MODULES.md", "research/PSU_HLK_5M05.md", "research/FEASIBILITY_STUDY.md", "research/candidates.csv", "bom/COMPONENT_APPROVALS.yaml", "docs/hardware/PROCUREMENT_AND_INCOMING_QC.md"], tests: ["T-HW-001"], release: "DIGITAL_ONLY" },
+  { category: 2, name: "BOM", status: "PARTIAL", paths: ["bom/BOM_MASTER.csv", "bom/BOM_MASTER.md", "bom/BOM_MASTER.yaml", "bom/BOM_PROCUREMENT.csv", "bom/BOM_PROCUREMENT.md", "bom/BOM_SUMMARY.json", "bom/BOM_TOOLS_AND_TEST.csv", "bom/BOM_CONSUMABLES.csv"], tests: ["T-HW-001"], release: "DIGITAL_ONLY" },
   { category: 3, name: "Datasheets", status: "PARTIAL", paths: ["research/datasheets/MANIFEST.md", "research/datasheets/hlk-5m05_distributor.txt", "research/UNKNOWN_SPECIFICATIONS.md"], tests: ["DOCUMENT_REVIEW"], release: "DIGITAL_ONLY" },
   { category: 4, name: "System architecture", status: "PASS_DIGITAL", paths: ["docs/hardware/SYSTEM_ARCHITECTURE.md", "docs/hardware/SYSTEM_ARCHITECTURE.png", "docs/hardware/SYSTEM_ARCHITECTURE.svg", "docs/hardware/SYSTEM_ARCHITECTURE.pdf"], tests: ["DOCUMENT_REVIEW"], release: "DIGITAL_ONLY" },
   { category: 5, name: "Schematic", status: "PARTIAL", paths: ["hardware/kicad/smartplug.kicad_sch", "hardware/kicad/smartplug.kicad_pro", "hardware/kicad/README.md", "hardware/generators/generate_schematic.py", "hardware/generators/requirements.lock", "hardware/generators/README.md", "reports/kicad/erc.json"], tests: ["T-HW-002", "T-HW-002A"], release: "NOT_FOR_FABRICATION" },
@@ -76,7 +76,7 @@ const CATEGORIES = [
   { category: 22, name: "Automated testing", status: "PARTIAL", paths: ["reports/TEST_MATRIX.csv", "reports/VALIDATION_SUMMARY.json", "reports/UNIT_TEST_RESULTS.md", "reports/INTEGRATION_TEST_RESULTS.md", "reports/SECURITY_TEST_RESULTS.md", "reports/PHASE_1_ENGINEERING_REPORT.md", "reports/PHASE_2_SOFTWARE_REPORT.md", "reports/AGENT_ACTION_LOG.md", "reports/FAILURES.md", "reports/CHANGELOG.md", "reports/AMENDMENT_8A_OFFBOARD.md", "reports/FIRMWARE_BUILD.md", "reports/ANDROID_BUILD.md"], tests: ["ALL"], release: "DIGITAL_ONLY" },
   { category: 23, name: "Engineering validation", status: "PARTIAL", paths: ["validation/CONNECTIVITY_DIFF.json", "validation/WIRING_CONNECTIONS.csv", "validation/NETLIST_SCHEMATIC.csv", "validation/ISOLATION_BOUNDARY_CHECK.md", "reports/kicad/erc.json", "reports/kicad/drc.json"], tests: ["T-HW-002", "T-HW-003", "T-HW-004", "T-HW-006"], release: "DIGITAL_ONLY" },
   { category: 24, name: "Security audit", status: "PARTIAL", paths: ["security/THREAT_MODEL.md", "security/SECURITY_AUDIT_REPORT.md", "security/API_AUTHORIZATION_MATRIX.csv", "security/MQTT_ACL_PLAN.md", "security/DEVICE_SECURITY_PLAN.md", "security/SBOM.json", "security/DEPENDENCY_AUDIT.json"], tests: ["SECURITY-NEGATIVE"], release: "DIGITAL_ONLY" },
-  { category: 25, name: "Engineer documentation", status: "PASS_DIGITAL", paths: ["docs/tutorials/README.md", "docs/tutorials/00_READ_FIRST.md", "docs/tutorials/12_MAINS_ASSEMBLY_FOR_QUALIFIED_PERSONNEL.md", "docs/tutorials/23_TESTING_AND_VALIDATION.md", "docs/README.md", "docs/software/README.md", "docs/assembly/ASSEMBLY_PLAN.md", "docs/decisions/ADR-INDEX.md", "docs/decisions/ADR-013-PSU-HLK-5M05.md"], tests: ["DOCUMENT_REVIEW"], release: "DIGITAL_ONLY" },
+  { category: 25, name: "Engineer documentation", status: "PASS_DIGITAL", paths: ["docs/tutorials/README.md", "docs/tutorials/00_READ_FIRST.md", "docs/tutorials/12_MAINS_ASSEMBLY_FOR_QUALIFIED_PERSONNEL.md", "docs/tutorials/23_TESTING_AND_VALIDATION.md", "docs/README.md", "docs/software/README.md", "docs/assembly/ASSEMBLY_PLAN.md", "docs/decisions/ADR-INDEX.md", "docs/decisions/ADR-013-PSU-HLK-5M05.md", "docs/decisions/ADR-014-PROCUREMENT-STAGING.md", "research/PROCUREMENT_INDONESIA.md"], tests: ["DOCUMENT_REVIEW"], release: "DIGITAL_ONLY" },
   { category: 26, name: "Final handoff", status: "PARTIAL", paths: ["deliverables/FINAL_ENGINEERING_REPORT.md", "deliverables/README.md", "README.md"], tests: ["DOCUMENT_REVIEW"], release: "DIGITAL_ONLY" }
 ];
 
@@ -159,7 +159,10 @@ const manifest = {
     test_overall: validation.overall,
     traceability: traceability.by_status,
     bom_pricing_status: bom.pricing_status,
-    bom_rows: bom.unpriced_lines
+    bom_rows: bom.procurement_lines,
+    bom_core_subtotal_idr: bom.prototype_1_unit?.core_subtotal_idr ?? null,
+    bom_core_all_in_idr: bom.prototype_1_unit?.core_all_in_idr ?? null,
+    bom_full_subtotal_idr: bom.prototype_1_unit?.full_subtotal_idr ?? null
   },
   category_status: categoryStatus,
   artifacts,
@@ -172,7 +175,7 @@ const manifest = {
     firmware: {
       path: "firmware/build/smartplug.bin",
       bytes: 192464,
-      sha256: "96BDF60D09D621F2D55DE1824B76BEB806F62D69277FAC1431BD7490BF9ABFC8",
+      sha256: "4949EEEFE73526AC99E79AC8F8E97EB1E0790551D80ED922F32034C8F0321134",
       status: "BUILD_PASS_NOT_FLASHED"
     },
     android_debug_apk: {

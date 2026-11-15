@@ -135,7 +135,7 @@ def check_bom() -> dict:
         "unpriced_lines": unpriced,
         "unapproved_lines": len(unapproved),
         "approved_for_fabrication": 0,
-        "limitations": ["No prices were verified; BOM is unpriced and not approved."]
+        "limitations": ["Engineering BOM is unpriced; bom/BOM_PROCUREMENT.csv is a dated listing matrix, not a supplier quote."]
     }
 
 

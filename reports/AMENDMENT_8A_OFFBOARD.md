@@ -110,7 +110,7 @@ Full study: `research/PSU_HLK_5M05.md`; datasheet:
 | Result | **PASS** (exit 0) |
 | Binary | `firmware/build/smartplug.bin` |
 | Size | 192,464 bytes (0x2EFD0) |
-| SHA-256 | `96BDF60D09D621F2D55DE1824B76BEB806F62D69277FAC1431BD7490BF9ABFC8` |
+| SHA-256 | `4949EEEFE73526AC99E79AC8F8E97EB1E0790551D80ED922F32034C8F0321134` |
 | Log | `reports/logs/firmware-idf-build.log` |
 | Report | `reports/FIRMWARE_BUILD.md` |
 
