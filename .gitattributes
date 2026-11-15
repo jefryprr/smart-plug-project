@@ -1,0 +1,14 @@
+# Normalize text line endings so artifact SHA-256 is reproducible on clone.
+* text=auto eol=lf
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+*.step binary
+*.stl binary
+*.zip binary
+*.exe binary
+*.hbc binary
