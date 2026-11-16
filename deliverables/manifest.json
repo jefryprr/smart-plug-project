@@ -2,8 +2,8 @@
   "project": "esp32-s3-iot-smart-plug",
   "prd_version": "1.0",
   "design_revision": "REV_C_PSU_BOARD",
-  "generated_at": "2026-11-16T07:42:10.997Z",
-  "git_commit": "6784bcb38b56ea16dfdebaf53fe55bbdbfe12d98",
+  "generated_at": "2026-11-16T07:43:04.746Z",
+  "git_commit": "2b1ad3cded7bea9daa0a268878bae3432296d7ad",
   "manifest_note": "git_commit is the source commit at generation time; this manifest file is committed immediately after.",
   "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",
   "hardware_validation_status": "HARDWARE_VALIDATION_REQUIRED",
@@ -3816,7 +3816,7 @@
     {
       "category": 26,
       "path": "deliverables/README.md",
-      "sha256": "ab80f785f84bbaf16271622ea487befde66da79fc1fafc0f182de84b2bc7c44d",
+      "sha256": "7a3d379b719ee832d306fc32b9ac9bf9e14d21df7a7b43c4cac738e0259993af",
       "size_bytes": 1099,
       "status": "PARTIAL",
       "tests": [
@@ -3830,8 +3830,8 @@
     {
       "category": 26,
       "path": "README.md",
-      "sha256": "63e8d8fafa5018b2fa3b9af69264b7f4b901cf8c469753b0b2a2134de4bfff28",
-      "size_bytes": 14286,
+      "sha256": "e772e10ae0f28d801649424ddfe1902edfdc795e773ea1a7dc48385fd1ad689e",
+      "size_bytes": 14369,
       "status": "PARTIAL",
       "tests": [
         "DOCUMENT_REVIEW"
@@ -3844,8 +3844,8 @@
     {
       "category": 26,
       "path": "README.id.md",
-      "sha256": "4996b70dd8b9fbae1728922a27b05e864246d1b4233303cefe1c0470c2290ce3",
-      "size_bytes": 6168,
+      "sha256": "fe96f65f268e4cfa33002607b620520761ba235322fce97a1c5a6c1791d7768d",
+      "size_bytes": 6251,
       "status": "PARTIAL",
       "tests": [
         "DOCUMENT_REVIEW"

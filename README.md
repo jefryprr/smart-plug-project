@@ -135,6 +135,8 @@ No `READY_FOR_FABRICATION` or `READY_FOR_USE` claim is made. See [`reports/FAILU
 ### Run the local demo
 
 ```powershell
+git clone https://github.com/jefryprr/smart-plug-project.git
+cd smart-plug-project
 npm ci
 npm run api:dev      # API on :4000, SQLite, seeded demo
 npm run web:dev      # Next.js on :3000

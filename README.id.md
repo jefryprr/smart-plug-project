@@ -99,6 +99,8 @@ Penjelasan lebih dalam: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 Prasyarat: **Node.js 22+**.
 
 ```powershell
+git clone https://github.com/jefryprr/smart-plug-project.git
+cd smart-plug-project
 npm ci
 npm run api:dev      # API di :4000
 npm run web:dev      # web di :3000
