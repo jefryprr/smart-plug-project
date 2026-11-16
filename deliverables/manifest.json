@@ -2,8 +2,8 @@
   "project": "esp32-s3-iot-smart-plug",
   "prd_version": "1.0",
   "design_revision": "REV_C_PSU_BOARD",
-  "generated_at": "2026-11-16T06:14:46.236Z",
-  "git_commit": "1f50499768e0a8aa0316bd71d7594daeeeaf2724",
+  "generated_at": "2026-11-16T06:15:17.099Z",
+  "git_commit": "a3ec9ea831be376b6389f391296474631f0270d1",
   "manifest_note": "git_commit is the source commit at generation time; this manifest file is committed immediately after.",
   "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",
   "hardware_validation_status": "HARDWARE_VALIDATION_REQUIRED",
@@ -14,7 +14,7 @@
   "ready_for_use": false,
   "summary": {
     "categories": 26,
-    "artifacts": 242,
+    "artifacts": 241,
     "missing_artifacts": 0,
     "test_counts": {
       "PASS": 27,
@@ -122,7 +122,7 @@
       "category": 13,
       "name": "Firmware ESP32-S3",
       "status": "PARTIAL",
-      "artifacts": 10,
+      "artifacts": 9,
       "release_classification": "DIGITAL_ONLY"
     },
     {
@@ -2255,21 +2255,6 @@
       "path": "reports/logs/firmware-host-test.log",
       "sha256": "b0adb8bec024abdb2c09af7e74103f2d950d5fb5e6ca7b88d12304d22d488902",
       "size_bytes": 52,
-      "status": "PARTIAL",
-      "tests": [
-        "T-HW-017",
-        "T-HW-018"
-      ],
-      "evidence": [
-        "category-13"
-      ],
-      "release_classification": "DIGITAL_ONLY"
-    },
-    {
-      "category": 13,
-      "path": "reports/logs/firmware-idf-build.log",
-      "sha256": "366a5b27736bba163ce3a83af3449d3447978cd4eb1dc12417d58d60bfc4e06a",
-      "size_bytes": 175319,
       "status": "PARTIAL",
       "tests": [
         "T-HW-017",
