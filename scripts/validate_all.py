@@ -130,7 +130,7 @@ def main() -> int:
         "T-HW-018",
         "Firmware core host tests",
         [POWERSHELL, "-ExecutionPolicy", "Bypass", "-File", str(ROOT / "firmware" / "test" / "host" / "run_tests.ps1")],
-        "74 C checks; Zig cc host build",
+        "75 C checks; Zig cc host build",
     )
 
     # Build
