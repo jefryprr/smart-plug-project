@@ -23,6 +23,7 @@ LOGS = REPORTS / "logs"
 REPORTS.mkdir(exist_ok=True)
 LOGS.mkdir(exist_ok=True)
 PYTHON = ROOT / ".venv" / "Scripts" / "python.exe"
+KICAD_PYTHON = ROOT / "tools" / "kicad" / "bin" / "python.exe"
 NPM = shutil.which("npm") or "npm"
 POWERSHELL = shutil.which("powershell") or "powershell"
 
@@ -141,9 +142,13 @@ def main() -> int:
     # Static crosschecks and generated artifacts
     run_step("T-HW-003", "Connectivity crosscheck", [str(PYTHON), "scripts/validate_connectivity.py"], "Wiring/GPIO/BOM static diff")
     run_step("T-HW-004", "GPIO map generation", [str(PYTHON), "hardware/generators/generate_gpio_map.py"], "GPIO CSV/MD + crosscheck")
-    run_step("T-HW-010A", "WireViz render", [str(PYTHON), "scripts/render_wiring.py"], "4 harnesses SVG/PNG/PDF")
+    run_step("T-HW-010A", "WireViz render", [str(PYTHON), "scripts/render_wiring.py"], "3 harnesses SVG/PNG/PDF")
     run_step("T-HW-009A", "CadQuery export", [str(PYTHON), "hardware/mechanical/source/enclosure.py", "--preset", "recommended"], "STEP/STL bodies + assembly")
     run_step("T-HW-009B", "Mechanical render/fit", [str(PYTHON), "hardware/mechanical/source/render.py"], "Views/drawings/fit report")
+    run_step("T-HW-020", "PSU static crosscheck", [str(KICAD_PYTHON), "scripts/validate_psu.py"], "PSU nets/BOM/8A traces")
+    run_step("T-HW-021", "PSU DRC/Gerber", [str(PYTHON), "scripts/run_psu_check.py"], "PSU DRC 0/0 + Gerber/drill/POS")
+    run_step("T-HW-022", "Carrier artifact export", [str(KICAD_PYTHON), "scripts/export_carrier_artifacts.py"], "Carrier netlist/placement/PCBA/POS regenerated")
+    run_step("T-HW-023", "PSU artifact export", [str(KICAD_PYTHON), "scripts/export_psu_artifacts.py"], "PSU netlist/placement/PCBA regenerated")
     run_step(
         "T-HW-002A",
         "KiCad file parse",
@@ -153,7 +158,7 @@ def main() -> int:
     run_step("T-HW-008A", "PCB placement preview", [str(PYTHON), "scripts/render_pcb_preview.py"], "Preview parsed from .kicad_pcb")
     run_step("T-HW-002", "Schematic ERC", [str(PYTHON), "scripts/run_kicad_check.py", "--mode", "erc"], "KiCad 10 ERC; block-level text-only schematic")
     run_step("T-HW-006", "PCB DRC", [str(PYTHON), "scripts/run_kicad_check.py", "--mode", "drc"], "KiCad 10 DRC; routed SELV carrier")
-    run_step("T-HW-008", "Gerber/drill export; routed carrier", [str(PYTHON), "scripts/run_kicad_check.py", "--mode", "gerber"], "Placement-only Gerber/drill; NOT_FOR_FABRICATION")
+    run_step("T-HW-008", "Gerber/drill export; routed carrier", [str(PYTHON), "scripts/run_kicad_check.py", "--mode", "gerber"], "Routed SELV carrier Gerber/drill; NOT_FOR_FABRICATION")
     run_step(
         "T-SW-001F",
         "OpenAPI parse",
@@ -199,7 +204,7 @@ def main() -> int:
 
     summary = {
         "project": "esp32-s3-iot-smart-plug",
-        "design_revision": "REV_B_NO_TEMP",
+        "design_revision": "REV_C_PSU_BOARD",
         "generated_at": START.isoformat(),
         "duration_s": round((datetime.now(timezone.utc) - START).total_seconds(), 2),
         "counts": counts,

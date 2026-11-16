@@ -4,6 +4,13 @@
 **Dated buy list:** `bom/BOM_PROCUREMENT.md` / `.csv` (2026-11-15, listing prices, not quotes).
 **Rule:** Do not connect any incoming part to mains. Incoming QC is visual/mechanical/electrical at **low voltage** only, unless a qualified lab procedure says otherwise.
 
+## PSU board incoming (REV_C)
+
+- Verify PCB 50 x 65 mm, 2 oz copper, and the 2 mm isolation notch.
+- Verify HLK-5M05 marking/batch and 4-pin orientation; 5 V/1 A.
+- Verify F1 10 A/250 VAC, 111 clips, MOV S10K275, TF1 **SF96E (99 °C RFT / 84 °C holding)**, MKDS 1,5/2-5,08 terminals, JST XH.
+- Photograph the batch labels; quarantine any mismatch.
+
 ## 1. Before ordering
 
 - [ ] MPN, revision, datasheet, and seller verified.
@@ -27,11 +34,11 @@
 
 ## 2A. Budget and staging (2026-11-16)
 
-- Dated buy list: `bom/BOM_PROCUREMENT.csv` (43 listing-verified, 13 estimated).
-- CORE (safety/function minimum): **Rp703.297**; with Rp40.000 shipping: **Rp743.297** — under Rp750.000.
-- CORE with EasyWare restock prices: **Rp651.829**; all-in: **Rp691.829**.
-- Mechanical addendum (gasket/vent/printed cover-key/PSU bracket/thermal pad): **~Rp28.000**; CORE + addendum all-in **~Rp771.297** at marketplace, **~Rp719.829** with restock.
-- FULL (+ OLED/RTC/RGB/connectors): **Rp820.897**; all-in: **Rp860.897**.
+- Dated buy list: `bom/BOM_PROCUREMENT.csv` (40 listing-verified, 17 estimated).
+- CORE (safety/function minimum): **Rp717.087**; with Rp40.000 shipping: **Rp757.087** — about Rp7.087 over Rp750.000.
+- CORE with EasyWare restock prices: **Rp665.619**; all-in: **Rp705.619**.
+- Mechanical addendum: **~Rp28.000**; CORE + addendum all-in **~Rp785.087** at marketplace, **~Rp733.619** with restock (under the cap).
+- FULL (+ OLED/RTC/RGB/connectors): **Rp834.687**; all-in: **Rp874.687**.
 - Buy CORE first; defer FULL until SELV/thermal checks pass. Do not downgrade safety parts to meet the cap.
 
 ## 3. Quarantine

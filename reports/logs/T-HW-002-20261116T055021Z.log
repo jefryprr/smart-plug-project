@@ -1,0 +1,4 @@
+RUN C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe sch erc --output C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\reports\kicad\erc.json C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_sch
+Found 0 violations
+Saved ERC Report to C:/Users/JEFRY PRATAMA/Zed/SMART-PLUG-V2/reports/kicad/erc.json
+ERC violations: 0 (block-level schematic; functional schematic/netlist separate)

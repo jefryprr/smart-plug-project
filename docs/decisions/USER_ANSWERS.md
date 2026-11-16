@@ -60,15 +60,15 @@ Pengguna memberi instruksi baru dan saya catat sebagai amendment, bukan jawaban 
 | Toolchain | Belum ada | **Sedang dipasang** | ESP-IDF/Android mengikuti batas disk |
 | Sensor suhu | GY-TMP102 | **Dihapus** | Tidak ada sensor suhu; proteksi termal hardware (fuse/TCO) |
 | Isolasi UART | ADuM1201 + B0505S | **Dihapus** | PZEM internal optocoupler; level shift 74HCT125 + divider |
-| PCB | Placement-only 75x50 | **Routed SELV carrier 100x70 REV_B (27 footprints, 19 nets)** | DRC 0/0, Gerber/drill; belum difabrikasi |
-| Komponen/procurement | BOM unpriced | **Daftar belanja Indonesia 2026-11-16** | 43 baris listing-verified, 13 estimated; CORE elektronik Rp703.297 (restock Rp651.829), FULL Rp820.897; addendum mekanik ~Rp28.000; safety tetap unapproved |
+| PCB | Placement-only 75x50 | **Routed SELV carrier 100x70 (25 footprints = 22 assembled + 3 fiducials, 18 nets) + routed PSU board 50x65 (13 assembled, 8 nets)** | DRC 0/0, Gerber/drill; belum difabrikasi |
+| Komponen/procurement | BOM unpriced | **Daftar belanja Indonesia 2026-11-16** | 40 baris listing-verified, 17 estimated; CORE elektronik Rp717.087 (restock Rp665.619), FULL Rp834.687; addendum mekanik ~Rp28.000; safety tetap unapproved |
 
 ## Konflik yang diperiksa
 
 Tidak ada konflik eksplisit antarjawaban. Dua ketegangan yang dicatat:
 
 - **Q01=B (inline) vs Q06=C (220×120×70)** — Dengan PZEM off-board + module relay 2 channel, 150×100 gagal dan 180×120 tidak memberi clearance layak. Pengguna mengonfirmasi **220×120×70**; jangan memaksa clearance turun.
-- **Q03=8 A vs Q07=B (Rp500–750 rb)** — Harga listing 2026-11-16: elektronik inti Rp433.633; CORE elektronik Rp703.297 (Rp743.297 dengan ongkir); CORE + addendum mekanik ~Rp731.297 (Rp771.297 dengan ongkir); FULL Rp820.897 (Rp860.897 dengan ongkir). CORE elektronik masuk Rp750.000 tanpa restock; addendum membuat marketplace sedikit di atas cap; restock + addendum ~Rp719.829 all-in. Keselamatan diprioritaskan; FULL tidak dipaksa masuk budget dengan menurunkan fuse/MOV/TCO/PE/enclosure/isolasi.
+- **Q03=8 A vs Q07=B (Rp500–750 rb)** — Harga listing 2026-11-16: elektronik inti Rp433.633; CORE elektronik Rp717.087 (Rp757.087 dengan ongkir); CORE + addendum mekanik ~Rp745.087 (Rp785.087 dengan ongkir); FULL Rp834.687 (Rp874.687 dengan ongkir). CORE elektronik **tidak masuk** Rp750.000 tanpa restock (Rp757.087 all-in); addendum membuat marketplace ~Rp785.087 all-in; restock + addendum ~Rp733.619 all-in (di bawah cap). Keselamatan diprioritaskan; FULL tidak dipaksa masuk budget dengan menurunkan fuse/MOV/TCO/PE/enclosure/isolasi.
 
 ## Persetujuan
 

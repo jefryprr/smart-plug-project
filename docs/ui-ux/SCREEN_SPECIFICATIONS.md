@@ -1,4 +1,4 @@
-# Screen Specifications — REV_A_PROVISIONAL
+# Screen Specifications — REV_C_PSU_BOARD
 
 Screenshots are real Playwright outputs in `docs/ui-ux/screenshots/`.
 

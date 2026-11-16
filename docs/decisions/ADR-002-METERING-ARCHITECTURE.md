@@ -1,4 +1,4 @@
-# ADR-002 — Metering Architecture (REV_B)
+# ADR-002 — Metering Architecture (REV_C_PSU_BOARD)
 
 **Status:** Proposed / `DOCUMENTATION_DEFICIENT`  
 **Date:** 2026-11-16  

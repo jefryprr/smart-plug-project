@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "board": "hardware/kicad/psu_rev_c.kicad_pcb",
+  "board_size_mm": [
+    50.1,
+    65.1
+  ],
+  "nets": [
+    "+5V",
+    "+5V_PRE",
+    "GND",
+    "L_FUSED",
+    "L_IN",
+    "L_LOAD",
+    "N_MAINS"
+  ],
+  "footprints": 13,
+  "issues": [],
+  "limitations": [
+    "Static net/width check only; DRC does not prove creepage or hipot.",
+    "HLK-5M05 footprint is datasheet-derived, not sample-verified.",
+    "Fuse/MOV/TCO/terminal/JST ratings are not verified by this script.",
+    "No physical mains test was performed."
+  ]
+}

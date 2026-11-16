@@ -90,6 +90,33 @@ graph {
  </td></tr>
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
+	PSU_J7 [label=<
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">PSU_J7</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">PSU 5 V OUT3 (PZEM, conditional)</td>
+   <td balign="left">2-pin</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1">
+   <tr>
+    <td>+5V</td>
+    <td port="p1r">1</td>
+   </tr>
+   <tr>
+    <td>GND</td>
+    <td port="p2r">2</td>
+   </tr>
+  </table>
+ </td></tr>
+</table>
+> fillcolor="#FFFFFF" shape=box style=filled]
 	J2 [label=<
 <table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
@@ -99,7 +126,7 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">Carrier PZEM connector (JST-XH 4)</td>
+   <td balign="left">Carrier PZEM TTL connector (JST-XH 4)</td>
    <td balign="left">4-pin</td>
   </tr></table>
  </td></tr>
@@ -107,23 +134,19 @@ graph {
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1">
    <tr>
     <td port="p1l">1</td>
-    <td>+5V</td>
-    <td port="p1r">1</td>
+    <td>NC</td>
    </tr>
    <tr>
     <td port="p2l">2</td>
     <td>PZEM_RX_5V</td>
-    <td port="p2r">2</td>
    </tr>
    <tr>
     <td port="p3l">3</td>
     <td>PZEM_TX_5V</td>
-    <td port="p3r">3</td>
    </tr>
    <tr>
     <td port="p4l">4</td>
-    <td>GND</td>
-    <td port="p4r">4</td>
+    <td>NC</td>
    </tr>
   </table>
  </td></tr>
@@ -192,27 +215,21 @@ graph {
 </table>
 > fillcolor="#FFFFFF" shape=box style=filled]
 	edge [color="#000000:#ff0000:#000000"]
-	J2:p1r:e -- W_PZEM:w1:w
-	W_PZEM:w1:e -- U2:p5l:w
+	PSU_J7:p1r:e -- W_PZEM_5V:w1:w
+	W_PZEM_5V:w1:e -- U2:p5l:w
 	edge [color="#000000:#000000:#000000"]
-	J2:p4r:e -- W_PZEM:w2:w
-	W_PZEM:w2:e -- U2:p6l:w
-	edge [color="#000000:#ffffff:#000000"]
-	U2:p7r:e -- W_PZEM:w3:w
-	W_PZEM:w3:e -- J2:p3l:w
-	edge [color="#000000:#00ff00:#000000"]
-	U2:p8r:e -- W_PZEM:w4:w
-	W_PZEM:w4:e -- J2:p2l:w
-	W_PZEM [label=<
+	PSU_J7:p2r:e -- W_PZEM_5V:w2:w
+	W_PZEM_5V:w2:e -- U2:p6l:w
+	W_PZEM_5V [label=<
 <table border="0" cellspacing="0" cellpadding="0">
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">W_PZEM</td>
+   <td balign="left">W_PZEM_5V</td>
   </tr></table>
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">4x</td>
+   <td balign="left">2x</td>
    <td balign="left">0.25 mm²</td>
    <td balign="left">0.2 m</td>
    <td balign="left">GY</td>
@@ -223,7 +240,7 @@ graph {
   <table border="0" cellspacing="0" cellborder="0">
    <tr><td>&nbsp;</td></tr>
    <tr>
-    <td>J2:1:+5V</td>
+    <td>PSU_J7:1:+5V</td>
     <td>
      1:RD
     </td>
@@ -239,7 +256,7 @@ graph {
     </td>
    </tr>
    <tr>
-    <td>J2:4:GND</td>
+    <td>PSU_J7:2:GND</td>
     <td>
      2:BK
     </td>
@@ -254,15 +271,45 @@ graph {
      </table>
     </td>
    </tr>
+   <tr><td>&nbsp;</td></tr>
+  </table>
+ </td></tr>
+</table>
+> fillcolor="#FFFFFF" shape=box style=filled]
+	edge [color="#000000:#ffffff:#000000"]
+	U2:p7r:e -- W_TTL:w1:w
+	W_TTL:w1:e -- J2:p3l:w
+	edge [color="#000000:#00ff00:#000000"]
+	U2:p8r:e -- W_TTL:w2:w
+	W_TTL:w2:e -- J2:p2l:w
+	W_TTL [label=<
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">W_TTL</td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
+   <td balign="left">2x</td>
+   <td balign="left">0.25 mm²</td>
+   <td balign="left">0.2 m</td>
+   <td balign="left">GY</td>
+   <td balign="left" bgcolor="#999999" width="4"></td>
+  </tr></table>
+ </td></tr>
+ <tr><td>
+  <table border="0" cellspacing="0" cellborder="0">
+   <tr><td>&nbsp;</td></tr>
    <tr>
     <td>U2:7:TX</td>
     <td>
-     3:WH
+     1:WH
     </td>
     <td>J2:3:PZEM_TX_5V</td>
    </tr>
    <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w3" height="6">
+    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w1" height="6">
      <table cellspacing="0" cellborder="0" border="0">
       <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
       <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#ffffff" border="0"></td></tr>
@@ -273,12 +320,12 @@ graph {
    <tr>
     <td>U2:8:RX</td>
     <td>
-     4:GN
+     2:GN
     </td>
     <td>J2:2:PZEM_RX_5V</td>
    </tr>
    <tr>
-    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w4" height="6">
+    <td colspan="3" border="0" cellspacing="0" cellpadding="0" port="w2" height="6">
      <table cellspacing="0" cellborder="0" border="0">
       <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#000000" border="0"></td></tr>
       <tr><td colspan="3" cellpadding="0" height="2" bgcolor="#00ff00" border="0"></td></tr>

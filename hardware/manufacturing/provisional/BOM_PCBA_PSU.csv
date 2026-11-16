@@ -1,0 +1,14 @@
+reference_designators,description,manufacturer,mpn,qty,footprint,approved_status,notes
+C1,100uF,TBD,TBD,1,CP_Radial_D6.3mm_P2.50mm,PROVISIONAL,REV_C PSU board; vendor footprint/MPN review required; NOT_FOR_FABRICATION
+C2,100nF,TBD,TBD,1,C_0805_2012Metric,PROVISIONAL,REV_C PSU board; vendor footprint/MPN review required; NOT_FOR_FABRICATION
+D1,SMBJ5.0A,TBD,TBD,1,D_SMB,PROVISIONAL,REV_C PSU board; vendor footprint/MPN review required; NOT_FOR_FABRICATION
+F1,10A 250V,TBD,TBD,1,Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal,PROVISIONAL,REV_C PSU board; vendor footprint/MPN review required; NOT_FOR_FABRICATION
+F2,1.1A PTC,TBD,TBD,1,Fuse_1206_3216Metric,PROVISIONAL,REV_C PSU board; vendor footprint/MPN review required; NOT_FOR_FABRICATION
+J5,OUT1 CARRIER,TBD,TBD,1,JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,PROVISIONAL,REV_C PSU board; vendor footprint/MPN review required; NOT_FOR_FABRICATION
+J6,OUT2 RELAY,TBD,TBD,1,JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,PROVISIONAL,REV_C PSU board; vendor footprint/MPN review required; NOT_FOR_FABRICATION
+J7,OUT3 PZEM,TBD,TBD,1,JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,PROVISIONAL,REV_C PSU board; vendor footprint/MPN review required; NOT_FOR_FABRICATION
+MOV1,275VAC,TBD,TBD,1,RV_Disc_D9mm_W5.2mm_P5mm,PROVISIONAL,REV_C PSU board; vendor footprint/MPN review required; NOT_FOR_FABRICATION
+PS1,HLK-5M05,TBD,TBD,1,,PROVISIONAL,REV_C PSU board; vendor footprint/MPN review required; NOT_FOR_FABRICATION
+TB1,230VAC IN,TBD,TBD,1,"TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal",PROVISIONAL,REV_C PSU board; vendor footprint/MPN review required; NOT_FOR_FABRICATION
+TB2,230VAC OUT,TBD,TBD,1,"TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal",PROVISIONAL,REV_C PSU board; vendor footprint/MPN review required; NOT_FOR_FABRICATION
+TF1,SF96E 99C,TBD,TBD,1,,PROVISIONAL,REV_C PSU board; vendor footprint/MPN review required; NOT_FOR_FABRICATION

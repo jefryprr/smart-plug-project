@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "docs" / "tutorials"
 OUT.mkdir(parents=True, exist_ok=True)
 
-COMMON = """**Status proyek:** `REV_A_PROVISIONAL` — digital artifacts only; no hardware validation.
+COMMON = """**Status proyek:** `REV_C_PSU_BOARD` — digital artifacts only; no hardware validation.
 **Prinsip:** jangan pernah menganggap perintah/alat berhasil hanya karena file ada. Simpan log dan exit code.
 """
 
@@ -234,7 +234,7 @@ Output: `hardware/mechanical/export/`, `render/`, `drawings/`, `FIT_ANALYSIS.md`
 ## BOM
 
 - `bom/BOM_MASTER.csv` — BOM rekayasa, harga tidak dimasukkan.
-- `bom/BOM_PROCUREMENT.csv` — daftar belanja bertanggal 2026-11-16; 43 listing-verified, 13 estimated.
+- `bom/BOM_PROCUREMENT.csv` — daftar belanja bertanggal 2026-11-16; 44 listing-verified, 16 estimated.
 - `bom/BOM_SUMMARY.json` — `PROCUREMENT_PRICED_2026-11-16`; CORE/FULL totals.
 - `bom/COMPONENT_APPROVALS.yaml` — belum ada persetujuan fabrikasi.
 - `research/PROCUREMENT_INDONESIA.md` — seller, harga, stok, risiko.
@@ -754,6 +754,6 @@ index = ["# Tutorials — Index", "", "Dokumentasi untuk engineer pemula. Baca `
 for filename in sorted(TUTORIALS):
     title = TUTORIALS[filename].splitlines()[0].replace("# ", "")
     index.append(f"- [{title}]({filename})")
-index += ["", "**Status:** `REV_A_PROVISIONAL`. Tidak ada tutorial yang mengizinkan energisasi mains oleh pemula."]
+index += ["", "**Status:** `REV_C_PSU_BOARD`. Tidak ada tutorial yang mengizinkan energisasi mains oleh pemula."]
 (OUT / "README.md").write_text("\n".join(index) + "\n", encoding="utf-8")
 print(f"Wrote {len(TUTORIALS)} tutorials + index")

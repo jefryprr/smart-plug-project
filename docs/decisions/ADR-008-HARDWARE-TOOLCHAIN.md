@@ -1,4 +1,4 @@
-# ADR-008 — Hardware Toolchain and Source of Truth (REV_B)
+# ADR-008 — Hardware Toolchain and Source of Truth (REV_C_PSU_BOARD)
 
 **Status:** Accepted with deviations  
 **Date:** 2026-11-16

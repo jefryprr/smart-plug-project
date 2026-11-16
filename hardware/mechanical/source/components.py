@@ -39,18 +39,18 @@ MODULES: list[ModuleEnvelope] = [
     ModuleEnvelope("rtc", "DS3231 RTC module", (27, 27, 4), (-81, 16, 20.0), "SELV", "provisional"),
     ModuleEnvelope("devkit_key", "DevKit reverse-insertion key bracket", (8, 63, 12), (-99, 0, 15.0), "MECHANICAL", "engineering_calculation"),
 
-    # Mains side (right).
+    # Mains side (right). The PSU board is 50 x 70 mm at x=56..106, y=-55..15,
+    # with the HLK/fuse/MOV/TCO/terminals on it. The relay sits above it on a
+    # printed cantilever shelf.
     ModuleEnvelope("pzem", "PZEM-004T V4 + CT interface", (53, 89, 24), (28, 0, 16.5), "MAINS", "provisional"),
     ModuleEnvelope("pzem_bracket", "PZEM mounting bracket", (58, 94, 2), (28, 0, 3.5), "MAINS", "engineering_calculation"),
     ModuleEnvelope("ct", "100 A CT (split core approx)", (30, 30, 15), (20, 42, 40.0), "MAINS", "provisional"),
-    ModuleEnvelope("psu", "Hi-Link HLK-5M05 (38 x 23 x 18)", (38, 23, 18), (80, -28, 40.0), "MAINS", "distributor_datasheet"),
-    ModuleEnvelope("relay", "2-channel optocoupler relay module", (50, 24, 18), (80, -3, 40.0), "MAINS", "provisional"),
-    ModuleEnvelope("relay_bracket", "Relay module mounting bracket", (55, 26, 2), (80, -3, 30.0), "MAINS", "engineering_calculation"),
-    ModuleEnvelope("fuse", "Fuse holder 5x20 + MOV", (20, 10, 12), (75, -50, 45.0), "MAINS", "provisional"),
-    ModuleEnvelope("terminals", "Mains terminals / PE terminal", (20, 12, 10), (95, -50, 30.0), "MAINS", "provisional"),
-    ModuleEnvelope("pe_stud", "PE stud / bonding point", (8, 8, 10), (103.5, -30, 30.0), "MAINS", "engineering_calculation"),
-    ModuleEnvelope("socket", "Type F panel socket body (inside wall)", (35, 45, 45), (89.9, 34.0, 35.0), "MAINS", "provisional"),
-    ModuleEnvelope("gland", "M16 cable gland (wall feature)", (16, 16, 12), (116, -50, 18.0), "MAINS", "datasheet"),
+    ModuleEnvelope("psu_board", "REV_C mains PSU PCB 50 x 65 + HLK/terminals", (50, 65, 30), (81, -22.5, 23.0), "MAINS", "pcb_design"),
+    ModuleEnvelope("relay_shelf", "Printed cantilever relay shelf", (55, 28, 3), (79.5, -3, 40.5), "MECHANICAL", "engineering_calculation"),
+    ModuleEnvelope("relay", "2-channel optocoupler relay module (above PSU)", (50, 24, 18), (80, -3, 49.0), "MAINS", "provisional"),
+    ModuleEnvelope("pe_stud", "PE stud / bonding point", (8, 8, 10), (60, 50, 25.0), "MAINS", "engineering_calculation"),
+    ModuleEnvelope("socket", "Type F panel socket body (inside wall)", (35, 45, 45), (89.9, 34.9, 35.0), "MAINS", "provisional"),
+    ModuleEnvelope("gland", "M16 cable gland (wall feature)", (16, 16, 12), (116, 10, 18.0), "MAINS", "datasheet"),
     ModuleEnvelope("vent", "M12 ePTFE pressure vent (wall feature)", (12, 12, 8), (116, -15, 45.0), "MECHANICAL", "datasheet"),
 
     # Mechanical barrier.
@@ -77,9 +77,10 @@ def overlaps(a: tuple[float, ...], b: tuple[float, ...], margin: float = 0.0) ->
 EXEMPT_PAIRS = {
     ("carrier", "esp32"),
     ("pzem", "pzem_bracket"),
-    ("relay", "relay_bracket"),
     ("carrier", "devkit_key"),
     ("esp32", "devkit_key"),
+    ("psu_board", "relay_shelf"),
+    ("relay", "relay_shelf"),
 }
 
 

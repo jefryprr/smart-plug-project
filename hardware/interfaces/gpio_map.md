@@ -1,4 +1,4 @@
-# GPIO Map — REV_A_PROVISIONAL
+# GPIO Map — REV_C_PSU_BOARD
 
 **Board:** ESP32-S3-DevKitC-1-N16R8 (v1.1 (planned, unverified))
 **Status:** `UNVERIFIED`

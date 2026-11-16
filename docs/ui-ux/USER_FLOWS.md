@@ -1,4 +1,4 @@
-# User Flows — REV_A_PROVISIONAL
+# User Flows — REV_C_PSU_BOARD
 
 ## 1. First-time setup
 

@@ -1,4 +1,4 @@
-# Design System — REV_A_PROVISIONAL
+# Design System — REV_C_PSU_BOARD
 
 ## Principles
 

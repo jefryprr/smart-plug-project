@@ -17,6 +17,7 @@
 | `ADR-013-PSU-HLK-5M05.md` | Hi-Link HLK-5M05 selected; IRM-05-5 fallback; PSU PENDING_APPROVAL | Accepted (user), component pending |
 | `ADR-014-PROCUREMENT-STAGING.md` | CORE first, FULL (OLED/RTC/RGB) later; no safety downgrade for budget | Proposed |
 | `ADR-015-DEVKITC-1-SOCKET.md` | Two 1x22 sockets at 22.86 mm; no 2x22 IDC socket | Accepted (digital) |
+| `ADR-016-PZEM-ISOLATION-REV-C.md` | REV_C uses PZEM internal optocouplers only; OUT3 conditional | Accepted as design input; batch/hipot unverified |
 
 ## Superseding
 

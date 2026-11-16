@@ -2,7 +2,7 @@
 
 **Status:** `PASS` (target build only)
 **Date:** 2026-11-16
-**Design revision:** `REV_B_NO_TEMP`
+**Design revision:** `REV_C_PSU_BOARD`
 
 ## Result
 

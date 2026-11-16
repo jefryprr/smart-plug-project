@@ -1,6 +1,6 @@
 # Changelog / Commit Rationale
 
-**Design revision:** `REV_A_PROVISIONAL`
+**Design revision:** `REV_C_PSU_BOARD`
 **Rule:** This is a human-readable summary. `git log` is the authoritative history.
 
 | Commit | Change | Why | Tests | Compatibility/consequence |
@@ -24,11 +24,13 @@
 | `8241f43` | Add procurement QC, schematic wrapper, generator lockfile | Complete PRD 06.5/08.2 paths | Wrapper run; lockfile generated | No behavior change |
 | `c5fd35c` | Normalize KiCad/lockfile line endings | Fresh-clone hash match | 127/127 artifacts match | Line endings only |
 | uncommitted | 8 A final + off-board PZEM/2-channel module; KiCad 10.0.8 checks; ESP-IDF v6.1 build; 220×120 enclosure correction; Android debug APK | User amendment and toolchain completion | ERC 0, DRC 0, ESP-IDF build PASS, APK PASS, final gate in `VALIDATION_SUMMARY.json` | 150/180 enclosures rejected; debug APK is not release |
+| REV_C (this change) | Separate 50 x 65 mm mains-entry PSU board: TB1/TB2, F1 10 A, S10K275 MOV, SEFUSE SF96E 99 C TCO, HLK-5M05, F2 PTC/D1 TVS, 3x JST; carrier PTC/TVS removed; ADR-016 PZEM OUT3 conditional; research evidence + manifest | User decision + research-first no-stop | 27 PASS / 11 BLOCKED / 0 FAIL; carrier + PSU DRC 0/0; ERC 0 | PSU board `NOT_FOR_FABRICATION`; creepage/hipot/8 A thermal blocked; TCO corrected from SF169E (172 C) to SF96E (99 C) |
 
 ## Test status at handoff
 
 - Digital gate after amendment: 23 PASS / 11 BLOCKED / 0 FAIL (baseline was 19 PASS / 15 BLOCKED).
-- Requirements: 28 PASS / 25 PARTIAL / 24 NOT_STARTED / 3 BLOCKED.
+- Digital gate after the REV_C PSU board: **27 PASS / 11 BLOCKED / 0 FAIL**.
+- Requirements: 28 PASS / 27 PARTIAL / 24 NOT_STARTED / 3 BLOCKED.
 - No `READY_FOR_FABRICATION` or `READY_FOR_USE`.
 
 ## Compatibility notes

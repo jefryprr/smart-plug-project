@@ -1,4 +1,4 @@
-# Security Test Results — REV_A_PROVISIONAL
+# Security Test Results — REV_C_PSU_BOARD
 
 **Date:** 2026-11-15
 **Scope:** digital API/web/MQTT/firmware core; no production deployment.

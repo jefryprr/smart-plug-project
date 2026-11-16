@@ -17,12 +17,12 @@ is weaker.
 
 ## Decision
 
-- Use **HLK-5M05** as the prototype PSU, off-board in the mains zone.
+- Use **HLK-5M05** as the prototype PSU, mounted on the separate **REV_C PSU board** in the mains zone (50 x 65 mm, TB1/TB2, fuse/MOV/TCO, 3x JST 5 V outputs).
 - Keep the Mean Well IRM-05-5 as the fallback if thermal/isolation review fails.
 - Treat the PSU as `PENDING_APPROVAL`, not as a certified isolation barrier.
 - Require batch certificate/pin marking, ripple/startup/load, temperature rise,
   hipot/leakage, and creepage review before approval.
-- Keep fuse, MOV, and thermal cutoff upstream; the PSU is not a substitute.
+- Keep fuse, MOV, and thermal cutoff upstream on the same PSU board; the PSU is not a substitute. PE stays on a dedicated chassis stud, not on the PSU board.
 
 ## Consequences
 

@@ -1,6 +1,6 @@
 # Feasibility Study — Smart Plug Inline ESP32-S3
 
-**Design revision:** `REV_A_PROVISIONAL`
+**Design revision:** `REV_C_PSU_BOARD`
 **Tanggal:** 15 November 2026
 **Input keputusan:** Q01=B (inline), Q02=D (analisis; lean Type E/F), **Q03=8 A final (amendment)**, Q04=B (campuran elektronik/SMPS), Q05=A (tinjau dua kutub), **Q06=220×120×70 CONFIRMED (2026-11-15) karena 150×100 dan 180×120 gagal clearance**, Q07=B (Rp500–750 ribu), Q12=A (prototipe lab), Q26=A (hanya komputer).
 **Status keseluruhan:** `FEASIBLE_WITH_CAVEATS` untuk bentuk/prototype digital; `BLOCKED` untuk clearance, isolasi, PE, termal, dan fabrikasi.
@@ -17,7 +17,7 @@
 | 4 | Apakah pengamanan soket/terminal memadai? | Socket/terminal belum dipilih dan belum diuji retensi/tarikan. | `BLOCKED` |
 | 5 | Apakah jalur PE layak? | PE dapat dibuat langsung dari plug input ke socket output tanpa relay/fuse. Tetapi MPN terminal/stud dan uji kontinuitas belum ada. | `BLOCKED` |
 | 6 | Apakah pemutusan konduktor dua kutub layak? | Module 2-channel off-board: dua SPDT independen, 10 A class claim; bukan DPST linked. Rating final 8 A. Uji tiap channel. | `PROVISIONAL` |
-| 7 | Apakah biaya layak? | Harga sudah dikumpulkan (2026-11-15). Elektronik inti Rp433.633; CORE Rp703.297 (restock Rp651.829); FULL Rp820.897. CORE masuk Rp750.000 tanpa restock (Rp743.297 all-in); restock memberi margin Rp691.829; FULL di atas budget. | `GO_WITH_CAVEATS` / `FULL_OVER_BUDGET` |
+| 7 | Apakah biaya layak? | Harga sudah dikumpulkan (2026-11-15). Elektronik inti Rp433.633; CORE Rp717.087 (restock Rp665.619); FULL Rp834.687. CORE tidak masuk Rp750.000 tanpa restock (Rp757.087 all-in); restock memberi margin Rp705.619; FULL di atas budget. | `GO_WITH_CAVEATS` / `FULL_OVER_BUDGET` |
 | 8 | Apakah suplai DC cukup? | Perkiraan peak ~0.58 A pada 5 V; HLK-5M05 1 A memberi margin ~42%, tetapi efisiensi ~70% dan panas ~2.1 W. Belum diukur. | `GO_WITH_CAVEATS` |
 | 9 | Apakah PZEM dan CT dapat dipasang? | Modul besar tetapi mungkin; CT harus mengelilingi satu konduktor. Pinout/isolasi batch belum pasti. | `BLOCKED` |
 | 10 | Apakah relay/terminal memadai? | Module 2-channel 10 A class claim (final 8 A); terminal/fuse holder belum rated/verified. | `PROVISIONAL` |
@@ -108,7 +108,7 @@ Input yang belum tersedia:
 - PZEM V4 100 A split CT: CT rating bukan rating output.
 - CT harus di sekitar L; arah arus ditandai.
 - UART TTL PZEM tidak boleh langsung ke ESP32 tanpa bukti level/isolasi.
-- REV_B: PZEM internal optocoupler sebagai barrier; 74HCT125 + divider untuk level 5V/3.3V. Tidak ada ADuM/B0505S.
+- REV_C_PSU_BOARD: PZEM internal optocoupler sebagai barrier; 74HCT125 + divider untuk level 5V/3.3V. Tidak ada ADuM/B0505S.
 - Pinout aktual, baud, parity, register, dan CRC harus diverifikasi dari batch.
 - Jika manual resmi tidak diperoleh, ganti ke ADE7953 atau metering lain setelah persetujuan.
 
@@ -140,10 +140,10 @@ Input yang belum tersedia:
 
 ## 11. Biaya dan pengadaan
 
-- Harga sudah dikumpulkan untuk 56 baris: `bom/BOM_PROCUREMENT.csv`; 43 listing-verified, 13 `ESTIMATED`.
-- Elektronik inti Rp433.633; CORE Rp703.297 (Rp743.297 dengan ongkir); CORE + mechanical addendum ~Rp731.297 (Rp771.297 dengan ongkir); CORE restock Rp651.829 (Rp691.829 dengan ongkir); CORE restock + addendum ~Rp679.829 (Rp719.829); FULL Rp820.897 (Rp860.897 dengan ongkir).
+- Harga sudah dikumpulkan untuk 57 baris: `bom/BOM_PROCUREMENT.csv`; 40 listing-verified, 17 `ESTIMATED`.
+- Elektronik inti Rp433.633; CORE Rp717.087 (Rp757.087 dengan ongkir); CORE + mechanical addendum ~Rp745.087 (Rp785.087 dengan ongkir); CORE restock Rp665.619 (Rp705.619 dengan ongkir); CORE restock + addendum ~Rp693.619 (Rp733.619); FULL Rp834.687 (Rp874.687 dengan ongkir).
 - Komponen safety yang mendorong biaya: PZEM 100 A Rp150.000, ESP32 Rp139.968, enclosure Rp99.684, HLK-5M05 Rp49.000, fuse/MOV/TCO Rp36.295, terminal/PE Rp29.360, PCB carrier Rp15.000.
-- Target B (Rp500–750 ribu) hanya tercapai untuk CORE dengan harga restock EasyWare; FULL tidak. Jangan menurunkan safety untuk memaksa FULL masuk budget.
+- Target B (Rp500–750 ribu) **tidak tercapai** untuk CORE marketplace (Rp757.087 all-in) atau CORE + addendum (Rp785.087). CORE restock + addendum ~Rp733.619, hanya di bawah cap. FULL jauh di atas. Jangan menurunkan safety untuk memaksa budget.
 - Beberapa komponen (PZEM, socket, enclosure, HLK, TCO) `DOCUMENTATION_DEFICIENT`; perlu sampel dan inspeksi.
 
 ## 12. Kesimpulan dan gate

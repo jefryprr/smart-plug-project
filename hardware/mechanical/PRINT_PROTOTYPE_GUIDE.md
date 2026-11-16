@@ -1,4 +1,4 @@
-# Print Prototype Guide — Mechanical Only (REV_B)
+# Print Prototype Guide — Mechanical Only (REV_C_PSU_BOARD)
 
 **Status:** `PROTOTYPE_ONLY`  
 **Do not use this printed part with mains.** This guide is for checking fit, button access, OLED window, cable routing, gasket, and assembly order with **no power**.

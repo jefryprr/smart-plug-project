@@ -1,9 +1,9 @@
-# Phase 2 Software Report — REV_A_PROVISIONAL
+# Phase 2 Software Report — REV_C_PSU_BOARD
 
 **Date:** 15 November 2026
 **Agent:** OpenCode (DeepSeek V4.1 Flash 1017)
 **PRD:** v1.0
-**Design revision:** `REV_A_PROVISIONAL`
+**Design revision:** `REV_C_PSU_BOARD`
 **Phase 2 status:** `PARTIAL_DIGITAL` / `ENGINEERING_REVIEW_REQUIRED`
 **Deployment:** `BLOCKED` (no Docker/Postgres/VPS/domain/TLS)
 **Android APK:** `PASS` (debug, arm64-v8a, signature verified; not installed on device)

@@ -1,6 +1,6 @@
 # Off-Board Module Study — PZEM-004T and 2-Channel Relay
 
-**Design revision:** `REV_A_PROVISIONAL`
+**Design revision:** `REV_C_PSU_BOARD`
 **Status:** `PROVISIONAL` / `DOCUMENTATION_DEFICIENT`
 **Scope:** research and mounting study for the two mains-adjacent modules that the
 user required **off the PCB**. This is not a mains assembly approval.

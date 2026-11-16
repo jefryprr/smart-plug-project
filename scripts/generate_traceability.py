@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate requirements/traceability.yaml for FR-001..FR-080."""
+"""Generate requirements/traceability.yaml for FR-001..FR-082."""
 from __future__ import annotations
 
 import json
@@ -45,9 +45,9 @@ ROWS = [
     ("FR-027", "Overtemperature protection", "P0", "F1", "PARTIAL", ["firmware/core/smartplug_core.c", "apps/api/src/services/alerts.ts", "safety/THERMAL_RISK_AND_DERATING.md"], ["CORE-MEASUREMENT", "ALERT-TEMP"], ["Alert/state logic; thermal cutoff hardware blocked"], ["BLOCK-THERMAL-LAB"], ["RR-04"]),
     ("FR-028", "Overvoltage warning", "P0", "F1+F2", "PASS", ["firmware/core/smartplug_core.c", "packages/domain/src/index.ts"], ["CORE-MEASUREMENT", "DOMAIN-MEASUREMENT"], ["260 V warning test; no surge claim"], [], ["RR-07"]),
     ("FR-029", "Undervoltage warning", "P0", "F1+F2", "PASS", ["firmware/core/smartplug_core.c", "packages/domain/src/index.ts"], ["CORE-MEASUREMENT", "DOMAIN-MEASUREMENT"], ["207 V threshold test"], [], ["RR-07"]),
-    ("FR-030", "Surge protection", "P0", "F1", "BLOCKED", ["safety/PROTECTION_COORDINATION.md", "bom/BOM_MASTER.csv"], ["T-HW-013"], ["MOV candidate only; no surge test"], ["BLOCK-SURGE-STUDY"], ["RR-07"]),
-    ("FR-031", "Thermal cutoff", "P0", "F1", "BLOCKED", ["safety/THERMAL_RISK_AND_DERATING.md", "bom/BOM_MASTER.csv"], ["T-HW-019"], ["TCO candidate; no physical trip test"], ["BLOCK-THERMAL-LAB"], ["RR-04"]),
-    ("FR-032", "Fuse protection", "P0", "F1", "BLOCKED", ["safety/ELECTRICAL_RATING_CHAIN.md", "safety/PROTECTION_COORDINATION.md"], ["T-HW-013"], ["Fuse candidate; breaking capacity/coordination unverified"], ["BLOCK-FUSE-RATING"], ["RR-03"]),
+    ("FR-030", "Surge protection", "P0", "F1", "BLOCKED", ["safety/PROTECTION_COORDINATION.md", "bom/BOM_MASTER.csv", "hardware/kicad/psu_rev_c.kicad_pcb"], ["T-HW-013", "T-HW-020"], ["S10K275 MOV after F1 on the PSU board; no surge test"], ["BLOCK-SURGE-STUDY"], ["RR-07"]),
+    ("FR-031", "Thermal cutoff", "P0", "F1", "BLOCKED", ["safety/THERMAL_RISK_AND_DERATING.md", "bom/BOM_MASTER.csv", "hardware/kicad/psu_rev_c.kicad_pcb"], ["T-HW-019", "T-HW-021"], ["SEFUSE SF96E: 99 C rated functioning, 84 C holding, 10 A/250 V; no physical trip test"], ["BLOCK-THERMAL-LAB"], ["RR-04"]),
+    ("FR-032", "Fuse protection", "P0", "F1", "BLOCKED", ["safety/ELECTRICAL_RATING_CHAIN.md", "safety/PROTECTION_COORDINATION.md", "hardware/kicad/psu_rev_c.kicad_pcb"], ["T-HW-013", "T-HW-020"], ["Littelfuse 0215010.MXP 10 A/250 V, 1500 A interrupting, 111 clips; coordination/8 A thermal unverified"], ["BLOCK-FUSE-RATING"], ["RR-03"]),
     ("FR-033", "Fail-safe startup", "P0", "F1", "PARTIAL", ["firmware/main/app_main.c", "firmware/core/smartplug_core.c"], ["CORE-BOOT"], ["Relay GPIO forced OFF; no low-voltage waveform test"], ["BLOCK-BOARD"], ["RR-14"]),
     ("FR-034", "Sensor failure detection", "P0", "F1", "PASS", ["firmware/core/smartplug_core.c", "packages/domain/src/index.ts", "apps/api/src/services/alerts.ts"], ["CORE-MEASUREMENT", "DOMAIN-MEASUREMENT", "ALERT-SENSOR"], ["NaN/out-of-range/invalid quality tests"], [], ["RR-08"]),
     ("FR-035", "Electrical fault logging", "P0", "F1+F2", "PASS", ["apps/api/src/services/audit.ts", "apps/api/src/routes/operations.ts"], ["API-EVENTS"], ["Event history tests"], [], ["RR-08"]),
@@ -96,6 +96,8 @@ ROWS = [
     ("FR-078", "Activity and audit logging", "P0", "F2", "PASS", ["apps/api/src/services/audit.ts", "apps/api/src/db/schema.ts"], ["API-AUDIT"], ["Append-only audit table and tests"], [], ["RR-10"]),
     ("FR-079", "Factory reset", "P0", "F1+F2", "NOT_STARTED", [], [], [], ["BLOCK-NOT-IMPLEMENTED"], ["RR-10"]),
     ("FR-080", "Device diagnostics", "P0", "F1+F2", "PARTIAL", ["apps/api/src/routes/operations.ts", "apps/web/src/components/DeviceHealth.tsx", "firmware/main/app_main.c"], ["API-DIAGNOSTICS"], ["API/UI diagnostics; firmware target build PASS, counters minimal"], ["BLOCK-FIRMWARE-INTEGRATION"], ["RR-08"]),
+    ("FR-081", "Separate mains-entry PSU board", "P0", "F1", "PARTIAL", ["hardware/kicad/psu_rev_c.kicad_pcb", "hardware/psu/README.md", "docs/decisions/ADR-016-PZEM-ISOLATION-REV-C.md"], ["T-HW-020", "T-HW-021"], ["Routed 50 x 65 mm PSU board: TB1/TB2, F1, MOV, TCO, HLK-5M05, PTC/TVS, 3x JST; DRC 0/0 and static crosscheck PASS; creepage/hipot/thermal unverified"], ["BLOCK-MAINS-REVIEW"], ["RR-17", "RR-18"]),
+    ("FR-082", "Three keyed 5 V outputs", "P0", "F1", "PARTIAL", ["hardware/kicad/psu_rev_c.kicad_pcb", "hardware/psu/README.md", "hardware/wiring/main_harness.yaml"], ["T-HW-020", "T-HW-021"], ["J5 carrier, J6 relay, J7 PZEM (conditional); 1.1 A PTC + SMBJ5.0A on the total output; load budget unmeasured"], ["BLOCK-5V-LOAD"], ["RR-19", "RR-20"]),
 ]
 
 
@@ -124,7 +126,7 @@ def main() -> None:
         })
     document = {
         "project": "esp32-s3-iot-smart-plug",
-        "design_revision": "REV_A_PROVISIONAL",
+        "design_revision": "REV_C_PSU_BOARD",
         "prd_version": "1.0",
         "generated_at": "2026-11-15T00:00:00Z",
         "status_legend": {

@@ -54,6 +54,10 @@ def load_wiring() -> tuple[list[dict], UnionFind]:
                 right_name = next(iter(right))
                 left_pins = left[left_name]
                 right_pins = right[right_name]
+                if not isinstance(left_pins, list):
+                    left_pins = [left_pins]
+                if not isinstance(right_pins, list):
+                    right_pins = [right_pins]
                 if len(left_pins) != len(right_pins):
                     rows.append({
                         "file": source.name, "connection": index,
@@ -169,8 +173,8 @@ def main() -> int:
         "failures": isolation_failures,
         "note": "No net may short PZEM mains terminals to its TTL side. PZEM internal optocouplers are the barrier."
     }
-    mains_nodes = {"P1:L", "P1:N", "F1:IN", "F1:OUT", "TF1:IN", "TF1:OUT", "K1:COM1", "K1:NO1", "K1:COM2", "K1:NO2", "X1:L", "X1:N", "U2:L", "U2:N"}
-    selv_nodes = {"J8:+5V", "J8:GND", "J3:+5V", "J3:GND", "J3:RELAY_IN1", "J3:RELAY_IN2", "K1:IN1", "K1:IN2", "K1:VCC", "K1:GND", "U9:VCC", "U9:GND", "U9:1A", "U9:1Y"}
+    mains_nodes = {"P1:L", "P1:N", "PS1:L", "PS1:N", "PS2:L", "PS2:N", "K1:COM1", "K1:NO1", "K1:COM2", "K1:NO2", "X1:L", "X1:N", "U2:L", "U2:N"}
+    selv_nodes = {"J8:+5V", "J8:GND", "J3:+5V", "J3:GND", "J3:RELAY_IN1", "J3:RELAY_IN2", "PSU_J5:+5V", "PSU_J5:GND", "PSU_J6:+5V", "PSU_J6:GND", "PSU_J7:+5V", "PSU_J7:GND", "K1:IN1", "K1:IN2", "K1:VCC", "K1:GND", "U9:VCC", "U9:GND", "U9:1A", "U9:1Y"}
     cross_domain = []
     for members in nets.values():
         if any(node in mains_nodes for node in members) and any(node in selv_nodes for node in members):
@@ -198,7 +202,7 @@ def main() -> int:
     (VALIDATION / "CONNECTIVITY_DIFF.json").write_text(json.dumps(checks, indent=2), encoding="utf-8")
 
     lines = [
-        "# Isolation Boundary Check — REV_B_NO_TEMP",
+        "# Isolation Boundary Check — REV_C_PSU_BOARD",
         "",
         "**Status:** static wiring check only. Manual engineering review is still required.",
         "",
@@ -216,6 +220,8 @@ def main() -> int:
         "- It does not prove creepage, clearance, dielectric strength, PE continuity, or thermal safety.",
         "- Wiring YAML is a design intent; physical harness must be continuity-tested by a qualified person.",
         "- `PASS` here means static consistency only.",
+        "- PSU OUT3 (J7) is conditional on PZEM batch inspection + hipot/leakage (ADR-016).",
+        "- The PSU board fuse/MOV/TCO are board-level parts, not harness nodes; their order is checked by `scripts/validate_psu.py`.",
     ]
     (VALIDATION / "ISOLATION_BOUNDARY_CHECK.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 

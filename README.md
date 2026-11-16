@@ -1,6 +1,6 @@
 # ESP32-S3 IoT Smart Plug — Digital Engineering Package
 
-**Design revision:** `REV_B_NO_TEMP`
+**Design revision:** `REV_C_PSU_BOARD`
 **Project status:** `PARTIAL_DIGITAL` / `ENGINEERING_REVIEW_REQUIRED` / `HARDWARE_VALIDATION_REQUIRED`
 **Fabrication:** `NOT_RELEASED` — do not send this repo to a PCB manufacturer.
 
@@ -8,8 +8,9 @@
 - Final load rating: **8 A / ~1.840 W**, electronics/SMPS only (not heaters/motors).
 - PZEM-004T V4 and a **common 2-channel 5 V optocoupler relay module** are **off-board**, with enclosure brackets. The module is two independent SPDT channels, **not** a mechanically linked DPST.
 - **150x100x70 and 180x120x70 fail** the clearance review with the off-board modules; **220x120x70 is CONFIRMED** by the user (2026-11-15). The earlier 180x120 PASS only stacked the relay above the PZEM with a 0.5 mm gap and ignored brackets; that is rejected.
-- **TMP102 and external ADuM1201/B0505S removed.** PZEM V4 internal optocouplers are the UART isolation barrier; the carrier level-shifts 5 V TTL with a 74HCT125 + 10k/20k divider. No firmware temperature sensor.
-- **KiCad 10.0.8:** ERC 0 on the block schematic; the SELV carrier is **routed 100x70 mm** (27 footprints, 19 nets) with **DRC 0/0** at 0.15 mm, a 1.1 A PTC + SMBJ5.0A TVS on 5 V, and three fiducials. Routed Gerber/drill/POS exported. Still `ENGINEERING_REVIEW_REQUIRED` / `NOT_FOR_FABRICATION`.
+- **TMP102 and external ADuM1201/B0505S removed.** PZEM V4 internal optocouplers are the UART isolation barrier (ADR-016); OUT3 is conditional on batch/hipot. The carrier level-shifts 5 V TTL with a 74HCT125 + 10k/20k divider. No firmware temperature sensor.
+- **Separate REV_C PSU board:** 50x65 mm mains entry with TB1/TB2, F1 10 A, MOV, SEFUSE SF96E TCO 99 C, HLK-5M05, F2 PTC + D1 TVS, and 3x JST 5 V outputs (J5 carrier, J6 relay, J7 PZEM). The carrier is SELV-only and no longer carries PTC/TVS.
+- **KiCad 10.0.8:** ERC 0 on the block schematic; the SELV carrier is **routed 100x70 mm** (25 footprints, 18 nets) with **DRC 0/0** at 0.15 mm; the **PSU board** is routed 50x65 mm with **DRC 0/0**, 8 nets, 4 mm L/N traces, a 2 mm isolation notch, and 3x JST outputs. Routed Gerber/drill/POS exported. Still `ENGINEERING_REVIEW_REQUIRED` / `NOT_FOR_FABRICATION`.
 - **Enclosure:** 220x120x70 with a 60 mm body + 10 mm lid, 4x M3 lid screws, 1 mm gasket, carrier standoffs, module bosses, mechanical barrier, right-wall socket/gland/vent, top OLED/button/RGB cutouts, front USB service cover, and a printed DevKit reverse-insertion key. Assembly STEP/STL and fit report generated; physical fit still unverified.
 
 > **Safety first.** This repository contains a digital prototype, not a certified or physically validated mains product. No 230 VAC assembly was built, energized, or tested. Do not connect mains to a 3D-printed enclosure or an unapproved prototype. PE must remain continuous and is never switched. See `safety/` and `docs/tutorials/00_READ_FIRST.md`.
@@ -19,7 +20,7 @@
 ## What this is
 
 A full digital engineering package for an inline ESP32-S3 smart outlet:
-research, BOM, safety analysis, GPIO map, wiring harnesses, KiCad block schematic + routed SELV carrier,
+research, BOM, safety analysis, GPIO map, wiring harnesses, KiCad block schematic + routed SELV carrier + 50x65 mm PSU board,
 CadQuery enclosure, portable firmware core, backend API, MQTT contract, web dashboard,
 Android source, device simulator, tests, and handoff documentation.
 
@@ -35,9 +36,9 @@ The PRD is the contract: `PRD.md`.
 | Firmware C core | 75 checks, Zig host build | PASS |
 | Web | Next build + 5 Playwright tests + axe | PASS |
 | Static wiring/GPIO/BOM | Python crosscheck | PASS |
-| WireViz | 4 harnesses rendered | PASS |
-| CadQuery | Detailed 220x120x70 STEP/STL + renders + brackets + gasket/cover/key | PASS (digital) |
-| KiCad CLI | 10.0.8, ERC 0; routed carrier 27 footprints/19 nets, DRC 0/0; Gerber/drill | PASS (digital) |
+| WireViz | 3 harnesses rendered | PASS |
+| CadQuery | Detailed 220x120x70 STEP/STL + PSU board/relay shelf + gasket/cover/key | PASS (digital) |
+| KiCad CLI | 10.0.8, ERC 0; carrier 25/18 DRC 0/0; PSU 13 components/8 nets DRC 0/0; Gerber/drill | PASS (digital) |
 | ESP-IDF build | v6.1, target esp32s3, 192,496-byte `.bin` | PASS (build only) |
 | Android debug APK | 46,852,340-byte arm64-v8a APK, v2 signature verified | PASS (debug, not installed) |
 | npm audit | 0 known npm vulnerabilities | PASS |
@@ -103,7 +104,7 @@ packages/
 firmware/              portable C core + ESP-IDF skeleton
 hardware/
   kicad/               native block schematic + placement PCB
-  wiring/              6 WireViz harnesses + renders
+  wiring/              3 WireViz harnesses + renders
   interfaces/          GPIO map
   mechanical/          CadQuery enclosure + exports/renders
   manufacturing/       provisional, NOT released
@@ -126,6 +127,8 @@ deliverables/          manifest + final report
 
 - Off-board modules: `research/OFFBOARD_MODULES.md`
 - PSU study: `research/PSU_HLK_5M05.md`
+- PSU board evidence: `research/PSU_BOARD_EVIDENCE.md`
+- Research log: `reports/RESEARCH_LOG.md`
 - Procurement Indonesia: `research/PROCUREMENT_INDONESIA.md`, `bom/BOM_PROCUREMENT.md`
 - Decisions: `docs/decisions/USER_ANSWERS.md`, `ASSUMPTION_REGISTER.md`, `ADR-*.md`
 - Safety: `safety/ELECTRICAL_RATING_CHAIN.md`, `ISOLATION_PLAN.md`, `CLEARANCE_CREEPAGE_WORKSHEET.md`, `RESIDUAL_RISK_REGISTER.csv`
