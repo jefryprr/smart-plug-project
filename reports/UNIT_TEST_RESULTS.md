@@ -9,7 +9,7 @@
 | Domain (`packages/domain`) | 34 | 34 PASS | `npm run test -w @smartplug/domain` | `reports/logs/T-SW-007-*.log` |
 | MQTT contract (`packages/mqtt-contract`) | 11 | 11 PASS | `npm run test -w @smartplug/mqtt-contract` | `reports/logs/T-SW-004A-*.log` |
 | Device simulator (`apps/device-simulator`) | 4 | 4 PASS | `npm run test -w @smartplug/device-simulator` | `reports/logs/T-SW-004B-*.log` |
-| Firmware C core (`firmware/test/host`) | 74 checks | 0 failures | `powershell -File firmware/test/host/run_tests.ps1` | `reports/logs/firmware-host-test.log`, `T-HW-018-*.log` |
+| Firmware C core (`firmware/test/host`) | 75 checks | 0 failures | `powershell -File firmware/test/host/run_tests.ps1` | `reports/logs/firmware-host-test.log`, `T-HW-018-*.log` |
 | API (`apps/api`) | 38 | 38 PASS | `npm run test -w @smartplug/api` | `reports/logs/T-SW-005-*.log` |
 
 ## Domain coverage highlights

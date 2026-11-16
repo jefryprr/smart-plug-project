@@ -1,31 +1,31 @@
 test_id,area,command,status,exit_code,log,note,duration_s
-T-SW-001A,TypeScript domain,npm run typecheck -w @smartplug/domain,PASS,0,reports\logs\T-SW-001A-20261116T060128Z.log,Domain typecheck,1.97
-T-SW-001B,TypeScript API,npm run typecheck -w @smartplug/api,PASS,0,reports\logs\T-SW-001B-20261116T060128Z.log,API typecheck,4.41
-T-SW-001C,TypeScript web,npm run typecheck -w @smartplug/web,PASS,0,reports\logs\T-SW-001C-20261116T060128Z.log,Web typecheck,3.32
-T-SW-001D,TypeScript simulator,npm run typecheck -w @smartplug/device-simulator,PASS,0,reports\logs\T-SW-001D-20261116T060128Z.log,Simulator typecheck,2.74
-T-SW-007,Domain tests,npm run test -w @smartplug/domain,PASS,0,reports\logs\T-SW-007-20261116T060128Z.log,34 domain tests incl. cost/energy,1.82
-T-SW-004A,MQTT contract tests,npm run test -w @smartplug/mqtt-contract,PASS,0,reports\logs\T-SW-004A-20261116T060128Z.log,11 contract/ACL tests,2.01
-T-SW-005,API + simulator integration,npm run test -w @smartplug/api,PASS,0,reports\logs\T-SW-005-20261116T060128Z.log,38 API tests incl. aedes+simulator ACK,10.37
-T-SW-004B,Simulator tests,npm run test -w @smartplug/device-simulator,PASS,0,reports\logs\T-SW-004B-20261116T060128Z.log,4 simulator tests,2.34
-T-HW-018,Firmware core host tests,powershell -ExecutionPolicy Bypass -File .\firmware\test\host\run_tests.ps1,PASS,0,reports\logs\T-HW-018-20261116T060128Z.log,74 C checks; Zig cc host build,0.99
-T-SW-001E,Next.js build,npm run build -w @smartplug/web,PASS,0,reports\logs\T-SW-001E-20261116T060128Z.log,Next production build,9.74
-T-HW-003,Connectivity crosscheck,.\.venv\Scripts\python.exe scripts/validate_connectivity.py,PASS,0,reports\logs\T-HW-003-20261116T060128Z.log,Wiring/GPIO/BOM static diff,0.27
-T-HW-004,GPIO map generation,.\.venv\Scripts\python.exe hardware/generators/generate_gpio_map.py,PASS,0,reports\logs\T-HW-004-20261116T060128Z.log,GPIO CSV/MD + crosscheck,0.23
-T-HW-010A,WireViz render,.\.venv\Scripts\python.exe scripts/render_wiring.py,PASS,0,reports\logs\T-HW-010A-20261116T060128Z.log,3 harnesses SVG/PNG/PDF,8.04
-T-HW-009A,CadQuery export,.\.venv\Scripts\python.exe hardware/mechanical/source/enclosure.py --preset recommended,PASS,0,reports\logs\T-HW-009A-20261116T060128Z.log,STEP/STL bodies + assembly,9.91
-T-HW-009B,Mechanical render/fit,.\.venv\Scripts\python.exe hardware/mechanical/source/render.py,PASS,0,reports\logs\T-HW-009B-20261116T060128Z.log,Views/drawings/fit report,12.24
-T-HW-020,PSU static crosscheck,.\tools\kicad\bin\python.exe scripts/validate_psu.py,PASS,0,reports\logs\T-HW-020-20261116T060128Z.log,PSU nets/BOM/8A traces,0.46
-T-HW-021,PSU DRC/Gerber,.\.venv\Scripts\python.exe scripts/run_psu_check.py,PASS,0,reports\logs\T-HW-021-20261116T060128Z.log,PSU DRC 0/0 + Gerber/drill/POS,4.27
-T-HW-022,Carrier artifact export,.\tools\kicad\bin\python.exe scripts/export_carrier_artifacts.py,PASS,0,reports\logs\T-HW-022-20261116T060128Z.log,Carrier netlist/placement/PCBA/POS regenerated,0.73
-T-HW-023,PSU artifact export,.\tools\kicad\bin\python.exe scripts/export_psu_artifacts.py,PASS,0,reports\logs\T-HW-023-20261116T060128Z.log,PSU netlist/placement/PCBA regenerated,0.34
-T-HW-002A,KiCad file parse,".\tools\kicad\bin\python.exe -c import pcbnew; b=pcbnew.LoadBoard('hardware/kicad/smartplug.kicad_pcb'); print('pcbnew parse OK', b.GetNetCount(), 'nets')",PASS,0,reports\logs\T-HW-002A-20261116T060128Z.log,Native files parse; ERC/DRC not run,0.36
-T-HW-008A,PCB placement preview,.\.venv\Scripts\python.exe scripts/render_pcb_preview.py,PASS,0,reports\logs\T-HW-008A-20261116T060128Z.log,Preview parsed from .kicad_pcb,2.04
-T-HW-002,Schematic ERC,.\.venv\Scripts\python.exe scripts/run_kicad_check.py --mode erc,PASS,0,reports\logs\T-HW-002-20261116T060128Z.log,KiCad 10 ERC; block-level text-only schematic,4.31
-T-HW-006,PCB DRC,.\.venv\Scripts\python.exe scripts/run_kicad_check.py --mode drc,PASS,0,reports\logs\T-HW-006-20261116T060128Z.log,KiCad 10 DRC; routed SELV carrier,3.12
-T-HW-008,Gerber/drill export; routed carrier,.\.venv\Scripts\python.exe scripts/run_kicad_check.py --mode gerber,PASS,0,reports\logs\T-HW-008-20261116T060128Z.log,Routed SELV carrier Gerber/drill; NOT_FOR_FABRICATION,1.23
-T-SW-001F,OpenAPI parse,".\.venv\Scripts\python.exe -c import yaml; d=yaml.safe_load(open('packages/api-contract/openapi.yaml', encoding='utf-8')); assert d['openapi'].startswith('3.'); assert len(d['paths'])>=18; print('OpenAPI paths:', len(d['paths']))",PASS,0,reports\logs\T-SW-001F-20261116T060128Z.log,OpenAPI structural check,0.28
-T-SW-011,Playwright E2E,npm exec playwright test,PASS,0,reports\logs\T-SW-011-20261116T060128Z.log,5 E2E tests incl. axe and command APPLIED,26.4
-T-HW-017,ESP-IDF target build,powershell -ExecutionPolicy Bypass -NoProfile -File .\scripts\build_firmware.ps1,PASS,0,reports\logs\T-HW-017-20261116T060128Z.log,"ESP-IDF v6.1, esp32s3, set-target + build; no flash",176.09
+T-SW-001A,TypeScript domain,npm run typecheck -w @smartplug/domain,PASS,0,reports\logs\T-SW-001A-20261116T060913Z.log,Domain typecheck,2.77
+T-SW-001B,TypeScript API,npm run typecheck -w @smartplug/api,PASS,0,reports\logs\T-SW-001B-20261116T060913Z.log,API typecheck,6.51
+T-SW-001C,TypeScript web,npm run typecheck -w @smartplug/web,PASS,0,reports\logs\T-SW-001C-20261116T060913Z.log,Web typecheck,4.36
+T-SW-001D,TypeScript simulator,npm run typecheck -w @smartplug/device-simulator,PASS,0,reports\logs\T-SW-001D-20261116T060913Z.log,Simulator typecheck,3.71
+T-SW-007,Domain tests,npm run test -w @smartplug/domain,PASS,0,reports\logs\T-SW-007-20261116T060913Z.log,34 domain tests incl. cost/energy,2.38
+T-SW-004A,MQTT contract tests,npm run test -w @smartplug/mqtt-contract,PASS,0,reports\logs\T-SW-004A-20261116T060913Z.log,11 contract/ACL tests,2.56
+T-SW-005,API + simulator integration,npm run test -w @smartplug/api,PASS,0,reports\logs\T-SW-005-20261116T060913Z.log,38 API tests incl. aedes+simulator ACK,12.6
+T-SW-004B,Simulator tests,npm run test -w @smartplug/device-simulator,PASS,0,reports\logs\T-SW-004B-20261116T060913Z.log,4 simulator tests,3.19
+T-HW-018,Firmware core host tests,powershell -ExecutionPolicy Bypass -File .\firmware\test\host\run_tests.ps1,PASS,0,reports\logs\T-HW-018-20261116T060913Z.log,75 C checks; Zig cc host build,1.24
+T-SW-001E,Next.js build,npm run build -w @smartplug/web,PASS,0,reports\logs\T-SW-001E-20261116T060913Z.log,Next production build,13.18
+T-HW-003,Connectivity crosscheck,.\.venv\Scripts\python.exe scripts/validate_connectivity.py,PASS,0,reports\logs\T-HW-003-20261116T060913Z.log,Wiring/GPIO/BOM static diff,0.38
+T-HW-004,GPIO map generation,.\.venv\Scripts\python.exe hardware/generators/generate_gpio_map.py,PASS,0,reports\logs\T-HW-004-20261116T060913Z.log,GPIO CSV/MD + crosscheck,0.3
+T-HW-010A,WireViz render,.\.venv\Scripts\python.exe scripts/render_wiring.py,PASS,0,reports\logs\T-HW-010A-20261116T060913Z.log,3 harnesses SVG/PNG/PDF,9.38
+T-HW-009A,CadQuery export,.\.venv\Scripts\python.exe hardware/mechanical/source/enclosure.py --preset recommended,PASS,0,reports\logs\T-HW-009A-20261116T060913Z.log,STEP/STL bodies + assembly,10.82
+T-HW-009B,Mechanical render/fit,.\.venv\Scripts\python.exe hardware/mechanical/source/render.py,PASS,0,reports\logs\T-HW-009B-20261116T060913Z.log,Views/drawings/fit report,12.11
+T-HW-020,PSU static crosscheck,.\tools\kicad\bin\python.exe scripts/validate_psu.py,PASS,0,reports\logs\T-HW-020-20261116T060913Z.log,PSU nets/BOM/8A traces,0.46
+T-HW-021,PSU DRC/Gerber,.\.venv\Scripts\python.exe scripts/run_psu_check.py,PASS,0,reports\logs\T-HW-021-20261116T060913Z.log,PSU DRC 0/0 + Gerber/drill/POS,4.6
+T-HW-022,Carrier artifact export,.\tools\kicad\bin\python.exe scripts/export_carrier_artifacts.py,PASS,0,reports\logs\T-HW-022-20261116T060913Z.log,Carrier netlist/placement/PCBA/POS regenerated,0.7
+T-HW-023,PSU artifact export,.\tools\kicad\bin\python.exe scripts/export_psu_artifacts.py,PASS,0,reports\logs\T-HW-023-20261116T060913Z.log,PSU netlist/placement/PCBA regenerated,0.33
+T-HW-002A,KiCad file parse,".\tools\kicad\bin\python.exe -c import pcbnew; b=pcbnew.LoadBoard('hardware/kicad/smartplug.kicad_pcb'); print('pcbnew parse OK', b.GetNetCount(), 'nets')",PASS,0,reports\logs\T-HW-002A-20261116T060913Z.log,Native files parse; ERC/DRC not run,0.34
+T-HW-008A,PCB placement preview,.\.venv\Scripts\python.exe scripts/render_pcb_preview.py,PASS,0,reports\logs\T-HW-008A-20261116T060913Z.log,Preview parsed from .kicad_pcb,2.03
+T-HW-002,Schematic ERC,.\.venv\Scripts\python.exe scripts/run_kicad_check.py --mode erc,PASS,0,reports\logs\T-HW-002-20261116T060913Z.log,KiCad 10 ERC; block-level text-only schematic,4.3
+T-HW-006,PCB DRC,.\.venv\Scripts\python.exe scripts/run_kicad_check.py --mode drc,PASS,0,reports\logs\T-HW-006-20261116T060913Z.log,KiCad 10 DRC; routed SELV carrier,3.28
+T-HW-008,Gerber/drill export; routed carrier,.\.venv\Scripts\python.exe scripts/run_kicad_check.py --mode gerber,PASS,0,reports\logs\T-HW-008-20261116T060913Z.log,Routed SELV carrier Gerber/drill; NOT_FOR_FABRICATION,1.23
+T-SW-001F,OpenAPI parse,".\.venv\Scripts\python.exe -c import yaml; d=yaml.safe_load(open('packages/api-contract/openapi.yaml', encoding='utf-8')); assert d['openapi'].startswith('3.'); assert len(d['paths'])>=18; print('OpenAPI paths:', len(d['paths']))",PASS,0,reports\logs\T-SW-001F-20261116T060913Z.log,OpenAPI structural check,0.28
+T-SW-011,Playwright E2E,npm exec playwright test,PASS,0,reports\logs\T-SW-011-20261116T060913Z.log,5 E2E tests incl. axe and command APPLIED,26.73
+T-HW-017,ESP-IDF target build,powershell -ExecutionPolicy Bypass -NoProfile -File .\scripts\build_firmware.ps1,PASS,0,reports\logs\T-HW-017-20261116T060913Z.log,"ESP-IDF v6.1, esp32s3, set-target + build; no flash",159.15
 T-HW-011,Mains isolation review,,BLOCKED,,,No qualified reviewer/lab evidence,0.0
 T-HW-012,PE continuity,,BLOCKED,,,No hardware/lab,0.0
 T-HW-013,Thermal/fuse/surge,,BLOCKED,,,No lab,0.0

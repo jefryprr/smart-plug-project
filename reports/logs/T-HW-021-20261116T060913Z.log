@@ -1,0 +1,18 @@
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to C:/Users/JEFRY PRATAMA/Zed/SMART-PLUG-V2/reports/kicad/psu_drc.json
+Plotted to 'C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_c-F_Cu.gtl'.
+Plotted to 'C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_c-B_Cu.gbl'.
+Plotted to 'C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_c-F_Silkscreen.gto'.
+Plotted to 'C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_c-B_Silkscreen.gbo'.
+Plotted to 'C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_c-Edge_Cuts.gm1'.
+Created file 'C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_c.drl'
+Created file 'C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_c-drl_map.pdf'.
+Done.
+Wrote position data to 'C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv'.
+RUN C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --format json --output C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\reports\kicad\psu_drc.json C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_c.kicad_pcb
+PSU DRC violations: 0; unconnected: 0
+RUN C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export gerbers -o C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber -l F.Cu,B.Cu,F.SilkS,B.SilkS,Edge.Cuts C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_c.kicad_pcb
+RUN C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export drill -o C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill --generate-map --map-format pdf C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_c.kicad_pcb
+RUN C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export pos -o C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv --format csv --units mm --side both C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_c.kicad_pcb
+PSU Gerber/drill/POS present: True
