@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Read the documentation first
+    url: https://github.com/jefryprr/smart-plug-project/blob/main/docs/README.md
+    about: Start here for the documentation index, FAQ, glossary, and status.
+  - name: Safety overview
+    url: https://github.com/jefryprr/smart-plug-project/blob/main/docs/SAFETY.md
+    about: Read this before asking about mains, PE, isolation, or energization.
+  - name: Report a security vulnerability
+    url: https://github.com/jefryprr/smart-plug-project/security/advisories/new
+    about: Use private reporting. Do not include real secrets in a public issue.
+  - name: Support and help
+    url: https://github.com/jefryprr/smart-plug-project/blob/main/SUPPORT.md
+    about: Where to ask questions and what maintainers cannot help with.

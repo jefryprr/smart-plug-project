@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+title: SMART PLUG PROJECT
+message: "If you use this project, please cite it using this metadata."
+type: software
+authors:
+  - name: "SMART PLUG PROJECT contributors"
+abstract: >-
+  A digital engineering package for an ESP32-S3 smart plug with PZEM-004T
+  energy monitoring, off-board relay switching, local firmware, MQTT, a
+  Fastify API, a Next.js dashboard, Android source, a device simulator, and a
+  safety dossier. This is a prototype, not a certified or physically validated
+  mains product.
+repository-code: "https://github.com/jefryprr/smart-plug-project"
+url: "https://github.com/jefryprr/smart-plug-project"
+license: MIT
+keywords:
+  - esp32-s3
+  - smart-plug
+  - energy-monitoring
+  - pzem-004t
+  - mqtt
+  - iot
+  - kicad
+  - hardware
+version: 0.1.0
+date-released: "2026-11-16"

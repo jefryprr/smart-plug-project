@@ -22,6 +22,8 @@ firmware/build/
 firmware/sdkconfig
 firmware/sdkconfig.old
 *.kicad_prl
+*.lck
+hardware/kicad/~*
 apps/android/android/local.properties
 apps/android/android/.gradle/
 apps/android/android/app/build/

@@ -2,8 +2,8 @@
   "project": "esp32-s3-iot-smart-plug",
   "prd_version": "1.0",
   "design_revision": "REV_C_PSU_BOARD",
-  "generated_at": "2026-11-16T06:15:17.099Z",
-  "git_commit": "a3ec9ea831be376b6389f391296474631f0270d1",
+  "generated_at": "2026-11-16T07:28:00.788Z",
+  "git_commit": "a1695864ac86efcd2ffb4f81dba76b44310b32fe",
   "manifest_note": "git_commit is the source commit at generation time; this manifest file is committed immediately after.",
   "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",
   "hardware_validation_status": "HARDWARE_VALIDATION_REQUIRED",
@@ -14,7 +14,7 @@
   "ready_for_use": false,
   "summary": {
     "categories": 26,
-    "artifacts": 241,
+    "artifacts": 270,
     "missing_artifacts": 0,
     "test_counts": {
       "PASS": 27,
@@ -206,14 +206,14 @@
       "category": 25,
       "name": "Engineer documentation",
       "status": "PASS_DIGITAL",
-      "artifacts": 27,
+      "artifacts": 38,
       "release_classification": "DIGITAL_ONLY"
     },
     {
       "category": 26,
       "name": "Final handoff",
       "status": "PARTIAL",
-      "artifacts": 3,
+      "artifacts": 21,
       "release_classification": "DIGITAL_ONLY"
     }
   ],
@@ -3269,6 +3269,160 @@
     },
     {
       "category": 25,
+      "path": "docs/README.md",
+      "sha256": "c183f345f5ff440aec1c3aed4421f4ccb3f72930147e8b83042f4c23f8ce384e",
+      "size_bytes": 15250,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/START_HERE.md",
+      "sha256": "8a99db12658bf37dc508e49247c619a20b31d93af76c994633b8f451e1a9323b",
+      "size_bytes": 6786,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/FAQ.md",
+      "sha256": "2597e5e8ee553ac342b37254f7f4405f01a4a733d63708f224601b2b084d4cc7",
+      "size_bytes": 7781,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/GLOSSARY.md",
+      "sha256": "0203b7ba60f908d353583c4842677b28415fe8307c65d267272584389f4dc465",
+      "size_bytes": 10337,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/PROJECT_STATUS.md",
+      "sha256": "d094a6c2701c6f3427347e9dcb02968fad03b7db91a08516a331bb0ad8856324",
+      "size_bytes": 6643,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/REPOSITORY_MAP.md",
+      "sha256": "1277a73588cba78bafdca308a47731547c65d5f9875fafe916d9afa52c6b4dc9",
+      "size_bytes": 6040,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/ARCHITECTURE.md",
+      "sha256": "6960ae65e1d9fe6188b11fddd096e5f14a0a5194de19f98f00b28be55a51fe20",
+      "size_bytes": 7795,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/HARDWARE_GUIDE.md",
+      "sha256": "603b959419a3ca1672d6e932ce15fa9bf452586bfa8ca9fddbac97599fc68507",
+      "size_bytes": 7912,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/SOFTWARE_GUIDE.md",
+      "sha256": "64266718d42d7ffd81f64c8263070f37ff663c7b279984396a10b40243468697",
+      "size_bytes": 6703,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/TESTING.md",
+      "sha256": "af3c9e308bc8c178c1c25d96d548c4f834297adc8ad8cfaf4c91443dc30ea232",
+      "size_bytes": 5268,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/SAFETY.md",
+      "sha256": "72d622ff5795da01ed45ef3c07561388efb420fb6e7a10a0b2516b226442afc9",
+      "size_bytes": 5034,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
       "path": "docs/tutorials/README.md",
       "sha256": "b6cd99aba513ee09e0dd2baa03293c842a6cf7f1c654343c9c6401f143c2b9be",
       "size_bytes": 1743,
@@ -3284,8 +3438,8 @@
     {
       "category": 25,
       "path": "docs/tutorials/00_READ_FIRST.md",
-      "sha256": "a5c521cd31340e4b708e66efe2a6200022d3b47dcde1e76f14e50ba4af494980",
-      "size_bytes": 1359,
+      "sha256": "24e0768c144965b11514a6152ae8994f11db2f3dcdf29100ae00e7c78fbda254",
+      "size_bytes": 1460,
       "status": "PASS_DIGITAL",
       "tests": [
         "DOCUMENT_REVIEW"
@@ -3312,7 +3466,7 @@
     {
       "category": 25,
       "path": "docs/tutorials/23_TESTING_AND_VALIDATION.md",
-      "sha256": "1e8526a1ad5e9e0375f8a44f8127494ba829a6b30b45ec89f5d4ca319275ca05",
+      "sha256": "bd9c5e3b233be1ff0ebb3575a161761ff71f9bcd38b2eb0d4da4a3115f9b7522",
       "size_bytes": 800,
       "status": "PASS_DIGITAL",
       "tests": [
@@ -3325,23 +3479,9 @@
     },
     {
       "category": 25,
-      "path": "docs/README.md",
-      "sha256": "43dfe039e2b1506e962b946a5396451a6d5a2a828afa4d35d4fffcb6996b60c8",
-      "size_bytes": 2144,
-      "status": "PASS_DIGITAL",
-      "tests": [
-        "DOCUMENT_REVIEW"
-      ],
-      "evidence": [
-        "category-25"
-      ],
-      "release_classification": "DIGITAL_ONLY"
-    },
-    {
-      "category": 25,
       "path": "docs/software/README.md",
-      "sha256": "5f162f38d86f2a10ad8459ab39fd97dfd4b05c3a416510de5b151d1ce2dc9e55",
-      "size_bytes": 1810,
+      "sha256": "767d8e8f07e63b225a8791d1478970bf5c46e0792c05e5fbcd1b7f322234f69b",
+      "size_bytes": 1817,
       "status": "PASS_DIGITAL",
       "tests": [
         "DOCUMENT_REVIEW"
@@ -3426,6 +3566,20 @@
       "path": "docs/decisions/ADR-016-PZEM-ISOLATION-REV-C.md",
       "sha256": "cf5499d358d7a431a8d6df4577f8f9b6fce062cd0ac571f045a7b5be7077825c",
       "size_bytes": 3075,
+      "status": "PASS_DIGITAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-25"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 25,
+      "path": "docs/hardware/SYSTEM_ARCHITECTURE.md",
+      "sha256": "e4f64b319e2e924272f07249d228a478d277c25b631abf43a0e9fd99b9ff7146",
+      "size_bytes": 3237,
       "status": "PASS_DIGITAL",
       "tests": [
         "DOCUMENT_REVIEW"
@@ -3662,8 +3816,8 @@
     {
       "category": 26,
       "path": "deliverables/README.md",
-      "sha256": "788f0089ec488ad68d0885107c18f69c1018128429ca82c5de8a03376d5b530d",
-      "size_bytes": 659,
+      "sha256": "ab80f785f84bbaf16271622ea487befde66da79fc1fafc0f182de84b2bc7c44d",
+      "size_bytes": 1099,
       "status": "PARTIAL",
       "tests": [
         "DOCUMENT_REVIEW"
@@ -3676,8 +3830,260 @@
     {
       "category": 26,
       "path": "README.md",
-      "sha256": "db510ce78b4c3b4cbe2ab8d6a848568857febcbcb466257860f6127798336858",
-      "size_bytes": 8765,
+      "sha256": "77d1010a3e1ea70744ad8a15bd121c19b5b91e2a09bcc7c32d7b123997b5d082",
+      "size_bytes": 14112,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": "README.id.md",
+      "sha256": "4996b70dd8b9fbae1728922a27b05e864246d1b4233303cefe1c0470c2290ce3",
+      "size_bytes": 6168,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": "CONTRIBUTING.md",
+      "sha256": "1d45f9efec63d57414c874bf4ee0ce64e8e8285710a99b5304acf7aa394da352",
+      "size_bytes": 4652,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": "CODE_OF_CONDUCT.md",
+      "sha256": "27cf89e398cc577ac0a6b403b2badbc089a074745496c2d29e4527798855364d",
+      "size_bytes": 5406,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": "SECURITY.md",
+      "sha256": "c7e1f90d755c9e9e5a1fab587d37072040c0ce491c898292a70acfe6fca2675b",
+      "size_bytes": 3333,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": "SUPPORT.md",
+      "sha256": "a162c73774c09ac530a79f1d037c849309cd537e4fb06a5e42ec7cd8c9889a65",
+      "size_bytes": 2083,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": "CHANGELOG.md",
+      "sha256": "d42f3d6ea9f511a935feee3169361c32b7e0e6b1f772d62a6b1dcab40661e7b7",
+      "size_bytes": 3713,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": "ROADMAP.md",
+      "sha256": "8652964e15260d1b2bf0ec34259ddf9c8815eb49c9b8672ecffbaad78ffa32f3",
+      "size_bytes": 4570,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": "LICENSE",
+      "sha256": "4389c4f9410ecd88b4bf1043613e3d1a5d0c8a85395bc504b605ed5775338760",
+      "size_bytes": 1480,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": "NOTICE.md",
+      "sha256": "84556d49fa7953e088a2f94cf1cc9f77a7940efab69127609ee058dc85fa69ff",
+      "size_bytes": 2714,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": "CITATION.cff",
+      "sha256": "0dd805c98475dbe9c50f7a8cedcd8bb7fc30ad4ad923d665e429d3ad23abd2b9",
+      "size_bytes": 808,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": ".editorconfig",
+      "sha256": "2a47be0d3ba197ac29b3a9a3062a70756f02e76dfa64b3f8e2653ca8dfdbccce",
+      "size_bytes": 382,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": ".github/workflows/ci.yml",
+      "sha256": "3de29e33345107585d7507f4bdae6e40aa6cb0e6e480a9f20884d45c1789b489",
+      "size_bytes": 779,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": ".github/dependabot.yml",
+      "sha256": "6ca3fdcb3e0e711e832b79bec50f3daec41ca8e47c3c71a21ce91d78fe3528c1",
+      "size_bytes": 512,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": ".github/CODEOWNERS",
+      "sha256": "b90f896ee42b50c8ecbad59d59b9716d5192f60e713d81c05f6dc69b7b8adacf",
+      "size_bytes": 254,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "sha256": "a5b3720736934816ed3c55018b53e795d614466250d22dbcbb07c23e534bd816",
+      "size_bytes": 1311,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+      "sha256": "bdc5bc5b2de1eec101772780fc76e243dd4945b5735409e25e06635a08036370",
+      "size_bytes": 2315,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": ".github/ISSUE_TEMPLATE/feature_request.yml",
+      "sha256": "e23d3f5fab296090724b278226ba6e568cf233494a0278b56e3371135a0d0872",
+      "size_bytes": 1748,
+      "status": "PARTIAL",
+      "tests": [
+        "DOCUMENT_REVIEW"
+      ],
+      "evidence": [
+        "category-26"
+      ],
+      "release_classification": "DIGITAL_ONLY"
+    },
+    {
+      "category": 26,
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "sha256": "6361438b1eef05d0dbe8682136c05bbf3ddecc3229cecf2b242ed1ab17d67c75",
+      "size_bytes": 808,
       "status": "PARTIAL",
       "tests": [
         "DOCUMENT_REVIEW"

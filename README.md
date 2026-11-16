@@ -1,161 +1,264 @@
-# ESP32-S3 IoT Smart Plug — Digital Engineering Package
+<p align="center">
+  <img src="docs/assets/banner.png" alt="SMART PLUG PROJECT — ESP32-S3 smart plug with energy monitoring" width="100%">
+</p>
 
-**Design revision:** `REV_C_PSU_BOARD`
-**Project status:** `PARTIAL_DIGITAL` / `ENGINEERING_REVIEW_REQUIRED` / `HARDWARE_VALIDATION_REQUIRED`
-**Fabrication:** `NOT_RELEASED` — do not send this repo to a PCB manufacturer.
+<h1 align="center">SMART PLUG PROJECT</h1>
 
-**Latest amendment (2026-11-16):**
-- Final load rating: **8 A / ~1.840 W**, electronics/SMPS only (not heaters/motors).
-- PZEM-004T V4 and a **common 2-channel 5 V optocoupler relay module** are **off-board**, with enclosure brackets. The module is two independent SPDT channels, **not** a mechanically linked DPST.
-- **150x100x70 and 180x120x70 fail** the clearance review with the off-board modules; **220x120x70 is CONFIRMED** by the user (2026-11-15). The earlier 180x120 PASS only stacked the relay above the PZEM with a 0.5 mm gap and ignored brackets; that is rejected.
-- **TMP102 and external ADuM1201/B0505S removed.** PZEM V4 internal optocouplers are the UART isolation barrier (ADR-016); OUT3 is conditional on batch/hipot. The carrier level-shifts 5 V TTL with a 74HCT125 + 10k/20k divider. No firmware temperature sensor.
-- **Separate REV_C PSU board:** 50x65 mm mains entry with TB1/TB2, F1 10 A, MOV, SEFUSE SF96E TCO 99 C, HLK-5M05, F2 PTC + D1 TVS, and 3x JST 5 V outputs (J5 carrier, J6 relay, J7 PZEM). The carrier is SELV-only and no longer carries PTC/TVS.
-- **KiCad 10.0.8:** ERC 0 on the block schematic; the SELV carrier is **routed 100x70 mm** (25 footprints, 18 nets) with **DRC 0/0** at 0.15 mm; the **PSU board** is routed 50x65 mm with **DRC 0/0**, 8 nets, 4 mm L/N traces, a 2 mm isolation notch, and 3x JST outputs. Routed Gerber/drill/POS exported. Still `ENGINEERING_REVIEW_REQUIRED` / `NOT_FOR_FABRICATION`.
-- **Enclosure:** 220x120x70 with a 60 mm body + 10 mm lid, 4x M3 lid screws, 1 mm gasket, carrier standoffs, module bosses, mechanical barrier, right-wall socket/gland/vent, top OLED/button/RGB cutouts, front USB service cover, and a printed DevKit reverse-insertion key. Assembly STEP/STL and fit report generated; physical fit still unverified.
+<p align="center">
+  <a href="README.md">English</a> · <a href="README.id.md">Bahasa Indonesia</a>
+</p>
 
-> **Safety first.** This repository contains a digital prototype, not a certified or physically validated mains product. No 230 VAC assembly was built, energized, or tested. Do not connect mains to a 3D-printed enclosure or an unapproved prototype. PE must remain continuous and is never switched. See `safety/` and `docs/tutorials/00_READ_FIRST.md`.
+<p align="center">
+  <strong>An ESP32-S3 smart plug with energy monitoring, local-first control, and a complete open engineering package.</strong><br>
+  Hardware research · KiCad PCB · firmware · MQTT · API · web dashboard · Android · simulator · safety dossier
+</p>
+
+<p align="center">
+  <a href="https://github.com/jefryprr/smart-plug-project/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/jefryprr/smart-plug-project/actions/workflows/ci.yml/badge.svg"></a>
+  <img alt="Status: digital prototype" src="https://img.shields.io/badge/status-digital%20prototype-ffb84d">
+  <img alt="Fabrication: not released" src="https://img.shields.io/badge/fabrication-not%20released-ff6b6b">
+  <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-4ade80">
+  <img alt="Node.js 22+" src="https://img.shields.io/badge/node-%3E%3D22-339933">
+  <img alt="ESP-IDF 6.1" src="https://img.shields.io/badge/ESP--IDF-6.1-E7352C">
+</p>
+
+> [!WARNING]
+> **This is a digital engineering prototype, not a certified or physically validated mains product.**
+> No 230 VAC assembly has been built, energized, or tested. Do not connect mains to a 3D-printed enclosure or an unapproved prototype. PE must remain continuous and is never switched. Read [`docs/SAFETY.md`](docs/SAFETY.md) and [`docs/tutorials/00_READ_FIRST.md`](docs/tutorials/00_READ_FIRST.md) before doing anything with hardware.
 
 ---
 
 ## What this is
 
-A full digital engineering package for an inline ESP32-S3 smart outlet:
-research, BOM, safety analysis, GPIO map, wiring harnesses, KiCad block schematic + routed SELV carrier + 50x65 mm PSU board,
-CadQuery enclosure, portable firmware core, backend API, MQTT contract, web dashboard,
-Android source, device simulator, tests, and handoff documentation.
+**SMART PLUG PROJECT** is a full, reproducible engineering package for an inline Wi-Fi smart outlet. It measures voltage, current, power, and energy with a PZEM-004T V4, switches a load with a two-channel relay module, and exposes local firmware, an MQTT contract, a Fastify API, a Next.js dashboard, an Android app, and a device simulator.
 
-The PRD is the contract: `PRD.md`.
+The repository is also an **evidence trail**: requirements, decisions, BOM, datasheets, wiring, PCB files, enclosure CAD, safety analysis, test logs, and a clear statement of what is still unproven.
 
-## What is actually verified
+**Start here if you are new:** [`docs/START_HERE.md`](docs/START_HERE.md) · **Versi Indonesia:** [`README.id.md`](README.id.md)
 
-| Area | Evidence | Status |
-|---|---|---|
-| Domain logic | 34 Vitest tests | PASS |
-| MQTT contract | 11 tests | PASS |
-| API + simulator | 38 tests incl. full command→ACK | PASS |
-| Firmware C core | 75 checks, Zig host build | PASS |
-| Web | Next build + 5 Playwright tests + axe | PASS |
-| Static wiring/GPIO/BOM | Python crosscheck | PASS |
-| WireViz | 3 harnesses rendered | PASS |
-| CadQuery | Detailed 220x120x70 STEP/STL + PSU board/relay shelf + gasket/cover/key | PASS (digital) |
-| KiCad CLI | 10.0.8, ERC 0; carrier 25/18 DRC 0/0; PSU 13 components/8 nets DRC 0/0; Gerber/drill | PASS (digital) |
-| ESP-IDF build | v6.1, target esp32s3, 192,496-byte `.bin` | PASS (build only) |
-| Android debug APK | 46,852,340-byte arm64-v8a APK, v2 signature verified | PASS (debug, not installed) |
-| npm audit | 0 known npm vulnerabilities | PASS |
+### What it is not
 
-## What is blocked
-
-| Area | Reason |
-|---|---|
-| Production schematic/footprint review | Functional schematic/netlist exists; no vendor footprint or engineer sign-off |
-| Firmware integration/flash | Build exists; PZEM/OLED/Wi-Fi/MQTT/OTA and boot-waveform tests are absent |
-| Android device test | APK exists; not installed on emulator/device; debug/arm64 only |
-| PostgreSQL/Docker deployment | Docker/Postgres not installed; API Postgres adapter missing |
-| MQTT TLS/ACL production | Not deployed/tested |
-| Physical fit/thermal/PE/isolation/load | No hardware/lab/engineer |
-| Engineering/regulatory sign-off | No qualified reviewer |
-
-See `reports/FAILURES.md`, `reports/VALIDATION_SUMMARY.json`, and `deliverables/manifest.json`.
+- Not a certified consumer product, not SNI/CE/UL approved, and not legal-for-trade metering.
+- Not a finished mains appliance. The PCB, enclosure, firmware, and safety case still need engineering review and physical lab tests.
+- Not a claim that a simulator, mock, or digital PASS is a hardware or HIL result.
 
 ---
 
-## Quick start (digital, no mains)
+## At a glance
+
+| Layer | What exists | Status |
+|---|---|---|
+| **Hardware** | 100 × 70 mm SELV carrier + separate 50 × 65 mm mains-entry PSU board (HLK-5M05, fuse, MOV, TCO, 3× JST 5 V) | `ENGINEERING_REVIEW_REQUIRED` / `NOT_FOR_FABRICATION` |
+| **Metering** | PZEM-004T V4 100 A CT, off-board; UART level-shifted with 74HCT125 + divider | Batch isolation `UNVERIFIED` |
+| **Switching** | Off-board 2-channel optocoupler relay module, 8 A / ~1.840 W final target, not a linked DPST | `PROVISIONAL` |
+| **Firmware** | Portable C safety core + ESP-IDF v6.1 target build | Host tests PASS; not flashed |
+| **Backend** | Fastify API, SQLite dev adapter, auth/RBAC, commands, telemetry, events | 38 tests PASS |
+| **Contracts** | OpenAPI 3.1, Zod, MQTT topics/schemas/fixtures | 11 tests PASS |
+| **Web** | Next.js dashboard, 12 real screenshots | Build + Playwright/axe PASS |
+| **Android** | Expo source + debug arm64 APK | Built; not device-tested |
+| **Simulator** | MQTT device twin with ACK/telemetry | 4 tests PASS |
+| **Docs** | 26 tutorials, 16 ADRs, safety dossier, BOM, research log | Digital complete, physical blocked |
+
+Full status: [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md) · Validation evidence: [`reports/VALIDATION_SUMMARY.json`](reports/VALIDATION_SUMMARY.json)
+
+---
+
+## Screenshots
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/ui-ux/screenshots/02-dashboard.png" alt="Web dashboard"><br><sub><b>Web dashboard</b> — telemetry, energy, device state</sub></td>
+    <td width="50%"><img src="docs/ui-ux/screenshots/03-device-overview.png" alt="Device overview"><br><sub><b>Device overview</b> — commanded vs observed state</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="hardware/mechanical/render/isometric.png" alt="Enclosure isometric render"><br><sub><b>Enclosure</b> — 220 × 120 × 70 mm digital fit</sub></td>
+    <td width="50%"><img src="hardware/psu/psu_schematic.png" alt="REV_C PSU schematic"><br><sub><b>REV_C PSU board</b> — mains entry, protection, 5 V outputs</sub></td>
+  </tr>
+</table>
+
+More: [`docs/ui-ux/screenshots/`](docs/ui-ux/screenshots/) · [`hardware/mechanical/render/`](hardware/mechanical/render/) · [`hardware/psu/psu_schematic.svg`](hardware/psu/psu_schematic.svg)
+
+---
+
+## How it works
+
+```mermaid
+flowchart LR
+    MAINS["230 VAC mains"] --> PSU["REV_C PSU board<br/>fuse · MOV · TCO · HLK-5M05"]
+    PSU -->|"5 V SELV"| CARRIER["ESP32-S3 carrier"]
+    MAINS --> PZEM["PZEM-004T V4<br/>voltage + CT"]
+    PZEM -->|"UART 5 V<br/>internal optocouplers"| CARRIER
+    MAINS --> RELAY["2-channel relay module"]
+    CARRIER -->|"GPIO"| RELAY
+    CARRIER -->|"MQTT"| API["Fastify API"]
+    API --> DB[("SQLite dev /<br/>PostgreSQL target")]
+    API --> WEB["Next.js dashboard"]
+    API --> ANDROID["Android app"]
+    API --> NOTIFY["Telegram / push<br/>mock by default"]
+    SIM["Device simulator"] <-->|"MQTT"| API
+```
+
+- The **PSU board** is the only mains entry. It carries the 10 A fuse, MOV, 99 °C TCO, HLK-5M05, and three JST 5 V outputs.
+- The **carrier** is SELV-only. It holds the ESP32-S3 DevKitC-1 sockets, UART level shift, relay driver, OLED/RTC/button/RGB connectors, and 5 V input protection.
+- The **PZEM** and **relay module** stay off-board in the mains zone. The relay module is two independent SPDT channels, not a mechanically linked DPST.
+- The **device** is the source of truth for `commanded_output` and fault/lockout. The API stores a shadow; the UI shows `APPLIED` only after a device ACK.
+
+Deep dive: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) · [`docs/HARDWARE_GUIDE.md`](docs/HARDWARE_GUIDE.md) · [`docs/SOFTWARE_GUIDE.md`](docs/SOFTWARE_GUIDE.md)
+
+---
+
+## Project status
+
+**Digital gate (2026-11-16): 27 PASS / 11 BLOCKED / 0 FAIL.** PASS means digital evidence only.
+
+| Verified digitally | Still blocked / unverified |
+|---|---|
+| 34 domain tests, 11 MQTT contract tests, 38 API tests, 4 simulator tests | Physical fit, thermal, PE continuity, hipot/leakage, 8 A load |
+| 75 firmware host checks; ESP-IDF v6.1 target build | Firmware flash, boot waveform, PZEM/OLED/Wi-Fi/MQTT/OTA integration |
+| Next.js build + 5 Playwright tests + axe | Android device/emulator install; production signing |
+| KiCad ERC 0; carrier DRC 0/0; PSU DRC 0/0; Gerber/drill/POS exported | Component-level schematic/footprint review; fabrication release |
+| WireViz 3 harnesses; CadQuery STEP/STL + fit report | Enclosure print, sealing, flammability, impact |
+| Static wiring/GPIO/BOM crosschecks | PostgreSQL/Docker, production MQTT TLS/ACL |
+
+No `READY_FOR_FABRICATION` or `READY_FOR_USE` claim is made. See [`reports/FAILURES.md`](reports/FAILURES.md).
+
+---
+
+## Quick start (software only, no mains)
+
+### Prerequisites
+
+- Node.js **22+**
+- Python **3.11** (only for validation/CAD scripts)
+- Optional: KiCad 10, ESP-IDF v6.1, Android SDK — see the tutorials
+
+### Run the local demo
 
 ```powershell
-npm install
-uv venv .venv --python 3.11
-uv pip install --python .venv\Scripts\python.exe pyyaml kiutils wireviz cadquery trimesh matplotlib numpy pillow reportlab svglib
+npm ci
+npm run api:dev      # API on :4000, SQLite, seeded demo
+npm run web:dev      # Next.js on :3000
+npm run sim:dev      # device simulator (needs a local MQTT broker)
+```
 
-npm run test
+Open `http://localhost:3000` and sign in with the **local demo only** account:
+
+```text
+demo@example.com / demo1234
+pairing code: 123456
+```
+
+> These credentials are seeded for local development. Never use them in production or expose this demo to the internet.
+
+### Run the tests
+
+```powershell
+npm run typecheck
+npm test
 npm run build -w @smartplug/web
 npx playwright test
 powershell -ExecutionPolicy Bypass -File firmware\test\host\run_tests.ps1
-powershell -ExecutionPolicy Bypass -File scripts\build_firmware.ps1
 .venv\Scripts\python.exe scripts\validate_all.py --e2e
 ```
 
-Demo login: `demo@example.com` / `demo1234` (local seed only; never production).
-Demo pairing code: `123456` (single-use in the API; seed only).
-
-### Local stack
-
-```powershell
-npm run api:dev      # API on :4000, SQLite, seeded demo
-npm run sim:dev      # device simulator (needs MQTT broker)
-npm run web:dev      # Next.js on :3000
-```
-
-For a self-contained E2E stack (broker + simulator + API), use `node scripts/e2e_api.mjs` and the Playwright config.
+The full digital validation gate, including KiCad/CAD/WireViz steps, is documented in [`docs/TESTING.md`](docs/TESTING.md). Logs and exit codes are in [`reports/`](reports/).
 
 ---
 
 ## Repository map
 
-```
+```text
 apps/
-  api/                 Fastify API, SQLite adapter, tests
-  web/                 Next.js dashboard
-  device-simulator/    MQTT device simulator
-  android/             Expo Android source + generated project (debug APK built)
+  api/                 Fastify API, SQLite adapter, auth/RBAC, tests
+  web/                 Next.js dashboard + 12 Playwright screenshots
+  device-simulator/    MQTT device twin, state machine, ACK
+  android/             Expo source + generated Android project
 packages/
-  domain/              command/energy/schedule rules
-  api-contract/        OpenAPI + Zod schemas
-  mqtt-contract/       topics + schemas + fixtures
-firmware/              portable C core + ESP-IDF skeleton
+  domain/              command priority, energy, cost, schedule, freshness
+  api-contract/        OpenAPI 3.1 + Zod schemas
+  mqtt-contract/       topics, schemas, ACL direction, fixtures
+firmware/              portable C safety core + ESP-IDF v6.1 skeleton
 hardware/
-  kicad/               native block schematic + placement PCB
+  kicad/               native block schematic + routed carrier + routed PSU
+  psu/                 REV_C PSU schematic, netlist, placement
+  carrier/             SELV carrier netlist/placement
   wiring/              3 WireViz harnesses + renders
   interfaces/          GPIO map
-  mechanical/          CadQuery enclosure + exports/renders
-  manufacturing/       provisional, NOT released
-  pcb/render/          placement preview (not a KiCad plot)
-research/              component research, procurement, off-board module study, candidates, datasheets
-bom/                   engineering BOM + dated procurement matrix + tools + approvals
-safety/                rating chain, isolation, clearance, FMEA, PE, standards
+  mechanical/          CadQuery enclosure, brackets, STEP/STL, renders
+  manufacturing/       provisional Gerber/drill/POS — NOT released
+  pcb/render/          PCB preview
+research/              component research, procurement, PSU evidence, datasheets manifest
+bom/                   engineering BOM + dated procurement matrix + approvals
+safety/                rating chain, isolation, clearance/creepage, FMEA, PE, thermal
 security/              threat model, authorization, MQTT ACL, SBOM, audit
 database/              PostgreSQL migrations + dev seed
 infrastructure/        Docker/Mosquitto/Caddy templates
-docs/                  decisions, tutorials, UI/UX, operations, hardware
-validation/            connectivity/GPIO/BOM crosschecks
-reports/               phase reports, test matrix, failures, logs
-deliverables/          manifest + final report
+docs/                  start-here, FAQ, glossary, architecture, tutorials, decisions, UI/UX, operations
+validation/            connectivity/GPIO/BOM/PSU crosschecks
+reports/               phase reports, test matrix, failures, research log, build logs
+deliverables/          manifest + final engineering report
 ```
 
 ---
 
-## Key documents
+## Documentation
 
-- Off-board modules: `research/OFFBOARD_MODULES.md`
-- PSU study: `research/PSU_HLK_5M05.md`
-- PSU board evidence: `research/PSU_BOARD_EVIDENCE.md`
-- Research log: `reports/RESEARCH_LOG.md`
-- Procurement Indonesia: `research/PROCUREMENT_INDONESIA.md`, `bom/BOM_PROCUREMENT.md`
-- Decisions: `docs/decisions/USER_ANSWERS.md`, `ASSUMPTION_REGISTER.md`, `ADR-*.md`
-- Safety: `safety/ELECTRICAL_RATING_CHAIN.md`, `ISOLATION_PLAN.md`, `CLEARANCE_CREEPAGE_WORKSHEET.md`, `RESIDUAL_RISK_REGISTER.csv`
-- Phase 1: `reports/PHASE_1_ENGINEERING_REPORT.md`
-- Phase 2: `reports/PHASE_2_SOFTWARE_REPORT.md`
-- Handoff: `deliverables/FINAL_ENGINEERING_REPORT.md`, `deliverables/manifest.json`
-- Build evidence: `reports/FIRMWARE_BUILD.md`, `reports/ANDROID_BUILD.md`, `reports/AMENDMENT_8A_OFFBOARD.md`
-- Tutorials: `docs/tutorials/README.md` (26 files)
-- Test gate: `reports/TEST_MATRIX.csv`, `reports/VALIDATION_SUMMARY.json`
+| I want to... | Read |
+|---|---|
+| Understand the project without an engineering background | [`docs/START_HERE.md`](docs/START_HERE.md) · [`README.id.md`](README.id.md) |
+| See every document in one index | [`docs/README.md`](docs/README.md) |
+| See what every top-level file/folder is for | [`docs/REPOSITORY_MAP.md`](docs/REPOSITORY_MAP.md) |
+| Understand the hardware | [`docs/HARDWARE_GUIDE.md`](docs/HARDWARE_GUIDE.md) · [`hardware/psu/README.md`](hardware/psu/README.md) · [`hardware/kicad/README.md`](hardware/kicad/README.md) |
+| Understand the software | [`docs/SOFTWARE_GUIDE.md`](docs/SOFTWARE_GUIDE.md) · [`docs/software/README.md`](docs/software/README.md) |
+| Run tests and read evidence | [`docs/TESTING.md`](docs/TESTING.md) · [`reports/TEST_MATRIX.csv`](reports/TEST_MATRIX.csv) |
+| Read the safety case | [`docs/SAFETY.md`](docs/SAFETY.md) · [`safety/ISOLATION_PLAN.md`](safety/ISOLATION_PLAN.md) · [`safety/RESIDUAL_RISK_REGISTER.csv`](safety/RESIDUAL_RISK_REGISTER.csv) |
+| See decisions and trade-offs | [`docs/decisions/ADR-INDEX.md`](docs/decisions/ADR-INDEX.md) · [`docs/decisions/ASSUMPTION_REGISTER.md`](docs/decisions/ASSUMPTION_REGISTER.md) |
+| Follow a step-by-step tutorial | [`docs/tutorials/README.md`](docs/tutorials/README.md) |
+| Check the BOM and Indonesian pricing | [`bom/BOM_MASTER.md`](bom/BOM_MASTER.md) · [`research/PROCUREMENT_INDONESIA.md`](research/PROCUREMENT_INDONESIA.md) |
+| Read the final handoff | [`deliverables/FINAL_ENGINEERING_REPORT.md`](deliverables/FINAL_ENGINEERING_REPORT.md) · [`deliverables/manifest.json`](deliverables/manifest.json) |
+| Understand a term | [`docs/GLOSSARY.md`](docs/GLOSSARY.md) |
+| Get answers to common questions | [`docs/FAQ.md`](docs/FAQ.md) |
 
 ---
 
-## Claims we do **not** make
+## Safety first
 
-- `READY_FOR_FABRICATION`
-- `READY_FOR_USE`
-- certified, SNI-compliant, or consumer-safe
-- real energy measurement/calibration
-- HIL or PLN test success
-- production deployment, TLS, or Android APK
-- that a mock/simulator result is a physical result
+This repository deals with **230 VAC mains**. Treat every mains-side wire, terminal, PZEM pin, relay contact, fuse holder, and PSU pin as hazardous until a competent engineer has reviewed the assembly and a lab has tested it.
 
-## Next human actions
+- **Never** work on mains alone. Use a qualified person and a lab procedure.
+- **Never** connect USB or a debug probe while mains is present.
+- **PE must remain continuous.** It is never switched, fused, or routed through a relay.
+- **Do not** treat the HLK-5M05, PZEM internal optocouplers, or relay module optocouplers as certified isolation barriers by themselves.
+- **Do not** print a rating label or CE/SNI/UL mark. The current label is `PROTOTYPE — NOT FOR USE`.
+- **Do not** send the provisional Gerber files to a fab as a functional board.
 
-1. Build/measure the **220x120x70** enclosure and select/verify socket, plug, 2-channel relay module, fuse, PSU, terminal, PE hardware.
-2. Complete the component-level KiCad schematic/PCB with approved footprints; run ERC/DRC on the real circuit.
-3. Flash the built firmware on a verified board; complete PZEM/OLED/Wi-Fi/MQTT/OTA integration and boot-waveform tests. Install the debug APK on an emulator/device and test the API flow.
-4. Provide lab/engineer for PE/thermal/isolation/load tests.
-5. Review safety/regulatory and sign `safety/REVIEW_SIGNOFF_TEMPLATE.md`.
-6. Only then consider fabrication/use.
+Read the full safety dossier: [`safety/`](safety/) · [`docs/SAFETY.md`](docs/SAFETY.md) · [`docs/assembly/MAINS_ASSEMBLY_QUALIFIED.md`](docs/assembly/MAINS_ASSEMBLY_QUALIFIED.md)
+
+---
+
+## Contributing
+
+Contributions are welcome, especially in these areas:
+
+- primary-source research and datasheet corrections;
+- KiCad footprint/layout review;
+- firmware integration and test fixtures;
+- API/web/Android tests;
+- documentation for beginners;
+- accessibility and Indonesian translations.
+
+Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) first. For security issues, use [`SECURITY.md`](SECURITY.md); do not open a public issue with a real secret.
+
+Good first issues: documentation links, test coverage, translation, screenshot updates, and reproducing the digital validation gate.
+
+---
+
+## License
+
+Code and original documentation are released under the **MIT License**. See [`LICENSE`](LICENSE). Third-party trademarks, datasheets, and linked documents remain the property of their owners; see [`NOTICE.md`](NOTICE.md). Citation metadata is available in [`CITATION.cff`](CITATION.cff).
+
+---
+
+<p align="center">
+  <sub>Built as a digital engineering package. Verify before you energize. Measure before you claim.</sub>
+</p>

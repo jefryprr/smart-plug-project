@@ -1,0 +1,71 @@
+name: Feature request
+description: Suggest a software, documentation, or engineering improvement.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > Do not request a fabrication release, mains energization, certification, or safety sign-off through this form. Those require evidence and a qualified engineer.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What problem are you trying to solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - API
+        - Web
+        - Android
+        - Firmware
+        - MQTT contract
+        - Hardware documentation
+        - KiCad/PCB
+        - Mechanical/CAD
+        - Safety documentation
+        - BOM/research
+        - CI/tooling
+        - Documentation/translation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Safety, security, or compatibility impact
+      description: Does this affect mains, PE, isolation, thermal, secrets, or the API contract?
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I read the documentation index and safety overview.
+          required: true
+        - label: This request does not ask for an unsupported safety or fabrication claim.
+          required: true

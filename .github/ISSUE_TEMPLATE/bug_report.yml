@@ -1,0 +1,99 @@
+name: Bug report
+description: Report a software, documentation, or digital-artifact issue.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > **Safety first.** Do not use this form for live mains incidents, unsafe hardware, or secrets. Read `docs/SAFETY.md` and `SECURITY.md` first.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: A clear, short description of the problem.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - API
+        - Web
+        - Android
+        - Firmware
+        - MQTT contract
+        - Hardware documentation
+        - KiCad/PCB
+        - Mechanical/CAD
+        - Safety documentation
+        - BOM/research
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: commit
+    attributes:
+      label: Commit or version
+      description: Output of `git rev-parse --short HEAD`, or the release tag.
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Node version, Python version, browser/device, KiCad version, etc.
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Remove secrets, tokens, personal data, and real mains test details.
+      render: shell
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I removed secrets/tokens/personal data from this report.
+          required: true
+        - label: This is not a live mains safety incident or an energization request.
+          required: true
+        - label: I searched existing issues and documentation first.
+          required: true
