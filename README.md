@@ -247,7 +247,7 @@ Contributions are welcome, especially in these areas:
 - documentation for beginners;
 - accessibility and Indonesian translations.
 
-Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) first. For security issues, use [`SECURITY.md`](SECURITY.md); do not open a public issue with a real secret.
+Please read [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) first. Need help? See [`SUPPORT.md`](SUPPORT.md) and [`docs/FAQ.md`](docs/FAQ.md). For security issues, use [`SECURITY.md`](SECURITY.md); do not open a public issue with a real secret.
 
 Good first issues: documentation links, test coverage, translation, screenshot updates, and reproducing the digital validation gate.
 
