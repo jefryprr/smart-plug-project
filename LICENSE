@@ -19,13 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-SAFETY NOTICE
-
-This repository contains designs and documentation for equipment that may be
-connected to hazardous mains voltage. The software license above does not
-certify, approve, or warrant the hardware, the assembly, the enclosure, or the
-safety of any physical build. Do not energize a prototype from mains without a
-competent engineer's review and qualified laboratory testing.
