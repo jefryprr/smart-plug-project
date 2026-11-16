@@ -2,8 +2,8 @@
   "project": "esp32-s3-iot-smart-plug",
   "prd_version": "1.0",
   "design_revision": "REV_C_PSU_BOARD",
-  "generated_at": "2026-11-16T07:34:55.557Z",
-  "git_commit": "5ea0afec2b95d40ce425db1c769f618dbb422bb7",
+  "generated_at": "2026-11-16T07:37:26.516Z",
+  "git_commit": "68a4748044cc4065d93a199feeff3ff0ee4a564d",
   "manifest_note": "git_commit is the source commit at generation time; this manifest file is committed immediately after.",
   "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",
   "hardware_validation_status": "HARDWARE_VALIDATION_REQUIRED",
@@ -4012,8 +4012,8 @@
     {
       "category": 26,
       "path": ".github/dependabot.yml",
-      "sha256": "6ca3fdcb3e0e711e832b79bec50f3daec41ca8e47c3c71a21ce91d78fe3528c1",
-      "size_bytes": 512,
+      "sha256": "d5b530a7c786dc3c7a2e373aace5f2d0ba8a1b40ab94f8a6f8bac8233facbbaf",
+      "size_bytes": 821,
       "status": "PARTIAL",
       "tests": [
         "DOCUMENT_REVIEW"

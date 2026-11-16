@@ -12,8 +12,8 @@
     "packages/mqtt-contract"
   ],
   "scripts": {
-    "build:packages": "npm run build -w @smartplug/domain && npm run build -w @smartplug/api-contract && npm run build -w @smartplug/mqtt-contract",
-    "build": "npm run build:packages && npm run build -w @smartplug/device-simulator && npm run build -w @smartplug/api && npm run build -w @smartplug/web",
+    "build:packages": "npm run build -w @smartplug/domain && npm run build -w @smartplug/api-contract && npm run build -w @smartplug/mqtt-contract && npm run build -w @smartplug/device-simulator",
+    "build": "npm run build:packages && npm run build -w @smartplug/api && npm run build -w @smartplug/web",
     "typecheck": "npm run build:packages && npm run typecheck --workspaces --if-present",
     "test": "npm run build:packages && npm run test -w @smartplug/domain && npm run test -w @smartplug/mqtt-contract && npm run test -w @smartplug/api && npm run test -w @smartplug/device-simulator",
     "test:all": "npm run test && npm run test:e2e",
