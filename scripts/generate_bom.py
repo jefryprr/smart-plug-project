@@ -592,7 +592,7 @@ PROCUREMENT = [
         "seller": "Shopee",
         "url": "https://shopee.co.id/product/15326449/25743012041",
         "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "Sefuse SF96E = 99 C rated functioning temperature (marked 96 C), holding 84 C, 10 A/250 VAC. Do not substitute SF169E (172 C). Must be mechanically clamped to the hottest terminal/HLK/PCB spot, not left floating. One-shot and independent of firmware.",
+        "notes": "Listing is a generic 99 C TCO, not confirmed SF96E. Verify the delivered marking/part is SEFUSE SF96E (marked 96 C, RFT 99 C, holding 84 C) or an equivalent with a datasheet. Reject SF169E (172 C). Must be clamped to the hottest terminal/HLK/PCB spot. One-shot and independent of firmware.",
     },
     {
         "line_id": "E-015", "stage": "CORE",
@@ -677,7 +677,7 @@ PROCUREMENT = [
         "seller": "Shopee",
         "url": "https://shopee.co.id/product/27499686/47805816021",
         "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "PSU TB2 output; MKDS 1,5/2-5,08 is 250 V/17.5 A. 250 V is below the >=300 V target; engineer review or MKDS 3 upgrade. Full 8 A passes here.",
+        "notes": "Listing is a generic 5.08 mm terminal, not confirmed Phoenix. Verify MKDS 1,5/2-5,08 or equivalent, 17.5 A/250 V. 250 V is below the >=300 V target; engineer review or MKDS 3 upgrade. Full 8 A passes here.",
     },
     {
         "line_id": "E-019", "stage": "CORE",
@@ -857,7 +857,7 @@ PROCUREMENT = [
         "seller": "Shopee",
         "url": "https://shopee.co.id/product/27499686/47805816021",
         "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "Mains input; MKDS 1,5/2-5,08 is 250 V/17.5 A. 250 V is below the >=300 V target; engineer review or MKDS 3 upgrade. Verify torque, ferrules, and creepage.",
+        "notes": "Listing is a generic 5.08 mm terminal, not confirmed Phoenix. Verify MKDS 1,5/2-5,08 or equivalent, 17.5 A/250 V. 250 V is below the >=300 V target; engineer review or MKDS 3 upgrade. Verify torque, ferrules, and creepage.",
     },
     {
         "line_id": "E-030", "stage": "CORE",
