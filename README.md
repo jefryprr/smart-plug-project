@@ -59,7 +59,7 @@ The repository is also an **evidence trail**: requirements, decisions, BOM, data
 | **Simulator** | MQTT device twin with ACK/telemetry | 4 tests PASS |
 | **Docs** | 26 tutorials, 16 ADRs, safety dossier, BOM, research log | Digital complete, physical blocked |
 
-Full status: [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md) · Validation evidence: [`reports/VALIDATION_SUMMARY.json`](reports/VALIDATION_SUMMARY.json)
+Full status: [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md) · Validation evidence: [`reports/VALIDATION_SUMMARY.json`](reports/VALIDATION_SUMMARY.json) · Latest release: [`v0.1.0`](https://github.com/jefryprr/smart-plug-project/releases/tag/v0.1.0)
 
 ---
 

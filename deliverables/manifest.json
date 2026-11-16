@@ -2,8 +2,8 @@
   "project": "esp32-s3-iot-smart-plug",
   "prd_version": "1.0",
   "design_revision": "REV_C_PSU_BOARD",
-  "generated_at": "2026-11-16T07:37:26.516Z",
-  "git_commit": "68a4748044cc4065d93a199feeff3ff0ee4a564d",
+  "generated_at": "2026-11-16T07:40:21.305Z",
+  "git_commit": "daae623c5ff41848bf0e3bd8ba897685ec70034a",
   "manifest_note": "git_commit is the source commit at generation time; this manifest file is committed immediately after.",
   "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",
   "hardware_validation_status": "HARDWARE_VALIDATION_REQUIRED",
@@ -3830,8 +3830,8 @@
     {
       "category": 26,
       "path": "README.md",
-      "sha256": "77d1010a3e1ea70744ad8a15bd121c19b5b91e2a09bcc7c32d7b123997b5d082",
-      "size_bytes": 14112,
+      "sha256": "a4f3ab2c0f0603228e7fc769b2fecbc7e595fe7971c20d07083debe22981e23e",
+      "size_bytes": 14210,
       "status": "PARTIAL",
       "tests": [
         "DOCUMENT_REVIEW"
