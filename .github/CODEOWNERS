@@ -1,0 +1,10 @@
+# Default owners for the repository.
+# Review is requested from the maintainer until a team is defined.
+
+* @jefryprr
+
+# Safety-critical files need an explicit review.
+/safety/ @jefryprr
+/hardware/psu/ @jefryprr
+/hardware/kicad/ @jefryprr
+/bom/ @jefryprr

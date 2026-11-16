@@ -2,8 +2,11 @@
 
 This folder is generated from actual artifacts. It does not contain placeholders.
 
-- `manifest.json` — all 26 deliverable categories, SHA-256 hashes, statuses, blockers, git commit.
+- `manifest.json` — all 26 deliverable categories, 269 tracked artifacts (as of the REV_C documentation refresh), SHA-256 hashes, statuses, blockers, git commit.
+- `CHECKSUMS.sha256` — SHA-256 list for the manifest artifacts.
 - `FINAL_ENGINEERING_REPORT.md` — final handoff report.
+
+The manifest includes the beginner guides, architecture/hardware/software/testing/safety docs, FAQ/glossary, repository policy files, and GitHub templates. `missing_artifacts: 0` means every path in the curated 26-category manifest exists; it does not mean every possible file in the working tree is included.
 
 ## Status
 

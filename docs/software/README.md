@@ -15,7 +15,8 @@
 ## Run
 
 ```powershell
-npm run dev:api
+npm ci
+npm run api:dev
 npm run sim:dev
 npm run web:dev
 ```

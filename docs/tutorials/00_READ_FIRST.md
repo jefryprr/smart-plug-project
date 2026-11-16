@@ -20,11 +20,10 @@
 
 ## Status saat ini
 
-- Firmware core: 74 host checks PASS.
-- API: 38 tests PASS.
+- Firmware core: 75 host checks PASS; ESP-IDF v6.1 target build PASS (no flash).
+- API: 38 tests PASS; MQTT contract: 11 tests PASS; simulator: 4 tests PASS.
 - Web: build + 5 Playwright tests PASS, axe no serious/critical on login/dashboard.
-- KiCad 10.0.8: ERC 0 on block schematic; routed 100x70 SELV carrier DRC 0/0; routed Gerber/drill/POS exported.
-- ESP-IDF v6.1 target build: PASS (no flash).
+- KiCad 10.0.8: ERC 0 on block schematic; routed 100x70 SELV carrier DRC 0/0; routed 50x65 mains-entry PSU board DRC 0/0; Gerber/drill/POS provisional exported.
 - Android debug APK: PASS (not installed); Docker/Postgres: BLOCKED.
 - Physical tests: BLOCKED (no hardware/lab).
 
