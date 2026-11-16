@@ -2,8 +2,8 @@
   "project": "esp32-s3-iot-smart-plug",
   "prd_version": "1.0",
   "design_revision": "REV_C_PSU_BOARD",
-  "generated_at": "2026-11-16T06:14:11.735Z",
-  "git_commit": "0ec67374006f402eb346eceabecac2539b1fe672",
+  "generated_at": "2026-11-16T06:14:46.236Z",
+  "git_commit": "1f50499768e0a8aa0316bd71d7594daeeeaf2724",
   "manifest_note": "git_commit is the source commit at generation time; this manifest file is committed immediately after.",
   "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",
   "hardware_validation_status": "HARDWARE_VALIDATION_REQUIRED",
@@ -375,7 +375,7 @@
     {
       "category": 1,
       "path": "bom/COMPONENT_APPROVALS.yaml",
-      "sha256": "c12bda8f568d64b87580fa791d9eeba022f880a4e5d2b258a8c1a59c4deac3aa",
+      "sha256": "79be15dda490b124bd0af254a7fa6d3723bf3958ce877925fa79d10bc5c94606",
       "size_bytes": 16181,
       "status": "PARTIAL",
       "tests": [
@@ -417,7 +417,7 @@
     {
       "category": 2,
       "path": "bom/BOM_MASTER.md",
-      "sha256": "357dd08e186e0e25d4f8f275494b26a72e2a8e720cdcfbd90bca9420fb9a47cd",
+      "sha256": "33032a677a946de103b0e0aa8f3b3f2d0bfe88192ba058024a9cc317dc1f76e1",
       "size_bytes": 7980,
       "status": "PARTIAL",
       "tests": [
@@ -431,7 +431,7 @@
     {
       "category": 2,
       "path": "bom/BOM_MASTER.yaml",
-      "sha256": "4725ec5a0a2d04bf5910fd0d2c17c88e6aaa0f26085081cc48ad24f1c194e080",
+      "sha256": "f57344f7642ee1c548610f6e0a3295a58daf9c05b509b05c567fcea5e9bff50b",
       "size_bytes": 50060,
       "status": "PARTIAL",
       "tests": [
@@ -445,8 +445,8 @@
     {
       "category": 2,
       "path": "bom/BOM_PROCUREMENT.csv",
-      "sha256": "1cbc618b2bb7cf185b99d5124ec81738987a59428a657d3c48142224a948a874",
-      "size_bytes": 20607,
+      "sha256": "41dfa72ece3a84f72bcccd34991f1b39d3826af99e062e7e5fcc1e25387b4283",
+      "size_bytes": 20779,
       "status": "PARTIAL",
       "tests": [
         "T-HW-001"
@@ -473,7 +473,7 @@
     {
       "category": 2,
       "path": "bom/BOM_SUMMARY.json",
-      "sha256": "9b2ae543808b67d3aeae9d845a63d2ee7d187e5d8891aa3bd2e516d9f5a785d6",
+      "sha256": "4e3d6e1a7f84f060ce833e6b321c9e397ad37533c9aedb85d4446950f6230b97",
       "size_bytes": 2180,
       "status": "PARTIAL",
       "tests": [
@@ -2268,8 +2268,8 @@
     {
       "category": 13,
       "path": "reports/logs/firmware-idf-build.log",
-      "sha256": "6ba91e019cf8f7eab2b803ab91bc2050e18f2cd65104426d03010f3847871fde",
-      "size_bytes": 175340,
+      "sha256": "366a5b27736bba163ce3a83af3449d3447978cd4eb1dc12417d58d60bfc4e06a",
+      "size_bytes": 175319,
       "status": "PARTIAL",
       "tests": [
         "T-HW-017",
@@ -4220,7 +4220,7 @@
     "project": "esp32-s3-iot-smart-plug",
     "design_revision": "REV_C_PSU_BOARD",
     "currency": "IDR",
-    "generated_at": "2026-11-16T06:00:45.460797+00:00",
+    "generated_at": "2026-11-16T06:14:44.651292+00:00",
     "pricing_status": "PROCUREMENT_PRICED_2026-11-16",
     "design_bom_pricing_status": "UNPRICED",
     "procurement_matrix": "bom/BOM_PROCUREMENT.csv",

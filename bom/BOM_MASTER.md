@@ -1,6 +1,6 @@
 # BOM Master — REV_C_PSU_BOARD
 
-**Generated:** 2026-11-16T06:00:45.460797+00:00
+**Generated:** 2026-11-16T06:14:44.651292+00:00
 
 > **DESIGN BOM (UNPRICED) / NOT APPROVED.** Ini adalah BOM rekayasa, bukan daftar belanja.
 > Harga, stok, dan tautan pembelian ada di `BOM_PROCUREMENT.md` / `BOM_PROCUREMENT.csv`.
