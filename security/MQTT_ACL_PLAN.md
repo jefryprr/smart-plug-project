@@ -1,4 +1,4 @@
-# MQTT ACL Plan — REV_A_PROVISIONAL
+# MQTT ACL Plan — REV_C_PSU_BOARD
 
 **Status:** `DESIGN` / production broker not executed.
 

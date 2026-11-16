@@ -39,7 +39,7 @@ def main() -> None:
         ax.text(float(x), float(y), content, fontsize=6, color="#14213d", ha="left", va="bottom")
     ax.set_xlim(-5, 105)
     ax.set_ylim(-5, 75)
-    ax.set_title("SMART PLUG — LOW-VOLTAGE CARRIER — PLACEMENT PREVIEW\nREV_A_PROVISIONAL · parsed from smartplug.kicad_pcb · NOT A KICAD PLOT · NOT FOR FABRICATION", fontsize=10)
+    ax.set_title("SMART PLUG — LOW-VOLTAGE CARRIER — PLACEMENT PREVIEW\nREV_C_PSU_BOARD · parsed from smartplug.kicad_pcb · NOT A KICAD PLOT · NOT FOR FABRICATION", fontsize=10)
     ax.set_xlabel("mm")
     ax.set_ylabel("mm")
     ax.grid(True, linewidth=0.3, alpha=0.4)

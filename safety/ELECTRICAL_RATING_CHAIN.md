@@ -1,4 +1,4 @@
-# Electrical Rating Chain — REV_B_NO_TEMP
+# Electrical Rating Chain — REV_C_PSU_BOARD
 
 **Status:** `BLOCKED_PENDING_ENGINEER_REVIEW`
 **Rating final yang dipilih pengguna:** **8 A** (amendment 2026-11-15)
@@ -8,6 +8,9 @@
 
 ## 1. Rantai rating
 
+**REV_C PSU board:** 50 x 65 mm, 2 oz target, 4 mm L/N traces, TB1/F1/MOV/TCO/TB2, HLK-5M05, 3x JST 5 V. The 8 A path rating and thermal rise are `UNVERIFIED`; see `hardware/psu/README.md`.
+
+
 | Elemen | Klaim/rencana | Sumber | Derating/ketidakpastian | Status |
 |---|---|---|---|---|
 | Plug input Type F | BOSS BP16, 16 A / 250 V class | Shopee listing | Kontak/PE/clamp belum diukur | `DOCUMENTATION_DEFICIENT` |
@@ -15,7 +18,7 @@
 | Terminal L/N | 5.08 mm 2-pin, 10 A class (generic) | Shopee listing | Torsi, ferrule, creepage | `DOCUMENTATION_DEFICIENT` |
 | Fuse | 10 A time-lag, 250 V | Littelfuse 5x20 slow-blow | Breaking capacity, holder, koordinasi | `PENDING` |
 | MOV | 275 VAC class | 10D271K (generic) | Energy/clamping/end-of-life | `PENDING` |
-| Thermal cutoff | 99 °C, 10 A / 250 V | Generic TF 99 °C | Batch datasheet, holding current | `DOCUMENTATION_DEFICIENT` |
+| Thermal cutoff | 99 °C RFT, 10 A / 250 VAC | SEFUSE SF96E | Holding 84 °C; batch certificate/trip test | `PROVISIONAL` |
 | Relay module K1 | 2-channel 5 V optocoupler module, 10 A class claim, two independent SPDT channels, off-board | Handsontec/DigiKey module data | Channel non-linkage, exact contact rating, lifecycle, inrush, active-low behavior | `DOCUMENTATION_DEFICIENT` |
 | Terminal output | 5.08 mm 2-pin, 10 A class | Shopee listing | Torsi/creepage | `DOCUMENTATION_DEFICIENT` |
 | Socket output Type F | Simon Schuko 16 A / 250 V | Shopee listing | Retensi/PE/contact material | `DOCUMENTATION_DEFICIENT` |

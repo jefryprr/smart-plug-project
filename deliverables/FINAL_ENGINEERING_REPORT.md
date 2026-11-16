@@ -3,22 +3,22 @@
 **Date:** 16 November 2026
 **Author/agent:** OpenCode (DeepSeek V4.1 Flash 1017)
 **PRD version:** 1.0
-**Design revision:** `REV_B_NO_TEMP`
-**Source commit:** `e394101979559d43747b934957f7596a174c87ea`
+**Design revision:** `REV_C_PSU_BOARD`
+**Source commit:** see `git log`; generated from the REV_C working tree on 2026-11-16
 **Manifest:** `deliverables/manifest.json`
 
 ---
 
-## Amendment 2026-11-16 (REV_B)
+## Amendment 2026-11-16 (REV_C_PSU_BOARD)
 
 - User approved **8 A final** (~1.840 W at 230 V), limited to electronics/SMPS loads; not heaters/motors.
-- PZEM-004T V4 and a **common 2-channel 5 V optocoupler relay module** are **off-board**, with enclosure brackets. The module is two independent SPDT channels, **not** a mechanically linked DPST.
+- PZEM-004T V4 and a **common 2-channel 5 V optocoupler relay module** are **off-board**, with enclosure brackets. The **HLK-5M05 is on the separate 50x65 mm PSU board**, not the carrier. The module is two independent SPDT channels, **not** a mechanically linked DPST.
 - PSU replaced by user instruction: **Hi-Link HLK-5M05** (5 V 1 A / 5 W, 38×23×18 mm). Efficiency ~70% means ~2.1 W heat; isolation/certificate/batch are unverified (`PENDING_APPROVAL`). Study: `research/PSU_HLK_5M05.md`.
 - **150×100×70 FAILS** the coarse fit; **180×120×70 is rejected** because the PZEM/relay/socket would only stack with a 0.5 mm gap, ignoring brackets and wiring. **220×120×70 PASSES** side-by-side and is **CONFIRMED** by the user (Q06=C, 2026-11-15).
 - **Enclosure detailed:** 60 mm body + 10 mm lid, 4× M3 lid screws, 1 mm gasket, carrier standoffs, module bosses, mechanical barrier, right-wall socket/gland/M12 vent, top OLED/button/RGB cutouts, front USB service cover, and a printed DevKit reverse-insertion key. Assembly STEP/STL and fit report generated; physical fit/sealing/thermal are still unverified.
-- **KiCad 10.0.8 CLI installed**; ERC 0 on the block-level schematic; the SELV carrier is routed at 100x70 mm (27 footprints, 19 nets, 5 V PTC + TVS, 3 fiducials) with **DRC 0/0** at 0.15 mm clearance, and routed Gerber/drill/POS exported. The carrier remains `ENGINEERING_REVIEW_REQUIRED` / `NOT_FOR_FABRICATION`.
+- **KiCad 10.0.8 CLI installed**; ERC 0 on the block-level schematic; the SELV carrier is routed at 100x70 mm (25 footprints = 22 assembled + 3 fiducials, 18 nets) with **DRC 0/0** at 0.15 mm, and the separate **PSU board** is routed at 50x65 mm (13 assembled + 3 mounting holes + 3 fiducials, 8 nets) with **DRC 0/0**. Both have routed Gerber/drill/POS exported. Both remain `ENGINEERING_REVIEW_REQUIRED` / `NOT_FOR_FABRICATION`.
 - **ESP-IDF v6.1 target build PASS** (esp32s3, 192,496-byte `.bin`, SHA-256 in `reports/FIRMWARE_BUILD.md`); no board was flashed. **Android debug APK PASS** (arm64-v8a, 46,852,340 bytes, v2 debug signature verified; not device-tested).
-- **Indonesian procurement matrix added** (2026-11-16): 56 lines, 43 listing-verified + 13 estimated. CORE Rp703.297 (restock Rp651.829), FULL Rp820.897; budget verdict `CORE_ELECTRONICS_FITS_750K; CORE_WITH_MECH_OVER; FULL_OVER_BUDGET`. Details: `research/PROCUREMENT_INDONESIA.md`, `bom/BOM_PROCUREMENT.md`.
+- **Indonesian procurement matrix added** (2026-11-16): 57 lines, 40 listing-verified + 17 estimated. CORE Rp717.087 (restock Rp665.619), FULL Rp834.687; budget verdict `CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_FITS; FULL_OVER_BUDGET`. Details: `research/PROCUREMENT_INDONESIA.md`, `bom/BOM_PROCUREMENT.md`.
 
 ---
 
@@ -36,7 +36,7 @@ tests, and documentation.
 **Fabrication:** `NOT_RELEASED`
 **Ready for use:** **NO**
 
-The digital tests pass where executable (23 PASS / 11 BLOCKED / 0 FAIL), but
+The digital tests pass where executable (27 PASS / 11 BLOCKED / 0 FAIL), but
 critical physical and toolchain gates remain blocked: component-level
 schematic/routing, firmware integration/flash tests, Android device tests,
 PostgreSQL deployment, and all mains/thermal/PE/isolation/load testing.
@@ -84,8 +84,8 @@ OFF (Q25=C), computer-only lab (Q26=A), digital parallel phases (Q27=C).
 - `research/candidates.csv`: all candidates, not just winners.
 - `research/PROCUREMENT_INDONESIA.md`: dated Indonesian supplier/price study, stock risks, and budget scenarios.
 - `bom/BOM_MASTER.csv`: 48 engineering rows, **unpriced**, **unapproved**.
-- `bom/BOM_PROCUREMENT.csv`: 56 dated prototype buy rows (43 listing-verified, 13 estimated).
-- `bom/BOM_SUMMARY.json`: `PROCUREMENT_PRICED_2026-11-15`; CORE Rp703.297, FULL Rp820.897.
+- `bom/BOM_PROCUREMENT.csv`: 57 dated prototype buy rows (40 listing-verified, 17 estimated).
+- `bom/BOM_SUMMARY.json`: `PROCUREMENT_PRICED_2026-11-15`; CORE Rp717.087, FULL Rp834.687.
 - `bom/COMPONENT_APPROVALS.yaml`: no `approved_for_fabrication`.
 - `research/datasheets/MANIFEST.md`: 12 PDFs hashed (including the HLK-5M05 distributor copy) plus the PZEM-004T V1.0 archive; V4/socket/enclosure/HLK batch still marked deficient.
 - `research/UNKNOWN_SPECIFICATIONS.md`: 31 open unknowns (including compatible board, enclosure flame rating, PZEM internal isolation, and relay batch).
@@ -94,15 +94,15 @@ OFF (Q25=C), computer-only lab (Q26=A), digital parallel phases (Q27=C).
 deviation; official stock unconfirmed), PZEM-004T V4 100 A CT with **internal optocoupler isolation** (no ADuM/B0505S), 74HCT125 + 10k/20k UART level shift,
 off-board 2-channel optocoupler relay module (10 A class claim), Hi-Link HLK-5M05
 (user-selected; efficiency/isolation batch unverified), Littelfuse 5x20 10 A slow-blow,
-MOV 10D271K, generic 99 °C thermal fuse, DS3231 module, SSD1306 OLED,
+MOV 10D271K, SEFUSE SF96E 99 °C TCO, DS3231 module, SSD1306 OLED,
 Simon Schuko 16 A socket, BOSS BP16 plug, MG Duradus 220x120x70 ABS enclosure.
 
-**Budget verdict:** CORE electronics is Rp703.297 before shipping (Rp743.297 all-in),
-which fits the Rp750.000 cap. The detailed enclosure adds an estimated **Rp28.000**
+**Budget verdict:** CORE electronics is Rp717.087 before shipping (Rp757.087 all-in),
+which is **about Rp7.087 over** the Rp750.000 cap. The detailed enclosure adds an estimated **Rp28.000**
 mechanical addendum (gasket, vent, printed USB cover/key, PSU bracket, thermal pad),
-so marketplace CORE is about **Rp731.297 / Rp771.297 all-in**. EasyWare restock prices
-bring it to about **Rp679.829 / Rp719.829 all-in**. FULL is Rp820.897 (Rp860.897 all-in),
-or about Rp888.897 all-in with the addendum; do not downgrade safety parts to force it.
+so marketplace CORE is about **Rp745.087 / Rp785.087 all-in**. EasyWare restock prices
+bring it to about **Rp693.619 / Rp733.619 all-in**. FULL is Rp834.687 (Rp874.687 all-in),
+or about Rp902.687 all-in with the addendum; do not downgrade safety parts to force it.
 
 ---
 
@@ -129,7 +129,7 @@ Details: `safety/ISOLATION_PLAN.md`, `safety/ELECTRICAL_RATING_CHAIN.md`,
 - 180×120×70: **rejected**; it only fit by stacking PZEM/relay/socket with a 0.5 mm gap and ignoring brackets/wiring.
 - 220×120×70 confirmed (Q06=C): side-by-side coarse fit **PASS**; dimensions still approximate.
 - Final continuous rating **8 A / ~1.840 W**, electronics/SMPS only.
-- BOM prices: CORE Rp703.297 (Rp743.297 all-in), CORE restock Rp651.829 (Rp691.829 all-in), FULL Rp820.897 (Rp860.897 all-in). The electronics CORE fits Rp750k at marketplace prices; the mechanical addendum pushes the marketplace CORE to ~Rp771k, while EasyWare restock brings it to ~Rp720k. FULL exceeds the cap. Safety parts are not downgraded.
+- BOM prices: CORE Rp717.087 (Rp757.087 all-in), CORE restock Rp665.619 (Rp705.619 all-in), FULL Rp834.687 (Rp874.687 all-in). The electronics CORE is ~Rp757k all-in at marketplace prices; with the mechanical addendum it is ~Rp785k. EasyWare restock brings it to ~Rp734k all-in (under the cap). FULL exceeds the cap. Safety parts are not downgraded.
 - Supply/documentation risk: PZEM batch, ESP32 official stock, HLK batch, socket/plug, enclosure flammability, thermal cutoff.
 - 220×120×70 enclosure confirmed after 150×100 and 180×120 clearance review failed.
 
@@ -146,8 +146,8 @@ Details: `safety/ISOLATION_PLAN.md`, `safety/ELECTRICAL_RATING_CHAIN.md`,
 | 05 | Schematic | `hardware/kicad/*.kicad_sch` | PARTIAL (block text; ERC 0) |
 | 06 | Wiring | `hardware/wiring/*.yaml`, `renders/` | PASS (render) |
 | 07 | GPIO mapping | `hardware/interfaces/gpio_map.*` | UNVERIFIED (board) |
-| 08 | PCB native | `hardware/kicad/smartplug.kicad_pcb` | PARTIAL (placement; DRC 0) |
-| 09 | PCB manufacturing | `hardware/manufacturing/provisional/` | PARTIAL (routed Gerber/drill; not released) |
+| 08 | PCB native | `hardware/kicad/smartplug.kicad_pcb`, `psu_rev_c.kicad_pcb` | PASS (routed, DRC 0/0) |
+| 09 | PCB manufacturing | `hardware/manufacturing/provisional/` (carrier + `psu/`) | PARTIAL (routed Gerber/drill/POS; not released) |
 | 10 | PCB visualization | `hardware/pcb/render/placement_preview.*` | PARTIAL |
 | 11 | Enclosure 3D | `hardware/mechanical/export/` | PARTIAL |
 | 12 | Enclosure rendering | `hardware/mechanical/render/`, `drawings/` | PARTIAL |
@@ -160,7 +160,7 @@ Details: `safety/ISOLATION_PLAN.md`, `safety/ELECTRICAL_RATING_CHAIN.md`,
 | 19 | MQTT | `packages/mqtt-contract/`, `infrastructure/broker/` | PASS (digital) |
 | 20 | Notifications | `apps/api/src/services/notifications.ts` | PARTIAL (mock) |
 | 21 | Deployment | `infrastructure/` | BLOCKED |
-| 22 | Automated testing | `tests/`, `reports/` | PARTIAL (23 PASS/11 BLOCKED) |
+| 22 | Automated testing | `tests/`, `reports/` | PARTIAL (27 PASS/11 BLOCKED) |
 | 23 | Engineering validation | `validation/` | PARTIAL |
 | 24 | Security audit | `security/` | PARTIAL |
 | 25 | Engineer documentation | `docs/tutorials/`, `docs/operations/` | PASS (digital) |

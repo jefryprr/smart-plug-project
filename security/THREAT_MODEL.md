@@ -1,4 +1,4 @@
-# Threat Model — REV_A_PROVISIONAL
+# Threat Model — REV_C_PSU_BOARD
 
 **Status:** `DRAFT` / `ENGINEERING_REVIEW_REQUIRED`
 **Scope:** device, local network, MQTT, backend API, web, Android, OTA, deployment.

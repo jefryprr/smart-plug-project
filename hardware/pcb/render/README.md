@@ -1,4 +1,4 @@
-# PCB Render — Status (REV_B)
+# PCB Render — Status (REV_C_PSU_BOARD)
 
 **Status:** `ROUTED_PREVIEW / NOT_FOR_FABRICATION`
 

@@ -1,4 +1,4 @@
-# Procurement Indonesia — Prototype Smart Plug 8 A (REV_B)
+# Procurement Indonesia — Prototype Smart Plug 8 A (REV_C_PSU_BOARD)
 
 **Tanggal riset:** 15–16 November 2026  
 **Mata uang:** IDR  
@@ -9,18 +9,18 @@
 
 ## 1. Ringkasan eksekutif
 
-REV_B menghapus **GY-TMP102** dan **ADuM1201 + B0505S**. Isolasi galvanik PZEM-004T V4 sekarang menjadi satu-satunya barrier komunikasi; carrier hanya melakukan level shifting 5 V ↔ 3,3 V.
+REV_C_PSU_BOARD menghapus **GY-TMP102** dan **ADuM1201 + B0505S**. Isolasi galvanik PZEM-004T V4 sekarang menjadi satu-satunya barrier komunikasi; carrier hanya melakukan level shifting 5 V ↔ 3,3 V.
 
 | Konfigurasi | Subtotal | + ongkir estimasi Rp40.000 | Status |
 |---|---:|---:|---|
 | Elektronik inti (tanpa enclosure/konektor/kabel) | **Rp433.633** | — | di dalam budget |
-| **CORE** (safety/function minimum, 49 baris) | **Rp703.297** | **Rp743.297** | **di bawah Rp750.000** |
-| **CORE + mechanical addendum** (gasket/vent/cover/key/PSU bracket/thermal pad) | **Rp731.297** | **Rp771.297** | ~Rp21.000 di atas cap |
-| **CORE dengan restock EasyWare** | **Rp651.829** | **Rp691.829** | margin lebih besar |
-| **CORE restock + addendum** | **Rp679.829** | **Rp719.829** | masuk budget |
-| **FULL** (+ OLED/RTC/RGB/konektor) | **Rp820.897** | **Rp860.897** | di atas budget |
+| **CORE** (safety/function minimum, 50 baris) | **Rp717.087** | **Rp757.087** | **~Rp7.087 di atas cap** |
+| **CORE + mechanical addendum** (gasket/vent/cover/key/PSU bracket/thermal pad) | **Rp745.087** | **Rp785.087** | ~Rp35.087 di atas cap |
+| **CORE dengan restock EasyWare** | **Rp665.619** | **Rp705.619** | margin lebih besar |
+| **CORE restock + addendum** | **Rp693.619** | **Rp733.619** | di bawah cap |
+| **FULL** (+ OLED/RTC/RGB/konektor) | **Rp834.687** | **Rp874.687** | di atas budget |
 
-**Kesimpulan:** CORE elektronik **masuk budget** pada harga marketplace (Rp703.297 + ongkir). Dengan **mechanical addendum** ~Rp28.000, CORE menjadi ~Rp731.297 (Rp771.297 all-in) - sekitar Rp21.000 di atas cap. Restock EasyWare menurunkannya ke ~Rp719.829 all-in. FULL tetap di atas budget. Jangan menurunkan fuse, MOV, TCO, PE, terminal, enclosure, gasket, vent, atau rating relay untuk mengejar budget.
+**Kesimpulan:** CORE elektronik **tidak masuk** Rp750.000 pada harga marketplace: Rp717.087 + ongkir = **Rp757.087**. Dengan **mechanical addendum** ~Rp28.000, CORE menjadi **Rp785.087 all-in** (~Rp35.087 di atas cap). Restock EasyWare menurunkannya ke **Rp733.619 all-in**, di bawah cap. FULL tetap jauh di atas budget. Jangan menurunkan fuse, MOV, TCO, PE, terminal, enclosure, gasket, vent, atau rating relay untuk mengejar budget.
 
 ---
 
@@ -97,7 +97,7 @@ Tidak termasuk: ongkir aktual, pajak, bea impor, alat ukur/solder/crimp, jasa 3D
 | Littelfuse 5x20 10 A 250 VAC slow-blow | Rp18.300 | Verifikasi MPN/marking. |
 | Fuse holder panel 5x20 | Rp5.500 | Tool-access, di dalam enclosure. |
 | MOV 10D271K 275 VAC | Rp7.500 | Generic; EPCOS S10K275 lebih baik. |
-| Thermal fuse 99 °C 10 A | Rp4.995 | Generic; Sefuse SF169E batch datasheet belum ada. |
+| Thermal fuse 99 °C 10 A | Rp4.995 | Generic; Sefuse SF96E (99 C, 10 A/250 VAC) datasheet tersedia; batch certificate/trip test belum. |
 
 **Tidak ada sensor suhu firmware.** Proteksi termal sekarang **hanya** fuse + TCO one-shot + desain termal enclosure. Ini peningkatan residual risk yang harus diuji.
 
@@ -136,7 +136,7 @@ Tidak termasuk: ongkir aktual, pajak, bea impor, alat ukur/solder/crimp, jasa 3D
 | UI (button) | Rp7.000 |
 | Consumables (heatshrink) | Rp5.000 |
 | Labels | Rp2.000 |
-| **CORE total** | **Rp703.297** |
+| **CORE total** | **Rp717.087** |
 
 Top CORE cost drivers:
 
@@ -166,7 +166,7 @@ Top CORE cost drivers:
 | E-018 | 330 Ω resistor | Rp1.000 |
 | **FULL add-ons** | | **Rp117.600** |
 
-FULL = CORE + add-ons = **Rp820.897** sebelum ongkir. Ini fitur display/time/RGB, bukan safety tambahan.
+FULL = CORE + add-ons = **Rp834.687** sebelum ongkir. Ini fitur display/time/RGB, bukan safety tambahan.
 
 ---
 
@@ -176,28 +176,28 @@ FULL = CORE + add-ons = **Rp820.897** sebelum ongkir. Ini fitur display/time/RGB
 
 - ESP32 compatible Rp139.968
 - PZEM 100 A closed CT Rp150.000
-- CORE lain Rp413.329
-- **Subtotal Rp703.297**
+- CORE lain Rp444.279
+- **Subtotal Rp717.087**
 - Ongkir Rp40.000
-- **All-in Rp743.297 → di bawah Rp750.000 (elektronik)**
-- Addendum mekanik ~Rp28.000 → **Rp771.297 all-in**
+- **All-in Rp757.087 → ~Rp7.087 di atas cap (elektronik)**
+- Addendum mekanik ~Rp28.000 → **Rp785.087 all-in** (~Rp35.087 di atas cap)
 
 ### Skenario B — CORE dengan restock EasyWare
 
 - ESP32 Rp103.500
 - PZEM Rp135.000
-- CORE lain Rp413.329
-- **Subtotal Rp651.829**
+- CORE lain Rp444.279
+- **Subtotal Rp665.619**
 - Ongkir Rp40.000
-- **All-in Rp691.829 → margin ~Rp30.000 setelah addendum**
+- **All-in Rp705.619 → di bawah cap; + addendum Rp733.619 (di bawah cap)**
 
 ### Skenario C — FULL
 
-- CORE Rp703.297
+- CORE Rp717.087
 - Add-ons Rp117.600
-- **Subtotal Rp820.897**
+- **Subtotal Rp834.687**
 - Ongkir Rp40.000
-- **All-in Rp860.897 → +Rp105.897 (14,1%) di atas cap**
+- **All-in Rp874.687 → +Rp124.687 (16,6%) di atas cap; + addendum Rp902.687**
 
 FULL tidak realistis di Rp750.000 tanpa menunda fitur. Jangan menurunkan safety.
 
@@ -217,7 +217,7 @@ FULL tidak realistis di Rp750.000 tanpa menunda fitur. Jangan menurunkan safety.
 
 | Risiko | Dampak | Mitigasi |
 |---|---|---|
-| EasyWare ESP32/PZEM habis | CORE +Rp51.468 | Beli marketplace; CORE masih Rp743.297 all-in. |
+| EasyWare ESP32/PZEM habis | CORE +Rp51.468 | Beli marketplace; CORE masih Rp757.087 all-in. |
 | ESP32 compatible bukan resmi | GPIO/RGB/regulator berbeda | Foto, ukur pinout, catat deviasi Q08=B. |
 | PZEM internal isolation saja | Single barrier; creepage batch belum | Hipot/leakage review; jangan USB saat mains. |
 | Tidak ada sensor suhu | Firmware tidak bisa deteksi overheat | Fuse + TCO + thermal test; label dan prosedur. |
@@ -305,7 +305,7 @@ Belum ada yang `READY_FOR_FABRICATION` atau `READY_FOR_USE`. Sebelum energisasi:
 - Shopee Simon socket: https://shopee.co.id/product/1393930173/24138502361
 - Shopee BOSS plug: https://shopee.co.id/product/37155877/41075654392
 
-**Harga/listing lengkap:** `bom/BOM_PROCUREMENT.csv` (56 baris, tanggal, seller, URL, status verifikasi).
+**Harga/listing lengkap:** `bom/BOM_PROCUREMENT.csv` (57 baris, tanggal, seller, URL, status verifikasi).
 
 ---
 

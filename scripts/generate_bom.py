@@ -112,11 +112,11 @@ ROWS = [
         evidence="PRD retailer references are availability evidence only, not datasheet. Archive is historical and may not match the purchased V4."
     ),
     row(
-        "E-003", "U3", "Power", "AC/DC 5 V 1 A isolated power module, 5 W, 90-264 VAC input",
+        "E-003", "PS1", "Power", "AC/DC 5 V 1 A isolated power module, 5 W, 90-264 VAC input (on REV_C PSU board)",
         "Hi-Link", "HLK-5M05", datasheet="https://www.hlktech.net/index.php?id=1243",
         status="PENDING_APPROVAL", alt="Mean Well IRM-05-5 (better documentation/certification, larger); Recom RAC01-05SC (too low current)",
-        footprint="OFF_BOARD_MODULE", mech="hlk_5m05_approx",
-        notes="Selected by user. 38x23x18 mm, 4 pins (AC/AC/-Vo/+Vo), 5 V 1 A, 5 W. Datasheet claims 2500 VAC input-output isolation and UL/CE design compliance, but the exact batch certificate/isolation/creepage are unverified. Efficiency is only ~70% at 220 V full load, so ~2.1 W heat; thermal test is mandatory. Fuse and MOV belong upstream. Do not touch AC pins; keep mains creepage and barrier.",
+        footprint="HLK_5M05_CUSTOM", mech="hlk_5m05_approx",
+        notes="Selected by user. 38x23x18 mm, 4 pins (AC/AC/-Vo/+Vo), 5 V 1 A, 5 W. Datasheet claims 2500 VAC input-output isolation and UL/CE design compliance, but the exact batch certificate/isolation/creepage are unverified. Efficiency is only ~70% at 220 V full load, so ~2.1 W heat; thermal test is mandatory. Fuse/MOV/TCO are on the same REV_C PSU board upstream. Do not touch AC pins; keep mains creepage and barrier.",
         evidence="Distributor copy of Hi-Link HLK-5M05 datasheet (3 pages) with dimension drawing; official product page; exact batch/certification must be verified."
     ),
     row(
@@ -173,12 +173,13 @@ ROWS = [
         evidence="Littelfuse 215 series; exact datasheet URL/revision to be captured. Do not use a random glass fuse."
     ),
     row(
-        "E-012", "FH1", "Protection", "PCB fuse holder, 5x20 mm, 10 A / 250 VAC",
-        "Schurter", "0031.8201", datasheet="https://www.schurter.com/en/datasheet/0031.8201",
-        status="PENDING_APPROVAL", alt="Littelfuse 03455LF2H; panel holder with touch protection",
-        footprint="SCHURTER_0031_8201", mech="fuse_holder_approx",
-        notes="Touch-proof, tool-access, and service procedure required. Fuse holder must not be accessible during normal use.",
-        evidence="Schurter product page; verify voltage/current ratings and cover."
+        "E-012", "FH1", "Protection", "PCB fuse clips for 5x20 mm fuse, 10 A / 250 V, 2 pcs",
+        "Littelfuse", "01110506Z",
+        datasheet="https://www.littelfuse.com/products/fuses-overcurrent-protection/fuse-holders-fuse-blocks-accessories/fuse-accessories/fuse-clips/111/111505",
+        status="PENDING_APPROVAL", alt="Schurter 0031.8201 closed holder (different footprint); Littelfuse 01110501Z",
+        footprint="Fuseholder_Clip-5x20mm_Littelfuse_111", mech="fuse_clip_approx",
+        notes="Two clips per fuse; matches the routed PSU board. Not a closed/touch-proof holder; fuse access requires opening the screwed lid. Clip rating 10 A/250 V is marginal at 8 A continuous; thermal test required. Tool-access and service procedure required.",
+        evidence="Littelfuse 111 series product page: 5x20 mm clip, 250 V, 10 A."
     ),
     row(
         "E-013", "MOV1", "Protection", "Metal-oxide varistor, 275 VAC, 10 mm, surge coordination study required",
@@ -189,12 +190,12 @@ ROWS = [
         evidence="TDK/EPCOS SIOV series; exact part rating to be verified."
     ),
     row(
-        "E-014", "TF1", "Protection", "One-shot thermal cutoff, 99 C, 10 A / 250 VAC",
-        "Sefuse", "SF169E", datasheet="https://www.sefuse.com/",
-        status="DOCUMENTATION_DEFICIENT", alt="Therm-O-Disc one-shot TCO; thermostat KSD301 (auto-reset, not preferred)",
+        "E-014", "TF1", "Protection", "One-shot thermal cutoff, 99 C rated functioning temperature, 10 A / 250 VAC",
+        "Sefuse", "SF96E", datasheet="https://docs.rs-online.com/68de/0900766b81546f0c.pdf",
+        status="PROVISIONAL", alt="Therm-O-Disc one-shot 99 C; KSD301 / Bourns LC auto-reset are NOT equivalent",
         footprint="TCO_AXIAL", mech="tco_approx",
-        notes="Must be mechanically clamped to the hottest terminal/relay area and be independent of firmware. Exact trip temperature, holding current, and approval must be verified. A resettable thermostat is not equivalent.",
-        evidence="Vendor site only; manufacturer datasheet for exact batch not yet verified."
+        notes="SF96E rated functioning temperature 99 C (marked 96 C), holding temperature 84 C, 10 A resistive / 250 VAC. NOT SF169E (172 C). Must be mechanically clamped to the hottest terminal/HLK/PCB spot and be independent of firmware; normal-operation hotspot must stay below 84 C with margin. Batch certificate and trip test still required.",
+        evidence="SEFUSE SF/E series datasheet (RS mirror), accessed 2026-11-16: ratings table lists SF96E 99 C, 10 A; SF169E is 172 C."
     ),
     row(
         "E-015", "D1", "Passives", "Flyback diode for relay coil, 1 A / 1000 V",
@@ -222,14 +223,39 @@ ROWS = [
     row(
         "E-050", "F2", "Protection", "Resettable PTC fuse, 1.1 A hold, 1206, 5 V rail", "Littelfuse", "1206L110THYR",
         status="PROVISIONAL", footprint="Fuse_1206_3216Metric", mech="fuse_1206_approx",
-        notes="Protects the 5 V carrier rail and wiring. Hold current 1.1 A; verify trip time and voltage drop. Not a substitute for the mains fuse.",
+        notes="Protects the PSU board total 5 V output (J5/J6/J7) and wiring. Hold current 1.1 A; verify trip time and voltage drop. Not a substitute for the mains fuse. The carrier has no PTC.",
         evidence="Littelfuse 1206L series datasheet; exact batch to be verified."
     ),
     row(
         "E-051", "D1", "Protection", "TVS diode, 5 V standoff, 400 W, SMB", "Littelfuse", "SMBJ5.0A",
         status="PROVISIONAL", footprint="D_SMB", mech="smb_approx",
-        notes="Clamps 5 V rail transients from the HLK or cable. Cathode to +5V, anode to GND. Verify standoff/clamping and layout.",
+        notes="Clamps the PSU board total 5 V rail (J5/J6/J7) against HLK/cable transients. Cathode to +5V, anode to GND. The carrier has no TVS. Verify standoff/clamping and layout.",
         evidence="Littelfuse SMBJ series datasheet; exact batch to be verified."
+    ),
+    row(
+        "E-052", "PSU_PCB", "PCB", "Mains-entry PSU PCB, 2-layer FR4, 1.6 mm, 2 oz Cu target, 50 x 65 mm, routed", "TBD", "PCB-PSU-REV-C",
+        status="PROVISIONAL", footprint="PCB_PSU_REV_C", mech="pcb_psu_50x65",
+        notes="REV_C PSU board: TB1/TB2, F1, MOV1, TF1, HLK-5M05, F2/D1, 3x JST. Mains isolation notch; creepage/hipot unverified. NOT_FOR_FABRICATION.",
+        evidence="KiCad psu_rev_c.kicad_pcb; Gerber/drill/POS provisional; DRC 0/0."
+    ),
+    row(
+        "E-053", "J5,J6,J7", "Connectors", "JST-XH 2-pin PCB connector for 5 V outputs, 3 pcs", "JST", "B2B-XH-A",
+        status="PROVISIONAL", footprint="JST_XH_B2B-XH-A", mech="jst_xh_2_approx",
+        notes="Three keyed 5 V outputs: J5 carrier, J6 relay, J7 PZEM conditional. Verify 3 A rating and keying.",
+        evidence="JST datasheet; exact batch to be verified."
+    ),
+    row(
+        "E-054", "W5V1,W5V2,W5V3", "Connectors", "JST-XH 2-pin cable for 5 V outputs, 3 pcs, 0.2 m", "JST", "B2B-XH-A cable",
+        status="PROVISIONAL", footprint="OFF_BOARD_CABLE", mech="jst_xh_2_cable",
+        notes="Carrier, relay, PZEM. Color-code/label; do not swap outputs.",
+        evidence="Estimated cable assembly."
+    ),
+    row(
+        "E-055", "TB2", "Connectors", "Mains output terminal block, 2-pin, 5.08 mm, 17.5 A / 250 V, screw clamp", "Phoenix Contact", "MKDS 1,5/2-5,08",
+        status="PROVISIONAL", alt="MKDS 3/2-5,08 (320 V, needs new footprint); Degson DG308-5.08-2P",
+        footprint="TERMINAL_5.08_2P", mech="terminal_5.08_2p_approx",
+        notes="PSU TB2 L/N output to relay/socket. 250 VAC < user's >=300 V target; upgrade path MKDS 3/2-5,08. Verify torque, 1.5 mm2 wire/ferrule, and creepage. Full 8 A passes through this block.",
+        evidence="Phoenix MKDS 1,5 series: 5.08 mm, 17.5 A, 250 V; order code 1715721."
     ),
     row(
         "E-019", "C1", "Passives", "Bulk capacitor, 100 uF, 10 V, low ESR, 6.3x5.4 mm", "Nichicon", "UWT1A101MCL1GS",
@@ -334,33 +360,17 @@ ROWS = [
         notes="5V/GND from HLK. Add 100uF bulk and 100nF at carrier entry. Keep away from mains wiring.", evidence="JST datasheet."
     ),
     row(
-        "E-029", "TB1", "Connectors", "Mains terminal block, 2-pin, 5.08 mm, 300 V / 10 A class", "Phoenix Contact", "MKDS 3/2-5.08",
-        status="DOCUMENTATION_DEFICIENT", alt="Degson DG308-5.08-2P; Wago 221-413 (lever nut)",
+        "E-029", "TB1", "Connectors", "Mains input terminal block, 2-pin, 5.08 mm, 17.5 A / 250 V, screw clamp", "Phoenix Contact", "MKDS 1,5/2-5,08",
+        status="PROVISIONAL", alt="MKDS 3/2-5,08 (320 V, needs new footprint); Degson DG308-5.08-2P",
         footprint="TERMINAL_5.08_2P", mech="terminal_5.08_2p_approx",
-        notes="Exact order code and rating must be verified. Terminal must not loosen; use ferrules and strain relief. Mains terminal is not a low-voltage header.",
-        evidence="Phoenix series page; exact MPN/rating unverified."
+        notes="PSU TB1 input L/N. 250 VAC rating meets 230 VAC nominal but is below the user's >=300 V target; conservative upgrade is MKDS 3/2-5,08 with a new footprint. 17.5 A > 10 A fuse. Verify torque, 1.5 mm2 wire/ferrule, and creepage.",
+        evidence="Phoenix MKDS 1,5 series: 5.08 mm, 17.5 A, 250 V; order code 1715721 (MKDS 1,5/2-5,08)."
     ),
     row(
-        "E-030", "TB2", "Connectors", "Protective earth terminal/stud, screw-clamp, tool-access", "TBD", "PE-TERMINAL-TBD",
+        "E-030", "TB_PE", "Connectors", "Protective earth terminal/stud, screw-clamp, tool-access", "TBD", "PE-TERMINAL-TBD",
         status="BLOCKED", footprint="PE_STUD_TBD", mech="pe_stud_approx",
         notes="PE must be continuous, not switched or fused. Dedicated mechanical bond with lock washer and test point. Exact part is safety-critical and not approved.",
         evidence="No approved part yet; engineer must select and verify."
-    ),
-    row(
-        "E-031", "TB3", "Connectors", "Isolated-side PZEM terminal, 5-pin, 5.08 mm", "Phoenix Contact", "MKDS 3/5-5.08",
-        status="DOCUMENTATION_DEFICIENT", footprint="TERMINAL_5.08_5P", mech="terminal_5.08_5p_approx",
-        notes="Keep on isolated side of barrier. Pinout must match actual PZEM V4 batch. Do not assume colors.",
-        evidence="Exact PZEM pinout unverified."
-    ),
-    row(
-        "E-032", "TB4", "Connectors", "Relay coil terminal, 2-pin, 5.08 mm (SELV)", "Phoenix Contact", "MKDS 3/2-5.08",
-        status="PROVISIONAL", footprint="TERMINAL_5.08_2P", mech="terminal_5.08_2p_approx",
-        notes="SELV coil only; keep away from mains terminals.", evidence="Series datasheet."
-    ),
-    row(
-        "E-033", "TB5", "Connectors", "5 V input terminal, 2-pin, 5.08 mm (SELV)", "Phoenix Contact", "MKDS 3/2-5.08",
-        status="PROVISIONAL", footprint="TERMINAL_5.08_2P", mech="terminal_5.08_2p_approx",
-        notes="Keyed/color-coded to reduce miswiring.", evidence="Series datasheet."
     ),
     row(
         "E-034", "X1", "Connectors", "Type F (Schuko) panel socket, 16 A / 250 V, 2P+E", "TBD", "SOCKET-TYPE-F-16A-TBD",
@@ -407,10 +417,10 @@ ROWS = [
         notes="SELV only. Keep away from mains barrier.", evidence="Generic."
     ),
     row(
-        "E-041", "PCB1", "PCB", "SELV carrier PCB, 2-layer FR4, 1.6 mm, 1 oz Cu, 100 x 70 mm, routed", "TBD", "PCB-CARRIER-REV-B",
-        status="PROVISIONAL", footprint="PCB_CARRIER_REV_B", mech="pcb_carrier_100x70",
+        "E-041", "PCB1", "PCB", "SELV carrier PCB, 2-layer FR4, 1.6 mm, 1 oz Cu, 100 x 70 mm, routed (25 footprints, 18 nets)", "TBD", "PCB-CARRIER-REV-C",
+        status="PROVISIONAL", footprint="PCB_CARRIER_REV_C", mech="pcb_carrier_100x70",
         notes="Mains modules off-board. Carrier handles 5V/3.3V, PZEM 5V-to-3.3V level shift, relay driver, I2C OLED/RTC, button, RGB. Routed with DRC 0 but still engineering-review-required; not a certified mains assembly.",
-        evidence="KiCad REV_B routed carrier; Gerber/drill exported; physical test not performed."
+        evidence="KiCad REV_C_PSU_BOARD routed carrier; Gerber/drill exported; physical test not performed."
     ),
     row(
         "E-042", "LAB1", "Labels", "Safety/rating label set: rated voltage/current, warnings, serial/QR placeholder", "TBD", "LABEL-SET-REV-A",
@@ -560,12 +570,11 @@ PROCUREMENT = [
     },
     {
         "line_id": "E-012", "stage": "CORE",
-        "selected": "Panel-mount fuse holder, 5x20 mm",
-        "qty": 1, "unit_price": 5500,
-        "seller": "Shopee",
-        "url": "https://shopee.co.id/product/1550365600/44818920473",
-        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "Tool-access only; mount inside the enclosure. Verify voltage/current rating, contact quality, and touch protection. Schurter 0031.8201 remains the better documented alternate.",
+        "selected": "PCB fuse clips for 5x20 mm, 2 pcs (estimated)",
+        "qty": 2, "unit_price": 2500,
+        "seller": "Shopee (estimated)", "url": "",
+        "stock": "ESTIMATED", "verification": "ESTIMATED",
+        "notes": "Matches the PSU board clip footprint. Not a closed holder; verify 10 A/250 V clip rating and retention. No dated listing; Schurter 0031.8201 is a closed-holder alternate but needs a footprint change.",
     },
     {
         "line_id": "E-013", "stage": "CORE",
@@ -583,7 +592,7 @@ PROCUREMENT = [
         "seller": "Shopee",
         "url": "https://shopee.co.id/product/15326449/25743012041",
         "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "Generic; Sefuse SF169E batch datasheet is still missing. Must be mechanically clamped to the hottest terminal/relay area, not left floating. One-shot and independent of firmware.",
+        "notes": "Sefuse SF96E = 99 C rated functioning temperature (marked 96 C), holding 84 C, 10 A/250 VAC. Do not substitute SF169E (172 C). Must be mechanically clamped to the hottest terminal/HLK/PCB spot, not left floating. One-shot and independent of firmware.",
     },
     {
         "line_id": "E-015", "stage": "CORE",
@@ -636,6 +645,39 @@ PROCUREMENT = [
         "seller": "Shopee (estimated)", "url": "",
         "stock": "ESTIMATED", "verification": "ESTIMATED",
         "notes": "5 V rail transient clamp. Exact marking/standoff to be verified; allocated estimate.",
+    },
+    {
+        "line_id": "E-052", "stage": "CORE",
+        "selected": "REV_C PSU PCB 50 x 65 mm, 2 oz target (5 pcs share, estimated)",
+        "qty": 1, "unit_price": 15000,
+        "seller": "PCB fab (estimate)", "url": "",
+        "stock": "ESTIMATED", "verification": "ESTIMATED",
+        "notes": "Not a quote. 2 oz/creepage capability must be confirmed; not fabricated.",
+    },
+    {
+        "line_id": "E-053", "stage": "CORE",
+        "selected": "JST-XH 2-pin PCB connector, 3 pcs (estimated)",
+        "qty": 3, "unit_price": 1500,
+        "seller": "Shopee (estimated)", "url": "",
+        "stock": "ESTIMATED", "verification": "ESTIMATED",
+        "notes": "5 V outputs J5/J6/J7; verify 3 A rating.",
+    },
+    {
+        "line_id": "E-054", "stage": "CORE",
+        "selected": "JST-XH 2-pin cable, 0.2 m, 3 pcs (estimated)",
+        "qty": 3, "unit_price": 3000,
+        "seller": "Shopee (estimated)", "url": "",
+        "stock": "ESTIMATED", "verification": "ESTIMATED",
+        "notes": "Carrier/relay/PZEM 5 V cables; label both ends.",
+    },
+    {
+        "line_id": "E-055", "stage": "CORE",
+        "selected": "5.08 mm 2-pin mains output terminal block",
+        "qty": 1, "unit_price": 2450,
+        "seller": "Shopee",
+        "url": "https://shopee.co.id/product/27499686/47805816021",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "PSU TB2 output; MKDS 1,5/2-5,08 is 250 V/17.5 A. 250 V is below the >=300 V target; engineer review or MKDS 3 upgrade. Full 8 A passes here.",
     },
     {
         "line_id": "E-019", "stage": "CORE",
@@ -815,7 +857,7 @@ PROCUREMENT = [
         "seller": "Shopee",
         "url": "https://shopee.co.id/product/27499686/47805816021",
         "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "Mains terminal; verify 300 V/10 A class, screw torque, and creepage. Generic 5EDR, not Phoenix. Ferrules and crimp required.",
+        "notes": "Mains input; MKDS 1,5/2-5,08 is 250 V/17.5 A. 250 V is below the >=300 V target; engineer review or MKDS 3 upgrade. Verify torque, ferrules, and creepage.",
     },
     {
         "line_id": "E-030", "stage": "CORE",
@@ -825,33 +867,6 @@ PROCUREMENT = [
         "url": "https://shopee.co.id/product/1308489298/27474313332",
         "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
         "notes": "PE must be continuous, not switched or fused. Dedicated mechanical bond, lock washer, and test point. Exact PE path remains BLOCKED for engineer review.",
-    },
-    {
-        "line_id": "E-031", "stage": "CORE",
-        "selected": "5.08 mm 5-pin PCB terminal block",
-        "qty": 1, "unit_price": 11760,
-        "seller": "Shopee",
-        "url": "https://shopee.co.id/product/49844700/51063373298",
-        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "PZEM isolated-side terminal; pinout must match the actual V4 batch. Do not assume wire colors.",
-    },
-    {
-        "line_id": "E-032", "stage": "CORE",
-        "selected": "5.08 mm 2-pin PCB terminal block",
-        "qty": 1, "unit_price": 2450,
-        "seller": "Shopee",
-        "url": "https://shopee.co.id/product/27499686/47805816021",
-        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "SELV relay-coil terminal.",
-    },
-    {
-        "line_id": "E-033", "stage": "CORE",
-        "selected": "5.08 mm 2-pin PCB terminal block",
-        "qty": 1, "unit_price": 2450,
-        "seller": "Shopee",
-        "url": "https://shopee.co.id/product/27499686/47805816021",
-        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "SELV 5 V input terminal; color-code/key to reduce miswiring.",
     },
     {
         "line_id": "E-034", "stage": "CORE",
@@ -1023,9 +1038,9 @@ PROCUREMENT_OVERRIDES = {
     "E-041": {
         "description": "SELV carrier PCB, 2-layer FR4, 1.6 mm, 1 oz Cu, 100 x 70 mm, routed",
         "manufacturer": "Generic",
-        "manufacturer_part_number": "PCB-CARRIER-REV-B",
-        "footprint_id": "PCB_CARRIER_REV_B",
-        "notes": "REV_B routed carrier with two 1x22 DevKit sockets at 22.86 mm spacing, PZEM 5V/3.3V level shift, relay driver, I2C OLED/RTC, button, RGB, and 5V input. DRC 0 but engineering review/physical test still required. Mains modules remain off-board.",
+        "manufacturer_part_number": "PCB-CARRIER-REV-C",
+        "footprint_id": "PCB_CARRIER_REV_C",
+        "notes": "REV_C routed SELV carrier with two 1x22 DevKit sockets at 22.86 mm spacing, PZEM 5V/3.3V level shift, relay driver, I2C OLED/RTC, button, RGB, and 5V input from PSU J5. DRC 0 but engineering review/physical test still required. No mains and no PTC/TVS (moved to PSU board).",
     },
     "E-042": {
         "description": "Safety/rating label set: rated voltage/current, warnings, serial/QR placeholder (prototype label tape)",
@@ -1150,9 +1165,9 @@ def procurement_markdown(rows: list[dict], totals: dict) -> str:
         f"- FULL + addendum + ongkir: **Rp{totals['full_with_addendum_all_in_idr']:,}**.",
         f"- Status: `{totals['verdict']}`.",
         "",
-        "CORE electronics (Rp703.297) fits Rp750.000 with Rp40.000 shipping (Rp743.297).",
-        "The mechanical addendum (~Rp28.000) pushes the marketplace CORE to about Rp771.297 all-in;",
-        "EasyWare restock prices bring it back to about Rp719.829. FULL is over budget.",
+        "CORE electronics (Rp717.087) is about Rp7.087 over Rp750.000 with Rp40.000 shipping (Rp757.087).",
+        "The mechanical addendum (~Rp28.000) pushes the marketplace CORE to about Rp785.087 all-in;",
+        "EasyWare restock brings it to about Rp733.619 all-in, under the cap. FULL is over budget.",
         "",
         "Jangan menurunkan fuse, MOV, TCO, terminal, PE, enclosure, atau barrier isolasi",
         "untuk mengejar budget. Lihat `research/PROCUREMENT_INDONESIA.md` untuk risiko stok.",
@@ -1196,17 +1211,17 @@ def main() -> None:
         "core_with_addendum_all_in_idr": core_subtotal + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR,
         "core_restock_with_addendum_all_in_idr": core_restock + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR,
         "full_with_addendum_all_in_idr": core_subtotal + full_addons + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR,
-        "verdict": "CORE_ELECTRONICS_FITS_750K; CORE_WITH_MECH_OVER; FULL_OVER_BUDGET",
+        "verdict": "CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_FITS; FULL_OVER_BUDGET",
     }
     (BOM / "BOM_PROCUREMENT.md").write_text(procurement_markdown(proc, totals), encoding="utf-8")
 
     with (BOM / "BOM_MASTER.yaml").open("w", encoding="utf-8") as handle:
         import yaml
-        yaml.safe_dump({"project": "esp32-s3-iot-smart-plug", "design_revision": "REV_B_NO_TEMP", "generated_at": now, "items": ROWS}, handle, sort_keys=False, allow_unicode=True)
+        yaml.safe_dump({"project": "esp32-s3-iot-smart-plug", "design_revision": "REV_C_PSU_BOARD", "generated_at": now, "items": ROWS}, handle, sort_keys=False, allow_unicode=True)
 
     summary = {
         "project": "esp32-s3-iot-smart-plug",
-        "design_revision": "REV_B_NO_TEMP",
+        "design_revision": "REV_C_PSU_BOARD",
         "currency": "IDR",
         "generated_at": now,
         "pricing_status": "PROCUREMENT_PRICED_2026-11-16",
@@ -1239,7 +1254,7 @@ def main() -> None:
             "Engineering BOM is still unpriced; dated prototype buy list is bom/BOM_PROCUREMENT.csv.",
             "Prices are listing prices, not supplier quotes. Shipping/tax are separate estimates.",
             "CORE excludes OLED, RTC, external RGB, and their connectors; FULL adds them.",
-            "CORE electronics fits Rp750.000 at marketplace prices (Rp743.297 all-in); the mechanical addendum (~Rp28.000) makes it about Rp771.297 all-in. EasyWare restock gives about Rp719.829 all-in with the addendum.",
+            "CORE electronics is Rp717.087 (Rp757.087 all-in) at marketplace prices; the mechanical addendum (~Rp28.000) makes it about Rp785.087 all-in. EasyWare restock gives about Rp733.619 all-in with the addendum, under the cap. FULL is over. Do not downgrade safety.",
             "FULL is over budget; do not downgrade fuse, MOV, TCO, PE, terminal, enclosure, or isolation to meet it.",
             "Final rating is 8 A / about 1.840 W (user amendment), limited to electronics/SMPS loads; thermal/lifecycle tests are still required.",
             "Batch 10-unit pricing cannot be quoted without actual supplier quotes.",
@@ -1248,7 +1263,7 @@ def main() -> None:
     (BOM / "BOM_SUMMARY.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
 
     md = [
-        "# BOM Master — REV_B_NO_TEMP",
+        "# BOM Master — REV_C_PSU_BOARD",
         "",
         f"**Generated:** {now}",
         "",
@@ -1276,7 +1291,7 @@ def main() -> None:
 
     approvals = {
         "project": "esp32-s3-iot-smart-plug",
-        "design_revision": "REV_B_NO_TEMP",
+        "design_revision": "REV_C_PSU_BOARD",
         "generated_at": now,
         "approval_policy": "User approved the research direction, not final MPNs. No component is approved for fabrication.",
         "approved_by": None,

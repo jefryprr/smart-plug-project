@@ -6,7 +6,7 @@
 
 ## Context
 
-The first REV_B carrier used a single `PinSocket_2x22_P2.54mm_Vertical`
+The first REV_C_PSU_BOARD carrier used a single `PinSocket_2x22_P2.54mm_Vertical`
 footprint. That footprint has two rows **2.54 mm apart**. It is an IDC-style
 2×22 socket, not a DevKitC-1 socket.
 

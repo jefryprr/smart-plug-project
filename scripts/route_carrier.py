@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Grid-router for the REV_B SELV carrier.
+"""Grid-router for the REV_C_PSU_BOARD SELV carrier.
 
 This is deliberately a simple two-layer Manhattan router, not a production
 autorouter. It exists to produce a coherent routed prototype carrier and to

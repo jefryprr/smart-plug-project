@@ -7,9 +7,9 @@ E-008,datasheet,https://www.aosmd.com/res/data_sheets/AO3400A.pdf,UNVERIFIED
 E-009,datasheet,https://www.ti.com/lit/ds/symlink/sn74hct125.pdf,UNVERIFIED
 E-010,datasheet,https://www.handsontec.com/dataspecs/module/2Ch-relay.pdf,UNVERIFIED
 E-011,datasheet,https://www.littelfuse.com/assetdocs/215-series-datasheet?assetguid=...,UNVERIFIED
-E-012,datasheet,https://www.schurter.com/en/datasheet/0031.8201,UNVERIFIED
+E-012,datasheet,https://www.littelfuse.com/products/fuses-overcurrent-protection/fuse-holders-fuse-blocks-accessories/fuse-accessories/fuse-clips/111/111505,UNVERIFIED
 E-013,datasheet,https://www.tdk-electronics.tdk.com/inf/70/db/varistors/leaded_sio_v_series.pdf,UNVERIFIED
-E-014,datasheet,https://www.sefuse.com/,UNVERIFIED
+E-014,datasheet,https://docs.rs-online.com/68de/0900766b81546f0c.pdf,UNVERIFIED
 E-015,datasheet,https://www.vishay.com/docs/88503/1n4001.pdf,UNVERIFIED
 E-016,datasheet,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/RC0805FR-071KL.pdf,UNVERIFIED
 E-017,datasheet,https://www.yageo.com/,UNVERIFIED
@@ -32,13 +32,13 @@ E-008,purchase,https://shopee.co.id/product/57575514/14466280329,VERIFIED_AGGREG
 E-009,purchase,https://shopee.co.id/product/30000367/29506172697,VERIFIED_AGGREGATOR
 E-010,purchase,https://shopee.co.id/product/214108565/5414791883,VERIFIED_AGGREGATOR
 E-011,purchase,https://shopee.co.id/product/88911101/12944617615,VERIFIED_AGGREGATOR
-E-012,purchase,https://shopee.co.id/product/1550365600/44818920473,VERIFIED_AGGREGATOR
 E-013,purchase,https://shopee.co.id/product/1400052865/45311419818,VERIFIED_AGGREGATOR
 E-014,purchase,https://shopee.co.id/product/15326449/25743012041,VERIFIED_AGGREGATOR
 E-015,purchase,https://shopee.co.id/product/66424740/14150584885,VERIFIED_AGGREGATOR
 E-016,purchase,https://shopee.co.id/product/52086903/6035376903,VERIFIED_AGGREGATOR
 E-017,purchase,https://shopee.co.id/product/44140220/4697369971,VERIFIED_AGGREGATOR
 E-018,purchase,https://shopee.co.id/product/52086903/6035376903,VERIFIED_AGGREGATOR
+E-055,purchase,https://shopee.co.id/product/27499686/47805816021,VERIFIED_AGGREGATOR
 E-019,purchase,https://shopee.co.id/product/783130973/57809969353,VERIFIED_AGGREGATOR
 E-020,purchase,https://store.easyware.id/produk/20-pcs-kapasitor-smd-0603-yageo-original-50v-np0-x7r-22pf-470pf-560pf-1nf-10nf-mlcc/,VERIFIED_STORE_PAGE
 E-020A,purchase,https://store.easyware.id/produk/20-pcs-kapasitor-smd-0603-yageo-original-50v-np0-x7r-22pf-470pf-560pf-1nf-10nf-mlcc/,VERIFIED_STORE_PAGE
@@ -56,9 +56,6 @@ E-026,purchase,https://shopee.co.id/product/15316646/522424401,VERIFIED_AGGREGAT
 E-027,purchase,https://shopee.co.id/product/15316646/522424401,VERIFIED_AGGREGATOR
 E-029,purchase,https://shopee.co.id/product/27499686/47805816021,VERIFIED_AGGREGATOR
 E-030,purchase,https://shopee.co.id/product/1308489298/27474313332,VERIFIED_AGGREGATOR
-E-031,purchase,https://shopee.co.id/product/49844700/51063373298,VERIFIED_AGGREGATOR
-E-032,purchase,https://shopee.co.id/product/27499686/47805816021,VERIFIED_AGGREGATOR
-E-033,purchase,https://shopee.co.id/product/27499686/47805816021,VERIFIED_AGGREGATOR
 E-034,purchase,https://shopee.co.id/product/1393930173/24138502361,VERIFIED_AGGREGATOR
 E-035,purchase,https://shopee.co.id/product/37155877/41075654392,VERIFIED_AGGREGATOR
 E-036,purchase,https://shopee.co.id/product/83275056/4659955289,VERIFIED_AGGREGATOR

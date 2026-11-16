@@ -4,11 +4,11 @@
 > Harga dapat berubah; stok marketplace tidak stabil. Tidak ada harga rekaan: baris tanpa listing ditandai `ESTIMATED`.
 
 - Budget cap: **Rp750,000**
-- Baris: **49 CORE + 7 FULL**; 43 listing-verified, 13 `ESTIMATED`.
-- CORE subtotal: **Rp703,297**
-- CORE dengan harga restock EasyWare: **Rp651,829**
+- Baris: **50 CORE + 7 FULL**; 40 listing-verified, 17 `ESTIMATED`.
+- CORE subtotal: **Rp717,087**
+- CORE dengan harga restock EasyWare: **Rp665,619**
 - FULL add-ons (OLED/RTC/RGB/konektor): **Rp117,600**
-- FULL subtotal: **Rp820,897**
+- FULL subtotal: **Rp834,687**
 - Estimasi ongkir: **Rp40,000** (belum termasuk pajak/impor)
 
 ## CORE — safety/function minimum
@@ -24,7 +24,7 @@
 | E-010A | 3D-printed relay bracket and standoffs, ABS/PC | 1 pcs | Rp5,000 | In-house 3D print (filament + insert cost) | ESTIMATED |
 | E-010B | 3D-printed PZEM bracket and standoffs, ABS/PC | 1 pcs | Rp5,000 | In-house 3D print (filament + insert cost) | ESTIMATED |
 | E-011 | Littelfuse 5x20 mm 10 A 250 VAC slow-blow ceramic fuse | 1 pcs | Rp18,300 | Shopee | VERIFIED_AGGREGATOR |
-| E-012 | Panel-mount fuse holder, 5x20 mm | 1 pcs | Rp5,500 | Shopee | VERIFIED_AGGREGATOR |
+| E-012 | PCB fuse clips for 5x20 mm, 2 pcs (estimated) | 2 pcs | Rp5,000 | Shopee (estimated) | ESTIMATED |
 | E-013 | MOV 10D271K, 275 VAC class, 10 mm | 1 pcs | Rp7,500 | Shopee | VERIFIED_AGGREGATOR |
 | E-014 | TF thermal fuse 99 C, 10 A / 250 V | 1 pcs | Rp4,995 | Shopee | VERIFIED_AGGREGATOR |
 | E-015 | 1N4007 diode, 10 pcs pack | 1 pcs | Rp3,900 | Shopee | VERIFIED_AGGREGATOR |
@@ -32,6 +32,10 @@
 | E-017 | 100 kOhm 0805 resistor (small pack) | 1 pcs | Rp1,000 | Shopee | VERIFIED_AGGREGATOR |
 | E-050 | PTC resettable fuse 1.1 A, 1206 (estimated) | 1 pcs | Rp2,000 | Shopee (estimated) | ESTIMATED |
 | E-051 | SMBJ5.0A TVS diode (estimated) | 1 pcs | Rp3,000 | Shopee (estimated) | ESTIMATED |
+| E-052 | REV_C PSU PCB 50 x 65 mm, 2 oz target (5 pcs share, estimated) | 1 pcs | Rp15,000 | PCB fab (estimate) | ESTIMATED |
+| E-053 | JST-XH 2-pin PCB connector, 3 pcs (estimated) | 3 pcs | Rp4,500 | Shopee (estimated) | ESTIMATED |
+| E-054 | JST-XH 2-pin cable, 0.2 m, 3 pcs (estimated) | 3 pcs | Rp9,000 | Shopee (estimated) | ESTIMATED |
+| E-055 | 5.08 mm 2-pin mains output terminal block | 1 pcs | Rp2,450 | Shopee | VERIFIED_AGGREGATOR |
 | E-019 | 100 uF 10 V electrolytic capacitor | 1 pcs | Rp350 | Shopee | VERIFIED_AGGREGATOR |
 | E-020 | 100 nF 50 V MLCC (small pack) | 1 pcs | Rp360 | EasyWare Store | VERIFIED_STORE_PAGE |
 | E-020A | 100 nF 50 V MLCC at 74HCT125 (small pack) | 1 pcs | Rp360 | EasyWare Store | VERIFIED_STORE_PAGE |
@@ -48,9 +52,6 @@
 | E-026 | JST-XH 4-pin cable for relay module | 1 pcs | Rp12,300 | Shopee | VERIFIED_AGGREGATOR |
 | E-029 | 5.08 mm 2-pin PCB terminal block | 1 pcs | Rp2,450 | Shopee | VERIFIED_AGGREGATOR |
 | E-030 | DIN-rail PE terminal block, 6 mm2 | 1 pcs | Rp10,250 | Shopee | VERIFIED_AGGREGATOR |
-| E-031 | 5.08 mm 5-pin PCB terminal block | 1 pcs | Rp11,760 | Shopee | VERIFIED_AGGREGATOR |
-| E-032 | 5.08 mm 2-pin PCB terminal block | 1 pcs | Rp2,450 | Shopee | VERIFIED_AGGREGATOR |
-| E-033 | 5.08 mm 2-pin PCB terminal block | 1 pcs | Rp2,450 | Shopee | VERIFIED_AGGREGATOR |
 | E-034 | Simon Schuko panel socket, 16 A / 250 V | 1 pcs | Rp25,026 | Shopee | VERIFIED_AGGREGATOR |
 | E-035 | BOSS BP16 Schuko plug, 16 A | 1 pcs | Rp14,044 | Shopee | VERIFIED_AGGREGATOR |
 | E-036 | M16 cable gland, IP68, PA66 | 1 pcs | Rp2,400 | Shopee | VERIFIED_AGGREGATOR |
@@ -79,18 +80,18 @@
 
 ## Budget verdict
 
-- CORE + ongkir: **Rp743,297**.
-- CORE restock + ongkir: **Rp691,829**.
-- FULL + ongkir: **Rp860,897**.
+- CORE + ongkir: **Rp757,087**.
+- CORE restock + ongkir: **Rp705,619**.
+- FULL + ongkir: **Rp874,687**.
 - Mechanical addendum (gasket/vent/printed cover-key/PSU bracket/thermal pad): **Rp28,000** estimated, not in line items.
-- CORE + addendum + ongkir: **Rp771,297**.
-- CORE restock + addendum + ongkir: **Rp719,829**.
-- FULL + addendum + ongkir: **Rp888,897**.
-- Status: `CORE_ELECTRONICS_FITS_750K; CORE_WITH_MECH_OVER; FULL_OVER_BUDGET`.
+- CORE + addendum + ongkir: **Rp785,087**.
+- CORE restock + addendum + ongkir: **Rp733,619**.
+- FULL + addendum + ongkir: **Rp902,687**.
+- Status: `CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_FITS; FULL_OVER_BUDGET`.
 
-CORE electronics (Rp703.297) fits Rp750.000 with Rp40.000 shipping (Rp743.297).
-The mechanical addendum (~Rp28.000) pushes the marketplace CORE to about Rp771.297 all-in;
-EasyWare restock prices bring it back to about Rp719.829. FULL is over budget.
+CORE electronics (Rp717.087) is about Rp7.087 over Rp750.000 with Rp40.000 shipping (Rp757.087).
+The mechanical addendum (~Rp28.000) pushes the marketplace CORE to about Rp785.087 all-in;
+EasyWare restock brings it to about Rp733.619 all-in, under the cap. FULL is over budget.
 
 Jangan menurunkan fuse, MOV, TCO, terminal, PE, enclosure, atau barrier isolasi
 untuk mengejar budget. Lihat `research/PROCUREMENT_INDONESIA.md` untuk risiko stok.

@@ -1,4 +1,4 @@
-# Responsive Matrix — REV_A_PROVISIONAL
+# Responsive Matrix — REV_C_PSU_BOARD
 
 | Breakpoint | Layout | Verified |
 |---|---|---|

@@ -1,13 +1,13 @@
 {
-  "total": 80,
+  "total": 82,
   "by_status": {
-    "PARTIAL": 25,
+    "PARTIAL": 27,
     "PASS": 28,
     "NOT_STARTED": 24,
     "BLOCKED": 3
   },
   "by_priority": {
-    "P0": 53,
+    "P0": 55,
     "P1": 24,
     "P2": 3
   },
@@ -42,7 +42,9 @@
     "FR-072",
     "FR-075",
     "FR-079",
-    "FR-080"
+    "FR-080",
+    "FR-081",
+    "FR-082"
   ],
   "note": "PASS is digital evidence only; it does not imply hardware validation or safety sign-off."
 }

@@ -1,4 +1,4 @@
-# Firmware ESP32-S3 — REV_B_NO_TEMP
+# Firmware ESP32-S3 — REV_C_PSU_BOARD
 
 **Host core tests:** `PASS` — 75 checks, 0 failures (compiled with Zig 0.17.1 `zig cc`).
 **ESP-IDF build:** `PASS` — ESP-IDF v6.1, target `esp32s3`; `.bin` exists. No board was flashed.
@@ -26,7 +26,7 @@ and sensor integration remain `BLOCKED` without a board and lab procedure.
 
 - `core/smartplug_core.c` — portable C state machine, command priority, TTL/replay/sequence checks, lockout, measurement validation, energy delta, weekly schedule evaluation, CRC16 Modbus, telemetry JSON formatting.
 - `test/host/test_core.c` — 75 host assertions covering safe/unsafe command paths, sensor failures, energy reset/gap, schedule, CRC, and JSON NaN handling.
-- `main/app_main.c` — minimal boot-safe local app: relay GPIO forced OFF, debounced button, core state machine, ON refused while meter is invalid; no temperature sensor is installed in REV_B.
+- `main/app_main.c` — minimal boot-safe local app: relay GPIO forced OFF, debounced button, core state machine, ON refused while meter is invalid; no temperature sensor is installed in REV_C_PSU_BOARD.
 - `main/board_config.h` — provisional GPIO profile; **not final** until board revision is verified.
 - `components/smartplug_core/CMakeLists.txt` — ESP-IDF component wrapper for the portable core.
 - `partitions.csv`, `sdkconfig.defaults` — dual OTA partitions, 16 MB flash, rollback enabled, HTTPS OTA only.
@@ -74,7 +74,7 @@ relay coil/load simulator and a qualified procedure.
 3. `BOOT_SAFE` never accepts ON.
 4. Lockout/fault rejects ON; OFF remains accepted.
 5. Auto ON requires valid clock.
-6. ON requires a valid meter. REV_B has no temperature sensor; temperature validity is not required, and thermal protection is hardware-only (fuse + TCO).
+6. ON requires a valid meter. REV_C_PSU_BOARD has no temperature sensor; temperature validity is not required, and thermal protection is hardware-only (fuse + TCO).
 7. Command replay, stale sequence, wrong device, expiry, and future timestamps are rejected.
 8. OTA/rollback config defaults to OFF; no eFuse/secure boot action is automated.
 

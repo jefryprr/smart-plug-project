@@ -1,9 +1,9 @@
 metadata:
-  title: Display, RTC, Button and RGB Harness (REV_B)
+  title: Display, RTC, Button and RGB Harness (REV_C_PSU_BOARD)
   description: 'SELV only. Carrier connectors J4 (OLED), J5 (RTC), J6 (button), J7 (RGB). I2C pullups and the 74HCT125 RGB level shift are on the carrier.'
   author: OpenCode
   date: '2026-11-16'
-  rev: REV_B_NO_TEMP
+  rev: REV_C_PSU_BOARD
 options:
   bgcolor: WH
 connectors:

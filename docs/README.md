@@ -1,6 +1,6 @@
 # Documentation Index
 
-**Design revision:** `REV_A_PROVISIONAL`
+**Design revision:** `REV_C_PSU_BOARD`
 **Status:** `PARTIAL_DIGITAL` / `ENGINEERING_REVIEW_REQUIRED`
 
 ## Start here

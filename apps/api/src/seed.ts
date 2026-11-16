@@ -77,7 +77,7 @@ export function seedDemo(db: AppDb, now: Date, options: SeedOptions = {}): SeedR
       homeId,
       "Smart Plug Demo",
       "Ruang Tamu",
-      "REV_A_PROVISIONAL",
+      "REV_C_PSU_BOARD",
       "0.1.0-demo",
       JSON.stringify(state),
       JSON.stringify({

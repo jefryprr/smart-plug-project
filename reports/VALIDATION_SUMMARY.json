@@ -1,10 +1,10 @@
 {
   "project": "esp32-s3-iot-smart-plug",
-  "design_revision": "REV_B_NO_TEMP",
-  "generated_at": "2026-11-15T19:43:45.149678+00:00",
-  "duration_s": 249.3,
+  "design_revision": "REV_C_PSU_BOARD",
+  "generated_at": "2026-11-16T06:01:28.983706+00:00",
+  "duration_s": 289.99,
   "counts": {
-    "PASS": 23,
+    "PASS": 27,
     "BLOCKED": 11
   },
   "overall": "PASS",
@@ -16,9 +16,9 @@
       "command": "npm run typecheck -w @smartplug/domain",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-001A-20261115T194345Z.log",
+      "log": "reports\\logs\\T-SW-001A-20261116T060128Z.log",
       "note": "Domain typecheck",
-      "duration_s": 1.45
+      "duration_s": 1.97
     },
     {
       "test_id": "T-SW-001B",
@@ -26,9 +26,9 @@
       "command": "npm run typecheck -w @smartplug/api",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-001B-20261115T194345Z.log",
+      "log": "reports\\logs\\T-SW-001B-20261116T060128Z.log",
       "note": "API typecheck",
-      "duration_s": 2.82
+      "duration_s": 4.41
     },
     {
       "test_id": "T-SW-001C",
@@ -36,9 +36,9 @@
       "command": "npm run typecheck -w @smartplug/web",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-001C-20261115T194345Z.log",
+      "log": "reports\\logs\\T-SW-001C-20261116T060128Z.log",
       "note": "Web typecheck",
-      "duration_s": 2.33
+      "duration_s": 3.32
     },
     {
       "test_id": "T-SW-001D",
@@ -46,9 +46,9 @@
       "command": "npm run typecheck -w @smartplug/device-simulator",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-001D-20261115T194345Z.log",
+      "log": "reports\\logs\\T-SW-001D-20261116T060128Z.log",
       "note": "Simulator typecheck",
-      "duration_s": 1.89
+      "duration_s": 2.74
     },
     {
       "test_id": "T-SW-007",
@@ -56,9 +56,9 @@
       "command": "npm run test -w @smartplug/domain",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-007-20261115T194345Z.log",
+      "log": "reports\\logs\\T-SW-007-20261116T060128Z.log",
       "note": "34 domain tests incl. cost/energy",
-      "duration_s": 1.36
+      "duration_s": 1.82
     },
     {
       "test_id": "T-SW-004A",
@@ -66,9 +66,9 @@
       "command": "npm run test -w @smartplug/mqtt-contract",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-004A-20261115T194345Z.log",
+      "log": "reports\\logs\\T-SW-004A-20261116T060128Z.log",
       "note": "11 contract/ACL tests",
-      "duration_s": 1.45
+      "duration_s": 2.01
     },
     {
       "test_id": "T-SW-005",
@@ -76,9 +76,9 @@
       "command": "npm run test -w @smartplug/api",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-005-20261115T194345Z.log",
+      "log": "reports\\logs\\T-SW-005-20261116T060128Z.log",
       "note": "38 API tests incl. aedes+simulator ACK",
-      "duration_s": 7.3
+      "duration_s": 10.37
     },
     {
       "test_id": "T-SW-004B",
@@ -86,9 +86,9 @@
       "command": "npm run test -w @smartplug/device-simulator",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-004B-20261115T194345Z.log",
+      "log": "reports\\logs\\T-SW-004B-20261116T060128Z.log",
       "note": "4 simulator tests",
-      "duration_s": 1.56
+      "duration_s": 2.34
     },
     {
       "test_id": "T-HW-018",
@@ -96,9 +96,9 @@
       "command": "powershell -ExecutionPolicy Bypass -File .\\firmware\\test\\host\\run_tests.ps1",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-018-20261115T194345Z.log",
+      "log": "reports\\logs\\T-HW-018-20261116T060128Z.log",
       "note": "74 C checks; Zig cc host build",
-      "duration_s": 7.52
+      "duration_s": 0.99
     },
     {
       "test_id": "T-SW-001E",
@@ -106,9 +106,9 @@
       "command": "npm run build -w @smartplug/web",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-001E-20261115T194345Z.log",
+      "log": "reports\\logs\\T-SW-001E-20261116T060128Z.log",
       "note": "Next production build",
-      "duration_s": 6.97
+      "duration_s": 9.74
     },
     {
       "test_id": "T-HW-003",
@@ -116,9 +116,9 @@
       "command": ".\\.venv\\Scripts\\python.exe scripts/validate_connectivity.py",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-003-20261115T194345Z.log",
+      "log": "reports\\logs\\T-HW-003-20261116T060128Z.log",
       "note": "Wiring/GPIO/BOM static diff",
-      "duration_s": 0.23
+      "duration_s": 0.27
     },
     {
       "test_id": "T-HW-004",
@@ -126,9 +126,9 @@
       "command": ".\\.venv\\Scripts\\python.exe hardware/generators/generate_gpio_map.py",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-004-20261115T194345Z.log",
+      "log": "reports\\logs\\T-HW-004-20261116T060128Z.log",
       "note": "GPIO CSV/MD + crosscheck",
-      "duration_s": 0.16
+      "duration_s": 0.23
     },
     {
       "test_id": "T-HW-010A",
@@ -136,9 +136,9 @@
       "command": ".\\.venv\\Scripts\\python.exe scripts/render_wiring.py",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-010A-20261115T194345Z.log",
-      "note": "4 harnesses SVG/PNG/PDF",
-      "duration_s": 7.64
+      "log": "reports\\logs\\T-HW-010A-20261116T060128Z.log",
+      "note": "3 harnesses SVG/PNG/PDF",
+      "duration_s": 8.04
     },
     {
       "test_id": "T-HW-009A",
@@ -146,9 +146,9 @@
       "command": ".\\.venv\\Scripts\\python.exe hardware/mechanical/source/enclosure.py --preset recommended",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-009A-20261115T194345Z.log",
+      "log": "reports\\logs\\T-HW-009A-20261116T060128Z.log",
       "note": "STEP/STL bodies + assembly",
-      "duration_s": 11.44
+      "duration_s": 9.91
     },
     {
       "test_id": "T-HW-009B",
@@ -156,9 +156,49 @@
       "command": ".\\.venv\\Scripts\\python.exe hardware/mechanical/source/render.py",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-009B-20261115T194345Z.log",
+      "log": "reports\\logs\\T-HW-009B-20261116T060128Z.log",
       "note": "Views/drawings/fit report",
-      "duration_s": 10.7
+      "duration_s": 12.24
+    },
+    {
+      "test_id": "T-HW-020",
+      "area": "PSU static crosscheck",
+      "command": ".\\tools\\kicad\\bin\\python.exe scripts/validate_psu.py",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "reports\\logs\\T-HW-020-20261116T060128Z.log",
+      "note": "PSU nets/BOM/8A traces",
+      "duration_s": 0.46
+    },
+    {
+      "test_id": "T-HW-021",
+      "area": "PSU DRC/Gerber",
+      "command": ".\\.venv\\Scripts\\python.exe scripts/run_psu_check.py",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "reports\\logs\\T-HW-021-20261116T060128Z.log",
+      "note": "PSU DRC 0/0 + Gerber/drill/POS",
+      "duration_s": 4.27
+    },
+    {
+      "test_id": "T-HW-022",
+      "area": "Carrier artifact export",
+      "command": ".\\tools\\kicad\\bin\\python.exe scripts/export_carrier_artifacts.py",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "reports\\logs\\T-HW-022-20261116T060128Z.log",
+      "note": "Carrier netlist/placement/PCBA/POS regenerated",
+      "duration_s": 0.73
+    },
+    {
+      "test_id": "T-HW-023",
+      "area": "PSU artifact export",
+      "command": ".\\tools\\kicad\\bin\\python.exe scripts/export_psu_artifacts.py",
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "reports\\logs\\T-HW-023-20261116T060128Z.log",
+      "note": "PSU netlist/placement/PCBA regenerated",
+      "duration_s": 0.34
     },
     {
       "test_id": "T-HW-002A",
@@ -166,9 +206,9 @@
       "command": ".\\tools\\kicad\\bin\\python.exe -c import pcbnew; b=pcbnew.LoadBoard('hardware/kicad/smartplug.kicad_pcb'); print('pcbnew parse OK', b.GetNetCount(), 'nets')",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-002A-20261115T194345Z.log",
+      "log": "reports\\logs\\T-HW-002A-20261116T060128Z.log",
       "note": "Native files parse; ERC/DRC not run",
-      "duration_s": 0.38
+      "duration_s": 0.36
     },
     {
       "test_id": "T-HW-008A",
@@ -176,9 +216,9 @@
       "command": ".\\.venv\\Scripts\\python.exe scripts/render_pcb_preview.py",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-008A-20261115T194345Z.log",
+      "log": "reports\\logs\\T-HW-008A-20261116T060128Z.log",
       "note": "Preview parsed from .kicad_pcb",
-      "duration_s": 1.52
+      "duration_s": 2.04
     },
     {
       "test_id": "T-HW-002",
@@ -186,9 +226,9 @@
       "command": ".\\.venv\\Scripts\\python.exe scripts/run_kicad_check.py --mode erc",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-002-20261115T194345Z.log",
+      "log": "reports\\logs\\T-HW-002-20261116T060128Z.log",
       "note": "KiCad 10 ERC; block-level text-only schematic",
-      "duration_s": 0.41
+      "duration_s": 4.31
     },
     {
       "test_id": "T-HW-006",
@@ -196,9 +236,9 @@
       "command": ".\\.venv\\Scripts\\python.exe scripts/run_kicad_check.py --mode drc",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-006-20261115T194345Z.log",
+      "log": "reports\\logs\\T-HW-006-20261116T060128Z.log",
       "note": "KiCad 10 DRC; routed SELV carrier",
-      "duration_s": 0.72
+      "duration_s": 3.12
     },
     {
       "test_id": "T-HW-008",
@@ -206,9 +246,9 @@
       "command": ".\\.venv\\Scripts\\python.exe scripts/run_kicad_check.py --mode gerber",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-008-20261115T194345Z.log",
-      "note": "Placement-only Gerber/drill; NOT_FOR_FABRICATION",
-      "duration_s": 0.83
+      "log": "reports\\logs\\T-HW-008-20261116T060128Z.log",
+      "note": "Routed SELV carrier Gerber/drill; NOT_FOR_FABRICATION",
+      "duration_s": 1.23
     },
     {
       "test_id": "T-SW-001F",
@@ -216,9 +256,9 @@
       "command": ".\\.venv\\Scripts\\python.exe -c import yaml; d=yaml.safe_load(open('packages/api-contract/openapi.yaml', encoding='utf-8')); assert d['openapi'].startswith('3.'); assert len(d['paths'])>=18; print('OpenAPI paths:', len(d['paths']))",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-001F-20261115T194345Z.log",
+      "log": "reports\\logs\\T-SW-001F-20261116T060128Z.log",
       "note": "OpenAPI structural check",
-      "duration_s": 0.18
+      "duration_s": 0.28
     },
     {
       "test_id": "T-SW-011",
@@ -226,9 +266,9 @@
       "command": "npm exec playwright test",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-SW-011-20261115T194345Z.log",
+      "log": "reports\\logs\\T-SW-011-20261116T060128Z.log",
       "note": "5 E2E tests incl. axe and command APPLIED",
-      "duration_s": 22.7
+      "duration_s": 26.4
     },
     {
       "test_id": "T-HW-017",
@@ -236,9 +276,9 @@
       "command": "powershell -ExecutionPolicy Bypass -NoProfile -File .\\scripts\\build_firmware.ps1",
       "status": "PASS",
       "exit_code": 0,
-      "log": "reports\\logs\\T-HW-017-20261115T194345Z.log",
+      "log": "reports\\logs\\T-HW-017-20261116T060128Z.log",
       "note": "ESP-IDF v6.1, esp32s3, set-target + build; no flash",
-      "duration_s": 157.79
+      "duration_s": 176.09
     },
     {
       "test_id": "T-HW-011",

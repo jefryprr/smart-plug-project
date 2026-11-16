@@ -48,3 +48,5 @@ data/*.db-wal
 data/*.db-shm
 __pycache__/
 .venv/
+.history/
+hardware/kicad/.history/

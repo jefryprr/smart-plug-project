@@ -1,7 +1,7 @@
-# Mechanical parameters — REV_B_NO_TEMP
+# Mechanical parameters — REV_C_PSU_BOARD
 # All values are provisional engineering assumptions unless marked otherwise.
 # The 220 x 120 x 70 enclosure is the user-confirmed target (Q06=C).
-design_revision: REV_B_NO_TEMP
+design_revision: REV_C_PSU_BOARD
 material_id: "ABS/PC flame-retardant, UL94 V-0 target (not selected)"
 manufacturing_process: "FDM prototype / injection molding production TBD"
 
@@ -33,9 +33,9 @@ tolerance_z_mm: 0.3
 # Panel features (wall coordinates: right wall x=+110, front wall y=-60).
 socket_dimensions_mm: [35.0, 45.0, 45.0]
 socket_cutout_mm: [45.0, 45.0]
-socket_center: [89.9, 34.0, 35.0]
+socket_center: [89.9, 34.9, 35.0]
 plug_dimensions_mm: [40.0, 40.0, 50.0]
-cable_gland_center: [110.0, -50.0, 18.0]
+cable_gland_center: [110.0, 10.0, 18.0]
 cable_gland_diameter_mm: 16.0
 vent_center: [110.0, -15.0, 45.0]
 vent_diameter_mm: 12.0
@@ -68,7 +68,7 @@ barrier_y_mm: [-50.0, 50.0]
 barrier_hole_yz: [[-20.0, 20.0], [15.0, 20.0]]
 barrier_hole_diameter_mm: 10.0
 
-pe_stud_xy: [104.0, -30.0]
+pe_stud_xy: [60.0, 50.0]
 pe_stud_boss_diameter_mm: 8.0
 pe_stud_height_mm: 10.0
 pe_stud_hole_mm: 3.2
@@ -76,18 +76,12 @@ pe_stud_hole_mm: 3.2
 # Module bracket boss positions (x, y) in enclosure coordinates.
 module_bosses:
   pzem: [[4.0, -40.0], [52.0, -40.0], [4.0, 40.0], [52.0, 40.0]]
-  relay: [[58.0, -12.0], [102.0, -12.0], [58.0, 6.0], [102.0, 6.0]]
-  psu: [[65.0, -36.0], [95.0, -36.0], [65.0, -20.0], [95.0, -20.0]]
-  fuse: [[68.0, -50.0], [82.0, -50.0]]
-  terminals: [[90.0, -52.0], [100.0, -52.0]]
+  psu_board: [[59.0, -52.0], [103.0, -52.0], [72.0, -13.0]]
   ct: [[10.0, 42.0], [30.0, 42.0]]
   usb_cover: [[-54.0, -57.5], [-30.0, -57.5]]
 module_boss_height_mm:
   pzem: 4.0
-  relay: 29.0
-  psu: 29.0
-  fuse: 38.0
-  terminals: 24.0
+  psu_board: 5.5
   ct: 31.0
   usb_cover: 28.0
 module_boss_diameter_mm: 6.0

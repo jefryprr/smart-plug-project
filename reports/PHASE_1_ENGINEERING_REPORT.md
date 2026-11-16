@@ -1,9 +1,9 @@
-# Phase 1 Engineering Report — REV_B_NO_TEMP
+# Phase 1 Engineering Report — REV_C_PSU_BOARD
 
 **Date:** 15 November 2026
 **Agent:** OpenCode (DeepSeek V4.1 Flash 1017)
 **PRD:** v1.0
-**Design revision:** `REV_B_NO_TEMP`
+**Design revision:** `REV_C_PSU_BOARD`
 **Phase 1 status:** `PARTIAL_PROVISIONAL` / `ENGINEERING_REVIEW_REQUIRED`
 **Hardware status:** `HARDWARE_VALIDATION_REQUIRED`
 **Fabrication:** `NOT_RELEASED`
@@ -75,9 +75,9 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 
 ## 3. BOM dan persetujuan komponen
 
-- `bom/BOM_MASTER.csv` - **56 baris**, BOM rekayasa; harga tidak dimasukkan ke BOM ini.
-- `bom/BOM_PROCUREMENT.csv` - **56 baris daftar belanja prototype**, 43 baris punya listing bertanggal, 13 baris `ESTIMATED`.
-- `bom/BOM_SUMMARY.json` - status `PROCUREMENT_PRICED_2026-11-16`; CORE Rp703.297, FULL Rp820.897.
+- `bom/BOM_MASTER.csv` - **57 baris**, BOM rekayasa; harga tidak dimasukkan ke BOM ini.
+- `bom/BOM_PROCUREMENT.csv` - **57 baris daftar belanja prototype**, 40 baris punya listing bertanggal, 17 baris `ESTIMATED`.
+- `bom/BOM_SUMMARY.json` - status `PROCUREMENT_PRICED_2026-11-16`; CORE Rp717.087, FULL Rp834.687.
 - `bom/BOM_PROCUREMENT.md` - tabel CORE/FULL, harga, seller, URL, verdict budget.
 - `bom/BOM_TOOLS_AND_TEST.csv` — 6 alat, belum dibeli.
 - `bom/BOM_CONSUMABLES.csv` — 5 item.
@@ -94,19 +94,19 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 - PE hardware/enclosure: `BLOCKED`; 220×120×70 sudah dikonfirmasi (Q06=C), enclosure ABS exact-size Rp99.684 tetapi flame rating/material belum divalidasi.
 - Fuse/MOV/TCO: `PENDING`/documentation deficient.
 
-**Konsekuensi:** rating final 8 A/1.840 W; batas beban eksplisit. Dua channel module tidak mechanically linked; residual risk harus diuji. Budget CORE elektronik masuk Rp750.000 (Rp743.297 all-in); addendum mekanik ~Rp28k membuat marketplace ~Rp771.297 all-in, restock ~Rp719.829; FULL di atas budget.
+**Konsekuensi:** rating final 8 A/1.840 W; batas beban eksplisit. Dua channel module tidak mechanically linked; residual risk harus diuji. Budget CORE elektronik **tidak masuk** Rp750.000 (Rp757.087 all-in, ~Rp7.087 over); addendum mekanik ~Rp28k membuat marketplace ~Rp785.087 all-in, restock ~Rp733.619 (di bawah cap); FULL di atas budget.
 
 ### 3A. Riset pengadaan Indonesia (2026-11-15)
 
-Riset harga mencakup 56 baris; 43 baris punya listing bertanggal dan 13 baris `ESTIMATED`. Detail ada di `research/PROCUREMENT_INDONESIA.md` dan `bom/BOM_PROCUREMENT.csv`.
+Riset harga mencakup 57 baris; 40 baris punya listing bertanggal dan 17 baris `ESTIMATED`. Detail ada di `research/PROCUREMENT_INDONESIA.md` dan `bom/BOM_PROCUREMENT.csv`.
 
 | Konfigurasi | Subtotal | + ongkir Rp40.000 | Status |
 |---|---:|---:|---|
 | Elektronik inti | Rp433.633 | — | di dalam budget |
-| CORE (safety/function minimum) | Rp703.297 | Rp743.297 | di bawah cap |
-| CORE + mechanical addendum | Rp731.297 | Rp771.297 | ~Rp21k di atas cap |
-| CORE dengan restock EasyWare | Rp651.829 | Rp691.829 | masuk budget |
-| FULL (+ OLED/RTC/RGB/konektor) | Rp820.897 | Rp860.897 | di atas budget |
+| CORE (safety/function minimum) | Rp717.087 | Rp757.087 | ~Rp7k di atas cap |
+| CORE + mechanical addendum | Rp745.087 | Rp785.087 | ~Rp35k di atas cap |
+| CORE dengan restock EasyWare | Rp665.619 | Rp705.619 | di bawah cap |
+| FULL (+ OLED/RTC/RGB/konektor) | Rp834.687 | Rp874.687 | di atas budget |
 
 **Keputusan:** ESP32-S3 N16R8 compatible Rp139.968 (deviasi Q08=B eksplisit), PZEM V4 100 A CT Rp150.000 dengan **isolasi internal** (tanpa ADuM/B0505S), HLK-5M05 Rp49.000, relay 2 channel Rp16.650, 74HCT125 + divider, **tanpa TMP102**, enclosure 220x120x70 Rp99.684, PCB carrier 100x70 routed. Harga listing bukan quote dan bukan approval; status safety tidak berubah.
 
@@ -135,7 +135,7 @@ Riset harga mencakup 56 baris; 43 baris punya listing bertanggal dan 13 baris `E
 | Output kontinu provisional | 8 A | `UNVERIFIED` |
 | Relay module | 2-channel optocoupler, off-board, 10 A class claim | `DOCUMENTATION_DEFICIENT` |
 | Fuse | 10 A time-lag | `PENDING` |
-| 5 V PTC/TVS | 1.1 A hold PTC + SMBJ5.0A | `PROVISIONAL` |
+| 5 V PTC/TVS (PSU board) | 1.1 A hold PTC + SMBJ5.0A on the PSU total output | `PROVISIONAL` |
 | PSU | Hi-Link HLK-5M05, 5 V 1 A / 5 W | `PENDING_APPROVAL`; thermal/cert test |
 | Socket/plug | Type F/E-F 16 A class | `DOCUMENTATION_DEFICIENT` |
 | PE | Kontinu, tidak diputus | `PROVISIONAL` |
@@ -200,9 +200,9 @@ kicad-cli pcb export drill -o hardware/manufacturing/provisional/Drill --generat
 ```
 
 - ERC: **0 violations** on the block-level text-only schematic. This is not component-level connectivity.
-- DRC: **0 violations / 0 unconnected** on the routed 100x70 SELV carrier (0.15 mm), 27 footprints, 19 nets, 5 V PTC + TVS, 3 fiducials.
+- DRC: **0 violations / 0 unconnected** on the routed 100x70 SELV carrier (0.15 mm), 25 footprints (22 assembled + 3 fiducials), 18 nets; and on the routed 50x65 PSU board, 13 assembled + 3 holes + 3 fiducials, 8 nets.
 - Gerber/drill/POS: **routed provisional** exported; `NOT_FOR_FABRICATION`.
-- Native files parse with KiCad `pcbnew`: `PASS` (19 nets).
+- Native files parse with KiCad `pcbnew`: `PASS` (carrier 18 nets, PSU 8 nets).
 - Production symbol-level schematic and vendor footprint review: `PENDING`; functional schematic/netlist and routed carrier exist.
 
 ---
@@ -308,7 +308,7 @@ See `reports/TEST_MATRIX.csv` / `VALIDATION_SUMMARY.json`.
 | 03 Datasheet | `PARTIAL` | 9+ PDFs hashed; PZEM/socket deficient |
 | 04 Arsitektur | `PASS` (digital) | Diagram PNG/SVG/PDF |
 | 05 Schematic | `PARTIAL` | Block text-only; ERC 0 but not component connectivity |
-| 06 Wiring | `PASS` (render) | 4 harnesses; physical untested |
+| 06 Wiring | `PASS` (render) | 3 harnesses; physical untested |
 | 07 GPIO | `UNVERIFIED` | Static crosscheck; board revision unknown |
 | 08 PCB | `PARTIAL` | Placement-only; DRC 0; routing blocked |
 | 09 Manufacturing | `PARTIAL/BLOCKED` | Placement-only Gerber/drill; functional board blocked |
@@ -324,7 +324,7 @@ See `reports/TEST_MATRIX.csv` / `VALIDATION_SUMMARY.json`.
 | 19 MQTT | `PASS` (digital) | Contract + aedes integration |
 | 20 Notifications | `PARTIAL` | Mock test; Telegram not live |
 | 21 Deployment | `BLOCKED` | Compose config only |
-| 22 Testing | `PARTIAL` | 23 PASS / 11 BLOCKED (KiCad + ESP-IDF build now run) |
+| 22 Testing | `PARTIAL` | 27 PASS / 11 BLOCKED (KiCad carrier + PSU, research, ESP-IDF build) |
 | 23 Validation | `PARTIAL` | Static + ERC 0 + routed DRC 0/0 + Gerber; physical blocked |
 | 24 Security | `PARTIAL` | Threat model/audit; gaps |
 | 25 Docs | `PASS` (digital) | 26 tutorials + reports |

@@ -1,4 +1,4 @@
-# Standard Applicability Matrix — REV_A_PROVISIONAL
+# Standard Applicability Matrix — REV_C_PSU_BOARD
 
 **Status:** `RESEARCH_REQUIRED`
 **Rule:** This matrix records applicability, not certification. Full standard texts may be licensed/paid; do not reproduce them without a license.

@@ -1,4 +1,4 @@
-# Mechanical Cost Estimate — REV_B
+# Mechanical Cost Estimate — REV_C_PSU_BOARD
 
 **Status:** `ESTIMATED` / not a supplier quote  
 **Date:** 2026-11-16  
@@ -18,7 +18,7 @@
 
 ## Budget impact
 
-- Electronics CORE: **Rp703,297** (Rp743,297 all-in) — includes PTC/TVS.
+- Electronics CORE: **Rp717,087** (Rp757,087 all-in) — includes PTC/TVS.
 - Addendum: **~Rp28,000**.
 - CORE with addendum: **~Rp731,297** (Rp771,297 all-in) at marketplace prices.
 - CORE with EasyWare restock + addendum: **~Rp679,829** (Rp719,829 all-in).

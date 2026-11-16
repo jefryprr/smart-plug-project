@@ -1,6 +1,6 @@
 project: esp32-s3-iot-smart-plug
-design_revision: REV_B_NO_TEMP
-generated_at: '2026-11-15T19:36:36.215222+00:00'
+design_revision: REV_C_PSU_BOARD
+generated_at: '2026-11-16T06:00:45.460797+00:00'
 approval_policy: User approved the research direction, not final MPNs. No component
   is approved for fabrication.
 approved_by: null
@@ -89,12 +89,13 @@ items:
     Breaking capacity, time-current curve, holder rating, and coordination must be
     reviewed. Provisional continuous load may be limited to 8 A.
 - item_id: E-012
-  mpn: '0031.8201'
+  mpn: 01110506Z
   status: PENDING_APPROVAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Touch-proof, tool-access, and service procedure required. Fuse
-    holder must not be accessible during normal use.
+  blocking_reason: 'Two clips per fuse; matches the routed PSU board. Not a closed/touch-proof
+    holder; fuse access requires opening the screwed lid. Clip rating 10 A/250 V is
+    marginal at 8 A continuous; thermal test required. Tool-access and service procedure '
 - item_id: E-013
   mpn: B72210S0271K101
   status: PENDING_APPROVAL
@@ -104,13 +105,13 @@ items:
     failure mode, thermal fuse coordination, and standard applicability must be reviewed.
     Do not claim surge suppression until tested.
 - item_id: E-014
-  mpn: SF169E
-  status: DOCUMENTATION_DEFICIENT
+  mpn: SF96E
+  status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Must be mechanically clamped to the hottest terminal/relay area
-    and be independent of firmware. Exact trip temperature, holding current, and approval
-    must be verified. A resettable thermostat is not equivalent.
+  blocking_reason: SF96E rated functioning temperature 99 C (marked 96 C), holding
+    temperature 84 C, 10 A resistive / 250 VAC. NOT SF169E (172 C). Must be mechanically
+    clamped to the hottest terminal/HLK/PCB spot and be independent of firmware; normal-operati
 - item_id: E-015
   mpn: 1N4007-E3/54
   status: PROVISIONAL
@@ -141,15 +142,45 @@ items:
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Protects the 5 V carrier rail and wiring. Hold current 1.1 A; verify
-    trip time and voltage drop. Not a substitute for the mains fuse.
+  blocking_reason: Protects the PSU board total 5 V output (J5/J6/J7) and wiring.
+    Hold current 1.1 A; verify trip time and voltage drop. Not a substitute for the
+    mains fuse. The carrier has no PTC.
 - item_id: E-051
   mpn: SMBJ5.0A
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Clamps 5 V rail transients from the HLK or cable. Cathode to +5V,
-    anode to GND. Verify standoff/clamping and layout.
+  blocking_reason: Clamps the PSU board total 5 V rail (J5/J6/J7) against HLK/cable
+    transients. Cathode to +5V, anode to GND. The carrier has no TVS. Verify standoff/clamping
+    and layout.
+- item_id: E-052
+  mpn: PCB-PSU-REV-C
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: 'REV_C PSU board: TB1/TB2, F1, MOV1, TF1, HLK-5M05, F2/D1, 3x JST.
+    Mains isolation notch; creepage/hipot unverified. NOT_FOR_FABRICATION.'
+- item_id: E-053
+  mpn: B2B-XH-A
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: 'Three keyed 5 V outputs: J5 carrier, J6 relay, J7 PZEM conditional.
+    Verify 3 A rating and keying.'
+- item_id: E-054
+  mpn: B2B-XH-A cable
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Carrier, relay, PZEM. Color-code/label; do not swap outputs.
+- item_id: E-055
+  mpn: MKDS 1,5/2-5,08
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: PSU TB2 L/N output to relay/socket. 250 VAC < user's >=300 V target;
+    upgrade path MKDS 3/2-5,08. Verify torque, 1.5 mm2 wire/ferrule, and creepage.
+    Full 8 A passes through this block.
 - item_id: E-019
   mpn: UWT1A101MCL1GS
   status: PROVISIONAL
@@ -276,12 +307,13 @@ items:
   blocking_reason: 5V/GND from HLK. Add 100uF bulk and 100nF at carrier entry. Keep
     away from mains wiring.
 - item_id: E-029
-  mpn: MKDS 3/2-5.08
-  status: DOCUMENTATION_DEFICIENT
+  mpn: MKDS 1,5/2-5,08
+  status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Exact order code and rating must be verified. Terminal must not
-    loosen; use ferrules and strain relief. Mains terminal is not a low-voltage header.
+  blocking_reason: PSU TB1 input L/N. 250 VAC rating meets 230 VAC nominal but is
+    below the user's >=300 V target; conservative upgrade is MKDS 3/2-5,08 with a
+    new footprint. 17.5 A > 10 A fuse. Verify torque, 1.5 mm2 wire/ferrule, and creepage.
 - item_id: E-030
   mpn: PE-TERMINAL-TBD
   status: BLOCKED
@@ -289,25 +321,6 @@ items:
   approved_for_fabrication: false
   blocking_reason: PE must be continuous, not switched or fused. Dedicated mechanical
     bond with lock washer and test point. Exact part is safety-critical and not approved.
-- item_id: E-031
-  mpn: MKDS 3/5-5.08
-  status: DOCUMENTATION_DEFICIENT
-  approved_for_purchase: false
-  approved_for_fabrication: false
-  blocking_reason: Keep on isolated side of barrier. Pinout must match actual PZEM
-    V4 batch. Do not assume colors.
-- item_id: E-032
-  mpn: MKDS 3/2-5.08
-  status: PROVISIONAL
-  approved_for_purchase: false
-  approved_for_fabrication: false
-  blocking_reason: SELV coil only; keep away from mains terminals.
-- item_id: E-033
-  mpn: MKDS 3/2-5.08
-  status: PROVISIONAL
-  approved_for_purchase: false
-  approved_for_fabrication: false
-  blocking_reason: Keyed/color-coded to reduce miswiring.
 - item_id: E-034
   mpn: SIMON-SCHUKO-16A
   status: DOCUMENTATION_DEFICIENT
@@ -360,14 +373,14 @@ items:
   approved_for_fabrication: false
   blocking_reason: SELV only. Keep away from mains barrier.
 - item_id: E-041
-  mpn: PCB-CARRIER-REV-B
+  mpn: PCB-CARRIER-REV-C
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: REV_B routed carrier with two 1x22 DevKit sockets at 22.86 mm spacing,
-    PZEM 5V/3.3V level shift, relay driver, I2C OLED/RTC, button, RGB, and 5V input.
-    DRC 0 but engineering review/physical test still required. Mains modules remain
-    off-boar
+  blocking_reason: REV_C routed SELV carrier with two 1x22 DevKit sockets at 22.86
+    mm spacing, PZEM 5V/3.3V level shift, relay driver, I2C OLED/RTC, button, RGB,
+    and 5V input from PSU J5. DRC 0 but engineering review/physical test still required.
+    No mains and
 - item_id: E-042
   mpn: LABEL-SET-REV-A
   status: BLOCKED

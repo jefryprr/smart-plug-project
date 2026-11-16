@@ -1,4 +1,4 @@
-# Unit Test Results — REV_A_PROVISIONAL
+# Unit Test Results — REV_C_PSU_BOARD
 
 **Gate:** `PASS` (digital unit tests)
 **Generated:** 2026-11-15

@@ -57,44 +57,48 @@
   },
   "sheets": [
     [
-      "3fafde62-4b28-41c4-8d2d-6371ca8d4315",
+      "d0246ed2-b0e3-43a6-b63b-1f9514f533b1",
       "Root"
     ],
     [
-      "225688b5-4859-45ba-bc22-9c92870b2984",
+      "e5d96bb8-5c23-4d22-b706-516c4e46cf07",
       "AC_INPUT_OUTPUT"
     ],
     [
-      "fe798f59-ffda-43aa-ad7a-a6e9bbc230be",
+      "ae9106f1-f177-43ae-a40c-0d384112e797",
       "SAFETY_AND_SWITCH"
     ],
     [
-      "95d92e20-199c-4eca-8ac3-7f544fbc9bb6",
+      "38c3c7ee-fd44-4a07-931b-c7455da50fca",
       "AC_DC_POWER"
     ],
     [
-      "fe22ef0b-a88b-4a51-9a0e-846b62190ad3",
+      "d98771c6-74e3-4d41-8e68-f77c374dad47",
       "PZEM_AND_CT"
     ],
     [
-      "d870db71-11bf-4dbd-b5e3-a4eff4cf6306",
+      "6991faa7-5968-41cc-86a4-8aac158d4da1",
       "LOW_VOLTAGE_CONTROL"
     ],
     [
-      "9b611567-eaa4-49cc-b6d7-4e4a3988b52d",
+      "48bcce96-35ae-422d-9871-ff22bef95a40",
       "ESP32S3_CARRIER"
     ],
     [
-      "24f7827b-c5f2-4d22-898b-a938dd8ff266",
+      "bf855225-caeb-443a-8b66-0d2f00cdb1c8",
       "DISPLAY_AND_BUTTONS"
     ],
     [
-      "e13e461b-7dbb-4e67-a2f7-858c1fc88997",
+      "83b73817-8740-4d9e-81ee-9688a766e015",
       "RTC_ONLY"
     ],
     [
-      "fbefc866-48c5-48c4-87d1-d5e14029bd7d",
+      "8cb34669-951a-4b58-8200-c7631a5d8113",
       "SERVICE_AND_DEBUG"
+    ],
+    [
+      "8b902f5c-b07a-4a97-9ead-24615c73b2f5",
+      "PSU_MAINS_5V"
     ]
   ],
   "text_variables": {}

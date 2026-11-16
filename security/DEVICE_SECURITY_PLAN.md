@@ -1,4 +1,4 @@
-# Device Security Plan — REV_A_PROVISIONAL
+# Device Security Plan — REV_C_PSU_BOARD
 
 **Status:** `DRAFT`
 **Scope:** ESP32-S3 device identity, boot, storage, provisioning, OTA, debug.

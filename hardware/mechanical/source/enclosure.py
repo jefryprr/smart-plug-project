@@ -1,4 +1,4 @@
-"""Parametric 220 x 120 x 70 enclosure for the REV_B smart plug.
+"""Parametric 220 x 120 x 70 enclosure for the REV_C_PSU_BOARD smart plug.
 
 This is a mechanical concept, not a certified electrical enclosure. It adds a
 deep body, shallow lid, flat gasket, lid screws, carrier standoffs, module

@@ -1,4 +1,4 @@
-# Security Audit Report — REV_A_PROVISIONAL
+# Security Audit Report — REV_C_PSU_BOARD
 
 **Date:** 15 November 2026
 **Scope:** digital artifacts in this repository; no production deployment or physical device.

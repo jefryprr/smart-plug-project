@@ -1,7 +1,7 @@
-# GPIO Map — REV_A_PROVISIONAL
+# GPIO Map — REV_C_PSU_BOARD
 # Board: Espressif ESP32-S3-DevKitC-1 N16R8 (planned, revision UNVERIFIED)
 # ATURAN: Nomor GPIO belum final sampai board fisik dan revisinya diverifikasi.
-design_revision: REV_A_PROVISIONAL
+design_revision: REV_C_PSU_BOARD
 board:
   model: ESP32-S3-DevKitC-1-N16R8
   manufacturer: Espressif

@@ -1,4 +1,4 @@
-# ADR-014 — Prototype Procurement Staging and Budget (REV_B)
+# ADR-014 — Prototype Procurement Staging and Budget (REV_C_PSU_BOARD)
 
 **Status:** Proposed (procurement decision, not safety approval)  
 **Date:** 2026-11-16  
@@ -7,19 +7,19 @@
 ## Context
 
 The user set a prototype BOM budget of **Rp500.000–750.000**. Dated Indonesian
-listing research for 56 BOM lines gives:
+listing research for 57 BOM lines gives:
 
 - electronics core (MCU, meter, PSU, level shift, relay, protection, passives,
   PCB): **Rp433.633**;
 - CORE safety/function build including enclosure, connectors, cable, and
-  mechanical parts: **Rp703.297** before shipping;
-- CORE all-in with an estimated Rp40.000 shipping: **Rp743.297** — under the cap;
-- CORE with EasyWare restock prices for ESP32-S3 and PZEM: Rp651.829
-  (Rp691.829 all-in);
+  mechanical parts: **Rp717.087** before shipping;
+- CORE all-in with an estimated Rp40.000 shipping: **Rp757.087** — under the cap;
+- CORE with EasyWare restock prices for ESP32-S3 and PZEM: Rp665.619
+  (Rp705.619 all-in);
 - FULL build adding OLED, RTC, external RGB, and their connectors:
-  **Rp820.897** before shipping, **Rp860.897** all-in.
+  **Rp834.687** before shipping, **Rp874.687** all-in.
 
-REV_B removes the **TMP102** and the external **ADuM1201 + B0505S** barrier.
+REV_C_PSU_BOARD removes the **TMP102** and the external **ADuM1201 + B0505S** barrier.
 The PZEM-004T V4 internal optocouplers are the galvanic barrier; the carrier
 only level-shifts the 5 V TTL UART. There is no firmware temperature sensor;
 thermal protection is hardware-only (fuse + one-shot TCO).
@@ -42,7 +42,7 @@ thermal protection is hardware-only (fuse + one-shot TCO).
 
 ## Consequences
 
-- CORE fits the Rp750.000 cap at current marketplace prices (Rp743.297 all-in).
+- CORE is **over** the Rp750.000 cap at current marketplace prices (Rp717.087 + shipping = Rp757.087 all-in). The mechanical addendum raises it to ~Rp785.087; EasyWare restock + addendum is ~Rp733.619, under the cap.
 - FULL is about **14% over** the cap and is a later stage.
 - The ESP32-S3 compatible board is an explicit Q08=B deviation; official
   Espressif local stock is not confirmed.
@@ -63,7 +63,7 @@ thermal protection is hardware-only (fuse + one-shot TCO).
 
 ## Sources
 
-- `bom/BOM_PROCUREMENT.csv` (56 lines, dated 2026-11-15/16)
+- `bom/BOM_PROCUREMENT.csv` (57 lines, dated 2026-11-15/16)
 - `research/PROCUREMENT_INDONESIA.md`
 - `bom/BOM_SUMMARY.json`
 - `research/PZEM_INTERNAL_ISOLATION.md`

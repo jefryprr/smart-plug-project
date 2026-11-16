@@ -1,25 +1,23 @@
 reference_designators,description,manufacturer,mpn,qty,footprint,approved_status,notes
-C1,100uF,TBD,TBD,1,CP_Elec_6.3x5.4,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-C2,100nF,TBD,TBD,1,C_0805_2012Metric,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-C3,100nF,TBD,TBD,1,C_0805_2012Metric,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-D1,SMBJ5.0A,TBD,TBD,1,D_SMB,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-F2,1.1A PTC,TBD,TBD,1,Fuse_1206_3216Metric,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-J1A,ESP32-S3-DevKitC-1 J1,TBD,TBD,1,PinSocket_1x22_P2.54mm_Vertical,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-J1B,ESP32-S3-DevKitC-1 J3,TBD,TBD,1,PinSocket_1x22_P2.54mm_Vertical,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-J2,PZEM_TTL,TBD,TBD,1,JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-J3,RELAY,TBD,TBD,1,JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-J4,OLED,TBD,TBD,1,JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-J5,RTC,TBD,TBD,1,JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-J6,BUTTON,TBD,TBD,1,JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-J7,RGB,TBD,TBD,1,JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-J8,5V_IN,TBD,TBD,1,JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-Q1,AO3400A,TBD,TBD,1,SOT-23,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-R1,1k,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-R2,100k,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-R3,330R,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-R4,10k,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-R5,20k,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-R6,4k7,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-R7,4k7,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-R8,10k,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
-U9,74HCT125N,TBD,TBD,1,DIP-14_W7.62mm,PROVISIONAL,REV_B routed carrier; fiducials excluded from assembly BOM
+C1,100uF,TBD,TBD,1,CP_Elec_6.3x5.4,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+C2,100nF,TBD,TBD,1,C_0805_2012Metric,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+C3,100nF,TBD,TBD,1,C_0805_2012Metric,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+J1A,ESP32-S3-DevKitC-1 J1,TBD,TBD,1,PinSocket_1x22_P2.54mm_Vertical,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+J1B,ESP32-S3-DevKitC-1 J3,TBD,TBD,1,PinSocket_1x22_P2.54mm_Vertical,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+J2,PZEM_TTL,TBD,TBD,1,JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+J3,RELAY,TBD,TBD,1,JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+J4,OLED,TBD,TBD,1,JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+J5,RTC,TBD,TBD,1,JST_XH_B6B-XH-A_1x06_P2.50mm_Vertical,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+J6,BUTTON,TBD,TBD,1,JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+J7,RGB,TBD,TBD,1,JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+J8,5V_IN,TBD,TBD,1,JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+Q1,AO3400A,TBD,TBD,1,SOT-23,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+R1,1k,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+R2,100k,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+R3,330R,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+R4,10k,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+R5,20k,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+R6,4k7,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+R7,4k7,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+R8,10k,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+U9,74HCT125N,TBD,TBD,1,DIP-14_W7.62mm,PROVISIONAL,REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM

@@ -1,6 +1,6 @@
 # Engineering Review Sign-off Template
 
-**Design revision:** `REV_A_PROVISIONAL`
+**Design revision:** `REV_C_PSU_BOARD`
 **Review date:** ____________________
 **Reviewer name:** ____________________
 **Qualification/role:** ____________________

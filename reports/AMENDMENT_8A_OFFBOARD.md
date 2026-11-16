@@ -1,6 +1,6 @@
 # Amendment — 8 A Final, Off-Board Modules, Toolchains
 
-**Design revision:** `REV_B_NO_TEMP`
+**Design revision:** `REV_C_PSU_BOARD`
 **Date:** 2026-11-15
 **Status:** `PARTIAL_DIGITAL` / `ENGINEERING_REVIEW_REQUIRED` / `HARDWARE_VALIDATION_REQUIRED`
 **Fabrication:** `NOT_RELEASED`

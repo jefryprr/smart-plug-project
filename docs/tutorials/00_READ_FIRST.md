@@ -1,6 +1,6 @@
 # 00 — Baca Dulu
 
-**Status proyek:** `REV_A_PROVISIONAL` — digital artifacts only; no hardware validation.
+**Status proyek:** `REV_C_PSU_BOARD` — digital artifacts only; no hardware validation.
 **Prinsip:** jangan pernah menganggap perintah/alat berhasil hanya karena file ada. Simpan log dan exit code.
 
 ## Apa yang boleh dikerjakan sendiri

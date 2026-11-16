@@ -1,4 +1,4 @@
-# OTA Signing and Recovery — REV_A_PROVISIONAL
+# OTA Signing and Recovery — REV_C_PSU_BOARD
 
 **Status:** `DESIGN_ONLY` / `BLOCKED`
 **Why:** ESP-IDF toolchain not installed; no signed image or rollback test was performed.

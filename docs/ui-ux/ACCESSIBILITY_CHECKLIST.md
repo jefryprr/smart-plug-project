@@ -1,4 +1,4 @@
-# Accessibility Checklist — REV_A_PROVISIONAL
+# Accessibility Checklist — REV_C_PSU_BOARD
 
 ## Automated
 

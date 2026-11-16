@@ -1,4 +1,4 @@
-# Failure Mode and Effects Analysis (FMEA) — REV_B
+# Failure Mode and Effects Analysis (FMEA) — REV_C_PSU_BOARD
 
 **Status:** `DRAFT`
 **Skala:** Severity/Probability/Detection = High/Medium/Low (kualitatif). Tidak ada RPN numerik palsu.
@@ -16,7 +16,7 @@
 | FM-09 | PZEM internal optocoupler isolation failure | Mains reaches ESP32/carrier | High | Low | Low | PZEM batch inspection, creepage, hipot/leakage; no external barrier | High until tested |
 | FM-10 | PZEM UART CRC/timeout | Wrong/stale reading | Medium | High | High | CRC, timeout, invalid state, no stale live | Low |
 | FM-11 | CT on wrong conductor | Wrong current/PF | Medium | Medium | Medium | Label, single-conductor guide, direction arrow, test | Medium |
-| FM-12 | No temperature sensor installed (REV_B) | Firmware cannot detect overheat; only fuse/TCO respond | High | Medium | Low | Independent one-shot TCO, fuse, thermal test, label, load limits | High until tested |
+| FM-12 | No temperature sensor installed (REV_C_PSU_BOARD) | Firmware cannot detect overheat; only fuse/TCO respond | High | Medium | Low | Independent one-shot TCO, fuse, thermal test, label, load limits | High until tested |
 | FM-13 | MCU hang | No control/telemetry | Medium | Medium | High | Watchdog, relay default OFF, independent protection | Medium |
 | FM-14 | Boot GPIO float → relay ON | Unintended ON | High | Low | Medium | Pulldown, boot-safe test, relay driver default | Low after test |
 | FM-15 | OTA bad image | Boot loop/recovery loss | High | Medium | Medium | Dual OTA, rollback, signed image, default OFF | Medium |
@@ -43,3 +43,8 @@
 - FMEA ini belum ditandatangani engineer.
 - Mitigasi firmware tidak menggantikan proteksi independen.
 - Setiap perubahan relay/PSU/fuse/PE/enclosure memicu revisi FMEA.
+| FM-27 | PSU board 8 A trace/terminal/fuse clip overheats | Enclosure fire / open circuit | High | Medium | Medium (thermal) | 2 oz/4 mm target, terminal torque, fuse holder rating, TCO, thermal test | High until tested |
+| FM-28 | HLK-5M05 fails short/overheat | 5 V loss or mains-side damage | High | Low | Low | Fuse/TCO upstream, HLK batch/hipot/thermal, enclosure vent | High until tested |
+| FM-29 | MOV fails short after surge | Fuse clears; possible fire if coordination fails | High | Low | Medium | Fuse/MOV coordination, end-of-life test | High until tested |
+| FM-30 | 5 V output miswired (J5/J6/J7) | Wrong module powered / overcurrent | Medium | Medium | Medium | Keyed JST, labels, color code, PTC/TVS | Medium |
+| FM-31 | Relay shelf/cantilever fails | Relay falls onto PSU board | High | Low | Low | Printed shelf review, strain relief, physical test | High until tested |

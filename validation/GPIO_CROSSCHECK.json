@@ -1,6 +1,6 @@
 {
   "artifact": "validation/GPIO_CROSSCHECK.json",
-  "design_revision": "REV_A_PROVISIONAL",
+  "design_revision": "REV_C_PSU_BOARD",
   "board": {
     "model": "ESP32-S3-DevKitC-1-N16R8",
     "manufacturer": "Espressif",

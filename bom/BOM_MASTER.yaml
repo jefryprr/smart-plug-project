@@ -1,6 +1,6 @@
 project: esp32-s3-iot-smart-plug
-design_revision: REV_B_NO_TEMP
-generated_at: '2026-11-15T19:36:36.215222+00:00'
+design_revision: REV_C_PSU_BOARD
+generated_at: '2026-11-16T06:00:45.460797+00:00'
 items:
 - item_id: E-001
   reference_designators: U1
@@ -63,9 +63,10 @@ items:
   source_evidence: PRD retailer references are availability evidence only, not datasheet.
     Archive is historical and may not match the purchased V4.
 - item_id: E-003
-  reference_designators: U3
+  reference_designators: PS1
   category: Power
-  description: AC/DC 5 V 1 A isolated power module, 5 W, 90-264 VAC input
+  description: AC/DC 5 V 1 A isolated power module, 5 W, 90-264 VAC input (on REV_C
+    PSU board)
   manufacturer: Hi-Link
   manufacturer_part_number: HLK-5M05
   module_revision: '-'
@@ -82,15 +83,16 @@ items:
   approved_status: PENDING_APPROVAL
   alternative_mpn: Mean Well IRM-05-5 (better documentation/certification, larger);
     Recom RAC01-05SC (too low current)
-  footprint_id: OFF_BOARD_MODULE
+  footprint_id: HLK_5M05_CUSTOM
   mechanical_model: hlk_5m05_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
   notes: Selected by user. 38x23x18 mm, 4 pins (AC/AC/-Vo/+Vo), 5 V 1 A, 5 W. Datasheet
     claims 2500 VAC input-output isolation and UL/CE design compliance, but the exact
     batch certificate/isolation/creepage are unverified. Efficiency is only ~70% at
-    220 V full load, so ~2.1 W heat; thermal test is mandatory. Fuse and MOV belong
-    upstream. Do not touch AC pins; keep mains creepage and barrier.
+    220 V full load, so ~2.1 W heat; thermal test is mandatory. Fuse/MOV/TCO are on
+    the same REV_C PSU board upstream. Do not touch AC pins; keep mains creepage and
+    barrier.
   source_evidence: Distributor copy of Hi-Link HLK-5M05 datasheet (3 pages) with dimension
     drawing; official product page; exact batch/certification must be verified.
 - item_id: E-005
@@ -292,9 +294,9 @@ items:
 - item_id: E-012
   reference_designators: FH1
   category: Protection
-  description: PCB fuse holder, 5x20 mm, 10 A / 250 VAC
-  manufacturer: Schurter
-  manufacturer_part_number: '0031.8201'
+  description: PCB fuse clips for 5x20 mm fuse, 10 A / 250 V, 2 pcs
+  manufacturer: Littelfuse
+  manufacturer_part_number: 01110506Z
   module_revision: '-'
   qty_per_unit: 1
   unit: pcs
@@ -304,17 +306,20 @@ items:
   price_checked_at: ''
   seller: ''
   seller_url: ''
-  datasheet_url: https://www.schurter.com/en/datasheet/0031.8201
+  datasheet_url: https://www.littelfuse.com/products/fuses-overcurrent-protection/fuse-holders-fuse-blocks-accessories/fuse-accessories/fuse-clips/111/111505
   datasheet_revision: UNKNOWN
   approved_status: PENDING_APPROVAL
-  alternative_mpn: Littelfuse 03455LF2H; panel holder with touch protection
-  footprint_id: SCHURTER_0031_8201
-  mechanical_model: fuse_holder_approx
+  alternative_mpn: Schurter 0031.8201 closed holder (different footprint); Littelfuse
+    01110501Z
+  footprint_id: Fuseholder_Clip-5x20mm_Littelfuse_111
+  mechanical_model: fuse_clip_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Touch-proof, tool-access, and service procedure required. Fuse holder must
-    not be accessible during normal use.
-  source_evidence: Schurter product page; verify voltage/current ratings and cover.
+  notes: Two clips per fuse; matches the routed PSU board. Not a closed/touch-proof
+    holder; fuse access requires opening the screwed lid. Clip rating 10 A/250 V is
+    marginal at 8 A continuous; thermal test required. Tool-access and service procedure
+    required.
+  source_evidence: 'Littelfuse 111 series product page: 5x20 mm clip, 250 V, 10 A.'
 - item_id: E-013
   reference_designators: MOV1
   category: Protection
@@ -345,9 +350,10 @@ items:
 - item_id: E-014
   reference_designators: TF1
   category: Protection
-  description: One-shot thermal cutoff, 99 C, 10 A / 250 VAC
+  description: One-shot thermal cutoff, 99 C rated functioning temperature, 10 A /
+    250 VAC
   manufacturer: Sefuse
-  manufacturer_part_number: SF169E
+  manufacturer_part_number: SF96E
   module_revision: '-'
   qty_per_unit: 1
   unit: pcs
@@ -357,19 +363,22 @@ items:
   price_checked_at: ''
   seller: ''
   seller_url: ''
-  datasheet_url: https://www.sefuse.com/
+  datasheet_url: https://docs.rs-online.com/68de/0900766b81546f0c.pdf
   datasheet_revision: UNKNOWN
-  approved_status: DOCUMENTATION_DEFICIENT
-  alternative_mpn: Therm-O-Disc one-shot TCO; thermostat KSD301 (auto-reset, not preferred)
+  approved_status: PROVISIONAL
+  alternative_mpn: Therm-O-Disc one-shot 99 C; KSD301 / Bourns LC auto-reset are NOT
+    equivalent
   footprint_id: TCO_AXIAL
   mechanical_model: tco_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Must be mechanically clamped to the hottest terminal/relay area and be independent
-    of firmware. Exact trip temperature, holding current, and approval must be verified.
-    A resettable thermostat is not equivalent.
-  source_evidence: Vendor site only; manufacturer datasheet for exact batch not yet
-    verified.
+  notes: SF96E rated functioning temperature 99 C (marked 96 C), holding temperature
+    84 C, 10 A resistive / 250 VAC. NOT SF169E (172 C). Must be mechanically clamped
+    to the hottest terminal/HLK/PCB spot and be independent of firmware; normal-operation
+    hotspot must stay below 84 C with margin. Batch certificate and trip test still
+    required.
+  source_evidence: 'SEFUSE SF/E series datasheet (RS mirror), accessed 2026-11-16:
+    ratings table lists SF96E 99 C, 10 A; SF169E is 172 C.'
 - item_id: E-015
   reference_designators: D1
   category: Passives
@@ -494,8 +503,9 @@ items:
   mechanical_model: fuse_1206_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Protects the 5 V carrier rail and wiring. Hold current 1.1 A; verify trip
-    time and voltage drop. Not a substitute for the mains fuse.
+  notes: Protects the PSU board total 5 V output (J5/J6/J7) and wiring. Hold current
+    1.1 A; verify trip time and voltage drop. Not a substitute for the mains fuse.
+    The carrier has no PTC.
   source_evidence: Littelfuse 1206L series datasheet; exact batch to be verified.
 - item_id: E-051
   reference_designators: D1
@@ -520,9 +530,116 @@ items:
   mechanical_model: smb_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Clamps 5 V rail transients from the HLK or cable. Cathode to +5V, anode to
-    GND. Verify standoff/clamping and layout.
+  notes: Clamps the PSU board total 5 V rail (J5/J6/J7) against HLK/cable transients.
+    Cathode to +5V, anode to GND. The carrier has no TVS. Verify standoff/clamping
+    and layout.
   source_evidence: Littelfuse SMBJ series datasheet; exact batch to be verified.
+- item_id: E-052
+  reference_designators: PSU_PCB
+  category: PCB
+  description: Mains-entry PSU PCB, 2-layer FR4, 1.6 mm, 2 oz Cu target, 50 x 65 mm,
+    routed
+  manufacturer: TBD
+  manufacturer_part_number: PCB-PSU-REV-C
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: PCB_PSU_REV_C
+  mechanical_model: pcb_psu_50x65
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: 'REV_C PSU board: TB1/TB2, F1, MOV1, TF1, HLK-5M05, F2/D1, 3x JST. Mains
+    isolation notch; creepage/hipot unverified. NOT_FOR_FABRICATION.'
+  source_evidence: KiCad psu_rev_c.kicad_pcb; Gerber/drill/POS provisional; DRC 0/0.
+- item_id: E-053
+  reference_designators: J5,J6,J7
+  category: Connectors
+  description: JST-XH 2-pin PCB connector for 5 V outputs, 3 pcs
+  manufacturer: JST
+  manufacturer_part_number: B2B-XH-A
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: JST_XH_B2B-XH-A
+  mechanical_model: jst_xh_2_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: 'Three keyed 5 V outputs: J5 carrier, J6 relay, J7 PZEM conditional. Verify
+    3 A rating and keying.'
+  source_evidence: JST datasheet; exact batch to be verified.
+- item_id: E-054
+  reference_designators: W5V1,W5V2,W5V3
+  category: Connectors
+  description: JST-XH 2-pin cable for 5 V outputs, 3 pcs, 0.2 m
+  manufacturer: JST
+  manufacturer_part_number: B2B-XH-A cable
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: ''
+  footprint_id: OFF_BOARD_CABLE
+  mechanical_model: jst_xh_2_cable
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: Carrier, relay, PZEM. Color-code/label; do not swap outputs.
+  source_evidence: Estimated cable assembly.
+- item_id: E-055
+  reference_designators: TB2
+  category: Connectors
+  description: Mains output terminal block, 2-pin, 5.08 mm, 17.5 A / 250 V, screw
+    clamp
+  manufacturer: Phoenix Contact
+  manufacturer_part_number: MKDS 1,5/2-5,08
+  module_revision: '-'
+  qty_per_unit: 1
+  unit: pcs
+  price_idr_per_unit: ''
+  tax_shipment_included: 'FALSE'
+  total_idr: ''
+  price_checked_at: ''
+  seller: ''
+  seller_url: ''
+  datasheet_url: ''
+  datasheet_revision: UNKNOWN
+  approved_status: PROVISIONAL
+  alternative_mpn: MKDS 3/2-5,08 (320 V, needs new footprint); Degson DG308-5.08-2P
+  footprint_id: TERMINAL_5.08_2P
+  mechanical_model: terminal_5.08_2p_approx
+  supplier_stock_status: UNKNOWN
+  rating_verified: 'FALSE'
+  notes: PSU TB2 L/N output to relay/socket. 250 VAC < user's >=300 V target; upgrade
+    path MKDS 3/2-5,08. Verify torque, 1.5 mm2 wire/ferrule, and creepage. Full 8
+    A passes through this block.
+  source_evidence: 'Phoenix MKDS 1,5 series: 5.08 mm, 17.5 A, 250 V; order code 1715721.'
 - item_id: E-019
   reference_designators: C1
   category: Passives
@@ -1012,9 +1129,9 @@ items:
 - item_id: E-029
   reference_designators: TB1
   category: Connectors
-  description: Mains terminal block, 2-pin, 5.08 mm, 300 V / 10 A class
+  description: Mains input terminal block, 2-pin, 5.08 mm, 17.5 A / 250 V, screw clamp
   manufacturer: Phoenix Contact
-  manufacturer_part_number: MKDS 3/2-5.08
+  manufacturer_part_number: MKDS 1,5/2-5,08
   module_revision: '-'
   qty_per_unit: 1
   unit: pcs
@@ -1026,17 +1143,19 @@ items:
   seller_url: ''
   datasheet_url: ''
   datasheet_revision: UNKNOWN
-  approved_status: DOCUMENTATION_DEFICIENT
-  alternative_mpn: Degson DG308-5.08-2P; Wago 221-413 (lever nut)
+  approved_status: PROVISIONAL
+  alternative_mpn: MKDS 3/2-5,08 (320 V, needs new footprint); Degson DG308-5.08-2P
   footprint_id: TERMINAL_5.08_2P
   mechanical_model: terminal_5.08_2p_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Exact order code and rating must be verified. Terminal must not loosen; use
-    ferrules and strain relief. Mains terminal is not a low-voltage header.
-  source_evidence: Phoenix series page; exact MPN/rating unverified.
+  notes: PSU TB1 input L/N. 250 VAC rating meets 230 VAC nominal but is below the
+    user's >=300 V target; conservative upgrade is MKDS 3/2-5,08 with a new footprint.
+    17.5 A > 10 A fuse. Verify torque, 1.5 mm2 wire/ferrule, and creepage.
+  source_evidence: 'Phoenix MKDS 1,5 series: 5.08 mm, 17.5 A, 250 V; order code 1715721
+    (MKDS 1,5/2-5,08).'
 - item_id: E-030
-  reference_designators: TB2
+  reference_designators: TB_PE
   category: Connectors
   description: Protective earth terminal/stud, screw-clamp, tool-access
   manufacturer: TBD
@@ -1061,82 +1180,6 @@ items:
   notes: PE must be continuous, not switched or fused. Dedicated mechanical bond with
     lock washer and test point. Exact part is safety-critical and not approved.
   source_evidence: No approved part yet; engineer must select and verify.
-- item_id: E-031
-  reference_designators: TB3
-  category: Connectors
-  description: Isolated-side PZEM terminal, 5-pin, 5.08 mm
-  manufacturer: Phoenix Contact
-  manufacturer_part_number: MKDS 3/5-5.08
-  module_revision: '-'
-  qty_per_unit: 1
-  unit: pcs
-  price_idr_per_unit: ''
-  tax_shipment_included: 'FALSE'
-  total_idr: ''
-  price_checked_at: ''
-  seller: ''
-  seller_url: ''
-  datasheet_url: ''
-  datasheet_revision: UNKNOWN
-  approved_status: DOCUMENTATION_DEFICIENT
-  alternative_mpn: ''
-  footprint_id: TERMINAL_5.08_5P
-  mechanical_model: terminal_5.08_5p_approx
-  supplier_stock_status: UNKNOWN
-  rating_verified: 'FALSE'
-  notes: Keep on isolated side of barrier. Pinout must match actual PZEM V4 batch.
-    Do not assume colors.
-  source_evidence: Exact PZEM pinout unverified.
-- item_id: E-032
-  reference_designators: TB4
-  category: Connectors
-  description: Relay coil terminal, 2-pin, 5.08 mm (SELV)
-  manufacturer: Phoenix Contact
-  manufacturer_part_number: MKDS 3/2-5.08
-  module_revision: '-'
-  qty_per_unit: 1
-  unit: pcs
-  price_idr_per_unit: ''
-  tax_shipment_included: 'FALSE'
-  total_idr: ''
-  price_checked_at: ''
-  seller: ''
-  seller_url: ''
-  datasheet_url: ''
-  datasheet_revision: UNKNOWN
-  approved_status: PROVISIONAL
-  alternative_mpn: ''
-  footprint_id: TERMINAL_5.08_2P
-  mechanical_model: terminal_5.08_2p_approx
-  supplier_stock_status: UNKNOWN
-  rating_verified: 'FALSE'
-  notes: SELV coil only; keep away from mains terminals.
-  source_evidence: Series datasheet.
-- item_id: E-033
-  reference_designators: TB5
-  category: Connectors
-  description: 5 V input terminal, 2-pin, 5.08 mm (SELV)
-  manufacturer: Phoenix Contact
-  manufacturer_part_number: MKDS 3/2-5.08
-  module_revision: '-'
-  qty_per_unit: 1
-  unit: pcs
-  price_idr_per_unit: ''
-  tax_shipment_included: 'FALSE'
-  total_idr: ''
-  price_checked_at: ''
-  seller: ''
-  seller_url: ''
-  datasheet_url: ''
-  datasheet_revision: UNKNOWN
-  approved_status: PROVISIONAL
-  alternative_mpn: ''
-  footprint_id: TERMINAL_5.08_2P
-  mechanical_model: terminal_5.08_2p_approx
-  supplier_stock_status: UNKNOWN
-  rating_verified: 'FALSE'
-  notes: Keyed/color-coded to reduce miswiring.
-  source_evidence: Series datasheet.
 - item_id: E-034
   reference_designators: X1
   category: Connectors
@@ -1326,7 +1369,7 @@ items:
   category: PCB
   description: SELV carrier PCB, 2-layer FR4, 1.6 mm, 1 oz Cu, 100 x 70 mm, routed
   manufacturer: Generic
-  manufacturer_part_number: PCB-CARRIER-REV-B
+  manufacturer_part_number: PCB-CARRIER-REV-C
   module_revision: '-'
   qty_per_unit: 1
   unit: pcs
@@ -1340,15 +1383,16 @@ items:
   datasheet_revision: UNKNOWN
   approved_status: PROVISIONAL
   alternative_mpn: ''
-  footprint_id: PCB_CARRIER_REV_B
+  footprint_id: PCB_CARRIER_REV_C
   mechanical_model: pcb_carrier_100x70
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: REV_B routed carrier with two 1x22 DevKit sockets at 22.86 mm spacing, PZEM
-    5V/3.3V level shift, relay driver, I2C OLED/RTC, button, RGB, and 5V input. DRC
-    0 but engineering review/physical test still required. Mains modules remain off-board.
-  source_evidence: KiCad REV_B routed carrier; Gerber/drill exported; physical test
-    not performed.
+  notes: REV_C routed SELV carrier with two 1x22 DevKit sockets at 22.86 mm spacing,
+    PZEM 5V/3.3V level shift, relay driver, I2C OLED/RTC, button, RGB, and 5V input
+    from PSU J5. DRC 0 but engineering review/physical test still required. No mains
+    and no PTC/TVS (moved to PSU board).
+  source_evidence: KiCad REV_C_PSU_BOARD routed carrier; Gerber/drill exported; physical
+    test not performed.
 - item_id: E-042
   reference_designators: LAB1
   category: Labels

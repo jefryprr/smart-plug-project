@@ -1,4 +1,4 @@
-# Provisioning Security — REV_A_PROVISIONAL
+# Provisioning Security — REV_C_PSU_BOARD
 
 **Status:** `DESIGN` / firmware provisioning not implemented.
 

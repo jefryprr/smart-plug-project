@@ -16,7 +16,7 @@
 | Vitest | 5.1.0 | 34+11+38 tests PASS | `npm test` |
 | Python | 3.11.15 (project `.venv`) | Available | `python --version` |
 | CadQuery | 2.8.0 / OCP 7.9.3.1.1 | STEP/STL generated | `enclosure.py` |
-| WireViz | 0.4.1 | 4 harnesses rendered | `render_wiring.py` |
+| WireViz | 0.4.1 | 3 harnesses rendered | `render_wiring.py` |
 | Graphviz | 16.1.1 portable | `dot` works | `SYSTEM_ARCHITECTURE.*` |
 | kiutils | 1.4.8 | KiCad files parse | `kiutils` parse OK |
 | Zig | 0.17.1 portable | C host tests PASS | 74 checks |

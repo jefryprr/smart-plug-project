@@ -1,4 +1,4 @@
-# Mechanical CAD — REV_B (220 × 120 × 70)
+# Mechanical CAD — REV_C_PSU_BOARD (220 × 120 × 70)
 
 **Status:** `MECHANICAL_CONCEPT` / `UNVERIFIED_DIMENSIONS` / `NOT_FOR_MAINS_USE`
 **Tool:** CadQuery 2.8.0 + OCP, Python 3.11 (`.venv`)  

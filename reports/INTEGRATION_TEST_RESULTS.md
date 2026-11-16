@@ -1,4 +1,4 @@
-# Integration Test Results — REV_A_PROVISIONAL
+# Integration Test Results — REV_C_PSU_BOARD
 
 **Gate:** `PASS` for the tested digital path
 **Generated:** 2026-11-15
@@ -49,7 +49,7 @@ Test: `T-HW-003` — `scripts/validate_connectivity.py`.
 
 ## 5. Wiring/CAD/KiCad artifacts
 
-- 6 WireViz harnesses rendered to GV/SVG/PNG/PDF: **PASS**.
+- 3 WireViz harnesses rendered to GV/SVG/PNG/PDF: **PASS**.
 - CadQuery STEP/STL + assembly + renders: **PASS** (file generation, not physical fit).
 - Native KiCad files parse with `kiutils`: **PASS**; ERC/DRC/Gerber **BLOCKED**.
 

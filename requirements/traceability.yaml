@@ -1,5 +1,5 @@
 project: esp32-s3-iot-smart-plug
-design_revision: REV_A_PROVISIONAL
+design_revision: REV_C_PSU_BOARD
 prd_version: '1.0'
 generated_at: '2026-11-15T00:00:00Z'
 status_legend:
@@ -546,11 +546,13 @@ requirements:
   implementation_paths:
   - safety/PROTECTION_COORDINATION.md
   - bom/BOM_MASTER.csv
+  - hardware/kicad/psu_rev_c.kicad_pcb
   test_ids:
   - T-HW-013
+  - T-HW-020
   status: BLOCKED
   evidence:
-  - MOV candidate only; no surge test
+  - S10K275 MOV after F1 on the PSU board; no surge test
   blocked_by:
   - BLOCK-SURGE-STUDY
   risk_ids:
@@ -565,11 +567,14 @@ requirements:
   implementation_paths:
   - safety/THERMAL_RISK_AND_DERATING.md
   - bom/BOM_MASTER.csv
+  - hardware/kicad/psu_rev_c.kicad_pcb
   test_ids:
   - T-HW-019
+  - T-HW-021
   status: BLOCKED
   evidence:
-  - TCO candidate; no physical trip test
+  - 'SEFUSE SF96E: 99 C rated functioning, 84 C holding, 10 A/250 V; no physical trip
+    test'
   blocked_by:
   - BLOCK-THERMAL-LAB
   risk_ids:
@@ -584,11 +589,14 @@ requirements:
   implementation_paths:
   - safety/ELECTRICAL_RATING_CHAIN.md
   - safety/PROTECTION_COORDINATION.md
+  - hardware/kicad/psu_rev_c.kicad_pcb
   test_ids:
   - T-HW-013
+  - T-HW-020
   status: BLOCKED
   evidence:
-  - Fuse candidate; breaking capacity/coordination unverified
+  - Littelfuse 0215010.MXP 10 A/250 V, 1500 A interrupting, 111 clips; coordination/8
+    A thermal unverified
   blocked_by:
   - BLOCK-FUSE-RATING
   risk_ids:
@@ -1435,5 +1443,51 @@ requirements:
   - BLOCK-FIRMWARE-INTEGRATION
   risk_ids:
   - RR-08
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-081
+  source_id: 82
+  description: Separate mains-entry PSU board
+  priority: P0
+  phase: F1
+  implementation_paths:
+  - hardware/kicad/psu_rev_c.kicad_pcb
+  - hardware/psu/README.md
+  - docs/decisions/ADR-016-PZEM-ISOLATION-REV-C.md
+  test_ids:
+  - T-HW-020
+  - T-HW-021
+  status: PARTIAL
+  evidence:
+  - 'Routed 50 x 65 mm PSU board: TB1/TB2, F1, MOV, TCO, HLK-5M05, PTC/TVS, 3x JST;
+    DRC 0/0 and static crosscheck PASS; creepage/hipot/thermal unverified'
+  blocked_by:
+  - BLOCK-MAINS-REVIEW
+  risk_ids:
+  - RR-17
+  - RR-18
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-082
+  source_id: 83
+  description: Three keyed 5 V outputs
+  priority: P0
+  phase: F1
+  implementation_paths:
+  - hardware/kicad/psu_rev_c.kicad_pcb
+  - hardware/psu/README.md
+  - hardware/wiring/main_harness.yaml
+  test_ids:
+  - T-HW-020
+  - T-HW-021
+  status: PARTIAL
+  evidence:
+  - J5 carrier, J6 relay, J7 PZEM (conditional); 1.1 A PTC + SMBJ5.0A on the total
+    output; load budget unmeasured
+  blocked_by:
+  - BLOCK-5V-LOAD
+  risk_ids:
+  - RR-19
+  - RR-20
   last_verified_at: '2026-11-15T00:00:00Z'
   reviewer: null
