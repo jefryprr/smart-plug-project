@@ -2,8 +2,8 @@
   "project": "esp32-s3-iot-smart-plug",
   "prd_version": "1.0",
   "design_revision": "REV_C_PSU_BOARD",
-  "generated_at": "2026-11-16T07:45:08.722Z",
-  "git_commit": "7569a8eacb8e9404a2e5f1b126241cccae2d4d10",
+  "generated_at": "2026-11-17T02:18:44.938Z",
+  "git_commit": "2730ca5c4c270fe46f43e4e76a46b05326799e9d",
   "manifest_note": "git_commit is the source commit at generation time; this manifest file is committed immediately after.",
   "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",
   "hardware_validation_status": "HARDWARE_VALIDATION_REQUIRED",
@@ -688,8 +688,8 @@
     {
       "category": 5,
       "path": "hardware/psu/psu_schematic.svg",
-      "sha256": "c6fa42e928311a81bf095bb57d0a1b4140729f23475d5529bf9fd924e442757e",
-      "size_bytes": 77096,
+      "sha256": "f3232016e05cbf2f62f91ba5334ea5540cf8bac142d55be931bf3ff29f34359b",
+      "size_bytes": 145855,
       "status": "PARTIAL",
       "tests": [
         "T-HW-002",
@@ -703,8 +703,8 @@
     {
       "category": 5,
       "path": "hardware/psu/psu_schematic.png",
-      "sha256": "73af8ecee1b5cea297e77754076fa1fd794d0742fab3690a941f139a82ae9ed6",
-      "size_bytes": 95677,
+      "sha256": "3d1591a506002db0c011d6c369f66414009ffe63c04250ccac26fe66d729cf40",
+      "size_bytes": 287525,
       "status": "PARTIAL",
       "tests": [
         "T-HW-002",
@@ -1089,8 +1089,8 @@
     {
       "category": 8,
       "path": "hardware/psu/generate_psu_schematic.py",
-      "sha256": "4e1c3f6b48cb1230be2879952b186ed00e30b60db21a40b0c295faac448fbd20",
-      "size_bytes": 3247,
+      "sha256": "d59634831b7852c0e64cbac7af42ef22c8a9c7c8255b769c10f8694bc6c003ec",
+      "size_bytes": 9395,
       "status": "PARTIAL",
       "tests": [
         "T-HW-006",
