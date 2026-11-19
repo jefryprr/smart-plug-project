@@ -2,8 +2,8 @@
   "project": "esp32-s3-iot-smart-plug",
   "prd_version": "1.0",
   "design_revision": "REV_D_CORE_ONLY",
-  "generated_at": "2026-11-19T05:06:27.825Z",
-  "git_commit": "dba90bd09cd757b688e3bd27d3f8645b5f76f02f",
+  "generated_at": "2026-11-19T05:07:20.219Z",
+  "git_commit": "f0acc46175a7ede60e9d7a51197f85cb9daf2bdc",
   "manifest_note": "git_commit is the source commit at generation time; this manifest file is committed immediately after.",
   "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",
   "hardware_validation_status": "HARDWARE_VALIDATION_REQUIRED",
@@ -2820,8 +2820,8 @@
     {
       "category": 19,
       "path": "infrastructure/broker/aclfile.template",
-      "sha256": "40b1b4af45ff563168e5dbb11074b46b893b7387fe9f9d773887c4cf68fa9cba",
-      "size_bytes": 1057,
+      "sha256": "a57739a72634b46bed351e6b98088a915f207c1442569f3800d54a9454af44d9",
+      "size_bytes": 1031,
       "status": "PASS_DIGITAL",
       "tests": [
         "T-SW-004A",
@@ -3921,8 +3921,8 @@
     {
       "category": 26,
       "path": "deliverables/FINAL_ENGINEERING_REPORT.md",
-      "sha256": "6a64ce92110935800f0f67fc6011bf127ab05b732066561dbe354dae2aaa89af",
-      "size_bytes": 29297,
+      "sha256": "e9900139cdcd31f26b629c7ec73cda3d8e3dfbd2717f56a13066258270b1475a",
+      "size_bytes": 29317,
       "status": "PARTIAL",
       "tests": [
         "DOCUMENT_REVIEW"
