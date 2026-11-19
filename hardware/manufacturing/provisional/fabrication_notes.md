@@ -1,4 +1,4 @@
-# Fabrication Notes — Routed Provisional Carrier + PSU Board (REV_C)
+# Fabrication Notes — Routed Provisional Carrier + PSU Board (REV_D_CORE_ONLY)
 
 **Status:** `ROUTED_PROTOTYPE / ENGINEERING_REVIEW_REQUIRED / NOT_FOR_FABRICATION`  
 **Carrier:** SELV only, 100 × 70 mm; no mains.  
@@ -8,8 +8,8 @@
 ## What exists
 
 - `hardware/kicad/smartplug.kicad_pcb` — routed 100 × 70 mm **SELV carrier**, 25 footprints (22 assembled + 3 fiducials), 18 nets, 3 fiducials. No PTC/TVS on the carrier.
-- `hardware/kicad/psu_rev_c.kicad_pcb` — routed 50 × 65 mm **PSU board**, 19 footprints (13 assembled + 3 mounting holes + 3 fiducials), 8 nets, TB1/TB2, F1, MOV1, TF1, HLK-5M05, F2/D1, 3× JST.
-- `hardware/kicad/smartplug.kicad_sch` + 10 child sheets — system block schematic, including `PSU_MAINS_5V`.
+- `hardware/kicad/psu_rev_d.kicad_pcb` — routed 50 × 65 mm **PSU board**, 19 footprints (13 assembled + 3 mounting holes + 3 fiducials), 8 nets, TB1/TB2, F1, MOV1, TF1, HLK-5M05, F2/D1, 3× JST.
+- `hardware/kicad/smartplug.kicad_sch` + 9 child sheets — system block schematic, including `PSU_MAINS_5V`.
 - `hardware/schematic/carrier_schematic.svg/.png` — carrier functional block schematic.
 - `hardware/psu/psu_schematic.svg/.png` — PSU functional schematic.
 - `hardware/carrier/netlist.csv`, `hardware/psu/netlist.csv` — pin/net tables.

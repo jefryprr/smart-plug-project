@@ -18,6 +18,7 @@ export const TopicKindSchema = z.enum([
   "command",
   "ack",
   "diag",
+  "time",
   "config/desired",
   "config/reported"
 ]);
@@ -35,7 +36,7 @@ const DEVICE_PUBLISH_KINDS: ReadonlySet<TopicKind> = new Set([
   "config/reported"
 ]);
 
-const DEVICE_SUBSCRIBE_KINDS: ReadonlySet<TopicKind> = new Set(["command", "config/desired"]);
+const DEVICE_SUBSCRIBE_KINDS: ReadonlySet<TopicKind> = new Set(["command", "time", "config/desired"]);
 
 export function topicFor(deviceId: string, kind: TopicKind): string {
   const parsed = DeviceIdSchema.parse(deviceId);
@@ -51,6 +52,7 @@ export function topicsFor(deviceId: string): Record<TopicKind, string> {
     command: topicFor(deviceId, "command"),
     ack: topicFor(deviceId, "ack"),
     diag: topicFor(deviceId, "diag"),
+    time: topicFor(deviceId, "time"),
     "config/desired": topicFor(deviceId, "config/desired"),
     "config/reported": topicFor(deviceId, "config/reported")
   };
@@ -62,7 +64,7 @@ export interface ParsedTopic {
 }
 
 export function parseTopic(topic: string): ParsedTopic | null {
-  const match = /^smartplug\/v1\/([A-Za-z0-9_-]{1,64})\/(telemetry|state|event|availability|command|ack|diag|config\/desired|config\/reported)$/.exec(
+  const match = /^smartplug\/v1\/([A-Za-z0-9_-]{1,64})\/(telemetry|state|event|availability|command|ack|diag|time|config\/desired|config\/reported)$/.exec(
     topic
   );
   if (!match || match[1] === undefined || match[2] === undefined) {
@@ -87,7 +89,7 @@ export function canDeviceSubscribe(deviceId: string, topic: string): boolean {
 
 export function mustNotRetain(kind: TopicKind): boolean {
   // A retained ON command can be replayed to a device after reconnect.
-  return kind === "command" || kind === "config/desired";
+  return kind === "command" || kind === "time" || kind === "config/desired";
 }
 
 export function qosFor(kind: TopicKind): 0 | 1 {
@@ -100,6 +102,7 @@ export function qosFor(kind: TopicKind): 0 | 1 {
     case "availability":
     case "ack":
     case "command":
+    case "time":
     case "config/desired":
     case "config/reported":
       return 1;
@@ -129,7 +132,12 @@ export const MqttDeviceStateSchema = z
     state_version: z.number().int().nonnegative(),
     clock_valid: z.boolean(),
     meter_valid: z.boolean(),
-    temperature_valid: z.boolean()
+    temperature_valid: z.boolean(),
+    time_valid: z.boolean().optional(),
+    time_source: z.enum(["sntp", "api", "mqtt", "manual", "none"]).optional(),
+    last_sync: z.string().datetime().nullable().optional(),
+    last_known_time: z.string().datetime().nullable().optional(),
+    time_age_s: z.number().int().nonnegative().nullable().optional()
   })
   .strict();
 export type MqttDeviceState = z.infer<typeof MqttDeviceStateSchema>;
@@ -180,6 +188,17 @@ export const CommandMessageSchema = z
     path: ["expires_at"]
   });
 export type CommandMessage = z.infer<typeof CommandMessageSchema>;
+
+export const TimeMessageSchema = z
+  .object({
+    schema_version: z.literal(MQTT_SCHEMA_VERSION),
+    device_id: DeviceIdSchema,
+    utc: z.string().datetime(),
+    source: z.enum(["mqtt", "manual", "api"]),
+    request_id: z.string().min(1).max(96)
+  })
+  .strict();
+export type TimeMessage = z.infer<typeof TimeMessageSchema>;
 
 export const AckMessageSchema = z
   .object({

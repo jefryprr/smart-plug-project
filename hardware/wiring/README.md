@@ -1,9 +1,9 @@
-# Wiring Harnesses — REV_C_PSU_BOARD
+# Wiring Harnesses — REV_D_CORE_ONLY
 
 **Status:** `LOGICAL/RENDERED` / `PHYSICAL_NOT_TESTED`
 
 WireViz diagrams in this folder are **cable/interface diagrams**, not a
-substitute for the PCB netlist (`hardware/carrier/netlist.csv`). All carrier connectors are keyed JST-XH except the DevKit sockets. The PSU board uses 5.08 mm screw terminals (TB1/TB2) and keyed JST-XH outputs (J5/J6/J7).
+substitute for the PCB netlist (`hardware/carrier/netlist.csv`). CORE-only carrier connectors are keyed JST-XH except the DevKit sockets. OLED/RTC/external RGB are not part of this build. The PSU board uses 5.08 mm screw terminals (TB1/TB2) and keyed JST-XH outputs (J5/J6/J7).
 
 ## Connector map
 
@@ -13,11 +13,8 @@ substitute for the PCB netlist (`hardware/carrier/netlist.csv`). All carrier con
 | `J1B` | 1×22 socket | ESP32-S3-DevKitC-1 **J3** (GND, GPIO, USB pins) |
 | `J2` | JST-XH 4 | PZEM-004T V4 TTL: 5V, RX, TX, GND |
 | `J3` | JST-XH 4 | Relay module: 5V, GND, IN1, IN2 |
-| `J4` | JST-XH 4 | OLED: 3V3, GND, SDA, SCL |
-| `J5` | JST-XH 6 | DS3231 RTC: 3V3, GND, SDA, SCL, INT, 32K/NC |
 | `J6` | JST-XH 2 | Button: BUTTON, GND |
-| `J7` | JST-XH 3 | RGB: 5V, GND, DATA |
-| `J8` | JST-XH 2 | 5 V input from the REV_C PSU board J5 |
+| `J8` | JST-XH 2 | 5 V input from the REV_D_CORE_ONLY PSU board J5 |
 
 ## DevKit orientation (critical)
 

@@ -29,8 +29,8 @@
   "gpio_crosscheck": {
     "status": "PASS",
     "issues": [],
-    "board_revision_verified": false,
-    "checked_defines": 10,
+    "board_revision_verified": true,
+    "checked_defines": 6,
     "limitations": [
       "Board revision is unverified; static compare only."
     ]
@@ -38,7 +38,7 @@
   "bom_crosscheck": {
     "status": "PASS",
     "master_rows": 57,
-    "pcba_rows": 22,
+    "pcba_rows": 16,
     "missing_refs_in_master": [],
     "unpriced_lines": 57,
     "unapproved_lines": 57,

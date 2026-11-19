@@ -1,7 +1,7 @@
 # Mulai di Sini — Panduan untuk Semua Orang
 
 **Proyek:** SMART PLUG PROJECT  
-**Revisi desain:** `REV_C_PSU_BOARD`  
+**Revisi desain:** `REV_D_CORE_ONLY`  
 **Status:** prototipe digital, `ENGINEERING_REVIEW_REQUIRED`, `NOT_FOR_FABRICATION`
 
 Dokumen ini dibuat untuk orang yang **bukan engineer** tetapi ingin memahami proyek ini tanpa tersesat di ratusan file.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Draw the REV_C_PSU_BOARD carrier/mains functional schematic with schemdraw."""
+"""Draw the REV_D_CORE_ONLY carrier/mains functional schematic with schemdraw."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -36,10 +36,8 @@ def main():
     box(d, 4.2, 2.5, 3.6, 2.0, "ESP32-S3 CARRIER", "DevKitC-1 two 1x22 sockets, 22.86 mm rows\n5 V from PSU J5, 3 fiducials, SELV only", "#e8f4ff")
     box(d, 9.0, 5.0, 3.0, 1.4, "RELAY MODULE", "2x SPDT, active-LOW\nNOT mechanically linked", "#ffe8e8")
     box(d, 9.0, 3.0, 3.0, 1.2, "SOCKET", "Type F 16 A, PE continuous", "#ffe8e8")
-    box(d, 4.2, 0.2, 1.7, 1.2, "OLED", "SSD1306", "#e8ffe8")
-    box(d, 6.1, 0.2, 1.7, 1.2, "RTC", "DS3231", "#e8ffe8")
-    box(d, 8.0, 0.2, 1.6, 1.2, "BUTTON", "GPIO5", "#e8ffe8")
-    box(d, 9.8, 0.2, 1.4, 1.2, "RGB", "WS2812", "#e8ffe8")
+    box(d, 7.2, 0.2, 1.8, 1.2, "BUTTON", "GPIO5 / manual", "#e8ffe8")
+    box(d, 9.2, 0.2, 2.2, 1.2, "TIME SERVICE", "SNTP/NVS/API/MQTT\nmanual; no RTC", "#e8ffe8")
     box(d, 11.4, 3.0, 1.2, 1.2, "Q1", "AO3400", "#f0e8ff")
     box(d, 11.4, 1.2, 1.2, 1.2, "U9", "74HCT125", "#f0e8ff")
 
@@ -54,19 +52,14 @@ def main():
     arrow(d, (11.4, 3.6), (10.5, 3.6), "IN1/2")
 
     # SELV buses
-    arrow(d, (7.8, 3.1), (8.0, 0.8), "I2C")
-    arrow(d, (7.8, 2.9), (8.7, 1.4), "I2C")
     arrow(d, (7.8, 2.7), (8.8, 1.0), "GPIO5")
-    arrow(d, (7.8, 2.5), (9.8, 0.8), "GPIO10")
     arrow(d, (10.6, 0.8), (11.4, 1.2), "3.3 V")
-    arrow(d, (11.4, 1.8), (10.5, 0.8), "5 V data")
-    arrow(d, (11.4, 1.5), (11.4, 1.2), "level shift")
 
     # PZEM UART detail
     d.add(elm.Label("PZEM TX 5 V -> 10k/20k divider -> GPIO18", fontsize=7).at((5.8, 1.55)))
     d.add(elm.Label("GPIO17 -> 74HCT125 (5 V) -> PZEM RX", fontsize=7).at((5.8, 1.25)))
     d.add(elm.Label("No external ADuM/B0505S: PZEM internal optocouplers are the barrier", fontsize=7).at((5.8, 1.95)))
-    d.add(elm.Label("5 V input from REV_C PSU J5 (PTC/TVS on PSU board)", fontsize=7).at((5.8, 2.25)))
+    d.add(elm.Label("5 V input from REV_D_CORE_ONLY PSU J5 (PTC/TVS on PSU board)", fontsize=7).at((5.8, 2.25)))
 
     # Isolation boundary note
     d.add(elm.Label("Isolation barrier: PZEM / HLK internal; verify creepage + hipot", fontsize=7).at((6.0, 6.7)))
@@ -74,7 +67,7 @@ def main():
     d.add(elm.Label("SELV", fontsize=8).at((4.0, 6.25)))
     d.add(elm.Label("MAINS", fontsize=8).at((2.7, 6.25)))
 
-    d.add(elm.Label("REV_C_PSU_BOARD — no TMP102, no external UART isolation — NOT FOR FABRICATION / NOT FOR USE", fontsize=8).at((6.0, -0.4)))
+    d.add(elm.Label("REV_D_CORE_ONLY — no TMP102, no external UART isolation — NOT FOR FABRICATION / NOT FOR USE", fontsize=8).at((6.0, -0.4)))
 
     d.save(str(OUT / "carrier_schematic.svg"))
     d.save(str(OUT / "carrier_schematic.png"), dpi=200)

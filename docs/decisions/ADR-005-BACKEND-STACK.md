@@ -15,7 +15,7 @@ The system needs auth, tenant isolation, device commands with idempotency/ACK, t
 - Docker Compose + Caddy for deployment templates (not executed).
 
 ## Consequences
-- API tests run without Docker/Postgres (38 tests).
+- API tests run without Docker/Postgres (43 tests).
 - The SQLite/Postgres divergence is a real gap; no production DB claim.
 - Fastify routes use prepared SQL and Zod validation.
 - Energy math lives in `packages/domain` and is shared with the device simulator.

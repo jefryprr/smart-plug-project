@@ -1,4 +1,4 @@
-# Thermal Calculation — REV_C_PSU_BOARD (First-Order, Not a Test)
+# Thermal Calculation — REV_D_CORE_ONLY (First-Order, Not a Test)
 
 **Status:** `ENGINEERING_ESTIMATE` / `THERMAL_TEST_REQUIRED`  
 **Date:** 2026-11-16  
@@ -56,7 +56,7 @@ Hotspots at the relay contacts, fuse clips, and terminals will be higher than th
 4. Pass only if all touchable surfaces and component ratings are respected and the TCO is not approached in normal operation.
 5. If any hotspot is excessive, derate, add a spreader/vent, or change enclosure material. Do not remove the TCO/fuse.
 
-## 5A. REV_C PSU board
+## 5A. REV_D_CORE_ONLY PSU board
 
 - The PSU board carries the full 8 A L/N path through TB1, F1, TCO, TB2, and 4 mm traces (2 oz target).
 - HLK-5M05 adds ~2.1 W at 5 W output; fuse holder, terminals, and TCO add contact/joint losses.

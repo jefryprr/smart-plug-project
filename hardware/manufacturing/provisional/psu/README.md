@@ -1,8 +1,8 @@
-# REV_C PSU Board — Provisional Manufacturing Package
+# REV_D_CORE_ONLY PSU Board — Provisional Manufacturing Package
 
 **Status:** `ROUTED_PROTOTYPE / ENGINEERING_REVIEW_REQUIRED / NOT_FOR_FABRICATION`  
 **Board:** 50 × 65 mm, 2-layer FR4 1.6 mm, 2 oz Cu target, 8 A load path.  
-**Files:** `Gerber/psu_rev_c-*`, `Drill/psu_rev_c.drl`, `POSITION.csv`.
+**Files:** `Gerber/psu_rev_d-*`, `Drill/psu_rev_d.drl`, `POSITION.csv`.
 
 ## What exists
 

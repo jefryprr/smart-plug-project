@@ -3,6 +3,7 @@ import { randomUUID } from "node:crypto";
 import {
   AckMessageSchema,
   CommandMessageSchema,
+  TimeMessageSchema,
   decodeJson,
   topicFor,
   type AckMessage,
@@ -16,6 +17,7 @@ export interface SimulatorOptions {
   brokerUrl: string;
   telemetryIntervalMs?: number;
   startState?: "ON" | "OFF";
+  startTimeValid?: boolean;
   logger?: (message: string, detail?: Record<string, unknown>) => void;
 }
 
@@ -27,6 +29,11 @@ interface SimulatorState {
   clockValid: boolean;
   meterValid: boolean;
   temperatureValid: boolean;
+  timeValid: boolean;
+  timeSource: "sntp" | "api" | "mqtt" | "manual" | "none";
+  lastSync: string | null;
+  lastKnownTime: string | null;
+  timeAgeS: number | null;
   stateVersion: number;
   lastCommandId: string | null;
   lastCommandSequence: number;
@@ -49,6 +56,11 @@ export class SimulatedDevice {
       clockValid: true,
       meterValid: true,
       temperatureValid: true,
+      timeValid: options.startTimeValid ?? true,
+      timeSource: (options.startTimeValid ?? true) ? "sntp" : "none",
+      lastSync: (options.startTimeValid ?? true) ? new Date().toISOString() : null,
+      lastKnownTime: (options.startTimeValid ?? true) ? new Date().toISOString() : null,
+      timeAgeS: (options.startTimeValid ?? true) ? 0 : null,
       stateVersion: 1,
       lastCommandId: null,
       lastCommandSequence: 0
@@ -82,6 +94,9 @@ export class SimulatedDevice {
       if (topic === topicFor(this.options.deviceId, "command")) {
         void this.handleCommandPayload(payload);
       }
+      if (topic === topicFor(this.options.deviceId, "time")) {
+        void this.handleTimePayload(payload);
+      }
     });
 
     await new Promise<void>((resolve, reject) => {
@@ -98,6 +113,13 @@ export class SimulatedDevice {
 
     await new Promise<void>((resolve, reject) => {
       client.subscribe(topicFor(this.options.deviceId, "command"), { qos: 1 }, (error) => {
+        if (error) reject(error);
+        else resolve();
+      });
+    });
+
+    await new Promise<void>((resolve, reject) => {
+      client.subscribe(topicFor(this.options.deviceId, "time"), { qos: 1 }, (error) => {
         if (error) reject(error);
         else resolve();
       });
@@ -162,13 +184,58 @@ export class SimulatedDevice {
       observedOutput: this.state.observedOutput,
       lockout: this.state.lockout,
       faultCode: this.state.faultCode,
-      clockValid: this.state.clockValid,
+      clockValid: this.state.timeValid,
+      time: {
+        valid: this.state.timeValid,
+        source: this.state.timeSource,
+        lastSync: this.state.lastSync,
+        lastKnown: this.state.lastKnownTime,
+        ageSeconds: this.state.timeAgeS
+      },
       meterValid: this.state.meterValid,
       temperatureValid: this.state.temperatureValid,
       lastCommandSequence: this.state.lastCommandSequence,
       lastCommandId: this.state.lastCommandId,
       stateVersion: this.state.stateVersion
     };
+  }
+
+  async handleTimePayload(payload: Buffer): Promise<void> {
+    const decoded = decodeJson(TimeMessageSchema, payload);
+    if (!decoded.ok || decoded.value.device_id !== this.options.deviceId) {
+      this.log("invalid_time_payload", { error: decoded.ok ? "device_mismatch" : decoded.error });
+      return;
+    }
+    this.setTime(decoded.value.source, decoded.value.utc);
+  }
+
+  setTime(source: "sntp" | "api" | "mqtt" | "manual", utc: string): void {
+    const parsed = Date.parse(utc);
+    if (!Number.isFinite(parsed) || parsed <= Date.parse("2020-01-01T00:00:00.000Z")) {
+      this.log("time_rejected", { source, utc });
+      return;
+    }
+    this.state.timeValid = true;
+    this.state.timeSource = source;
+    this.state.lastSync = new Date().toISOString();
+    this.state.lastKnownTime = new Date(parsed).toISOString();
+    this.state.timeAgeS = 0;
+    this.state.stateVersion += 1;
+    void this.publishState();
+    this.log("time_synced", { source, utc: this.state.lastKnownTime });
+  }
+
+  invalidateTime(): void {
+    this.state.timeValid = false;
+    this.state.timeSource = "none";
+    this.state.lastSync = null;
+    this.state.timeAgeS = null;
+    this.state.stateVersion += 1;
+    if (this.state.commandedOutput === "ON") {
+      this.state.commandedOutput = "OFF";
+    }
+    void this.publishState();
+    void this.publishEvent("TIME_INVALID_SCHEDULE_BLOCKED", "WARNING", "Waktu invalid; output schedule dipaksa OFF", {});
   }
 
   async handleCommandPayload(payload: Buffer): Promise<void> {

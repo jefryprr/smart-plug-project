@@ -1,4 +1,4 @@
-# Mechanical Cost Estimate — REV_C_PSU_BOARD
+# Mechanical Cost Estimate — REV_D_CORE_ONLY
 
 **Status:** `ESTIMATED` / not a supplier quote  
 **Date:** 2026-11-16  

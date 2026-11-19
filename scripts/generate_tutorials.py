@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "docs" / "tutorials"
 OUT.mkdir(parents=True, exist_ok=True)
 
-COMMON = """**Status proyek:** `REV_C_PSU_BOARD` — digital artifacts only; no hardware validation.
+COMMON = """**Status proyek:** `REV_D_CORE_ONLY` — digital artifacts only; no hardware validation.
 **Prinsip:** jangan pernah menganggap perintah/alat berhasil hanya karena file ada. Simpan log dan exit code.
 """
 
@@ -34,7 +34,7 @@ TUTORIALS = {
 ## Status saat ini
 
 - Firmware core: 74 host checks PASS.
-- API: 38 tests PASS.
+- API: 43 tests PASS; simulator 6 tests.
 - Web: build + 5 Playwright tests PASS, axe no serious/critical on login/dashboard.
 - KiCad 10.0.8: ERC 0 on block schematic; routed 100x70 SELV carrier DRC 0/0; routed Gerber/drill/POS exported.
 - ESP-IDF v6.1 target build: PASS (no flash).
@@ -263,7 +263,7 @@ Jangan membeli berdasarkan BOM ini.
 ## Schematic
 
 - Root: `hardware/kicad/smartplug.kicad_sch` (9 blok).
-- Child: `AC_INPUT_OUTPUT`, `SAFETY_AND_SWITCH`, `AC_DC_POWER`, `PZEM_AND_CT`, `LOW_VOLTAGE_CONTROL`, `ESP32S3_CARRIER`, `DISPLAY_AND_BUTTONS`, `RTC_ONLY`, `SERVICE_AND_DEBUG`.
+- Child: `AC_INPUT_OUTPUT`, `SAFETY_AND_SWITCH`, `AC_DC_POWER`, `PZEM_AND_CT`, `LOW_VOLTAGE_CONTROL`, `ESP32S3_CARRIER`, `TIME_SERVICE`, `SERVICE_AND_DEBUG`, `PSU_MAINS_5V`. CORE-only has no OLED/RTC/external RGB.
 - Ini **system block schematic**, bukan komponen penuh.
 
 ## GPIO
@@ -311,7 +311,7 @@ Jangan membeli berdasarkan BOM ini.
 1. Inspeksi komponen dan ukur dimensi.
 2. Pasang heat-set insert.
 3. Pasang carrier/standoff.
-4. Pasang OLED/button/RGB (SELV).
+4. Pasang button dan onboard RGB DevKitC-1 v1.0; OLED/RTC/RGB eksternal tidak dipasang (deferred).
 5. Pasang PSU/relay/fuse/PZEM di zona mains (belum disambung).
 6. Pasang socket/PE stud/gland.
 7. Routing kabel, strain relief, ferrule.
@@ -678,7 +678,7 @@ powershell -ExecutionPolicy Bypass -File firmware\\test\\host\\run_tests.ps1
 
 - Domain 34 tests PASS.
 - MQTT 11 tests PASS.
-- API 38 tests PASS (incl. simulator integration).
+- API 43 tests PASS (incl. simulator integration).
 - Firmware core 74 checks PASS.
 - Web 5 Playwright tests PASS; axe login/dashboard PASS.
 - Static connectivity PASS.
@@ -754,6 +754,6 @@ index = ["# Tutorials — Index", "", "Dokumentasi untuk engineer pemula. Baca `
 for filename in sorted(TUTORIALS):
     title = TUTORIALS[filename].splitlines()[0].replace("# ", "")
     index.append(f"- [{title}]({filename})")
-index += ["", "**Status:** `REV_C_PSU_BOARD`. Tidak ada tutorial yang mengizinkan energisasi mains oleh pemula."]
+index += ["", "**Status:** `REV_D_CORE_ONLY`. Tidak ada tutorial yang mengizinkan energisasi mains oleh pemula."]
 (OUT / "README.md").write_text("\n".join(index) + "\n", encoding="utf-8")
 print(f"Wrote {len(TUTORIALS)} tutorials + index")

@@ -1,6 +1,6 @@
-# REV_C PSU Board — Research Evidence
+# REV_D_CORE_ONLY PSU Board — Research Evidence
 
-**Design revision:** `REV_C_PSU_BOARD`  
+**Design revision:** `REV_D_CORE_ONLY`  
 **Compiled:** 2026-11-16  
 **Scope:** separate 50 × 65 mm mains-entry PSU board (HLK-5M05, TB1/TB2, F1, MOV, TCO, 3× JST 5 V).  
 **Status of this document:** design input, not a safety approval. Every `UNVERIFIED` item still needs a competent engineer and physical test.
@@ -27,8 +27,8 @@ Source hierarchy used: manufacturer datasheet → official test/certificate → 
 | E-14 | Creepage / clearance guidance | Public TI example, 250 V-class, OVC II, PD2, material group III: **basic creepage 4.0 mm; reinforced 8.0 mm**; reinforced clearance 3.8 mm at ≤2000 m, 5.7 mm at 5000 m (×1.48) | TI SLUP421 "Demystifying clearance and creepage distance" | https://www.ti.com/lit/pdf/SLUP421 | 2026-11-16 | — | GUIDANCE_ONLY | The paywalled IEC 60664-1 tables were not reproduced. Board uses provisional 6–12 mm spacing and a 2 mm slot; this is **not** a compliance calculation. OVC, PD, CTI/material group, altitude, and coating are still open. |
 | E-15 | PZEM UART isolation | PZEM-004T V4 uses internal optocouplers between mains/measurement and TTL; TTL side is SELV when intact | Tasmota PZEM docs; Components101 block diagram; reverse-engineered schematic | https://tasmota.github.io/docs/PZEM-0XX/ ; https://components101.com/modules/pzem-004t-energy-meter-module-pinout-datasheet ; https://github.com/TheHWcave/Peacefair-PZEM-004T- | 2026-11-16 | UNKNOWN | MEDIUM | Single barrier. Batch inspection + mains-to-TTL hipot/leakage required. OUT3 is `PROVISIONAL`; ADR-016. |
 | E-16 | 5 V load budget | Carrier + relay + PZEM estimated peak ≈0.58 A; HLK 1 A; total design limit 1 A | Internal estimate | `docs/hardware/SYSTEM_ARCHITECTURE.md` | 2026-11-16 | — | UNVERIFIED | Not measured. Do not add loads without a new budget and thermal check. |
-| E-17 | Enclosure fit | 220 × 120 × 70 mm confirmed by user; PSU board 50 × 65 mm placed at x=56..106, y=−55..10, z=8..38; socket y=34.9; gland y=10; PE stud (60,50); relay shelf above PSU | `hardware/mechanical/parameters.yaml`, `hardware/mechanical/FIT_ANALYSIS.md` | local | 2026-11-16 | REV_C | DIGITAL_FIT_PASS | AABB fit only. No tolerance stack, cable bend, thermal expansion, or impact test. |
-| E-18 | PE path | Dedicated chassis stud (60,50); plug PE → stud → socket PE; no PE net on the PSU board; never switched or fused | IEC Class I practice; project safety plan | `safety/ISOLATION_PLAN.md` | 2026-11-16 | REV_C | DESIGN_RULE | Continuity, stud torque, and fault-current test `UNVERIFIED`. |
+| E-17 | Enclosure fit | 220 × 120 × 70 mm confirmed by user; PSU board 50 × 65 mm placed at x=56..106, y=−55..10, z=8..38; socket y=34.9; gland y=10; PE stud (60,50); relay shelf above PSU | `hardware/mechanical/parameters.yaml`, `hardware/mechanical/FIT_ANALYSIS.md` | local | 2026-11-16 | REV_D_CORE_ONLY | DIGITAL_FIT_PASS | AABB fit only. No tolerance stack, cable bend, thermal expansion, or impact test. |
+| E-18 | PE path | Dedicated chassis stud (60,50); plug PE → stud → socket PE; no PE net on the PSU board; never switched or fused | IEC Class I practice; project safety plan | `safety/ISOLATION_PLAN.md` | 2026-11-16 | REV_D_CORE_ONLY | DESIGN_RULE | Continuity, stud torque, and fault-current test `UNVERIFIED`. |
 | E-19 | TCO thermal constraint | SF96E holding temperature 84 °C; 8 A terminal/fuse/TCO/HLK hotspots must stay below 84 °C with margin | E-08 + thermal calculation | `safety/THERMAL_CALCULATION.md` | 2026-11-16 | — | UNVERIFIED | If the 8 A test exceeds 84 °C at the TCO, relocate/derate before release. |
 | E-20 | Fuse continuous derating | 10 A fuse at 8 A = 80 % of rating; common time-lag continuous-duty guidance is ~75 % | Engineering note, not a datasheet guarantee (E-05 gives the ratings, not a derating rule) | — | 2026-11-16 | — | PROVISIONAL | The design keeps 10 A per user instruction, but flags that a 12 A may be required by the thermal test. Do not silently upsize. |
 
@@ -67,7 +67,7 @@ The board uses 4 mm L/N traces and a 2 oz target. That is above the formula mini
 | TCO `SF169E` labelled 99 °C | **Wrong.** SF169E is 172 °C. Replaced with **SF96E** (99 °C RFT, 84 °C holding). | E-08 |
 | BOM closed holder 0031.8201 vs routed 111 clips | BOM changed to **Littelfuse 01110506Z clips (2 pcs)** matching the PCB. Closed holder listed as an alternate requiring a footprint change. | E-06 |
 | BOM MKDS 3/2-5.08 vs routed MKDS-1,5 footprint | BOM changed to **MKDS 1,5/2-5,08** (17.5 A / 250 V). The ≥300 V target is **not met**; MKDS 3 upgrade documented. | E-04 |
-| PZEM REV_A external ADuM/B0505S vs REV_B internal optocouplers | REV_C uses **internal optocouplers only**; OUT3 conditional. | `ADR-016` |
+| PZEM REV_A external ADuM/B0505S vs REV_B internal optocouplers | REV_D_CORE_ONLY uses **internal optocouplers only**; OUT3 conditional. | `ADR-016` |
 | HLK "UL/CE" claim vs no certificate | Treated as a **claim**; `PENDING_APPROVAL`; batch/hipot required. | E-03 |
 
 ## 5. Open items that are not answered by research

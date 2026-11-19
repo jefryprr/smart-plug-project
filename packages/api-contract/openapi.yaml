@@ -177,6 +177,45 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+  /api/v1/time:
+    get:
+      summary: Server time for client fallback
+      security: [{ bearerAuth: [] }]
+      responses:
+        "200":
+          description: Server UTC time
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeStatusResponse'
+
+  /api/v1/devices/{deviceId}/time:
+    post:
+      summary: Manual time set (owner/admin, audited)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManualTimeRequest'
+      responses:
+        "200":
+          description: Manual time accepted and audited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManualTimeResponse'
+        "403":
+          description: Owner/admin role required
+        "422":
+          description: Invalid UTC or timezone
+
   /api/v1/devices/{deviceId}/commands:
     parameters:
       - $ref: '#/components/parameters/DeviceId'
@@ -617,6 +656,37 @@ components:
         clock_valid: { type: boolean }
         meter_valid: { type: boolean }
         temperature_valid: { type: boolean }
+        time_valid: { type: boolean }
+        time_source: { type: string, enum: [sntp, api, mqtt, manual, none] }
+        last_sync: { type: string, format: date-time, nullable: true }
+        last_known_time: { type: string, format: date-time, nullable: true }
+        time_age_s: { type: integer, minimum: 0, nullable: true }
+    TimeStatusResponse:
+      type: object
+      required: [server_time, timezone, time_valid, time_source, last_sync, time_age_s]
+      properties:
+        server_time: { type: string, format: date-time }
+        timezone: { type: string }
+        time_valid: { type: boolean }
+        time_source: { type: string, enum: [sntp, api, mqtt, manual, none] }
+        last_sync: { type: string, format: date-time, nullable: true }
+        time_age_s: { type: integer, minimum: 0, nullable: true }
+    ManualTimeRequest:
+      type: object
+      required: [utc, timezone]
+      properties:
+        utc: { type: string, format: date-time }
+        timezone: { type: string }
+    ManualTimeResponse:
+      type: object
+      required: [device_id, utc, timezone, time_source, accepted_at, mqtt_delivered]
+      properties:
+        device_id: { type: string }
+        utc: { type: string, format: date-time }
+        timezone: { type: string }
+        time_source: { type: string, enum: [manual] }
+        accepted_at: { type: string, format: date-time }
+        mqtt_delivered: { type: boolean }
     DeviceSummary:
       type: object
       required: [device_id, name, availability, state, created_at]

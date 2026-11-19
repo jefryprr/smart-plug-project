@@ -142,6 +142,59 @@ describe("device simulator", () => {
     expect(device.getState().commandedOutput).toBe("OFF");
   });
 
+  it("rejects schedule ON when time is invalid but allows manual cloud ON", async () => {
+    device.invalidateTime();
+    expect(device.getState().timeValid).toBe(false);
+
+    const schedule = command({ source: "schedule", sequence: 20, command_id: "cmd-time-invalid" });
+    const rejected = waitForAck(schedule.command_id);
+    await new Promise<void>((resolve, reject) => {
+      observer.publish(topicFor("dev-sim-test", "command"), JSON.stringify(schedule), { qos: 1 }, (error) => {
+        if (error) reject(error);
+        else resolve();
+      });
+    });
+    const scheduleAck = await rejected;
+    expect(scheduleAck.status).toBe("REJECTED");
+    expect(scheduleAck.reason_code).toBe("TIME_INVALID");
+
+    const manual = command({ source: "cloud_api", sequence: 21, command_id: "cmd-manual-time-invalid" });
+    const accepted = waitForAck(manual.command_id);
+    await new Promise<void>((resolve, reject) => {
+      observer.publish(topicFor("dev-sim-test", "command"), JSON.stringify(manual), { qos: 1 }, (error) => {
+        if (error) reject(error);
+        else resolve();
+      });
+    });
+    const manualAck = await accepted;
+    expect(manualAck.status).toBe("APPLIED");
+    expect(device.getState().commandedOutput).toBe("ON");
+  });
+
+  it("accepts an MQTT time message and records source=mqtt", async () => {
+    device.invalidateTime();
+    await new Promise<void>((resolve, reject) => {
+      observer.publish(
+        topicFor("dev-sim-test", "time"),
+        JSON.stringify({
+          schema_version: 1,
+          device_id: "dev-sim-test",
+          utc: new Date().toISOString(),
+          source: "mqtt",
+          request_id: "time-test-1"
+        }),
+        { qos: 1 },
+        (error) => {
+          if (error) reject(error);
+          else resolve();
+        }
+      );
+    });
+    await new Promise((resolve) => setTimeout(resolve, 150));
+    expect(device.getState().timeValid).toBe(true);
+    expect(device.getState().timeSource).toBe("mqtt");
+  });
+
   it("rejects an expired command", async () => {
     const cmd = command({
       command_id: "cmd-expired-test",

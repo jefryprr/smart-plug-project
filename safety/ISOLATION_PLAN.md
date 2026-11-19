@@ -1,4 +1,4 @@
-# Isolation Plan — REV_C_PSU_BOARD
+# Isolation Plan — REV_D_CORE_ONLY
 
 **Status:** `BLOCKED_PENDING_ENGINEER_REVIEW`  
 **Prinsip:** mains dan SELV tidak boleh tercampur. Optocoupler pada komponen bukan bukti isolasi assembly.
@@ -7,7 +7,7 @@
 
 ```
 DOMAIN A — MAINS (230 VAC, 50 Hz)
-  Plug L/N/PE -> REV_C PSU board TB1 -> F1 -> MOV -> TCO -> TB2
+  Plug L/N/PE -> REV_D_CORE_ONLY PSU board TB1 -> F1 -> MOV -> TCO -> TB2
   TB2 L/N -> relay contacts -> socket L/N
   PZEM voltage sense + CT (sisi mains)
   HLK-5M05 input on the PSU board

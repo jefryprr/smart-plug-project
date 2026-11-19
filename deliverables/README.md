@@ -2,7 +2,7 @@
 
 This folder is generated from actual artifacts. It does not contain placeholders.
 
-- `manifest.json` — all 26 deliverable categories, 270 tracked artifacts (as of the REV_C documentation refresh), SHA-256 hashes, statuses, blockers, git commit.
+- `manifest.json` — all 26 deliverable categories, 270 tracked artifacts (as of the REV_D_CORE_ONLY documentation refresh), SHA-256 hashes, statuses, blockers, git commit.
 - `CHECKSUMS.sha256` — SHA-256 list for the manifest artifacts.
 - `FINAL_ENGINEERING_REPORT.md` — final handoff report.
 

@@ -1,7 +1,7 @@
-# Print Prototype Guide — Mechanical Only (REV_C_PSU_BOARD)
+# Print Prototype Guide — Mechanical Only (REV_D_CORE_ONLY)
 
 **Status:** `PROTOTYPE_ONLY`  
-**Do not use this printed part with mains.** This guide is for checking fit, button access, OLED window, cable routing, gasket, and assembly order with **no power**.
+**Do not use this printed part with mains.** This guide is for checking fit, button access, onboard-RGB window, cable routing, gasket, and assembly order with **no power**. OLED/RTC/external RGB are deferred and not fitted.
 
 ## 1. Files
 
@@ -33,7 +33,7 @@
 2. Install 4× M3 heat-set inserts in the lid bosses; install module inserts/bosses as needed.
 3. Test-fit the carrier (100×70), DevKitC-1 (two 1×22 rows, 22.86 mm), OLED, button, RGB pipe, PZEM on its bracket, relay module, HLK-5M05, fuse/MOV, terminals, CT, and Type F socket mock.
 4. Verify the barrier, two grommet holes, 5 V/relay/PZEM cable routes, and bend radius.
-5. Verify the top OLED window, button travel, RGB light pipe, and the front USB cover.
+5. Verify the button travel, onboard-RGB side window, and the front USB cover.
 6. Verify the right-wall socket, M16 gland, and M12 vent threads.
 7. Install the DevKit key and confirm it blocks a reversed board without touching the correct board.
 8. Record measurements and clashes; update `parameters.yaml` and re-run `enclosure.py` and `render.py`.

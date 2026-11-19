@@ -1,4 +1,4 @@
-# Isolation Boundary Check — REV_C_PSU_BOARD
+# Isolation Boundary Check — REV_D_CORE_ONLY
 
 **Status:** static wiring check only. Manual engineering review is still required.
 

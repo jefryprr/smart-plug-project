@@ -6,6 +6,7 @@ import {
   SAMPLE_ACK,
   SAMPLE_COMMAND,
   SAMPLE_TELEMETRY,
+  TimeMessageSchema,
   TelemetryMessageSchema,
   canDevicePublish,
   canDeviceSubscribe,
@@ -21,6 +22,7 @@ describe("topic contract", () => {
   it("builds stable versioned topics", () => {
     expect(topicFor("dev-001", "telemetry")).toBe("smartplug/v1/dev-001/telemetry");
     expect(topicsFor("dev-001")["config/desired"]).toBe("smartplug/v1/dev-001/config/desired");
+    expect(topicsFor("dev-001").time).toBe("smartplug/v1/dev-001/time");
   });
 
   it("parses only the documented topic shape", () => {
@@ -40,13 +42,16 @@ describe("topic contract", () => {
     expect(canDevicePublish("dev-001", "smartplug/v1/dev-001/telemetry")).toBe(true);
     expect(canDevicePublish("dev-001", "smartplug/v1/dev-001/command")).toBe(false);
     expect(canDeviceSubscribe("dev-001", "smartplug/v1/dev-001/command")).toBe(true);
+    expect(canDeviceSubscribe("dev-001", "smartplug/v1/dev-001/time")).toBe(true);
+    expect(canDevicePublish("dev-001", "smartplug/v1/dev-001/time")).toBe(false);
     expect(canDeviceSubscribe("dev-001", "smartplug/v1/dev-001/telemetry")).toBe(false);
     expect(canDevicePublish("dev-001", "smartplug/v1/dev-002/telemetry")).toBe(false);
     expect(canDeviceSubscribe("dev-001", "smartplug/v1/dev-002/command")).toBe(false);
   });
 
-  it("marks command and desired config as non-retained", () => {
+  it("marks command, time, and desired config as non-retained", () => {
     expect(mustNotRetain("command")).toBe(true);
+    expect(mustNotRetain("time")).toBe(true);
     expect(mustNotRetain("config/desired")).toBe(true);
     expect(mustNotRetain("availability")).toBe(false);
     expect(qosFor("command")).toBe(1);
@@ -67,6 +72,19 @@ describe("payload contract", () => {
   it("rejects telemetry with an invalid device id", () => {
     const invalid = { ...SAMPLE_TELEMETRY, device_id: "dev/001" };
     expect(TelemetryMessageSchema.safeParse(invalid).success).toBe(false);
+  });
+
+  it("accepts a valid MQTT time message and rejects a bad UTC", () => {
+    const valid = {
+      schema_version: 1,
+      device_id: "dev-001",
+      utc: "2026-11-19T10:00:00.000Z",
+      source: "mqtt",
+      request_id: "time-001"
+    };
+    expect(TimeMessageSchema.safeParse(valid).success).toBe(true);
+    expect(TimeMessageSchema.safeParse({ ...valid, utc: "not-a-date" }).success).toBe(false);
+    expect(TimeMessageSchema.safeParse({ ...valid, device_id: "dev/001" }).success).toBe(false);
   });
 
   it("accepts a valid command and rejects an inverted TTL", () => {

@@ -1,6 +1,6 @@
 # Software Guide
 
-**Design revision:** `REV_C_PSU_BOARD`  
+**Design revision:** `REV_D_CORE_ONLY`  
 **Status:** digital prototype; software tests pass where executable, but the device is not flashed or deployed.
 
 This guide is for running and understanding the software without touching mains hardware.
@@ -141,9 +141,9 @@ A debug arm64-v8a APK was built and v2-signature verified. It was **not installe
 ## 9. Firmware
 
 - Portable C safety core: `firmware/core/`.
-- Host tests: `firmware/test/host/run_tests.ps1` (75 checks).
+- Host tests: `firmware/test/host/run_tests.ps1` (88 checks, including time gating).
 - ESP-IDF v6.1 target build: `scripts/build_firmware.ps1` (build only, not flashed).
-- No PZEM/OLED/Wi-Fi/MQTT/OTA integration or boot-waveform test yet.
+- No PZEM/Wi-Fi/MQTT/OTA integration or boot-waveform test yet. No OLED/RTC/external RGB by design; onboard RGB GPIO48 is a status indicator.
 
 See [`../firmware/README.md`](../firmware/README.md) and [`../reports/FIRMWARE_BUILD.md`](../reports/FIRMWARE_BUILD.md).
 

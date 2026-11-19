@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "board": "hardware/kicad/psu_rev_c.kicad_pcb",
+  "board": "hardware/kicad/psu_rev_d.kicad_pcb",
   "board_size_mm": [
     50.1,
     65.1

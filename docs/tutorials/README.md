@@ -29,4 +29,4 @@ Dokumentasi untuk engineer pemula. Baca `00_READ_FIRST.md` terlebih dahulu.
 - [24 — Operations dan Troubleshooting](24_OPERATIONS_AND_TROUBLESHOOTING.md)
 - [25 — Final Handoff](25_FINAL_HANDOFF.md)
 
-**Status:** `REV_C_PSU_BOARD`. Tidak ada tutorial yang mengizinkan energisasi mains oleh pemula.
+**Status:** `REV_D_CORE_ONLY`. Tidak ada tutorial yang mengizinkan energisasi mains oleh pemula.

@@ -13,7 +13,7 @@ from pathlib import Path
 import pcbnew
 
 ROOT = Path(__file__).resolve().parents[1]
-PCB = ROOT / "hardware" / "kicad" / "psu_rev_c.kicad_pcb"
+PCB = ROOT / "hardware" / "kicad" / "psu_rev_d.kicad_pcb"
 OUT = ROOT / "hardware" / "psu"
 PCBA = ROOT / "hardware" / "manufacturing" / "provisional" / "BOM_PCBA_PSU.csv"
 
@@ -70,7 +70,7 @@ def main() -> None:
             "qty": 1,
             "footprint": str(fp.GetFPID().GetLibItemName()),
             "approved_status": "PROVISIONAL",
-            "notes": "REV_C PSU board; vendor footprint/MPN review required; NOT_FOR_FABRICATION",
+            "notes": "REV_D_CORE_ONLY PSU board; vendor footprint/MPN review required; NOT_FOR_FABRICATION",
         })
     pcba.sort(key=lambda r: str(r["reference_designators"]))
     with PCBA.open("w", newline="", encoding="utf-8") as handle:

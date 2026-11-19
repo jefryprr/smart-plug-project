@@ -1,7 +1,7 @@
-# Assembly Plan — REV_C_PSU_BOARD
+# Assembly Plan — REV_D_CORE_ONLY
 
 **Status:** `DIGITAL_PLAN_ONLY`; no physical assembly performed.  
-**Design revision:** `REV_C_PSU_BOARD`  
+**Design revision:** `REV_D_CORE_ONLY`  
 **Safety:** mains work is qualified-personnel/lab only. This plan is not an energization procedure.
 
 ## Three separate scopes
@@ -31,7 +31,7 @@ Never combine scope 3 with scope 1/2 in one unsupervised session. PE is never sw
 4. Test-fit the gasket frame on the body rim; verify it is not pinched.
 5. Mount the carrier on the four standoffs with M3×8 screws; do not over-torque.
 6. Install the DevKit key on the two left carrier holes. Insert the DevKit **pin 1 / USB end** per the silkscreen; confirm the key blocks a reversed board.
-7. Install the RTC module near J5, the OLED/button/RGB on the lid, and route their JST cables with service loops.
+7. Install the physical button on the lid and route its JST cable with a service loop. Do not install OLED/RTC/external RGB; they are not in REV_D. The onboard DevKitC-1 RGB is visible through the small left-wall window (position provisional).
 8. Mount the **PSU board** on its 3 standoffs (H1/H3/H4), the relay on the printed cantilever shelf above it, and PZEM, CT, socket, gland, and PE stud on their brackets/bosses. The HLK/fuse/MOV/TCO/terminals are already on the PSU board.
 9. Install the PE stud and bond hardware; PE must be a dedicated metal path, not a plastic boss alone.
 10. Install the M16 gland, M12 vent, and USB cover; check thread engagement and gasket seating.
@@ -42,7 +42,7 @@ Never combine scope 3 with scope 1/2 in one unsupervised session. PE is never sw
 2. Inspect for bridges, tombstones, wrong values, and damaged pads.
 3. Verify 74HCT125 pin 1, MOSFET pinout, JST keying, and PZEM divider values. On the PSU board verify F2 PTC/D1 TVS orientation, TF1 SF96E marking (96 °C), F1 10 A, MOV S10K275, TB1/TB2 pin order, and J5/J6/J7 keying. PSU board soldering is a mains assembly item, not low-voltage bench work.
 4. Continuity/ESD check: +5V, +3V3, GND, UART, I2C, relay gate; no short between rails.
-5. Connect J8 (5 V), J2 (PZEM TTL), J3 (relay), J4 (OLED), J5 (RTC), J6 (button), J7 (RGB).
+5. Connect J8 (5 V), J2 (PZEM TTL), J3 (relay), J6 (button). J4/J5/J7 do not exist in REV_D.
 6. Keep PZEM/relay/5 V cables away from the mains side except through the barrier grommets.
 7. Do **not** connect USB while mains is present.
 

@@ -16,8 +16,8 @@ The device needs OTA rollback, partition control, provisioning, watchdog, and a 
 
 ## Consequences
 - ESP-IDF v6.1 target build produces `firmware/build/smartplug.bin`; this is a build artifact, not a hardware test.
-- Core logic is testable without hardware (75 checks pass).
-- ESP-IDF integration components (PZEM, OLED, Wi-Fi, MQTT, OTA) remain incomplete.
+- Core logic is testable without hardware (88 checks pass).
+- ESP-IDF integration components (PZEM, Wi-Fi, MQTT, OTA, SNTP/NVS time) remain incomplete/partial. OLED/RTC/external RGB are deferred in REV_D_CORE_ONLY.
 - Pin/board revision must be verified before final GPIO; flashing/boot-waveform tests remain `BLOCKED`.
 
 ## Alternatives

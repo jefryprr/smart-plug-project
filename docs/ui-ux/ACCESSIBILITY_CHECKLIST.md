@@ -1,4 +1,4 @@
-# Accessibility Checklist — REV_C_PSU_BOARD
+# Accessibility Checklist — REV_D_CORE_ONLY
 
 ## Automated
 

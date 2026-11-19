@@ -66,7 +66,7 @@ def render_view(name: str, elev: float, azim: float, exploded: bool = False, cut
     add_mesh(ax, top, COLOR_TOP, top_alpha, top_offset)
     set_view(ax, [bottom, top], elev, azim)
     ax.set_title(
-        f"Smart Plug enclosure — {name}\nREV_C_PSU_BOARD · {preset} · APPROXIMATE DIMENSIONS · NOT FOR MAINS",
+        f"Smart Plug enclosure — {name}\nREV_D_CORE_ONLY · {preset} · APPROXIMATE DIMENSIONS · NOT FOR MAINS",
         fontsize=11,
     )
     fig.tight_layout()
@@ -86,7 +86,7 @@ def dimensions_svg() -> None:
     ax.set_xlim(-20, 255)
     ax.set_ylim(-25, 140)
     ax.axis("off")
-    ax.set_title("Enclosure external dimensions - REV_C_PSU_BOARD", fontsize=12)
+    ax.set_title("Enclosure external dimensions - REV_D_CORE_ONLY", fontsize=12)
     fig.tight_layout()
     fig.savefig(DRAWINGS / "dimensions.svg", format="svg")
     fig.savefig(DRAWINGS / "dimensions.png", dpi=150)
@@ -120,7 +120,7 @@ def mounting_plan_svg() -> None:
     ax.add_patch(Rectangle((-106, 21), 28, 14, fill=False, linewidth=1, color="#175cd3"))
     ax.add_patch(Circle((-62, 28), 6, fill=False, linewidth=1, color="#175cd3"))
     ax.add_patch(Circle((-49, 28), 3, fill=False, linewidth=1, color="#175cd3"))
-    ax.text(-108, 18, "OLED / BTN / RGB on top lid", fontsize=8, color="#175cd3")
+    ax.text(-108, 18, "BTN on top lid; onboard RGB left-wall window", fontsize=8, color="#175cd3")
     ax.text(-108, -57, "SELV zone", fontsize=10, color="#0f6b5c")
     ax.text(-27, -57, "MAINS zone", fontsize=10, color="#b42318")
     ax.set_xlim(-120, 120)
@@ -139,11 +139,11 @@ def service_access_svg() -> None:
     ax.add_patch(Rectangle((-110, 60), 220, 10, fill=False, linewidth=1.5))
     ax.text(-108, 72, "Lid top view (z=70)", fontsize=9)
     ax.add_patch(Rectangle((-106, 61), 28, 14, fill=False, linewidth=1, color="#175cd3"))
-    ax.text(-106, 62, "OLED 28x14", fontsize=8, color="#175cd3")
+    ax.text(-106, 62, "BTN 12", fontsize=8, color="#175cd3")
     ax.add_patch(Circle((-62, 68), 6, fill=False, linewidth=1, color="#175cd3"))
     ax.text(-74, 62, "Button 12", fontsize=8, color="#175cd3")
     ax.add_patch(Circle((-49, 68), 3, fill=False, linewidth=1, color="#175cd3"))
-    ax.text(-47, 62, "RGB 5", fontsize=8, color="#175cd3")
+    ax.text(-47, 62, "RGB WINDOW 5", fontsize=8, color="#175cd3")
     ax.add_patch(Rectangle((-57, -60), 30, 20, fill=False, linewidth=1.2, color="#9a5b00"))
     ax.text(-56, -56, "USB service cover 30x20", fontsize=8, color="#9a5b00")
     ax.text(-108, -40, "Right wall: socket 45x45 at y=34, z=35", fontsize=8, color="#b42318")
@@ -170,7 +170,7 @@ def assembly_pdf() -> None:
             fig, ax = plt.subplots(figsize=(11, 8.5))
             ax.imshow(image)
             ax.axis("off")
-            ax.set_title(f"Assembly view: {name} — REV_C_PSU_BOARD — NOT FOR FABRICATION", fontsize=11)
+            ax.set_title(f"Assembly view: {name} — REV_D_CORE_ONLY — NOT FOR FABRICATION", fontsize=11)
             pdf.savefig(fig, bbox_inches="tight")
             plt.close(fig)
         fig, ax = plt.subplots(figsize=(11, 8.5))
@@ -178,7 +178,7 @@ def assembly_pdf() -> None:
         ax.text(
             0.05, 0.95,
             "Smart Plug enclosure assembly\n"
-            "REV_C_PSU_BOARD\n\n"
+            "REV_D_CORE_ONLY\n\n"
             "This drawing is a mechanical concept generated from CadQuery source.\n"
             "Module dimensions are approximate; no physical fit validation exists.\n"
             "3D printed enclosure is prototype-only and not a certified electrical enclosure.\n"
@@ -196,7 +196,7 @@ def write_fit_reports() -> None:
     report = {"recommended": fit_report()}
     (ROOT / "hardware" / "mechanical" / "CLASH_REPORT.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
 
-    lines = ["# Fit Analysis - REV_C_PSU_BOARD", ""]
+    lines = ["# Fit Analysis - REV_D_CORE_ONLY", ""]
     lines.append("**Status:** coarse digital fit check only. Dimensions are approximate; no physical fit validation.")
     lines.append("")
     data = report["recommended"]

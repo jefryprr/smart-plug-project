@@ -31,10 +31,10 @@ Opsi `D` berarti "minta analisis/rekomendasi"; agen akan meneliti dan mengajukan
 
 | ID | Pertanyaan | Opsi | Rekomendasi awal agen |
 |---|---|---|---|
-| Q13 | Layar | A. OLED I²C kecil; B. OLED lebih besar; C. Layar lain; D. Perbandingan teknis/biaya | **A** (0,96" SSD1306 I²C, 128×64) untuk prototipe. |
-| Q14 | Indikator | A. NeoPixel built-in; B. LED RGB eksternal panel; C. Keduanya; D. Pilih berdasar akses visual | **C** bila board memiliki NeoPixel; minimal **B** agar terlihat saat enclosure tertutup. |
+| Q13 | Layar | A. OLED I²C kecil; B. OLED lebih besar; C. Layar lain; D. Perbandingan teknis/biaya | **DEFERRED** in REV_D_CORE_ONLY. No OLED fitted. |
+| Q14 | Indikator | A. NeoPixel built-in; B. LED RGB eksternal panel; C. Keduanya; D. Pilih berdasar akses visual | **A** onboard DevKitC-1 v1.0 RGB GPIO48; external RGB deferred. |
 | Q15 | Pengaturan koneksi pertama | A. BLE; B. SoftAP; C. BLE + fallback SoftAP; D. Rekomendasi keamanan/UX | **C**: BLE untuk pairing, SoftAP fallback; keduanya berjendela waktu dan berautentikasi. |
-| Q16 | Mode lokal offline | A. Wi-Fi LAN + aplikasi; B. Kontrol fisik + jadwal tersimpan; C. A+B dengan RTC tervalidasi; D. Desain paling tangguh | **C**: tombol fisik + jadwal lokal + RTC/SNTP dengan status validitas jam. |
+| Q16 | Mode lokal offline | A. Wi-Fi LAN + aplikasi; B. Kontrol fisik + jadwal tersimpan; C. A+B dengan RTC tervalidasi; D. Desain paling tangguh | **REVISED:** SNTP/NVS/API/MQTT/manual, no RTC; schedules blocked when time invalid. |
 | Q17 | Akses internet/cloud | A. Self-host VPS; B. Managed cloud; C. Hybrid lokal + cloud; D. Bandingkan biaya/keamanan | **C** untuk arsitektur; implementasi awal **A** (Docker Compose self-host), cloud publik hanya setelah izin/kredensial. |
 | Q18 | Akun pengguna | A. Single-user; B. Multi-user satu rumah dengan peran; C. Multi-tenant; D. Mulai sederhana, siap evolusi | **D** dengan model data tenant-ready dan RBAC dasar. |
 | Q19 | Notifikasi utama | A. Telegram; B. Android push; C. Keduanya; D. Lihat biaya/kelayakan | **A** untuk MVP (tanpa akun Firebase); **C** sebagai roadmap. |

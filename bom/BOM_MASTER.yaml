@@ -1,6 +1,6 @@
 project: esp32-s3-iot-smart-plug
-design_revision: REV_C_PSU_BOARD
-generated_at: '2026-11-16T06:14:44.651292+00:00'
+design_revision: REV_D_CORE_ONLY
+generated_at: '2026-11-19T04:52:56.891256+00:00'
 items:
 - item_id: E-001
   reference_designators: U1
@@ -9,7 +9,7 @@ items:
     only as a documented deviation)
   manufacturer: Espressif / documented compatible
   manufacturer_part_number: ESP32-S3-DevKitC-1-N16R8
-  module_revision: v1.1 (planned)
+  module_revision: v1.0 (user-confirmed)
   qty_per_unit: 1
   unit: pcs
   price_idr_per_unit: ''
@@ -18,7 +18,7 @@ items:
   price_checked_at: ''
   seller: ''
   seller_url: ''
-  datasheet_url: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html
+  datasheet_url: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.0.html
   datasheet_revision: UNKNOWN
   approved_status: PENDING_APPROVAL
   alternative_mpn: Official Espressif ESP32-S3-DevKitC-1-N16R8 (preferred); N8R8
@@ -30,8 +30,8 @@ items:
     stock is unconfirmed; the priced prototype board is a compatible N16R8 at Rp139,968.
     This is an explicit, not silent, deviation. Verify N16R8 marking, RGB GPIO (v1.0=48,
     v1.1=38), regulator, USB, and pinout.
-  source_evidence: Espressif user guide v1.1; verify exact board marking and USB/strapping
-    pins on arrival.
+  source_evidence: User statement 2026-11-19; Espressif v1.0 user guide. Physical
+    marking/photo still recommended.
 - item_id: E-002
   reference_designators: U2
   category: Metering
@@ -65,7 +65,7 @@ items:
 - item_id: E-003
   reference_designators: PS1
   category: Power
-  description: AC/DC 5 V 1 A isolated power module, 5 W, 90-264 VAC input (on REV_C
+  description: AC/DC 5 V 1 A isolated power module, 5 W, 90-264 VAC input (on REV_D_CORE_ONLY
     PSU board)
   manufacturer: Hi-Link
   manufacturer_part_number: HLK-5M05
@@ -91,8 +91,8 @@ items:
     claims 2500 VAC input-output isolation and UL/CE design compliance, but the exact
     batch certificate/isolation/creepage are unverified. Efficiency is only ~70% at
     220 V full load, so ~2.1 W heat; thermal test is mandatory. Fuse/MOV/TCO are on
-    the same REV_C PSU board upstream. Do not touch AC pins; keep mains creepage and
-    barrier.
+    the same REV_D_CORE_ONLY PSU board upstream. Do not touch AC pins; keep mains
+    creepage and barrier.
   source_evidence: Distributor copy of Hi-Link HLK-5M05 datasheet (3 pages) with dimension
     drawing; official product page; exact batch/certification must be verified.
 - item_id: E-005
@@ -112,8 +112,8 @@ items:
   seller_url: ''
   datasheet_url: https://www.analog.com/media/en/technical-documentation/data-sheets/DS3231M.pdf
   datasheet_revision: UNKNOWN
-  approved_status: PENDING_APPROVAL
-  alternative_mpn: PCF8523T + 32.768 kHz crystal; SNTP holdover only
+  approved_status: DEFERRED_CORE_ONLY
+  alternative_mpn: None in REV_D; SNTP/NVS/API/MQTT/manual time only
   footprint_id: SO-16W
   mechanical_model: DS3231_approx
   supplier_stock_status: UNKNOWN
@@ -154,8 +154,7 @@ items:
 - item_id: E-009
   reference_designators: U9
   category: UI/Level shift
-  description: Quad buffer/level shifter, 5 V powered, DIP-14, for PZEM TX and WS2812
-    data
+  description: Quad buffer/level shifter, 5 V powered, DIP-14, for PZEM TX only
   manufacturer: Texas Instruments
   manufacturer_part_number: SN74HCT125N
   module_revision: '-'
@@ -175,9 +174,9 @@ items:
   mechanical_model: DIP14_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Converts ESP32 3.3 V logic to 5 V for PZEM RX and WS2812 data. 74HCT input
-    threshold is TTL-compatible. Tie unused inputs to GND; add 100 nF at VCC. Do not
-    use for galvanic isolation.
+  notes: 'Converts ESP32 3.3 V logic to 5 V for PZEM RX only. 74HCT input threshold
+    is TTL-compatible. Unused gates: inputs/OE tied to GND, outputs open; add 100
+    nF at VCC. Do not use for galvanic isolation.'
   source_evidence: TI SN74HCT125 datasheet; verify 5 V output levels and PZEM input
     current.
 - item_id: E-010
@@ -472,7 +471,7 @@ items:
   seller_url: ''
   datasheet_url: https://www.yageo.com/
   datasheet_revision: UNKNOWN
-  approved_status: PROVISIONAL
+  approved_status: DEFERRED_CORE_ONLY
   alternative_mpn: ''
   footprint_id: R_0805_2012Metric
   mechanical_model: R0805_approx
@@ -540,7 +539,7 @@ items:
   description: Mains-entry PSU PCB, 2-layer FR4, 1.6 mm, 2 oz Cu target, 50 x 65 mm,
     routed
   manufacturer: TBD
-  manufacturer_part_number: PCB-PSU-REV-C
+  manufacturer_part_number: PCB-PSU-REV-D
   module_revision: '-'
   qty_per_unit: 1
   unit: pcs
@@ -554,13 +553,13 @@ items:
   datasheet_revision: UNKNOWN
   approved_status: PROVISIONAL
   alternative_mpn: ''
-  footprint_id: PCB_PSU_REV_C
+  footprint_id: PCB_PSU_REV_D
   mechanical_model: pcb_psu_50x65
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: 'REV_C PSU board: TB1/TB2, F1, MOV1, TF1, HLK-5M05, F2/D1, 3x JST. Mains
-    isolation notch; creepage/hipot unverified. NOT_FOR_FABRICATION.'
-  source_evidence: KiCad psu_rev_c.kicad_pcb; Gerber/drill/POS provisional; DRC 0/0.
+  notes: 'REV_D_CORE_ONLY PSU board: TB1/TB2, F1, MOV1, TF1, HLK-5M05, F2/D1, 3x JST.
+    Mains isolation notch; creepage/hipot unverified. NOT_FOR_FABRICATION.'
+  source_evidence: KiCad psu_rev_d.kicad_pcb; Gerber/drill/POS provisional; DRC 0/0.
 - item_id: E-053
   reference_designators: J5,J6,J7
   category: Connectors
@@ -783,7 +782,7 @@ items:
   seller_url: ''
   datasheet_url: https://www.yageo.com/
   datasheet_revision: UNKNOWN
-  approved_status: PROVISIONAL
+  approved_status: DEFERRED_CORE_ONLY
   alternative_mpn: ''
   footprint_id: R_0805_2012Metric
   mechanical_model: R0805_approx
@@ -808,7 +807,7 @@ items:
   seller_url: ''
   datasheet_url: https://www.yageo.com/
   datasheet_revision: UNKNOWN
-  approved_status: PROVISIONAL
+  approved_status: DEFERRED_CORE_ONLY
   alternative_mpn: ''
   footprint_id: R_0805_2012Metric
   mechanical_model: R0805_approx
@@ -858,8 +857,8 @@ items:
   seller_url: ''
   datasheet_url: ''
   datasheet_revision: UNKNOWN
-  approved_status: DOCUMENTATION_DEFICIENT
-  alternative_mpn: SH1106 1.3 inch (different controller); bare SSD1306 panel
+  approved_status: DEFERRED_CORE_ONLY
+  alternative_mpn: Deferred to FULL; not fitted in REV_D
   footprint_id: OFF_BOARD_MODULE
   mechanical_model: oled096_approx
   supplier_stock_status: UNKNOWN
@@ -885,7 +884,7 @@ items:
   seller_url: ''
   datasheet_url: https://www.worldsemi.com/
   datasheet_revision: UNKNOWN
-  approved_status: PENDING_APPROVAL
+  approved_status: DEFERRED_CORE_ONLY
   alternative_mpn: ''
   footprint_id: LED_WS2812B_5050
   mechanical_model: ws2812b_approx
@@ -1017,7 +1016,7 @@ items:
   seller_url: ''
   datasheet_url: ''
   datasheet_revision: UNKNOWN
-  approved_status: PROVISIONAL
+  approved_status: DEFERRED_CORE_ONLY
   alternative_mpn: ''
   footprint_id: JST_XH_B4B-XH-A
   mechanical_model: jst_xh_4_approx
@@ -1042,7 +1041,7 @@ items:
   seller_url: ''
   datasheet_url: ''
   datasheet_revision: UNKNOWN
-  approved_status: PROVISIONAL
+  approved_status: DEFERRED_CORE_ONLY
   alternative_mpn: ''
   footprint_id: JST_XH_B6B-XH-A
   mechanical_model: jst_xh_6_approx
@@ -1092,7 +1091,7 @@ items:
   seller_url: ''
   datasheet_url: ''
   datasheet_revision: UNKNOWN
-  approved_status: PROVISIONAL
+  approved_status: DEFERRED_CORE_ONLY
   alternative_mpn: ''
   footprint_id: JST_XH_B3B-XH-A
   mechanical_model: jst_xh_3_approx
@@ -1367,9 +1366,10 @@ items:
 - item_id: E-041
   reference_designators: PCB1
   category: PCB
-  description: SELV carrier PCB, 2-layer FR4, 1.6 mm, 1 oz Cu, 100 x 70 mm, routed
+  description: SELV CORE-only carrier PCB, 2-layer FR4, 1.6 mm, 1 oz Cu, 100 x 70
+    mm, routed (19 footprints incl. 3 fiducials, 11 named nets)
   manufacturer: Generic
-  manufacturer_part_number: PCB-CARRIER-REV-C
+  manufacturer_part_number: PCB-CARRIER-REV-D
   module_revision: '-'
   qty_per_unit: 1
   unit: pcs
@@ -1383,15 +1383,15 @@ items:
   datasheet_revision: UNKNOWN
   approved_status: PROVISIONAL
   alternative_mpn: ''
-  footprint_id: PCB_CARRIER_REV_C
+  footprint_id: PCB_CARRIER_REV_D
   mechanical_model: pcb_carrier_100x70
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: REV_C routed SELV carrier with two 1x22 DevKit sockets at 22.86 mm spacing,
-    PZEM 5V/3.3V level shift, relay driver, I2C OLED/RTC, button, RGB, and 5V input
-    from PSU J5. DRC 0 but engineering review/physical test still required. No mains
-    and no PTC/TVS (moved to PSU board).
-  source_evidence: KiCad REV_C_PSU_BOARD routed carrier; Gerber/drill exported; physical
+  notes: REV_D_CORE_ONLY routed SELV carrier with two 1x22 DevKit sockets at 22.86
+    mm spacing, PZEM 5V/3.3V level shift, relay driver, button, and 5V input from
+    PSU J5. No mains, no OLED/RTC/external RGB, no PTC/TVS. DRC 0 but engineering
+    review/physical test still required.
+  source_evidence: KiCad REV_D_CORE_ONLY routed carrier; Gerber/drill exported; physical
     test not performed.
 - item_id: E-042
   reference_designators: LAB1

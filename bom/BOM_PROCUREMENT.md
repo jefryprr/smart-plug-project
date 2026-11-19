@@ -4,11 +4,11 @@
 > Harga dapat berubah; stok marketplace tidak stabil. Tidak ada harga rekaan: baris tanpa listing ditandai `ESTIMATED`.
 
 - Budget cap: **Rp750,000**
-- Baris: **50 CORE + 7 FULL**; 40 listing-verified, 17 `ESTIMATED`.
-- CORE subtotal: **Rp717,087**
-- CORE dengan harga restock EasyWare: **Rp665,619**
-- FULL add-ons (OLED/RTC/RGB/konektor): **Rp117,600**
-- FULL subtotal: **Rp834,687**
+- Baris: **48 CORE; FULL deferred**; 33 listing-verified, 15 `ESTIMATED`.
+- CORE subtotal: **Rp716,087**
+- CORE dengan harga restock EasyWare: **Rp664,619**
+- FULL add-ons: DEFERRED (CORE-only build)
+- FULL subtotal: DEFERRED
 - Estimasi ongkir: **Rp40,000** (belum termasuk pajak/impor)
 
 ## CORE — safety/function minimum
@@ -32,7 +32,7 @@
 | E-017 | 100 kOhm 0805 resistor (small pack) | 1 pcs | Rp1,000 | Shopee | VERIFIED_AGGREGATOR |
 | E-050 | PTC resettable fuse 1.1 A, 1206 (estimated) | 1 pcs | Rp2,000 | Shopee (estimated) | ESTIMATED |
 | E-051 | SMBJ5.0A TVS diode (estimated) | 1 pcs | Rp3,000 | Shopee (estimated) | ESTIMATED |
-| E-052 | REV_C PSU PCB 50 x 65 mm, 2 oz target (5 pcs share, estimated) | 1 pcs | Rp15,000 | PCB fab (estimate) | ESTIMATED |
+| E-052 | REV_D_CORE_ONLY PSU PCB 50 x 65 mm, 2 oz target (5 pcs share, estimated) | 1 pcs | Rp15,000 | PCB fab (estimate) | ESTIMATED |
 | E-053 | JST-XH 2-pin PCB connector, 3 pcs (estimated) | 3 pcs | Rp4,500 | Shopee (estimated) | ESTIMATED |
 | E-054 | JST-XH 2-pin cable, 0.2 m, 3 pcs (estimated) | 3 pcs | Rp9,000 | Shopee (estimated) | ESTIMATED |
 | E-055 | 5.08 mm 2-pin mains output terminal block | 1 pcs | Rp2,450 | Shopee | VERIFIED_AGGREGATOR |
@@ -41,8 +41,6 @@
 | E-020A | 100 nF 50 V MLCC at 74HCT125 (small pack) | 1 pcs | Rp360 | EasyWare Store | VERIFIED_STORE_PAGE |
 | E-018A | 10 kOhm 0805 resistor (divider top) | 1 pcs | Rp500 | Shopee | VERIFIED_AGGREGATOR |
 | E-018B | 20 kOhm 0805 resistor (divider bottom) | 1 pcs | Rp500 | Shopee | VERIFIED_AGGREGATOR |
-| E-018C | 4.7 kOhm 0805 resistor (I2C SDA pullup) | 1 pcs | Rp500 | Shopee | VERIFIED_AGGREGATOR |
-| E-018D | 4.7 kOhm 0805 resistor (I2C SCL pullup) | 1 pcs | Rp500 | Shopee | VERIFIED_AGGREGATOR |
 | E-018E | 10 kOhm 0805 resistor (button pullup) | 1 pcs | Rp500 | Shopee | VERIFIED_AGGREGATOR |
 | E-047 | JST-XH 2-pin cable for button | 1 pcs | Rp5,000 | Shopee (similar listing) | ESTIMATED |
 | E-049 | JST-XH 2-pin cable for 5V input | 1 pcs | Rp5,000 | Shopee (similar listing) | ESTIMATED |
@@ -66,32 +64,25 @@
 | E-045 | M3 heat-set inserts, 10 pcs (estimated) | 1 pcs | Rp5,000 | Shopee/local | ESTIMATED |
 | E-046 | M3 nylon standoff, 12 mm, 10 pcs | 1 pcs | Rp7,500 | Shopee | VERIFIED_AGGREGATOR |
 
-## FULL add-ons — UI/time/expansion
+## FULL add-ons — DEFERRED in REV_D_CORE_ONLY
 
 | Line | Part | Qty | Harga | Seller | Verifikasi |
 |---|---|---:|---:|---|---|
-| E-005 | DS3231SN RTC module with battery | 1 pcs | Rp49,500 | EasyWare Store | VERIFIED_STORE_PAGE |
-| E-018 | 330 Ohm 0805 resistor (small pack) | 1 pcs | Rp1,000 | Shopee | VERIFIED_AGGREGATOR |
-| E-048 | JST-XH 3-pin cable for RGB | 1 pcs | Rp5,000 | Shopee (similar listing) | ESTIMATED |
-| E-021 | OLED 0.96 inch 128x64 SSD1306 I2C | 1 pcs | Rp33,300 | EasyWare Store | VERIFIED_STORE_PAGE |
-| E-022 | CJMCU-2812-8 WS2812B module | 1 pcs | Rp8,500 | Shopee | VERIFIED_AGGREGATOR |
-| E-027 | JST-XH 4-pin cable for OLED | 1 pcs | Rp12,300 | Shopee | VERIFIED_AGGREGATOR |
-| E-028 | JST-XH 6-pin cable for RTC | 1 pcs | Rp8,000 | Shopee (similar listing) | ESTIMATED |
 
 ## Budget verdict
 
-- CORE + ongkir: **Rp757,087**.
-- CORE restock + ongkir: **Rp705,619**.
-- FULL + ongkir: **Rp874,687**.
+- CORE + ongkir: **Rp756,087**.
+- CORE restock + ongkir: **Rp704,619**.
+- FULL + ongkir: **Rp756,087**.
 - Mechanical addendum (gasket/vent/printed cover-key/PSU bracket/thermal pad): **Rp28,000** estimated, not in line items.
-- CORE + addendum + ongkir: **Rp785,087**.
-- CORE restock + addendum + ongkir: **Rp733,619**.
-- FULL + addendum + ongkir: **Rp902,687**.
-- Status: `CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_FITS; FULL_OVER_BUDGET`.
+- CORE + addendum + ongkir: **Rp784,087**.
+- CORE restock + addendum + ongkir: **Rp732,619**.
+- FULL + addendum + ongkir: **Rp784,087**.
+- Status: `CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_FITS; FULL_DEFERRED`.
 
-CORE electronics (Rp717.087) is about Rp7.087 over Rp750.000 with Rp40.000 shipping (Rp757.087).
-The mechanical addendum (~Rp28.000) pushes the marketplace CORE to about Rp785.087 all-in;
-EasyWare restock brings it to about Rp733.619 all-in, under the cap. FULL is over budget.
+CORE electronics (Rp716.087) is about Rp6.087 over Rp750.000 with Rp40.000 shipping (Rp756.087).
+The mechanical addendum (~Rp28.000) pushes the marketplace CORE to about Rp784.087 all-in;
+EasyWare restock brings it to about Rp732.619 all-in, under the cap. FULL UI is deferred.
 
 Jangan menurunkan fuse, MOV, TCO, terminal, PE, enclosure, atau barrier isolasi
 untuk mengejar budget. Lihat `research/PROCUREMENT_INDONESIA.md` untuk risiko stok.

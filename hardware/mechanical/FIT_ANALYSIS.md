@@ -1,11 +1,11 @@
-# Fit Analysis - REV_C_PSU_BOARD
+# Fit Analysis - REV_D_CORE_ONLY
 
 **Status:** coarse digital fit check only. Dimensions are approximate; no physical fit validation.
 
 ## Preset: recommended (220 x 120 x 70)
 
 - Status: **PASS**
-- Modules checked: 15
+- Modules checked: 13
 - Enclosure internal bounds (mm): (-107.5, -57.5, 2.5, 107.5, 57.5, 67.5)
 
 ## Limitations

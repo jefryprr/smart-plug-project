@@ -47,7 +47,12 @@ function stateFromMqtt(state: TelemetryMessage["state"], previous: StoredDeviceS
     last_transition_at: changed ? receivedAt : previous.last_transition_at,
     clock_valid: state.clock_valid,
     meter_valid: state.meter_valid,
-    temperature_valid: state.temperature_valid
+    temperature_valid: state.temperature_valid,
+    time_valid: state.time_valid ?? state.clock_valid,
+    time_source: state.time_source ?? (state.clock_valid ? "sntp" : "none"),
+    last_sync: state.last_sync ?? previous.last_sync,
+    last_known_time: state.last_known_time ?? previous.last_known_time,
+    time_age_s: state.time_age_s ?? previous.time_age_s
   };
 }
 
@@ -393,7 +398,12 @@ export function toTelemetrySample(row: TelemetryRow): {
       last_transition_at: state.last_transition_at,
       clock_valid: state.clock_valid,
       meter_valid: state.meter_valid,
-      temperature_valid: state.temperature_valid
+      temperature_valid: state.temperature_valid,
+      time_valid: state.time_valid,
+      time_source: state.time_source,
+      last_sync: state.last_sync,
+      last_known_time: state.last_known_time,
+      time_age_s: state.time_age_s
     }
   };
 }

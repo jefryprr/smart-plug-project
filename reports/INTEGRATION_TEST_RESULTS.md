@@ -1,4 +1,4 @@
-# Integration Test Results — REV_C_PSU_BOARD
+# Integration Test Results — REV_D_CORE_ONLY
 
 **Gate:** `PASS` for the tested digital path
 **Generated:** 2026-11-15
@@ -20,7 +20,7 @@ Result: **PASS** for 4 integration cases:
 
 ## 2. MQTT contract
 
-- 11 tests: topic build/parse, device ID validation, ACL direction, retain policy, telemetry/command/ACK schemas, JSON decode errors.
+- 12 tests: topic build/parse, device ID validation, ACL direction, retain policy, telemetry/command/ACK schemas, JSON decode errors.
 - Result: **PASS**.
 
 ## 3. Web E2E

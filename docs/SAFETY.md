@@ -1,6 +1,6 @@
 # Safety Overview
 
-**Design revision:** `REV_C_PSU_BOARD`  
+**Design revision:** `REV_D_CORE_ONLY`  
 **Status:** `BLOCKED_PENDING_ENGINEER_REVIEW` / `HARDWARE_VALIDATION_REQUIRED` / `NOT_FOR_FABRICATION`
 
 > [!DANGER]
@@ -13,7 +13,7 @@
 | Domain | What is in it | Rule |
 |---|---|---|
 | **MAINS** | Plug, fuse, MOV, TCO, PSU input, PZEM voltage terminals, relay contacts, socket | Hazardous. Assume live. |
-| **SELV** | 5 V/3.3 V carrier, ESP32, OLED, RTC, button, RGB, relay coil driver | Designed to be separated from mains, but the assembly is **not proven safe**. |
+| **SELV** | 5 V/3.3 V carrier, ESP32, button, onboard RGB, relay coil driver | Designed to be separated from mains, but the assembly is **not proven safe**. OLED/RTC/external RGB are deferred. |
 
 Mixing the two without a verified barrier can put mains potential on the ESP32, USB, or enclosure. That is the central hazard of this project.
 
@@ -47,7 +47,7 @@ The protection order is documented in [`../safety/PROTECTION_COORDINATION.md`](.
 | PCB creepage/clearance | 2 mm isolation notch, 4 mm L/N traces, 6–12 mm provisional spacing | `UNVERIFIED`; not an IEC 60664-1 calculation |
 | Enclosure | Mechanical barrier at x = −4 mm | Digital only; material/flame/impact unverified |
 
-The external **ADuM1201 + B0505S** barrier is not fitted in REV_C. It remains a documented fallback if the PZEM batch fails inspection/hipot. See [`../docs/decisions/ADR-016-PZEM-ISOLATION-REV-C.md`](decisions/ADR-016-PZEM-ISOLATION-REV-C.md).
+The external **ADuM1201 + B0505S** barrier is not fitted in REV_D_CORE_ONLY. It remains a documented fallback if the PZEM batch fails inspection/hipot. See [`../docs/decisions/ADR-016-PZEM-ISOLATION-REV-C.md`](decisions/ADR-016-PZEM-ISOLATION-REV-C.md).
 
 ---
 

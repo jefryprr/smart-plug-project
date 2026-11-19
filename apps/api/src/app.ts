@@ -13,6 +13,7 @@ import { registerTelemetryRoutes } from "./routes/telemetry.js";
 import { registerAutomationRoutes } from "./routes/automation.js";
 import { registerOperationsRoutes } from "./routes/operations.js";
 import { registerHealthRoutes } from "./routes/health.js";
+import { registerTimeRoutes } from "./routes/time.js";
 import type { RouteDeps } from "./routes/helpers.js";
 
 export interface BuildAppOptions {
@@ -95,6 +96,7 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
   registerTelemetryRoutes(app, deps);
   registerAutomationRoutes(app, deps);
   registerOperationsRoutes(app, deps);
+  registerTimeRoutes(app, deps);
 
   app.get("/", async () => ({
     service: "smartplug-api",

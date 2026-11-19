@@ -30,7 +30,9 @@
 
 ## What this is
 
-**SMART PLUG PROJECT** is a full, reproducible engineering package for an inline Wi-Fi smart outlet. It measures voltage, current, power, and energy with a PZEM-004T V4, switches a load with a two-channel relay module, and exposes local firmware, an MQTT contract, a Fastify API, a Next.js dashboard, an Android app, and a device simulator.
+**SMART PLUG PROJECT** is a full, reproducible engineering package for an inline Wi-Fi smart outlet. The active **REV_D_CORE_ONLY** build measures voltage, current, power, and energy with a PZEM-004T V4, switches a load with a two-channel relay module, and exposes local firmware, an MQTT contract, a Fastify API, a Next.js dashboard, an Android app, and a device simulator.
+
+CORE-only means **no OLED, no RTC, and no external RGB**. The physical button stays, and the onboard ESP32-S3-DevKitC-1 **v1.0 RGB (GPIO48)** is used as a status indicator. Time comes from SNTP/NVS/API/MQTT/manual set; schedules are blocked when time is invalid.
 
 The repository is also an **evidence trail**: requirements, decisions, BOM, datasheets, wiring, PCB files, enclosure CAD, safety analysis, test logs, and a clear statement of what is still unproven.
 
@@ -51,13 +53,13 @@ The repository is also an **evidence trail**: requirements, decisions, BOM, data
 | **Hardware** | 100 × 70 mm SELV carrier + separate 50 × 65 mm mains-entry PSU board (HLK-5M05, fuse, MOV, TCO, 3× JST 5 V) | `ENGINEERING_REVIEW_REQUIRED` / `NOT_FOR_FABRICATION` |
 | **Metering** | PZEM-004T V4 100 A CT, off-board; UART level-shifted with 74HCT125 + divider | Batch isolation `UNVERIFIED` |
 | **Switching** | Off-board 2-channel optocoupler relay module, 8 A / ~1.840 W final target, not a linked DPST | `PROVISIONAL` |
-| **Firmware** | Portable C safety core + ESP-IDF v6.1 target build | Host tests PASS; not flashed |
-| **Backend** | Fastify API, SQLite dev adapter, auth/RBAC, commands, telemetry, events | 38 tests PASS |
-| **Contracts** | OpenAPI 3.1, Zod, MQTT topics/schemas/fixtures | 11 tests PASS |
+| **Firmware** | Portable C safety core + time service (SNTP/NVS/API/MQTT/manual) + ESP-IDF v6.1 target build | Host tests PASS; not flashed |
+| **Backend** | Fastify API, SQLite dev adapter, auth/RBAC, commands, telemetry, events, time endpoints | 43 tests PASS |
+| **Contracts** | OpenAPI 3.1, Zod, MQTT topics/schemas/fixtures | 12 tests PASS |
 | **Web** | Next.js dashboard, 12 real screenshots | Build + Playwright/axe PASS |
-| **Android** | Expo source + debug arm64 APK | Built; not device-tested |
-| **Simulator** | MQTT device twin with ACK/telemetry | 4 tests PASS |
-| **Docs** | 26 tutorials, 16 ADRs, safety dossier, BOM, research log | Digital complete, physical blocked |
+| **Android** | Expo source + time-status UI | Typecheck PASS; existing APK predates REV_D UI; not device-tested |
+| **Simulator** | MQTT device twin with ACK/telemetry/time | 6 tests PASS |
+| **Docs** | 26 tutorials, 17 ADRs, safety dossier, BOM, research log, REV_D conflicts | Digital complete, physical blocked |
 
 Full status: [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md) · Validation evidence: [`reports/VALIDATION_SUMMARY.json`](reports/VALIDATION_SUMMARY.json) · Latest release: [`v0.1.0`](https://github.com/jefryprr/smart-plug-project/releases/tag/v0.1.0)
 
@@ -72,7 +74,7 @@ Full status: [`docs/PROJECT_STATUS.md`](docs/PROJECT_STATUS.md) · Validation ev
   </tr>
   <tr>
     <td width="50%"><img src="hardware/mechanical/render/isometric.png" alt="Enclosure isometric render"><br><sub><b>Enclosure</b> — 220 × 120 × 70 mm digital fit</sub></td>
-    <td width="50%"><img src="hardware/psu/psu_schematic.png" alt="REV_C PSU schematic"><br><sub><b>REV_C PSU board</b> — mains entry, protection, 5 V outputs</sub></td>
+    <td width="50%"><img src="hardware/psu/psu_schematic.png" alt="REV_D_CORE_ONLY PSU schematic"><br><sub><b>REV_D_CORE_ONLY PSU board</b> — mains entry, protection, 5 V outputs</sub></td>
   </tr>
 </table>
 
@@ -84,7 +86,7 @@ More: [`docs/ui-ux/screenshots/`](docs/ui-ux/screenshots/) · [`hardware/mechani
 
 ```mermaid
 flowchart LR
-    MAINS["230 VAC mains"] --> PSU["REV_C PSU board<br/>fuse · MOV · TCO · HLK-5M05"]
+    MAINS["230 VAC mains"] --> PSU["REV_D_CORE_ONLY PSU board<br/>fuse · MOV · TCO · HLK-5M05"]
     PSU -->|"5 V SELV"| CARRIER["ESP32-S3 carrier"]
     MAINS --> PZEM["PZEM-004T V4<br/>voltage + CT"]
     PZEM -->|"UART 5 V<br/>internal optocouplers"| CARRIER
@@ -99,7 +101,7 @@ flowchart LR
 ```
 
 - The **PSU board** is the only mains entry. It carries the 10 A fuse, MOV, 99 °C TCO, HLK-5M05, and three JST 5 V outputs.
-- The **carrier** is SELV-only. It holds the ESP32-S3 DevKitC-1 sockets, UART level shift, relay driver, OLED/RTC/button/RGB connectors, and 5 V input protection.
+- The **carrier** is SELV-only. It holds the ESP32-S3 DevKitC-1 v1.0 sockets, PZEM UART level shift, relay driver, button, and 5 V input. No OLED/RTC/external RGB.
 - The **PZEM** and **relay module** stay off-board in the mains zone. The relay module is two independent SPDT channels, not a mechanically linked DPST.
 - The **device** is the source of truth for `commanded_output` and fault/lockout. The API stores a shadow; the UI shows `APPLIED` only after a device ACK.
 
@@ -109,15 +111,15 @@ Deep dive: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) · [`docs/HARDWARE_GUI
 
 ## Project status
 
-**Digital gate (2026-11-16): 27 PASS / 11 BLOCKED / 0 FAIL.** PASS means digital evidence only.
+**Digital gate (2026-11-19): 27 PASS / 11 BLOCKED / 0 FAIL.** PASS means digital evidence only.
 
 | Verified digitally | Still blocked / unverified |
 |---|---|
-| 34 domain tests, 11 MQTT contract tests, 38 API tests, 4 simulator tests | Physical fit, thermal, PE continuity, hipot/leakage, 8 A load |
-| 75 firmware host checks; ESP-IDF v6.1 target build | Firmware flash, boot waveform, PZEM/OLED/Wi-Fi/MQTT/OTA integration |
+| 36 domain tests, 12 MQTT contract tests, 43 API tests, 6 simulator tests | Physical fit, thermal, PE continuity, hipot/leakage, 8 A load |
+| 88 firmware host checks; ESP-IDF v6.1 target build | Firmware flash, boot waveform, PZEM/Wi-Fi/MQTT/OTA/time integration |
 | Next.js build + 5 Playwright tests + axe | Android device/emulator install; production signing |
 | KiCad ERC 0; carrier DRC 0/0; PSU DRC 0/0; Gerber/drill/POS exported | Component-level schematic/footprint review; fabrication release |
-| WireViz 3 harnesses; CadQuery STEP/STL + fit report | Enclosure print, sealing, flammability, impact |
+| WireViz 2 harnesses; CadQuery STEP/STL + fit report | Enclosure print, sealing, flammability, impact |
 | Static wiring/GPIO/BOM crosschecks | PostgreSQL/Docker, production MQTT TLS/ACL |
 
 No `READY_FOR_FABRICATION` or `READY_FOR_USE` claim is made. See [`reports/FAILURES.md`](reports/FAILURES.md).
@@ -182,9 +184,9 @@ packages/
 firmware/              portable C safety core + ESP-IDF v6.1 skeleton
 hardware/
   kicad/               native block schematic + routed carrier + routed PSU
-  psu/                 REV_C PSU schematic, netlist, placement
+  psu/                 REV_D_CORE_ONLY PSU schematic, netlist, placement
   carrier/             SELV carrier netlist/placement
-  wiring/              3 WireViz harnesses + renders
+  wiring/              2 WireViz harnesses + renders
   interfaces/          GPIO map
   mechanical/          CadQuery enclosure, brackets, STEP/STL, renders
   manufacturing/       provisional Gerber/drill/POS — NOT released

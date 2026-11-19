@@ -72,7 +72,7 @@ def main() -> None:
             "qty": 1,
             "footprint": str(fp.GetFPID().GetLibItemName()),
             "approved_status": "PROVISIONAL",
-            "notes": "REV_C_PSU_BOARD routed SELV carrier; mounting holes and fiducials excluded from assembly BOM",
+            "notes": "REV_D_CORE_ONLY routed SELV carrier; mounting holes and fiducials excluded from assembly BOM",
         })
     pcba.sort(key=lambda r: str(r["reference_designators"]))
     with (PROV / "BOM_PCBA.csv").open("w", newline="", encoding="utf-8") as handle:

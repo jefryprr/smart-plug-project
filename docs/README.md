@@ -1,7 +1,7 @@
 # Documentation Index
 
 **Project:** SMART PLUG PROJECT<br>
-**Design revision:** `REV_C_PSU_BOARD`<br>
+**Design revision:** `REV_D_CORE_ONLY`<br>
 **Status:** `PARTIAL_DIGITAL` / `ENGINEERING_REVIEW_REQUIRED` / `HARDWARE_VALIDATION_REQUIRED`<br>
 **Fabrication:** `NOT_RELEASED`
 
@@ -34,10 +34,10 @@ This is the map of all project documentation. If you are new, start with [`START
 |---|---|
 | [`hardware/SYSTEM_ARCHITECTURE.md`](hardware/SYSTEM_ARCHITECTURE.md) | Functional block architecture |
 | [`hardware/SYSTEM_ARCHITECTURE.png`](hardware/SYSTEM_ARCHITECTURE.png) | Architecture image (also `.svg`, `.pdf`) |
-| [`../hardware/psu/README.md`](../hardware/psu/README.md) | REV_C 50 × 65 mm mains-entry PSU board |
+| [`../hardware/psu/README.md`](../hardware/psu/README.md) | REV_D_CORE_ONLY 50 × 65 mm mains-entry PSU board |
 | [`../hardware/kicad/README.md`](../hardware/kicad/README.md) | KiCad block schematic + routed carrier + PSU |
 | [`../hardware/carrier/README.md`](../hardware/carrier/README.md) | SELV carrier, sockets, connectors |
-| [`../hardware/wiring/README.md`](../hardware/wiring/README.md) | Main/metering/display harnesses |
+| [`../hardware/wiring/README.md`](../hardware/wiring/README.md) | Main + metering harnesses (CORE-only) |
 | [`../hardware/interfaces/gpio_map.md`](../hardware/interfaces/gpio_map.md) | GPIO assignment and restrictions |
 | [`../hardware/mechanical/README.md`](../hardware/mechanical/README.md) | CadQuery enclosure, brackets, exports |
 | [`../hardware/mechanical/FIT_ANALYSIS.md`](../hardware/mechanical/FIT_ANALYSIS.md) | Digital fit report |
@@ -50,7 +50,7 @@ This is the map of all project documentation. If you are new, start with [`START
 |---|---|
 | [`../research/COMPONENT_RESEARCH.md`](../research/COMPONENT_RESEARCH.md) | Candidate comparison |
 | [`../research/PSU_HLK_5M05.md`](../research/PSU_HLK_5M05.md) | HLK-5M05 study |
-| [`../research/PSU_BOARD_EVIDENCE.md`](../research/PSU_BOARD_EVIDENCE.md) | REV_C PSU research evidence table |
+| [`../research/PSU_BOARD_EVIDENCE.md`](../research/PSU_BOARD_EVIDENCE.md) | REV_D_CORE_ONLY PSU research evidence table |
 | [`../research/OFFBOARD_MODULES.md`](../research/OFFBOARD_MODULES.md) | PZEM/relay off-board study |
 | [`../research/PZEM_INTERNAL_ISOLATION.md`](../research/PZEM_INTERNAL_ISOLATION.md) | PZEM internal isolation evidence |
 | [`../research/PROCUREMENT_INDONESIA.md`](../research/PROCUREMENT_INDONESIA.md) | Dated Indonesian sourcing/price study |
@@ -86,7 +86,7 @@ This is the map of all project documentation. If you are new, start with [`START
 
 | Document | What it covers |
 |---|---|
-| [`decisions/ADR-INDEX.md`](decisions/ADR-INDEX.md) | All 16 ADRs |
+| [`decisions/ADR-INDEX.md`](decisions/ADR-INDEX.md) | All 17 ADRs |
 | [`decisions/USER_ANSWERS.md`](decisions/USER_ANSWERS.md) | User decisions Q01–Q28 (markdown) |
 | [`decisions/USER_ANSWERS.yaml`](decisions/USER_ANSWERS.yaml) | User decisions Q01–Q28 (machine-readable) |
 | [`decisions/ASSUMPTION_REGISTER.md`](decisions/ASSUMPTION_REGISTER.md) | Open assumptions |
@@ -108,7 +108,7 @@ This is the map of all project documentation. If you are new, start with [`START
 | [`decisions/ADR-013-PSU-HLK-5M05.md`](decisions/ADR-013-PSU-HLK-5M05.md) | HLK-5M05 selection |
 | [`decisions/ADR-014-PROCUREMENT-STAGING.md`](decisions/ADR-014-PROCUREMENT-STAGING.md) | CORE/FULL procurement |
 | [`decisions/ADR-015-DEVKITC-1-SOCKET.md`](decisions/ADR-015-DEVKITC-1-SOCKET.md) | DevKitC-1 socket spacing |
-| [`decisions/ADR-016-PZEM-ISOLATION-REV-C.md`](decisions/ADR-016-PZEM-ISOLATION-REV-C.md) | PZEM internal isolation in REV_C |
+| [`decisions/ADR-016-PZEM-ISOLATION-REV-C.md`](decisions/ADR-016-PZEM-ISOLATION-REV-C.md) | PZEM internal isolation in REV_D_CORE_ONLY |
 
 ---
 
@@ -208,7 +208,7 @@ Start with [`tutorials/00_READ_FIRST.md`](tutorials/00_READ_FIRST.md). The full 
 | [`../reports/FIRMWARE_BUILD.md`](../reports/FIRMWARE_BUILD.md) | ESP-IDF build evidence |
 | [`../reports/ANDROID_BUILD.md`](../reports/ANDROID_BUILD.md) | APK build evidence |
 | [`../reports/AMENDMENT_8A_OFFBOARD.md`](../reports/AMENDMENT_8A_OFFBOARD.md) | 8 A/off-board amendment |
-| [`../reports/RESEARCH_LOG.md`](../reports/RESEARCH_LOG.md) | REV_C research log |
+| [`../reports/RESEARCH_LOG.md`](../reports/RESEARCH_LOG.md) | REV_D_CORE_ONLY research log |
 | [`../reports/CHANGELOG.md`](../reports/CHANGELOG.md) | Commit rationale |
 | [`../deliverables/FINAL_ENGINEERING_REPORT.md`](../deliverables/FINAL_ENGINEERING_REPORT.md) | Final handoff |
 | [`../deliverables/manifest.json`](../deliverables/manifest.json) | 26 categories, hashes, blockers |

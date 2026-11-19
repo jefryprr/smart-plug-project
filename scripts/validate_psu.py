@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Static checks for the REV_C mains-entry PSU board.
+"""Static checks for the REV_D_CORE_ONLY mains-entry PSU board.
 
 This is a digital consistency check, not a safety proof. It verifies net
 membership, the L/N protection order, the 3x 5 V outputs, the PTC/TVS, and
@@ -14,7 +14,7 @@ from pathlib import Path
 import pcbnew
 
 ROOT = Path(__file__).resolve().parents[1]
-PSU = ROOT / "hardware" / "kicad" / "psu_rev_c.kicad_pcb"
+PSU = ROOT / "hardware" / "kicad" / "psu_rev_d.kicad_pcb"
 CARRIER = ROOT / "hardware" / "kicad" / "smartplug.kicad_pcb"
 BOM = ROOT / "bom" / "BOM_MASTER.csv"
 PCBA_PSU = ROOT / "hardware" / "manufacturing" / "provisional" / "BOM_PCBA_PSU.csv"
@@ -118,8 +118,8 @@ def main() -> int:
 
     # Gerber/drill/POS presence.
     for path in [
-        ROOT / "hardware" / "manufacturing" / "provisional" / "psu" / "Gerber" / "psu_rev_c-F_Cu.gtl",
-        ROOT / "hardware" / "manufacturing" / "provisional" / "psu" / "Drill" / "psu_rev_c.drl",
+        ROOT / "hardware" / "manufacturing" / "provisional" / "psu" / "Gerber" / "psu_rev_d-F_Cu.gtl",
+        ROOT / "hardware" / "manufacturing" / "provisional" / "psu" / "Drill" / "psu_rev_d.drl",
         ROOT / "hardware" / "manufacturing" / "provisional" / "psu" / "POSITION.csv",
     ]:
         if not path.exists():
@@ -127,7 +127,7 @@ def main() -> int:
 
     result = {
         "status": "PASS" if not issues else "FAIL",
-        "board": "hardware/kicad/psu_rev_c.kicad_pcb",
+        "board": "hardware/kicad/psu_rev_d.kicad_pcb",
         "board_size_mm": [round(w, 2), round(h, 2)],
         "nets": sorted(nets),
         "footprints": len([f for f in board.GetFootprints() if not str(f.GetReference()).startswith(("H", "FID"))]),

@@ -67,7 +67,7 @@ dot.edge("PZEMISO", "LS", label="TTL 5 V", style="dashed", color="#9a5b00")
 dot.edge("LS", "CARR", label="3.3 V UART", style="dashed", color="#9a5b00")
 dot.edge("CARR", "U1", label="3.3 V / GPIO")
 dot.edge("CARR", "UI", label="I2C / GPIO")
-dot.edge("CARR", "RTC", label="I2C / INT")
+dot.edge("U1", "TIME", label="time service")
 dot.edge("U1", "DRV", label="RELAY_CTRL")
 dot.edge("DRV", "K1", label="active-LOW inputs\n(SELV)", style="dashed")
 dot.edge("U1", "MQTT", label="Wi-Fi")
@@ -76,7 +76,7 @@ dot.edge("API", "WEB", label="REST / WS")
 dot.edge("API", "APP", label="REST")
 dot.edge("API", "NOTIF", label="alerts")
 
-dot.attr(label="Smart Plug ESP32-S3 — Functional Architecture & Safety Boundaries\nREV_C_PSU_BOARD — SEPARATE PSU BOARD — PZEM INTERNAL ISOLATION — NOT APPROVED FOR FABRICATION", labelloc="t", fontsize="14", fontcolor="#14213d")
+dot.attr(label="Smart Plug ESP32-S3 — Functional Architecture & Safety Boundaries\nREV_D_CORE_ONLY — SEPARATE PSU BOARD — PZEM INTERNAL ISOLATION — NOT APPROVED FOR FABRICATION", labelloc="t", fontsize="14", fontcolor="#14213d")
 
 base = OUT / "SYSTEM_ARCHITECTURE"
 dot.render(filename=str(base), cleanup=True)

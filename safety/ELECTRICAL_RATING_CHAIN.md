@@ -1,4 +1,4 @@
-# Electrical Rating Chain — REV_C_PSU_BOARD
+# Electrical Rating Chain — REV_D_CORE_ONLY
 
 **Status:** `BLOCKED_PENDING_ENGINEER_REVIEW`
 **Rating final yang dipilih pengguna:** **8 A** (amendment 2026-11-15)
@@ -8,7 +8,7 @@
 
 ## 1. Rantai rating
 
-**REV_C PSU board:** 50 x 65 mm, 2 oz target, 4 mm L/N traces, TB1/F1/MOV/TCO/TB2, HLK-5M05, 3x JST 5 V. The 8 A path rating and thermal rise are `UNVERIFIED`; see `hardware/psu/README.md`.
+**REV_D_CORE_ONLY PSU board:** 50 x 65 mm, 2 oz target, 4 mm L/N traces, TB1/F1/MOV/TCO/TB2, HLK-5M05, 3x JST 5 V. The 8 A path rating and thermal rise are `UNVERIFIED`; see `hardware/psu/README.md`.
 
 
 | Elemen | Klaim/rencana | Sumber | Derating/ketidakpastian | Status |

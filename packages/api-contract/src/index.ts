@@ -43,7 +43,12 @@ export const DeviceStateSchema = z
     last_transition_at: z.string().datetime(),
     clock_valid: z.boolean(),
     meter_valid: z.boolean(),
-    temperature_valid: z.boolean()
+    temperature_valid: z.boolean(),
+    time_valid: z.boolean().optional(),
+    time_source: z.enum(["sntp", "api", "mqtt", "manual", "none"]).optional(),
+    last_sync: z.string().datetime().nullable().optional(),
+    last_known_time: z.string().datetime().nullable().optional(),
+    time_age_s: z.number().int().nonnegative().nullable().optional()
   })
   .strict();
 export type DeviceState = z.infer<typeof DeviceStateSchema>;
@@ -149,6 +154,38 @@ export const CommandResponseSchema = z
   })
   .strict();
 export type CommandResponse = z.infer<typeof CommandResponseSchema>;
+
+export const TimeStatusResponseSchema = z
+  .object({
+    server_time: z.string().datetime(),
+    timezone: z.string().min(1).max(64),
+    time_valid: z.boolean(),
+    time_source: z.enum(["sntp", "api", "mqtt", "manual", "none"]),
+    last_sync: z.string().datetime().nullable(),
+    time_age_s: z.number().int().nonnegative().nullable()
+  })
+  .strict();
+export type TimeStatusResponse = z.infer<typeof TimeStatusResponseSchema>;
+
+export const ManualTimeRequestSchema = z
+  .object({
+    utc: z.string().datetime(),
+    timezone: z.string().min(1).max(64)
+  })
+  .strict();
+export type ManualTimeRequest = z.infer<typeof ManualTimeRequestSchema>;
+
+export const ManualTimeResponseSchema = z
+  .object({
+    device_id: z.string().min(1),
+    utc: z.string().datetime(),
+    timezone: z.string().min(1).max(64),
+    time_source: z.literal("manual"),
+    accepted_at: z.string().datetime(),
+    mqtt_delivered: z.boolean()
+  })
+  .strict();
+export type ManualTimeResponse = z.infer<typeof ManualTimeResponseSchema>;
 
 export const TelemetrySampleSchema = z
   .object({

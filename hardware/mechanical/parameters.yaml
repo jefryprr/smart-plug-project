@@ -1,7 +1,7 @@
-# Mechanical parameters — REV_C_PSU_BOARD
+# Mechanical parameters — REV_D_CORE_ONLY
 # All values are provisional engineering assumptions unless marked otherwise.
 # The 220 x 120 x 70 enclosure is the user-confirmed target (Q06=C).
-design_revision: REV_C_PSU_BOARD
+design_revision: REV_D_CORE_ONLY
 material_id: "ABS/PC flame-retardant, UL94 V-0 target (not selected)"
 manufacturing_process: "FDM prototype / injection molding production TBD"
 
@@ -42,13 +42,13 @@ vent_diameter_mm: 12.0
 usb_cover_center: [-42.0, -60.0, 30.0]
 usb_cover_opening_mm: [30.0, 20.0]
 
-# Top-lid UI (top face z=70).
-oled_viewport_mm: [28.0, 14.0]
-oled_center_xy: [-92.0, 28.0]
+# Top-lid UI (top face z=70). CORE-only: button only.
 button_center_xy: [-62.0, 28.0]
 button_diameter_mm: 12.0
-status_led_viewport_mm: 5.0
-rgb_center_xy: [-49.0, 28.0]
+# Onboard DevKitC-1 v1.0 RGB (GPIO48) is inside the enclosure. Small left-wall
+# window/light-pipe opening; exact LED position must be verified on the sample.
+devkit_rgb_window_center: [-110.0, -13.57, 22.0]
+devkit_rgb_window_diameter_mm: 5.0
 button_travel_mm: 0.5
 service_access: "Front USB service cover; remove cover, mains OFF; no USB while mains energized"
 

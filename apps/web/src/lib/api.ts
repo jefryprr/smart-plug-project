@@ -10,7 +10,9 @@ import {
   DiagnosticsResponseSchema,
   EventsResponseSchema,
   LoginResponseSchema,
+  ManualTimeResponseSchema,
   MeResponseSchema,
+  TimeStatusResponseSchema,
   TariffSchema,
   TelemetryListResponseSchema,
   type AnalyticsResponse,
@@ -24,7 +26,9 @@ import {
   type DiagnosticsResponse,
   type EventsResponse,
   type LoginResponse,
+  type ManualTimeResponse,
   type MeResponse,
+  type TimeStatusResponse,
   type Tariff,
   type TelemetryListResponse
 } from "@smartplug/api-contract";
@@ -206,6 +210,21 @@ export const api = {
       AnalyticsResponseSchema,
       await request<unknown>(`/v1/devices/${deviceId}/analytics?${params.toString()}`),
       "analytics"
+    );
+  },
+
+  async timeStatus(): Promise<TimeStatusResponse> {
+    return parseOrThrow(TimeStatusResponseSchema, await request<unknown>("/v1/time"), "waktu server");
+  },
+
+  async setDeviceTime(deviceId: string, utc: string, timezone: string): Promise<ManualTimeResponse> {
+    return parseOrThrow(
+      ManualTimeResponseSchema,
+      await request<unknown>(`/v1/devices/${deviceId}/time`, {
+        method: "POST",
+        body: { utc, timezone }
+      }),
+      "set waktu"
     );
   },
 

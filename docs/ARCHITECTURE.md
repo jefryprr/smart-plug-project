@@ -1,6 +1,6 @@
 # Architecture
 
-**Design revision:** `REV_C_PSU_BOARD`  
+**Design revision:** `REV_D_CORE_ONLY`  
 **Diagram:** [`hardware/SYSTEM_ARCHITECTURE.png`](hardware/SYSTEM_ARCHITECTURE.png) (also `.svg`, `.pdf`)  
 **Note:** the diagram is functional, not a wiring diagram. For wiring see [`../hardware/wiring/`](../hardware/wiring/); for the native system block schematic see [`../hardware/kicad/`](../hardware/kicad/).
 
@@ -33,7 +33,7 @@ The device is the source of truth for `commanded_output` and fault/lockout. The 
 flowchart LR
     subgraph MAINS["MAINS DOMAIN — hazardous"]
         PLUG["Plug L/N/PE"]
-        PSU["REV_C PSU board<br/>TB1 · F1 · MOV · TCO · HLK-5M05 · TB2"]
+        PSU["REV_D_CORE_ONLY PSU board<br/>TB1 · F1 · MOV · TCO · HLK-5M05 · TB2"]
         PZEM["PZEM-004T V4<br/>voltage + 100 A CT"]
         RELAY["2-channel relay module<br/>two independent SPDT"]
         SOCKET["Socket L/N/PE"]
@@ -56,13 +56,15 @@ flowchart LR
         ESP["ESP32-S3 DevKitC-1"]
         LEVEL["74HCT125 + 10k/20k divider"]
         DRIVER["AO3400A relay driver"]
-        UI["OLED · button · RGB"]
-        RTC["DS3231 RTC"]
+        BUTTON["Physical button"]
+        TIME["Time service<br/>SNTP + NVS + API/MQTT/manual"]
+        RGB["Onboard RGB GPIO48"]
         CARRIER --- ESP
         CARRIER --- LEVEL
         CARRIER --- DRIVER
-        CARRIER --- UI
-        CARRIER --- RTC
+        CARRIER --- BUTTON
+        ESP --- TIME
+        ESP --- RGB
     end
 
     PSU -->|"5 V J5"| CARRIER
@@ -194,21 +196,21 @@ flowchart LR
 | USB / service | USB restricted while mains present | Design rule; hardware not tested |
 | Enclosure | 220 × 120 × 70 mm, mechanical barrier at x = −4 mm | Digital fit only; material/flame/impact unverified |
 | Thermal | Fuse + 99 °C TCO; no firmware temperature sensor | Not tested at 8 A |
-| PZEM UART | Internal optocouplers only in REV_C; `OUT3` conditional | Batch/hipot unverified; external ADuM/B0505S is the fallback |
+| PZEM UART | Internal optocouplers only in REV_D_CORE_ONLY; `OUT3` conditional | Batch/hipot unverified; external ADuM/B0505S is the fallback |
 
 Read the full safety case: [`../safety/ISOLATION_PLAN.md`](../safety/ISOLATION_PLAN.md), [`../safety/PROTECTION_COORDINATION.md`](../safety/PROTECTION_COORDINATION.md), [`../safety/CLEARANCE_CREEPAGE_WORKSHEET.md`](../safety/CLEARANCE_CREEPAGE_WORKSHEET.md).
 
 ---
 
-## 6. Revision note: REV_A vs REV_C
+## 6. Revision note: REV_A vs REV_D_CORE_ONLY
 
 | Revision | UART isolation | PSU | Status |
 |---|---|---|---|
 | `REV_A_PROVISIONAL` | External ADuM1201 + B0505S barrier | HLK off-board | Superseded for current design |
-| `REV_B_NO_TEMP` | PZEM internal optocouplers; no external barrier | HLK off-board | Transitional |
-| `REV_C_PSU_BOARD` | PZEM internal optocouplers; `OUT3` conditional | Separate 50 × 65 mm mains-entry PSU board | Current digital revision |
+| `REV_D_CORE_ONLY` | PZEM internal optocouplers; no external barrier | HLK off-board | Transitional |
+| `REV_D_CORE_ONLY` | PZEM internal optocouplers; `OUT3` conditional | Separate 50 × 65 mm mains-entry PSU board | Current digital revision |
 
-REV_C is documented in [`decisions/ADR-016-PZEM-ISOLATION-REV-C.md`](decisions/ADR-016-PZEM-ISOLATION-REV-C.md). Do not mix claims from different revisions without checking the artifact’s status.
+REV_D_CORE_ONLY is documented in [`decisions/ADR-016-PZEM-ISOLATION-REV-C.md`](decisions/ADR-016-PZEM-ISOLATION-REV-C.md). Do not mix claims from different revisions without checking the artifact’s status.
 
 ---
 

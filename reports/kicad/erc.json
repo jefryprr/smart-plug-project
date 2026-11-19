@@ -1,4 +1,4 @@
-ERC report (2026-11-16T13:10:49, Encoding UTF8)
+ERC report (2026-11-19T12:02:19, Encoding UTF8)
 Report includes: Errors, Warnings
 
 ***** Sheet /
@@ -15,9 +15,7 @@ Report includes: Errors, Warnings
 
 ***** Sheet /ESP32S3_CARRIER/
 
-***** Sheet /DISPLAY_AND_BUTTONS/
-
-***** Sheet /RTC_ONLY/
+***** Sheet /TIME_SERVICE/
 
 ***** Sheet /SERVICE_AND_DEBUG/
 

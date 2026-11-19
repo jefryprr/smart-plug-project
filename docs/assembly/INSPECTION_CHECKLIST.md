@@ -16,7 +16,7 @@
 - [ ] Cable gland/strain relief anchored.
 - [ ] Socket cannot rotate/pull out.
 - [ ] No loose screws/metal/strands.
-- [ ] OLED/button/RGB accessible without mains exposure.
+- [ ] Button accessible without mains exposure; onboard RGB window unobstructed.
 - [ ] USB service cover/label.
 
 ## Electrical (low voltage first)

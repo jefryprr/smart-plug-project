@@ -20,10 +20,10 @@
 | Q10 | **2-channel optocoupler relay module umum**, off-board | CONFIRMED (arah), PROVISIONAL (part) | Modul 2 channel 5 V, kontak 10 A class (klaim umum), active-low, tidak di PCB; mounting di enclosure. Bukan DPST mekanis; risiko channel tidak linked harus ditinjau. |
 | Q11 | **D** — Pilih berdasar isolasi/dimensi/produksi; lean B/C; PZEM + relay off-board | CONFIRMED (arah), PROVISIONAL (arsitektur) | Modul mains tidak dipaksa ke header biasa; bracket/standoff mekanik. |
 | Q12 | **A** — Prototipe akademik di lab berpengalaman | CONFIRMED | Bukan produk konsumen; klaim berhenti di engineering/hardware validation. |
-| Q13 | **A** — OLED I²C kecil 0,96" | CONFIRMED | SSD1306 128×64, 3,3 V. |
-| Q14 | **C** — NeoPixel built-in + LED RGB panel | CONFIRMED | LED panel untuk visibilitas saat enclosure tertutup. |
+| Q13 | **DEFERRED** — OLED dihapus dari build aktif | REVISED 2026-11-19 | REV_D_CORE_ONLY; kembali hanya lewat revisi FULL. |
+| Q14 | **A** — onboard NeoPixel v1.0 GPIO48 | REVISED 2026-11-19 | External RGB deferred; small side window provisional. |
 | Q15 | **C** — BLE + fallback SoftAP | CONFIRMED | Jendela provisioning terbatas dan berautentikasi. |
-| Q16 | **C** — Wi-Fi LAN + fisik + jadwal dengan RTC tervalidasi | CONFIRMED | RTC/SNTP dengan status validitas jam. |
+| Q16 | **B + time service** — fisik/jadwal + SNTP/NVS/API/MQTT/manual | REVISED 2026-11-19 | No RTC; invalid time blocks schedules. |
 | Q17 | **C** — Hybrid lokal + cloud | CONFIRMED | Implementasi awal self-host Docker Compose; cloud publik perlu izin. |
 | Q18 | **D** — Sederhana sekarang, siap evolusi | CONFIRMED | Model data tenant-ready, RBAC dasar. |
 | Q19 | **A** — Telegram sebagai notifikasi utama | CONFIRMED | Android push menjadi roadmap; tanpa akun Firebase pada MVP. |
@@ -60,15 +60,15 @@ Pengguna memberi instruksi baru dan saya catat sebagai amendment, bukan jawaban 
 | Toolchain | Belum ada | **Sedang dipasang** | ESP-IDF/Android mengikuti batas disk |
 | Sensor suhu | GY-TMP102 | **Dihapus** | Tidak ada sensor suhu; proteksi termal hardware (fuse/TCO) |
 | Isolasi UART | ADuM1201 + B0505S | **Dihapus** | PZEM internal optocoupler; level shift 74HCT125 + divider |
-| PCB | Placement-only 75x50 | **Routed SELV carrier 100x70 (25 footprints = 22 assembled + 3 fiducials, 18 nets) + routed PSU board 50x65 (13 assembled, 8 nets)** | DRC 0/0, Gerber/drill; belum difabrikasi |
-| Komponen/procurement | BOM unpriced | **Daftar belanja Indonesia 2026-11-16** | 40 baris listing-verified, 17 estimated; CORE elektronik Rp717.087 (restock Rp665.619), FULL Rp834.687; addendum mekanik ~Rp28.000; safety tetap unapproved |
+| PCB | Placement-only 75x50 | **Routed SELV carrier 100x70 (19 footprints = 16 assembled + 3 fiducials, 11 named nets) + routed PSU board 50x65 (13 assembled, 8 nets)** | DRC 0/0, Gerber/drill; belum difabrikasi |
+| Komponen/procurement | BOM unpriced | **Daftar belanja Indonesia 2026-11-16** | 33 baris listing-verified, 15 estimated; CORE elektronik Rp716.087 (restock Rp664.619), FULL UI deferred; addendum mekanik ~Rp28.000; safety tetap unapproved |
 
 ## Konflik yang diperiksa
 
 Tidak ada konflik eksplisit antarjawaban. Dua ketegangan yang dicatat:
 
 - **Q01=B (inline) vs Q06=C (220×120×70)** — Dengan PZEM off-board + module relay 2 channel, 150×100 gagal dan 180×120 tidak memberi clearance layak. Pengguna mengonfirmasi **220×120×70**; jangan memaksa clearance turun.
-- **Q03=8 A vs Q07=B (Rp500–750 rb)** — Harga listing 2026-11-16: elektronik inti Rp433.633; CORE elektronik Rp717.087 (Rp757.087 dengan ongkir); CORE + addendum mekanik ~Rp745.087 (Rp785.087 dengan ongkir); FULL Rp834.687 (Rp874.687 dengan ongkir). CORE elektronik **tidak masuk** Rp750.000 tanpa restock (Rp757.087 all-in); addendum membuat marketplace ~Rp785.087 all-in; restock + addendum ~Rp733.619 all-in (di bawah cap). Keselamatan diprioritaskan; FULL tidak dipaksa masuk budget dengan menurunkan fuse/MOV/TCO/PE/enclosure/isolasi.
+- **Q03=8 A vs Q07=B (Rp500–750 rb)** — Harga listing 2026-11-16: elektronik inti Rp433.633; CORE elektronik Rp716.087 (Rp756.087 dengan ongkir); CORE + addendum mekanik ~Rp744.087 (Rp784.087 dengan ongkir); FULL UI deferred. CORE elektronik **tidak masuk** Rp750.000 tanpa restock (Rp756.087 all-in); addendum membuat marketplace ~Rp784.087 all-in; restock + addendum ~Rp732.619 all-in (di bawah cap). Keselamatan diprioritaskan; FULL tidak dipaksa masuk budget dengan menurunkan fuse/MOV/TCO/PE/enclosure/isolasi.
 
 ## Persetujuan
 

@@ -15,7 +15,7 @@ static int failures = 0;
     } \
 } while (0)
 
-static const int64_t NOW = 1000000;
+static const int64_t NOW = 1700000000000LL;
 
 static sp_state_t ready_state(void) {
     sp_state_t state;
@@ -24,7 +24,7 @@ static sp_state_t ready_state(void) {
     state.meter_valid = true;
     state.temperature_valid = true;
     state.temperature_required = true;
-    state.clock_valid = true;
+    sp_time_set(&state, SP_TIME_SOURCE_SNTP, NOW, NOW, "Asia/Jakarta");
     return state;
 }
 
@@ -116,15 +116,15 @@ static void test_decisions(void) {
     CHECK(strcmp(decision.reason_code, "COMMAND_FROM_FUTURE") == 0);
 
     state = ready_state();
-    state.clock_valid = false;
+    sp_time_invalidate(&state, NOW);
     sp_command_t schedule = command("cmd-schedule", SP_REQ_ON, 2);
     schedule.source = SP_SRC_SCHEDULE;
     sp_decide_command(&state, &schedule, NOW, 30000, &decision);
     CHECK(!decision.accepted);
-    CHECK(strcmp(decision.reason_code, "CLOCK_INVALID") == 0);
+    CHECK(strcmp(decision.reason_code, "TIME_INVALID") == 0);
 
     state = ready_state();
-    state.clock_valid = false;
+    sp_time_invalidate(&state, NOW);
     sp_command_t button = command("cmd-button", SP_REQ_ON, 3);
     button.source = SP_SRC_PHYSICAL_BUTTON;
     sp_decide_command(&state, &button, NOW, 30000, &decision);
@@ -238,20 +238,58 @@ static void test_schedule(void) {
     schedule.action = SP_OUTPUT_ON;
     schedule.enabled = true;
     sp_schedule_result_t result;
-    CHECK(sp_schedule_due(&schedule, 0, 12, 10, -1, 100, &result));
+    CHECK(sp_schedule_due(&schedule, 0, 12, 10, -1, 100, true, &result));
     CHECK(result.due);
     CHECK(result.action == SP_OUTPUT_ON);
     CHECK(strcmp(result.reason_code, "DUE") == 0);
 
-    CHECK(!sp_schedule_due(&schedule, 0, 12, 10, 100, 100, &result));
+    CHECK(!sp_schedule_due(&schedule, 0, 12, 10, 100, 100, true, &result));
     CHECK(strcmp(result.reason_code, "ALREADY_RAN_TODAY") == 0);
 
-    CHECK(!sp_schedule_due(&schedule, 1, 12, 10, -1, 100, &result));
+    CHECK(!sp_schedule_due(&schedule, 1, 12, 10, -1, 100, true, &result));
     CHECK(strcmp(result.reason_code, "WRONG_WEEKDAY") == 0);
 
     schedule.enabled = false;
-    CHECK(!sp_schedule_due(&schedule, 0, 12, 10, -1, 100, &result));
+    CHECK(!sp_schedule_due(&schedule, 0, 12, 10, -1, 100, true, &result));
     CHECK(strcmp(result.reason_code, "SCHEDULE_DISABLED") == 0);
+}
+
+static void test_time_service(void) {
+    sp_state_t state = ready_state();
+    CHECK(state.time.valid);
+    CHECK(state.clock_valid);
+    CHECK(strcmp(sp_time_source_name(state.time.source), "sntp") == 0);
+    CHECK(sp_time_is_valid_for_schedule(&state, NOW));
+    CHECK(!sp_time_is_valid_for_schedule(&state, NOW + SP_TIME_MAX_AGE_MS + 1));
+
+    state = ready_state();
+    sp_time_set(&state, SP_TIME_SOURCE_MANUAL, NOW, NOW, "Asia/Jakarta");
+    CHECK(state.time.valid);
+    CHECK(strcmp(sp_time_source_name(state.time.source), "manual") == 0);
+    CHECK(sp_time_is_valid_for_schedule(&state, NOW));
+
+    /* NVS last-known is display-only: it must not authorize schedules. */
+    state = ready_state();
+    sp_time_invalidate(&state, NOW);
+    state.time.last_known_utc_ms = NOW;
+    CHECK(!sp_time_is_valid_for_schedule(&state, NOW));
+
+    /* Implausible manual time must not become valid. */
+    sp_time_set(&state, SP_TIME_SOURCE_MANUAL, 0, NOW, "Asia/Jakarta");
+    CHECK(!state.time.valid);
+    CHECK(!state.clock_valid);
+
+    sp_schedule_result_t result;
+    sp_weekly_schedule_t schedule;
+    memset(&schedule, 0, sizeof(schedule));
+    schedule.days_mask = 1u << 0;
+    schedule.start_hour = 12;
+    schedule.start_minute = 0;
+    schedule.duration_minutes = 30;
+    schedule.action = SP_OUTPUT_ON;
+    schedule.enabled = true;
+    CHECK(!sp_schedule_due(&schedule, 0, 12, 10, -1, 100, false, &result));
+    CHECK(strcmp(result.reason_code, "TIME_INVALID") == 0);
 }
 
 static void test_crc_and_json(void) {
@@ -295,6 +333,7 @@ int main(void) {
     test_measurement();
     test_energy();
     test_schedule();
+    test_time_service();
     test_crc_and_json();
     printf("%d checks, %d failures\n", checks, failures);
     return failures == 0 ? 0 : 1;

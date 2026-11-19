@@ -1,0 +1,13 @@
+
+> @smartplug/domain@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 C:/Users/JEFRY PRATAMA/Zed/SMART-PLUG-V2/packages/domain
+
+
+ Test Files  1 passed (1)
+      Tests  36 passed (36)
+   Start at  11:48:09
+   Duration  336ms (transform 46%, tests 27%, import 21%, worker 6%)
+

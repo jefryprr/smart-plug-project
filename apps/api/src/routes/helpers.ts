@@ -63,7 +63,12 @@ export function toDeviceSummary(access: DeviceAccessRow, now: Date): DeviceSumma
       last_transition_at: state.last_transition_at,
       clock_valid: state.clock_valid,
       meter_valid: state.meter_valid,
-      temperature_valid: state.temperature_valid
+      temperature_valid: state.temperature_valid,
+      time_valid: state.time_valid,
+      time_source: state.time_source,
+      last_sync: state.last_sync,
+      last_known_time: state.last_known_time,
+      time_age_s: state.time_age_s
     },
     firmware_version: access.firmware_version,
     data_source: access.data_source as DeviceSummary["data_source"],

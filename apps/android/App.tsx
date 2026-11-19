@@ -30,6 +30,11 @@ interface DeviceState {
   clock_valid: boolean;
   meter_valid: boolean;
   temperature_valid: boolean;
+  time_valid?: boolean;
+  time_source?: "sntp" | "api" | "mqtt" | "manual" | "none";
+  last_sync?: string | null;
+  last_known_time?: string | null;
+  time_age_s?: number | null;
 }
 
 interface DeviceSummary {
@@ -306,7 +311,8 @@ export default function App() {
           <View>
             <Text style={styles.title}>Perangkat</Text>
             <Text style={styles.muted}>
-              Status koneksi bukan bukti status fisik. Data demo sintetik selalu diberi label.
+              Status koneksi bukan bukti status fisik. Data demo sintetik selalu diberi label. Waktu tidak valid
+              menonaktifkan schedule; kontrol manual tetap boleh.
             </Text>
             <Pressable style={[styles.button, styles.secondary]} onPress={() => void loadDevices()}>
               <Text style={styles.buttonTextDark}>Muat ulang</Text>
@@ -357,6 +363,16 @@ export default function App() {
                 {selected.state.commanded_output} (commanded)
               </Text>
             </View>
+            {!(selected.state.time_valid ?? selected.state.clock_valid) ? (
+              <Text style={styles.error}>
+                Waktu belum valid — schedule dinonaktifkan. Kontrol manual tetap boleh.
+              </Text>
+            ) : (
+              <Text style={styles.muted}>
+                Waktu valid · sumber {selected.state.time_source ?? "sntp"} · sync{" "}
+                {formatTime(selected.state.last_sync ?? null)}
+              </Text>
+            )}
             <Text style={styles.muted}>
               Feedback fisik: {selected.state.observed_output ?? "tidak tersedia"}
             </Text>

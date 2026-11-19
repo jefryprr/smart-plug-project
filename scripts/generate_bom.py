@@ -94,13 +94,13 @@ def row(
 
 ROWS = [
     row(
-        "E-001", "U1", "MCU", "ESP32-S3 DevKitC-1, N16R8 (16 MB flash, 8 MB PSRAM)",
-        "Espressif", "ESP32-S3-DevKitC-1-N16R8", revision="v1.1 (planned)",
-        datasheet="https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html",
+        "E-001", "U1", "MCU", "ESP32-S3 DevKitC-1, N16R8 (16 MB flash, 8 MB PSRAM), v1.0",
+        "Espressif", "ESP32-S3-DevKitC-1-N16R8", revision="v1.0 (user-confirmed)",
+        datasheet="https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.0.html",
         status="PENDING_APPROVAL", alt="ESP32-S3-DevKitC-1-N8R8; third-party clone (not preferred)",
         footprint="ESP32-S3-DevKitC-1_2x22", mech="esp32s3_devkitc1_approx",
-        notes="RGB pin differs between v1.0 (GPIO48) and v1.1 (GPIO38); board must be photographed and revision verified. N16R8 uses octal PSRAM; avoid GPIO33-37.",
-        evidence="Espressif user guide v1.1; verify exact board marking and USB/strapping pins on arrival."
+        notes="User-confirmed v1.0; onboard RGB = GPIO48 (not v1.1 GPIO38). Firmware locks BOARD_DEVKITC1_REV=10 and PIN_STATUS_RGB=48. If the unit is a clone/compatible board, record Q08=B and do not claim official Espressif origin. N16R8 uses octal PSRAM; avoid GPIO33-37.",
+        evidence="User statement 2026-11-19; Espressif v1.0 user guide. Physical marking/photo still recommended."
     ),
     row(
         "E-002", "U2", "Metering", "PZEM-004T V4 AC energy meter, 100 A split/open CT, TTL/Modbus",
@@ -112,17 +112,17 @@ ROWS = [
         evidence="PRD retailer references are availability evidence only, not datasheet. Archive is historical and may not match the purchased V4."
     ),
     row(
-        "E-003", "PS1", "Power", "AC/DC 5 V 1 A isolated power module, 5 W, 90-264 VAC input (on REV_C PSU board)",
+        "E-003", "PS1", "Power", "AC/DC 5 V 1 A isolated power module, 5 W, 90-264 VAC input (on REV_D_CORE_ONLY PSU board)",
         "Hi-Link", "HLK-5M05", datasheet="https://www.hlktech.net/index.php?id=1243",
         status="PENDING_APPROVAL", alt="Mean Well IRM-05-5 (better documentation/certification, larger); Recom RAC01-05SC (too low current)",
         footprint="HLK_5M05_CUSTOM", mech="hlk_5m05_approx",
-        notes="Selected by user. 38x23x18 mm, 4 pins (AC/AC/-Vo/+Vo), 5 V 1 A, 5 W. Datasheet claims 2500 VAC input-output isolation and UL/CE design compliance, but the exact batch certificate/isolation/creepage are unverified. Efficiency is only ~70% at 220 V full load, so ~2.1 W heat; thermal test is mandatory. Fuse/MOV/TCO are on the same REV_C PSU board upstream. Do not touch AC pins; keep mains creepage and barrier.",
+        notes="Selected by user. 38x23x18 mm, 4 pins (AC/AC/-Vo/+Vo), 5 V 1 A, 5 W. Datasheet claims 2500 VAC input-output isolation and UL/CE design compliance, but the exact batch certificate/isolation/creepage are unverified. Efficiency is only ~70% at 220 V full load, so ~2.1 W heat; thermal test is mandatory. Fuse/MOV/TCO are on the same REV_D_CORE_ONLY PSU board upstream. Do not touch AC pins; keep mains creepage and barrier.",
         evidence="Distributor copy of Hi-Link HLK-5M05 datasheet (3 pages) with dimension drawing; official product page; exact batch/certification must be verified."
     ),
     row(
         "E-005", "U5", "Sensing", "I2C real-time clock with integrated crystal, 3.3 V",
         "Analog Devices", "DS3231MZ+", datasheet="https://www.analog.com/media/en/technical-documentation/data-sheets/DS3231M.pdf",
-        status="PENDING_APPROVAL", alt="PCF8523T + 32.768 kHz crystal; SNTP holdover only",
+        status="DEFERRED_CORE_ONLY", alt="None in REV_D; SNTP/NVS/API/MQTT/manual time only",
         footprint="SO-16W", mech="DS3231_approx",
         notes="Battery/supercap holder and drift budget must be selected. Invalid clock blocks automatic ON.",
         evidence="Analog Devices DS3231M datasheet; RTC drift and backup runtime require measurement."
@@ -136,11 +136,11 @@ ROWS = [
         evidence="AOS datasheet; boot waveform must be measured on a low-voltage fixture."
     ),
     row(
-        "E-009", "U9", "UI/Level shift", "Quad buffer/level shifter, 5 V powered, DIP-14, for PZEM TX and WS2812 data",
+        "E-009", "U9", "UI/Level shift", "Quad buffer/level shifter, 5 V powered, DIP-14, for PZEM TX only",
         "Texas Instruments", "SN74HCT125N", datasheet="https://www.ti.com/lit/ds/symlink/sn74hct125.pdf",
         status="PENDING_APPROVAL", alt="74HCT125 (any vendor); SN74AHCT1G125 for one channel",
         footprint="DIP-14_W7.62mm", mech="DIP14_approx",
-        notes="Converts ESP32 3.3 V logic to 5 V for PZEM RX and WS2812 data. 74HCT input threshold is TTL-compatible. Tie unused inputs to GND; add 100 nF at VCC. Do not use for galvanic isolation.",
+        notes="Converts ESP32 3.3 V logic to 5 V for PZEM RX only. 74HCT input threshold is TTL-compatible. Unused gates: inputs/OE tied to GND, outputs open; add 100 nF at VCC. Do not use for galvanic isolation.",
         evidence="TI SN74HCT125 datasheet; verify 5 V output levels and PZEM input current."
     ),
     row(
@@ -217,7 +217,7 @@ ROWS = [
     ),
     row(
         "E-018", "R3", "Passives", "WS2812 data series resistor, 330 ohm, 0805", "Yageo", "RC0805FR-07330RL",
-        datasheet="https://www.yageo.com/", status="PROVISIONAL", footprint="R_0805_2012Metric", mech="R0805_approx",
+        datasheet="https://www.yageo.com/", status="DEFERRED_CORE_ONLY", footprint="R_0805_2012Metric", mech="R0805_approx",
         notes="Place close to LED data input.", evidence="Yageo datasheet."
     ),
     row(
@@ -233,10 +233,10 @@ ROWS = [
         evidence="Littelfuse SMBJ series datasheet; exact batch to be verified."
     ),
     row(
-        "E-052", "PSU_PCB", "PCB", "Mains-entry PSU PCB, 2-layer FR4, 1.6 mm, 2 oz Cu target, 50 x 65 mm, routed", "TBD", "PCB-PSU-REV-C",
-        status="PROVISIONAL", footprint="PCB_PSU_REV_C", mech="pcb_psu_50x65",
-        notes="REV_C PSU board: TB1/TB2, F1, MOV1, TF1, HLK-5M05, F2/D1, 3x JST. Mains isolation notch; creepage/hipot unverified. NOT_FOR_FABRICATION.",
-        evidence="KiCad psu_rev_c.kicad_pcb; Gerber/drill/POS provisional; DRC 0/0."
+        "E-052", "PSU_PCB", "PCB", "Mains-entry PSU PCB, 2-layer FR4, 1.6 mm, 2 oz Cu target, 50 x 65 mm, routed", "TBD", "PCB-PSU-REV-D",
+        status="PROVISIONAL", footprint="PCB_PSU_REV_D", mech="pcb_psu_50x65",
+        notes="REV_D_CORE_ONLY PSU board: TB1/TB2, F1, MOV1, TF1, HLK-5M05, F2/D1, 3x JST. Mains isolation notch; creepage/hipot unverified. NOT_FOR_FABRICATION.",
+        evidence="KiCad psu_rev_d.kicad_pcb; Gerber/drill/POS provisional; DRC 0/0."
     ),
     row(
         "E-053", "J5,J6,J7", "Connectors", "JST-XH 2-pin PCB connector for 5 V outputs, 3 pcs", "JST", "B2B-XH-A",
@@ -284,12 +284,12 @@ ROWS = [
     ),
     row(
         "E-018C", "R6", "Passives", "I2C SDA pullup, 4.7 kohm, 1%, 0805", "Yageo", "RC0805FR-074K7L",
-        datasheet="https://www.yageo.com/", status="PROVISIONAL", footprint="R_0805_2012Metric", mech="R0805_approx",
+        datasheet="https://www.yageo.com/", status="DEFERRED_CORE_ONLY", footprint="R_0805_2012Metric", mech="R0805_approx",
         notes="To 3.3V; OLED + RTC only. Verify bus capacitance and address conflicts.", evidence="Yageo datasheet."
     ),
     row(
         "E-018D", "R7", "Passives", "I2C SCL pullup, 4.7 kohm, 1%, 0805", "Yageo", "RC0805FR-074K7L",
-        datasheet="https://www.yageo.com/", status="PROVISIONAL", footprint="R_0805_2012Metric", mech="R0805_approx",
+        datasheet="https://www.yageo.com/", status="DEFERRED_CORE_ONLY", footprint="R_0805_2012Metric", mech="R0805_approx",
         notes="To 3.3V; keep I2C <=400 kHz for prototype.", evidence="Yageo datasheet."
     ),
     row(
@@ -299,14 +299,14 @@ ROWS = [
     ),
     row(
         "E-021", "DS1", "UI", "OLED 0.96 inch, 128x64, SSD1306, I2C, 3.3 V module", "TBD", "OLED-096-SSD1306-I2C",
-        status="DOCUMENTATION_DEFICIENT", alt="SH1106 1.3 inch (different controller); bare SSD1306 panel",
+        status="DEFERRED_CORE_ONLY", alt="Deferred to FULL; not fitted in REV_D",
         footprint="OFF_BOARD_MODULE", mech="oled096_approx",
         notes="Verify controller, address, and 3.3 V operation. Do not assume SH1106 is SSD1306-compatible.",
         evidence="Generic module; no traceable manufacturer datasheet yet."
     ),
     row(
         "E-022", "LED1", "UI", "Addressable RGB LED, WS2812B, 5050, 5 V", "Worldsemi", "WS2812B-5050",
-        datasheet="https://www.worldsemi.com/", status="PENDING_APPROVAL", footprint="LED_WS2812B_5050",
+        datasheet="https://www.worldsemi.com/", status="DEFERRED_CORE_ONLY", footprint="LED_WS2812B_5050",
         mech="ws2812b_approx", notes="External panel indicator; built-in DevKitC-1 RGB may be hidden. Level shift data.",
         evidence="Worldsemi datasheet; exact bin/revision to be verified."
     ),
@@ -336,12 +336,12 @@ ROWS = [
     ),
     row(
         "E-027", "J4", "Connectors", "JST-XH 4-pin connector for OLED (3.3V, GND, SDA, SCL)", "JST", "B4B-XH-A",
-        status="PROVISIONAL", footprint="JST_XH_B4B-XH-A", mech="jst_xh_4_approx", notes="Keyed low-voltage connector.",
+        status="DEFERRED_CORE_ONLY", footprint="JST_XH_B4B-XH-A", mech="jst_xh_4_approx", notes="Keyed low-voltage connector.",
         evidence="JST datasheet."
     ),
     row(
         "E-028", "J5", "Connectors", "JST-XH 6-pin connector for RTC (3.3V, GND, SDA, SCL, INT, 32K)", "JST", "B6B-XH-A",
-        status="PROVISIONAL", footprint="JST_XH_B6B-XH-A", mech="jst_xh_6_approx",
+        status="DEFERRED_CORE_ONLY", footprint="JST_XH_B6B-XH-A", mech="jst_xh_6_approx",
         notes="DS3231 module; 32K may be left unconnected. INT to GPIO7.", evidence="JST datasheet."
     ),
     row(
@@ -351,7 +351,7 @@ ROWS = [
     ),
     row(
         "E-048", "J7", "Connectors", "JST-XH 3-pin connector for RGB (5V, GND, DATA)", "JST", "B3B-XH-A",
-        status="PROVISIONAL", footprint="JST_XH_B3B-XH-A", mech="jst_xh_3_approx",
+        status="DEFERRED_CORE_ONLY", footprint="JST_XH_B3B-XH-A", mech="jst_xh_3_approx",
         notes="Data from 74HCT125 through 330R. 5V power for WS2812.", evidence="JST datasheet."
     ),
     row(
@@ -417,10 +417,10 @@ ROWS = [
         notes="SELV only. Keep away from mains barrier.", evidence="Generic."
     ),
     row(
-        "E-041", "PCB1", "PCB", "SELV carrier PCB, 2-layer FR4, 1.6 mm, 1 oz Cu, 100 x 70 mm, routed (25 footprints, 18 nets)", "TBD", "PCB-CARRIER-REV-C",
-        status="PROVISIONAL", footprint="PCB_CARRIER_REV_C", mech="pcb_carrier_100x70",
+        "E-041", "PCB1", "PCB", "SELV CORE-only carrier PCB, 2-layer FR4, 1.6 mm, 1 oz Cu, 100 x 70 mm, routed (19 footprints incl. 3 fiducials, 11 named nets)", "TBD", "PCB-CARRIER-REV-D",
+        status="PROVISIONAL", footprint="PCB_CARRIER_REV_D", mech="pcb_carrier_100x70",
         notes="Mains modules off-board. Carrier handles 5V/3.3V, PZEM 5V-to-3.3V level shift, relay driver, I2C OLED/RTC, button, RGB. Routed with DRC 0 but still engineering-review-required; not a certified mains assembly.",
-        evidence="KiCad REV_C_PSU_BOARD routed carrier; Gerber/drill exported; physical test not performed."
+        evidence="KiCad REV_D_CORE_ONLY routed carrier; Gerber/drill exported; physical test not performed."
     ),
     row(
         "E-042", "LAB1", "Labels", "Safety/rating label set: rated voltage/current, warnings, serial/QR placeholder", "TBD", "LABEL-SET-REV-A",
@@ -506,7 +506,7 @@ PROCUREMENT = [
         "notes": "Datasheet efficiency is only ~70% at 220 V full load. Batch certificate, isolation, creepage, and counterfeit status are unverified. CNC Store Bandung Rp63,300 was out of stock. Reject unmarked modules and require ripple/thermal/hipot tests.",
     },
     {
-        "line_id": "E-005", "stage": "FULL",
+        "line_id": "E-005", "stage": "DEFERRED",
         "selected": "DS3231SN RTC module with battery",
         "qty": 1, "unit_price": 49500,
         "seller": "EasyWare Store",
@@ -622,7 +622,7 @@ PROCUREMENT = [
         "notes": "Mandatory gate pulldown for boot-safe OFF. Unit price is an allocated pack cost.",
     },
     {
-        "line_id": "E-018", "stage": "FULL",
+        "line_id": "E-018", "stage": "DEFERRED",
         "selected": "330 Ohm 0805 resistor (small pack)",
         "qty": 1, "unit_price": 1000,
         "seller": "Shopee",
@@ -648,7 +648,7 @@ PROCUREMENT = [
     },
     {
         "line_id": "E-052", "stage": "CORE",
-        "selected": "REV_C PSU PCB 50 x 65 mm, 2 oz target (5 pcs share, estimated)",
+        "selected": "REV_D_CORE_ONLY PSU PCB 50 x 65 mm, 2 oz target (5 pcs share, estimated)",
         "qty": 1, "unit_price": 15000,
         "seller": "PCB fab (estimate)", "url": "",
         "stock": "ESTIMATED", "verification": "ESTIMATED",
@@ -725,7 +725,7 @@ PROCUREMENT = [
         "notes": "Allocated pack cost. PZEM TX divider bottom; output ~3.33V.",
     },
     {
-        "line_id": "E-018C", "stage": "CORE",
+        "line_id": "E-018C", "stage": "DEFERRED",
         "selected": "4.7 kOhm 0805 resistor (I2C SDA pullup)",
         "qty": 1, "unit_price": 500,
         "seller": "Shopee",
@@ -734,7 +734,7 @@ PROCUREMENT = [
         "notes": "Allocated pack cost.",
     },
     {
-        "line_id": "E-018D", "stage": "CORE",
+        "line_id": "E-018D", "stage": "DEFERRED",
         "selected": "4.7 kOhm 0805 resistor (I2C SCL pullup)",
         "qty": 1, "unit_price": 500,
         "seller": "Shopee",
@@ -761,7 +761,7 @@ PROCUREMENT = [
         "notes": "Can be soldered directly; exact listing not captured.",
     },
     {
-        "line_id": "E-048", "stage": "FULL",
+        "line_id": "E-048", "stage": "DEFERRED",
         "selected": "JST-XH 3-pin cable for RGB",
         "qty": 1, "unit_price": 5000,
         "seller": "Shopee (similar listing)",
@@ -779,7 +779,7 @@ PROCUREMENT = [
         "notes": "Or direct solder to J8; exact listing not captured.",
     },
     {
-        "line_id": "E-021", "stage": "FULL",
+        "line_id": "E-021", "stage": "DEFERRED",
         "selected": "OLED 0.96 inch 128x64 SSD1306 I2C",
         "qty": 1, "unit_price": 33300,
         "seller": "EasyWare Store",
@@ -788,7 +788,7 @@ PROCUREMENT = [
         "notes": "Verify controller (SSD1306 vs SH1106), address, and 3.3 V operation. Deferred in the CORE build; the web UI/serial console remains the fallback.",
     },
     {
-        "line_id": "E-022", "stage": "FULL",
+        "line_id": "E-022", "stage": "DEFERRED",
         "selected": "CJMCU-2812-8 WS2812B module",
         "qty": 1, "unit_price": 8500,
         "seller": "Shopee",
@@ -833,7 +833,7 @@ PROCUREMENT = [
         "notes": "Relay module connector; 5V/GND/IN1/IN2. Verify module pinout.",
     },
     {
-        "line_id": "E-027", "stage": "FULL",
+        "line_id": "E-027", "stage": "DEFERRED",
         "selected": "JST-XH 4-pin cable for OLED",
         "qty": 1, "unit_price": 12300,
         "seller": "Shopee",
@@ -842,7 +842,7 @@ PROCUREMENT = [
         "notes": "OLED connector; deferred with OLED.",
     },
     {
-        "line_id": "E-028", "stage": "FULL",
+        "line_id": "E-028", "stage": "DEFERRED",
         "selected": "JST-XH 6-pin cable for RTC",
         "qty": 1, "unit_price": 8000,
         "seller": "Shopee (similar listing)",
@@ -1036,11 +1036,11 @@ PROCUREMENT_OVERRIDES = {
         "notes": "Priced exact-size 220x120x70 ABS/IP65 junction box. Flame-retardant grade is not verified; ABS may not be UL94 V-0. Enclosure remains BLOCKED pending material, fit, thermal, impact, and PE review. 3D printed enclosure is prototype-only and not certified for mains.",
     },
     "E-041": {
-        "description": "SELV carrier PCB, 2-layer FR4, 1.6 mm, 1 oz Cu, 100 x 70 mm, routed",
+        "description": "SELV CORE-only carrier PCB, 2-layer FR4, 1.6 mm, 1 oz Cu, 100 x 70 mm, routed (19 footprints incl. 3 fiducials, 11 named nets)",
         "manufacturer": "Generic",
-        "manufacturer_part_number": "PCB-CARRIER-REV-C",
-        "footprint_id": "PCB_CARRIER_REV_C",
-        "notes": "REV_C routed SELV carrier with two 1x22 DevKit sockets at 22.86 mm spacing, PZEM 5V/3.3V level shift, relay driver, I2C OLED/RTC, button, RGB, and 5V input from PSU J5. DRC 0 but engineering review/physical test still required. No mains and no PTC/TVS (moved to PSU board).",
+        "manufacturer_part_number": "PCB-CARRIER-REV-D",
+        "footprint_id": "PCB_CARRIER_REV_D",
+        "notes": "REV_D_CORE_ONLY routed SELV carrier with two 1x22 DevKit sockets at 22.86 mm spacing, PZEM 5V/3.3V level shift, relay driver, button, and 5V input from PSU J5. No mains, no OLED/RTC/external RGB, no PTC/TVS. DRC 0 but engineering review/physical test still required.",
     },
     "E-042": {
         "description": "Safety/rating label set: rated voltage/current, warnings, serial/QR placeholder (prototype label tape)",
@@ -1081,6 +1081,8 @@ def procurement_rows() -> list[dict]:
     by_id = {item["item_id"]: item for item in ROWS}
     rows = []
     for entry in PROCUREMENT:
+        if entry.get("stage") == "DEFERRED":
+            continue
         item = by_id.get(entry["line_id"])
         if item is None:
             raise KeyError(f"procurement row {entry['line_id']} has no BOM row")
@@ -1117,13 +1119,13 @@ def procurement_markdown(rows: list[dict], totals: dict) -> str:
         "> Harga dapat berubah; stok marketplace tidak stabil. Tidak ada harga rekaan: baris tanpa listing ditandai `ESTIMATED`.",
         "",
         f"- Budget cap: **Rp{BUDGET_CAP_IDR:,}**",
-        f"- Baris: **{sum(1 for r in rows if r['stage']=='CORE')} CORE + {sum(1 for r in rows if r['stage']=='FULL')} FULL**; "
+        f"- Baris: **{sum(1 for r in rows if r['stage']=='CORE')} CORE; FULL deferred**; "
         f"{sum(1 for r in rows if r['price_verification'].startswith('VERIFIED'))} listing-verified, "
         f"{sum(1 for r in rows if r['price_verification']=='ESTIMATED')} `ESTIMATED`.",
         f"- CORE subtotal: **Rp{totals['core_subtotal_idr']:,}**",
         f"- CORE dengan harga restock EasyWare: **Rp{totals['core_restock_subtotal_idr']:,}**",
-        f"- FULL add-ons (OLED/RTC/RGB/konektor): **Rp{totals['full_addons_idr']:,}**",
-        f"- FULL subtotal: **Rp{totals['full_subtotal_idr']:,}**",
+        f"- FULL add-ons: DEFERRED (CORE-only build)",
+        f"- FULL subtotal: DEFERRED",
         f"- Estimasi ongkir: **Rp{totals['shipping_estimate_idr']:,}** (belum termasuk pajak/impor)",
         "",
         "## CORE — safety/function minimum",
@@ -1140,7 +1142,7 @@ def procurement_markdown(rows: list[dict], totals: dict) -> str:
         )
     lines += [
         "",
-        "## FULL add-ons — UI/time/expansion",
+        "## FULL add-ons — DEFERRED in REV_D_CORE_ONLY",
         "",
         "| Line | Part | Qty | Harga | Seller | Verifikasi |",
         "|---|---|---:|---:|---|---|",
@@ -1165,9 +1167,9 @@ def procurement_markdown(rows: list[dict], totals: dict) -> str:
         f"- FULL + addendum + ongkir: **Rp{totals['full_with_addendum_all_in_idr']:,}**.",
         f"- Status: `{totals['verdict']}`.",
         "",
-        "CORE electronics (Rp717.087) is about Rp7.087 over Rp750.000 with Rp40.000 shipping (Rp757.087).",
-        "The mechanical addendum (~Rp28.000) pushes the marketplace CORE to about Rp785.087 all-in;",
-        "EasyWare restock brings it to about Rp733.619 all-in, under the cap. FULL is over budget.",
+        "CORE electronics (Rp716.087) is about Rp6.087 over Rp750.000 with Rp40.000 shipping (Rp756.087).",
+        "The mechanical addendum (~Rp28.000) pushes the marketplace CORE to about Rp784.087 all-in;",
+        "EasyWare restock brings it to about Rp732.619 all-in, under the cap. FULL UI is deferred.",
         "",
         "Jangan menurunkan fuse, MOV, TCO, terminal, PE, enclosure, atau barrier isolasi",
         "untuk mengejar budget. Lihat `research/PROCUREMENT_INDONESIA.md` untuk risiko stok.",
@@ -1211,17 +1213,17 @@ def main() -> None:
         "core_with_addendum_all_in_idr": core_subtotal + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR,
         "core_restock_with_addendum_all_in_idr": core_restock + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR,
         "full_with_addendum_all_in_idr": core_subtotal + full_addons + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR,
-        "verdict": "CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_FITS; FULL_OVER_BUDGET",
+        "verdict": "CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_FITS; FULL_DEFERRED",
     }
     (BOM / "BOM_PROCUREMENT.md").write_text(procurement_markdown(proc, totals), encoding="utf-8")
 
     with (BOM / "BOM_MASTER.yaml").open("w", encoding="utf-8") as handle:
         import yaml
-        yaml.safe_dump({"project": "esp32-s3-iot-smart-plug", "design_revision": "REV_C_PSU_BOARD", "generated_at": now, "items": ROWS}, handle, sort_keys=False, allow_unicode=True)
+        yaml.safe_dump({"project": "esp32-s3-iot-smart-plug", "design_revision": "REV_D_CORE_ONLY", "generated_at": now, "items": ROWS}, handle, sort_keys=False, allow_unicode=True)
 
     summary = {
         "project": "esp32-s3-iot-smart-plug",
-        "design_revision": "REV_C_PSU_BOARD",
+        "design_revision": "REV_D_CORE_ONLY",
         "currency": "IDR",
         "generated_at": now,
         "pricing_status": "PROCUREMENT_PRICED_2026-11-16",
@@ -1253,9 +1255,9 @@ def main() -> None:
         "notes": [
             "Engineering BOM is still unpriced; dated prototype buy list is bom/BOM_PROCUREMENT.csv.",
             "Prices are listing prices, not supplier quotes. Shipping/tax are separate estimates.",
-            "CORE excludes OLED, RTC, external RGB, and their connectors; FULL adds them.",
-            "CORE electronics is Rp717.087 (Rp757.087 all-in) at marketplace prices; the mechanical addendum (~Rp28.000) makes it about Rp785.087 all-in. EasyWare restock gives about Rp733.619 all-in with the addendum, under the cap. FULL is over. Do not downgrade safety.",
-            "FULL is over budget; do not downgrade fuse, MOV, TCO, PE, terminal, enclosure, or isolation to meet it.",
+            "REV_D is CORE-only. OLED, RTC, external RGB, their connectors, 330R, and I2C pullups are DEFERRED and excluded from procurement.",
+            "CORE electronics is Rp716.087 (Rp756.087 all-in) at marketplace prices; the mechanical addendum (~Rp28.000) makes it about Rp784.087 all-in. EasyWare restock gives about Rp732.619 all-in with the addendum, under the cap. FULL UI is deferred in REV_D. Do not downgrade safety.",
+            "FULL UI/time add-ons are deferred; do not downgrade fuse, MOV, TCO, PE, terminal, enclosure, or isolation to meet budget.",
             "Final rating is 8 A / about 1.840 W (user amendment), limited to electronics/SMPS loads; thermal/lifecycle tests are still required.",
             "Batch 10-unit pricing cannot be quoted without actual supplier quotes.",
         ],
@@ -1263,7 +1265,7 @@ def main() -> None:
     (BOM / "BOM_SUMMARY.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
 
     md = [
-        "# BOM Master — REV_C_PSU_BOARD",
+        "# BOM Master — REV_D_CORE_ONLY",
         "",
         f"**Generated:** {now}",
         "",
@@ -1291,7 +1293,7 @@ def main() -> None:
 
     approvals = {
         "project": "esp32-s3-iot-smart-plug",
-        "design_revision": "REV_C_PSU_BOARD",
+        "design_revision": "REV_D_CORE_ONLY",
         "generated_at": now,
         "approval_policy": "User approved the research direction, not final MPNs. No component is approved for fabrication.",
         "approved_by": None,

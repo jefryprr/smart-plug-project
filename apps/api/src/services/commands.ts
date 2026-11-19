@@ -96,6 +96,13 @@ function safetySnapshot(access: DeviceAccessRow, db: AppDb): DeviceSafetySnapsho
     lockout: state.lockout,
     faultCode: state.fault_code,
     clockValid: state.clock_valid,
+    time: {
+      valid: state.time_valid,
+      source: state.time_source,
+      lastSync: state.last_sync,
+      lastKnown: state.last_known_time,
+      ageSeconds: state.time_age_s
+    },
     meterValid: state.meter_valid,
     temperatureValid: state.temperature_valid,
     lastCommandSequence: last?.sequence ?? 0,

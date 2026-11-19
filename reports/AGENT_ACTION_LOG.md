@@ -1,4 +1,4 @@
-# Agent Action Log — REV_C_PSU_BOARD
+# Agent Action Log — REV_D_CORE_ONLY
 
 **Date:** 2026-11-15
 **Agent:** OpenCode (DeepSeek V4.1 Flash 1017)
@@ -39,10 +39,10 @@
 | 31 | Final validation gate | `.venv\Scripts\python.exe scripts\validate_all.py --e2e` | 23 PASS / 11 BLOCKED / 0 FAIL (before PSU swap) | `reports/TEST_MATRIX.csv`, `VALIDATION_SUMMARY.json` |
 | 32 | PSU replacement | Research HLK-5M05 datasheet/specs; update BOM/wiring/CAD/safety/ADR | 5 V 1 A / 5 W, 38×23×18 mm; efficiency ~70%; `PENDING_APPROVAL` | `research/PSU_HLK_5M05.md`, `docs/decisions/ADR-013-PSU-HLK-5M05.md` |
 
-| 33 | Indonesian procurement research | 57 BOM lines; EasyWare/Shopee/BigGo/CNC/Blibli checks; budget roll-up | CORE Rp717.087 (restock Rp665.619); FULL Rp834.687; 40 listing-verified + 17 estimated | `bom/BOM_PROCUREMENT.csv`, `research/PROCUREMENT_INDONESIA.md` |
+| 33 | Indonesian procurement research | 57 BOM lines; EasyWare/Shopee/BigGo/CNC/Blibli checks; budget roll-up | CORE Rp716.087 (restock Rp664.619); FULL UI deferred; 33 listing-verified + 15 estimated | `bom/BOM_PROCUREMENT.csv`, `research/PROCUREMENT_INDONESIA.md` |
 
-| 33 | Indonesian procurement research | 57 BOM lines; EasyWare/Shopee/BigGo/CNC/Blibli checks; budget roll-up | CORE Rp717.087 (restock Rp665.619); FULL Rp834.687; 40 listing-verified + 17 estimated | `bom/BOM_PROCUREMENT.csv`, `research/PROCUREMENT_INDONESIA.md` |
-| 34 | REV_C_PSU_BOARD hardware redesign | Remove TMP102 + ADuM1201/B0505S; PZEM internal isolation; 74HCT125/divider; two 1x22 sockets at 22.86 mm; routed 100x70 carrier; 5 V PTC/TVS; fiducials; detailed 220x120x70 enclosure (60+10, gasket, vent, USB cover, DevKit key); no-temp firmware policy | DRC 0/0; ERC 0; routed Gerber/drill/POS; host tests 75 PASS; electronics CORE ~Rp703k | `hardware/kicad/smartplug.kicad_pcb`, `hardware/schematic/`, `hardware/carrier/`, `hardware/mechanical/` |
+| 33 | Indonesian procurement research | 57 BOM lines; EasyWare/Shopee/BigGo/CNC/Blibli checks; budget roll-up | CORE Rp716.087 (restock Rp664.619); FULL UI deferred; 33 listing-verified + 15 estimated | `bom/BOM_PROCUREMENT.csv`, `research/PROCUREMENT_INDONESIA.md` |
+| 34 | REV_D_CORE_ONLY hardware redesign | Remove TMP102 + ADuM1201/B0505S; PZEM internal isolation; 74HCT125/divider; two 1x22 sockets at 22.86 mm; routed 100x70 carrier; 5 V PTC/TVS; fiducials; detailed 220x120x70 enclosure (60+10, gasket, vent, USB cover, DevKit key); no-temp firmware policy | DRC 0/0; ERC 0; routed Gerber/drill/POS; host tests 75 PASS; electronics CORE ~Rp703k | `hardware/kicad/smartplug.kicad_pcb`, `hardware/schematic/`, `hardware/carrier/`, `hardware/mechanical/` |
 
 ## Commands that were not run (and why)
 
@@ -55,4 +55,5 @@
 ## Integrity note
 
 No test was converted from `FAIL` to `PASS`. Blocked checks are recorded as `BLOCKED` in `reports/TEST_MATRIX.csv` and `reports/FAILURES.md`.
-| 35 | REV_C PSU board + research evidence | Separate 50x65 mains entry: TB1/TB2, F1, S10K275 MOV, SEFUSE SF96E 99 C TCO, HLK-5M05, F2/D1, 3x JST; carrier PTC/TVS removed; ADR-016 OUT3 conditional; evidence/log/manifest | PSU DRC 0/0; carrier DRC 0/0; ERC 0; 27 PASS/11 BLOCKED; CORE Rp717.087 | `hardware/kicad/psu_rev_c.kicad_pcb`, `research/PSU_BOARD_EVIDENCE.md`, `reports/RESEARCH_LOG.md`, `deliverables/manifest.json` |
+| 35 | REV_D_CORE_ONLY PSU board + research evidence | Separate 50x65 mains entry: TB1/TB2, F1, S10K275 MOV, SEFUSE SF96E 99 C TCO, HLK-5M05, F2/D1, 3x JST; carrier PTC/TVS removed; ADR-016 OUT3 conditional; evidence/log/manifest | PSU DRC 0/0; carrier DRC 0/0; ERC 0; 27 PASS/11 BLOCKED; CORE Rp716.087 | `hardware/kicad/psu_rev_d.kicad_pcb`, `research/PSU_BOARD_EVIDENCE.md`, `reports/RESEARCH_LOG.md`, `deliverables/manifest.json` |
+| 36 | REV_D CORE-only + time fail-safe | Remove OLED/RTC/external RGB; onboard RGB v1.0 GPIO48; SNTP/NVS/API/MQTT/manual time; schedule gating; carrier 16 assembled/11 nets; PSU renamed psu_rev_d | ERC 0; carrier/PSU DRC 0/0; 27 PASS/11 BLOCKED; 88 firmware/43 API/6 sim/36 domain/12 MQTT tests | `hardware/kicad/psu_rev_d.kicad_pcb`, `docs/decisions/ADR-017-CORE-ONLY-TIME-SYNC.md`, `research/TIME_SERVICE_EVIDENCE.md` |

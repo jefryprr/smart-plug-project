@@ -202,7 +202,7 @@ def main() -> int:
     (VALIDATION / "CONNECTIVITY_DIFF.json").write_text(json.dumps(checks, indent=2), encoding="utf-8")
 
     lines = [
-        "# Isolation Boundary Check — REV_C_PSU_BOARD",
+        "# Isolation Boundary Check — REV_D_CORE_ONLY",
         "",
         "**Status:** static wiring check only. Manual engineering review is still required.",
         "",

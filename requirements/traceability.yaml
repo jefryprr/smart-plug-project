@@ -1,5 +1,5 @@
 project: esp32-s3-iot-smart-plug
-design_revision: REV_C_PSU_BOARD
+design_revision: REV_D_CORE_ONLY
 prd_version: '1.0'
 generated_at: '2026-11-15T00:00:00Z'
 status_legend:
@@ -7,6 +7,7 @@ status_legend:
     implied.
   PARTIAL: Some implementation/evidence exists, full criterion not met.
   BLOCKED: Cannot proceed without hardware/lab/tool/approval.
+  DEFERRED: Deferred feature, not part of the active CORE-only build.
   NOT_STARTED: No implementation yet.
   UNVERIFIED: Claim exists without sufficient test.
 requirements:
@@ -299,9 +300,9 @@ requirements:
   - CORE-SCHEDULE
   status: PARTIAL
   evidence:
-  - Schedule evaluator tested; firmware time integration pending
+  - Schedule evaluator + time gating tested; hardware schedule execution blocked
   blocked_by:
-  - BLOCK-RTC-INTEGRATION
+  - BLOCK-BOARD
   risk_ids:
   - RR-17
   last_verified_at: '2026-11-15T00:00:00Z'
@@ -432,9 +433,9 @@ requirements:
   - CORE-SCHEDULE
   status: PARTIAL
   evidence:
-  - Clock validity rule tested; RTC integration pending
+  - Time-validity gate tested; no RTC; SNTP/NVS integration build-only
   blocked_by:
-  - BLOCK-RTC-INTEGRATION
+  - BLOCK-BOARD
   risk_ids:
   - RR-17
   last_verified_at: '2026-11-15T00:00:00Z'
@@ -546,7 +547,7 @@ requirements:
   implementation_paths:
   - safety/PROTECTION_COORDINATION.md
   - bom/BOM_MASTER.csv
-  - hardware/kicad/psu_rev_c.kicad_pcb
+  - hardware/kicad/psu_rev_d.kicad_pcb
   test_ids:
   - T-HW-013
   - T-HW-020
@@ -567,7 +568,7 @@ requirements:
   implementation_paths:
   - safety/THERMAL_RISK_AND_DERATING.md
   - bom/BOM_MASTER.csv
-  - hardware/kicad/psu_rev_c.kicad_pcb
+  - hardware/kicad/psu_rev_d.kicad_pcb
   test_ids:
   - T-HW-019
   - T-HW-021
@@ -589,7 +590,7 @@ requirements:
   implementation_paths:
   - safety/ELECTRICAL_RATING_CHAIN.md
   - safety/PROTECTION_COORDINATION.md
-  - hardware/kicad/psu_rev_c.kicad_pcb
+  - hardware/kicad/psu_rev_d.kicad_pcb
   test_ids:
   - T-HW-013
   - T-HW-020
@@ -689,10 +690,11 @@ requirements:
   phase: F1
   implementation_paths: []
   test_ids: []
-  status: NOT_STARTED
-  evidence: []
+  status: DEFERRED
+  evidence:
+  - Deferred in REV_D_CORE_ONLY; no OLED hardware
   blocked_by:
-  - BLOCK-OLED-FIRMWARE
+  - DEFERRED-FULL-UI
   risk_ids:
   - RR-14
   last_verified_at: null
@@ -704,28 +706,33 @@ requirements:
   phase: F1
   implementation_paths: []
   test_ids: []
-  status: NOT_STARTED
-  evidence: []
+  status: DEFERRED
+  evidence:
+  - Deferred in REV_D_CORE_ONLY
   blocked_by:
-  - BLOCK-OLED-FIRMWARE
+  - DEFERRED-FULL-UI
   risk_ids:
   - RR-14
   last_verified_at: null
   reviewer: null
 - id: FR-039
   source_id: 40
-  description: RGB NeoPixel status
+  description: Onboard RGB status
   priority: P1
   phase: F1
-  implementation_paths: []
-  test_ids: []
-  status: NOT_STARTED
-  evidence: []
+  implementation_paths:
+  - firmware/main/status_rgb.c
+  - hardware/interfaces/gpio_map.yaml
+  test_ids:
+  - T-HW-004
+  status: PARTIAL
+  evidence:
+  - GPIO48 v1.0 pattern driver; physical visibility test blocked
   blocked_by:
-  - BLOCK-RGB-FIRMWARE
+  - BLOCK-RGB-VISUAL
   risk_ids:
   - RR-14
-  last_verified_at: null
+  last_verified_at: '2026-11-15T00:00:00Z'
   reviewer: null
 - id: FR-040
   source_id: 41
@@ -734,10 +741,11 @@ requirements:
   phase: F1
   implementation_paths: []
   test_ids: []
-  status: NOT_STARTED
-  evidence: []
+  status: DEFERRED
+  evidence:
+  - Deferred in REV_D_CORE_ONLY
   blocked_by:
-  - BLOCK-RGB-FIRMWARE
+  - DEFERRED-FULL-UI
   risk_ids:
   - RR-14
   last_verified_at: null
@@ -747,15 +755,18 @@ requirements:
   description: RGB fault indicator
   priority: P0
   phase: F1
-  implementation_paths: []
-  test_ids: []
-  status: NOT_STARTED
-  evidence: []
+  implementation_paths:
+  - firmware/main/status_rgb.c
+  test_ids:
+  - T-HW-004
+  status: PARTIAL
+  evidence:
+  - Fault/lockout red pattern in code; not visually tested
   blocked_by:
-  - BLOCK-RGB-FIRMWARE
+  - BLOCK-RGB-VISUAL
   risk_ids:
   - RR-14
-  last_verified_at: null
+  last_verified_at: '2026-11-15T00:00:00Z'
   reviewer: null
 - id: FR-042
   source_id: 43
@@ -764,10 +775,11 @@ requirements:
   phase: F1
   implementation_paths: []
   test_ids: []
-  status: NOT_STARTED
-  evidence: []
+  status: DEFERRED
+  evidence:
+  - Deferred in REV_D_CORE_ONLY
   blocked_by:
-  - BLOCK-RGB-FIRMWARE
+  - DEFERRED-FULL-UI
   risk_ids:
   - RR-14
   last_verified_at: null
@@ -1451,7 +1463,7 @@ requirements:
   priority: P0
   phase: F1
   implementation_paths:
-  - hardware/kicad/psu_rev_c.kicad_pcb
+  - hardware/kicad/psu_rev_d.kicad_pcb
   - hardware/psu/README.md
   - docs/decisions/ADR-016-PZEM-ISOLATION-REV-C.md
   test_ids:
@@ -1474,7 +1486,7 @@ requirements:
   priority: P0
   phase: F1
   implementation_paths:
-  - hardware/kicad/psu_rev_c.kicad_pcb
+  - hardware/kicad/psu_rev_d.kicad_pcb
   - hardware/psu/README.md
   - hardware/wiring/main_harness.yaml
   test_ids:
@@ -1489,5 +1501,50 @@ requirements:
   risk_ids:
   - RR-19
   - RR-20
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-083
+  source_id: 84
+  description: RTC-free time service
+  priority: P0
+  phase: F1
+  implementation_paths:
+  - firmware/main/time_service.c
+  - apps/api/src/routes/time.ts
+  - packages/mqtt-contract/src/index.ts
+  test_ids:
+  - T-HW-018
+  - API-TIME
+  status: PARTIAL
+  evidence:
+  - SNTP/NVS/API/MQTT/manual service; host/API tests PASS; no device hardware test
+  blocked_by:
+  - BLOCK-BOARD
+  risk_ids:
+  - RR-21
+  - RR-22
+  last_verified_at: '2026-11-15T00:00:00Z'
+  reviewer: null
+- id: FR-084
+  source_id: 85
+  description: Time-invalid schedule fail-safe
+  priority: P0
+  phase: F1+F2
+  implementation_paths:
+  - firmware/core/smartplug_core.c
+  - packages/domain/src/index.ts
+  - apps/web/src/components/TimeStatusPanel.tsx
+  test_ids:
+  - DOMAIN-SCHEDULE
+  - CORE-SCHEDULE
+  - T-SW-011
+  status: PARTIAL
+  evidence:
+  - Schedule blocked, schedule-origin OFF, manual control allowed, no replay; physical
+    test blocked
+  blocked_by:
+  - BLOCK-BOARD
+  risk_ids:
+  - RR-21
   last_verified_at: '2026-11-15T00:00:00Z'
   reviewer: null

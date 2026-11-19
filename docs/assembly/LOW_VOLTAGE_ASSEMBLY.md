@@ -1,6 +1,6 @@
 # Low-Voltage Assembly
 
-**Scope:** SELV carrier, headers, OLED, button, RGB, sensors. **No mains.**
+**Scope:** CORE-only SELV carrier, headers, button, 5 V input. No OLED/RTC/external RGB. **No mains.**
 
 ## Tools
 
@@ -12,7 +12,7 @@
 1. Inspect PCB for defects.
 2. Solder low-profile passives, then ICs/connectors.
 3. Install headers/standoffs; do not force.
-4. Connect OLED/button/RGB/temp/RTC via keyed JST-XH.
+4. Connect only the physical button and the 5 V/PZEM/relay harnesses via keyed JST-XH. OLED/RTC/external RGB are not fitted.
 5. Continuity check: 3.3 V/GND not shorted; I2C/UART nets correct.
 6. Apply 5 V current-limited; measure current; check no heat/smell.
 7. Flash/test only with a low-voltage fixture (no mains).

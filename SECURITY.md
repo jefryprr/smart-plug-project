@@ -6,7 +6,7 @@ This repository is a **digital prototype**. There is no production release and n
 
 | Version | Supported |
 |---|---|
-| `master` (REV_C_PSU_BOARD) | Best-effort security fixes |
+| `master` (REV_D_CORE_ONLY) | Best-effort security fixes |
 | Older revisions | Not supported |
 
 ## Reporting a vulnerability

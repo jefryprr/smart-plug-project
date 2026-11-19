@@ -51,6 +51,25 @@ typedef enum {
     SP_QUALITY_INVALID
 } sp_quality_t;
 
+typedef enum {
+    SP_TIME_SOURCE_NONE = 0,
+    SP_TIME_SOURCE_SNTP,
+    SP_TIME_SOURCE_API,
+    SP_TIME_SOURCE_MQTT,
+    SP_TIME_SOURCE_MANUAL
+} sp_time_source_t;
+
+#define SP_TIME_MAX_AGE_MS (12LL * 60LL * 60LL * 1000LL)
+#define SP_TIME_TIMEZONE_MAX 32
+
+typedef struct {
+    bool valid;
+    sp_time_source_t source;
+    int64_t last_sync_ms;
+    int64_t last_known_utc_ms;
+    char timezone[SP_TIME_TIMEZONE_MAX];
+} sp_time_status_t;
+
 typedef struct {
     char device_id[SP_DEVICE_ID_MAX];
     sp_mode_t mode;
@@ -59,7 +78,8 @@ typedef struct {
     sp_output_t observed_output;
     bool lockout;
     char fault_code[SP_FAULT_CODE_MAX];
-    bool clock_valid;
+    bool clock_valid; /* derived from time.valid; kept for compatibility */
+    sp_time_status_t time;
     bool meter_valid;
     bool temperature_valid;
     bool temperature_required;
@@ -198,7 +218,14 @@ bool sp_schedule_due(const sp_weekly_schedule_t *schedule,
                      int minute,
                      int32_t last_run_date,
                      int32_t today_date,
+                     bool time_valid,
                      sp_schedule_result_t *result);
+
+void sp_time_set(sp_state_t *state, sp_time_source_t source, int64_t utc_ms,
+                 int64_t now_ms, const char *timezone);
+void sp_time_invalidate(sp_state_t *state, int64_t now_ms);
+bool sp_time_is_valid_for_schedule(const sp_state_t *state, int64_t now_ms);
+const char *sp_time_source_name(sp_time_source_t source);
 
 uint16_t sp_crc16_modbus(const uint8_t *data, size_t length);
 

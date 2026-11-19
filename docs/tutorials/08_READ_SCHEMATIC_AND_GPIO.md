@@ -3,7 +3,7 @@
 ## Schematic
 
 - Root: `hardware/kicad/smartplug.kicad_sch` (9 blok).
-- Child: `AC_INPUT_OUTPUT`, `SAFETY_AND_SWITCH`, `AC_DC_POWER`, `PZEM_AND_CT`, `LOW_VOLTAGE_CONTROL`, `ESP32S3_CARRIER`, `DISPLAY_AND_BUTTONS`, `RTC_ONLY`, `SERVICE_AND_DEBUG`.
+- Child: `AC_INPUT_OUTPUT`, `SAFETY_AND_SWITCH`, `AC_DC_POWER`, `PZEM_AND_CT`, `LOW_VOLTAGE_CONTROL`, `ESP32S3_CARRIER`, `TIME_SERVICE`, `SERVICE_AND_DEBUG`, `PSU_MAINS_5V`. CORE-only has no OLED/RTC/external RGB.
 - Ini **system block schematic**, bukan komponen penuh.
 
 ## GPIO

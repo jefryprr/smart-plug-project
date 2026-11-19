@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the REV_C mains-entry PSU board (provisional, not for fabrication).
+"""Generate the REV_D_CORE_ONLY mains-entry PSU board (provisional, not for fabrication).
 
 Board: 50 x 70 mm, 2-layer FR4, HLK-5M05, fuse/MOV/TCO, L/N terminals,
 3x JST-XH 5 V outputs. The board has a routed isolation notch between the
@@ -20,7 +20,7 @@ import pcbnew
 ROOT = Path(__file__).resolve().parents[1]
 KICAD = ROOT / "hardware" / "kicad"
 KICAD.mkdir(parents=True, exist_ok=True)
-BOARD_PATH = KICAD / "psu_rev_c.kicad_pcb"
+BOARD_PATH = KICAD / "psu_rev_d.kicad_pcb"
 FP_LIB = ROOT / "tools" / "kicad" / "share" / "kicad" / "footprints"
 
 W, H = 50.0, 65.0
@@ -317,7 +317,7 @@ def main() -> None:
     add_text(board, "OUT2 RELAY", 14, 46, 0.8)
     add_text(board, "OUT3 PZEM", 14, 36, 0.8)
     add_text(board, "PE OFF-BOARD - CHASSIS STUD", 32, 8, 0.8)
-    add_text(board, "REV_C PSU - NOT FOR FABRICATION", 14, 53, 0.8)
+    add_text(board, "REV_D_CORE_ONLY PSU - NOT FOR FABRICATION", 24, 53, 0.8)
 
     board.BuildListOfNets()
     pcbnew.SaveBoard(str(BOARD_PATH), board)

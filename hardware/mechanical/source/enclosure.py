@@ -1,4 +1,4 @@
-"""Parametric 220 x 120 x 70 enclosure for the REV_C_PSU_BOARD smart plug.
+"""Parametric 220 x 120 x 70 enclosure for the REV_D_CORE_ONLY smart plug.
 
 This is a mechanical concept, not a certified electrical enclosure. It adds a
 deep body, shallow lid, flat gasket, lid screws, carrier standoffs, module
@@ -109,6 +109,10 @@ def build_bottom() -> cq.Workplane:
     vx, vy, vz = p["vent_center"]
     body = body.cut(_cylinder(float(p["vent_diameter_mm"]) / 2, 12.0, vx, vy, vz, axis=(-1, 0, 0)))
 
+    # Onboard DevKitC-1 v1.0 RGB window on the left wall (provisional position).
+    wx, wy, wz = p["devkit_rgb_window_center"]
+    body = body.cut(_cylinder(float(p["devkit_rgb_window_diameter_mm"]) / 2, 8.0, wx, wy, wz, axis=(1, 0, 0)))
+
     # Front USB service opening (cover is a separate printed part).
     ux, uy, uz = p["usb_cover_center"]
     uw, uh = p["usb_cover_opening_mm"]
@@ -136,14 +140,9 @@ def build_top() -> cq.Workplane:
         lid = lid.cut(_cylinder(3.2 / 2, 12.0, x, y, bottom_h - 1))
         lid = lid.cut(_cylinder(float(p["lid_screw_counterbore_diameter_mm"]) / 2, float(p["lid_screw_counterbore_depth_mm"]), x, y, 70.0 - float(p["lid_screw_counterbore_depth_mm"])))
 
-    # Top UI cutouts.
-    ox, oy = p["oled_center_xy"]
-    ow, oh = p["oled_viewport_mm"]
-    lid = lid.cut(cq.Workplane("XY").box(ow, oh, 6).translate((ox, oy, 67)))
+    # Top UI cutout: physical button only (CORE-only, no OLED/external RGB).
     bx, by = p["button_center_xy"]
     lid = lid.cut(_cylinder(float(p["button_diameter_mm"]) / 2, 6.0, bx, by, 67))
-    rx, ry = p["rgb_center_xy"]
-    lid = lid.cut(_cylinder(float(p["status_led_viewport_mm"]) / 2, 6.0, rx, ry, 67))
     return lid
 
 

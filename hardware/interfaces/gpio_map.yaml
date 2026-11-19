@@ -1,19 +1,24 @@
-# GPIO Map — REV_C_PSU_BOARD
-# Board: Espressif ESP32-S3-DevKitC-1 N16R8 (planned, revision UNVERIFIED)
-# ATURAN: Nomor GPIO belum final sampai board fisik dan revisinya diverifikasi.
-design_revision: REV_C_PSU_BOARD
+# GPIO Map — REV_D_CORE_ONLY
+# Board: Espressif ESP32-S3-DevKitC-1 N16R8 v1.0 (user-confirmed, 2026-11-19)
+# CORE-only: no OLED, no RTC, no external RGB. Onboard RGB = GPIO48.
+design_revision: REV_D_CORE_ONLY
 board:
   model: ESP32-S3-DevKitC-1-N16R8
   manufacturer: Espressif
-  revision: "v1.1 (planned, unverified)"
+  revision: "v1.0 (user-confirmed)"
   flash_mb: 16
   psram_mb: 8
   logic_level_v: 3.3
   usb: "native USB (GPIO19/20), reserved"
-  verified_board_revision: null
-  verification_status: UNVERIFIED
+  verified_board_revision: "v1.0-user-confirmed"
+  verification_status: "USER_CONFIRMED"
+  verification_source: "user statement 2026-11-19; physical photo/marking check still recommended"
+  onboard_rgb_gpio: 48
+  clone_note: "If the unit is a clone/compatible board, record Q08=B and do not claim official Espressif origin."
   notes:
-    - "RGB GPIO differs between v1.0 (48) and v1.1 (38); do not assume."
+    - "v1.0 onboard RGB = GPIO48; v1.1 = GPIO38. This build locks GPIO48."
+    - "v1.0 and v1.1 use 2 x 1x22 headers, 2.54 mm pitch, 22.86 mm row spacing; socket footprint unchanged."
+    - "No external I2C, OLED, RTC, or RGB connector in REV_D."
     - "Avoid strapping GPIO0/3/45/46."
     - "Avoid GPIO26-37 (flash/PSRAM); N16R8 uses octal PSRAM."
     - "External pulldown on relay control is mandatory for boot-safe OFF."
@@ -32,7 +37,7 @@ pins:
     firmware_define: PIN_RELAY_CTRL
     schematic_ref: U1-IO4
     test: "T-HW-014 boot-safe waveform"
-    verified_board_revision: null
+    verified_board_revision: "v1.0-user-confirmed"
     notes: "Drives AO3400 gate; MOSFET pulls both IN1/IN2 of the off-board active-LOW 2-channel module low. Mandatory OFF at reset/boot; external pulldown. Verify module pinout/active-low before use."
   - function: relay_feedback_optional
     board_pin_name: IO11
@@ -47,7 +52,7 @@ pins:
     firmware_define: PIN_RELAY_FEEDBACK
     schematic_ref: U1-IO11
     test: "T-HW-016 relay feedback model"
-    verified_board_revision: null
+    verified_board_revision: "v1.0-user-confirmed"
     notes: "Optional. observed_output stays null if not installed."
   - function: button
     board_pin_name: IO5
@@ -62,68 +67,8 @@ pins:
     firmware_define: PIN_BUTTON
     schematic_ref: U1-IO5
     test: "T-HW-015 debounce/long-press"
-    verified_board_revision: null
-    notes: "Debounce 30-50 ms; short press toggle, long press reset with confirmation."
-  - function: i2c_sda
-    board_pin_name: IO8
-    physical_header: "J1A pin 12 (DevKitC-1 J1)"
-    esp_gpio: 8
-    direction: bidirectional
-    voltage_level: "3.3 V"
-    external_pull: "4.7 kΩ to 3.3 V"
-    boot_default: "HIGH (pullup)"
-    hazard_if_high: "No direct hazard; SELV"
-    peripheral: ui_oled, rtc
-    firmware_define: PIN_I2C_SDA
-    schematic_ref: U1-IO8
-    test: "T-HW-004 GPIO crosscheck; I2C scan"
-    verified_board_revision: null
-    notes: "OLED and DS3231 share bus. Check address conflicts."
-  - function: i2c_scl
-    board_pin_name: IO9
-    physical_header: "J1A pin 15 (DevKitC-1 J1)"
-    esp_gpio: 9
-    direction: output
-    voltage_level: "3.3 V"
-    external_pull: "4.7 kΩ to 3.3 V"
-    boot_default: "HIGH (pullup)"
-    hazard_if_high: "No direct hazard; SELV"
-    peripheral: ui_oled, rtc
-    firmware_define: PIN_I2C_SCL
-    schematic_ref: U1-IO9
-    test: "T-HW-004; I2C scan"
-    verified_board_revision: null
-    notes: "Keep below 400 kHz for prototype."
-  - function: oled_reset
-    board_pin_name: IO6
-    physical_header: "J1A pin 6 (DevKitC-1 J1)"
-    esp_gpio: 6
-    direction: output
-    voltage_level: "3.3 V"
-    external_pull: "10 kΩ pullup"
-    boot_default: "HIGH"
-    hazard_if_high: "No direct hazard; SELV"
-    peripheral: ui_oled
-    firmware_define: PIN_OLED_RESET
-    schematic_ref: U1-IO6
-    test: "T-HW-004; display init"
-    verified_board_revision: null
-    notes: "Optional if module has RC reset; keep for recovery."
-  - function: external_rgb_data
-    board_pin_name: IO10
-    physical_header: "J1A pin 16 (DevKitC-1 J1)"
-    esp_gpio: 10
-    direction: output
-    voltage_level: "3.3 V -> 5 V level shifter"
-    external_pull: "330 Ω series; no pullup"
-    boot_default: "LOW"
-    hazard_if_high: "No direct hazard; SELV"
-    peripheral: ui_rgb
-    firmware_define: PIN_RGB_DATA
-    schematic_ref: U1-IO10
-    test: "T-HW-004; LED pattern test"
-    verified_board_revision: null
-    notes: "WS2812B data via 74HCT125 (5 V); brightness limited."
+    verified_board_revision: "v1.0-user-confirmed"
+    notes: "Debounce 30-50 ms; short press toggle, long press reset with confirmation. Manual toggle works when time is invalid."
   - function: pzem_uart_tx
     board_pin_name: IO17
     physical_header: "J1A pin 10 (DevKitC-1 J1)"
@@ -137,7 +82,7 @@ pins:
     firmware_define: PIN_PZEM_TX
     schematic_ref: U1-IO17
     test: "T-HW-015 UART disconnect/CRC"
-    verified_board_revision: null
+    verified_board_revision: "v1.0-user-confirmed"
     notes: "ESP32 3.3V TX -> 74HCT125 (5V) -> PZEM RX. No external galvanic barrier; PZEM internal optocouplers isolate mains. Verify PZEM RX current."
   - function: pzem_uart_rx
     board_pin_name: IO18
@@ -152,24 +97,23 @@ pins:
     firmware_define: PIN_PZEM_RX
     schematic_ref: U1-IO18
     test: "T-HW-015"
-    verified_board_revision: null
+    verified_board_revision: "v1.0-user-confirmed"
     notes: "PZEM TX 5V -> 10k/20k divider -> ESP32 RX (3.3V). Never connect 5V directly to ESP32."
-  - function: rtc_interrupt
-    board_pin_name: IO7
-    physical_header: "J1A pin 7 (DevKitC-1 J1)"
-    esp_gpio: 7
-    direction: input
-    voltage_level: "3.3 V"
-    external_pull: "10 kΩ pullup"
-    boot_default: "HIGH"
+  - function: status_rgb_onboard
+    board_pin_name: IO48
+    physical_header: "Onboard WS2812, not a carrier header pin"
+    esp_gpio: 48
+    direction: output
+    voltage_level: "3.3 V data; onboard LED powered by DevKit"
+    external_pull: "none; onboard"
+    boot_default: "undefined until firmware initializes; do not use as safety indicator alone"
     hazard_if_high: "No direct hazard; SELV"
-    peripheral: time_service
-    firmware_define: PIN_RTC_INT
-    schematic_ref: U1-IO7
-    test: "T-HW-004; RTC alarm test"
-    verified_board_revision: null
-    notes: "Optional; SNTP + RTC polling fallback."
-
+    peripheral: status_indicator
+    firmware_define: PIN_STATUS_RGB
+    schematic_ref: U1-onboard-RGB
+    test: "T-HW-004 + visual LED pattern check"
+    verified_board_revision: "v1.0-user-confirmed"
+    notes: "v1.0 only. Do not use GPIO38 v1.1 default. Patterns: boot, Wi-Fi connecting, time invalid, normal, fault/lockout. Brightness limited."
 
 reserved:
   - pins: [0, 3, 45, 46]
@@ -180,9 +124,11 @@ reserved:
     reason: "Flash/PSRAM; N16R8 octal PSRAM. Do not use."
   - pins: [43, 44]
     reason: "UART0 console; reserve for debug."
+  - pins: [38]
+    reason: "Onboard RGB on v1.1 only; this project uses v1.0 GPIO48. Do not repurpose."
 
 crosscheck:
   firmware_header: firmware/main/board_config.h
   schematic: hardware/kicad/smartplug.kicad_sch
   wiring: hardware/wiring/main_harness.yaml
-  status: UNVERIFIED
+  status: USER_CONFIRMED_REVISION

@@ -34,7 +34,7 @@ Bayangkan sebuah colokan listrik pintar yang bisa:
 - tetap bisa dikendalikan lewat tombol fisik saat internet mati;
 - menyimpan bukti desain, pengujian, dan keputusan teknik secara terbuka.
 
-Repo ini adalah **paket engineering lengkap** untuk ide tersebut: riset komponen, BOM, skematik, PCB, wiring, enclosure 3D, firmware, API, MQTT, dashboard web, aplikasi Android, simulator, dan dokumen keselamatan.
+Repo ini adalah **paket engineering lengkap** untuk ide tersebut: riset komponen, BOM, skematik, PCB, wiring, enclosure 3D, firmware, API, MQTT, dashboard web, aplikasi Android, simulator, dan dokumen keselamatan. Revisi aktif **REV_D_CORE_ONLY** tidak memakai OLED, RTC, atau RGB eksternal; tombol fisik tetap ada dan onboard RGB DevKitC-1 v1.0 (GPIO48) dipakai sebagai indikator status. Waktu memakai SNTP/NVS/API/MQTT/manual; schedule diblokir saat waktu invalid.
 
 Namun, **belum ada alat fisik yang dirakit atau dinyalakan dengan 230 VAC**. Semua hasil saat ini adalah desain digital dan pengujian perangkat lunak.
 
@@ -59,7 +59,7 @@ Namun, **belum ada alat fisik yang dirakit atau dinyalakan dengan 230 VAC**. Sem
 | Bagian | Status |
 |---|---|
 | Firmware core (C) | 75 host checks PASS; build ESP-IDF v6.1 PASS, belum di-flash |
-| API + MQTT + simulator | 38 + 11 + 4 tests PASS |
+| API + MQTT + simulator | 43 API + 12 MQTT + 6 simulator + 36 domain tests PASS |
 | Dashboard web | Build + 5 Playwright tests + axe PASS |
 | Android | Debug APK terbangun; belum diuji di HP/emulator |
 | PCB carrier dan PSU | KiCad ERC 0; DRC 0/0; Gerber/drill provisional |

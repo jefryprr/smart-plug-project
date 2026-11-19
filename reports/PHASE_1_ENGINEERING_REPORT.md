@@ -1,9 +1,14 @@
-# Phase 1 Engineering Report — REV_C_PSU_BOARD
+# Phase 1 Engineering Report — REV_D_CORE_ONLY
+
+## REV_D correction (2026-11-19)
+
+CORE-only: OLED/RTC/external RGB deferred; onboard RGB v1.0 GPIO48; time via SNTP/NVS/API/MQTT/manual; no RTC. Carrier 19 footprints (16 assembled + 3 fiducials), 11 named nets. Firmware 88 checks, API 43 tests, domain 36, simulator 6. See `reports/VALIDATION_SUMMARY.json`.
+
 
 **Date:** 15 November 2026
 **Agent:** OpenCode (DeepSeek V4.1 Flash 1017)
 **PRD:** v1.0
-**Design revision:** `REV_C_PSU_BOARD`
+**Design revision:** `REV_D_CORE_ONLY`
 **Phase 1 status:** `PARTIAL_PROVISIONAL` / `ENGINEERING_REVIEW_REQUIRED`
 **Hardware status:** `HARDWARE_VALIDATION_REQUIRED`
 **Fabrication:** `NOT_RELEASED`
@@ -19,8 +24,8 @@ host tests, dan dokumen keselamatan. Tidak ada klaim siap fabrikasi atau siap
 digunakan.
 
 **Yang benar-benar lulus digital:**
-- Firmware core: 75 checks, 0 failures.
-- API/device simulator: 38 tests (termasuk command → MQTT → ACK).
+- Firmware core: 88 checks, 0 failures.
+- API/device simulator: 43 API + 6 simulator tests (termasuk command → MQTT → ACK).
 - Web: build + 5 Playwright tests + axe login/dashboard.
 - Static wiring/GPIO/BOM crosscheck: PASS.
 - WireViz/CadQuery/KiCad-file parse: PASS.
@@ -55,9 +60,9 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 | Relay | Modul optocoupler 2 channel off-board (amendment Q10) |
 | Modul | Pilih berdasar isolasi/dimensi (Q11=D) |
 | Safety | Prototipe lab (Q12=A) |
-| UI | OLED kecil, RGB built-in + panel (Q13=A, Q14=C) |
+| UI | Button + onboard RGB v1.0 GPIO48 (Q13=A); external OLED/RGB deferred |
 | Provisioning | BLE + SoftAP fallback (Q15=C) |
-| Offline | Fisik + jadwal + RTC (Q16=C) |
+| Offline | Fisik + jadwal; SNTP/NVS/API/MQTT/manual time, no RTC (Q16=C) |
 | Cloud | Hybrid, self-host first (Q17=C) |
 | Akun | Sederhana, tenant-ready (Q18=D) |
 | Notifikasi | Telegram first (Q19=A) |
@@ -76,8 +81,8 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 ## 3. BOM dan persetujuan komponen
 
 - `bom/BOM_MASTER.csv` - **57 baris**, BOM rekayasa; harga tidak dimasukkan ke BOM ini.
-- `bom/BOM_PROCUREMENT.csv` - **57 baris daftar belanja prototype**, 40 baris punya listing bertanggal, 17 baris `ESTIMATED`.
-- `bom/BOM_SUMMARY.json` - status `PROCUREMENT_PRICED_2026-11-16`; CORE Rp717.087, FULL Rp834.687.
+- `bom/BOM_PROCUREMENT.csv` - **48 baris daftar belanja CORE**, 33 baris punya listing bertanggal, 15 baris `ESTIMATED`.
+- `bom/BOM_SUMMARY.json` - status `PROCUREMENT_PRICED_2026-11-16`; CORE Rp716.087; FULL UI deferred.
 - `bom/BOM_PROCUREMENT.md` - tabel CORE/FULL, harga, seller, URL, verdict budget.
 - `bom/BOM_TOOLS_AND_TEST.csv` — 6 alat, belum dibeli.
 - `bom/BOM_CONSUMABLES.csv` — 5 item.
@@ -94,19 +99,19 @@ Semua jawaban tercatat di `docs/decisions/USER_ANSWERS.md/.yaml`. Ringkasan:
 - PE hardware/enclosure: `BLOCKED`; 220×120×70 sudah dikonfirmasi (Q06=C), enclosure ABS exact-size Rp99.684 tetapi flame rating/material belum divalidasi.
 - Fuse/MOV/TCO: `PENDING`/documentation deficient.
 
-**Konsekuensi:** rating final 8 A/1.840 W; batas beban eksplisit. Dua channel module tidak mechanically linked; residual risk harus diuji. Budget CORE elektronik **tidak masuk** Rp750.000 (Rp757.087 all-in, ~Rp7.087 over); addendum mekanik ~Rp28k membuat marketplace ~Rp785.087 all-in, restock ~Rp733.619 (di bawah cap); FULL di atas budget.
+**Konsekuensi:** rating final 8 A/1.840 W; batas beban eksplisit. Dua channel module tidak mechanically linked; residual risk harus diuji. Budget CORE elektronik **tidak masuk** Rp750.000 (Rp756.087 all-in, ~Rp7.087 over); addendum mekanik ~Rp28k membuat marketplace ~Rp784.087 all-in, restock ~Rp732.619 (di bawah cap); FULL UI deferred.
 
 ### 3A. Riset pengadaan Indonesia (2026-11-15)
 
-Riset harga mencakup 57 baris; 40 baris punya listing bertanggal dan 17 baris `ESTIMATED`. Detail ada di `research/PROCUREMENT_INDONESIA.md` dan `bom/BOM_PROCUREMENT.csv`.
+Riset harga mencakup 48 baris CORE; 33 baris punya listing bertanggal dan 15 baris `ESTIMATED`. Detail ada di `research/PROCUREMENT_INDONESIA.md` dan `bom/BOM_PROCUREMENT.csv`.
 
 | Konfigurasi | Subtotal | + ongkir Rp40.000 | Status |
 |---|---:|---:|---|
 | Elektronik inti | Rp433.633 | — | di dalam budget |
-| CORE (safety/function minimum) | Rp717.087 | Rp757.087 | ~Rp7k di atas cap |
-| CORE + mechanical addendum | Rp745.087 | Rp785.087 | ~Rp35k di atas cap |
-| CORE dengan restock EasyWare | Rp665.619 | Rp705.619 | di bawah cap |
-| FULL (+ OLED/RTC/RGB/konektor) | Rp834.687 | Rp874.687 | di atas budget |
+| CORE (safety/function minimum) | Rp716.087 | Rp756.087 | ~Rp7k di atas cap |
+| CORE + mechanical addendum | Rp744.087 | Rp784.087 | ~Rp34k di atas cap |
+| CORE dengan restock EasyWare | Rp664.619 | Rp704.619 | di bawah cap |
+| FULL UI (OLED/RTC/RGB) | DEFERRED | DEFERRED | tidak aktif |
 
 **Keputusan:** ESP32-S3 N16R8 compatible Rp139.968 (deviasi Q08=B eksplisit), PZEM V4 100 A CT Rp150.000 dengan **isolasi internal** (tanpa ADuM/B0505S), HLK-5M05 Rp49.000, relay 2 channel Rp16.650, 74HCT125 + divider, **tanpa TMP102**, enclosure 220x120x70 Rp99.684, PCB carrier 100x70 routed. Harga listing bukan quote dan bukan approval; status safety tidak berubah.
 
@@ -154,7 +159,7 @@ Mains: Plug → Fuse → MOV → Thermal cutoff → 2-channel relay module (L/N)
 PE:    Plug PE ──────────────────────────────→ Socket PE (no relay/fuse)
 PSU:   Mains → HLK-5M05 → 5 V SELV
 Meter: PZEM V4 + CT around L → internal optocoupler → 74HCT125/divider → ESP32 UART
-SELV:  ESP32 carrier → OLED/button/RGB/RTC; relay driver (no temperature sensor)
+SELV:  ESP32 carrier → button + onboard RGB + time service; relay driver (no temperature sensor)
 ```
 
 Detailed docs:
@@ -200,9 +205,9 @@ kicad-cli pcb export drill -o hardware/manufacturing/provisional/Drill --generat
 ```
 
 - ERC: **0 violations** on the block-level text-only schematic. This is not component-level connectivity.
-- DRC: **0 violations / 0 unconnected** on the routed 100x70 SELV carrier (0.15 mm), 25 footprints (22 assembled + 3 fiducials), 18 nets; and on the routed 50x65 PSU board, 13 assembled + 3 holes + 3 fiducials, 8 nets.
+- DRC: **0 violations / 0 unconnected** on the routed 100x70 CORE-only SELV carrier (0.15 mm), 19 footprints (16 assembled + 3 fiducials), 11 named nets; and on the routed 50x65 PSU board, 13 assembled + 3 holes + 3 fiducials, 8 nets.
 - Gerber/drill/POS: **routed provisional** exported; `NOT_FOR_FABRICATION`.
-- Native files parse with KiCad `pcbnew`: `PASS` (carrier 18 nets, PSU 8 nets).
+- Native files parse with KiCad `pcbnew`: `PASS` (carrier 11 named nets, PSU 8 nets).
 - Production symbol-level schematic and vendor footprint review: `PENDING`; functional schematic/netlist and routed carrier exist.
 
 ---
@@ -228,7 +233,7 @@ All images are generated from actual files/models or clearly labeled as previews
 Order:
 1. Incoming inspection/measurement.
 2. Mechanical assembly without energy.
-3. Low-voltage PCB/headers/OLED/button/RGB.
+3. Low-voltage PCB/headers/button/5 V input. No OLED/RTC/external RGB.
 4. Mains modules off-board, PE stud, gland, terminals (qualified personnel).
 5. Continuity/clearance/PE inspection.
 6. Lab thermal/load/isolation tests.
@@ -241,11 +246,11 @@ No mains assembly/energization was performed.
 ## 11. Firmware local
 
 - Portable core: `firmware/core/smartplug_core.c`.
-- Host tests: `firmware/test/host/test_core.c` — 75 checks.
+- Host tests: `firmware/test/host/test_core.c` — 88 checks.
 - ESP-IDF minimal app: `firmware/main/app_main.c` — relay OFF at boot, button debounce, core state machine, ON blocked while sensors invalid.
 - Partition/config: `firmware/partitions.csv`, `sdkconfig.defaults`.
-- ESP-IDF build: `PASS` (v6.1, target esp32s3, 192.496-byte `.bin`, SHA-256 `498356348097F45F7853747C08037B05801D34BACAC65392BA466D857EFBCF0E`); build only, no flash.
-- OLED/RGB/PZEM/Wi-Fi/MQTT/OTA components: `NOT_IMPLEMENTED`.
+- ESP-IDF build: `PASS` (v6.1, target esp32s3, 264.544-byte `.bin`, SHA-256 `D8D6E81D32F97D9ED1232321D88DD9622CD52A2FA8B9E907D150E455C8D5D4DD`); build only, no flash.
+- PZEM/Wi-Fi/MQTT/OTA components: `NOT_IMPLEMENTED`; OLED/RTC/external RGB deferred.
 - Build evidence: `reports/FIRMWARE_BUILD.md`, `reports/logs/firmware-idf-build.log`.
 
 Data model mirrors `DeviceState`, `Measurement`, `Health` in `packages/api-contract` and `packages/mqtt-contract`.
@@ -257,10 +262,10 @@ Data model mirrors `DeviceState`, `Measurement`, `Health` in `packages/api-contr
 | Test | Result |
 |---|---|
 | Domain | 34 PASS |
-| MQTT contract | 11 PASS |
+| MQTT contract | 12 PASS |
 | API + simulator | 38 PASS |
 | Simulator | 4 PASS |
-| Firmware core | 75 checks, 0 failures |
+| Firmware core | 88 checks, 0 failures |
 | Web build | PASS |
 | Playwright | 5 PASS |
 | axe login/dashboard | PASS (no serious/critical) |
@@ -319,7 +324,7 @@ See `reports/TEST_MATRIX.csv` / `VALIDATION_SUMMARY.json`.
 | 14 Firmware config | `PARTIAL` | Partitions/sdkconfig accepted by build; no flash |
 | 15 Web | `PASS` (digital) | Build/E2E/axe |
 | 16 Android | `PASS` (debug) | arm64-v8a APK built and signature-verified; not installed/tested |
-| 17 Backend | `PASS` (digital) | 38 tests |
+| 17 Backend | `PASS` (digital) | 43 tests |
 | 18 Database | `PARTIAL` | SQLite tested; Postgres schema only |
 | 19 MQTT | `PASS` (digital) | Contract + aedes integration |
 | 20 Notifications | `PARTIAL` | Mock test; Telegram not live |
@@ -334,4 +339,4 @@ See `reports/TEST_MATRIX.csv` / `VALIDATION_SUMMARY.json`.
 
 ## 16. Kesimpulan Fase 1
 
-Fase 1 **belum** `DIGITAL_COMPLETE` karena schematic/routing komponen, integrasi firmware (PZEM/OLED/Wi-Fi/MQTT/OTA), uji perangkat Android, dan deployment belum selesai. ERC 0, DRC routed 0/0, Gerber routed, dan ESP-IDF v6.1 target build sudah `PASS` sebagai bukti digital. Yang dapat diklaim adalah **provisional digital completeness** untuk riset, BOM riset, wiring, CAD, firmware core, web/API, dan dokumentasi. Hardware tetap `ENGINEERING_REVIEW_REQUIRED` dan `HARDWARE_VALIDATION_REQUIRED`.
+Fase 1 **belum** `DIGITAL_COMPLETE` karena schematic/routing komponen, integrasi firmware (PZEM/Wi-Fi/MQTT/OTA/time), uji perangkat Android, dan deployment belum selesai. ERC 0, DRC routed 0/0, Gerber routed, dan ESP-IDF v6.1 target build sudah `PASS` sebagai bukti digital. Yang dapat diklaim adalah **provisional digital completeness** untuk riset, BOM riset, wiring, CAD, firmware core, web/API, dan dokumentasi. Hardware tetap `ENGINEERING_REVIEW_REQUIRED` dan `HARDWARE_VALIDATION_REQUIRED`.

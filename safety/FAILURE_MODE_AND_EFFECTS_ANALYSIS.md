@@ -1,4 +1,4 @@
-# Failure Mode and Effects Analysis (FMEA) — REV_C_PSU_BOARD
+# Failure Mode and Effects Analysis (FMEA) — REV_D_CORE_ONLY
 
 **Status:** `DRAFT`
 **Skala:** Severity/Probability/Detection = High/Medium/Low (kualitatif). Tidak ada RPN numerik palsu.
@@ -16,7 +16,7 @@
 | FM-09 | PZEM internal optocoupler isolation failure | Mains reaches ESP32/carrier | High | Low | Low | PZEM batch inspection, creepage, hipot/leakage; no external barrier | High until tested |
 | FM-10 | PZEM UART CRC/timeout | Wrong/stale reading | Medium | High | High | CRC, timeout, invalid state, no stale live | Low |
 | FM-11 | CT on wrong conductor | Wrong current/PF | Medium | Medium | Medium | Label, single-conductor guide, direction arrow, test | Medium |
-| FM-12 | No temperature sensor installed (REV_C_PSU_BOARD) | Firmware cannot detect overheat; only fuse/TCO respond | High | Medium | Low | Independent one-shot TCO, fuse, thermal test, label, load limits | High until tested |
+| FM-12 | No temperature sensor installed (REV_D_CORE_ONLY) | Firmware cannot detect overheat; only fuse/TCO respond | High | Medium | Low | Independent one-shot TCO, fuse, thermal test, label, load limits | High until tested |
 | FM-13 | MCU hang | No control/telemetry | Medium | Medium | High | Watchdog, relay default OFF, independent protection | Medium |
 | FM-14 | Boot GPIO float → relay ON | Unintended ON | High | Low | Medium | Pulldown, boot-safe test, relay driver default | Low after test |
 | FM-15 | OTA bad image | Boot loop/recovery loss | High | Medium | Medium | Dual OTA, rollback, signed image, default OFF | Medium |

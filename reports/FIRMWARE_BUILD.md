@@ -2,7 +2,7 @@
 
 **Status:** `PASS` (target build only)
 **Date:** 2026-11-16
-**Design revision:** `REV_C_PSU_BOARD`
+**Design revision:** `REV_D_CORE_ONLY`
 
 ## Result
 
@@ -17,8 +17,8 @@
 | Command | `powershell -ExecutionPolicy Bypass -File scripts\build_firmware.ps1` |
 | Exit code | 0 |
 | Binary | `firmware/build/smartplug.bin` (mirror: `D:\AI INSTALLS\artifacts\smartplug.bin`) |
-| Size | 192,496 bytes (0x2EFF0) |
-| SHA-256 | `498356348097F45F7853747C08037B05801D34BACAC65392BA466D857EFBCF0E` |
+| Size | 264,544 bytes (0x40960) |
+| SHA-256 | `D8D6E81D32F97D9ED1232321D88DD9622CD52A2FA8B9E907D150E455C8D5D4DD` |
 | Log | `reports/logs/firmware-idf-build.log` |
 | Partition free | 0x5D1010 of 0x600000 bytes (97%) |
 | Bootloader free | 0x2D30 of 0x8000 bytes (35%) |

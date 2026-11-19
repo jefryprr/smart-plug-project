@@ -1,5 +1,5 @@
 import type { FastifyInstance } from "fastify";
-import type { CommandMessage } from "@smartplug/mqtt-contract";
+import type { CommandMessage, TimeMessage } from "@smartplug/mqtt-contract";
 import { buildApp } from "../src/app.js";
 import { AppDb } from "../src/db/index.js";
 import { seedDemo, type SeedResult } from "../src/seed.js";
@@ -11,6 +11,7 @@ export const NOW = new Date("2026-11-15T12:00:00.000Z");
 
 export class FakePublisher implements CommandPublisher {
   readonly messages: CommandMessage[] = [];
+  readonly timeMessages: TimeMessage[] = [];
   connected = true;
 
   async publishCommand(message: CommandMessage): Promise<void> {
@@ -18,6 +19,13 @@ export class FakePublisher implements CommandPublisher {
       throw new Error("MQTT_NOT_CONNECTED");
     }
     this.messages.push(message);
+  }
+
+  async publishTime(message: TimeMessage): Promise<void> {
+    if (!this.connected) {
+      throw new Error("MQTT_NOT_CONNECTED");
+    }
+    this.timeMessages.push(message);
   }
 
   isConnected(): boolean {

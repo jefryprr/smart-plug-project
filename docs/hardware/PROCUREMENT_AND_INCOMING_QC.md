@@ -4,7 +4,7 @@
 **Dated buy list:** `bom/BOM_PROCUREMENT.md` / `.csv` (2026-11-15, listing prices, not quotes).
 **Rule:** Do not connect any incoming part to mains. Incoming QC is visual/mechanical/electrical at **low voltage** only, unless a qualified lab procedure says otherwise.
 
-## PSU board incoming (REV_C)
+## PSU board incoming (REV_D_CORE_ONLY)
 
 - Verify PCB 50 x 65 mm, 2 oz copper, and the 2 mm isolation notch.
 - Verify HLK-5M05 marking/batch and 4-pin orientation; 5 V/1 A.
@@ -34,11 +34,11 @@
 
 ## 2A. Budget and staging (2026-11-16)
 
-- Dated buy list: `bom/BOM_PROCUREMENT.csv` (40 listing-verified, 17 estimated).
-- CORE (safety/function minimum): **Rp717.087**; with Rp40.000 shipping: **Rp757.087** — about Rp7.087 over Rp750.000.
-- CORE with EasyWare restock prices: **Rp665.619**; all-in: **Rp705.619**.
-- Mechanical addendum: **~Rp28.000**; CORE + addendum all-in **~Rp785.087** at marketplace, **~Rp733.619** with restock (under the cap).
-- FULL (+ OLED/RTC/RGB/connectors): **Rp834.687**; all-in: **Rp874.687**.
+- Dated buy list: `bom/BOM_PROCUREMENT.csv` (33 listing-verified, 15 estimated).
+- CORE (safety/function minimum): **Rp716.087**; with Rp40.000 shipping: **Rp756.087** — about Rp6.087 over Rp750.000.
+- CORE with EasyWare restock prices: **Rp664.619**; all-in: **Rp704.619**.
+- Mechanical addendum: **~Rp28.000**; CORE + addendum all-in **~Rp784.087** at marketplace, **~Rp732.619** with restock (under the cap).
+- FULL UI (OLED/RTC/external RGB): **DEFERRED** in REV_D_CORE_ONLY; excluded from procurement.
 - Buy CORE first; defer FULL until SELV/thermal checks pass. Do not downgrade safety parts to meet the cap.
 
 ## 3. Quarantine

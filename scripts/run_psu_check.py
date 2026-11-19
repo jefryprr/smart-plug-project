@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 KICAD = ROOT / "tools" / "kicad" / "bin" / "kicad-cli.exe"
-PCB = ROOT / "hardware" / "kicad" / "psu_rev_c.kicad_pcb"
+PCB = ROOT / "hardware" / "kicad" / "psu_rev_d.kicad_pcb"
 REPORTS = ROOT / "reports" / "kicad"
 OUT = ROOT / "hardware" / "manufacturing" / "provisional" / "psu"
 DRC = REPORTS / "psu_drc.json"
@@ -44,8 +44,8 @@ def main() -> int:
         if code != 0:
             return code
     for path in [
-        OUT / "Gerber" / "psu_rev_c-F_Cu.gtl",
-        OUT / "Drill" / "psu_rev_c.drl",
+        OUT / "Gerber" / "psu_rev_d-F_Cu.gtl",
+        OUT / "Drill" / "psu_rev_d.drl",
         OUT / "POSITION.csv",
     ]:
         if not path.exists():

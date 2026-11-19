@@ -1,4 +1,4 @@
-# Thermal Risk and Derating — REV_C_PSU_BOARD
+# Thermal Risk and Derating — REV_D_CORE_ONLY
 
 **Status:** `BLOCKED_PENDING_THERMAL_TEST`
 **First-order calculation:** `safety/THERMAL_CALCULATION.md` (13–19 W loss, ~19–28 K rise, not a test).
@@ -29,7 +29,7 @@ Dengan koefisien konveksi/radiasi efektif kasar 5–10 W/(m²·K):
 - Enclosure tertutup, tidak ada ventilasi, dan komponen berdekatan dapat menaikkan ΔT.
 - Enclosure yang dipilih (MG Duradus ABS IP65, 220×120×70) belum terbukti flame-retardant/UL94 V-0; thermal aging dan hotspot lokal wajib diuji.
 
-## 2A. REV_C PSU board
+## 2A. REV_D_CORE_ONLY PSU board
 
 The separate 50 x 65 mm PSU board carries the full 8 A mains path. Its TB1/F1/TCO/TB2 joints, HLK case, and 4 mm traces are new hotspots. The 2 mm isolation notch is not a thermal barrier. Thermal test must include the PSU board with the relay shelf and closed lid.
 
@@ -44,7 +44,7 @@ The separate 50 x 65 mm PSU board carries the full 8 A mains path. Its TB1/F1/TC
 7. Enclosure near relay/terminal.
 8. ESP32 (kurang kritis).
 
-**Tidak ada sensor suhu di REV_C_PSU_BOARD.** Firmware tidak dapat mendeteksi hotspot; proteksi termal hanya fuse + TCO one-shot. Thermal test tertutup dan load test menjadi wajib, bukan opsional.
+**Tidak ada sensor suhu di REV_D_CORE_ONLY.** Firmware tidak dapat mendeteksi hotspot; proteksi termal hanya fuse + TCO one-shot. Thermal test tertutup dan load test menjadi wajib, bukan opsional.
 
 ## 4. Derating
 

@@ -1,4 +1,4 @@
-# User Flows — REV_C_PSU_BOARD
+# User Flows — REV_D_CORE_ONLY
 
 ## 1. First-time setup
 

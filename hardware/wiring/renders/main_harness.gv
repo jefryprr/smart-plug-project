@@ -44,7 +44,7 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">REV_C PSU board TB1 (230 VAC input)</td>
+   <td balign="left">REV_D_CORE_ONLY PSU board TB1 (230 VAC input)</td>
    <td balign="left">2-pin</td>
   </tr></table>
  </td></tr>
@@ -71,7 +71,7 @@ graph {
  </td></tr>
  <tr><td>
   <table border="0" cellspacing="0" cellpadding="3" cellborder="1"><tr>
-   <td balign="left">REV_C PSU board TB2 (230 VAC output)</td>
+   <td balign="left">REV_D_CORE_ONLY PSU board TB2 (230 VAC output)</td>
    <td balign="left">2-pin</td>
   </tr></table>
  </td></tr>

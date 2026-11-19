@@ -1,4 +1,4 @@
-# Procurement Indonesia — Prototype Smart Plug 8 A (REV_C_PSU_BOARD)
+# Procurement Indonesia — Prototype Smart Plug 8 A (REV_D_CORE_ONLY)
 
 **Tanggal riset:** 15–16 November 2026  
 **Mata uang:** IDR  
@@ -9,18 +9,18 @@
 
 ## 1. Ringkasan eksekutif
 
-REV_C_PSU_BOARD menghapus **GY-TMP102** dan **ADuM1201 + B0505S**. Isolasi galvanik PZEM-004T V4 sekarang menjadi satu-satunya barrier komunikasi; carrier hanya melakukan level shifting 5 V ↔ 3,3 V.
+REV_D_CORE_ONLY menghapus **GY-TMP102** dan **ADuM1201 + B0505S**. Isolasi galvanik PZEM-004T V4 sekarang menjadi satu-satunya barrier komunikasi; carrier hanya melakukan level shifting 5 V ↔ 3,3 V.
 
 | Konfigurasi | Subtotal | + ongkir estimasi Rp40.000 | Status |
 |---|---:|---:|---|
 | Elektronik inti (tanpa enclosure/konektor/kabel) | **Rp433.633** | — | di dalam budget |
-| **CORE** (safety/function minimum, 50 baris) | **Rp717.087** | **Rp757.087** | **~Rp7.087 di atas cap** |
-| **CORE + mechanical addendum** (gasket/vent/cover/key/PSU bracket/thermal pad) | **Rp745.087** | **Rp785.087** | ~Rp35.087 di atas cap |
-| **CORE dengan restock EasyWare** | **Rp665.619** | **Rp705.619** | margin lebih besar |
-| **CORE restock + addendum** | **Rp693.619** | **Rp733.619** | di bawah cap |
-| **FULL** (+ OLED/RTC/RGB/konektor) | **Rp834.687** | **Rp874.687** | di atas budget |
+| **CORE** (safety/function minimum, 48 baris) | **Rp716.087** | **Rp756.087** | **~Rp6.087 di atas cap** |
+| **CORE + mechanical addendum** (gasket/vent/cover/key/PSU bracket/thermal pad) | **Rp744.087** | **Rp784.087** | ~Rp34.087 di atas cap |
+| **CORE dengan restock EasyWare** | **Rp664.619** | **Rp704.619** | margin lebih besar |
+| **CORE restock + addendum** | **Rp692.619** | **Rp732.619** | di bawah cap |
+| **FULL UI** (OLED/RTC/RGB) | DEFERRED | DEFERRED | tidak aktif |
 
-**Kesimpulan:** CORE elektronik **tidak masuk** Rp750.000 pada harga marketplace: Rp717.087 + ongkir = **Rp757.087**. Dengan **mechanical addendum** ~Rp28.000, CORE menjadi **Rp785.087 all-in** (~Rp35.087 di atas cap). Restock EasyWare menurunkannya ke **Rp733.619 all-in**, di bawah cap. FULL tetap jauh di atas budget. Jangan menurunkan fuse, MOV, TCO, PE, terminal, enclosure, gasket, vent, atau rating relay untuk mengejar budget.
+**Kesimpulan:** CORE elektronik **tidak masuk** Rp750.000 pada harga marketplace: Rp716.087 + ongkir = **Rp756.087**. Dengan **mechanical addendum** ~Rp28.000, CORE menjadi **Rp784.087 all-in** (~Rp34.087 di atas cap). Restock EasyWare menurunkannya ke **Rp732.619 all-in**, di bawah cap. FULL UI **deferred** dan tidak dianggarkan. Jangan menurunkan fuse, MOV, TCO, PE, terminal, enclosure, gasket, vent, atau rating relay untuk mengejar budget.
 
 ---
 
@@ -79,7 +79,7 @@ Tidak termasuk: ongkir aktual, pajak, bea impor, alat ukur/solder/crimp, jasa 3D
 
 **Keputusan:** modul 2 channel, dua SPDT independen, **bukan DPST**. Klaim 10 A adalah klaim vendor; final 8 A setelah uji thermal/lifecycle. IN1/IN2 diikat dan dikendalikan satu AO3400.
 
-### 3.5 Level shifting PZEM + RGB — 74HCT125
+### 3.5 Level shifting PZEM — 74HCT125 (one gate; unused gates tied to GND)
 
 | Part | Harga | Catatan |
 |---|---:|---|
@@ -106,8 +106,7 @@ Tidak termasuk: ongkir aktual, pajak, bea impor, alat ukur/solder/crimp, jasa 3D
 | Part | Harga | Catatan |
 |---|---:|---|
 | 2x22 female header strip (split into two 1x22 rows) | Rp3.250 | DevKitC-1 memakai dua header 1x22 dengan jarak baris 22,86 mm. |
-| JST-XH 4-pin (PZEM/relay/OLED) | Rp12.300 | Empat kabel. |
-| JST-XH 6-pin (RTC) | Rp8.000 est. | 32K boleh NC. |
+| JST-XH 4-pin (PZEM/relay) | Rp12.300 | Kabel inti. |
 | JST-XH 2-pin (button/5V) | Rp5.000 est. | Bisa solder langsung. |
 | 5.08 mm terminal 2-pin/5-pin | Rp2.450 / Rp11.760 | Generic 5EDR. |
 | PE terminal 6 mm² | Rp10.250 | PE kontinu, tidak diswitch. |
@@ -136,7 +135,7 @@ Tidak termasuk: ongkir aktual, pajak, bea impor, alat ukur/solder/crimp, jasa 3D
 | UI (button) | Rp7.000 |
 | Consumables (heatshrink) | Rp5.000 |
 | Labels | Rp2.000 |
-| **CORE total** | **Rp717.087** |
+| **CORE total** | **Rp716.087** |
 
 Top CORE cost drivers:
 
@@ -153,22 +152,9 @@ Top CORE cost drivers:
 
 ---
 
-## 5. Rincian FULL add-ons
+## 5. FULL UI (DEFERRED)
 
-| Line | Part | Harga |
-|---|---|---:|
-| E-005 | DS3231SN RTC module | Rp49.500 |
-| E-021 | OLED 0.96 SSD1306 I2C | Rp33.300 |
-| E-027 | JST-XH 4-pin cable for OLED | Rp12.300 |
-| E-022 | WS2812B module | Rp8.500 |
-| E-028 | JST-XH 6-pin cable for RTC | Rp8.000 |
-| E-048 | JST-XH 3-pin cable for RGB | Rp5.000 |
-| E-018 | 330 Ω resistor | Rp1.000 |
-| **FULL add-ons** | | **Rp117.600** |
-
-FULL = CORE + add-ons = **Rp834.687** sebelum ongkir. Ini fitur display/time/RGB, bukan safety tambahan.
-
----
+OLED, DS3231 RTC, external RGB, JST J4/J5/J7, 330R, 4.7k I2C pullups, and related cables are **DEFERRED** in REV_D_CORE_ONLY and excluded from the active procurement. Add them only in a new revision with a new review; no price is claimed here.
 
 ## 6. Skenario budget
 
@@ -177,29 +163,23 @@ FULL = CORE + add-ons = **Rp834.687** sebelum ongkir. Ini fitur display/time/RGB
 - ESP32 compatible Rp139.968
 - PZEM 100 A closed CT Rp150.000
 - CORE lain Rp444.279
-- **Subtotal Rp717.087**
+- **Subtotal Rp716.087**
 - Ongkir Rp40.000
-- **All-in Rp757.087 → ~Rp7.087 di atas cap (elektronik)**
-- Addendum mekanik ~Rp28.000 → **Rp785.087 all-in** (~Rp35.087 di atas cap)
+- **All-in Rp756.087 → ~Rp6.087 di atas cap (elektronik)**
+- Addendum mekanik ~Rp28.000 → **Rp784.087 all-in** (~Rp34.087 di atas cap)
 
 ### Skenario B — CORE dengan restock EasyWare
 
 - ESP32 Rp103.500
 - PZEM Rp135.000
 - CORE lain Rp444.279
-- **Subtotal Rp665.619**
+- **Subtotal Rp664.619**
 - Ongkir Rp40.000
-- **All-in Rp705.619 → di bawah cap; + addendum Rp733.619 (di bawah cap)**
+- **All-in Rp704.619 → di bawah cap; + addendum Rp732.619 (di bawah cap)**
 
-### Skenario C — FULL
+### Skenario C — FULL UI
 
-- CORE Rp717.087
-- Add-ons Rp117.600
-- **Subtotal Rp834.687**
-- Ongkir Rp40.000
-- **All-in Rp874.687 → +Rp124.687 (16,6%) di atas cap; + addendum Rp902.687**
-
-FULL tidak realistis di Rp750.000 tanpa menunda fitur. Jangan menurunkan safety.
+**DEFERRED** in REV_D_CORE_ONLY. Tidak ada alokasi budget aktif; fitur FULL memerlukan revisi dan review baru. Jangan menurunkan safety untuk mengejar FULL.
 
 ---
 
@@ -217,7 +197,7 @@ FULL tidak realistis di Rp750.000 tanpa menunda fitur. Jangan menurunkan safety.
 
 | Risiko | Dampak | Mitigasi |
 |---|---|---|
-| EasyWare ESP32/PZEM habis | CORE +Rp51.468 | Beli marketplace; CORE masih Rp757.087 all-in. |
+| EasyWare ESP32/PZEM habis | CORE +Rp51.468 | Beli marketplace; CORE masih Rp756.087 all-in. |
 | ESP32 compatible bukan resmi | GPIO/RGB/regulator berbeda | Foto, ukur pinout, catat deviasi Q08=B. |
 | PZEM internal isolation saja | Single barrier; creepage batch belum | Hipot/leakage review; jangan USB saat mains. |
 | Tidak ada sensor suhu | Firmware tidak bisa deteksi overheat | Fuse + TCO + thermal test; label dan prosedur. |
@@ -249,16 +229,9 @@ FULL tidak realistis di Rp750.000 tanpa menunda fitur. Jangan menurunkan safety.
 13. PCB carrier Rp15.000
 14. Labels, heatshrink, fastener, bracket Rp35.300
 
-### Tahap 2 — FULL
+### Tahap 2 — FULL UI (DEFERRED)
 
-- OLED Rp33.300
-- DS3231 Rp49.500
-- WS2812 + JST Rp13.500
-- JST OLED/RTC Rp20.300
-
-Tahap 2 menambah **Rp117.600**. Jangan beli sebelum CORE lulus uji SELV dan thermal awal.
-
----
+Tidak dianggarkan pada REV_D_CORE_ONLY. OLED/RTC/external RGB memerlukan revisi dan review baru.
 
 ## 10. Red flags
 
@@ -294,7 +267,7 @@ Belum ada yang `READY_FOR_FABRICATION` atau `READY_FOR_USE`. Sebelum energisasi:
 
 - EasyWare ESP32-S3 N16R8: https://store.easyware.id/produk/esp32-s3-n16r8-devkitc-1-dual-usb-c/
 - EasyWare PZEM V4: https://store.easyware.id/produk/peacefair-pzem-004t-v40-modul-energy-meter-ac-80-260v-10a-100a-ct-split-ct-ttl-modbus-arduino-esp32/
-- EasyWare OLED: https://store.easyware.id/produk/oled-0-96-inch-128x64-ssd1306/
+- (historical/optional) EasyWare OLED: https://store.easyware.id/produk/oled-0-96-inch-128x64-ssd1306/ — not in REV_D BOM
 - EasyWare DS3231: https://store.easyware.id/produk/modul-rtc-ds3231-real-time-clock-i2c-eeprom-at24c32-jam-presisi-arduino-esp32-baterai-cadangan/
 - CNC Store HLK-5M05: https://cncstorebandung.com/product/hi-link-hlk-5m05-module-ac-to-dc-5v-1a-5-watt/
 - Shopee ESP32 N16R8: https://shopee.co.id/product/18800073/40152181733
@@ -305,7 +278,7 @@ Belum ada yang `READY_FOR_FABRICATION` atau `READY_FOR_USE`. Sebelum energisasi:
 - Shopee Simon socket: https://shopee.co.id/product/1393930173/24138502361
 - Shopee BOSS plug: https://shopee.co.id/product/37155877/41075654392
 
-**Harga/listing lengkap:** `bom/BOM_PROCUREMENT.csv` (57 baris, tanggal, seller, URL, status verifikasi).
+**Harga/listing lengkap:** `bom/BOM_PROCUREMENT.csv` (48 baris belanja, tanggal, seller, URL, status verifikasi).
 
 ---
 

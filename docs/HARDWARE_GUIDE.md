@@ -1,6 +1,6 @@
 # Hardware Guide
 
-**Design revision:** `REV_C_PSU_BOARD`  
+**Design revision:** `REV_D_CORE_ONLY`  
 **Status:** `ENGINEERING_REVIEW_REQUIRED` / `HARDWARE_VALIDATION_REQUIRED` / `NOT_FOR_FABRICATION`
 
 This guide explains the hardware in plain language. It is not a build or energization procedure. Mains work is for qualified personnel with a lab procedure.
@@ -14,17 +14,17 @@ The product is a 3D assembly, not a single PCB.
 | Group | What it contains | Safety domain |
 |---|---|---|
 | **Mains-entry PSU board** | TB1/TB2 terminal blocks, F1 fuse, MOV, TCO, HLK-5M05, 3× JST 5 V outputs | MAINS + SELV output |
-| **SELV carrier** | ESP32-S3 DevKitC-1 sockets, 74HCT125, divider, relay driver, OLED/RTC/button/RGB connectors, 5 V input | SELV |
+| **SELV carrier** | ESP32-S3 DevKitC-1 v1.0 sockets, 74HCT125 (PZEM only), divider, relay driver, button, 5 V input. No OLED/RTC/external RGB. | SELV |
 | **Off-board modules** | PZEM-004T V4 + CT, 2-channel relay module, socket/plug, PE stud, enclosure | MAINS |
 
 **Why the HLK-5M05 is on a separate board:** it is a 230 VAC module. Keeping it off the carrier preserves a clear SELV-only carrier, simplifies creepage/clearance, moves ~2.1 W of heat away from the ESP32, and makes PSU replacement possible without re-spinning the carrier. See [`../hardware/psu/README.md`](../hardware/psu/README.md).
 
 ---
 
-## 2. REV_C mains-entry PSU board
+## 2. REV_D_CORE_ONLY mains-entry PSU board
 
 <p align="center">
-  <img src="../hardware/psu/psu_schematic.png" alt="REV_C PSU schematic" width="85%">
+  <img src="../hardware/psu/psu_schematic.png" alt="REV_D_CORE_ONLY PSU schematic" width="85%">
 </p>
 
 | Item | Part / value | Function |
@@ -79,19 +79,16 @@ Total 5 V load estimate is ≤1 A; HLK is 1 A. Peak is not measured. Do not add 
 | **J1A / J1B** | Two 1×22 sockets for the ESP32-S3 DevKitC-1, 22.86 mm row spacing. Do not use a 2×22 IDC socket. |
 | **J2** | PZEM TTL connector: 5 V, GND, TX, RX |
 | **J3** | Relay module connector: 5 V, GND, IN1, IN2 |
-| **J4** | OLED I²C connector |
-| **J5** | RTC DS3231 connector |
 | **J6** | Button connector |
-| **J7** | RGB/WS2812 connector |
 | **J8** | 5 V input from PSU J5 |
 | **U9** | 74HCT125 level shifter (3.3 V TX → 5 V PZEM RX) |
 | **R4/R5** | 10k/20k divider (5 V PZEM TX → 3.3 V GPIO18) |
 | **Q1** | AO3400A MOSFET relay driver, pulls both active-LOW inputs |
 | **R2** | 100k pulldown on the relay gate (boot-safe OFF) |
 
-**Board facts:** 100 × 70 mm, 2-layer FR4 1.6 mm, 25 footprints (22 assembled + 3 fiducials), 18 nets, DRC 0/0 at 0.15 mm. The carrier is **SELV-only by design**. No mains trace, terminal, or module pin is routed onto it.
+**Board facts:** 100 × 70 mm, 2-layer FR4 1.6 mm, 23 footprints total (16 assembled + 3 fiducials + 4 mounting holes), 11 named nets, DRC 0/0 at 0.15 mm. Onboard DevKitC-1 v1.0 RGB = GPIO48; no external RGB. The carrier is **SELV-only by design**. No mains trace, terminal, or module pin is routed onto it.
 
-The PZEM UART is level-shifted, not externally isolated in REV_C. The PZEM-004T V4’s internal optocouplers are the single UART isolation barrier; this is conditional and unverified for the purchased batch. The external ADuM1201 + B0505S barrier remains a documented fallback.
+The PZEM UART is level-shifted, not externally isolated in REV_D_CORE_ONLY. The PZEM-004T V4’s internal optocouplers are the single UART isolation barrier; this is conditional and unverified for the purchased batch. The external ADuM1201 + B0505S barrier remains a documented fallback.
 
 ---
 
@@ -133,7 +130,7 @@ The PZEM UART is level-shifted, not externally isolated in REV_C. The PZEM-004T 
 |---|---|---|
 | Main | [`../hardware/wiring/main_harness.yaml`](../hardware/wiring/main_harness.yaml) | Mains, PSU, carrier, relay, PE |
 | Metering | [`../hardware/wiring/metering_harness.yaml`](../hardware/wiring/metering_harness.yaml) | PZEM UART/CT/power |
-| Display | [`../hardware/wiring/display_harness.yaml`](../hardware/wiring/display_harness.yaml) | OLED/button/RGB |
+| Time status | firmware time service + web/Android | SNTP/NVS/API/MQTT/manual; no RTC |
 
 Rendered harnesses: [`../hardware/wiring/renders/`](../hardware/wiring/renders/).
 

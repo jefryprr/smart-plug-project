@@ -13,7 +13,7 @@
 | Next.js | 16.4.6 | Build PASS | `next build` |
 | Fastify | 5.12.8 | Tests PASS | Vitest |
 | Playwright | 1.65.1 | 5 tests PASS | `npx playwright test` |
-| Vitest | 5.1.0 | 34+11+38 tests PASS | `npm test` |
+| Vitest | 5.1.0 | 36 domain + 12 MQTT + 43 API + 6 simulator tests PASS | `npm test` |
 | Python | 3.11.15 (project `.venv`) | Available | `python --version` |
 | CadQuery | 2.8.0 / OCP 7.9.3.1.1 | STEP/STL generated | `enclosure.py` |
 | WireViz | 0.4.1 | 3 harnesses rendered | `render_wiring.py` |

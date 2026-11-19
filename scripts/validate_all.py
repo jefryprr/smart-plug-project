@@ -120,17 +120,17 @@ def main() -> int:
     run_step("T-SW-001D", "TypeScript simulator", [NPM, "run", "typecheck", "-w", "@smartplug/device-simulator"], "Simulator typecheck")
 
     # Unit/integration tests
-    run_step("T-SW-007", "Domain tests", [NPM, "run", "test", "-w", "@smartplug/domain"], "34 domain tests incl. cost/energy")
-    run_step("T-SW-004A", "MQTT contract tests", [NPM, "run", "test", "-w", "@smartplug/mqtt-contract"], "11 contract/ACL tests")
-    run_step("T-SW-005", "API + simulator integration", [NPM, "run", "test", "-w", "@smartplug/api"], "38 API tests incl. aedes+simulator ACK")
-    run_step("T-SW-004B", "Simulator tests", [NPM, "run", "test", "-w", "@smartplug/device-simulator"], "4 simulator tests")
+    run_step("T-SW-007", "Domain tests", [NPM, "run", "test", "-w", "@smartplug/domain"], "36 domain tests incl. time gating")
+    run_step("T-SW-004A", "MQTT contract tests", [NPM, "run", "test", "-w", "@smartplug/mqtt-contract"], "12 contract/ACL tests")
+    run_step("T-SW-005", "API + simulator integration", [NPM, "run", "test", "-w", "@smartplug/api"], "43 API tests incl. time + aedes+simulator ACK")
+    run_step("T-SW-004B", "Simulator tests", [NPM, "run", "test", "-w", "@smartplug/device-simulator"], "6 simulator tests incl. time")
 
     # Firmware host core
     run_step(
         "T-HW-018",
         "Firmware core host tests",
         [POWERSHELL, "-ExecutionPolicy", "Bypass", "-File", str(ROOT / "firmware" / "test" / "host" / "run_tests.ps1")],
-        "75 C checks; Zig cc host build",
+        "88 C checks; time gating; Zig cc host build",
     )
 
     # Build
@@ -142,7 +142,7 @@ def main() -> int:
     # Static crosschecks and generated artifacts
     run_step("T-HW-003", "Connectivity crosscheck", [str(PYTHON), "scripts/validate_connectivity.py"], "Wiring/GPIO/BOM static diff")
     run_step("T-HW-004", "GPIO map generation", [str(PYTHON), "hardware/generators/generate_gpio_map.py"], "GPIO CSV/MD + crosscheck")
-    run_step("T-HW-010A", "WireViz render", [str(PYTHON), "scripts/render_wiring.py"], "3 harnesses SVG/PNG/PDF")
+    run_step("T-HW-010A", "WireViz render", [str(PYTHON), "scripts/render_wiring.py"], "2 harnesses SVG/PNG/PDF (CORE-only)")
     run_step("T-HW-009A", "CadQuery export", [str(PYTHON), "hardware/mechanical/source/enclosure.py", "--preset", "recommended"], "STEP/STL bodies + assembly")
     run_step("T-HW-009B", "Mechanical render/fit", [str(PYTHON), "hardware/mechanical/source/render.py"], "Views/drawings/fit report")
     run_step("T-HW-020", "PSU static crosscheck", [str(KICAD_PYTHON), "scripts/validate_psu.py"], "PSU nets/BOM/8A traces")
@@ -204,7 +204,7 @@ def main() -> int:
 
     summary = {
         "project": "esp32-s3-iot-smart-plug",
-        "design_revision": "REV_C_PSU_BOARD",
+        "design_revision": "REV_D_CORE_ONLY",
         "generated_at": START.isoformat(),
         "duration_s": round((datetime.now(timezone.utc) - START).total_seconds(), 2),
         "counts": counts,

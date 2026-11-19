@@ -29,7 +29,7 @@ Jika berhasil, catat hash binary dan ukuran.
 powershell -ExecutionPolicy Bypass -File firmware\test\host\run_tests.ps1
 ```
 
-75 checks PASS. Target build ESP-IDF v6.1 juga PASS; lihat `reports/FIRMWARE_BUILD.md`. Ini bukan bukti flash/bench.
+74 checks PASS. Target build ESP-IDF v6.1 juga PASS; lihat `reports/FIRMWARE_BUILD.md`. Ini bukan bukti flash/bench.
 
 ## Jangan
 

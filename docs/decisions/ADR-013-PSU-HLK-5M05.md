@@ -17,7 +17,7 @@ is weaker.
 
 ## Decision
 
-- Use **HLK-5M05** as the prototype PSU, mounted on the separate **REV_C PSU board** in the mains zone (50 x 65 mm, TB1/TB2, fuse/MOV/TCO, 3x JST 5 V outputs).
+- Use **HLK-5M05** as the prototype PSU, mounted on the separate **REV_D_CORE_ONLY PSU board** in the mains zone (50 x 65 mm, TB1/TB2, fuse/MOV/TCO, 3x JST 5 V outputs).
 - Keep the Mean Well IRM-05-5 as the fallback if thermal/isolation review fails.
 - Treat the PSU as `PENDING_APPROVAL`, not as a certified isolation barrier.
 - Require batch certificate/pin marking, ripple/startup/load, temperature rise,

@@ -1,6 +1,6 @@
 project: esp32-s3-iot-smart-plug
-design_revision: REV_C_PSU_BOARD
-generated_at: '2026-11-16T06:14:44.651292+00:00'
+design_revision: REV_D_CORE_ONLY
+generated_at: '2026-11-19T04:52:56.891256+00:00'
 approval_policy: User approved the research direction, not final MPNs. No component
   is approved for fabrication.
 approved_by: null
@@ -35,7 +35,7 @@ items:
     is only ~70% at
 - item_id: E-005
   mpn: DS3231MZ+
-  status: PENDING_APPROVAL
+  status: DEFERRED_CORE_ONLY
   approved_for_purchase: false
   approved_for_fabrication: false
   blocking_reason: Battery/supercap holder and drift budget must be selected. Invalid
@@ -54,9 +54,9 @@ items:
   status: PENDING_APPROVAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Converts ESP32 3.3 V logic to 5 V for PZEM RX and WS2812 data.
-    74HCT input threshold is TTL-compatible. Tie unused inputs to GND; add 100 nF
-    at VCC. Do not use for galvanic isolation.
+  blocking_reason: 'Converts ESP32 3.3 V logic to 5 V for PZEM RX only. 74HCT input
+    threshold is TTL-compatible. Unused gates: inputs/OE tied to GND, outputs open;
+    add 100 nF at VCC. Do not use for galvanic isolation.'
 - item_id: E-010
   mpn: 2CH-5V-OPTO-10A
   status: DOCUMENTATION_DEFICIENT
@@ -133,7 +133,7 @@ items:
   blocking_reason: Mandatory to keep relay driver OFF while MCU pin floats at boot.
 - item_id: E-018
   mpn: RC0805FR-07330RL
-  status: PROVISIONAL
+  status: DEFERRED_CORE_ONLY
   approved_for_purchase: false
   approved_for_fabrication: false
   blocking_reason: Place close to LED data input.
@@ -154,12 +154,12 @@ items:
     transients. Cathode to +5V, anode to GND. The carrier has no TVS. Verify standoff/clamping
     and layout.
 - item_id: E-052
-  mpn: PCB-PSU-REV-C
+  mpn: PCB-PSU-REV-D
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: 'REV_C PSU board: TB1/TB2, F1, MOV1, TF1, HLK-5M05, F2/D1, 3x JST.
-    Mains isolation notch; creepage/hipot unverified. NOT_FOR_FABRICATION.'
+  blocking_reason: 'REV_D_CORE_ONLY PSU board: TB1/TB2, F1, MOV1, TF1, HLK-5M05, F2/D1,
+    3x JST. Mains isolation notch; creepage/hipot unverified. NOT_FOR_FABRICATION.'
 - item_id: E-053
   mpn: B2B-XH-A
   status: PROVISIONAL
@@ -215,13 +215,13 @@ items:
   blocking_reason: Divider bottom; add 100 nF at ESP32 RX if noise is observed.
 - item_id: E-018C
   mpn: RC0805FR-074K7L
-  status: PROVISIONAL
+  status: DEFERRED_CORE_ONLY
   approved_for_purchase: false
   approved_for_fabrication: false
   blocking_reason: To 3.3V; OLED + RTC only. Verify bus capacitance and address conflicts.
 - item_id: E-018D
   mpn: RC0805FR-074K7L
-  status: PROVISIONAL
+  status: DEFERRED_CORE_ONLY
   approved_for_purchase: false
   approved_for_fabrication: false
   blocking_reason: To 3.3V; keep I2C <=400 kHz for prototype.
@@ -233,7 +233,7 @@ items:
   blocking_reason: Button to GND; external pullup in addition to MCU internal pullup.
 - item_id: E-021
   mpn: OLED-096-SSD1306-I2C
-  status: DOCUMENTATION_DEFICIENT
+  status: DEFERRED_CORE_ONLY
   approved_for_purchase: false
   approved_for_fabrication: false
   blocking_reason: Priced EasyWare module is 0.96 inch 128x64 SSD1306 I2C. Verify
@@ -241,7 +241,7 @@ items:
     Deferred in the CORE build.
 - item_id: E-022
   mpn: WS2812B-5050
-  status: PENDING_APPROVAL
+  status: DEFERRED_CORE_ONLY
   approved_for_purchase: false
   approved_for_fabrication: false
   blocking_reason: External panel indicator; built-in DevKitC-1 RGB may be hidden.
@@ -277,13 +277,13 @@ items:
     on module. Keep coil current off the carrier ground return? Use short 5V/GND pair.
 - item_id: E-027
   mpn: B4B-XH-A
-  status: PROVISIONAL
+  status: DEFERRED_CORE_ONLY
   approved_for_purchase: false
   approved_for_fabrication: false
   blocking_reason: Keyed low-voltage connector.
 - item_id: E-028
   mpn: B6B-XH-A
-  status: PROVISIONAL
+  status: DEFERRED_CORE_ONLY
   approved_for_purchase: false
   approved_for_fabrication: false
   blocking_reason: DS3231 module; 32K may be left unconnected. INT to GPIO7.
@@ -295,7 +295,7 @@ items:
   blocking_reason: Button to GND; 10k external pullup on carrier. Debounce in firmware.
 - item_id: E-048
   mpn: B3B-XH-A
-  status: PROVISIONAL
+  status: DEFERRED_CORE_ONLY
   approved_for_purchase: false
   approved_for_fabrication: false
   blocking_reason: Data from 74HCT125 through 330R. 5V power for WS2812.
@@ -373,14 +373,14 @@ items:
   approved_for_fabrication: false
   blocking_reason: SELV only. Keep away from mains barrier.
 - item_id: E-041
-  mpn: PCB-CARRIER-REV-C
+  mpn: PCB-CARRIER-REV-D
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: REV_C routed SELV carrier with two 1x22 DevKit sockets at 22.86
-    mm spacing, PZEM 5V/3.3V level shift, relay driver, I2C OLED/RTC, button, RGB,
-    and 5V input from PSU J5. DRC 0 but engineering review/physical test still required.
-    No mains and
+  blocking_reason: REV_D_CORE_ONLY routed SELV carrier with two 1x22 DevKit sockets
+    at 22.86 mm spacing, PZEM 5V/3.3V level shift, relay driver, button, and 5V input
+    from PSU J5. No mains, no OLED/RTC/external RGB, no PTC/TVS. DRC 0 but engineering
+    review/phy
 - item_id: E-042
   mpn: LABEL-SET-REV-A
   status: BLOCKED

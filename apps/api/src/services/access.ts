@@ -76,6 +76,11 @@ export interface StoredDeviceState {
   clock_valid: boolean;
   meter_valid: boolean;
   temperature_valid: boolean;
+  time_valid: boolean;
+  time_source: "sntp" | "api" | "mqtt" | "manual" | "none";
+  last_sync: string | null;
+  last_known_time: string | null;
+  time_age_s: number | null;
 }
 
 export function defaultDeviceState(now: Date = new Date()): StoredDeviceState {
@@ -88,7 +93,12 @@ export function defaultDeviceState(now: Date = new Date()): StoredDeviceState {
     last_transition_at: now.toISOString(),
     clock_valid: false,
     meter_valid: false,
-    temperature_valid: false
+    temperature_valid: false,
+    time_valid: false,
+    time_source: "none",
+    last_sync: null,
+    last_known_time: null,
+    time_age_s: null
   };
 }
 
@@ -105,7 +115,16 @@ export function parseDeviceState(raw: string): StoredDeviceState {
       last_transition_at: typeof parsed.last_transition_at === "string" ? parsed.last_transition_at : base.last_transition_at,
       clock_valid: parsed.clock_valid === true,
       meter_valid: parsed.meter_valid === true,
-      temperature_valid: parsed.temperature_valid === true
+      temperature_valid: parsed.temperature_valid === true,
+      time_valid: parsed.time_valid === true,
+      time_source:
+        parsed.time_source === "sntp" || parsed.time_source === "api" || parsed.time_source === "mqtt" ||
+        parsed.time_source === "manual" || parsed.time_source === "none"
+          ? parsed.time_source
+          : "none",
+      last_sync: typeof parsed.last_sync === "string" ? parsed.last_sync : null,
+      last_known_time: typeof parsed.last_known_time === "string" ? parsed.last_known_time : null,
+      time_age_s: typeof parsed.time_age_s === "number" && Number.isFinite(parsed.time_age_s) ? parsed.time_age_s : null
     };
   } catch {
     return defaultDeviceState();

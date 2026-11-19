@@ -17,7 +17,7 @@ static const char *const REASON_FAULT = "fault aktif";
 static const char *const REASON_MODE = "mode memblokir ON";
 static const char *const REASON_METER = "metering tidak valid";
 static const char *const REASON_TEMP = "sensor suhu tidak valid";
-static const char *const REASON_CLOCK = "jam tidak valid untuk ON otomatis";
+static const char *const REASON_TIME = "waktu belum valid untuk schedule/ON otomatis";
 static const char *const REASON_OFF_OK = "perintah OFF diizinkan";
 static const char *const REASON_ON_OK = "semua interlock yang tersedia lolos";
 static const char *const REASON_ALREADY_OFF = "output sudah commanded OFF";
@@ -52,6 +52,11 @@ void sp_state_init(sp_state_t *state, const char *device_id, int64_t now_ms) {
     state->lockout = false;
     state->fault_code[0] = '\0';
     state->clock_valid = false;
+    state->time.valid = false;
+    state->time.source = SP_TIME_SOURCE_NONE;
+    state->time.last_sync_ms = 0;
+    state->time.last_known_utc_ms = 0;
+    sp_copy_string(state->time.timezone, sizeof(state->time.timezone), "Asia/Jakarta");
     state->meter_valid = false;
     state->temperature_valid = false;
     state->temperature_required = false;
@@ -190,8 +195,8 @@ void sp_decide_command(const sp_state_t *state,
         reject(decision, state, command->source, "DEGRADED_MODE_BLOCKS_ON", REASON_MODE);
         return;
     }
-    if (sp_is_automatic_source(command->source) && !state->clock_valid) {
-        reject(decision, state, command->source, "CLOCK_INVALID", REASON_CLOCK);
+    if (sp_is_automatic_source(command->source) && !sp_time_is_valid_for_schedule(state, now_ms)) {
+        reject(decision, state, command->source, "TIME_INVALID", REASON_TIME);
         return;
     }
     if (state->mode != SP_MODE_READY_OFF && state->mode != SP_MODE_READY_ON &&
@@ -369,17 +374,79 @@ bool sp_energy_delta(const sp_energy_reading_t *previous,
     return true;
 }
 
+static bool plausible_utc_ms(int64_t utc_ms) {
+    /* 2020-01-01T00:00:00Z. Reject epoch/zero and absurd far-future values. */
+    return utc_ms > 1577836800000LL && utc_ms < 4102444800000LL;
+}
+
+void sp_time_set(sp_state_t *state, sp_time_source_t source, int64_t utc_ms,
+                 int64_t now_ms, const char *timezone) {
+    if (state == NULL) {
+        return;
+    }
+    if (!plausible_utc_ms(utc_ms)) {
+        sp_time_invalidate(state, now_ms);
+        return;
+    }
+    state->time.valid = true;
+    state->time.source = source;
+    state->time.last_sync_ms = now_ms;
+    state->time.last_known_utc_ms = utc_ms;
+    if (timezone != NULL && timezone[0] != '\0') {
+        sp_copy_string(state->time.timezone, sizeof(state->time.timezone), timezone);
+    }
+    state->clock_valid = true;
+}
+
+void sp_time_invalidate(sp_state_t *state, int64_t now_ms) {
+    (void)now_ms;
+    if (state == NULL) {
+        return;
+    }
+    state->time.valid = false;
+    state->time.source = SP_TIME_SOURCE_NONE;
+    state->time.last_sync_ms = 0;
+    state->time.last_known_utc_ms = 0;
+    state->clock_valid = false;
+}
+
+bool sp_time_is_valid_for_schedule(const sp_state_t *state, int64_t now_ms) {
+    if (state == NULL || !state->time.valid || state->time.last_sync_ms <= 0) {
+        return false;
+    }
+    int64_t age = now_ms - state->time.last_sync_ms;
+    if (age < 0) {
+        return false;
+    }
+    return age <= SP_TIME_MAX_AGE_MS;
+}
+
+const char *sp_time_source_name(sp_time_source_t source) {
+    switch (source) {
+        case SP_TIME_SOURCE_SNTP: return "sntp";
+        case SP_TIME_SOURCE_API: return "api";
+        case SP_TIME_SOURCE_MQTT: return "mqtt";
+        case SP_TIME_SOURCE_MANUAL: return "manual";
+        default: return "none";
+    }
+}
+
 bool sp_schedule_due(const sp_weekly_schedule_t *schedule,
                      int weekday,
                      int hour,
                      int minute,
                      int32_t last_run_date,
                      int32_t today_date,
+                     bool time_valid,
                      sp_schedule_result_t *result) {
     if (schedule == NULL || result == NULL) {
         return false;
     }
     memset(result, 0, sizeof(*result));
+    if (!time_valid) {
+        result->reason_code = "TIME_INVALID";
+        return false;
+    }
     if (!schedule->enabled) {
         result->reason_code = "SCHEDULE_DISABLED";
         return false;
@@ -482,7 +549,9 @@ int sp_format_telemetry(const sp_measurement_t *measurement,
         "\"active_power_w\":%s,\"energy_kwh_total\":%s,\"power_factor\":%s,"
         "\"frequency_hz\":%s},\"state\":{\"mode\":\"%s\",\"commanded_output\":\"%s\","
         "\"observed_output\":%s,\"fault\":%s,\"lockout\":%s,\"state_version\":%" PRIu32 ","
-        "\"clock_valid\":%s,\"meter_valid\":%s,\"temperature_valid\":%s,"
+        "\"clock_valid\":%s,\"time_valid\":%s,\"time_source\":\"%s\","
+        "\"last_sync_ms\":%lld,\"last_known_time_ms\":%lld,\"time_age_s\":%lld,"
+        "\"meter_valid\":%s,\"temperature_valid\":%s,"
         "\"temperature_required\":%s}}",
         state->device_id,
         (long long)measurement->sampled_at_ms,
@@ -501,6 +570,11 @@ int sp_format_telemetry(const sp_measurement_t *measurement,
         state->lockout ? "true" : "false",
         state->state_version,
         state->clock_valid ? "true" : "false",
+        state->time.valid ? "true" : "false",
+        sp_time_source_name(state->time.source),
+        (long long)state->time.last_sync_ms,
+        (long long)state->time.last_known_utc_ms,
+        (long long)(state->time.valid && state->time.last_sync_ms > 0 ? (measurement->sampled_at_ms - state->time.last_sync_ms) / 1000 : -1),
         state->meter_valid ? "true" : "false",
         state->temperature_valid ? "true" : "false",
         state->temperature_required ? "true" : "false");

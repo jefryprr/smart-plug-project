@@ -1,12 +1,17 @@
-import type { CommandMessage } from "@smartplug/mqtt-contract";
+import type { CommandMessage, TimeMessage } from "@smartplug/mqtt-contract";
 
 export interface CommandPublisher {
   publishCommand(message: CommandMessage): Promise<void>;
+  publishTime(message: TimeMessage): Promise<void>;
   isConnected(): boolean;
 }
 
 export class NullCommandPublisher implements CommandPublisher {
   async publishCommand(): Promise<void> {
+    throw new Error("MQTT_PUBLISHER_NOT_CONFIGURED");
+  }
+
+  async publishTime(): Promise<void> {
     throw new Error("MQTT_PUBLISHER_NOT_CONFIGURED");
   }
 
@@ -31,6 +36,13 @@ export class DeferredPublisher implements CommandPublisher {
       throw new Error("MQTT_PUBLISHER_NOT_READY");
     }
     await this.inner.publishCommand(message);
+  }
+
+  async publishTime(message: Parameters<CommandPublisher["publishTime"]>[0]): Promise<void> {
+    if (!this.inner) {
+      throw new Error("MQTT_PUBLISHER_NOT_READY");
+    }
+    await this.inner.publishTime(message);
   }
 
   isConnected(): boolean {

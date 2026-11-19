@@ -1,12 +1,12 @@
 # ADR-015 — DevKitC-1 Socket Interface (Two 1×22, 22.86 mm)
 
-**Status:** Accepted (digital correction; physical fit still required)  
-**Date:** 2026-11-16  
+**Status:** Accepted (v1.0 user-confirmed; physical fit still required)  
+**Date:** 2026-11-16, updated 2026-11-19  
 **Related:** ADR-008, `hardware/kicad/smartplug.kicad_pcb`, `hardware/carrier/netlist.csv`
 
 ## Context
 
-The first REV_C_PSU_BOARD carrier used a single `PinSocket_2x22_P2.54mm_Vertical`
+The first REV_D_CORE_ONLY carrier used a single `PinSocket_2x22_P2.54mm_Vertical`
 footprint. That footprint has two rows **2.54 mm apart**. It is an IDC-style
 2×22 socket, not a DevKitC-1 socket.
 
@@ -21,17 +21,18 @@ accept the board.
   (`J1B`), with **22.86 mm row spacing**.
 - Header pin numbers in the carrier netlist refer to the official J1/J3 tables,
   not odd/even IDC numbering:
-  - J1A pin 1/2 = 3V3, pin 4 = GPIO4, pin 5 = GPIO5, pin 7 = GPIO7,
-    pin 10 = GPIO17, pin 11 = GPIO18, pin 12 = GPIO8, pin 15 = GPIO9,
-    pin 16 = GPIO10, pin 21 = 5V, pin 22 = GND.
+  - J1A pin 1/2 = 3V3, pin 4 = GPIO4 (relay), pin 5 = GPIO5 (button),
+    pin 10 = GPIO17 (PZEM TX), pin 11 = GPIO18 (PZEM RX), pin 21 = 5V,
+    pin 22 = GND. GPIO6/7/8/9/10/12/15/16 are not used in CORE-only.
   - J1B pin 1/21/22 = GND; other J3 pins are unconnected.
+  - Onboard RGB is GPIO48 and is **not** a carrier net.
 - Place pin 1 of both sockets at the left end and mark the **USB end** at the
   right end of the carrier.
 - Keep the carrier SELV-only; mains modules remain off-board.
 
 ## Consequences
 
-- Carrier footprint count changes from 21 to **22** (two sockets instead of one).
+- Carrier footprint count is **19** (16 assembled + 3 fiducials); two 1x22 sockets replace the incompatible 2x22 socket. OLED/RTC/external RGB connectors are removed.
 - The previous `2x22` BOM line becomes one 2×22 strip split into two 1×22 rows
   (or two 1×22 strips). Price is unchanged within estimate.
 - DRC is **0 violations / 0 unconnected** at 0.15 mm; routing is F.Cu with a

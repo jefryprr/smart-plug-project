@@ -1,8 +1,12 @@
-# ADR-014 — Prototype Procurement Staging and Budget (REV_C_PSU_BOARD)
+# ADR-014 — Prototype Procurement Staging and Budget (REV_D_CORE_ONLY)
 
 **Status:** Proposed (procurement decision, not safety approval)  
 **Date:** 2026-11-16  
 **Related:** ADR-002, ADR-013, `bom/BOM_PROCUREMENT.csv`, `research/PROCUREMENT_INDONESIA.md`
+
+## REV_D update (2026-11-19)
+
+REV_D_CORE_ONLY is CORE-only. The FULL stage (OLED, DS3231 RTC, external RGB, I2C pullups, related JST) is deferred and excluded from procurement. CORE safety items (PSU/fuse/MOV/TCO/PE/relay/PZEM/enclosure) remain.
 
 ## Context
 
@@ -12,14 +16,14 @@ listing research for 57 BOM lines gives:
 - electronics core (MCU, meter, PSU, level shift, relay, protection, passives,
   PCB): **Rp433.633**;
 - CORE safety/function build including enclosure, connectors, cable, and
-  mechanical parts: **Rp717.087** before shipping;
-- CORE all-in with an estimated Rp40.000 shipping: **Rp757.087** — under the cap;
-- CORE with EasyWare restock prices for ESP32-S3 and PZEM: Rp665.619
-  (Rp705.619 all-in);
+  mechanical parts: **Rp716.087** before shipping;
+- CORE all-in with an estimated Rp40.000 shipping: **Rp756.087** — under the cap;
+- CORE with EasyWare restock prices for ESP32-S3 and PZEM: Rp664.619
+  (Rp704.619 all-in);
 - FULL build adding OLED, RTC, external RGB, and their connectors:
-  **Rp834.687** before shipping, **Rp874.687** all-in.
+  **FULL UI is deferred** and not part of the active budget.
 
-REV_C_PSU_BOARD removes the **TMP102** and the external **ADuM1201 + B0505S** barrier.
+REV_D_CORE_ONLY removes the **TMP102** and the external **ADuM1201 + B0505S** barrier.
 The PZEM-004T V4 internal optocouplers are the galvanic barrier; the carrier
 only level-shifts the 5 V TTL UART. There is no firmware temperature sensor;
 thermal protection is hardware-only (fuse + one-shot TCO).
@@ -42,7 +46,7 @@ thermal protection is hardware-only (fuse + one-shot TCO).
 
 ## Consequences
 
-- CORE is **over** the Rp750.000 cap at current marketplace prices (Rp717.087 + shipping = Rp757.087 all-in). The mechanical addendum raises it to ~Rp785.087; EasyWare restock + addendum is ~Rp733.619, under the cap.
+- CORE is **over** the Rp750.000 cap at current marketplace prices (Rp716.087 + shipping = Rp756.087 all-in). The mechanical addendum raises it to ~Rp784.087; EasyWare restock + addendum is ~Rp732.619, under the cap.
 - FULL is about **14% over** the cap and is a later stage.
 - The ESP32-S3 compatible board is an explicit Q08=B deviation; official
   Espressif local stock is not confirmed.
@@ -63,7 +67,7 @@ thermal protection is hardware-only (fuse + one-shot TCO).
 
 ## Sources
 
-- `bom/BOM_PROCUREMENT.csv` (57 lines, dated 2026-11-15/16)
+- `bom/BOM_PROCUREMENT.csv` (48 CORE lines, dated 2026-11-15/16)
 - `research/PROCUREMENT_INDONESIA.md`
 - `bom/BOM_SUMMARY.json`
 - `research/PZEM_INTERNAL_ISOLATION.md`

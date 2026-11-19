@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Grid-router for the REV_C_PSU_BOARD SELV carrier.
+"""Grid-router for the REV_D_CORE_ONLY SELV carrier.
 
 This is deliberately a simple two-layer Manhattan router, not a production
 autorouter. It exists to produce a coherent routed prototype carrier and to
@@ -342,7 +342,7 @@ def main():
     board = pcbnew.LoadBoard(str(BOARD_PATH))
     router = Router(board)
     router.build_obstacles()
-    order = ["RTC_INT", "RGB_DATA_3V3", "PZEM_TX_3V3", "PZEM_RX_3V3", "+3V3", "BUTTON", "RELAY_CTRL", "SCL", "SDA", "PZEM_RX_5V", "RELAY_GATE", "RELAY_IN", "PZEM_TX_5V", "RGB_DATA_5V", "RGB_DATA_OUT", "+5V"]
+    order = ["PZEM_TX_3V3", "PZEM_RX_3V3", "+3V3", "BUTTON", "RELAY_CTRL", "PZEM_RX_5V", "RELAY_GATE", "RELAY_IN", "PZEM_TX_5V", "+5V"]
     order += [n for n in NETS if n not in set(order) and n not in {GND, "NC"}]
     all_ok = True
     for netname in order:

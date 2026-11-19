@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Draw a clean functional block diagram for the REV_C mains-entry PSU board."""
+"""Draw a clean functional block diagram for the REV_D_CORE_ONLY mains-entry PSU board."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -157,7 +157,7 @@ def main():
          size=8.0, color=ISOLATION, ha="center", va="bottom")
 
     # ------------------------------------------------------------------ title
-    note(ax, 0.5, 9.18, "REV_C PSU BOARD", size=20, color=INK, weight="bold")
+    note(ax, 0.5, 9.18, "REV_D_CORE_ONLY PSU BOARD", size=20, color=INK, weight="bold")
     note(ax, 0.5, 8.92,
          "230 VAC mains entry  ·  protection  ·  5 V outputs  ·  50 × 65 mm",
          size=9.6, color=MUTED)

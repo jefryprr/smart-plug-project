@@ -1,44 +1,38 @@
 {
   "artifact": "validation/GPIO_CROSSCHECK.json",
-  "design_revision": "REV_C_PSU_BOARD",
+  "design_revision": "REV_D_CORE_ONLY",
   "board": {
     "model": "ESP32-S3-DevKitC-1-N16R8",
     "manufacturer": "Espressif",
-    "revision": "v1.1 (planned, unverified)",
+    "revision": "v1.0 (user-confirmed)",
     "flash_mb": 16,
     "psram_mb": 8,
     "logic_level_v": 3.3,
     "usb": "native USB (GPIO19/20), reserved",
-    "verified_board_revision": null,
-    "verification_status": "UNVERIFIED",
+    "verified_board_revision": "v1.0-user-confirmed",
+    "verification_status": "USER_CONFIRMED",
+    "verification_source": "user statement 2026-11-19; physical photo/marking check still recommended",
+    "onboard_rgb_gpio": 48,
+    "clone_note": "If the unit is a clone/compatible board, record Q08=B and do not claim official Espressif origin.",
     "notes": [
-      "RGB GPIO differs between v1.0 (48) and v1.1 (38); do not assume.",
+      "v1.0 onboard RGB = GPIO48; v1.1 = GPIO38. This build locks GPIO48.",
+      "v1.0 and v1.1 use 2 x 1x22 headers, 2.54 mm pitch, 22.86 mm row spacing; socket footprint unchanged.",
+      "No external I2C, OLED, RTC, or RGB connector in REV_D.",
       "Avoid strapping GPIO0/3/45/46.",
       "Avoid GPIO26-37 (flash/PSRAM); N16R8 uses octal PSRAM.",
       "External pulldown on relay control is mandatory for boot-safe OFF."
     ]
   },
-  "pin_count": 10,
+  "pin_count": 6,
   "duplicate_or_reserved_issues": [],
-  "unverified_board_revision_issues": [
-    "BOARD_REVISION_UNVERIFIED:relay_control",
-    "BOARD_REVISION_UNVERIFIED:relay_feedback_optional",
-    "BOARD_REVISION_UNVERIFIED:button",
-    "BOARD_REVISION_UNVERIFIED:i2c_sda",
-    "BOARD_REVISION_UNVERIFIED:i2c_scl",
-    "BOARD_REVISION_UNVERIFIED:oled_reset",
-    "BOARD_REVISION_UNVERIFIED:external_rgb_data",
-    "BOARD_REVISION_UNVERIFIED:pzem_uart_tx",
-    "BOARD_REVISION_UNVERIFIED:pzem_uart_rx",
-    "BOARD_REVISION_UNVERIFIED:rtc_interrupt"
-  ],
+  "unverified_board_revision_issues": [],
   "firmware_header": "firmware/main/board_config.h",
   "schematic": "hardware/kicad/smartplug.kicad_sch",
   "wiring": "hardware/wiring/main_harness.yaml",
-  "status": "UNVERIFIED",
+  "status": "PASS",
   "limitations": [
-    "Board revision is unverified; all GPIO assignments are PROVISIONAL.",
-    "No physical waveform or boot test was performed.",
+    "Board revision is user-confirmed, not measured; GPIO assignments remain static design data.",
+    "No physical waveform, boot, or onboard-RGB test was performed.",
     "Firmware header crosscheck is static; it does not prove electrical behavior."
   ]
 }

@@ -1,6 +1,6 @@
 # Roadmap
 
-**Current revision:** `REV_C_PSU_BOARD`  
+**Current revision:** `REV_D_CORE_ONLY`  
 **Current stage:** end of digital engineering (F3) → engineering review (F4)  
 **Fabrication:** `NOT_RELEASED`
 

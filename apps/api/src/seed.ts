@@ -66,7 +66,12 @@ export function seedDemo(db: AppDb, now: Date, options: SeedOptions = {}): SeedR
       last_transition_at: hourIso(now, -12),
       clock_valid: true,
       meter_valid: true,
-      temperature_valid: true
+      temperature_valid: true,
+      time_valid: true,
+      time_source: "manual",
+      last_sync: nowIso,
+      last_known_time: nowIso,
+      time_age_s: 0
     };
     db.run(
       `INSERT INTO devices
@@ -77,7 +82,7 @@ export function seedDemo(db: AppDb, now: Date, options: SeedOptions = {}): SeedR
       homeId,
       "Smart Plug Demo",
       "Ruang Tamu",
-      "REV_C_PSU_BOARD",
+      "REV_D_CORE_ONLY",
       "0.1.0-demo",
       JSON.stringify(state),
       JSON.stringify({
@@ -174,7 +179,12 @@ export function seedDemo(db: AppDb, now: Date, options: SeedOptions = {}): SeedR
             state_version: 4 + index,
             clock_valid: true,
             meter_valid: true,
-            temperature_valid: true
+            temperature_valid: true,
+            time_valid: true,
+            time_source: "manual",
+            last_sync: nowIso,
+            last_known_time: nowIso,
+            time_age_s: 0
           }
         },
         nowIso,

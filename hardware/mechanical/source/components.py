@@ -33,10 +33,8 @@ MODULES: list[ModuleEnvelope] = [
     # SELV side (left). Carrier origin (-105, -35), board 100 x 70.
     ModuleEnvelope("carrier", "SELV carrier PCB 100 x 70", (100, 70, 1.6), (-55, 0, 8.8), "SELV", "pcb_design"),
     ModuleEnvelope("esp32", "ESP32-S3-DevKitC-1 (63 x 25.5 approx)", (63, 25.5, 10), (-68.33, -13.57, 22.0), "SELV", "datasheet_approx"),
-    ModuleEnvelope("oled", "OLED 0.96 module under top window", (27, 27, 4), (-92, 28, 64.0), "SELV", "provisional"),
     ModuleEnvelope("button", "Panel button + cap", (12, 12, 8), (-62, 28, 63.5), "SELV", "provisional"),
-    ModuleEnvelope("rgb", "RGB diffuser / light pipe", (6, 6, 3), (-49, 28, 65.5), "SELV", "provisional"),
-    ModuleEnvelope("rtc", "DS3231 RTC module", (27, 27, 4), (-81, 16, 20.0), "SELV", "provisional"),
+    ModuleEnvelope("devkit_rgb_window", "Onboard RGB left-wall window/light pipe", (1, 5, 5), (-107.0, -13.57, 22.0), "MECHANICAL", "provisional"),
     ModuleEnvelope("devkit_key", "DevKit reverse-insertion key bracket", (8, 63, 12), (-99, 0, 15.0), "MECHANICAL", "engineering_calculation"),
 
     # Mains side (right). The PSU board is 50 x 70 mm at x=56..106, y=-55..15,
@@ -45,7 +43,7 @@ MODULES: list[ModuleEnvelope] = [
     ModuleEnvelope("pzem", "PZEM-004T V4 + CT interface", (53, 89, 24), (28, 0, 16.5), "MAINS", "provisional"),
     ModuleEnvelope("pzem_bracket", "PZEM mounting bracket", (58, 94, 2), (28, 0, 3.5), "MAINS", "engineering_calculation"),
     ModuleEnvelope("ct", "100 A CT (split core approx)", (30, 30, 15), (20, 42, 40.0), "MAINS", "provisional"),
-    ModuleEnvelope("psu_board", "REV_C mains PSU PCB 50 x 65 + HLK/terminals", (50, 65, 30), (81, -22.5, 23.0), "MAINS", "pcb_design"),
+    ModuleEnvelope("psu_board", "REV_D_CORE_ONLY mains PSU PCB 50 x 65 + HLK/terminals", (50, 65, 30), (81, -22.5, 23.0), "MAINS", "pcb_design"),
     ModuleEnvelope("relay_shelf", "Printed cantilever relay shelf", (55, 28, 3), (79.5, -3, 40.5), "MECHANICAL", "engineering_calculation"),
     ModuleEnvelope("relay", "2-channel optocoupler relay module (above PSU)", (50, 24, 18), (80, -3, 49.0), "MAINS", "provisional"),
     ModuleEnvelope("pe_stud", "PE stud / bonding point", (8, 8, 10), (60, 50, 25.0), "MAINS", "engineering_calculation"),

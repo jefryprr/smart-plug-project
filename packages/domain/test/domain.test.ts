@@ -6,6 +6,7 @@ import {
   decideOutputCommand,
   estimateCostIdr,
   evaluateWeeklySchedule,
+  TIME_MAX_AGE_SECONDS,
   formatIdr,
   redactSecrets,
   selectTariff,
@@ -125,7 +126,45 @@ describe("output command priority", () => {
       NOW
     );
     expect(decision.accepted).toBe(false);
-    expect(decision.reasonCode).toBe("CLOCK_INVALID");
+    expect(decision.reasonCode).toBe("TIME_INVALID");
+  });
+
+  it("rejects an expired time sync even when clockValid is true", () => {
+    const decision = decideOutputCommand(
+      state({
+        clockValid: true,
+        time: {
+          valid: true,
+          source: "sntp",
+          lastSync: new Date(NOW.getTime() - (TIME_MAX_AGE_SECONDS + 1) * 1000).toISOString(),
+          lastKnown: NOW.toISOString(),
+          ageSeconds: TIME_MAX_AGE_SECONDS + 1
+        }
+      }),
+      request({ source: "schedule" }),
+      NOW
+    );
+    expect(decision.accepted).toBe(false);
+    expect(decision.reasonCode).toBe("TIME_INVALID");
+  });
+
+  it("does not use last-known time to authorize schedules", () => {
+    const decision = decideOutputCommand(
+      state({
+        clockValid: false,
+        time: {
+          valid: false,
+          source: "none",
+          lastSync: null,
+          lastKnown: NOW.toISOString(),
+          ageSeconds: null
+        }
+      }),
+      request({ source: "schedule" }),
+      NOW
+    );
+    expect(decision.accepted).toBe(false);
+    expect(decision.reasonCode).toBe("TIME_INVALID");
   });
 
   it("allows authorized manual ON when only the clock is invalid", () => {
@@ -351,6 +390,10 @@ describe("weekly schedule", () => {
   };
 
   it("is due inside the window on the selected weekday", () => {
+    const invalid = evaluateWeeklySchedule(schedule, NOW, null, false);
+    expect(invalid.due).toBe(false);
+    expect(invalid.reasonCode).toBe("TIME_INVALID");
+
     const result = evaluateWeeklySchedule(schedule, NOW);
     expect(result.due).toBe(true);
     expect(result.action).toBe("ON");

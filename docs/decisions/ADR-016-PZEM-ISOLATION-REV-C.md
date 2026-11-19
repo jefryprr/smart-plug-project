@@ -1,17 +1,17 @@
-# ADR-016 — PZEM Isolation Basis for REV_C
+# ADR-016 — PZEM Isolation Basis for REV_D_CORE_ONLY
 
 **Status:** Accepted as design basis; batch/assembly isolation `UNVERIFIED`  
 **Date:** 2026-11-16  
-**Supersedes:** REV_C_PSU_BOARD external ADuM1201 + B0505S requirement; clarifies REV_C_PSU_BOARD/REV_C
+**Supersedes:** REV_D_CORE_ONLY external ADuM1201 + B0505S requirement; clarifies REV_D_CORE_ONLY/REV_D_CORE_ONLY
 **Related:** ADR-002, `research/PZEM_INTERNAL_ISOLATION.md`, `safety/ISOLATION_PLAN.md`
 
 ## Context
 
 The repository contains two conflicting PZEM UART isolation statements:
 
-1. **REV_C_PSU_BOARD:** external ADuM1201 + B0505S barrier required; PZEM must not share
+1. **REV_D_CORE_ONLY:** external ADuM1201 + B0505S barrier required; PZEM must not share
    SELV ground.
-2. **REV_C_PSU_BOARD:** external barrier removed; PZEM internal optocouplers are the
+2. **REV_D_CORE_ONLY:** external barrier removed; PZEM internal optocouplers are the
    barrier; PZEM TTL side is powered from SELV 5 V and shares SELV ground.
 
 This conflict must be closed before the PSU board defines the third 5 V output.
@@ -21,9 +21,9 @@ TTL side, but the purchased V4 batch, creepage, and withstand are not verified.
 
 ## Decision
 
-- **REV_C uses the PZEM-004T V4 internal optocouplers as the only UART
+- **REV_D_CORE_ONLY uses the PZEM-004T V4 internal optocouplers as the only UART
   galvanic barrier.**
-- No ADuM1201 and no B0505S are fitted in REV_C.
+- No ADuM1201 and no B0505S are fitted in REV_D_CORE_ONLY.
 - PZEM TTL 5 V/GND may be supplied from **PSU OUT3** (JST-XH 2-pin), because the
   TTL side is SELV when the internal isolation is intact.
 - PZEM TX/RX go to the carrier J2 level-shift/divider; the carrier remains
@@ -32,15 +32,15 @@ TTL side, but the purchased V4 batch, creepage, and withstand are not verified.
   is inspected for optocouplers/creepage and passes a mains-to-TTL
   hipot/leakage test. If the batch fails, OUT3 must be reworked to an isolated
   B0505S/ADuM barrier and PZEM must **not** be fed directly from the PSU board.
-- REV_C_PSU_BOARD external-barrier statements are historical and **superseded** for
-  REV_C. They are not an alternative build inside the same revision.
+- REV_D_CORE_ONLY external-barrier statements are historical and **superseded** for
+  REV_D_CORE_ONLY. They are not an alternative build inside the same revision.
 
 ## Consequences
 
 - Single barrier: a PZEM internal failure can expose the ESP32/carrier to mains.
 - PZEM batch inspection, creepage review, and hipot/leakage are safety-critical.
 - PZEM 5 V/GND and TTL share SELV ground by design; do not add a second ground
-  reference or an external isolated supply in REV_C.
+  reference or an external isolated supply in REV_D_CORE_ONLY.
 - The PSU board OUT3 must be clearly labeled and controlled; do not use it for
   an unknown module.
 - USB must not be connected while mains is energized.
@@ -62,5 +62,5 @@ TTL side, but the purchased V4 batch, creepage, and withstand are not verified.
 
 ## Status
 
-`ACCEPTED_AS_DESIGN_INPUT` for REV_C. This is **not** a safety approval. PZEM
+`ACCEPTED_AS_DESIGN_INPUT` for REV_D_CORE_ONLY. This is **not** a safety approval. PZEM
 batch and assembly remain `DOCUMENTATION_DEFICIENT` until inspected and tested.

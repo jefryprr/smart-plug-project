@@ -1,4 +1,4 @@
-# Research Log — REV_C PSU Board
+# Research Log — REV_D_CORE_ONLY PSU Board
 
 **Date:** 2026-11-16  
 **Agent:** OpenCode digital engineering  
@@ -56,3 +56,15 @@
 - `docs/decisions/ADR-016-PZEM-ISOLATION-REV-C.md`
 - `hardware/psu/README.md`
 - `safety/CLEARANCE_CREEPAGE_WORKSHEET.md`, `safety/THERMAL_CALCULATION.md`, `safety/PROTECTION_COORDINATION.md`
+
+## 6. REV_D CORE-only time and onboard RGB (2026-11-19)
+
+| Query | Source | Result | Decision |
+|---|---|---|---|
+| SNTP client API/behavior | Espressif ESP-IDF SNTP docs | `esp_sntp` poll mode; unauthenticated | SNTP primary; API/MQTT cross-check; 12 h validity, 6 h resync |
+| NVS key-value persistence | Espressif NVS docs | namespace/key storage; corruption/power-loss caveats | Store last-known/source/timezone; never authorize schedule from it |
+| DevKitC-1 v1.0 onboard RGB | Espressif v1.0 user guide + user statement | GPIO48 (v1.1 = GPIO38) | Lock `PIN_STATUS_RGB=48`, `BOARD_DEVKITC1_REV=10` |
+| v1.0/v1.1 header geometry | ESP32-S3-DevKitC-1 DXFs (user-provided review) | Same 2 x 1x22, 2.54 mm pitch, 22.86 mm rows; outline identical | Socket footprint unchanged; physical fit still required |
+| RTC removal | Project decision | No DS3231; no battery/holder | ADR-017; schedules fail-safe when time invalid |
+
+Evidence file: `research/TIME_SERVICE_EVIDENCE.md`.

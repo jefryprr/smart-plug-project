@@ -1,7 +1,7 @@
 # Testing and Validation
 
-**Design revision:** `REV_C_PSU_BOARD`  
-**Last digital gate:** 2026-11-16 — **27 PASS / 11 BLOCKED / 0 FAIL**  
+**Design revision:** `REV_D_CORE_ONLY`  
+**Last digital gate:** 2026-11-19 — **27 PASS / 11 BLOCKED / 0 FAIL**  
 **Fabrication:** `NOT_RELEASED`
 
 This page explains how to reproduce the digital tests and how to read the evidence. It does not authorize mains testing.
@@ -17,7 +17,7 @@ This page explains how to reproduce the digital tests and how to read the eviden
 | MQTT contract | included in `npm test` | Topics/schemas/fixtures | Broker TLS/ACL production |
 | API + simulator | included in `npm test` | Auth, RBAC, commands, ACK, telemetry | Real device integration |
 | Web build | `npm run build -w @smartplug/web` | Next.js production build | Browser behavior |
-| Playwright + axe | `npx playwright test` | UI flows and basic accessibility | Physical UI/OLED |
+| Playwright + axe | `npx playwright test` | UI flows and basic accessibility | Physical button/onboard RGB |
 | Firmware host tests | `powershell -ExecutionPolicy Bypass -File firmware\test\host\run_tests.ps1` | C safety-core logic | Flashed firmware |
 | ESP-IDF build | `powershell -ExecutionPolicy Bypass -File scripts\build_firmware.ps1` | Target compiles | Flash/boot/OTA |
 | Static hardware checks | `.venv\Scripts\python.exe scripts\validate_all.py --e2e` | Wiring/GPIO/BOM/PSU consistency | Creepage, hipot, thermal |
@@ -70,10 +70,10 @@ Source: [`../reports/VALIDATION_SUMMARY.json`](../reports/VALIDATION_SUMMARY.jso
 
 Examples of PASS:
 
-- 34 domain tests
-- 11 MQTT contract tests
-- 38 API + simulator tests
-- 4 simulator tests
+- 36 domain tests
+- 12 MQTT contract tests
+- 43 API tests
+- 6 simulator tests
 - 75 firmware host checks
 - Next.js build + 5 Playwright tests + axe
 - static wiring/GPIO/BOM/PSU crosschecks

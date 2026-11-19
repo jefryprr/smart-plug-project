@@ -1,4 +1,4 @@
-# MQTT ACL Plan — REV_C_PSU_BOARD
+# MQTT ACL Plan — REV_D_CORE_ONLY
 
 **Status:** `DESIGN` / production broker not executed.
 
@@ -13,6 +13,7 @@
 | `smartplug/v1/{id}/command` | no | yes (own) | yes | no | **no** |
 | `smartplug/v1/{id}/ack` | yes (own) | no | no | yes | no |
 | `smartplug/v1/{id}/diag` | yes (own) | no | no | yes | no |
+| `smartplug/v1/{id}/time` | no | yes (own) | yes | no | **no** |
 | `smartplug/v1/{id}/config/desired` | no | yes (own) | yes | no | **no** |
 | `smartplug/v1/{id}/config/reported` | yes (own) | no | no | yes | yes |
 
@@ -20,7 +21,7 @@
 
 1. `device_id` is opaque and validated with `^[A-Za-z0-9_-]{1,64}$`; wildcards are rejected.
 2. Device credentials are unique; no shared password.
-3. Command and desired-config messages are **never retained** (retained ON is dangerous).
+3. Command, time, and desired-config messages are **never retained** (retained ON/stale time is dangerous).
 4. ACL must deny cross-device publish/subscribe. Test with valid and invalid clients.
 5. QoS: telemetry/diag 0; state/event/availability/ack/command/config 1. Do not claim delivery to the device from broker QoS alone.
 6. LWT marks availability `offline`; it does not prove relay OFF.

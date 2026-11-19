@@ -11,6 +11,7 @@ import {
   type Tariff
 } from "@smartplug/api-contract";
 import { requireAuthUser } from "../auth/middleware.js";
+import { parseDeviceState } from "../services/access.js";
 import { conflict } from "../errors.js";
 import { appendAudit } from "../services/audit.js";
 import { requireDeviceAccess, requireWriteRole } from "../services/access.js";
@@ -192,6 +193,10 @@ export function registerAutomationRoutes(app: FastifyInstance, deps: RouteDeps):
       const access = requireDeviceAccess(db, user.userId, request.params.deviceId);
       requireWriteRole(access);
       const body = parseBody(AutomationsRequestSchema, request.body);
+      const currentState = parseDeviceState(access.state_json);
+      if (!currentState.time_valid && body.schedules.some((schedule) => schedule.enabled)) {
+        throw conflict("TIME_INVALID", "Waktu belum valid; schedule tidak boleh dibuat/diaktifkan");
+      }
       const current = db.get<{ version: number }>(
         `SELECT version FROM automation_rules WHERE device_id = ?`,
         access.device_id

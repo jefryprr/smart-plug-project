@@ -1140,7 +1140,7 @@ Tool yang disebut pengguna adalah preferensi awal, bukan jaminan kompatibilitas 
 {
   "project": "esp32-s3-iot-smart-plug",
   "prd_version": "1.0",
-  "design_revision": "REV_C_PSU_BOARD",
+  "design_revision": "REV_D_CORE_ONLY",
   "generated_at": "<UTC ISO timestamp created by actual run>",
   "git_commit": "<actual commit hash>",
   "device_hardware_status": "ENGINEERING_REVIEW_REQUIRED",

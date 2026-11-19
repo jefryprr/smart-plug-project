@@ -3,22 +3,30 @@
 **Date:** 16 November 2026
 **Author/agent:** OpenCode (DeepSeek V4.1 Flash 1017)
 **PRD version:** 1.0
-**Design revision:** `REV_C_PSU_BOARD`
-**Source commit:** see `git log`; generated from the REV_C working tree on 2026-11-16
+**Design revision:** `REV_D_CORE_ONLY`
+**Source commit:** see `git log`; generated from the REV_D_CORE_ONLY working tree on 2026-11-19
 **Manifest:** `deliverables/manifest.json`
 
 ---
 
-## Amendment 2026-11-16 (REV_C_PSU_BOARD)
+## REV_D correction (2026-11-19)
+
+- Active build is **CORE-only**. OLED, DS3231 RTC, external RGB, JST J4/J5/J7, 330R, and 4.7k I2C pullups are **DEFERRED** and removed from the active carrier/firmware/BOM.
+- Physical board is **ESP32-S3-DevKitC-1 N16R8 v1.0** (user-confirmed); onboard RGB = **GPIO48**, not v1.1 GPIO38.
+- Time is **SNTP + NVS + API/MQTT + manual set**; no RTC. `time_valid=false` at boot, schedules blocked, schedule-origin output forced OFF, manual control allowed, missed events not replayed.
+- Carrier is now 19 footprints (16 assembled + 3 fiducials), 11 named nets, DRC 0/0. PSU board unchanged and renamed `psu_rev_d.kicad_pcb`.
+- Firmware host tests: 88 checks. API: 43 tests. Domain: 36 tests. Simulator: 6 tests. Digital gate: see `reports/VALIDATION_SUMMARY.json`.
+
+## Amendment 2026-11-16, revised 2026-11-19 (REV_D_CORE_ONLY)
 
 - User approved **8 A final** (~1.840 W at 230 V), limited to electronics/SMPS loads; not heaters/motors.
 - PZEM-004T V4 and a **common 2-channel 5 V optocoupler relay module** are **off-board**, with enclosure brackets. The **HLK-5M05 is on the separate 50x65 mm PSU board**, not the carrier. The module is two independent SPDT channels, **not** a mechanically linked DPST.
 - PSU replaced by user instruction: **Hi-Link HLK-5M05** (5 V 1 A / 5 W, 38×23×18 mm). Efficiency ~70% means ~2.1 W heat; isolation/certificate/batch are unverified (`PENDING_APPROVAL`). Study: `research/PSU_HLK_5M05.md`.
 - **150×100×70 FAILS** the coarse fit; **180×120×70 is rejected** because the PZEM/relay/socket would only stack with a 0.5 mm gap, ignoring brackets and wiring. **220×120×70 PASSES** side-by-side and is **CONFIRMED** by the user (Q06=C, 2026-11-15).
-- **Enclosure detailed:** 60 mm body + 10 mm lid, 4× M3 lid screws, 1 mm gasket, carrier standoffs, module bosses, mechanical barrier, right-wall socket/gland/M12 vent, top OLED/button/RGB cutouts, front USB service cover, and a printed DevKit reverse-insertion key. Assembly STEP/STL and fit report generated; physical fit/sealing/thermal are still unverified.
-- **KiCad 10.0.8 CLI installed**; ERC 0 on the block-level schematic; the SELV carrier is routed at 100x70 mm (25 footprints = 22 assembled + 3 fiducials, 18 nets) with **DRC 0/0** at 0.15 mm, and the separate **PSU board** is routed at 50x65 mm (13 assembled + 3 mounting holes + 3 fiducials, 8 nets) with **DRC 0/0**. Both have routed Gerber/drill/POS exported. Both remain `ENGINEERING_REVIEW_REQUIRED` / `NOT_FOR_FABRICATION`.
-- **ESP-IDF v6.1 target build PASS** (esp32s3, 192,496-byte `.bin`, SHA-256 in `reports/FIRMWARE_BUILD.md`); no board was flashed. **Android debug APK PASS** (arm64-v8a, 46,852,340 bytes, v2 debug signature verified; not device-tested).
-- **Indonesian procurement matrix added** (2026-11-16): 57 lines, 40 listing-verified + 17 estimated. CORE Rp717.087 (restock Rp665.619), FULL Rp834.687; budget verdict `CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_FITS; FULL_OVER_BUDGET`. Details: `research/PROCUREMENT_INDONESIA.md`, `bom/BOM_PROCUREMENT.md`.
+- **Enclosure detailed:** 60 mm body + 10 mm lid, 4× M3 lid screws, 1 mm gasket, carrier standoffs, module bosses, mechanical barrier, right-wall socket/gland/M12 vent, button cutout and small onboard-RGB side window, front USB service cover, and a printed DevKit reverse-insertion key. Assembly STEP/STL and fit report generated; physical fit/sealing/thermal are still unverified.
+- **KiCad 10.0.8 CLI installed**; ERC 0 on the block-level schematic; the SELV carrier is routed at 100x70 mm (19 footprints = 16 assembled + 3 fiducials, 11 named nets) with **DRC 0/0** at 0.15 mm, and the separate **PSU board** is routed at 50x65 mm (13 assembled + 3 mounting holes + 3 fiducials, 8 nets) with **DRC 0/0**. Both have routed Gerber/drill/POS exported. Both remain `ENGINEERING_REVIEW_REQUIRED` / `NOT_FOR_FABRICATION`.
+- **ESP-IDF v6.1 target build PASS** (esp32s3, 264,544-byte `.bin`, SHA-256 in `reports/FIRMWARE_BUILD.md`); no board was flashed. **Android TypeScript typecheck PASS**. The existing debug APK predates the REV_D time-status UI; it is not release evidence and was not device-tested.
+- **Indonesian procurement matrix added** (2026-11-19 CORE-only): 48 procurement lines, 33 listing-verified + 15 estimated. CORE Rp716.087 (restock Rp664.619); FULL UI deferred; verdict `CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_FITS; FULL_DEFERRED`. Details: `research/PROCUREMENT_INDONESIA.md`, `bom/BOM_PROCUREMENT.md`.
 
 ---
 
@@ -84,8 +92,8 @@ OFF (Q25=C), computer-only lab (Q26=A), digital parallel phases (Q27=C).
 - `research/candidates.csv`: all candidates, not just winners.
 - `research/PROCUREMENT_INDONESIA.md`: dated Indonesian supplier/price study, stock risks, and budget scenarios.
 - `bom/BOM_MASTER.csv`: 48 engineering rows, **unpriced**, **unapproved**.
-- `bom/BOM_PROCUREMENT.csv`: 57 dated prototype buy rows (40 listing-verified, 17 estimated).
-- `bom/BOM_SUMMARY.json`: `PROCUREMENT_PRICED_2026-11-15`; CORE Rp717.087, FULL Rp834.687.
+- `bom/BOM_PROCUREMENT.csv`: 57 dated prototype buy rows (33 listing-verified, 15 estimated).
+- `bom/BOM_SUMMARY.json`: `PROCUREMENT_PRICED_2026-11-16`; CORE Rp716.087; FULL UI deferred.
 - `bom/COMPONENT_APPROVALS.yaml`: no `approved_for_fabrication`.
 - `research/datasheets/MANIFEST.md`: 12 PDFs hashed (including the HLK-5M05 distributor copy) plus the PZEM-004T V1.0 archive; V4/socket/enclosure/HLK batch still marked deficient.
 - `research/UNKNOWN_SPECIFICATIONS.md`: 31 open unknowns (including compatible board, enclosure flame rating, PZEM internal isolation, and relay batch).
@@ -94,15 +102,15 @@ OFF (Q25=C), computer-only lab (Q26=A), digital parallel phases (Q27=C).
 deviation; official stock unconfirmed), PZEM-004T V4 100 A CT with **internal optocoupler isolation** (no ADuM/B0505S), 74HCT125 + 10k/20k UART level shift,
 off-board 2-channel optocoupler relay module (10 A class claim), Hi-Link HLK-5M05
 (user-selected; efficiency/isolation batch unverified), Littelfuse 5x20 10 A slow-blow,
-MOV 10D271K, SEFUSE SF96E 99 °C TCO, DS3231 module, SSD1306 OLED,
+MOV 10D271K, SEFUSE SF96E 99 °C TCO, ESP32-S3-DevKitC-1 v1.0,
 Simon Schuko 16 A socket, BOSS BP16 plug, MG Duradus 220x120x70 ABS enclosure.
 
-**Budget verdict:** CORE electronics is Rp717.087 before shipping (Rp757.087 all-in),
-which is **about Rp7.087 over** the Rp750.000 cap. The detailed enclosure adds an estimated **Rp28.000**
+**Budget verdict:** CORE electronics is Rp716.087 before shipping (Rp756.087 all-in),
+which is **about Rp6.087 over** the Rp750.000 cap. The detailed enclosure adds an estimated **Rp28.000**
 mechanical addendum (gasket, vent, printed USB cover/key, PSU bracket, thermal pad),
-so marketplace CORE is about **Rp745.087 / Rp785.087 all-in**. EasyWare restock prices
-bring it to about **Rp693.619 / Rp733.619 all-in**. FULL is Rp834.687 (Rp874.687 all-in),
-or about Rp902.687 all-in with the addendum; do not downgrade safety parts to force it.
+so marketplace CORE is about **Rp744.087 / Rp784.087 all-in**. EasyWare restock prices
+bring it to about **Rp692.619 / Rp732.619 all-in**. FULL UI is deferred,
+and is not part of the active build; do not downgrade safety parts to force it.
 
 ---
 
@@ -129,7 +137,7 @@ Details: `safety/ISOLATION_PLAN.md`, `safety/ELECTRICAL_RATING_CHAIN.md`,
 - 180×120×70: **rejected**; it only fit by stacking PZEM/relay/socket with a 0.5 mm gap and ignoring brackets/wiring.
 - 220×120×70 confirmed (Q06=C): side-by-side coarse fit **PASS**; dimensions still approximate.
 - Final continuous rating **8 A / ~1.840 W**, electronics/SMPS only.
-- BOM prices: CORE Rp717.087 (Rp757.087 all-in), CORE restock Rp665.619 (Rp705.619 all-in), FULL Rp834.687 (Rp874.687 all-in). The electronics CORE is ~Rp757k all-in at marketplace prices; with the mechanical addendum it is ~Rp785k. EasyWare restock brings it to ~Rp734k all-in (under the cap). FULL exceeds the cap. Safety parts are not downgraded.
+- BOM prices: CORE Rp716.087 (Rp756.087 all-in), CORE restock Rp664.619 (Rp704.619 all-in). FULL UI is DEFERRED. The electronics CORE is ~Rp757k all-in at marketplace prices; with the mechanical addendum it is ~Rp785k. EasyWare restock brings it to ~Rp734k all-in (under the cap). FULL exceeds the cap. Safety parts are not downgraded.
 - Supply/documentation risk: PZEM batch, ESP32 official stock, HLK batch, socket/plug, enclosure flammability, thermal cutoff.
 - 220×120×70 enclosure confirmed after 150×100 and 180×120 clearance review failed.
 
@@ -146,7 +154,7 @@ Details: `safety/ISOLATION_PLAN.md`, `safety/ELECTRICAL_RATING_CHAIN.md`,
 | 05 | Schematic | `hardware/kicad/*.kicad_sch` | PARTIAL (block text; ERC 0) |
 | 06 | Wiring | `hardware/wiring/*.yaml`, `renders/` | PASS (render) |
 | 07 | GPIO mapping | `hardware/interfaces/gpio_map.*` | UNVERIFIED (board) |
-| 08 | PCB native | `hardware/kicad/smartplug.kicad_pcb`, `psu_rev_c.kicad_pcb` | PASS (routed, DRC 0/0) |
+| 08 | PCB native | `hardware/kicad/smartplug.kicad_pcb`, `psu_rev_d.kicad_pcb` | PASS (routed, DRC 0/0) |
 | 09 | PCB manufacturing | `hardware/manufacturing/provisional/` (carrier + `psu/`) | PARTIAL (routed Gerber/drill/POS; not released) |
 | 10 | PCB visualization | `hardware/pcb/render/placement_preview.*` | PARTIAL |
 | 11 | Enclosure 3D | `hardware/mechanical/export/` | PARTIAL |
@@ -154,7 +162,7 @@ Details: `safety/ISOLATION_PLAN.md`, `safety/ELECTRICAL_RATING_CHAIN.md`,
 | 13 | Firmware | `firmware/core/`, `firmware/main/` | PARTIAL (target build PASS) |
 | 14 | Firmware config | `firmware/partitions.csv`, `sdkconfig.defaults` | PARTIAL |
 | 15 | Web | `apps/web/` | PASS (digital) |
-| 16 | Android | `apps/android/` | PASS (debug APK; not device-tested) |
+| 16 | Android | `apps/android/` | PARTIAL (typecheck PASS; APK predates REV_D UI) |
 | 17 | Backend | `apps/api/` | PASS (digital) |
 | 18 | Database | `database/migrations/` | PARTIAL (Postgres schema only) |
 | 19 | MQTT | `packages/mqtt-contract/`, `infrastructure/broker/` | PASS (digital) |
@@ -212,12 +220,12 @@ Summary: 80 total; 28 PASS, 25 PARTIAL, 24 NOT_STARTED, 3 BLOCKED.
 | FR-034 | P0 | F1 | PASS | Sensor failure detection | `firmware/core/smartplug_core.c`, `packages/domain/src/index.ts` | CORE-MEASUREMENT, DOMAIN-MEASUREMENT, ALERT-SENSOR |
 | FR-035 | P0 | F1+F2 | PASS | Electrical fault logging | `apps/api/src/services/audit.ts`, `apps/api/src/routes/operations.ts` | API-EVENTS |
 | FR-036 | P0 | F1 | PASS | Fault lockout | `firmware/core/smartplug_core.c`, `packages/domain/src/index.ts` | CORE-LOCKOUT, DOMAIN-LOCKOUT, API-LOCKOUT |
-| FR-037 | P0 | F1 | NOT_STARTED | OLED display | — | — |
-| FR-038 | P1 | F1 | NOT_STARTED | OLED page navigation | — | — |
-| FR-039 | P1 | F1 | NOT_STARTED | RGB NeoPixel status | — | — |
-| FR-040 | P2 | F1 | NOT_STARTED | RGB engineering debug | — | — |
-| FR-041 | P0 | F1 | NOT_STARTED | RGB fault indicator | — | — |
-| FR-042 | P2 | F1 | NOT_STARTED | RGB night mode | — | — |
+| FR-037 | P0 | F1 | DEFERRED | OLED display | — | REV_D_CORE_ONLY |
+| FR-038 | P1 | F1 | DEFERRED | OLED page navigation | — | REV_D_CORE_ONLY |
+| FR-039 | P1 | F1 | PARTIAL | Onboard RGB status | `firmware/main/status_rgb.c` | Visual test blocked |
+| FR-040 | P2 | F1 | DEFERRED | RGB engineering debug | — | REV_D_CORE_ONLY |
+| FR-041 | P0 | F1 | PARTIAL | RGB fault indicator | `firmware/main/status_rgb.c` | Visual test blocked |
+| FR-042 | P2 | F1 | DEFERRED | RGB night mode | — | REV_D_CORE_ONLY |
 | FR-043 | P0 | F2 | PASS | Web dashboard | `apps/web/src/app`, `apps/web/src/components` | T-SW-011, T-SW-012 |
 | FR-044 | P0 | F2 | PARTIAL | Android application | `apps/android/App.tsx` | T-SW-013, T-SW-014 |
 | FR-045 | P1 | F2 | PASS | Device naming | `apps/api/src/routes/devices.ts`, `apps/web/src/components/DeviceSettings.tsx` | API-DEVICE-PATCH |
@@ -277,20 +285,20 @@ Summary: 80 total; 28 PASS, 25 PARTIAL, 24 NOT_STARTED, 3 BLOCKED.
 ## 10. Firmware status
 
 - Portable C core: state machine, priority, TTL/replay, lockout, measurement
-  validation, energy delta, schedule, CRC16, JSON. **75 checks PASS** with Zig host.
+  validation, energy delta, schedule, CRC16, JSON. **88 checks PASS** with Zig host, including time gating.
 - ESP-IDF minimal app: relay OFF at boot, button debounce, core state machine,
   ON blocked while meter/temp invalid.
-- ESP-IDF v6.1 target build: **PASS**, `firmware/build/smartplug.bin` (192,496 bytes); no flash/bench test.
-- PZEM/OLED/RGB/RTC/Wi-Fi/MQTT/OTA components: **NOT_IMPLEMENTED**.
+- ESP-IDF v6.1 target build: **PASS**, `firmware/build/smartplug.bin` (264,544 bytes); no flash/bench test.
+- PZEM/Wi-Fi/MQTT/OTA integration: **NOT_IMPLEMENTED**. OLED/RTC/external RGB are deferred by design; onboard RGB is GPIO48 v1.0.
 - Secure boot/flash encryption: not enabled (irreversible, no approval).
 
 ---
 
 ## 11. Web/API/DB/MQTT/Android status
 
-- API: 38 tests PASS; auth/RBAC/tenant/idempotency/lockout/ACK/analytics/audit.
+- API: 43 tests PASS; auth/RBAC/tenant/idempotency/lockout/ACK/analytics/audit.
 - Web: Next build PASS; 5 Playwright tests PASS; axe login/dashboard PASS.
-- MQTT: 11 contract tests PASS; aedes+simulator integration PASS.
+- MQTT: 12 contract tests PASS; aedes+simulator integration PASS.
 - DB: SQLite dev adapter tested; PostgreSQL schema/migrations exist, adapter missing.
 - Android: typecheck + Expo Android bundle PASS; **debug APK built** (arm64-v8a, SHA-256 in `reports/ANDROID_BUILD.md`), not installed/tested on a device.
 - Notifications: mock test PASS; Telegram live not tested.
@@ -370,7 +378,7 @@ See `reports/TEST_MATRIX.csv`, `reports/FAILURES.md`, `reports/VALIDATION_SUMMAR
 2. **Install tools:** Docker/PostgreSQL; ESP-IDF v6.1, KiCad 10.0.8, and Android SDK are installed.
 3. **Complete hardware design:** component schematic, footprints, routing, ERC/DRC,
    Gerber/drill, measured fit, clearance worksheet.
-4. **Flash/test firmware:** flash the built image, then integrate PZEM/OLED/RGB/RTC/Wi-Fi/MQTT/OTA and run bench tests.
+4. **Flash/test firmware:** flash the built image, then integrate PZEM/Wi-Fi/MQTT/OTA and validate time/onboard RGB on hardware and run bench tests.
 5. **Install/test the debug APK** on emulator/device; add push/provisioning and release signing.
 6. **Implement PostgreSQL adapter** and deploy staging with TLS/MQTT ACL.
 7. **Lab tests:** PE continuity, insulation/hipot, thermal rise, load/inrush,

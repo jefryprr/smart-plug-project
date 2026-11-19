@@ -1,6 +1,6 @@
 # Project Status
 
-**Design revision:** `REV_C_PSU_BOARD`  
+**Design revision:** `REV_D_CORE_ONLY`  
 **Last digital validation:** 2026-11-16  
 **Overall:** `PARTIAL_DIGITAL` / `ENGINEERING_REVIEW_REQUIRED` / `HARDWARE_VALIDATION_REQUIRED`  
 **Fabrication:** `NOT_RELEASED`  
@@ -29,16 +29,16 @@ Source: [`reports/VALIDATION_SUMMARY.json`](../reports/VALIDATION_SUMMARY.json),
 | Area | Evidence | Status |
 |---|---|---|
 | Domain rules | 34 Vitest tests — commands, energy, tariffs, schedules, freshness, redaction | PASS |
-| MQTT contract | 11 tests — topics, schemas, ACL direction, fixtures | PASS |
-| API + simulator | 38 tests — auth, RBAC, commands, ACK, telemetry, events, analytics, diagnostics | PASS |
+| MQTT contract | 12 tests — topics, schemas, ACL direction, fixtures | PASS |
+| API + simulator | 43 API tests + 6 simulator tests — auth, RBAC, commands, ACK, telemetry, events, analytics, diagnostics, time | PASS |
 | Simulator | 4 tests | PASS |
 | Firmware core | 75 C host checks with Zig cc | PASS |
 | Firmware target build | ESP-IDF v6.1, esp32s3, 192,496-byte `.bin` | PASS (build only) |
 | Web | Next.js production build + 5 Playwright tests + axe checks | PASS |
 | Static wiring/GPIO/BOM | Python crosschecks | PASS |
-| WireViz | 3 harnesses rendered to SVG/PNG/PDF | PASS |
+| WireViz | 2 harnesses rendered to SVG/PNG/PDF | PASS |
 | KiCad block schematic | ERC 0 violations | PASS (block scope) |
-| SELV carrier PCB | Routed 100 × 70 mm, 25 footprints, 18 nets, DRC 0/0 at 0.15 mm | PASS (digital) |
+| SELV carrier PCB | Routed 100 × 70 mm CORE-only, 19 footprints (16 assembled + 3 fiducials), 11 named nets, DRC 0/0 | PASS (digital) |
 | PSU PCB | Routed 50 × 65 mm, 8 nets, DRC 0/0, 4 mm L/N traces, 2 mm isolation notch | PASS (digital) |
 | Gerber/drill/POS | Exported for both boards | PROVISIONAL |
 | CadQuery enclosure | 220 × 120 × 70 mm STEP/STL, brackets, gasket, USB cover, DevKit key | PASS (digital fit) |
@@ -59,7 +59,7 @@ Source: [`reports/VALIDATION_SUMMARY.json`](../reports/VALIDATION_SUMMARY.json),
 | Load/inrush/relay lifecycle | No hardware/lab | Load bank + relay lifecycle test |
 | Physical fit/sealing/impact/IP | No printed enclosure | Print, assemble, measure, seal, impact test |
 | Firmware flash/boot waveform | No board/scope | Verified DevKitC-1 + flash + logic analyzer/scope |
-| PZEM/OLED/Wi-Fi/MQTT/OTA integration | No hardware integration | Bench test with real modules |
+| PZEM/Wi-Fi/MQTT/OTA/time integration | No hardware integration; no OLED/RTC by design | Bench test with real modules |
 | Android device/emulator test | APK not installed | Install/test on emulator/device; production signing |
 | PostgreSQL migration/deployment | PostgreSQL/Docker not installed | Implement adapter, run migrations, deploy |
 | MQTT TLS/ACL production | Not deployed/tested | Broker TLS, password file, ACL, negative tests |

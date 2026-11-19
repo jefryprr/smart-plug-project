@@ -8,10 +8,11 @@
  *   - handle a debounced physical button as a local toggle
  *   - refuse ON while meter validity is not established (no temperature sensor)
  *
- * This is NOT a complete product firmware: PZEM, OLED, RGB, RTC, Wi-Fi,
- * MQTT, OTA, and provisioning are separate components and are not yet
- * integrated. The ESP-IDF v6.1 target build is verified for this minimal app;
- * flashing, boot-waveform, and bench tests are still blocked without hardware.
+ * This is NOT a complete product firmware: PZEM, Wi-Fi, MQTT, OTA, and
+ * provisioning are separate components and are not yet integrated here.
+ * The CORE-only build has no OLED/RTC/external RGB; onboard RGB GPIO48 is a
+ * status indicator only. The ESP-IDF target build is verified for this minimal
+ * app; flashing, boot-waveform, and bench tests are still blocked without hardware.
  */
 #include <stdio.h>
 #include <string.h>
@@ -25,10 +26,13 @@
 
 #include "board_config.h"
 #include "smartplug_core.h"
+#include "status_rgb.h"
+#include "time_service.h"
 
 static const char *TAG = "smartplug";
 static sp_state_t g_state;
 static uint32_t g_command_sequence = 0;
+static sp_source_t g_last_source = SP_SRC_EMERGENCY;
 
 static void relay_init_safe(void) {
     /*
@@ -89,6 +93,9 @@ static void issue_button_toggle(void) {
     sp_decide_command(&g_state, &command, now_ms, 30000, &decision);
     if (decision.accepted) {
         sp_apply_decision(&g_state, &command, &decision, now_ms);
+        if (decision.state_changed) {
+            g_last_source = command.source;
+        }
         relay_set(g_state.commanded_output);
         ESP_LOGI(TAG, "button: %s (%s)", decision.reason_code, sp_output_name(g_state.commanded_output));
     } else {
@@ -106,26 +113,49 @@ void app_main(void) {
 
     relay_init_safe();
     button_init();
+    time_service_init();
+    status_rgb_init();
+    status_rgb_set(STATUS_RGB_BOOT);
 
     int64_t now_ms = esp_timer_get_time() / 1000;
     sp_state_init(&g_state, "dev-esp32-001", now_ms);
     g_state.mode = SP_MODE_BOOT_SAFE;
     g_state.commanded_output = SP_OUTPUT_OFF;
-    g_state.clock_valid = false;
+    g_state.time = time_service_status(now_ms);
+    g_state.clock_valid = g_state.time.valid;
     g_state.meter_valid = false;       /* PZEM not integrated yet -> ON rejected */
     g_state.temperature_valid = false; /* no temperature sensor installed */
     g_state.temperature_required = false; /* hardware TCO/fuse only; no firmware thermal monitor */
     g_state.lockout = false;
 
-    ESP_LOGW(TAG, "BOOT_SAFE: relay OFF; meter not valid; no temperature sensor (hardware TCO only)");
+    ESP_LOGW(TAG, "BOOT_SAFE: relay OFF; time invalid; meter not valid; no temperature sensor (hardware TCO only)");
     vTaskDelay(pdMS_TO_TICKS(2000));
 
     /* Only a safe local OFF state is entered automatically. ON remains blocked
      * until the meter service establishes validity. No temperature sensor is
      * installed; thermal protection is hardware-only (fuse + TCO). */
     g_state.mode = SP_MODE_READY_OFF;
+    status_rgb_set(STATUS_RGB_TIME_INVALID);
 
     for (;;) {
+        now_ms = esp_timer_get_time() / 1000;
+        time_service_tick(now_ms);
+        g_state.time = time_service_status(now_ms);
+        g_state.clock_valid = g_state.time.valid;
+        if (!g_state.clock_valid && g_state.commanded_output == SP_OUTPUT_ON &&
+            g_last_source == SP_SRC_SCHEDULE) {
+            g_state.commanded_output = SP_OUTPUT_OFF;
+            relay_set(SP_OUTPUT_OFF);
+            g_state.state_version += 1;
+            ESP_LOGW(TAG, "TIME_INVALID_SCHEDULE_BLOCKED: schedule output forced OFF");
+        }
+        if (g_state.lockout) {
+            status_rgb_set(STATUS_RGB_FAULT);
+        } else if (!g_state.clock_valid) {
+            status_rgb_set(STATUS_RGB_TIME_INVALID);
+        } else {
+            status_rgb_set(STATUS_RGB_NORMAL);
+        }
         if (button_pressed_debounced()) {
             issue_button_toggle();
             while (gpio_get_level(PIN_BUTTON) == BUTTON_ACTIVE_LEVEL) {

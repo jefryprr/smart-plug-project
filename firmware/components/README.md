@@ -6,17 +6,15 @@ presented as integrated.
 
 | Component | Path | Status | Evidence |
 |---|---|---|---|
-| Portable core | `core/` + `components/smartplug_core` | `IMPLEMENTED/TESTED` | 74 host checks |
-| Platform board / GPIO | `main/board_config.h`, `main/app_main.c` | `PARTIAL` | relay safe init, button debounce; board revision unverified |
+| Portable core | `core/` + `components/smartplug_core` | `IMPLEMENTED/TESTED` | 88 host checks |
+| Platform board / GPIO | `main/board_config.h`, `main/app_main.c` | `PARTIAL` | relay safe init, button debounce; DevKitC-1 v1.0 user-confirmed, not measured |
 | Meter service (PZEM) | `components/meter_service` (planned) | `NOT_IMPLEMENTED` | PZEM V4 protocol/isolation unverified |
 | Power controller | `core/` | `PARTIAL` | state machine implemented; NVS/config wrapper pending |
 | Safety monitor | `core/` | `PARTIAL` | validation/lockout logic implemented; sensor drivers pending |
-| Scheduler | `core/` | `PARTIAL` | weekly schedule evaluator tested; RTC/time integration pending |
-| OLED UI | `components/ui_oled` (planned) | `NOT_IMPLEMENTED` | — |
-| RGB UI | `components/ui_rgb` (planned) | `NOT_IMPLEMENTED` | — |
+| Scheduler | `core/` | `PARTIAL` | weekly evaluator + time-validity gate tested; hardware schedule execution blocked |
 | Button service | `main/app_main.c` | `PARTIAL` | 50 ms debounce; long-press reset pending |
 | Storage service | `components/storage_service` (planned) | `NOT_IMPLEMENTED` | — |
-| Time service | `components/time_service` (planned) | `NOT_IMPLEMENTED` | — |
+| Time service | `main/time_service.c` | `PARTIAL` | SNTP/NVS/API/MQTT/manual; no RTC; hardware test blocked | — |
 | Diagnostics | `components/diagnostics` (planned) | `NOT_IMPLEMENTED` | — |
 | Local transport | `components/transport_local` (planned) | `NOT_IMPLEMENTED` | Phase 2 |
 | OTA service | `components/ota_service` (planned) | `NOT_IMPLEMENTED` | Partition/rollback config only |

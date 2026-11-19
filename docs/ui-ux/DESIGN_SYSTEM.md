@@ -1,4 +1,4 @@
-# Design System — REV_C_PSU_BOARD
+# Design System — REV_D_CORE_ONLY
 
 ## Principles
 

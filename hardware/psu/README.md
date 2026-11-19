@@ -1,7 +1,7 @@
-# REV_C Mains-Entry PSU Board — 50 × 65 mm
+# REV_D_CORE_ONLY Mains-Entry PSU Board — 50 × 65 mm
 
 **Status:** `ENGINEERING_REVIEW_REQUIRED` / `HARDWARE_VALIDATION_REQUIRED` / `NOT_FOR_FABRICATION`  
-**Design revision:** `REV_C_PSU_BOARD`  
+**Design revision:** `REV_D_CORE_ONLY`  
 **Board:** 50 × 65 mm, 2-layer FR4 1.6 mm, **2 oz Cu target** (verify fab capability), 8 A load path.  
 **Toolchain:** KiCad 10.0.8 portable (`tools/kicad/bin`).
 
@@ -36,7 +36,7 @@ The TCO is in the L path after the MOV, so it removes both the load and the HLK 
 
 | Output | Connector | Load | Status |
 |---|---|---|---|
-| OUT1 | J5 | Carrier J8 (ESP32/UI) | `PROVISIONAL` |
+| OUT1 | J5 | Carrier J8 (SELV carrier) | `PROVISIONAL` |
 | OUT2 | J6 | Relay module VCC | `PROVISIONAL` |
 | OUT3 | J7 | PZEM V4 TTL 5 V | `PROVISIONAL`, conditional on PZEM batch/hipot (ADR-016) |
 
@@ -56,7 +56,7 @@ Total 5 V load estimate is ≤1 A; HLK is 1 A. Peak is not measured. Do not add 
 
 ## Files
 
-- `hardware/kicad/psu_rev_c.kicad_pcb` — routed board.
+- `hardware/kicad/psu_rev_d.kicad_pcb` — routed board.
 - `hardware/psu/netlist.csv` — every pad/net/position.
 - `hardware/psu/placement.json` — placement.
 - `hardware/psu/psu_schematic.svg/.png` — functional schematic.

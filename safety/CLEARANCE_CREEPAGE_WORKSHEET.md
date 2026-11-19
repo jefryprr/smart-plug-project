@@ -1,4 +1,4 @@
-# Clearance & Creepage Worksheet — REV_C_PSU_BOARD
+# Clearance & Creepage Worksheet — REV_D_CORE_ONLY
 
 **Status:** `BLOCKED_INPUTS_INCOMPLETE`
 **Catatan:** Dokumen ini **tidak** menetapkan angka clearance/creepage. Angka harus diturunkan dari IEC 60664-1 (edisi yang berlaku) oleh engineer kompeten, berdasarkan input di bawah. Jangan memakai angka contoh dari internet.
@@ -18,7 +18,7 @@
 | PCB coating/potting | TBD | Proses | `OPEN` |
 | Slot/barrier construction | TBD | Layout | `OPEN` |
 
-## 1A. REV_C PSU board geometry (provisional, not a compliance claim)
+## 1A. REV_D_CORE_ONLY PSU board geometry (provisional, not a compliance claim)
 
 | Item | Value | Status |
 |---|---|---|

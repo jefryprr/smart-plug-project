@@ -30,6 +30,37 @@ export type RequestedOutput = "ON" | "OFF" | "TOGGLE";
 
 export type MeasurementQuality = "VALID" | "STALE" | "INVALID";
 
+export type TimeSource = "sntp" | "api" | "mqtt" | "manual" | "none";
+
+export interface TimeStatus {
+  valid: boolean;
+  source: TimeSource;
+  lastSync: string | null;
+  lastKnown: string | null;
+  ageSeconds: number | null;
+}
+
+export const TIME_MAX_AGE_SECONDS = 12 * 60 * 60;
+
+export function isTimeValidForSchedule(
+  time: TimeStatus | undefined,
+  clockValid: boolean,
+  now: Date = new Date()
+): boolean {
+  if (!time) {
+    return clockValid;
+  }
+  if (!time.valid || !time.lastSync) {
+    return false;
+  }
+  const lastSync = Date.parse(time.lastSync);
+  if (Number.isNaN(lastSync)) {
+    return false;
+  }
+  const ageSeconds = (now.getTime() - lastSync) / 1000;
+  return ageSeconds >= 0 && ageSeconds <= TIME_MAX_AGE_SECONDS;
+}
+
 export type AvailabilityStatus = "ONLINE" | "STALE" | "OFFLINE" | "NEVER_SEEN";
 
 export interface DeviceSafetySnapshot {
@@ -40,6 +71,7 @@ export interface DeviceSafetySnapshot {
   lockout: boolean;
   faultCode: string | null;
   clockValid: boolean;
+  time?: TimeStatus;
   meterValid: boolean;
   temperatureValid: boolean;
   lastCommandSequence: number;
@@ -263,12 +295,12 @@ export function decideOutputCommand(
     };
   }
 
-  if (isAutomaticSource(request.source) && !state.clockValid) {
+  if (isAutomaticSource(request.source) && !isTimeValidForSchedule(state.time, state.clockValid, now)) {
     return {
       ...base,
       accepted: false,
-      reasonCode: "CLOCK_INVALID",
-      reason: "ON otomatis ditolak: jam tidak valid"
+      reasonCode: "TIME_INVALID",
+      reason: "ON otomatis ditolak: waktu belum valid atau sudah kedaluwarsa"
     };
   }
 
@@ -774,8 +806,12 @@ export interface ScheduleEvaluation {
 export function evaluateWeeklySchedule(
   schedule: WeeklySchedule,
   now: Date,
-  lastRunDateKey: string | null = null
+  lastRunDateKey: string | null = null,
+  timeValid = true
 ): ScheduleEvaluation {
+  if (!timeValid) {
+    return { due: false, reasonCode: "TIME_INVALID", scheduledFor: null, action: null };
+  }
   if (!schedule.enabled) {
     return { due: false, reasonCode: "SCHEDULE_DISABLED", scheduledFor: null, action: null };
   }

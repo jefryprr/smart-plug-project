@@ -1,6 +1,6 @@
 # Glossary
 
-**Design revision:** `REV_C_PSU_BOARD`
+**Design revision:** `REV_D_CORE_ONLY`
 
 Plain-language definitions for terms used across the repository. Where a term has a specific meaning in this project, that meaning is noted.
 
@@ -26,11 +26,11 @@ Plain-language definitions for terms used across the repository. Where a term ha
 | **Leakage current** | Small current that flows through or across insulation. Must be measured for mains products. Not measured. |
 | **PE (Protective Earth)** | The safety ground conductor. In this project it goes from plug PE to a dedicated chassis stud to socket PE. It is never switched, fused, or routed through a relay. |
 | **Class I / Class II** | Equipment classes related to PE and insulation. The final product classification is not settled. |
-| **TCO (thermal cutoff)** | A one-shot thermal fuse that opens at a rated temperature. REV_C uses a SEFUSE SF96E, 99 °C rated functioning temperature, 84 °C holding, 10 A / 250 VAC. |
-| **MOV (metal-oxide varistor)** | A voltage-dependent resistor used to clamp surges. REV_C uses a 275 VAC-class MOV across L/N after the fuse. |
-| **Fuse** | Overcurrent protective device. REV_C uses a 5 × 20 mm 10 A / 250 VAC time-lag fuse. |
-| **PTC** | Positive temperature coefficient device. Used as a resettable current limiter on the 5 V output (1.1 A in REV_C). |
-| **TVS** | Transient voltage suppressor. REV_C uses an SMBJ5.0A on the 5 V rail. |
+| **TCO (thermal cutoff)** | A one-shot thermal fuse that opens at a rated temperature. REV_D_CORE_ONLY uses a SEFUSE SF96E, 99 °C rated functioning temperature, 84 °C holding, 10 A / 250 VAC. |
+| **MOV (metal-oxide varistor)** | A voltage-dependent resistor used to clamp surges. REV_D_CORE_ONLY uses a 275 VAC-class MOV across L/N after the fuse. |
+| **Fuse** | Overcurrent protective device. REV_D_CORE_ONLY uses a 5 × 20 mm 10 A / 250 VAC time-lag fuse. |
+| **PTC** | Positive temperature coefficient device. Used as a resettable current limiter on the 5 V output (1.1 A in REV_D_CORE_ONLY). |
+| **TVS** | Transient voltage suppressor. REV_D_CORE_ONLY uses an SMBJ5.0A on the 5 V rail. |
 | **SPDT** | Single-pole double-throw relay contact (COM, NO, NC). The relay module has two independent SPDT channels. |
 | **DPST** | Double-pole single-throw. The relay module is **not** a mechanically linked DPST. |
 | **NO / NC** | Normally open / normally closed relay contact. |
@@ -53,11 +53,11 @@ Plain-language definitions for terms used across the repository. Where a term ha
 | **PZEM-004T V4** | Peacefair AC energy meter module with UART and CT input. The project uses the 100 A CT variant. Batch documentation is deficient. |
 | **CT (current transformer)** | Clamp that measures current without breaking the conductor. Must clamp around **one** conductor only (L), never around L and N together. |
 | **Relay module** | Off-board 2-channel 5 V optocoupler relay board. Active-LOW inputs, two independent SPDT channels. |
-| **OLED** | SSD1306 I²C display (128 × 64 typical). |
-| **RTC** | Real-time clock. REV_C uses a DS3231 module. |
-| **TMP102** | Temperature sensor present in earlier revisions; removed in REV_C. Hardware thermal protection is fuse + TCO only. |
-| **JST-XH** | 2.5 mm pitch wire-to-board connector family. REV_C uses 2-pin JST-XH for 5 V outputs and several peripherals. |
-| **Terminal block** | Screw-clamp connector for mains wires. REV_C uses 5.08 mm pitch parts. |
+| **OLED** | SSD1306 I²C display. **DEFERRED** in REV_D_CORE_ONLY. |
+| **RTC** | Real-time clock. **Not fitted** in REV_D_CORE_ONLY; time comes from SNTP/NVS/API/MQTT/manual. |
+| **TMP102** | Temperature sensor present in earlier revisions; removed in REV_D_CORE_ONLY. Hardware thermal protection is fuse + TCO only. |
+| **JST-XH** | 2.5 mm pitch wire-to-board connector family. REV_D_CORE_ONLY uses 2-pin JST-XH for 5 V outputs and several peripherals. |
+| **Terminal block** | Screw-clamp connector for mains wires. REV_D_CORE_ONLY uses 5.08 mm pitch parts. |
 | **Gerber** | Standard PCB fabrication file format. The exported files are provisional and not released. |
 | **DRC** | Design Rule Check in KiCad. `0/0` means zero violations and zero unconnected items at the checked settings. It does not prove the circuit is correct or safe. |
 | **ERC** | Electrical Rule Check in KiCad. The project’s ERC is on a block-level schematic, not a component-level production schematic. |
@@ -80,7 +80,7 @@ Plain-language definitions for terms used across the repository. Where a term ha
 | **Baud rate** | UART speed in bits per second. The PZEM batch baud rate is not yet verified. |
 | **CRC** | Cyclic redundancy check, used to detect corrupted serial data. |
 | **GPIO** | General-purpose input/output pin on the microcontroller. |
-| **I²C** | Two-wire bus (SDA/SCL) used by the OLED and RTC. |
+| **I²C** | Two-wire bus. Not used in the CORE-only carrier; OLED/RTC are deferred. |
 | **MQTT** | Lightweight publish/subscribe protocol used between device, simulator, and API. |
 | **Topic** | MQTT address, e.g. `smartplug/v1/{device_id}/telemetry`. |
 | **QoS** | MQTT quality-of-service level. |

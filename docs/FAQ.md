@@ -1,6 +1,6 @@
 # Frequently Asked Questions
 
-**Design revision:** `REV_C_PSU_BOARD`  
+**Design revision:** `REV_D_CORE_ONLY`  
 **Status:** digital prototype, `ENGINEERING_REVIEW_REQUIRED`, `NOT_FOR_FABRICATION`
 
 ---
@@ -37,8 +37,8 @@ Because the project separates requirements, decisions, evidence, risks, and clai
 
 ### What are the main boards?
 
-1. **REV_C PSU board** (50 × 65 mm) — 230 VAC input, fuse, MOV, 99 °C TCO, HLK-5M05, and three JST 5 V outputs. It is the mains entry.
-2. **SELV carrier** (100 × 70 mm) — ESP32-S3 DevKitC-1 sockets, UART level shift, relay driver, OLED/RTC/button/RGB connectors.
+1. **REV_D_CORE_ONLY PSU board** (50 × 65 mm) — 230 VAC input, fuse, MOV, 99 °C TCO, HLK-5M05, and three JST 5 V outputs. It is the mains entry.
+2. **SELV carrier** (100 × 70 mm) — ESP32-S3 DevKitC-1 v1.0 sockets, UART level shift, relay driver, button, 5 V input. No OLED/RTC/external RGB in REV_D.
 
 The PZEM, relay module, socket, plug, fuse/MOV/TCO, and PSU are off the carrier. See [`HARDWARE_GUIDE.md`](HARDWARE_GUIDE.md).
 
@@ -56,7 +56,7 @@ J7 is `PROVISIONAL`: it depends on the PZEM batch’s internal isolation and hip
 
 ### Why is there no external ADuM1201/B0505S?
 
-REV_C uses the PZEM-004T V4’s **internal optocouplers** as the single UART isolation barrier. This is a user decision recorded in `ADR-016`. It is `PROVISIONAL` because the exact batch, creepage, and hipot/leakage performance are unverified. The safer external barrier remains a documented fallback.
+REV_D_CORE_ONLY uses the PZEM-004T V4’s **internal optocouplers** as the single UART isolation barrier. This is a user decision recorded in `ADR-016`. It is `PROVISIONAL` because the exact batch, creepage, and hipot/leakage performance are unverified. The safer external barrier remains a documented fallback.
 
 ### Is the relay module a two-pole disconnect?
 

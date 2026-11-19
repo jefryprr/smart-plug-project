@@ -9,6 +9,7 @@ import { UsageAndCost } from "@/components/UsageAndCost";
 import { EnergyGraph } from "@/components/EnergyGraph";
 import { EventList } from "@/components/EventList";
 import { DeviceHealth } from "@/components/DeviceHealth";
+import { TimeStatusPanel } from "@/components/TimeStatusPanel";
 import { ErrorPanel, Loading } from "@/components/Feedback";
 
 export default function OverviewPage() {
@@ -41,6 +42,9 @@ export default function OverviewPage() {
     <div className="overview-grid">
       <div className="span-2">
         <PowerControl device={device.data} onChanged={refresh} />
+      </div>
+      <div className="span-2">
+        <TimeStatusPanel device={device.data} onChanged={refresh} />
       </div>
       <ElectricalReadings telemetry={telemetry.data} />
       <UsageAndCost analytics={analytics.data} />

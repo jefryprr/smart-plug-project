@@ -1,3 +1,5 @@
+> **REV_D note:** the existing debug APK predates the CORE-only time-status UI. `npm run typecheck` passes; rebuild/device test is required before using the APK as evidence for REV_D.
+
 # Android Debug APK — Build Evidence
 
 **Status:** `PASS` (debug APK built and signature-verified)

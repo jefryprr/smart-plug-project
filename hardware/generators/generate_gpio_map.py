@@ -56,8 +56,8 @@ def main() -> None:
         "wiring": data["crosscheck"]["wiring"],
         "status": status,
         "limitations": [
-            "Board revision is unverified; all GPIO assignments are PROVISIONAL.",
-            "No physical waveform or boot test was performed.",
+            "Board revision is user-confirmed, not measured; GPIO assignments remain static design data.",
+            "No physical waveform, boot, or onboard-RGB test was performed.",
             "Firmware header crosscheck is static; it does not prove electrical behavior."
         ],
     }
@@ -73,12 +73,12 @@ def main() -> None:
             writer.writerow(row)
 
     lines = [
-        "# GPIO Map — REV_C_PSU_BOARD",
+        "# GPIO Map — REV_D_CORE_ONLY",
         "",
         f"**Board:** {data['board']['model']} ({data['board']['revision']})",
         f"**Status:** `{status}`",
         "",
-        "> Nomor GPIO belum final sampai board fisik/revisi diverifikasi. Jangan menganggap GPIO48/38 sebagai kebenaran universal.",
+        "> Board v1.0 is user-confirmed; GPIO48 is locked for onboard RGB. This is not a physical measurement. Verify the board marking/photo before claiming official origin; clones are Q08=B.",
         "",
         "| Function | GPIO | Direction | Pull/Boot | Hazard if high | Firmware define |",
         "|---|---:|---|---|---|---|",

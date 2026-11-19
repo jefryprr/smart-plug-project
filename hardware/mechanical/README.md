@@ -1,4 +1,4 @@
-# Mechanical CAD — REV_C_PSU_BOARD (220 × 120 × 70)
+# Mechanical CAD — REV_D_CORE_ONLY (220 × 120 × 70)
 
 **Status:** `MECHANICAL_CONCEPT` / `UNVERIFIED_DIMENSIONS` / `NOT_FOR_MAINS_USE`
 **Tool:** CadQuery 2.8.0 + OCP, Python 3.11 (`.venv`)  
@@ -23,7 +23,7 @@
 - Mechanical isolation barrier at **x = −4 mm**, height 50 mm, two 10 mm grommet holes.
 - Right wall: Type F socket cutout **45 × 45 mm** at y=34, z=35; M16 gland at y=−50, z=18; M12 ePTFE vent at y=−15, z=45.
 - Front wall: USB service opening **30 × 20 mm** with a printed cover; mains OFF only.
-- Top lid: OLED window **28 × 14 mm**, 12 mm button, 5 mm RGB light pipe.
+- Top lid: 12 mm button only. CORE-only removes the OLED window and external RGB light pipe; a small left-wall window is provided for the DevKitC-1 v1.0 onboard RGB (position provisional).
 - Printed **DevKit reverse-insertion key** above the antenna end; reverse insertion brings the USB connectors into the key arm.
 - Mains zone is right of the barrier; SELV carrier is left. The barrier is mechanical only, not a creepage calculation.
 

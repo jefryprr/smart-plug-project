@@ -14,9 +14,9 @@ powershell -ExecutionPolicy Bypass -File firmware\test\host\run_tests.ps1
 ## Status saat ini
 
 - Domain 34 tests PASS.
-- MQTT 11 tests PASS.
-- API 38 tests PASS (incl. simulator integration).
-- Firmware core 75 checks PASS.
+- MQTT 12 tests PASS.
+- API 43 tests PASS (incl. simulator integration).
+- Firmware core 74 checks PASS.
 - Web 5 Playwright tests PASS; axe login/dashboard PASS.
 - Static connectivity PASS.
 - KiCad ERC 0 and routed carrier DRC 0/0 PASS; physical validation still BLOCKED.

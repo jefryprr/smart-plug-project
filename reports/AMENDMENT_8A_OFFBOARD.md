@@ -1,6 +1,8 @@
+> **Historical note:** this amendment predates REV_D_CORE_ONLY. OLED/RTC/RGB references are deferred; see ADR-017.
+
 # Amendment — 8 A Final, Off-Board Modules, Toolchains
 
-**Design revision:** `REV_C_PSU_BOARD`
+**Design revision:** `REV_D_CORE_ONLY`
 **Date:** 2026-11-15
 **Status:** `PARTIAL_DIGITAL` / `ENGINEERING_REVIEW_REQUIRED` / `HARDWARE_VALIDATION_REQUIRED`
 **Fabrication:** `NOT_RELEASED`

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Printable cantilever shelf for the off-board relay module (REV_C)."""
+"""Printable cantilever shelf for the off-board relay module (REV_D_CORE_ONLY)."""
 from __future__ import annotations
 
 from pathlib import Path

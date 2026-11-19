@@ -1,9 +1,9 @@
-# Phase 2 Software Report — REV_C_PSU_BOARD
+# Phase 2 Software Report — REV_D_CORE_ONLY
 
 **Date:** 15 November 2026
 **Agent:** OpenCode (DeepSeek V4.1 Flash 1017)
 **PRD:** v1.0
-**Design revision:** `REV_C_PSU_BOARD`
+**Design revision:** `REV_D_CORE_ONLY`
 **Phase 2 status:** `PARTIAL_DIGITAL` / `ENGINEERING_REVIEW_REQUIRED`
 **Deployment:** `BLOCKED` (no Docker/Postgres/VPS/domain/TLS)
 **Android APK:** `PASS` (debug, arm64-v8a, signature verified; not installed on device)
@@ -15,7 +15,7 @@
 | Layer | Choice | ADR/status |
 |---|---|---|
 | Web | Next.js 16.4.6, React 19.3.1, TypeScript 5.9.3 | build PASS |
-| API | Fastify 5.12.8, TypeScript, Zod 4 | 38 tests PASS |
+| API | Fastify 5.12.8, TypeScript, Zod 4 | 43 tests PASS |
 | Domain | TypeScript pure package | 34 tests PASS |
 | DB dev | SQLite `node:sqlite` | tested |
 | DB target | PostgreSQL 16 schema | schema only, no adapter |
@@ -106,7 +106,7 @@ Schema: `apps/api/src/db/schema.ts` (SQLite), `database/migrations/001_init.sql`
 ## 7. Device simulator and MQTT integration
 
 - `apps/device-simulator/src/simulator.ts`: state machine, command TTL/replay, ACK, telemetry, fault injection, availability LWT.
-- 4 simulator tests PASS.
+- 6 simulator tests PASS.
 - Full API→MQTT→simulator→ACK integration: 4 tests PASS.
 - Simulator is explicitly not HIL/real hardware.
 
@@ -146,7 +146,7 @@ Schema: `apps/api/src/db/schema.ts` (SQLite), `database/migrations/001_init.sql`
 |---|---|
 | TypeScript typecheck (4 workspaces) | PASS |
 | Domain tests | 34 PASS |
-| MQTT contract | 11 PASS |
+| MQTT contract | 12 PASS |
 | API + simulator | 38 PASS |
 | Simulator | 4 PASS |
 | Firmware core | 74 checks, 0 failures |
@@ -155,7 +155,7 @@ Schema: `apps/api/src/db/schema.ts` (SQLite), `database/migrations/001_init.sql`
 | axe login/dashboard | PASS |
 | Static connectivity/GPIO/BOM | PASS |
 | npm audit | 0 known vulnerabilities |
-| Overall gate | 23 PASS / 11 BLOCKED / 0 FAIL (KiCad + ESP-IDF build now run) |
+| Overall gate | 27 PASS / 11 BLOCKED / 0 FAIL (KiCad + ESP-IDF build now run) |
 
 See `reports/VALIDATION_SUMMARY.json`, `reports/TEST_MATRIX.csv`, `reports/FAILURES.md`.
 

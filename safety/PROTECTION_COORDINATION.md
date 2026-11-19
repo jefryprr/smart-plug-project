@@ -1,4 +1,4 @@
-# Protection Coordination — REV_C_PSU_BOARD
+# Protection Coordination — REV_D_CORE_ONLY
 
 **Status:** `BLOCKED_PENDING_CALCULATION_AND_LAB`
 **Prinsip:** fuse/thermal cutoff/MOV harus terkoordinasi; software bukan proteksi utama.
@@ -16,7 +16,7 @@ PE → dedicated chassis stud → socket PE (tidak diputus)
 
 | Perangkat | Fungsi | Rating | Karakteristik | Koordinasi |
 |---|---|---|---|---|
-| REV_C PSU board | Mains entry + SELV output | 50x65 mm, 2 oz target | 2 mm isolation notch; HLK bridges | Creepage/hipot/thermal UNVERIFIED |
+| REV_D_CORE_ONLY PSU board | Mains entry + SELV output | 50x65 mm, 2 oz target | 2 mm isolation notch; HLK bridges | Creepage/hipot/thermal UNVERIFIED |
 | Fuse F1 | Short-circuit backup | 10 A, 250 V, time-lag | Time-current TBD | On PSU board, after TB1; protect wiring/terminal |
 | PTC F2 (5 V) | SELV 5 V wiring backup | 1.1 A hold, 1206 | Trip/time TBD | Bukan proteksi mains; melindungi wiring/rail 5 V |
 | TVS D1 (5 V, PSU board) | SELV transient clamp | SMBJ5.0A, 5 V standoff | Clamping TBD | Melindungi total output 5 V J5/J6/J7; bukan pengganti isolasi |

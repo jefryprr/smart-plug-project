@@ -10,7 +10,8 @@ import {
   parseTopic,
   qosFor,
   topicFor,
-  type CommandMessage
+  type CommandMessage,
+  type TimeMessage
 } from "@smartplug/mqtt-contract";
 import type { AppConfig } from "../config.js";
 import type { AppDb } from "../db/index.js";
@@ -199,6 +200,20 @@ export class MqttBridge implements CommandPublisher {
         } else {
           resolve();
         }
+      });
+    });
+  }
+
+  async publishTime(message: TimeMessage): Promise<void> {
+    const client = this.client;
+    if (!client || !this.connected) {
+      throw new Error("MQTT_NOT_CONNECTED");
+    }
+    const topic = topicFor(message.device_id, "time");
+    await new Promise<void>((resolve, reject) => {
+      client.publish(topic, JSON.stringify(message), { qos: 1, retain: false }, (error) => {
+        if (error) reject(error);
+        else resolve();
       });
     });
   }
