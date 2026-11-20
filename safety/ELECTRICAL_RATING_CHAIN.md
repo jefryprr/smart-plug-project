@@ -13,7 +13,7 @@
 
 | Elemen | Klaim/rencana | Sumber | Derating/ketidakpastian | Status |
 |---|---|---|---|---|
-| Plug input Type F | BOSS BP16, 16 A / 250 V class | Shopee listing | Kontak/PE/clamp belum diukur | `DOCUMENTATION_DEFICIENT` |
+| Plug input Type F | DV DIP-2P-16A, 16 A / 250 V, IP44 | Shopee listing + DV datasheet | Kontak/PE/clamp belum diukur | `DOCUMENTATION_DEFICIENT` |
 | Kabel input NYYHY 3×1.5 mm² | 16 A class (tergantung instalasi) | Supreme NYYHY; 0.5 m provisional | Bend radius, strain relief, ambient | `PROVISIONAL` |
 | Terminal L/N | 5.08 mm 2-pin, 10 A class (generic) | Shopee listing | Torsi, ferrule, creepage | `DOCUMENTATION_DEFICIENT` |
 | Fuse | 10 A time-lag, 250 V | Littelfuse 5x20 slow-blow | Breaking capacity, holder, koordinasi | `PENDING` |
@@ -21,7 +21,7 @@
 | Thermal cutoff | 99 °C RFT, 10 A / 250 VAC | SEFUSE SF96E | Holding 84 °C; batch certificate/trip test | `PROVISIONAL` |
 | Relay module K1 | 2-channel 5 V optocoupler module, 10 A class claim, two independent SPDT channels, off-board | Handsontec/DigiKey module data | Channel non-linkage, exact contact rating, lifecycle, inrush, active-low behavior | `DOCUMENTATION_DEFICIENT` |
 | Terminal output | 5.08 mm 2-pin, 10 A class | Shopee listing | Torsi/creepage | `DOCUMENTATION_DEFICIENT` |
-| Socket output Type F | Simon Schuko 16 A / 250 V | Shopee listing | Retensi/PE/contact material | `DOCUMENTATION_DEFICIENT` |
+| Socket output Type F | DV DSMS-2P-16A, 16 A / 250 V, flange 50×50, fixing 38×38, IP44 | Shopee listing + DV datasheet | Retensi/PE/contact material; depth belum | `DOCUMENTATION_DEFICIENT` |
 | PCB carrier | 100×70 SELV carrier; no mains; routed DRC 0 | `hardware/kicad/smartplug.kicad_pcb` | Hanya SELV; belum diuji fisik | `ENGINEERING_REVIEW_REQUIRED` |
 | PE path | Kontinu, tidak diputus | Desain konsep | MPN/stud/torsi/uji | `BLOCKED` |
 

@@ -1,9 +1,7 @@
-"""Approximate module envelopes and fit checks for the 220 x 120 x 70 build.
+"""Approximate module envelopes and fit checks for the CORE_ONLY_SHOPEE enclosure.
 
-Dimensions are datasheet/engineering estimates, not measured samples. Positions
-are in enclosure coordinates: origin at the enclosure centre, z=0 at the outer
-bottom. The carrier board origin maps to (-105, -35), so board (x, y) becomes
-enclosure (x - 105, y - 35).
+Dimensions are datasheet/engineering estimates, not measured samples. The
+printed enclosure is a prototype, not a certified electrical enclosure.
 """
 from __future__ import annotations
 
@@ -28,28 +26,25 @@ class ModuleEnvelope:
         return (x - sx / 2, y - sy / 2, z - sz / 2, x + sx / 2, y + sy / 2, z + sz / 2)
 
 
-# Enclosure: 220 x 120 x 70 outer, 2.5 mm wall, bottom 60 mm, lid 10 mm.
 MODULES: list[ModuleEnvelope] = [
-    # SELV side (left). Carrier origin (-105, -35), board 100 x 70.
+    # SELV side (left). Carrier bottom at z=8.0.
     ModuleEnvelope("carrier", "SELV carrier PCB 100 x 70", (100, 70, 1.6), (-55, 0, 8.8), "SELV", "pcb_design"),
-    ModuleEnvelope("esp32", "ESP32-S3-DevKitC-1 (63 x 25.5 approx)", (63, 25.5, 10), (-68.33, -13.57, 22.0), "SELV", "datasheet_approx"),
+    ModuleEnvelope("esp32", "ESP32-S3-DevKitC-1 v1.0 (63 x 25.5 approx)", (63, 25.5, 10), (-68.33, -13.57, 22.0), "SELV", "datasheet_approx"),
     ModuleEnvelope("button", "Panel button + cap", (12, 12, 8), (-62, 28, 63.5), "SELV", "provisional"),
-    ModuleEnvelope("devkit_rgb_window", "Onboard RGB left-wall window/light pipe", (1, 5, 5), (-107.0, -13.57, 22.0), "MECHANICAL", "provisional"),
+    ModuleEnvelope("devkit_rgb_window", "Onboard RGB left-wall window", (1, 5, 5), (-107.0, -13.57, 22.0), "MECHANICAL", "provisional"),
     ModuleEnvelope("devkit_key", "DevKit reverse-insertion key bracket", (8, 63, 12), (-99, 0, 15.0), "MECHANICAL", "engineering_calculation"),
 
-    # Mains side (right). The PSU board is 50 x 70 mm at x=56..106, y=-55..15,
-    # with the HLK/fuse/MOV/TCO/terminals on it. The relay sits above it on a
-    # printed cantilever shelf.
-    ModuleEnvelope("pzem", "PZEM-004T V4 + CT interface", (53, 89, 24), (28, 0, 16.5), "MAINS", "provisional"),
-    ModuleEnvelope("pzem_bracket", "PZEM mounting bracket", (58, 94, 2), (28, 0, 3.5), "MAINS", "engineering_calculation"),
-    ModuleEnvelope("ct", "100 A CT (split core approx)", (30, 30, 15), (20, 42, 40.0), "MAINS", "provisional"),
-    ModuleEnvelope("psu_board", "REV_D_CORE_ONLY mains PSU PCB 50 x 65 + HLK/terminals", (50, 65, 30), (81, -22.5, 23.0), "MAINS", "pcb_design"),
-    ModuleEnvelope("relay_shelf", "Printed cantilever relay shelf", (55, 28, 3), (79.5, -3, 40.5), "MECHANICAL", "engineering_calculation"),
-    ModuleEnvelope("relay", "2-channel optocoupler relay module (above PSU)", (50, 24, 18), (80, -3, 49.0), "MAINS", "provisional"),
-    ModuleEnvelope("pe_stud", "PE stud / bonding point", (8, 8, 10), (60, 50, 25.0), "MAINS", "engineering_calculation"),
-    ModuleEnvelope("socket", "Type F panel socket body (inside wall)", (35, 45, 45), (89.9, 34.9, 35.0), "MAINS", "provisional"),
-    ModuleEnvelope("gland", "M16 cable gland (wall feature)", (16, 16, 12), (116, 10, 18.0), "MAINS", "datasheet"),
-    ModuleEnvelope("vent", "M12 ePTFE pressure vent (wall feature)", (12, 12, 8), (116, -15, 45.0), "MECHANICAL", "datasheet"),
+    # Mains side (right).
+    ModuleEnvelope("pzem", "PZEM-004T V4 PCB ~74 x 31 x 18", (31, 74, 18), (28, 0, 19.0), "MAINS", "datasheet_approx"),
+    ModuleEnvelope("pzem_bracket", "PZEM mounting bracket 37 x 80", (37, 80, 2), (28, 0, 9.0), "MAINS", "engineering_calculation"),
+    ModuleEnvelope("ct", "100 A CT clamp (approx)", (30, 30, 15), (20, 42, 40.0), "MAINS", "provisional"),
+    ModuleEnvelope("psu_board", "PSU PCB 50 x 65 + HLK/terminals", (50, 65, 30), (81, -22.5, 25.0), "MAINS", "pcb_design"),
+    ModuleEnvelope("psu_bracket", "PSU mounting plate 50 x 65", (50, 65, 2), (81, -22.5, 9.0), "MAINS", "engineering_calculation"),
+    ModuleEnvelope("relay_shelf", "Printed relay shelf 55 x 28 x 3", (55, 28, 3), (79.5, -3, 41.5), "MECHANICAL", "engineering_calculation"),
+    ModuleEnvelope("relay", "2-channel relay module 50 x 26 x 18", (50, 26, 18), (80, -3, 52.0), "MAINS", "provisional"),
+    ModuleEnvelope("pe_stud", "PE stud / bonding point M4", (10, 10, 12), (45, 50, 8.5), "MAINS", "engineering_calculation"),
+    ModuleEnvelope("socket", "DV DSMS-2P-16A body (40 x 40 x 45)", (40, 40, 45), (85.0, 34.9, 35.0), "MAINS", "user_confirmed_socket"),
+    ModuleEnvelope("gland", "M16 cable gland (back wall feature)", (22, 22, 12), (20, 56, 18.0), "MAINS", "datasheet"),
 
     # Mechanical barrier.
     ModuleEnvelope("barrier", "Internal isolation barrier (mechanical)", (2, 100, 50), (-4, 0, 27.5), "MECHANICAL", "engineering_calculation"),
@@ -75,6 +70,7 @@ def overlaps(a: tuple[float, ...], b: tuple[float, ...], margin: float = 0.0) ->
 EXEMPT_PAIRS = {
     ("carrier", "esp32"),
     ("pzem", "pzem_bracket"),
+    ("psu_board", "psu_bracket"),
     ("carrier", "devkit_key"),
     ("esp32", "devkit_key"),
     ("psu_board", "relay_shelf"),
@@ -83,7 +79,7 @@ EXEMPT_PAIRS = {
 
 
 def fit_report(preset: str = "recommended") -> dict:
-    modules = [m for m in MODULES if m.name not in {"gland", "vent", "pzem_bracket", "relay_bracket"}]
+    modules = [m for m in MODULES if m.name not in {"gland", "pzem_bracket", "psu_bracket", "relay_bracket"}]
     bounds = internal_bounds()
     outside: list[dict] = []
     clashes: list[dict] = []
@@ -118,6 +114,7 @@ def fit_report(preset: str = "recommended") -> dict:
         "barrier_crossings": barrier_crossings,
         "limitations": [
             "All module dimensions are approximate envelopes, not measured samples.",
+            "PZEM/socket/relay dimensions must be measured on the purchased parts.",
             "No tolerance stack, cable bend, or thermal expansion is modeled.",
             "A PASS here is only a coarse digital fit check; it is not a mechanical validation.",
             "Barrier crossing check is a simple AABB test, not a creepage/clearance calculation.",

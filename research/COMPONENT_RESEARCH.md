@@ -162,6 +162,8 @@ Pengguna memilih **modul relay optocoupler 2 channel umum, 5 V, off-board** (buk
 
 ## 9. Sourcing Indonesia dan budget (2026-11-16, REV_D_CORE_ONLY)
 
+> **Update 2026-11-20:** Setelah socket/plug DV DSMS-2P-16A + DIP-2P-16A dipilih, CORE menjadi **Rp754.016** (all-in Rp794.016 dengan ongkir Rp40.000); addendum mekanik **Rp31.000** menjadikannya **Rp825.016 all-in**. Restock EasyWare: CORE **Rp702.548** (all-in Rp742.548); dengan addendum **Rp773.548** (di atas cap). Angka di bawah adalah snapshot 2026-11-16 dan tidak dihitung ulang; `bom/BOM_SUMMARY.json` adalah source of truth terbaru.
+
 Ringkasan lengkap ada di `research/PROCUREMENT_INDONESIA.md`; daftar belanja ada di `bom/BOM_PROCUREMENT.csv`.
 
 | Konfigurasi | Subtotal | + ongkir Rp40.000 | Status |
@@ -182,8 +184,8 @@ Ringkasan lengkap ada di `research/PROCUREMENT_INDONESIA.md`; daftar belanja ada
 - **Tidak ada TMP102/sensor suhu.** Proteksi termal hardware: fuse + TCO 99 °C.
 - Level shift: SN74HCT125N Rp8.750 + divider 10k/20k.
 - Proteksi: Littelfuse 10 A Rp18.300, holder Rp5.500, MOV 10D271K Rp7.500, TCO Rp4.995.
-- Enclosure: MG Duradus 220x120x70 ABS IP65 Rp99.684 (flame rating belum).
-- Socket/plug: Simon Schuko 16 A Rp25.026 + BOSS BP16 Rp14.044.
+- Enclosure: 3D print CadQuery 220x120x70 (biaya filament/print time belum dihitung); opsi MG Duradus Rp99.684 tidak dibeli.
+- Socket/plug: DV DSMS-2P-16A Rp45.999 + DV DIP-2P-16A Rp31.000 (selected 2026-11-20; depth/certification pending).
 - PCB carrier 100x70 routed: Rp15.000 (5 pcs share, estimasi).
 
-**Budget verdict:** `CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_FITS; FULL_DEFERRED`. Jangan menurunkan fuse/MOV/TCO/terminal/PE/enclosure/isolasi untuk memaksa FULL masuk Rp750.000.
+**Budget verdict:** `CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_OVER_750K; FULL_DEFERRED`. Jangan menurunkan fuse/MOV/TCO/terminal/PE/enclosure/isolasi untuk memaksa FULL masuk Rp750.000.

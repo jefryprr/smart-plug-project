@@ -2,7 +2,7 @@
 
 **Status:** `ENGINEERING_ESTIMATE` / `THERMAL_TEST_REQUIRED`  
 **Date:** 2026-11-16  
-**Enclosure:** 220 × 120 × 70 mm, 60 mm body + 10 mm lid, ABS/PC FR target, M12 ePTFE vent.
+**Enclosure:** 220 × 120 × 70 mm, 60 mm body + 10 mm lid, ABS/PC FR target, **no vent fitted** (M12 vent deferred).
 
 ## 1. Assumptions
 
@@ -12,8 +12,8 @@
 - Fuse/holder + terminals/wiring: **2.5 W** combined.
 - PZEM: **1.0 W**.
 - HLK-5M05: **2.1 W** (70% efficiency at 5 W).
-- Carrier/ESP32/OLED/RTC: **1.0 W**.
-- No forced air; no credit for the M12 vent in the base calculation.
+- Carrier/ESP32/UI: **1.0 W**.
+- No forced air and **no vent**; the enclosure is treated as closed.
 - Enclosure surface area (all six faces, approximate):
   `2 × (0.220×0.120 + 0.220×0.070 + 0.120×0.070) = 0.1004 m²`.
 
@@ -42,9 +42,9 @@ If each relay channel is **100 mΩ**:
 
 Hotspots at the relay contacts, fuse clips, and terminals will be higher than the air average. TF1 is a SEFUSE SF96E one-shot: rated functioning temperature 99 °C, holding temperature 84 °C, 10 A / 250 VAC. Normal-operation hotspot temperature must stay below 84 °C with margin; if the 8 A test shows >84 °C at the TCO, relocate/derate before release. The TCO is a backup, not a control.
 
-## 4. Vent and material
+## 4. Vent (none) and material
 
-- The M12 ePTFE vent is intended for pressure equalisation and limited moisture exchange, not as a guaranteed airflow path. It is **not credited** above.
+- **No vent is fitted** in this revision. There is no pressure-equalisation path and no vent airflow credit. The closed-box estimate above is the only thermal basis.
 - ABS/PC FR is a target; actual material, CTI, and UL94 rating are unverified.
 - A metal enclosure or an internal aluminum spreader would reduce hotspots, but is not selected.
 

@@ -373,18 +373,20 @@ ROWS = [
         evidence="No approved part yet; engineer must select and verify."
     ),
     row(
-        "E-034", "X1", "Connectors", "Type F (Schuko) panel socket, 16 A / 250 V, 2P+E", "TBD", "SOCKET-TYPE-F-16A-TBD",
-        status="DOCUMENTATION_DEFICIENT", alt="Type E/F combo socket (Q02=B lean); other Indonesian standard",
+        "E-034", "X1", "Connectors", "Type F (Schuko) panel socket, 16 A / 250 V, 2P+E, flange 50x50, fixing 38x38, IP44", "DV", "DSMS-2P-16A",
+        datasheet="https://dv-electric.id/en/product/schuko-surface-mounting-socket-ip44-16a-dsms-2p-16a/",
+        status="DOCUMENTATION_DEFICIENT", alt="MENNEKES 11010 (premium); TAB SN010/FORT FTK-250 DIN rail (does not fit 70 mm wall)",
         footprint="OFF_BOARD_MODULE", mech="type_f_socket_approx",
-        notes="Product identity, certification, contact material, retention, and PE continuity are unverified. Do not use a universal socket without traceability. Q02 remains an analysis decision.",
-        evidence="No approved MPN. Retailer photos are not a datasheet."
+        notes="DV DSMS-2P-16A. Flange 50x50, fixing 38x38, IP44. Datasheet does not state depth; body envelope 42 mm provisional. Certification, contact material, retention, and PE continuity unverified. Live parts must be inaccessible.",
+        evidence="Shopee listing + DV product datasheet; dimensions incomplete."
     ),
     row(
-        "E-035", "P1", "Connectors", "Type F (Schuko) cord plug, 16 A / 250 V, 3-core", "TBD", "PLUG-TYPE-F-16A-TBD",
-        status="DOCUMENTATION_DEFICIENT", alt="Type E/F compatible plug; local standard plug",
+        "E-035", "P1", "Connectors", "Type F (Schuko) cord plug, 16 A / 250 V, 2P, IP44", "DV", "DIP-2P-16A",
+        datasheet="https://dv-electric.id/en/product/schuko-industrial-plug-ip44-16a-dip-2p-16a/",
+        status="DOCUMENTATION_DEFICIENT", alt="MENNEKES 10838 (premium)",
         footprint="OFF_BOARD_MODULE", mech="type_f_plug_approx",
-        notes="Mating, cable clamp, PE contact, and orientation must be verified. Cable 3x1.5 mm2 H05VV-F provisional.",
-        evidence="No approved MPN."
+        notes="DV DIP-2P-16A Schuko industrial plug. Verify PE contact, cable clamp 3x1.5 mm2, terminal torque, and certification. Assembly quality unverified.",
+        evidence="Shopee listing + DV product datasheet; cable range not stated."
     ),
     row(
         "E-036", "CG1", "Mechanical", "Cable gland, M16, IP68, PA66, UL94 V-0", "TBD", "GLAND-M16-TBD",
@@ -870,21 +872,21 @@ PROCUREMENT = [
     },
     {
         "line_id": "E-034", "stage": "CORE",
-        "selected": "Simon Schuko panel socket, 16 A / 250 V",
-        "qty": 1, "unit_price": 25026,
-        "seller": "Shopee",
-        "url": "https://shopee.co.id/product/1393930173/24138502361",
+        "selected": "DV DSMS-2P-16A, 16 A / 250 V, 2P+E, flange 50x50, fixing 38x38, IP44",
+        "qty": 1, "unit_price": 45999, "date": "2026-11-20",
+        "seller": "Shopee / Bintang Sukses Listrik",
+        "url": "https://shopee.co.id/product/1256135134/40609914166",
         "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "Brand Simon; exact model, certification, contact material, retention, and PE continuity are unverified. Live parts must be inaccessible. Q02 socket standard remains an analysis decision.",
+        "notes": "DV DSMS-2P-16A. Flange 50x50, fixing 38x38, IP44. Datasheet does not state depth; body envelope 42 mm provisional. Certification, contact material, retention, and PE continuity unverified. Live parts must be inaccessible.",
     },
     {
         "line_id": "E-035", "stage": "CORE",
-        "selected": "BOSS BP16 Schuko plug, 16 A",
-        "qty": 1, "unit_price": 14044,
-        "seller": "Shopee",
-        "url": "https://shopee.co.id/product/37155877/41075654392",
+        "selected": "DV DIP-2P-16A, 16 A / 250 V, schuko, IP44",
+        "qty": 1, "unit_price": 31000, "date": "2026-11-20",
+        "seller": "Shopee / DAHLIA ELECTRIC SDA",
+        "url": "https://shopee.co.id/product/14942994/43260333760",
         "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "Verify PE contact, cable clamp, 3x1.5 mm2 fit, and certification. 16 A class, but assembly quality is unverified.",
+        "notes": "DV DIP-2P-16A Schuko industrial plug. Verify PE contact, cable clamp 3x1.5 mm2, terminal torque, and certification. Assembly quality unverified.",
     },
     {
         "line_id": "E-036", "stage": "CORE",
@@ -993,7 +995,7 @@ CORE_RESTOCK_SAVINGS = {
 }
 SHIPPING_ESTIMATE_IDR = 40000
 BUDGET_CAP_IDR = 750000
-MECH_ADDENDUM_IDR = 28000
+MECH_ADDENDUM_IDR = 31000
 
 # Selected prototype/procurement variant overrides. These keep the engineering
 # BOM aligned with what is actually being bought, without pretending that a
@@ -1019,16 +1021,16 @@ PROCUREMENT_OVERRIDES = {
         "notes": "Priced EasyWare module is 0.96 inch 128x64 SSD1306 I2C. Verify controller, address, and 3.3 V operation. Do not assume SH1106 is SSD1306-compatible. Deferred in the CORE build.",
     },
     "E-034": {
-        "manufacturer": "Simon",
-        "manufacturer_part_number": "SIMON-SCHUKO-16A",
+        "manufacturer": "DV",
+        "manufacturer_part_number": "DSMS-2P-16A",
         "approved_status": "DOCUMENTATION_DEFICIENT",
-        "notes": "Priced Simon Schuko panel socket, 16 A/250 V. Exact model, certification, contact material, retention, and PE continuity are unverified. Live parts must be inaccessible. Q02 socket standard remains an analysis decision.",
+        "notes": "DV DSMS-2P-16A, 16 A/250 V, 2P+E, IP44. Flange 50x50, fixing 38x38; depth not in datasheet, body envelope 42 mm provisional. Certification, contact material, retention, and PE continuity unverified. Live parts must be inaccessible.",
     },
     "E-035": {
-        "manufacturer": "BOSS",
-        "manufacturer_part_number": "BP16",
+        "manufacturer": "DV",
+        "manufacturer_part_number": "DIP-2P-16A",
         "approved_status": "DOCUMENTATION_DEFICIENT",
-        "notes": "Priced BOSS BP16 Schuko plug, 16 A. Verify PE contact, cable clamp, 3x1.5 mm2 fit, and certification. Assembly quality is unverified.",
+        "notes": "DV DIP-2P-16A Schuko industrial plug, 16 A/250 V, IP44. Verify PE contact, cable clamp 3x1.5 mm2, terminal torque, and certification. Assembly quality unverified.",
     },
     "E-037": {
         "manufacturer": "MG Duradus",
@@ -1101,7 +1103,7 @@ def procurement_rows() -> list[dict]:
                 "extended_idr": extended,
                 "seller": entry["seller"],
                 "source_url": entry["url"],
-                "price_date": "2026-11-15",
+                "price_date": entry.get("date", "2026-11-15"),
                 "stock_status": entry["stock"],
                 "price_verification": entry["verification"],
                 "safety_status": item["approved_status"],
@@ -1161,15 +1163,15 @@ def procurement_markdown(rows: list[dict], totals: dict) -> str:
         f"- CORE + ongkir: **Rp{totals['core_all_in_idr']:,}**.",
         f"- CORE restock + ongkir: **Rp{totals['core_restock_all_in_idr']:,}**.",
         f"- FULL + ongkir: **Rp{totals['full_all_in_idr']:,}**.",
-        f"- Mechanical addendum (gasket/vent/printed cover-key/PSU bracket/thermal pad): **Rp{totals['mechanical_addendum_estimate_idr']:,}** estimated, not in line items.",
+        f"- Mechanical addendum (gasket/printed brackets/USB cover/key/socket screws/thermal pad/label): **Rp{totals['mechanical_addendum_estimate_idr']:,}** estimated, not in line items.",
         f"- CORE + addendum + ongkir: **Rp{totals['core_with_addendum_all_in_idr']:,}**.",
         f"- CORE restock + addendum + ongkir: **Rp{totals['core_restock_with_addendum_all_in_idr']:,}**.",
         f"- FULL + addendum + ongkir: **Rp{totals['full_with_addendum_all_in_idr']:,}**.",
         f"- Status: `{totals['verdict']}`.",
         "",
-        "CORE electronics (Rp716.087) is about Rp6.087 over Rp750.000 with Rp40.000 shipping (Rp756.087).",
-        "The mechanical addendum (~Rp28.000) pushes the marketplace CORE to about Rp784.087 all-in;",
-        "EasyWare restock brings it to about Rp732.619 all-in, under the cap. FULL UI is deferred.",
+        f"CORE electronics is Rp{totals['core_subtotal_idr']:,}; with Rp{totals['shipping_estimate_idr']:,} shipping the CORE all-in is Rp{totals['core_all_in_idr']:,}.",
+        f"The mechanical addendum (~Rp{totals['mechanical_addendum_estimate_idr']:,}) pushes the marketplace CORE to about Rp{totals['core_with_addendum_all_in_idr']:,} all-in;",
+        f"EasyWare restock brings it to about Rp{totals['core_restock_with_addendum_all_in_idr']:,} all-in. FULL UI is deferred.",
         "",
         "Jangan menurunkan fuse, MOV, TCO, terminal, PE, enclosure, atau barrier isolasi",
         "untuk mengejar budget. Lihat `research/PROCUREMENT_INDONESIA.md` untuk risiko stok.",
@@ -1213,7 +1215,7 @@ def main() -> None:
         "core_with_addendum_all_in_idr": core_subtotal + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR,
         "core_restock_with_addendum_all_in_idr": core_restock + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR,
         "full_with_addendum_all_in_idr": core_subtotal + full_addons + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR,
-        "verdict": "CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_FITS; FULL_DEFERRED",
+        "verdict": "CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_OVER_750K; FULL_DEFERRED",
     }
     (BOM / "BOM_PROCUREMENT.md").write_text(procurement_markdown(proc, totals), encoding="utf-8")
 
@@ -1256,7 +1258,7 @@ def main() -> None:
             "Engineering BOM is still unpriced; dated prototype buy list is bom/BOM_PROCUREMENT.csv.",
             "Prices are listing prices, not supplier quotes. Shipping/tax are separate estimates.",
             "REV_D is CORE-only. OLED, RTC, external RGB, their connectors, 330R, and I2C pullups are DEFERRED and excluded from procurement.",
-            "CORE electronics is Rp716.087 (Rp756.087 all-in) at marketplace prices; the mechanical addendum (~Rp28.000) makes it about Rp784.087 all-in. EasyWare restock gives about Rp732.619 all-in with the addendum, under the cap. FULL UI is deferred in REV_D. Do not downgrade safety.",
+            f"CORE electronics is Rp{core_subtotal:,} (Rp{core_subtotal + SHIPPING_ESTIMATE_IDR:,} all-in) at marketplace prices; the mechanical addendum (~Rp{MECH_ADDENDUM_IDR:,}) makes it about Rp{core_subtotal + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR:,} all-in. EasyWare restock gives about Rp{core_restock + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR:,} all-in with the addendum. FULL UI is deferred in REV_D. Do not downgrade safety.",
             "FULL UI/time add-ons are deferred; do not downgrade fuse, MOV, TCO, PE, terminal, enclosure, or isolation to meet budget.",
             "Final rating is 8 A / about 1.840 W (user amendment), limited to electronics/SMPS loads; thermal/lifecycle tests are still required.",
             "Batch 10-unit pricing cannot be quoted without actual supplier quotes.",

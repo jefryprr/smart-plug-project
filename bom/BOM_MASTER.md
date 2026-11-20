@@ -1,6 +1,6 @@
 # BOM Master — REV_D_CORE_ONLY
 
-**Generated:** 2026-11-19T04:52:56.891256+00:00
+**Generated:** 2026-11-20T09:35:05.750350+00:00
 
 > **DESIGN BOM (UNPRICED) / NOT APPROVED.** Ini adalah BOM rekayasa, bukan daftar belanja.
 > Harga, stok, dan tautan pembelian ada di `BOM_PROCUREMENT.md` / `BOM_PROCUREMENT.csv`.
@@ -52,8 +52,8 @@
 | E-049 | J8 | Connectors | JST-XH 2-pin connector for 5V input from HLK-5M05 | B2B-XH-A | 1 pcs | PROVISIONAL |
 | E-029 | TB1 | Connectors | Mains input terminal block, 2-pin, 5.08 mm, 17.5 A / 250 V, screw clamp | MKDS 1,5/2-5,08 | 1 pcs | PROVISIONAL |
 | E-030 | TB_PE | Connectors | Protective earth terminal/stud, screw-clamp, tool-access | PE-TERMINAL-TBD | 1 pcs | BLOCKED |
-| E-034 | X1 | Connectors | Type F (Schuko) panel socket, 16 A / 250 V, 2P+E | SIMON-SCHUKO-16A | 1 pcs | DOCUMENTATION_DEFICIENT |
-| E-035 | P1 | Connectors | Type F (Schuko) cord plug, 16 A / 250 V, 3-core | BP16 | 1 pcs | DOCUMENTATION_DEFICIENT |
+| E-034 | X1 | Connectors | Type F (Schuko) panel socket, 16 A / 250 V, 2P+E, flange 50x50, fixing 38x38, IP44 | DSMS-2P-16A | 1 pcs | DOCUMENTATION_DEFICIENT |
+| E-035 | P1 | Connectors | Type F (Schuko) cord plug, 16 A / 250 V, 2P, IP44 | DIP-2P-16A | 1 pcs | DOCUMENTATION_DEFICIENT |
 | E-036 | CG1 | Mechanical | Cable gland, M16, IP68, PA66, UL94 V-0 | GLAND-M16-TBD | 1 pcs | PROVISIONAL |
 | E-037 | ENC1 | Mechanical | Enclosure, ABS/PC, 220 x 120 x 70 mm confirmed, flame-retardant grade | MG-220X120X70-ABS | 1 pcs | BLOCKED |
 | E-038 | PE1 | Mechanical | PE bonding hardware: screw, lock washer, nut, dedicated stud | PE-HARDWARE-TBD | 1 pcs | BLOCKED |

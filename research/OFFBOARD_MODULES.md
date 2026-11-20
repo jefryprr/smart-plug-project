@@ -28,8 +28,8 @@ user required **off the PCB**. This is not a mains assembly approval.
 | CT placement | Clamp around **L only**, never around L and N together | `REQUIRED` |
 | Power | Supplied from SELV 5 V; PZEM internal optocouplers isolate mains | `DOCUMENTATION_DEFICIENT` |
 | Accuracy | Not revenue-grade; low-current accuracy at 8 A with a 100 A CT is unverified | `UNVERIFIED` |
-| Dimensions | ~53 × 89 × 24 mm envelope (approximate, not measured) | `PROVISIONAL` |
-| Mounting | Dedicated plate, 58 × 94 × 2 mm, 4× M3, cable-tie slot | `PROVISIONAL` |
+| Dimensions | PZEM-004T V4 PCB ~74 x 31 x 18 mm (datasheet approx; measure sample) | `PROVISIONAL` |
+| Mounting | Printed bracket 37 x 80 x 2 mm, 4x M3, holes 65 x 23 mm | `PROVISIONAL` |
 | Batch manual | Official Peacefair V4 manual for the exact batch not obtained | `DOCUMENTATION_DEFICIENT` |
 
 ### PZEM wiring intent

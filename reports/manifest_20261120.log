@@ -1,0 +1,9 @@
+=== manifest final 2026-11-20T09:47:05.669960+00:00 ===
+Normalized 14 generated text files to LF before hashing.
+{
+  "categories": 26,
+  "artifacts": 286,
+  "missing": 0,
+  "commit": "a86fc9289cdc0314d6485915c906ee69efef9762"
+}
+exit_code=0

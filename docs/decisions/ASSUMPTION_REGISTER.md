@@ -28,14 +28,14 @@
 | A-022 | No irreversible eFuse action without approval | ADR-012 | Device recovery/security | Security engineer | Review | `CONFIRMED` |
 | A-023 | Indonesian procurement prices are 2026-11-15/16 listing snapshots, not supplier quotes; 33 lines listing-verified, 15 estimated | `bom/BOM_PROCUREMENT.csv` | Budget/schedule | Project owner | Re-quote before purchase | `PROVISIONAL` |
 | A-024 | ESP32-S3 N16R8 compatible board at Rp139.968 is acceptable for prototype only as an explicit Q08=B deviation | Official local stock unconfirmed | GPIO/RGB/regulator/security | Hardware engineer | Board photo + pinout + RF test | `OPEN` |
-| A-025 | MG Duradus 220x120x70 ABS IP65 enclosure fits, but flame-retardant grade is unverified | Listing + fit CAD | Fire/mechanical safety | Mechanical engineer | Material certificate + thermal/impact test | `OPEN` |
+| A-025 | 3D-printed 220x120x70 enclosure (60 mm body + 10 mm lid) fits the CORE-only modules, but ABS/PC FR grade, wall strength, and sealing are unverified | User print decision + CadQuery fit check | Fire/mechanical safety | Mechanical engineer | Material certificate + print/thermal/impact/leak test | `OPEN` |
 | A-026 | No temperature sensor is installed in REV_D_CORE_ONLY; firmware must not require temperature validity | User instruction 2026-11-16 | Thermal safety/ON policy | Engineer | Thermal test + TCO/fuse review | `PROVISIONAL` |
 | A-027 | 74HCT125 + 10k/20k divider are sufficient for PZEM 5V TTL to ESP32 3.3V | TI datasheet + divider calculation | UART reliability | Hardware engineer | Bench UART test at 9600 baud | `PROVISIONAL` |
 | A-028 | 5 V rail needs a 1.1 A PTC plus SMBJ5.0A TVS on the PSU board total output; the HLK-5M05 alone is not treated as sufficient protection | Engineering judgment | 5 V wiring/transient protection | Hardware engineer | Bench trip/clamp test; verify PTC hold current | `PROVISIONAL` |
-| A-029 | Enclosure 60 mm body + 10 mm lid, 1 mm gasket, M12 vent, printed USB cover and DevKit key are adequate for a prototype | Mechanical concept + CadQuery | Fit/sealing/thermal/service | Mechanical engineer | Print, measure, gasket/thermal/impact test | `PROVISIONAL` |
+| A-029 | Enclosure 60 mm body + 10 mm lid, 1 mm flat gasket, direct heat-set insert mounting, printed USB cover and DevKit key are adequate for a prototype; no M12 vent is fitted | Mechanical concept + CadQuery | Fit/sealing/thermal/service | Mechanical engineer | Print, measure, gasket/thermal/impact test | `PROVISIONAL` |
 | A-030 | Button on top lid + onboard RGB side window; OLED/RTC external RGB removed | REV_D layout | User access/cable length | Product/mechanical | Physical fit | `PROVISIONAL` |
 | A-031 | The printed DevKit key blocks reverse insertion without touching the correct board | Geometry concept | DevKit damage risk | Mechanical engineer | Print and insertion trial both orientations | `OPEN` |
-| A-032 | First-order enclosure thermal estimate is 13-19 W loss and ~19-28 K rise; the M12 vent is not credited | Engineering calculation | Thermal safety | Thermal engineer | Closed-box 8 A/40 C test | `UNVERIFIED` |
+| A-032 | First-order closed-enclosure thermal estimate is 13-19 W loss and ~19-28 K rise; no vent is fitted or credited | Engineering calculation | Thermal safety | Thermal engineer | Closed-box 8 A/40 C test | `UNVERIFIED` |
 
 ## Rules
 

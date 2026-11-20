@@ -1,0 +1,7 @@
+﻿=== BOM sync 2026-11-20T14:43:56.1869347+07:00 ===
+Wrote 57 master rows, 6 tools, 5 consumables.
+Procurement: 48 lines; CORE Rp754,016; FULL add-ons Rp0; verdict CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_FITS; FULL_DEFERRED.
+exit_code=0
+=== generate_candidates.py ===
+Wrote 45 candidates to C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\research\candidates.csv
+exit_code=0

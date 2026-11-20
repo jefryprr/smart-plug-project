@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Printable cantilever shelf for the off-board relay module (REV_D_CORE_ONLY)."""
+"""Printable relay shelf for the CORE_ONLY_SHOPEE enclosure.
+
+The plate sits above the PSU board. Two M3x8 screws go through the plate into
+internal wall bosses. Prototype only; not a certified electrical enclosure.
+"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -12,20 +16,15 @@ EXPORT.mkdir(parents=True, exist_ok=True)
 
 
 def main() -> None:
-    # Plate above the PSU board; two legs land on the enclosure right wall.
-    plate = cq.Workplane("XY").box(55, 28, 3).translate((79.5, -3, 40.5))
-    leg_a = cq.Workplane("XY").box(3, 3, 12).translate((108.5, -15.5, 34.5))
-    leg_b = cq.Workplane("XY").box(3, 3, 12).translate((108.5, 9.5, 34.5))
-    shelf = plate.union(leg_a).union(leg_b)
-    # M3 clearance holes through the legs (along X) and two module holes.
+    plate = cq.Workplane("XY").box(55, 28, 3).translate((79.5, -3, 41.5))
+    # Two screw holes along X into the internal wall bosses.
     for y in (-15.5, 9.5):
-        hole = cq.Solid.makeCylinder(1.7, 5, cq.Vector(106.5, y, 34.5), cq.Vector(1, 0, 0))
-        shelf = shelf.cut(cq.Workplane(obj=hole))
-    for x in (62, 97):
-        hole = cq.Solid.makeCylinder(1.7, 5, cq.Vector(x, -3, 39), cq.Vector(0, 0, 1))
-        shelf = shelf.cut(cq.Workplane(obj=hole))
-    cq.exporters.export(shelf, str(EXPORT / "relay_shelf.step"), exportType="STEP")
-    cq.exporters.export(shelf, str(EXPORT / "relay_shelf.stl"), exportType="STL", tolerance=0.05)
+        plate = plate.cut(cq.Solid.makeCylinder(1.6, 10, cq.Vector(100, y, 41.5), cq.Vector(1, 0, 0)))
+    # Cable-tie / wire-routing slots.
+    for x in (58, 98):
+        plate = plate.cut(cq.Workplane("XY").box(4, 10, 4).translate((x, -3, 41.5)))
+    cq.exporters.export(plate, str(EXPORT / "relay_shelf.step"), exportType="STEP")
+    cq.exporters.export(plate, str(EXPORT / "relay_shelf.stl"), exportType="STL", tolerance=0.05)
     print("wrote relay_shelf.step/.stl")
 
 

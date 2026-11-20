@@ -1,0 +1,154 @@
+{
+  "artifact": "hardware/mechanical/BOM_FIT_CHECK.json",
+  "status": "PASS",
+  "issues": [],
+  "socket": {
+    "flange_mm": [
+      50.0,
+      50.0
+    ],
+    "fixing_mm": [
+      38.0,
+      38.0
+    ],
+    "cutout_mm": [
+      45.6,
+      45.6
+    ],
+    "cutout_shape": "round 45.6 (square would remove 38x38 fixing bosses)",
+    "note": "round cutout used because a square 45.6 would remove the 38x38 fixing bosses",
+    "boss_depth_mm": 12.0,
+    "boss_diameter_mm": 10.0,
+    "screw_pilot_mm": 3.3
+  },
+  "gland_pe_overlap_mm3": 0.0,
+  "mesh": {
+    "body_bottom_recommended.stl": {
+      "watertight": true,
+      "bounds_mm": [
+        [
+          -110.0,
+          -60.0,
+          0.0
+        ],
+        [
+          110.0,
+          60.0,
+          60.0
+        ]
+      ]
+    },
+    "body_top_recommended.stl": {
+      "watertight": true,
+      "bounds_mm": [
+        [
+          -110.0,
+          -60.0,
+          60.0
+        ],
+        [
+          110.0,
+          60.0,
+          70.0
+        ]
+      ]
+    },
+    "gasket.stl": {
+      "watertight": true,
+      "bounds_mm": [
+        [
+          -108.0,
+          -58.0,
+          0.0
+        ],
+        [
+          108.0,
+          58.0,
+          1.0
+        ]
+      ]
+    },
+    "usb_cover.stl": {
+      "watertight": true,
+      "bounds_mm": [
+        [
+          -60.0,
+          -64.0,
+          17.0
+        ],
+        [
+          -24.0,
+          -57.0,
+          43.0
+        ]
+      ]
+    },
+    "devkit_key.stl": {
+      "watertight": true,
+      "bounds_mm": [
+        [
+          -103.0,
+          -35.5,
+          9.0
+        ],
+        [
+          -95.0,
+          35.5,
+          22.0
+        ]
+      ]
+    },
+    "pzem_bracket.stl": {
+      "watertight": true,
+      "bounds_mm": [
+        [
+          -18.5,
+          -40.0,
+          0.0
+        ],
+        [
+          18.5,
+          40.0,
+          2.0
+        ]
+      ]
+    },
+    "psu_bracket.stl": {
+      "watertight": true,
+      "bounds_mm": [
+        [
+          -25.0,
+          -32.5,
+          0.0
+        ],
+        [
+          25.0,
+          32.5,
+          2.0
+        ]
+      ]
+    },
+    "relay_shelf.stl": {
+      "watertight": true,
+      "bounds_mm": [
+        [
+          52.0,
+          -17.0,
+          40.0
+        ],
+        [
+          107.0,
+          11.0,
+          43.0
+        ]
+      ]
+    }
+  },
+  "limitations": [
+    "BOM text and parameter consistency only; not a measured fit.",
+    "Socket/PZEM/relay dimensions must be measured on received parts.",
+    "Socket body cross-section/passage through the round 45.6 cutout is not checked.",
+    "No thermal, IP, hipot, PE, or mechanical strength test.",
+    "Not for mains use."
+  ]
+}

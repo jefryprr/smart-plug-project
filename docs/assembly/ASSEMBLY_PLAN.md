@@ -20,21 +20,21 @@ Never combine scope 3 with scope 1/2 in one unsupervised session. PE is never sw
 4. Verify HLK-5M05 marking, 5 V/1 A, isolation claim, AC pin order.
 5. Verify relay module is 2-channel, active-LOW, two independent SPDT channels, not a linked DPST.
 6. Verify fuse 10 A 250 VAC ceramic, holder rating, MOV 275 VAC, TCO 99 °C one-shot, terminals, socket/plug, PE hardware.
-7. Verify enclosure 220×120×70, wall, flame grade, lid screws, gasket, M16 gland, M12 vent.
+7. Verify enclosure 220×120×70, wall, flame grade, lid screws, gasket, M16 gland, and DV socket. No M12 vent is fitted.
 8. Quarantine any mismatch; update `parameters.yaml`/`components.py` and re-run fit if dimensions differ.
 
 ## 2. Mechanical preparation (no energy)
 
 1. Print/acquire body, lid, gasket, USB cover, DevKit key, PZEM/relay/PSU brackets.
-2. Install 4× M3 heat-set inserts in the lid bosses; install module inserts where used.
-3. Deburr the socket, gland, vent, USB, and top cutouts.
+2. Install 8× M3×5 heat-set inserts: 4 lid bosses and 4 carrier bosses. Module bosses use M3×8 self-tapping screws.
+3. Deburr the socket, gland, USB, and top cutouts. There is no vent cutout.
 4. Test-fit the gasket frame on the body rim; verify it is not pinched.
-5. Mount the carrier on the four standoffs with M3×8 screws; do not over-torque.
+5. Mount the carrier on the four carrier bosses with M3×8 screws; do not over-torque.
 6. Install the DevKit key on the two left carrier holes. Insert the DevKit **pin 1 / USB end** per the silkscreen; confirm the key blocks a reversed board.
 7. Install the physical button on the lid and route its JST cable with a service loop. Do not install OLED/RTC/external RGB; they are not in REV_D. The onboard DevKitC-1 RGB is visible through the small left-wall window (position provisional).
-8. Mount the **PSU board** on its 3 standoffs (H1/H3/H4), the relay on the printed cantilever shelf above it, and PZEM, CT, socket, gland, and PE stud on their brackets/bosses. The HLK/fuse/MOV/TCO/terminals are already on the PSU board.
+8. Mount the **PSU board** on its 3 bosses (H1/H3/H4), the relay on the printed cantilever shelf above it, and PZEM, CT, socket, gland, and PE stud on their brackets/bosses. The HLK/fuse/MOV/TCO/terminals are already on the PSU board.
 9. Install the PE stud and bond hardware; PE must be a dedicated metal path, not a plastic boss alone.
-10. Install the M16 gland, M12 vent, and USB cover; check thread engagement and gasket seating.
+10. Install the M16 gland and USB cover; check thread engagement and gasket seating. No vent is fitted.
 
 ## 3. Low-voltage assembly
 
@@ -63,7 +63,7 @@ Never combine scope 3 with scope 1/2 in one unsupervised session. PE is never sw
 - No L/N–PE short; no SELV–mains short.
 - PSU board assembly, F1/MOV1/TF1 orientation, TB1/TB2 pin order, J5/J6/J7 keying, relay/socket/terminal ratings.
 - Barrier intact; no cable bypass.
-- Gasket seating; lid screws; gland/vent/socket retention.
+- Gasket seating; lid screws; gland/socket retention; no vent hole.
 - Labels: 8 A limit, 230 VAC, PE, “no USB with mains”, model/revision.
 - Record photos and measurements.
 

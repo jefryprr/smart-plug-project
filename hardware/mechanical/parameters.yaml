@@ -1,9 +1,10 @@
-# Mechanical parameters — REV_D_CORE_ONLY
+# Mechanical parameters — REV_D_CORE_ONLY / CORE_ONLY_SHOPEE build
 # All values are provisional engineering assumptions unless marked otherwise.
-# The 220 x 120 x 70 enclosure is the user-confirmed target (Q06=C).
+# 220 x 120 x 70 fits a 300 x 300 mm printer. Material target: ABS/PC FR.
+# Safety: printed enclosure is a prototype, not a certified electrical enclosure.
 design_revision: REV_D_CORE_ONLY
-material_id: "ABS/PC flame-retardant, UL94 V-0 target (not selected)"
-manufacturing_process: "FDM prototype / injection molding production TBD"
+material_id: "ABS/PC flame-retardant, UL94 V-0 target (not selected/verified)"
+manufacturing_process: "FDM prototype; 300 x 300 mm bed assumed; no physical validation"
 
 enclosure_length_mm: 220.0
 width_mm: 120.0
@@ -18,10 +19,11 @@ pcb_origin_mm: [-105.0, -35.0]
 pcb_bottom_z_mm: 8.0
 pcb_hole_positions_board_mm: [[3.5, 3.5], [96.5, 3.5], [3.5, 66.5], [96.5, 66.5]]
 pcb_hole_diameter_mm: 3.2
-carrier_standoff_diameter_mm: 6.0
-carrier_standoff_pilot_mm: 2.5
-screw_sizes: "M3 x 16 lid; M3 x 8 modules"
-insert_sizes: "M3 x 5.7 heat-set"
+carrier_standoff_diameter_mm: 8.0
+carrier_insert_hole_mm: 4.2
+carrier_insert_depth_mm: 5.5
+screw_sizes: "M3 x 16 lid; M3 x 8 modules; M4 x 16 socket/PE"
+insert_sizes: "M3 x 5 mm brass, OD 4.2 mm"
 cable_bend_radius_mm: 15.0
 bend_space_mm: 20.0
 thermal_clearances_mm: 8.0
@@ -31,35 +33,50 @@ tolerance_xy_mm: 0.3
 tolerance_z_mm: 0.3
 
 # Panel features (wall coordinates: right wall x=+110, front wall y=-60).
-socket_dimensions_mm: [35.0, 45.0, 45.0]
-socket_cutout_mm: [45.0, 45.0]
-socket_center: [89.9, 34.9, 35.0]
+# DV DSMS-2P-16A surface socket: flange 50x50, fixing 38x38, user cutout 45.6.
+socket_dimensions_mm: [40.0, 40.0, 45.0]
+socket_flange_mm: [50.0, 50.0]
+socket_flange_recess_mm: 0.8
+socket_cutout_mm: [45.6, 45.6]
+socket_cutout_shape: "round 45.6 (square would remove 38x38 fixing bosses)"
+socket_center: [87.5, 34.9, 35.0]
+socket_fixing_mm: [38.0, 38.0]
+socket_screw_hole_mm: 4.5
+socket_screw_pilot_mm: 3.3
+socket_boss_diameter_mm: 10.0
+socket_boss_depth_mm: 12.0
 plug_dimensions_mm: [40.0, 40.0, 50.0]
-cable_gland_center: [110.0, 10.0, 18.0]
-cable_gland_diameter_mm: 16.0
-vent_center: [110.0, -15.0, 45.0]
-vent_diameter_mm: 12.0
+cable_gland_center: [20.0, 60.0, 18.0]  # back wall, clear of PE boss
+cable_gland_thread_mm: 16.3
+cable_gland_boss_diameter_mm: 22.0
+cable_gland_boss_depth_mm: 4.0
+# No M12 vent purchased (CSV row 33 deferred). No vent hole is generated in this
+# revision; add one only after a thermal/IP review and a new model revision.
+vent_fitted: false
 usb_cover_center: [-42.0, -60.0, 30.0]
 usb_cover_opening_mm: [30.0, 20.0]
 
 # Top-lid UI (top face z=70). CORE-only: button only.
 button_center_xy: [-62.0, 28.0]
 button_diameter_mm: 12.0
-# Onboard DevKitC-1 v1.0 RGB (GPIO48) is inside the enclosure. Small left-wall
-# window/light-pipe opening; exact LED position must be verified on the sample.
 devkit_rgb_window_center: [-110.0, -13.57, 22.0]
 devkit_rgb_window_diameter_mm: 5.0
 button_travel_mm: 0.5
-service_access: "Front USB service cover; remove cover, mains OFF; no USB while mains energized"
+service_access: "Front USB service cover; remove cover only with mains OFF; no USB while mains energized"
 
-# Lid / gasket / screws.
+# Lid / gasket / screws. 4 lid + 4 carrier heat-set inserts = 8 total.
 lid_screw_positions: [[-100.0, -50.0], [100.0, -50.0], [-100.0, 50.0], [100.0, 50.0]]
 lid_screw_boss_diameter_mm: 8.0
-lid_screw_pilot_mm: 2.5
+lid_insert_hole_mm: 4.2
+lid_insert_depth_mm: 5.5
+lid_screw_clearance_mm: 3.2
 lid_screw_counterbore_diameter_mm: 6.5
 lid_screw_counterbore_depth_mm: 2.0
 gasket_thickness_mm: 1.0
-gasket_recess_depth_mm: 1.2
+gasket_outer_mm: [216.0, 116.0]
+gasket_inner_mm: [206.0, 106.0]
+gasket_land_flat: true
+gasket_land_width_mm: 5.0
 
 # Internal barrier (mechanical only; not a creepage calculation).
 barrier_x_mm: -4.0
@@ -68,46 +85,35 @@ barrier_y_mm: [-50.0, 50.0]
 barrier_hole_yz: [[-20.0, 20.0], [15.0, 20.0]]
 barrier_hole_diameter_mm: 10.0
 
-pe_stud_xy: [60.0, 50.0]
-pe_stud_boss_diameter_mm: 8.0
-pe_stud_height_mm: 10.0
-pe_stud_hole_mm: 3.2
+pe_stud_xy: [45.0, 50.0]
+pe_stud_boss_diameter_mm: 10.0
+pe_stud_height_mm: 14.5
+pe_stud_hole_mm: 4.3
 
 # Module bracket boss positions (x, y) in enclosure coordinates.
 module_bosses:
-  pzem: [[4.0, -40.0], [52.0, -40.0], [4.0, 40.0], [52.0, 40.0]]
+  pzem: [[16.5, -32.5], [39.5, -32.5], [16.5, 32.5], [39.5, 32.5]]
   psu_board: [[59.0, -52.0], [103.0, -52.0], [72.0, -13.0]]
-  ct: [[10.0, 42.0], [30.0, 42.0]]
-  usb_cover: [[-54.0, -57.5], [-30.0, -57.5]]
+  usb_cover: [[-54.0, -56.0], [-30.0, -56.0]]
 module_boss_height_mm:
-  pzem: 4.0
-  psu_board: 5.5
-  ct: 31.0
-  usb_cover: 28.0
+  pzem: 8.0
+  psu_board: 8.0
+  usb_cover: 30.0
 module_boss_diameter_mm: 6.0
 module_boss_pilot_mm: 2.5
+module_boss_pilot_depth_mm: 5.5
+
+# Relay shelf wall bosses. Shelf screws enter from inside (M3x8) into bosses.
+relay_shelf_bosses: [[107.0, -15.5, 41.5], [107.0, 9.5, 41.5]]
+relay_shelf_boss_diameter_mm: 8.0
+relay_shelf_boss_depth_mm: 6.0
+relay_shelf_pilot_mm: 2.5
+relay_shelf_z_mm: 41.5
 
 provenance:
-  enclosure_length_mm: user_confirmed
-  width_mm: user_confirmed
-  height_mm: user_confirmed
-  wall_thickness_mm: provisional
-  bottom_height_mm: engineering_calculation
-  top_height_mm: engineering_calculation
-  corner_radius_mm: provisional
-  pcb_outline: pcb_design
-  pcb_thickness_mm: datasheet
-  pcb_origin_mm: engineering_calculation
-  socket_dimensions_mm: provisional
-  socket_cutout_mm: provisional
-  cable_gland_diameter_mm: datasheet
-  vent_diameter_mm: datasheet
-  gasket_thickness_mm: provisional
-  barrier_height_mm: engineering_calculation
-
-q06_status: "CONFIRMED 2026-11-15: 220x120x70 (Q06=C). Physical fit/material/thermal still unverified."
-notes:
-  - "All module dimensions are APPROXIMATE until incoming inspection measures the actual parts."
-  - "3D printed enclosure is a mechanical prototype only; not a certified electrical enclosure."
-  - "No clearance/creepage number is claimed by these parameters."
-  - "The 150x100x70 and 180x120x70 presets are rejected and not generated."
+  enclosure_input: "user-confirmed 220 x 120 x 70, 300 x 300 printer"
+  socket_input: "DV DSMS-2P-16A; user-confirmed flange 50x50, fixing 38x38, cutout 45.6x45.6"
+  pzem_input: "PZEM-004T V4 PCB ~74 x 31 x 18 mm; measure sample"
+  insert_input: "M3 x 5 mm, OD 4.2 mm, 8 pcs"
+  vent_input: "M12 vent not purchased; no vent hole in this revision"
+  status: "PROTOTYPE_ONLY / ENGINEERING_REVIEW_REQUIRED / NOT_FOR_MAINS"

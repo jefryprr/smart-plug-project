@@ -1,6 +1,6 @@
 project: esp32-s3-iot-smart-plug
 design_revision: REV_D_CORE_ONLY
-generated_at: '2026-11-19T04:52:56.891256+00:00'
+generated_at: '2026-11-20T09:35:05.750350+00:00'
 items:
 - item_id: E-001
   reference_designators: U1
@@ -1182,9 +1182,10 @@ items:
 - item_id: E-034
   reference_designators: X1
   category: Connectors
-  description: Type F (Schuko) panel socket, 16 A / 250 V, 2P+E
-  manufacturer: Simon
-  manufacturer_part_number: SIMON-SCHUKO-16A
+  description: Type F (Schuko) panel socket, 16 A / 250 V, 2P+E, flange 50x50, fixing
+    38x38, IP44
+  manufacturer: DV
+  manufacturer_part_number: DSMS-2P-16A
   module_revision: '-'
   qty_per_unit: 1
   unit: pcs
@@ -1194,24 +1195,25 @@ items:
   price_checked_at: ''
   seller: ''
   seller_url: ''
-  datasheet_url: ''
+  datasheet_url: https://dv-electric.id/en/product/schuko-surface-mounting-socket-ip44-16a-dsms-2p-16a/
   datasheet_revision: UNKNOWN
   approved_status: DOCUMENTATION_DEFICIENT
-  alternative_mpn: Type E/F combo socket (Q02=B lean); other Indonesian standard
+  alternative_mpn: MENNEKES 11010 (premium); TAB SN010/FORT FTK-250 DIN rail (does
+    not fit 70 mm wall)
   footprint_id: OFF_BOARD_MODULE
   mechanical_model: type_f_socket_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Priced Simon Schuko panel socket, 16 A/250 V. Exact model, certification,
-    contact material, retention, and PE continuity are unverified. Live parts must
-    be inaccessible. Q02 socket standard remains an analysis decision.
-  source_evidence: No approved MPN. Retailer photos are not a datasheet.
+  notes: DV DSMS-2P-16A, 16 A/250 V, 2P+E, IP44. Flange 50x50, fixing 38x38; depth
+    not in datasheet, body envelope 42 mm provisional. Certification, contact material,
+    retention, and PE continuity unverified. Live parts must be inaccessible.
+  source_evidence: Shopee listing + DV product datasheet; dimensions incomplete.
 - item_id: E-035
   reference_designators: P1
   category: Connectors
-  description: Type F (Schuko) cord plug, 16 A / 250 V, 3-core
-  manufacturer: BOSS
-  manufacturer_part_number: BP16
+  description: Type F (Schuko) cord plug, 16 A / 250 V, 2P, IP44
+  manufacturer: DV
+  manufacturer_part_number: DIP-2P-16A
   module_revision: '-'
   qty_per_unit: 1
   unit: pcs
@@ -1221,17 +1223,17 @@ items:
   price_checked_at: ''
   seller: ''
   seller_url: ''
-  datasheet_url: ''
+  datasheet_url: https://dv-electric.id/en/product/schuko-industrial-plug-ip44-16a-dip-2p-16a/
   datasheet_revision: UNKNOWN
   approved_status: DOCUMENTATION_DEFICIENT
-  alternative_mpn: Type E/F compatible plug; local standard plug
+  alternative_mpn: MENNEKES 10838 (premium)
   footprint_id: OFF_BOARD_MODULE
   mechanical_model: type_f_plug_approx
   supplier_stock_status: UNKNOWN
   rating_verified: 'FALSE'
-  notes: Priced BOSS BP16 Schuko plug, 16 A. Verify PE contact, cable clamp, 3x1.5
-    mm2 fit, and certification. Assembly quality is unverified.
-  source_evidence: No approved MPN.
+  notes: DV DIP-2P-16A Schuko industrial plug, 16 A/250 V, IP44. Verify PE contact,
+    cable clamp 3x1.5 mm2, terminal torque, and certification. Assembly quality unverified.
+  source_evidence: Shopee listing + DV product datasheet; cable range not stated.
 - item_id: E-036
   reference_designators: CG1
   category: Mechanical

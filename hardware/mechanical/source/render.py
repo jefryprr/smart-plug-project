@@ -99,28 +99,28 @@ def mounting_plan_svg() -> None:
     ax.add_patch(Rectangle((-110, -60), 220, 120, fill=False, linewidth=1.5))
     ax.add_patch(Rectangle((-105, -35), 100, 70, fill=False, linewidth=1, linestyle="--", color="#0f6b5c"))
     ax.text(-104, 37, "Carrier PCB 100x70", fontsize=8, color="#0f6b5c")
-    ax.add_patch(Rectangle((1.5, -44.5), 53, 89, fill=False, linewidth=1, linestyle="--", color="#b42318"))
-    ax.text(3, 46, "PZEM", fontsize=8, color="#b42318")
-    ax.add_patch(Rectangle((55, -15), 50, 24, fill=False, linewidth=1, linestyle="--", color="#b42318"))
-    ax.text(56, 11, "2CH relay", fontsize=8, color="#b42318")
-    ax.add_patch(Rectangle((61, -39.5), 38, 23, fill=False, linewidth=1, linestyle="--", color="#b42318"))
+    ax.add_patch(Rectangle((9.5, -40), 37, 80, fill=False, linewidth=1, linestyle="--", color="#b42318"))
+    ax.text(10, 42, "PZEM V4 74x31 + bracket 37x80", fontsize=8, color="#b42318")
+    ax.add_patch(Rectangle((55, -16), 50, 26, fill=False, linewidth=1, linestyle="--", color="#b42318"))
+    ax.text(56, 12, "2CH relay 50x26", fontsize=8, color="#b42318")
+    ax.add_patch(Rectangle((62, -39.5), 38, 23, fill=False, linewidth=1, linestyle="--", color="#b42318"))
     ax.text(62, -42, "HLK-5M05", fontsize=8, color="#b42318")
-    ax.add_patch(Rectangle((72.4, 11.5), 35, 45, fill=False, linewidth=1, linestyle="--", color="#b42318"))
-    ax.text(74, 69, "Socket body", fontsize=8, color="#b42318")
+    ax.add_patch(Rectangle((67.5, 14.9), 40, 40, fill=False, linewidth=1, linestyle="--", color="#b42318"))
+    ax.text(67, 58, "DV socket body 40x40; flange 50x50; cutout 45.6", fontsize=8, color="#b42318")
     ax.add_patch(Rectangle((65, -55), 20, 10, fill=False, linewidth=1, linestyle="--", color="#b42318"))
     ax.text(66, -58, "Fuse/MOV", fontsize=8, color="#b42318")
     ax.add_patch(Rectangle((85, -56), 20, 12, fill=False, linewidth=1, linestyle="--", color="#b42318"))
     ax.text(86, -59, "Terminals", fontsize=8, color="#b42318")
-    ax.add_patch(Rectangle((5, 35), 30, 30, fill=False, linewidth=1, linestyle="--", color="#b42318"))
-    ax.text(6, 67, "CT", fontsize=8, color="#b42318")
-    ax.add_patch(Rectangle((100, -34), 8, 8, fill=False, linewidth=1, linestyle="--", color="#b42318"))
-    ax.text(101, -37, "PE", fontsize=8, color="#b42318")
+    ax.add_patch(Rectangle((5, 27), 30, 30, fill=False, linewidth=1, linestyle="--", color="#b42318"))
+    ax.text(6, 59, "CT clamp", fontsize=8, color="#b42318")
+    ax.add_patch(Rectangle((40, 45), 10, 10, fill=False, linewidth=1, linestyle="--", color="#b42318"))
+    ax.text(41, 42, "PE M4", fontsize=8, color="#b42318")
     ax.axvline(-4, color="#b42318", linewidth=2)
     ax.text(-3, 53, "Isolation barrier", color="#b42318", fontsize=8)
     ax.add_patch(Rectangle((-106, 21), 28, 14, fill=False, linewidth=1, color="#175cd3"))
     ax.add_patch(Circle((-62, 28), 6, fill=False, linewidth=1, color="#175cd3"))
-    ax.add_patch(Circle((-49, 28), 3, fill=False, linewidth=1, color="#175cd3"))
-    ax.text(-108, 18, "BTN on top lid; onboard RGB left-wall window", fontsize=8, color="#175cd3")
+    
+    ax.text(-108, 18, "BTN on top lid; onboard RGB left-wall 5 mm window", fontsize=8, color="#175cd3")
     ax.text(-108, -57, "SELV zone", fontsize=10, color="#0f6b5c")
     ax.text(-27, -57, "MAINS zone", fontsize=10, color="#b42318")
     ax.set_xlim(-120, 120)
@@ -143,12 +143,12 @@ def service_access_svg() -> None:
     ax.add_patch(Circle((-62, 68), 6, fill=False, linewidth=1, color="#175cd3"))
     ax.text(-74, 62, "Button 12", fontsize=8, color="#175cd3")
     ax.add_patch(Circle((-49, 68), 3, fill=False, linewidth=1, color="#175cd3"))
-    ax.text(-47, 62, "RGB WINDOW 5", fontsize=8, color="#175cd3")
+    ax.text(-47, 62, "RGB LEFT WALL 5", fontsize=8, color="#175cd3")
     ax.add_patch(Rectangle((-57, -60), 30, 20, fill=False, linewidth=1.2, color="#9a5b00"))
     ax.text(-56, -56, "USB service cover 30x20", fontsize=8, color="#9a5b00")
-    ax.text(-108, -40, "Right wall: socket 45x45 at y=34, z=35", fontsize=8, color="#b42318")
-    ax.text(-108, -46, "Right wall: M16 gland at y=-50, z=18; M12 vent at y=-15, z=45", fontsize=8, color="#b42318")
-    ax.text(-108, -52, "No USB while mains energized; remove cover only with mains OFF", fontsize=8, color="#9a5b00")
+    ax.text(-108, -5, "Right wall: socket round 45.6 at y=34.9, z=35; flange 50x50, fixing 38x38", fontsize=8, color="#b42318")
+    ax.text(-108, -12, "Back wall: M16 gland at x=20, z=18; no vent hole (M12 deferred)", fontsize=8, color="#b42318")
+    ax.text(-108, -19, "No USB while mains energized; remove cover only with mains OFF", fontsize=8, color="#9a5b00")
     ax.set_xlim(-120, 120)
     ax.set_ylim(-65, 78)
     ax.axis("off")
@@ -233,23 +233,25 @@ def write_mechanical_bom() -> None:
     rows = [
         ("M-001", "Enclosure body + lid", "220x120x70, 60 mm body + 10 mm lid, ABS/PC FR target", "1 set", "BLOCKED"),
         ("M-002", "M3x16 lid screws", "Stainless steel, pan head, 4 pcs", "4 pcs", "PROVISIONAL"),
-        ("M-003", "M3 heat-set inserts", "M3x5.7 brass, 4 pcs", "4 pcs", "PROVISIONAL"),
-        ("M-004", "M3x8 module screws", "Stainless steel, pan head", "12 pcs", "PROVISIONAL"),
-        ("M-005", "M16 cable gland", "IP68, PA66, UL94 V-0", "1 pcs", "PROVISIONAL"),
-        ("M-006", "Type F panel socket", "16 A / 250 V, 2P+E, 45x45 bezel", "1 pcs", "DOCUMENTATION_DEFICIENT"),
-        ("M-007", "Type F cord plug", "16 A / 250 V, 3-core", "1 pcs", "DOCUMENTATION_DEFICIENT"),
-        ("M-008", "PE stud/screw/lock washer", "Dedicated protective earth bond", "1 set", "BLOCKED"),
+        ("M-003", "M3 heat-set inserts", "M3x5 mm brass, OD 4.2 mm, 8 pcs (4 lid + 4 carrier)", "8 pcs", "PROVISIONAL"),
+        ("M-004", "M3x8 module screws", "Stainless steel, pan head, 13 pcs", "13 pcs", "PROVISIONAL"),
+        ("M-005", "M16 cable gland", "IP68, PA66, M16x1.5, 16.3 mm cutout", "1 pcs", "PROVISIONAL"),
+        ("M-006", "DV DSMS-2P-16A Schuko socket", "Surface mounting, 16A/250V IP44, flange 50x50, fixing 38x38, cutout 45.6x45.6", "1 pcs", "PROVISIONAL"),
+        ("M-007", "Type F cord plug", "DV DIP-2P-16A, 16 A / 250 V, schuko, IP44", "1 pcs", "PROVISIONAL"),
+        ("M-008", "PE stud/screw/lock washer", "Dedicated protective earth bond, M4", "1 set", "BLOCKED"),
         ("M-009", "Thermal pad / barrier", "Flame-retardant, placement TBD", "1 pcs", "PROVISIONAL"),
         ("M-010", "Safety/rating label", "Content TBD after rating chain", "1 pcs", "BLOCKED"),
-        ("M-011", "PZEM mounting plate", "Printed/FR plate, 58x94x2 mm, 4xM3", "1 pcs", "PROVISIONAL"),
-        ("M-012", "Relay module mounting plate", "Printed/FR plate, 55x26x2 mm, 4xM3", "1 pcs", "PROVISIONAL"),
-        ("M-013", "HLK-5M05 mounting plate", "Printed/FR plate, 38x23x2 mm", "1 pcs", "PROVISIONAL"),
-        ("M-014", "Lid gasket", "Silicone/EPDM 1.0 mm, 216x116 frame", "1 pcs", "PROVISIONAL"),
-        ("M-015", "M12 ePTFE pressure vent", "IP67, M12x1.5", "1 pcs", "PROVISIONAL"),
-        ("M-016", "USB service cover", "Printed, 36x26x3 mm, gasket", "1 pcs", "PROVISIONAL"),
+        ("M-011", "PZEM mounting plate", "Printed/FR plate, 37x80x2 mm, 4xM3, holes 65x23", "1 pcs", "PROVISIONAL"),
+        ("M-012", "Relay module mounting plate (optional)", "Printed/FR plate, 52x26x2 mm, 4xM3", "1 pcs", "PROVISIONAL"),
+        ("M-013", "PSU mounting plate", "Printed/FR plate, 50x65x2 mm, 3xM3 at board holes", "1 pcs", "PROVISIONAL"),
+        ("M-014", "Lid gasket", "Silicone/EPDM 1.0 mm, 216x116 frame; flat land, leak test required", "1 pcs", "PROVISIONAL"),
+        ("M-015", "M12 ePTFE pressure vent", "DEFERRED; no through-hole in body; no blind knockout in final model", "0 pcs", "DEFERRED"),
+        ("M-016", "USB service cover", "Printed, 36x26x3 mm, gasket lip", "1 pcs", "PROVISIONAL"),
         ("M-017", "DevKit reverse-insertion key", "Printed bracket, 2xM3", "1 pcs", "PROVISIONAL"),
         ("M-018", "Cable ties / anchors", "PA66, 100 mm", "8 pcs", "PROVISIONAL"),
-        ("M-019", "Relay cantilever shelf", "Printed, 55x28x3 mm + 2 wall legs, 2x M3", "1 pcs", "PROVISIONAL"),
+        ("M-019", "Relay cantilever shelf", "Printed, 55x28x3 mm, 2 wall bosses, 2x M3x8", "1 pcs", "PROVISIONAL"),
+        ("M-020", "Socket M4x16 screws", "Stainless, pan head, 4 pcs for DV flange 38x38", "4 pcs", "PROVISIONAL"),
+        ("M-021", "M3 nylon standoff", "Optional/spare; direct insert mounting preferred", "0 pcs", "DEFERRED"),
     ]
     path = ROOT / "hardware" / "mechanical" / "MECHANICAL_BOM.csv"
     with path.open("w", newline="", encoding="utf-8") as handle:

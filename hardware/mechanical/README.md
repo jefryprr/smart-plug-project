@@ -17,11 +17,11 @@
 
 - Outer **220 × 120 × 70 mm**; wall 2.5 mm; corner R4.
 - **Deep body 60 mm + shallow lid 10 mm**. The lid joint sits above the socket and most modules.
-- 4× M3×16 lid screws into heat-set inserts; flat **1 mm gasket** frame.
-- 4× carrier standoffs at the PCB mounting holes; carrier bottom at **8.0 mm** above the floor.
-- Printed bosses for PZEM, relay, HLK-5M05, fuse/MOV, terminals, CT, USB cover.
+- 4× M3×16 lid screws into **M3×5 heat-set inserts** (4.2 mm hole); flat **1 mm gasket** frame (no groove; leak test required).
+- 4× carrier bosses with **M3×5 heat-set inserts**; carrier bottom at **8.0 mm** above the floor. Direct insert mounting; the 7 nylon standoffs are optional/spare.
+- Printed bosses for PZEM, PSU board, relay shelf, and USB cover. PZEM/PSU/relay use M3×8 self-tapping screws.
 - Mechanical isolation barrier at **x = −4 mm**, height 50 mm, two 10 mm grommet holes.
-- Right wall: Type F socket cutout **45 × 45 mm** at y=34, z=35; M16 gland at y=−50, z=18; M12 ePTFE vent at y=−15, z=45.
+- Right wall: DV DSMS-2P-16A surface socket, **round 45.6 mm cutout** at y=34.9, z=35; flange 50×50, fixing 38×38, 4× M4×16 into bosses. A square 45.6 cutout would remove the fixing bosses. Back wall: M16 gland at x=20, z=18. **No vent hole** (M12 vent deferred).
 - Front wall: USB service opening **30 × 20 mm** with a printed cover; mains OFF only.
 - Top lid: 12 mm button only. CORE-only removes the OLED window and external RGB light pipe; a small left-wall window is provided for the DevKitC-1 v1.0 onboard RGB (position provisional).
 - Printed **DevKit reverse-insertion key** above the antenna end; reverse insertion brings the USB connectors into the key arm.
@@ -44,6 +44,8 @@
 | `drawings/dimensions.svg`, `mounting_plan.svg`, `service_access.svg`, `assembly.pdf` | generated |
 | `FIT_ANALYSIS.md`, `CLASH_REPORT.json` | generated |
 | `MECHANICAL_BOM.csv`, `MECHANICAL_COST_ESTIMATE.md` | generated/manual |
+| `BOM_FIT_VERIFICATION.md` | BOM/model verification and open socket assumption |
+| `export/CORE_ONLY_SHOPEE_PRINT_PACKAGE.zip` | STL/STEP + print README |
 | `ENCLOSURE_MATERIAL_REVIEW.md`, `PRINT_PROTOTYPE_GUIDE.md` | manual |
 
 ## Important limitations
@@ -53,7 +55,7 @@
 - Only the confirmed **220 × 120 × 70** target is generated; 150 × 100 and 180 × 120 are rejected.
 - The enclosure is a mechanical concept. It is **not** a certified electrical enclosure and must not be used for mains until material, clearance, PE, thermal, and impact review are complete.
 - `cutaway.png` is an approximate transparent render, not a true section view.
-- The gasket, vent, USB cover, and DevKit key are **prototype parts**; their sealing, strength, and flame rating are unverified.
+- The gasket, USB cover, and DevKit key are **prototype parts**; their sealing, strength, and flame rating are unverified. No vent is fitted.
 
 ## Review gates
 

@@ -5,6 +5,8 @@
 **Status:** `PROCUREMENT_RESEARCH` / `NOT_APPROVED` / `NOT_FOR_FABRICATION`  
 **Daftar belanja:** `bom/BOM_PROCUREMENT.csv` dan `bom/BOM_PROCUREMENT.md`
 
+> **Update 2026-11-20:** Setelah socket/plug DV DSMS-2P-16A + DIP-2P-16A dipilih, CORE menjadi **Rp754.016** (all-in Rp794.016 dengan ongkir Rp40.000); addendum mekanik **Rp31.000** menjadikannya **Rp825.016 all-in**. Restock EasyWare: CORE **Rp702.548** (all-in Rp742.548); dengan addendum **Rp773.548** (di atas cap). Angka di bawah adalah snapshot 2026-11-16 dan tidak dihitung ulang; `bom/BOM_SUMMARY.json` adalah source of truth terbaru.
+
 ---
 
 ## 1. Ringkasan eksekutif
@@ -110,8 +112,8 @@ Tidak termasuk: ongkir aktual, pajak, bea impor, alat ukur/solder/crimp, jasa 3D
 | JST-XH 2-pin (button/5V) | Rp5.000 est. | Bisa solder langsung. |
 | 5.08 mm terminal 2-pin/5-pin | Rp2.450 / Rp11.760 | Generic 5EDR. |
 | PE terminal 6 mm² | Rp10.250 | PE kontinu, tidak diswitch. |
-| Simon Schuko 16 A | Rp25.026 | Sertifikasi/PE belum. |
-| BOSS BP16 plug | Rp14.044 | Cable clamp/PE belum. |
+| DV DSMS-2P-16A Schuko 16 A | Rp45.999 | Flange 50×50, fixing 38×38; depth/sertifikasi/PE belum. |
+| DV DIP-2P-16A plug | Rp31.000 | Cable clamp 3×1.5 mm²/PE belum. |
 | M16 gland IP68 | Rp2.400 | Strain relief. |
 | MG Duradus 220×120×70 ABS IP65 | Rp99.684 | Flame rating belum. |
 
@@ -205,7 +207,7 @@ OLED, DS3231 RTC, external RGB, JST J4/J5/J7, 330R, 4.7k I2C pullups, and relate
 | Relay 10 A klaim | Kontak panas/weld | Uji 8 A thermal/lifecycle; fuse/TCO. |
 | Enclosure ABS | Flame rating belum | Review material/UL94; jangan klaim aman. |
 | Fuse/MOV/TCO generic | Rating tidak pasti | Verifikasi MPN/marking; uji lab. |
-| Socket/plug tanpa cert | PE/kontak buruk | Brand Simon/BOSS, uji PE/tarik. |
+| Socket/plug tanpa cert | PE/kontak buruk | Brand DV, uji PE/tarik. |
 | Kabel NYYHY bukan H05VV-F | Kurang fleksibel | 3×1.5, strain relief, ferrule. |
 
 ---

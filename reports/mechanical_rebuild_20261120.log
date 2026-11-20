@@ -1,0 +1,35 @@
+﻿=== mechanical rebuild 2026-11-20T14:34:32.3359689+07:00 ===
+python.exe : C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\cadquery\utils.py:82: FutureWarning: 
+save will be removed in the next release.
+At line:1 char:183
++ ... log; $out = & .venv\Scripts\python.exe hardware\mechanical\source\enc ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\JEFRY ...e next release.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  warn(f"{f.__name__} will be removed in the next release.", FutureWarning)
+Exported recommended: enclosure, lid, gasket, USB cover, DevKit key, assembly STEP
+exit_code=0
+=== brackets.py ===
+wrote pzem_bracket.step/.stl
+wrote relay_module_bracket.step/.stl
+wrote psu_bracket.step/.stl
+exit_code=0
+=== assembly.py ===
+python.exe : C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\cadquery\utils.py:82: FutureWarning: 
+save will be removed in the next release.
+At line:1 char:112
++ ... )) { $out = & .venv\Scripts\python.exe "hardware\mechanical\source\$s ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\JEFRY ...e next release.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  warn(f"{f.__name__} will be removed in the next release.", FutureWarning)
+assembly_recommended.step written
+exit_code=0
+=== render.py ===
+Rendered views, drawings, fit report, and mechanical BOM.
+exit_code=0
+=== render.py (post-doc-update) ===
+Rendered views, drawings, fit report, and mechanical BOM.
+exit_code=0

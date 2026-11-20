@@ -1,6 +1,6 @@
 project: esp32-s3-iot-smart-plug
 design_revision: REV_D_CORE_ONLY
-generated_at: '2026-11-19T04:52:56.891256+00:00'
+generated_at: '2026-11-20T09:35:05.750350+00:00'
 approval_policy: User approved the research direction, not final MPNs. No component
   is approved for fabrication.
 approved_by: null
@@ -322,20 +322,21 @@ items:
   blocking_reason: PE must be continuous, not switched or fused. Dedicated mechanical
     bond with lock washer and test point. Exact part is safety-critical and not approved.
 - item_id: E-034
-  mpn: SIMON-SCHUKO-16A
+  mpn: DSMS-2P-16A
   status: DOCUMENTATION_DEFICIENT
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Priced Simon Schuko panel socket, 16 A/250 V. Exact model, certification,
-    contact material, retention, and PE continuity are unverified. Live parts must
-    be inaccessible. Q02 socket standard remains an analysis decision.
+  blocking_reason: DV DSMS-2P-16A, 16 A/250 V, 2P+E, IP44. Flange 50x50, fixing 38x38;
+    depth not in datasheet, body envelope 42 mm provisional. Certification, contact
+    material, retention, and PE continuity unverified. Live parts must be inaccessible.
 - item_id: E-035
-  mpn: BP16
+  mpn: DIP-2P-16A
   status: DOCUMENTATION_DEFICIENT
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Priced BOSS BP16 Schuko plug, 16 A. Verify PE contact, cable clamp,
-    3x1.5 mm2 fit, and certification. Assembly quality is unverified.
+  blocking_reason: DV DIP-2P-16A Schuko industrial plug, 16 A/250 V, IP44. Verify
+    PE contact, cable clamp 3x1.5 mm2, terminal torque, and certification. Assembly
+    quality unverified.
 - item_id: E-036
   mpn: GLAND-M16-TBD
   status: PROVISIONAL

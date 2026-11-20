@@ -5,8 +5,8 @@
 
 - Budget cap: **Rp750,000**
 - Baris: **48 CORE; FULL deferred**; 33 listing-verified, 15 `ESTIMATED`.
-- CORE subtotal: **Rp716,087**
-- CORE dengan harga restock EasyWare: **Rp664,619**
+- CORE subtotal: **Rp754,016**
+- CORE dengan harga restock EasyWare: **Rp702,548**
 - FULL add-ons: DEFERRED (CORE-only build)
 - FULL subtotal: DEFERRED
 - Estimasi ongkir: **Rp40,000** (belum termasuk pajak/impor)
@@ -50,8 +50,8 @@
 | E-026 | JST-XH 4-pin cable for relay module | 1 pcs | Rp12,300 | Shopee | VERIFIED_AGGREGATOR |
 | E-029 | 5.08 mm 2-pin PCB terminal block | 1 pcs | Rp2,450 | Shopee | VERIFIED_AGGREGATOR |
 | E-030 | DIN-rail PE terminal block, 6 mm2 | 1 pcs | Rp10,250 | Shopee | VERIFIED_AGGREGATOR |
-| E-034 | Simon Schuko panel socket, 16 A / 250 V | 1 pcs | Rp25,026 | Shopee | VERIFIED_AGGREGATOR |
-| E-035 | BOSS BP16 Schuko plug, 16 A | 1 pcs | Rp14,044 | Shopee | VERIFIED_AGGREGATOR |
+| E-034 | DV DSMS-2P-16A, 16 A / 250 V, 2P+E, flange 50x50, fixing 38x38, IP44 | 1 pcs | Rp45,999 | Shopee / Bintang Sukses Listrik | VERIFIED_AGGREGATOR |
+| E-035 | DV DIP-2P-16A, 16 A / 250 V, schuko, IP44 | 1 pcs | Rp31,000 | Shopee / DAHLIA ELECTRIC SDA | VERIFIED_AGGREGATOR |
 | E-036 | M16 cable gland, IP68, PA66 | 1 pcs | Rp2,400 | Shopee | VERIFIED_AGGREGATOR |
 | E-037 | MG Duradus 220x120x70 ABS junction box, IP65 | 1 pcs | Rp99,684 | Shopee | VERIFIED_AGGREGATOR |
 | E-038 | PE stud/screw/lock washer/nut kit (estimated) | 1 pcs | Rp5,000 | Local hardware | ESTIMATED |
@@ -71,18 +71,18 @@
 
 ## Budget verdict
 
-- CORE + ongkir: **Rp756,087**.
-- CORE restock + ongkir: **Rp704,619**.
-- FULL + ongkir: **Rp756,087**.
-- Mechanical addendum (gasket/vent/printed cover-key/PSU bracket/thermal pad): **Rp28,000** estimated, not in line items.
-- CORE + addendum + ongkir: **Rp784,087**.
-- CORE restock + addendum + ongkir: **Rp732,619**.
-- FULL + addendum + ongkir: **Rp784,087**.
-- Status: `CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_FITS; FULL_DEFERRED`.
+- CORE + ongkir: **Rp794,016**.
+- CORE restock + ongkir: **Rp742,548**.
+- FULL + ongkir: **Rp794,016**.
+- Mechanical addendum (gasket/printed brackets/USB cover/key/socket screws/thermal pad/label): **Rp31,000** estimated, not in line items.
+- CORE + addendum + ongkir: **Rp825,016**.
+- CORE restock + addendum + ongkir: **Rp773,548**.
+- FULL + addendum + ongkir: **Rp825,016**.
+- Status: `CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_OVER_750K; FULL_DEFERRED`.
 
-CORE electronics (Rp716.087) is about Rp6.087 over Rp750.000 with Rp40.000 shipping (Rp756.087).
-The mechanical addendum (~Rp28.000) pushes the marketplace CORE to about Rp784.087 all-in;
-EasyWare restock brings it to about Rp732.619 all-in, under the cap. FULL UI is deferred.
+CORE electronics is Rp754,016; with Rp40,000 shipping the CORE all-in is Rp794,016.
+The mechanical addendum (~Rp31,000) pushes the marketplace CORE to about Rp825,016 all-in;
+EasyWare restock brings it to about Rp773,548 all-in. FULL UI is deferred.
 
 Jangan menurunkan fuse, MOV, TCO, terminal, PE, enclosure, atau barrier isolasi
 untuk mengejar budget. Lihat `research/PROCUREMENT_INDONESIA.md` untuk risiko stok.

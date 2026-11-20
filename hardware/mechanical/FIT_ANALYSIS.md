@@ -10,6 +10,7 @@
 
 ## Limitations
 - All module dimensions are approximate envelopes, not measured samples.
+- PZEM/socket/relay dimensions must be measured on the purchased parts.
 - No tolerance stack, cable bend, or thermal expansion is modeled.
 - A PASS here is only a coarse digital fit check; it is not a mechanical validation.
 - Barrier crossing check is a simple AABB test, not a creepage/clearance calculation.

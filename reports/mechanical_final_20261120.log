@@ -1,0 +1,58 @@
+=== mechanical final build 2026-11-20T09:44:47.814228+00:00 ===
+=== enclosure.py ===
+Exported CORE_ONLY_SHOPEE enclosure, lid, gasket, USB cover, DevKit key, assembly STEP
+C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\cadquery\utils.py:82: FutureWarning: save will be removed in the next release.
+  warn(f"{f.__name__} will be removed in the next release.", FutureWarning)
+exit_code=0
+=== brackets.py ===
+wrote pzem_bracket.step/.stl
+wrote psu_bracket.step/.stl
+wrote relay_module_bracket.step/.stl
+exit_code=0
+=== relay_shelf.py ===
+wrote relay_shelf.step/.stl
+exit_code=0
+=== assembly.py ===
+assembly_recommended.step written
+C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\cadquery\utils.py:82: FutureWarning: save will be removed in the next release.
+  warn(f"{f.__name__} will be removed in the next release.", FutureWarning)
+exit_code=0
+=== render.py ===
+Rendered views, drawings, fit report, and mechanical BOM.
+exit_code=0
+=== verify_bom_fit.py (pre-zip) ===
+{
+  "status": "PASS",
+  "issues": []
+}
+exit_code=0
+=== print package zip ===
+body_bottom_recommended.stl	1499884
+body_bottom_recommended.step	672795
+body_top_recommended.stl	283284
+body_top_recommended.step	158630
+gasket.stl	1684
+gasket.step	30228
+usb_cover.stl	52484
+usb_cover.step	46422
+devkit_key.stl	53084
+devkit_key.step	62852
+pzem_bracket.stl	128884
+pzem_bracket.step	66111
+psu_bracket.stl	103484
+psu_bracket.step	61226
+relay_shelf.stl	37884
+relay_shelf.step	92229
+assembly_recommended.step	1243195
+PRINT_PACKAGE_README.md	3009
+BOM_FIT_VERIFICATION.md	4183
+BOM_FIT_CHECK.json	2858
+zip_sha256=ba311a5a905c96f5ce7b4a0a59a4df7c70db6bff132b48bdb3e395a24124d35a
+=== verify_bom_fit.py (post-zip) ===
+{
+  "status": "PASS",
+  "issues": []
+}
+exit_code=0
+=== zip rebuilt with final check ===
+zip_sha256=4f595c26b04a02c9eb70f01fb1777bf45093ffee13f2bb7f6b2476f6d007e648
