@@ -13,7 +13,7 @@
   "dependencies": {
     "@fastify/cors": "^11.4.3",
     "@fastify/helmet": "^13.2.0",
-    "@fastify/rate-limit": "^11.2.2",
+    "@fastify/rate-limit": "^11.3.0",
     "@smartplug/api-contract": "*",
     "@smartplug/domain": "*",
     "@smartplug/mqtt-contract": "*",
