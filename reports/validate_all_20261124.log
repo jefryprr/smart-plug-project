@@ -1,0 +1,74 @@
+﻿=== validate_all.py 2026-11-24T21:12:55.4013266+07:00 ===
+[RUN] T-SW-001A TypeScript domain: C:\Program Files\nodejs\npm.CMD run typecheck -w @smartplug/domain
+[PASS] T-SW-001A TypeScript domain (2.43s)
+[RUN] T-SW-001B TypeScript API: C:\Program Files\nodejs\npm.CMD run typecheck -w @smartplug/api
+[FAIL] T-SW-001B TypeScript API (4.01s)
+[RUN] T-SW-001C TypeScript web: C:\Program Files\nodejs\npm.CMD run typecheck -w @smartplug/web
+[FAIL] T-SW-001C TypeScript web (6.13s)
+[RUN] T-SW-001D TypeScript simulator: C:\Program Files\nodejs\npm.CMD run typecheck -w @smartplug/device-simulator
+[FAIL] T-SW-001D TypeScript simulator (1.56s)
+[RUN] T-SW-007 Domain tests: C:\Program Files\nodejs\npm.CMD run test -w @smartplug/domain
+[PASS] T-SW-007 Domain tests (3.35s)
+[RUN] T-SW-004A MQTT contract tests: C:\Program Files\nodejs\npm.CMD run test -w @smartplug/mqtt-contract
+[PASS] T-SW-004A MQTT contract tests (1.91s)
+[RUN] T-SW-005 API + simulator integration: C:\Program Files\nodejs\npm.CMD run test -w @smartplug/api
+[FAIL] T-SW-005 API + simulator integration (3.0s)
+[RUN] T-SW-004B Simulator tests: C:\Program Files\nodejs\npm.CMD run test -w @smartplug/device-simulator
+[FAIL] T-SW-004B Simulator tests (2.43s)
+[RUN] T-HW-018 Firmware core host tests: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -ExecutionPolicy Bypass -File D:\Projects\Zed\SMART-PLUG-V2\firmware\test\host\run_tests.ps1
+[PASS] T-HW-018 Firmware core host tests (32.31s)
+[RUN] T-SW-001E Next.js build: C:\Program Files\nodejs\npm.CMD run build -w @smartplug/web
+[FAIL] T-SW-001E Next.js build (8.5s)
+[RUN] T-HW-003 Connectivity crosscheck: D:\Projects\Zed\SMART-PLUG-V2\.venv\Scripts\python.exe scripts/validate_connectivity.py
+[FAIL] T-HW-003 Connectivity crosscheck (0.32s)
+[RUN] T-HW-004 GPIO map generation: D:\Projects\Zed\SMART-PLUG-V2\.venv\Scripts\python.exe hardware/generators/generate_gpio_map.py
+[PASS] T-HW-004 GPIO map generation (0.21s)
+[RUN] T-HW-010A WireViz render: D:\Projects\Zed\SMART-PLUG-V2\.venv\Scripts\python.exe scripts/render_wiring.py
+[PASS] T-HW-010A WireViz render (9.4s)
+[RUN] T-HW-009A CadQuery export: D:\Projects\Zed\SMART-PLUG-V2\.venv\Scripts\python.exe hardware/mechanical/source/enclosure.py --preset recommended
+[PASS] T-HW-009A CadQuery export (31.0s)
+[RUN] T-HW-009B Mechanical render/fit: D:\Projects\Zed\SMART-PLUG-V2\.venv\Scripts\python.exe hardware/mechanical/source/render.py
+[PASS] T-HW-009B Mechanical render/fit (21.33s)
+[RUN] T-HW-020 PSU static crosscheck: D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\python.exe scripts/validate_psu.py
+[FAIL] T-HW-020 PSU static crosscheck (0.43s)
+[RUN] T-HW-021 PSU DRC/Gerber: D:\Projects\Zed\SMART-PLUG-V2\.venv\Scripts\python.exe scripts/run_psu_check.py
+[PASS] T-HW-021 PSU DRC/Gerber (2.95s)
+[RUN] T-HW-022 Carrier artifact export: D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\python.exe scripts/export_carrier_artifacts.py
+[PASS] T-HW-022 Carrier artifact export (0.5s)
+[RUN] T-HW-023 PSU artifact export: D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\python.exe scripts/export_psu_artifacts.py
+[PASS] T-HW-023 PSU artifact export (0.24s)
+[RUN] T-HW-002A KiCad file parse: D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\python.exe -c import pcbnew; b=pcbnew.LoadBoard('hardware/kicad/smartplug.kicad_pcb'); print('pcbnew parse OK', b.GetNetCount(), 'nets')
+[PASS] T-HW-002A KiCad file parse (0.25s)
+[RUN] T-HW-008A PCB placement preview: D:\Projects\Zed\SMART-PLUG-V2\.venv\Scripts\python.exe scripts/render_pcb_preview.py
+[PASS] T-HW-008A PCB placement preview (1.55s)
+[RUN] T-HW-002 Schematic ERC: D:\Projects\Zed\SMART-PLUG-V2\.venv\Scripts\python.exe scripts/run_kicad_check.py --mode erc
+[PASS] T-HW-002 Schematic ERC (3.79s)
+[RUN] T-HW-006 PCB DRC: D:\Projects\Zed\SMART-PLUG-V2\.venv\Scripts\python.exe scripts/run_kicad_check.py --mode drc
+[PASS] T-HW-006 PCB DRC (2.26s)
+[RUN] T-HW-008 Gerber/drill export; routed carrier: D:\Projects\Zed\SMART-PLUG-V2\.venv\Scripts\python.exe scripts/run_kicad_check.py --mode gerber
+[PASS] T-HW-008 Gerber/drill export; routed carrier (0.85s)
+[RUN] T-SW-001F OpenAPI parse: D:\Projects\Zed\SMART-PLUG-V2\.venv\Scripts\python.exe -c import yaml; d=yaml.safe_load(open('packages/api-contract/openapi.yaml', encoding='utf-8')); assert d['openapi'].startswith('3.'); assert len(d['paths'])>=18; print('OpenAPI paths:', len(d['paths']))
+[PASS] T-SW-001F OpenAPI parse (0.19s)
+[BLOCKED] T-SW-011 Playwright E2E: Run with --e2e to start API/web/simulator
+[RUN] T-HW-017 ESP-IDF target build: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -ExecutionPolicy Bypass -NoProfile -File D:\Projects\Zed\SMART-PLUG-V2\scripts\build_firmware.ps1
+[FAIL] T-HW-017 ESP-IDF target build (127.25s)
+[BLOCKED] T-HW-011 Mains isolation review: No qualified reviewer/lab evidence
+[BLOCKED] T-HW-012 PE continuity: No hardware/lab
+[BLOCKED] T-HW-013 Thermal/fuse/surge: No lab
+[BLOCKED] T-HW-014 Boot-safe waveform: No board/scope
+[BLOCKED] T-HW-019 Physical load/temperature: No lab
+[BLOCKED] T-SW-002 PostgreSQL migration: PostgreSQL/Docker not installed
+[BLOCKED] T-SW-003 MQTT broker auth/ACL: Production broker/TLS not executed
+[BLOCKED] T-SW-010 Offline router/cloud test: No deployed network stack
+[BLOCKED] T-SW-013 Android device/emulator test: Debug APK built; no device/emulator install or UI test
+[BLOCKED] T-SW-020 Deployment clean-room: Docker/Postgres not installed
+[BLOCKED] T-SW-025 Full system HIL: No hardware/lab
+{
+  "overall": "FAIL",
+  "counts": {
+    "PASS": 17,
+    "FAIL": 9,
+    "BLOCKED": 12
+  }
+}
+exit_code=1

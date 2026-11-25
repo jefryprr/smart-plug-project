@@ -24,7 +24,7 @@
 |---|---|---|
 | Board | 50 x 65 mm, 2-layer FR4 1.6 mm, 2 oz target | `PROVISIONAL` |
 | Isolation notch | 2 mm routed slot at x=19..21, y=0..45; HLK bridges | `UNVERIFIED` |
-| L/N traces | 4 mm; provisional spacing 6-12 mm to SELV/edges | `UNVERIFIED` |
+| L/N traces | 2.5 mm; geometric mains-to-SELV 9.05 mm, L-N 1.3 mm (audit only) | `UNVERIFIED` |
 | HLK | 38 x 23 x 18 mm; 4 pins at datasheet positions; AC/DC barrier internal | `DATASHEET_DERIVED` / sample check required |
 | Terminals/fuse/TCO/JST | 5.08 mm/5x20/2.5 mm; exact ratings TBD | `DOCUMENTATION_DEFICIENT` |
 

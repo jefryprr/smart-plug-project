@@ -118,6 +118,7 @@ def fit_report(preset: str = "recommended") -> dict:
             "No tolerance stack, cable bend, or thermal expansion is modeled.",
             "A PASS here is only a coarse digital fit check; it is not a mechanical validation.",
             "Barrier crossing check is a simple AABB test, not a creepage/clearance calculation.",
+            "PSU component heights are lumped into a 30 mm envelope; the BLX-A cover swing and fuse service access under the relay shelf are not modeled.",
         ],
     }
 

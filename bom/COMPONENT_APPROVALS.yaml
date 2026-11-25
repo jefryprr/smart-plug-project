@@ -1,6 +1,6 @@
 project: esp32-s3-iot-smart-plug
 design_revision: REV_D_CORE_ONLY
-generated_at: '2026-11-20T09:35:05.750350+00:00'
+generated_at: '2026-11-24T14:21:59.353184+00:00'
 approval_policy: User approved the research direction, not final MPNs. No component
   is approved for fabrication.
 approved_by: null
@@ -11,10 +11,10 @@ items:
   status: PENDING_APPROVAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Q08=B remains the official ESP32-S3-DevKitC-1 N16R8 baseline. Official
-    local stock is unconfirmed; the priced prototype board is a compatible N16R8 at
-    Rp139,968. This is an explicit, not silent, deviation. Verify N16R8 marking, RGB
-    GPIO (v1
+  blocking_reason: 'Q08=B remains the official ESP32-S3-DevKitC-1 N16R8 baseline.
+    Official local stock is unconfirmed; the actual Shopee cart board is a compatible
+    N16R8 at Rp117,114 (variant: no antenna port, soldered headers). This is an explicit,
+    not silent'
 - item_id: E-002
   mpn: PZEM-004T-V4-100A-CT
   status: DOCUMENTATION_DEFICIENT
@@ -50,13 +50,21 @@ items:
     diode: the module has its own coil drivers. Verify total input current (~15-20
     mA per channel), t'
 - item_id: E-009
-  mpn: SN74HCT125N
-  status: PENDING_APPROVAL
+  mpn: 74HCT125D
+  status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: 'Converts ESP32 3.3 V logic to 5 V for PZEM RX only. 74HCT input
-    threshold is TTL-compatible. Unused gates: inputs/OE tied to GND, outputs open;
-    add 100 nF at VCC. Do not use for galvanic isolation.'
+  blocking_reason: 'Shopee part is SMD SOP-14, not DIP-14. It requires a SOP14-to-DIP14
+    adapter (E-009A); verify adapter pinout, height, and socket fit. 74HCT input threshold
+    is TTL-compatible. Unused gates: inputs/OE tied to GND, outputs open; add 100
+    nF at V'
+- item_id: E-009A
+  mpn: SOP14-DIP14
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Adapter must map pin 1 to pin 1 and fit the DIP-14 socket. Verify
+    continuity and height before inserting into U9.
 - item_id: E-010
   mpn: 2CH-5V-OPTO-10A
   status: DOCUMENTATION_DEFICIENT
@@ -64,8 +72,8 @@ items:
   approved_for_fabrication: false
   blocking_reason: User-selected common 2-channel module, off-board. Two independent
     SPDT channels (L/N), NOT mechanically linked DPST. 10 A is a vendor claim, not
-    a validated continuous rating. Final 8 A/1840 W. Active-LOW input; verify JD-VCC/pinout.
-    Priced
+    a validated continuous rating. Provisional system rating is 6 A because the BLX-A
+    fuse holder i
 - item_id: E-010A
   mpn: BRACKET-2CH-RELAY
   status: PROVISIONAL
@@ -81,37 +89,41 @@ items:
   blocking_reason: PZEM stands off the PCB in the mains zone; CT and voltage terminals
     accessible. Do not mount on SELV carrier.
 - item_id: E-011
-  mpn: 0215010.MXP
-  status: PENDING_APPROVAL
-  approved_for_purchase: false
-  approved_for_fabrication: false
-  blocking_reason: Fuse is backup protection, not the only overcurrent protection.
-    Breaking capacity, time-current curve, holder rating, and coordination must be
-    reviewed. Provisional continuous load may be limited to 8 A.
-- item_id: E-012
-  mpn: 01110506Z
-  status: PENDING_APPROVAL
-  approved_for_purchase: false
-  approved_for_fabrication: false
-  blocking_reason: 'Two clips per fuse; matches the routed PSU board. Not a closed/touch-proof
-    holder; fuse access requires opening the screwed lid. Clip rating 10 A/250 V is
-    marginal at 8 A continuous; thermal test required. Tool-access and service procedure '
-- item_id: E-013
-  mpn: B72210S0271K101
-  status: PENDING_APPROVAL
-  approved_for_purchase: false
-  approved_for_fabrication: false
-  blocking_reason: MOV alone is not a complete surge protection design. End-of-life
-    failure mode, thermal fuse coordination, and standard applicability must be reviewed.
-    Do not claim surge suppression until tested.
-- item_id: E-014
-  mpn: SF96E
+  mpn: 021506.3MXP
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: SF96E rated functioning temperature 99 C (marked 96 C), holding
-    temperature 84 C, 10 A resistive / 250 VAC. NOT SF169E (172 C). Must be mechanically
-    clamped to the hottest terminal/HLK/PCB spot and be independent of firmware; normal-operati
+  blocking_reason: Shopee part is Littelfuse 215-series 6.3 A slow-blow. The BLX-A
+    holder is rated 6.3 A / 250 V, so the provisional continuous load is 6 A maximum,
+    not 8 A. A 10 A fuse in a 6.3 A holder is NOT acceptable. Breaking capacity, time-current
+    curv
+- item_id: E-012
+  mpn: BLX-A
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Single BLX-A holder with 2 pins; body 22 x 9.5 x 10.5 mm, pin cross-section
+    1.4 x 0.35 mm. Shopee seller states 21.5 mm pin spacing; the PCB footprint uses
+    21.5 mm but is UNVERIFIED until the sample is measured. Rating 6.3 A / 250 V,
+    so the
+- item_id: E-013
+  mpn: 10D271K
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Shopee part is a generic 10D271K, 10 pcs pack. Actual disc diameter
+    and lead pitch must be measured; the D12/7.5 mm footprint is a conservative provisional
+    fit. MOV alone is not a complete surge protection design. End-of-life failure
+    mode a
+- item_id: E-014
+  mpn: TCO-96C-10A-GENERIC
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Shopee part is a generic 96 C TCO, NOT SEFUSE SF96E. Verify marking
+    96 C / RFT 99 C / holding 84 C, body dimensions, and lead pitch; the custom 5.1
+    mm footprint is provisional. Must be mechanically clamped to the hottest terminal/HLK/PCB
+    sp
 - item_id: E-015
   mpn: 1N4007-E3/54
   status: PROVISIONAL
@@ -138,13 +150,14 @@ items:
   approved_for_fabrication: false
   blocking_reason: Place close to LED data input.
 - item_id: E-050
-  mpn: 1206L110THYR
+  mpn: PTC-1206-1.0A
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Protects the PSU board total 5 V output (J5/J6/J7) and wiring.
-    Hold current 1.1 A; verify trip time and voltage drop. Not a substitute for the
-    mains fuse. The carrier has no PTC.
+  blocking_reason: Shopee part is 1.0 A hold, not 1.1 A. Protects the PSU board total
+    5 V output (J5/J6/J7) and wiring. Verify trip current and voltage drop; 5 V load
+    must stay below hold with margin. Not a substitute for the mains fuse. The carrier
+    has no PT
 - item_id: E-051
   mpn: SMBJ5.0A
   status: PROVISIONAL
@@ -174,13 +187,14 @@ items:
   approved_for_fabrication: false
   blocking_reason: Carrier, relay, PZEM. Color-code/label; do not swap outputs.
 - item_id: E-055
-  mpn: MKDS 1,5/2-5,08
-  status: PROVISIONAL
+  mpn: KF129-2P
+  status: UNVERIFIED
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: PSU TB2 L/N output to relay/socket. 250 VAC < user's >=300 V target;
-    upgrade path MKDS 3/2-5,08. Verify torque, 1.5 mm2 wire/ferrule, and creepage.
-    Full 8 A passes through this block.
+  blocking_reason: 'Shopee listing is a new listing with 0 reviews/0 sold; 300 V /
+    25 A is a vendor claim, not verified. The PCB uses a Phoenix MKDS 5.08 mm pad
+    layout (1.3 mm drill, 2.6 mm pad); body, courtyard, and retention of KF129 are
+    not proven. Measure '
 - item_id: E-019
   mpn: UWT1A101MCL1GS
   status: PROVISIONAL
@@ -188,18 +202,26 @@ items:
   approved_for_fabrication: false
   blocking_reason: 5 V rail decoupling near relay/PSU.
 - item_id: E-020
-  mpn: GRM188R71H104KA93D
+  mpn: 100nF-0805-X7R
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Place at each IC supply pin.
+  blocking_reason: Actual Shopee part is a 20 pcs 0805 X7R pack. Place at each IC
+    supply pin.
 - item_id: E-020A
-  mpn: GRM188R71H104KA93D
+  mpn: 100nF-0805-X7R
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
   blocking_reason: Place within 5 mm of U9 VCC/GND. Required for clean 5V level-shift
-    edges.
+    edges. C3 was moved from 58,48 to 78,24 in REV_D.
+- item_id: E-020B
+  mpn: 100nF-0805-X7R
+  status: PROVISIONAL
+  approved_for_purchase: false
+  approved_for_fabrication: false
+  blocking_reason: Added across RELAY_GATE-GND to slow the long gate trace and reduce
+    false turn-on. Verify relay driver edge and boot behavior.
 - item_id: E-018A
   mpn: RC0805FR-0710KL
   status: PROVISIONAL
@@ -266,15 +288,16 @@ items:
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: PZEM TTL side is SELV via the module's internal optocouplers. Pin
-    order must match the purchased V4 batch; never assume colors.
+  blocking_reason: PZEM TTL side is SELV via the module's internal optocouplers. J2
+    pin 1 is intentionally NC; PZEM 5V comes directly from PSU J7. Pin order must
+    match the purchased V4 batch; never assume colors.
 - item_id: E-026
   mpn: B4B-XH-A
   status: PROVISIONAL
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: Active-LOW module inputs; both driven by one AO3400. JD-VCC jumper
-    on module. Keep coil current off the carrier ground return? Use short 5V/GND pair.
+  blocking_reason: Active-LOW module inputs; both driven by one AO3400. J3 pin 1 is
+    intentionally NC; relay 5V comes directly from PSU J6. Verify module pinout.
 - item_id: E-027
   mpn: B4B-XH-A
   status: DEFERRED_CORE_ONLY
@@ -307,13 +330,14 @@ items:
   blocking_reason: 5V/GND from HLK. Add 100uF bulk and 100nF at carrier entry. Keep
     away from mains wiring.
 - item_id: E-029
-  mpn: MKDS 1,5/2-5,08
-  status: PROVISIONAL
+  mpn: KF129-2P
+  status: UNVERIFIED
   approved_for_purchase: false
   approved_for_fabrication: false
-  blocking_reason: PSU TB1 input L/N. 250 VAC rating meets 230 VAC nominal but is
-    below the user's >=300 V target; conservative upgrade is MKDS 3/2-5,08 with a
-    new footprint. 17.5 A > 10 A fuse. Verify torque, 1.5 mm2 wire/ferrule, and creepage.
+  blocking_reason: 'Shopee listing is a new listing with 0 reviews/0 sold; 300 V /
+    25 A is a vendor claim, not verified. The PCB uses a Phoenix MKDS 5.08 mm pad
+    layout (1.3 mm drill, 2.6 mm pad); body, courtyard, and retention of KF129 are
+    not proven. Measure '
 - item_id: E-030
   mpn: PE-TERMINAL-TBD
   status: BLOCKED

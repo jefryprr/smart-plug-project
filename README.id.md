@@ -64,7 +64,7 @@ Namun, **belum ada alat fisik yang dirakit atau dinyalakan dengan 230 VAC**. Sem
 | Android | Debug APK terbangun; belum diuji di HP/emulator |
 | PCB carrier dan PSU | KiCad ERC 0; DRC 0/0; Gerber/drill provisional |
 | Enclosure 3D | STEP/STL dan render tersedia; belum dicetak/diuji |
-| Pengujian fisik | **BELUM** — thermal, PE, hipot, beban 8 A, dan uji mains masih BLOCKED |
+| Pengujian fisik | **BELUM** — thermal, PE, hipot, beban 6 A, dan uji mains masih BLOCKED |
 
 Artinya: **software dan desain digital sudah cukup lengkap untuk dipelajari dan dikembangkan**, tetapi **belum aman untuk dipakai sebagai produk listrik**.
 

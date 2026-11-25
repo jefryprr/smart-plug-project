@@ -2,21 +2,21 @@
 
 **Status:** `ENGINEERING_REVIEW_REQUIRED` / `HARDWARE_VALIDATION_REQUIRED` / `NOT_FOR_FABRICATION`  
 **Design revision:** `REV_D_CORE_ONLY`  
-**Board:** 50 × 65 mm, 2-layer FR4 1.6 mm, **2 oz Cu target** (verify fab capability), 8 A load path.  
+**Board:** 50 × 65 mm, 2-layer FR4 1.6 mm, **2 oz Cu target** (verify fab capability), **6 A provisional load path** (limited by BLX-A 6.3 A holder).  
 **Toolchain:** KiCad 10.0.8 portable (`tools/kicad/bin`).
 
 ## What it is
 
 A separate mains-entry board for the smart plug:
 
-- TB1: 230 VAC L/N input, 5.08 mm terminal block.
-- F1: 5×20 mm 10 A 250 VAC fuse (clip holder).
-- MOV1: 275 VAC across L/N after the fuse.
-- TF1: SEFUSE SF96E, 99 °C rated functioning temperature (marked 96 °C, holding 84 °C), 10 A / 250 VAC one-shot, in the L path after the MOV. Do not substitute SF169E (172 °C).
+- TB1: 230 VAC L/N input, KF129-2P 5.08 mm terminal block (300 V/25 A claim, unverified).
+- F1: 5×20 mm **6.3 A** 250 VAC time-lag fuse (Littelfuse 215-series claim) in a **BLX-A 6.3 A** PCB holder.
+- MOV1: generic 10D271K, 275 VAC class, 10 mm, across L/N after the fuse.
+- TF1: **generic 96 °C** one-shot, 10 A / 250 VAC (marked 96 °C, RFT 99 °C, holding 84 °C), in the L path after the MOV. **Not** SEFUSE SF96E; do not claim SF96E.
 - PS1: HLK-5M05 5 V/1 A, 4-pin module.
-- TB2: 230 VAC L/N output to the relay/load.
+- TB2: 230 VAC L/N output to the relay/load, KF129-2P.
 - J5/J6/J7: 3× JST-XH 2-pin 5 V outputs.
-- F2/D1: 1.1 A PTC + SMBJ5.0A TVS on the total 5 V output.
+- F2/D1: **1.0 A** PTC + SMBJ5.0A TVS on the total 5 V output.
 - C1/C2: 100 µF + 100 nF at the 5 V output.
 
 PE is **not** on this board. It is a dedicated chassis stud (plug PE → stud → socket PE), never switched or fused.
@@ -45,8 +45,9 @@ Total 5 V load estimate is ≤1 A; HLK is 1 A. Peak is not measured. Do not add 
 ## Layout / safety notes
 
 - 2 mm routed isolation notch at x=19..21, y=0..45; the HLK module bridges it.
-- Mains leg on the right, SELV leg on the left. 4 mm L/N traces; 6–12 mm provisional
-  spacing around the notch and board edges. **These are not IEC creepage claims.**
+- Mains leg on the right, SELV leg on the left. 2.5 mm mains traces;
+  geometric copper mains-to-SELV minimum is 9.05 mm (audit file), L-N minimum
+  1.3 mm. **These are not IEC creepage claims.**
 - The HLK AC pins face the mains leg; DC pins face the SELV leg.
 - The PSU board is mounted on 3 standoffs (H1/H3/H4) in the enclosure.
 - The relay sits above the PSU board on a printed cantilever shelf; the relay is
@@ -74,8 +75,8 @@ Total 5 V load estimate is ≤1 A; HLK is 1 A. Peak is not measured. Do not add 
 
 - Creepage/clearance to IEC 60664-1; working voltage/OVC/pollution degree.
 - HLK batch isolation, certificate, ripple, thermal.
-- Fuse/MOV/TCO/terminal/JST ratings and breaking capacity.
-- 8 A thermal rise, 2 oz fabrication, solder mask/barrier.
+- Fuse/MOV/TCO/terminal/JST ratings and breaking capacity; BLX-A 6.3 A holder is the limiting part.
+- 6 A thermal rise, 2 oz fabrication, solder mask/barrier.
 - Assembly hipot/leakage, PE continuity, relay/socket/load tests.
 - PZEM batch internal isolation and OUT3.
 

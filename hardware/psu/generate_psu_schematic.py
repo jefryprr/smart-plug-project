@@ -166,15 +166,15 @@ def main():
          color="#C53030", weight="bold", ha="center")
 
     # ------------------------------------------------------------------ mains chain
-    card(ax, 3.8, 6.9, 1.6, 1.1, "TB1", "230 VAC IN\nL / N · 5.08 mm",
+    card(ax, 3.8, 6.9, 1.6, 1.1, "TB1", "230 VAC IN\nKF129-2P · 5.08 mm",
          MAINS_FILL, MAINS_EDGE)
-    card(ax, 5.8, 6.9, 1.4, 1.1, "F1", "10 A · 250 VAC\nslow-blow",
+    card(ax, 5.8, 6.9, 1.4, 1.1, "F1", "6.3 A · 250 VAC\nBLX-A holder",
          PROTECT_FILL, PROTECT_EDGE)
-    card(ax, 7.6, 6.9, 1.4, 1.1, "MOV1", "275 VAC\nL–N",
+    card(ax, 7.6, 6.9, 1.4, 1.1, "MOV1", "10D271K\n275 VAC · L–N",
          PROTECT_FILL, PROTECT_EDGE)
-    card(ax, 9.4, 6.9, 1.5, 1.1, "TF1", "99 °C TCO\n10 A · one-shot",
+    card(ax, 9.4, 6.9, 1.5, 1.1, "TF1", "96 °C generic\n10 A · one-shot",
          PROTECT_FILL, PROTECT_EDGE)
-    card(ax, 11.3, 6.9, 1.7, 1.1, "TB2", "230 VAC OUT\nrelay / socket",
+    card(ax, 11.3, 6.9, 1.7, 1.1, "TB2", "230 VAC OUT\nKF129-2P",
          MAINS_FILL, MAINS_EDGE)
 
     for x1, x2 in [(5.4, 5.8), (7.2, 7.6), (9.0, 9.4), (10.9, 11.3)]:
@@ -244,8 +244,8 @@ def main():
          "HLK output: 5 V / 1 A max\nPeak load not measured",
          size=8.0, color=MUTED, ha="left")
     note(ax, 6.2, 1.75,
-         "Mains L/N load path: 10 A rated terminals and fuse\n"
-         "Final 8 A only after thermal and lifecycle tests",
+         "Mains L/N provisional 6 A path; BLX-A holder is 6.3 A\n"
+         "Do not fit a 10 A fuse in this holder; thermal/lifecycle tests pending",
          size=8.0, color=MUTED, ha="left")
 
     # ------------------------------------------------------------------ footer

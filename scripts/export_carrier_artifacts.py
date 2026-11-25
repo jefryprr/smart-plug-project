@@ -62,7 +62,9 @@ def main() -> None:
     pcba = []
     for fp in board.GetFootprints():
         ref = str(fp.GetReference())
-        if ref.startswith(("FID", "H")):
+        # Test points and solder jumpers are PCB copper features, not purchased
+        # assembly parts; keep them out of the PCBA BOM.
+        if ref.startswith(("FID", "H", "TP", "JP")):
             continue
         pcba.append({
             "reference_designators": ref,

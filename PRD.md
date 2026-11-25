@@ -64,6 +64,8 @@ Dampak: kesesuaian konektor, kemampuan menerima steker, pembumian, pembalikan or
 A. Maksimum 6 A; B. Maksimum 10 A; C. Maksimum 16 A; D. Tentukan setelah evaluasi part/rating.  
 Default belum ditetapkan. Jika memilih 16 A, biaya, dimensi, termal, switching, fuse, terminal, dan pengujian harus dinilai ulang. Rating akhir = nilai terendah yang diturunkan dari sistem dan bukti.
 
+> **Catatan 2026-11-24:** Rantai part aktual memakai fuse holder BLX-A **6.3 A / 250 V**, sehingga prototipe dibatasi **6 A provisional**. Target 8 A tidak dapat diklaim tanpa mengganti holder ke rating yang lebih tinggi dan mengulang uji termal/koordinasi. Lihat `safety/ELECTRICAL_RATING_CHAIN.md`.
+
 **Q04 — Jenis beban yang harus didukung:**  
 A. Resistif (lampu/pemanas sesuai rating); B. Campuran elektronik rumah tangga termasuk adaptor SMPS; C. Beban motor/induktif; D. Semua jenis dengan pembatasan eksplisit.  
 Beban induktif, inrush, *power supply* kapasitif dan siklus switching memerlukan penilaian tersendiri. Jangan menjanjikan semua beban aman.

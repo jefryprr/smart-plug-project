@@ -7,6 +7,15 @@
 
 Source hierarchy used: manufacturer datasheet → official test/certificate → official product page → public standard guidance → manufacturer application note → authorised distributor → forum only as a lead. No value below is copied from an AI-generated page or from a paywalled standard.
 
+> **2026-11-24 superseding note — actual Shopee parts.** The evidence rows E-04 (Phoenix MKDS), E-05 (10 A Littelfuse), E-06 (Littelfuse 111 clips), and E-08 (SEFUSE SF96E) describe the earlier preferred parts, **not** the parts actually bought. The cart now uses:
+> - TB1/TB2: **KF129-2P**, 5.08 mm, 300 V/25 A claim, new listing with 0 reviews/0 sold → `UNVERIFIED`; PCB uses a Phoenix pad layout only.
+> - F1: **Littelfuse 215-series 6.3 A / 250 V** slow-blow → `PROVISIONAL`; breaking capacity/MPN still unverified.
+> - Fuse holder: **BLX-A 6.3 A / 250 V**, 5×20 mm → `PROVISIONAL`; this is the limiting part for continuous current (6 A maximum), not 10 A.
+> - TCO: **generic 96 °C / 10 A**, not SEFUSE SF96E → `UNVERIFIED`; do not claim SF96E.
+> - MOV: **generic 10D271K**, 10 mm, 10 pcs pack → `UNVERIFIED`; the D12/7.5 mm PCB footprint is provisional.
+> - PTC: **1.0 A** 1206, not 1.1 A.
+> The 8 A rating in this document is therefore **superseded** by a provisional 6 A limit. See `safety/ELECTRICAL_RATING_CHAIN.md` and `reports/PCB_DESIGN_RESEARCH_AND_REVIEW_2026-11-24.md`.
+
 ## 1. Evidence table
 
 | # | Topic | Value used in the design | Source (primary) | URL | Accessed | Revision | Confidence | Conflict / note |
@@ -46,7 +55,7 @@ PS1 -Vo -> GND
 - TF1 is after the MOV in the L path, so it removes both the load and the HLK input.
 - PE is not on the board.
 
-## 3. Calculated 8 A trace check
+## 3. Historical 8 A trace check (superseded by the 6 A holder limit)
 
 IPC-2221 external-layer formula (E-11):
 
@@ -58,7 +67,7 @@ W(2 oz) = 287 / (2 * 1.378) = 104 mil = 2.64 mm
 W(1 oz) = 287 / (1 * 1.378) = 208 mil = 5.29 mm
 ```
 
-The board uses 4 mm L/N traces and a 2 oz target. That is above the formula minimum at 2 oz, but **not** evidence that the terminals, fuse clips, TCO, or HLK stay below their limits. The 8 A closed-enclosure test is the only acceptable proof.
+The historical check used 4 mm L/N traces and a 2 oz target. The actual design now uses 4 mm at the terminal feeds and 2.5 mm on the fuse/TCO bus for a **6 A provisional** limit. Width is still **not** evidence that the terminals, BLX-A holder, TCO, or HLK stay below their limits; the 6 A closed-enclosure test is the only acceptable proof.
 
 ## 4. Conflicts resolved in this revision
 

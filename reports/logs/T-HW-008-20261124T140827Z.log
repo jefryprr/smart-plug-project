@@ -1,0 +1,11 @@
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export gerbers -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\Gerber -l F.Cu,B.Cu,F.SilkS,B.SilkS,Edge.Cuts D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\Gerber\smartplug-F_Cu.gtl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\Gerber\smartplug-B_Cu.gbl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\Gerber\smartplug-F_Silkscreen.gto'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\Gerber\smartplug-B_Silkscreen.gbo'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\Gerber\smartplug-Edge_Cuts.gm1'.
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export drill -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\Drill --generate-map --map-format pdf D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\Drill\smartplug.drl'
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\Drill\smartplug-drl_map.pdf'.
+Done.
+Gerber/drill routed prototype files present: True

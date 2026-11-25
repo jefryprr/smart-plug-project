@@ -52,7 +52,7 @@ The repository is also an **evidence trail**: requirements, decisions, BOM, data
 |---|---|---|
 | **Hardware** | 100 × 70 mm SELV carrier + separate 50 × 65 mm mains-entry PSU board (HLK-5M05, fuse, MOV, TCO, 3× JST 5 V) | `ENGINEERING_REVIEW_REQUIRED` / `NOT_FOR_FABRICATION` |
 | **Metering** | PZEM-004T V4 100 A CT, off-board; UART level-shifted with 74HCT125 + divider | Batch isolation `UNVERIFIED` |
-| **Switching** | Off-board 2-channel optocoupler relay module, 8 A / ~1.840 W final target, not a linked DPST | `PROVISIONAL` |
+| **Switching** | Off-board 2-channel optocoupler relay module, **6 A / ~1.380 W provisional** (BLX-A 6.3 A holder limit), not a linked DPST | `PROVISIONAL` |
 | **Firmware** | Portable C safety core + time service (SNTP/NVS/API/MQTT/manual) + ESP-IDF v6.1 target build | Host tests PASS; not flashed |
 | **Backend** | Fastify API, SQLite dev adapter, auth/RBAC, commands, telemetry, events, time endpoints | 43 tests PASS |
 | **Contracts** | OpenAPI 3.1, Zod, MQTT topics/schemas/fixtures | 12 tests PASS |
@@ -115,7 +115,7 @@ Deep dive: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) · [`docs/HARDWARE_GUI
 
 | Verified digitally | Still blocked / unverified |
 |---|---|
-| 36 domain tests, 12 MQTT contract tests, 43 API tests, 6 simulator tests | Physical fit, thermal, PE continuity, hipot/leakage, 8 A load |
+| 36 domain tests, 12 MQTT contract tests, 43 API tests, 6 simulator tests | Physical fit, thermal, PE continuity, hipot/leakage, 6 A load |
 | 88 firmware host checks; ESP-IDF v6.1 target build | Firmware flash, boot waveform, PZEM/Wi-Fi/MQTT/OTA/time integration |
 | Next.js build + 5 Playwright tests + axe | Android device/emulator install; production signing |
 | KiCad ERC 0; carrier DRC 0/0; PSU DRC 0/0; Gerber/drill/POS exported | Component-level schematic/footprint review; fabrication release |

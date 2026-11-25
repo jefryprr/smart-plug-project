@@ -2,6 +2,7 @@ reference_designators,description,manufacturer,mpn,qty,footprint,approved_status
 C1,100uF,TBD,TBD,1,CP_Elec_6.3x5.4,PROVISIONAL,REV_D_CORE_ONLY routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
 C2,100nF,TBD,TBD,1,C_0805_2012Metric,PROVISIONAL,REV_D_CORE_ONLY routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
 C3,100nF,TBD,TBD,1,C_0805_2012Metric,PROVISIONAL,REV_D_CORE_ONLY routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+C4,100nF,TBD,TBD,1,C_0805_2012Metric,PROVISIONAL,REV_D_CORE_ONLY routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
 J1A,ESP32-S3-DevKitC-1 J1,TBD,TBD,1,PinSocket_1x22_P2.54mm_Vertical,PROVISIONAL,REV_D_CORE_ONLY routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
 J1B,ESP32-S3-DevKitC-1 J3,TBD,TBD,1,PinSocket_1x22_P2.54mm_Vertical,PROVISIONAL,REV_D_CORE_ONLY routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
 J2,PZEM_TTL,TBD,TBD,1,JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical,PROVISIONAL,REV_D_CORE_ONLY routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
@@ -14,4 +15,4 @@ R2,100k,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_D_CORE_ONLY routed SELV carr
 R4,10k,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_D_CORE_ONLY routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
 R5,20k,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_D_CORE_ONLY routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
 R8,10k,TBD,TBD,1,R_0805_2012Metric,PROVISIONAL,REV_D_CORE_ONLY routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
-U9,74HCT125N,TBD,TBD,1,DIP-14_W7.62mm,PROVISIONAL,REV_D_CORE_ONLY routed SELV carrier; mounting holes and fiducials excluded from assembly BOM
+U9,74HCT125D + adapter,TBD,TBD,1,DIP-14_W7.62mm,PROVISIONAL,REV_D_CORE_ONLY routed SELV carrier; mounting holes and fiducials excluded from assembly BOM

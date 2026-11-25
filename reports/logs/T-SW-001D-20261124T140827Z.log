@@ -1,0 +1,13 @@
+
+> @smartplug/device-simulator@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+src/simulator.ts(12,8): error TS2307: Cannot find module '@smartplug/mqtt-contract' or its corresponding type declarations.
+src/simulator.ts(13,64): error TS2307: Cannot find module '@smartplug/domain' or its corresponding type declarations.
+npm error Lifecycle script `typecheck` failed with error:
+npm error code 2
+npm error path D:\Projects\Zed\SMART-PLUG-V2\apps\device-simulator
+npm error workspace @smartplug/device-simulator@0.1.0
+npm error location D:\Projects\Zed\SMART-PLUG-V2\apps\device-simulator
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c tsc -p tsconfig.json --noEmit

@@ -1,0 +1,33 @@
+
+> @smartplug/web@0.1.0 typecheck
+> tsc --noEmit
+
+src/app/(app)/admin/firmware-releases/page.tsx(10,38): error TS7006: Parameter 'home' implicitly has an 'any' type.
+src/app/(app)/devices/[id]/analytics/page.tsx(74,53): error TS7006: Parameter 'bucket' implicitly has an 'any' type.
+src/app/(app)/devices/[id]/automation/page.tsx(98,55): error TS7006: Parameter 'schedule' implicitly has an 'any' type.
+src/app/(app)/devices/[id]/events/page.tsx(22,57): error TS7006: Parameter 'event' implicitly has an 'any' type.
+src/app/(app)/settings/account/page.tsx(32,28): error TS7006: Parameter 'home' implicitly has an 'any' type.
+src/components/DemoBanner.tsx(1,33): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/components/DeviceHealth.tsx(1,42): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/components/DeviceSettings.tsx(4,51): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/components/DeviceSummaryCard.tsx(1,36): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/components/ElectricalReadings.tsx(1,44): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/components/EnergyGraph.tsx(1,38): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/components/EventList.tsx(1,32): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/components/PowerControl.tsx(4,52): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/components/ScheduleEditor.tsx(4,52): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/components/ScheduleEditor.tsx(48,31): error TS7006: Parameter 'value' implicitly has an 'any' type.
+src/components/TimeStatusPanel.tsx(4,35): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/components/UsageAndCost.tsx(1,40): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/lib/api.ts(34,8): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/lib/api.ts(142,15): error TS18046: 'parsed' is of type 'unknown'.
+src/lib/api.ts(142,36): error TS18046: 'parsed' is of type 'unknown'.
+src/lib/auth.tsx(5,33): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/lib/hooks.ts(14,8): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+npm error Lifecycle script `typecheck` failed with error:
+npm error code 2
+npm error path D:\Projects\Zed\SMART-PLUG-V2\apps\web
+npm error workspace @smartplug/web@0.1.0
+npm error location D:\Projects\Zed\SMART-PLUG-V2\apps\web
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c tsc --noEmit

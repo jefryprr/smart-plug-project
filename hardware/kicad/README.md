@@ -33,7 +33,7 @@
   zone, 100 × 70 mm. DRC is 0/0 at 0.15 mm clearance.
 - It is **not released for fabrication**: no engineer sign-off, no physical fit,
   no hipot/thermal/load test, no vendor footprint review.
-- The mains-entry PSU board (`psu_rev_d.kicad_pcb`, 50 x 65 mm) carries TB1/TB2, fuse/MOV/TCO, HLK-5M05 and the 3x JST 5 V outputs. The carrier is SELV-only and receives 5 V at J8.
+- The mains-entry PSU board (`psu_rev_d.kicad_pcb`, 50 x 65 mm) carries TB1/TB2, fuse/MOV/TCO, HLK-5M05 and the 3x JST 5 V outputs. The carrier is SELV-only and receives 5 V at J8; relay/PZEM 5 V comes directly from PSU J6/J7, and carrier J2/J3 pin 1 is NC.
 - PZEM internal optocouplers are the only UART isolation barrier. No ADuM1201 or
   B0505S. No temperature sensor in REV_D_CORE_ONLY.
 

@@ -43,7 +43,7 @@
 - FMEA ini belum ditandatangani engineer.
 - Mitigasi firmware tidak menggantikan proteksi independen.
 - Setiap perubahan relay/PSU/fuse/PE/enclosure memicu revisi FMEA.
-| FM-27 | PSU board 8 A trace/terminal/fuse clip overheats | Enclosure fire / open circuit | High | Medium | Medium (thermal) | 2 oz/4 mm target, terminal torque, fuse holder rating, TCO, thermal test | High until tested |
+| FM-27 | PSU board 6 A trace/terminal/fuse holder overheats | Enclosure fire / open circuit | High | Medium | Medium (thermal) | 2 oz/2.5 mm target, terminal torque, BLX-A 6.3 A holder, TCO, 6 A thermal test | High until tested |
 | FM-28 | HLK-5M05 fails short/overheat | 5 V loss or mains-side damage | High | Low | Low | Fuse/TCO upstream, HLK batch/hipot/thermal, enclosure vent | High until tested |
 | FM-29 | MOV fails short after surge | Fuse clears; possible fire if coordination fails | High | Low | Medium | Fuse/MOV coordination, end-of-life test | High until tested |
 | FM-30 | 5 V output miswired (J5/J6/J7) | Wrong module powered / overcurrent | Medium | Medium | Medium | Keyed JST, labels, color code, PTC/TVS | Medium |

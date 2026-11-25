@@ -31,7 +31,7 @@ Dengan koefisien konveksi/radiasi efektif kasar 5–10 W/(m²·K):
 
 ## 2A. REV_D_CORE_ONLY PSU board
 
-The separate 50 x 65 mm PSU board carries the full 8 A mains path. Its TB1/F1/TCO/TB2 joints, HLK case, and 4 mm traces are new hotspots. The 2 mm isolation notch is not a thermal barrier. Thermal test must include the PSU board with the relay shelf and closed lid.
+The separate 50 x 65 mm PSU board carries the full 6 A mains path (limited by the BLX-A 6.3 A holder). Its TB1/F1/TCO/TB2 joints, HLK case, and 2.5 mm traces are new hotspots. The 2 mm isolation notch is not a thermal barrier. Thermal test must include the PSU board with the relay shelf and closed lid.
 
 ## 3. Hotspot yang wajib diukur
 
@@ -48,7 +48,7 @@ The separate 50 x 65 mm PSU board carries the full 8 A mains path. Its TB1/F1/TC
 
 ## 4. Derating
 
-- Module relay 10 A class claim × 0.8 = **8 A** pada ambient 40 °C, sebelum koreksi enclosure. Ini asumsi vendor, bukan hasil uji.
+- Module relay 10 A class claim tidak menaikkan batas: **BLX-A holder 6.3 A → rating provisional 6 A**. Ini batas komponen, bukan hasil uji.
 - Jika temperature rise terminal > 30 K pada 6.4 A, turunkan rating.
 - Fuse 10 A tidak boleh dianggap rating kontinu 10 A.
 - Kabel 1.5 mm² harus dihitung dengan grouping/ambient.

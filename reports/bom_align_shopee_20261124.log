@@ -1,0 +1,20 @@
+﻿=== generate_bom.py 2026-11-24T20:53:12.9838993+07:00 ===
+Wrote 58 master rows, 6 tools, 5 consumables.
+Procurement: 49 lines; CORE Rp709,975; FULL add-ons Rp0; verdict CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_OVER_750K; FULL_DEFERRED.
+exit_code=0
+=== generate_bom.py (qty fix) 2026-11-24T20:57:59.2526159+07:00 ===
+Wrote 58 master rows, 6 tools, 5 consumables.
+Procurement: 49 lines; CORE Rp705,975; FULL add-ons Rp0; verdict CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_OVER_750K; FULL_DEFERRED.
+exit_code=0
+=== generate_bom.py (carrier C4) 2026-11-24T21:08:12.7978616+07:00 ===
+Wrote 59 master rows, 6 tools, 5 consumables.
+Procurement: 49 lines; CORE Rp705,975; FULL add-ons Rp0; verdict CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_OVER_750K; FULL_DEFERRED.
+exit_code=0
+=== generate_bom.py (final) 2026-11-24T21:18:26.9398919+07:00 ===
+Wrote 59 master rows, 6 tools, 5 consumables.
+Procurement: 49 lines; CORE Rp705,975; FULL add-ons Rp0; verdict CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_OVER_750K; FULL_DEFERRED.
+exit_code=0
+=== generate_bom.py (cart total) 2026-11-24T21:21:59.5624951+07:00 ===
+Wrote 59 master rows, 6 tools, 5 consumables.
+Procurement: 49 lines; CORE Rp705,975; FULL add-ons Rp0; verdict CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_OVER_750K; FULL_DEFERRED.
+exit_code=0

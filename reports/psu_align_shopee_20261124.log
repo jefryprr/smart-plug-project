@@ -1,0 +1,779 @@
+﻿=== PSU align to Shopee parts 2026-11-24T20:13:43.9946305+07:00 ===
+=== generate_psu_pcb.py ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb with 19 footprints and 8 nets
+exit_code=0
+=== export_psu_artifacts.py ===
+PSU pads=36 placement=19 pcba=13
+exit_code=0
+=== run_psu_check.py ===
+Found 1 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/psu_drc.json
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --format json --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\psu_drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU DRC violations: 1; unconnected: 0
+exit_code=1
+=== generate_psu_pcb.py (MOV moved) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb with 19 footprints and 8 nets
+exit_code=0
+=== export_psu_artifacts.py (MOV moved) ===
+PSU pads=36 placement=19 pcba=13
+exit_code=0
+=== run_psu_check.py (MOV moved) ===
+Found 3 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/psu_drc.json
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --format json --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\psu_drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU DRC violations: 3; unconnected: 0
+exit_code=1
+=== generate_psu_pcb.py (layout v2) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb with 19 footprints and 8 nets
+exit_code=0
+=== export_psu_artifacts.py (layout v2) ===
+PSU pads=34 placement=19 pcba=13
+exit_code=0
+=== run_psu_check.py (layout v2) ===
+Found 1 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/psu_drc.json
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --format json --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\psu_drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU DRC violations: 1; unconnected: 0
+exit_code=1
+=== generate_psu_pcb.py (fiducials moved) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb with 19 footprints and 8 nets
+exit_code=0
+=== export_psu_artifacts.py (fiducials moved) ===
+PSU pads=34 placement=19 pcba=13
+exit_code=0
+=== run_psu_check.py (fiducials moved) ===
+Found 1 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/psu_drc.json
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --format json --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\psu_drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU DRC violations: 1; unconnected: 0
+exit_code=1
+=== generate_psu_pcb.py (fid1 y=49) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb with 19 footprints and 8 nets
+exit_code=0
+=== export_psu_artifacts.py (fid1 y=49) ===
+PSU pads=34 placement=19 pcba=13
+exit_code=0
+=== run_psu_check.py (fid1 y=49) ===
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/psu_drc.json
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-F_Cu.gtl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-B_Cu.gbl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-F_Silkscreen.gto'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-B_Silkscreen.gbo'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-Edge_Cuts.gm1'.
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_d.drl'
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_d-drl_map.pdf'.
+Done.
+Wrote position data to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv'.
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --format json --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\psu_drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU DRC violations: 0; unconnected: 0
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export gerbers -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber -l F.Cu,B.Cu,F.SilkS,B.SilkS,Edge.Cuts D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export drill -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill --generate-map --map-format pdf D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export pos -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv --format csv --units mm --side both D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU Gerber/drill/POS present: True
+exit_code=0
+=== generate_psu_pcb.py (courtyards) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb with 19 footprints and 8 nets
+exit_code=0
+=== export_psu_artifacts.py (courtyards) ===
+PSU pads=34 placement=19 pcba=13
+exit_code=0
+=== run_psu_check.py (courtyards) ===
+Found 3 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/psu_drc.json
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --format json --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\psu_drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU DRC violations: 3; unconnected: 0
+exit_code=1
+=== generate_psu_pcb.py (layout v3) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb with 19 footprints and 8 nets
+exit_code=0
+=== export_psu_artifacts.py (layout v3) ===
+PSU pads=34 placement=19 pcba=13
+exit_code=0
+=== run_psu_check.py (layout v3) ===
+Found 4 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/psu_drc.json
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --format json --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\psu_drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU DRC violations: 4; unconnected: 0
+exit_code=1
+=== generate_psu_pcb.py (layout v4) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb with 19 footprints and 8 nets
+exit_code=0
+=== export_psu_artifacts.py (layout v4) ===
+PSU pads=34 placement=19 pcba=13
+exit_code=0
+=== run_psu_check.py (layout v4) ===
+Found 5 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/psu_drc.json
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --format json --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\psu_drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU DRC violations: 5; unconnected: 0
+exit_code=1
+=== generate_psu_pcb.py (layout v5) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb with 19 footprints and 8 nets
+exit_code=0
+=== export_psu_artifacts.py (layout v5) ===
+PSU pads=34 placement=19 pcba=13
+exit_code=0
+=== run_psu_check.py (layout v5) ===
+Found 4 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/psu_drc.json
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --format json --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\psu_drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU DRC violations: 4; unconnected: 0
+exit_code=1
+=== generate_psu_pcb.py (fid2 x=31) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb with 19 footprints and 8 nets
+exit_code=0
+=== export_psu_artifacts.py (fid2 x=31) ===
+PSU pads=34 placement=19 pcba=13
+exit_code=0
+=== run_psu_check.py (fid2 x=31) ===
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/psu_drc.json
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-F_Cu.gtl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-B_Cu.gbl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-F_Silkscreen.gto'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-B_Silkscreen.gbo'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-Edge_Cuts.gm1'.
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_d.drl'
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_d-drl_map.pdf'.
+Done.
+Wrote position data to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv'.
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --format json --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\psu_drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU DRC violations: 0; unconnected: 0
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export gerbers -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber -l F.Cu,B.Cu,F.SilkS,B.SilkS,Edge.Cuts D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export drill -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill --generate-map --map-format pdf D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export pos -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv --format csv --units mm --side both D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU Gerber/drill/POS present: True
+exit_code=0
+=== generate_psu_pcb.py (final value) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb with 19 footprints and 8 nets
+exit_code=0
+=== export_psu_artifacts.py (final value) ===
+PSU pads=34 placement=19 pcba=13
+exit_code=0
+=== run_psu_check.py (final value) ===
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/psu_drc.json
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-F_Cu.gtl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-B_Cu.gbl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-F_Silkscreen.gto'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-B_Silkscreen.gbo'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-Edge_Cuts.gm1'.
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_d.drl'
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_d-drl_map.pdf'.
+Done.
+Wrote position data to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv'.
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --format json --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\psu_drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU DRC violations: 0; unconnected: 0
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export gerbers -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber -l F.Cu,B.Cu,F.SilkS,B.SilkS,Edge.Cuts D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export drill -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill --generate-map --map-format pdf D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export pos -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv --format csv --units mm --side both D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU Gerber/drill/POS present: True
+exit_code=0
+=== psu_clearance_audit.py ===
+{
+  "board": "hardware\\kicad\\psu_rev_d.kicad_pcb",
+  "status": "UNVERIFIED / NOT A SAFETY PROOF",
+  "note": "Geometric copper clearance screen only; IEC 60664-1 creepage/clearance, coating, barrier continuity, and hipot are still open.",
+  "mains_to_selv": {
+    "distance_mm": 9.05,
+    "a": {
+      "net": "N_MAINS",
+      "layer": "F.Cu",
+      "kind": "seg",
+      "geom": [
+        [
+          23.5,
+          62.0
+        ],
+        [
+          23.5,
+          5.0
+        ]
+      ],
+      "half_width": 1.25
+    },
+    "b": {
+      "net": "GND",
+      "layer": "PAD",
+      "kind": "pad",
+      "geom": [
+        12.2,
+        12.5
+      ],
+      "half_width": 1.0
+    }
+  },
+  "line_to_neutral": {
+    "distance_mm": 0.65,
+    "a": {
+      "net": "L_FUSED",
+      "layer": "F.Cu",
+      "kind": "seg",
+      "geom": [
+        [
+          43.5,
+          44.5
+        ],
+        [
+          27.0,
+          44.5
+        ]
+      ],
+      "half_width": 0.75
+    },
+    "b": {
+      "net": "N_MAINS",
+      "layer": "PAD",
+      "kind": "pad",
+      "geom": [
+        34.5,
+        42.2
+      ],
+      "half_width": 0.9
+    }
+  },
+  "mains_to_pe": null
+}
+exit_code=0
+=== generate_psu_pcb.py (L-N margin) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb with 19 footprints and 8 nets
+exit_code=0
+=== export_psu_artifacts.py (L-N margin) ===
+PSU pads=34 placement=19 pcba=13
+exit_code=0
+=== run_psu_check.py (L-N margin) ===
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/psu_drc.json
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-F_Cu.gtl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-B_Cu.gbl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-F_Silkscreen.gto'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-B_Silkscreen.gbo'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-Edge_Cuts.gm1'.
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_d.drl'
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_d-drl_map.pdf'.
+Done.
+Wrote position data to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv'.
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --format json --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\psu_drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU DRC violations: 0; unconnected: 0
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export gerbers -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber -l F.Cu,B.Cu,F.SilkS,B.SilkS,Edge.Cuts D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export drill -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill --generate-map --map-format pdf D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export pos -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv --format csv --units mm --side both D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU Gerber/drill/POS present: True
+exit_code=0
+=== clearance audit (L-N margin) ===
+{
+  "board": "hardware\\kicad\\psu_rev_d.kicad_pcb",
+  "status": "UNVERIFIED / NOT A SAFETY PROOF",
+  "note": "Geometric copper clearance screen only; IEC 60664-1 creepage/clearance, coating, barrier continuity, and hipot are still open.",
+  "mains_to_selv": {
+    "distance_mm": 9.05,
+    "a": {
+      "net": "N_MAINS",
+      "layer": "F.Cu",
+      "kind": "seg",
+      "geom": [
+        [
+          23.5,
+          62.0
+        ],
+        [
+          23.5,
+          5.0
+        ]
+      ],
+      "half_width": 1.25
+    },
+    "b": {
+      "net": "GND",
+      "layer": "PAD",
+      "kind": "pad",
+      "geom": [
+        12.2,
+        12.5
+      ],
+      "half_width": 1.0
+    }
+  },
+  "line_to_neutral": {
+    "distance_mm": 1.08,
+    "a": {
+      "net": "L_IN",
+      "layer": "F.Cu",
+      "kind": "seg",
+      "geom": [
+        [
+          34.08,
+          62.0
+        ],
+        [
+          43.5,
+          62.0
+        ]
+      ],
+      "half_width": 2.0
+    },
+    "b": {
+      "net": "N_MAINS",
+      "layer": "F.Cu",
+      "kind": "seg",
+      "geom": [
+        [
+          29.0,
+          62.0
+        ],
+        [
+          23.5,
+          62.0
+        ]
+      ],
+      "half_width": 2.0
+    }
+  },
+  "mains_to_pe": null
+}
+exit_code=0
+=== generate_psu_pcb.py (2.5mm all) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb with 19 footprints and 8 nets
+exit_code=0
+=== export_psu_artifacts.py (2.5mm all) ===
+PSU pads=34 placement=19 pcba=13
+exit_code=0
+=== run_psu_check.py (2.5mm all) ===
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/psu_drc.json
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-F_Cu.gtl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-B_Cu.gbl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-F_Silkscreen.gto'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-B_Silkscreen.gbo'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-Edge_Cuts.gm1'.
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_d.drl'
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_d-drl_map.pdf'.
+Done.
+Wrote position data to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv'.
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --format json --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\psu_drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU DRC violations: 0; unconnected: 0
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export gerbers -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber -l F.Cu,B.Cu,F.SilkS,B.SilkS,Edge.Cuts D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export drill -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill --generate-map --map-format pdf D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export pos -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv --format csv --units mm --side both D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU Gerber/drill/POS present: True
+exit_code=0
+=== clearance audit (2.5mm all) ===
+{
+  "board": "hardware\\kicad\\psu_rev_d.kicad_pcb",
+  "status": "UNVERIFIED / NOT A SAFETY PROOF",
+  "note": "Geometric copper clearance screen only; IEC 60664-1 creepage/clearance, coating, barrier continuity, and hipot are still open.",
+  "mains_to_selv": {
+    "distance_mm": 9.05,
+    "a": {
+      "net": "N_MAINS",
+      "layer": "F.Cu",
+      "kind": "seg",
+      "geom": [
+        [
+          23.5,
+          62.0
+        ],
+        [
+          23.5,
+          5.0
+        ]
+      ],
+      "half_width": 1.25
+    },
+    "b": {
+      "net": "GND",
+      "layer": "PAD",
+      "kind": "pad",
+      "geom": [
+        12.2,
+        12.5
+      ],
+      "half_width": 1.0
+    }
+  },
+  "line_to_neutral": {
+    "distance_mm": 1.3,
+    "a": {
+      "net": "L_LOAD",
+      "layer": "F.Cu",
+      "kind": "seg",
+      "geom": [
+        [
+          42.0,
+          34.5
+        ],
+        [
+          42.0,
+          18.5
+        ]
+      ],
+      "half_width": 1.25
+    },
+    "b": {
+      "net": "N_MAINS",
+      "layer": "F.Cu",
+      "kind": "seg",
+      "geom": [
+        [
+          48.0,
+          28.5
+        ],
+        [
+          45.8,
+          24.5
+        ]
+      ],
+      "half_width": 1.25
+    }
+  },
+  "mains_to_pe": null
+}
+exit_code=0
+=== validate_psu.py (2.5mm all) ===
+python.exe : Adding duplicate image handler for 'PNG file'
+At line:1 char:1253
++ ... c4"; $out = & tools\kicad\bin\python.exe scripts\validate_psu.py 2>&1 ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Adding duplicat... for 'PNG file':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Adding duplicate image handler for 'JPEG file'
+Adding duplicate image handler for 'TIFF file'
+Adding duplicate image handler for 'GIF file'
+Adding duplicate image handler for 'PNM file'
+Adding duplicate image handler for 'PCX file'
+Adding duplicate image handler for 'IFF file'
+Adding duplicate image handler for 'Windows icon file'
+Adding duplicate image handler for 'Windows cursor file'
+Adding duplicate image handler for 'Windows animated cursor file'
+Adding duplicate image handler for 'TGA file'
+Adding duplicate image handler for 'XPM file'
+Adding duplicate image handler for 'WebP file'
+{
+  "status": "PASS",
+  "board": "hardware/kicad/psu_rev_d.kicad_pcb",
+  "board_size_mm": [
+    50.1,
+    65.1
+  ],
+  "nets": [
+    "+5V",
+    "+5V_PRE",
+    "GND",
+    "L_FUSED",
+    "L_IN",
+    "L_LOAD",
+    "N_MAINS"
+  ],
+  "footprints": 13,
+  "issues": [],
+  "limitations": [
+    "Static net/width check only; DRC does not prove creepage or hipot.",
+    "HLK-5M05 footprint is custom (KiCad-official geometry), not sample-verified.",
+    "Fuse/MOV/TCO/terminal/JST ratings are not verified by this script.",
+    "No physical mains test was performed."
+  ]
+}
+exit_code=0
+=== generate_psu_pcb.py (TCO reposition) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb with 19 footprints and 8 nets
+exit_code=0
+=== export_psu_artifacts.py (TCO reposition) ===
+PSU pads=34 placement=19 pcba=13
+exit_code=0
+=== run_psu_check.py (TCO reposition) ===
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/psu_drc.json
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-F_Cu.gtl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-B_Cu.gbl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-F_Silkscreen.gto'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-B_Silkscreen.gbo'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-Edge_Cuts.gm1'.
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_d.drl'
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_d-drl_map.pdf'.
+Done.
+Wrote position data to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv'.
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --format json --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\psu_drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU DRC violations: 0; unconnected: 0
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export gerbers -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber -l F.Cu,B.Cu,F.SilkS,B.SilkS,Edge.Cuts D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export drill -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill --generate-map --map-format pdf D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export pos -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv --format csv --units mm --side both D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU Gerber/drill/POS present: True
+exit_code=0
+=== clearance audit (TCO reposition) ===
+{
+  "board": "hardware\\kicad\\psu_rev_d.kicad_pcb",
+  "status": "UNVERIFIED / NOT A SAFETY PROOF",
+  "note": "Geometric copper clearance screen only; IEC 60664-1 creepage/clearance, coating, barrier continuity, and hipot are still open.",
+  "mains_to_selv": {
+    "distance_mm": 9.05,
+    "a": {
+      "net": "N_MAINS",
+      "layer": "F.Cu",
+      "kind": "seg",
+      "geom": [
+        [
+          23.5,
+          62.0
+        ],
+        [
+          23.5,
+          5.0
+        ]
+      ],
+      "half_width": 1.25
+    },
+    "b": {
+      "net": "GND",
+      "layer": "PAD",
+      "kind": "pad",
+      "geom": [
+        12.2,
+        12.5
+      ],
+      "half_width": 1.0
+    }
+  },
+  "line_to_neutral": {
+    "distance_mm": 1.3,
+    "a": {
+      "net": "L_LOAD",
+      "layer": "F.Cu",
+      "kind": "seg",
+      "geom": [
+        [
+          42.0,
+          34.0
+        ],
+        [
+          42.0,
+          18.5
+        ]
+      ],
+      "half_width": 1.25
+    },
+    "b": {
+      "net": "N_MAINS",
+      "layer": "F.Cu",
+      "kind": "seg",
+      "geom": [
+        [
+          48.0,
+          28.5
+        ],
+        [
+          45.8,
+          24.5
+        ]
+      ],
+      "half_width": 1.25
+    }
+  },
+  "mains_to_pe": null
+}
+exit_code=0
+=== validate_psu.py (TCO reposition) ===
+python.exe : Adding duplicate image handler for 'PNG file'
+At line:1 char:1273
++ ... c4"; $out = & tools\kicad\bin\python.exe scripts\validate_psu.py 2>&1 ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Adding duplicat... for 'PNG file':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Adding duplicate image handler for 'JPEG file'
+Adding duplicate image handler for 'TIFF file'
+Adding duplicate image handler for 'GIF file'
+Adding duplicate image handler for 'PNM file'
+Adding duplicate image handler for 'PCX file'
+Adding duplicate image handler for 'IFF file'
+Adding duplicate image handler for 'Windows icon file'
+Adding duplicate image handler for 'Windows cursor file'
+Adding duplicate image handler for 'Windows animated cursor file'
+Adding duplicate image handler for 'TGA file'
+Adding duplicate image handler for 'XPM file'
+Adding duplicate image handler for 'WebP file'
+{
+  "status": "PASS",
+  "board": "hardware/kicad/psu_rev_d.kicad_pcb",
+  "board_size_mm": [
+    50.1,
+    65.1
+  ],
+  "nets": [
+    "+5V",
+    "+5V_PRE",
+    "GND",
+    "L_FUSED",
+    "L_IN",
+    "L_LOAD",
+    "N_MAINS"
+  ],
+  "footprints": 13,
+  "issues": [],
+  "limitations": [
+    "Static net/width check only; DRC does not prove creepage or hipot.",
+    "HLK-5M05 footprint is custom (KiCad-official geometry), not sample-verified.",
+    "Fuse/MOV/TCO/terminal/JST ratings are not verified by this script.",
+    "No physical mains test was performed."
+  ]
+}
+exit_code=0
+=== generate_psu_pcb.py (TCO pads x=43.5) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb with 19 footprints and 8 nets
+exit_code=0
+=== export_psu_artifacts.py (TCO pads x=43.5) ===
+PSU pads=34 placement=19 pcba=13
+exit_code=0
+=== run_psu_check.py (TCO pads x=43.5) ===
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/psu_drc.json
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-F_Cu.gtl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-B_Cu.gbl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-F_Silkscreen.gto'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-B_Silkscreen.gbo'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-Edge_Cuts.gm1'.
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_d.drl'
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_d-drl_map.pdf'.
+Done.
+Wrote position data to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv'.
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --format json --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\psu_drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU DRC violations: 0; unconnected: 0
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export gerbers -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber -l F.Cu,B.Cu,F.SilkS,B.SilkS,Edge.Cuts D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export drill -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill --generate-map --map-format pdf D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export pos -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv --format csv --units mm --side both D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU Gerber/drill/POS present: True
+exit_code=0
+=== audit (TCO pads x=43.5) ===
+{
+  "board": "hardware\\kicad\\psu_rev_d.kicad_pcb",
+  "status": "UNVERIFIED / NOT A SAFETY PROOF",
+  "note": "Geometric copper clearance screen only; IEC 60664-1 creepage/clearance, coating, barrier continuity, and hipot are still open.",
+  "mains_to_selv": {
+    "distance_mm": 9.05,
+    "a": {
+      "net": "N_MAINS",
+      "layer": "F.Cu",
+      "kind": "seg",
+      "geom": [
+        [
+          23.5,
+          62.0
+        ],
+        [
+          23.5,
+          5.0
+        ]
+      ],
+      "half_width": 1.25
+    },
+    "b": {
+      "net": "GND",
+      "layer": "PAD",
+      "kind": "pad",
+      "geom": [
+        12.2,
+        12.5
+      ],
+      "half_width": 1.0
+    }
+  },
+  "line_to_neutral": {
+    "distance_mm": 1.3,
+    "a": {
+      "net": "L_LOAD",
+      "layer": "F.Cu",
+      "kind": "seg",
+      "geom": [
+        [
+          42.0,
+          34.0
+        ],
+        [
+          42.0,
+          18.5
+        ]
+      ],
+      "half_width": 1.25
+    },
+    "b": {
+      "net": "N_MAINS",
+      "layer": "F.Cu",
+      "kind": "seg",
+      "geom": [
+        [
+          48.0,
+          28.5
+        ],
+        [
+          45.8,
+          24.5
+        ]
+      ],
+      "half_width": 1.25
+    }
+  },
+  "mains_to_pe": null
+}
+exit_code=0
+=== validate_psu (TCO pads x=43.5) ===
+python.exe : Adding duplicate image handler for 'PNG file'
+At line:1 char:1267
++ ... c4"; $out = & tools\kicad\bin\python.exe scripts\validate_psu.py 2>&1 ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Adding duplicat... for 'PNG file':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Adding duplicate image handler for 'JPEG file'
+Adding duplicate image handler for 'TIFF file'
+Adding duplicate image handler for 'GIF file'
+Adding duplicate image handler for 'PNM file'
+Adding duplicate image handler for 'PCX file'
+Adding duplicate image handler for 'IFF file'
+Adding duplicate image handler for 'Windows icon file'
+Adding duplicate image handler for 'Windows cursor file'
+Adding duplicate image handler for 'Windows animated cursor file'
+Adding duplicate image handler for 'TGA file'
+Adding duplicate image handler for 'XPM file'
+Adding duplicate image handler for 'WebP file'
+{
+  "status": "PASS",
+  "board": "hardware/kicad/psu_rev_d.kicad_pcb",
+  "board_size_mm": [
+    50.1,
+    65.1
+  ],
+  "nets": [
+    "+5V",
+    "+5V_PRE",
+    "GND",
+    "L_FUSED",
+    "L_IN",
+    "L_LOAD",
+    "N_MAINS"
+  ],
+  "footprints": 13,
+  "issues": [],
+  "limitations": [
+    "Static net/width check only; DRC does not prove creepage or hipot.",
+    "HLK-5M05 footprint is custom (KiCad-official geometry), not sample-verified.",
+    "Fuse/MOV/TCO/terminal/JST ratings are not verified by this script.",
+    "No physical mains test was performed."
+  ]
+}
+exit_code=0

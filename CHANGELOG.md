@@ -12,7 +12,7 @@ All notable changes to this project are documented here. The format is based on 
 ### Planned
 
 - Component-level KiCad schematic and footprint review.
-- Physical fit, thermal, PE, hipot/leakage, and 8 A load tests.
+- Physical fit, thermal, PE, hipot/leakage, and 6 A load tests.
 - Firmware flash and PZEM/OLED/Wi-Fi/MQTT/OTA integration.
 - Android device/emulator test and production signing.
 - PostgreSQL adapter, Docker deployment, MQTT TLS/ACL.
@@ -35,7 +35,7 @@ All notable changes to this project are documented here. The format is based on 
 
 ### Changed
 
-- Final load target: **8 A / ~1,840 W**, limited to electronics/SMPS loads.
+- Load target: **8 A / ~1,840 W** requested, but the actual BLX-A 6.3 A holder limits the prototype to **6 A / ~1,380 W** provisional; 8 A requires a higher-rated holder.
 - PZEM-004T V4 and 2-channel relay module are **off-board**.
 - **TMP102 removed**; thermal protection is fuse + one-shot TCO.
 - PZEM UART uses the module’s **internal optocouplers** in REV_D_CORE_ONLY; external ADuM1201 + B0505S removed, with fallback documented.
@@ -58,7 +58,7 @@ All notable changes to this project are documented here. The format is based on 
 ### Known limitations
 
 - No physical 230 VAC assembly, energization, or lab test.
-- No hipot/leakage/PE/thermal/8 A load evidence.
+- No hipot/leakage/PE/thermal/6 A load evidence.
 - No firmware flash/integration test.
 - Android APK is debug-only and not device-tested.
 - PostgreSQL adapter and Docker deployment not implemented.

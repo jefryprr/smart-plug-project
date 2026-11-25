@@ -1,0 +1,85 @@
+﻿=== carrier DRC 2026-11-25 ===
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/drc.json
+DRC violations: 0 (routed SELV carrier)
+exit_code=0
+=== PSU DRC/export 2026-11-25 ===
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/psu_drc.json
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-F_Cu.gtl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-B_Cu.gbl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-F_Silkscreen.gto'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-B_Silkscreen.gbo'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-Edge_Cuts.gm1'.
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_d.drl'
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_d-drl_map.pdf'.
+Done.
+Wrote position data to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv'.
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --format json --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\psu_drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU DRC violations: 0; unconnected: 0
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export gerbers -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber -l F.Cu,B.Cu,F.SilkS,B.SilkS,Edge.Cuts D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export drill -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill --generate-map --map-format pdf D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export pos -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv --format csv --units mm --side both D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU Gerber/drill/POS present: True
+exit_code=0
+=== connectivity 2026-11-25 ===
+{
+  "pe_path": "PASS",
+  "relay_contacts_separate": "PASS",
+  "relay_coil_selv": "PASS",
+  "pzem_isolation": "PASS",
+  "mains_selv_separation": "PASS",
+  "gpio_crosscheck": "PASS",
+  "bom_crosscheck": "PASS",
+  "overall_status": "PASS"
+}
+exit_code=0
+=== validate_psu 2026-11-25 ===
+python.exe : Adding duplicate image handler for 'PNG file'
+At line:1 char:939
++ ... c3"; $out = & tools\kicad\bin\python.exe scripts\validate_psu.py 2>&1 ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Adding duplicat... for 'PNG file':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Adding duplicate image handler for 'JPEG file'
+Adding duplicate image handler for 'TIFF file'
+Adding duplicate image handler for 'GIF file'
+Adding duplicate image handler for 'PNM file'
+Adding duplicate image handler for 'PCX file'
+Adding duplicate image handler for 'IFF file'
+Adding duplicate image handler for 'Windows icon file'
+Adding duplicate image handler for 'Windows cursor file'
+Adding duplicate image handler for 'Windows animated cursor file'
+Adding duplicate image handler for 'TGA file'
+Adding duplicate image handler for 'XPM file'
+Adding duplicate image handler for 'WebP file'
+{
+  "status": "PASS",
+  "board": "hardware/kicad/psu_rev_d.kicad_pcb",
+  "board_size_mm": [
+    50.1,
+    65.1
+  ],
+  "nets": [
+    "+5V",
+    "+5V_PRE",
+    "GND",
+    "L_FUSED",
+    "L_IN",
+    "L_LOAD",
+    "N_MAINS"
+  ],
+  "footprints": 13,
+  "issues": [],
+  "limitations": [
+    "Static net/width check only; DRC does not prove creepage or hipot.",
+    "HLK-5M05 footprint is custom (KiCad-official geometry), not sample-verified.",
+    "Fuse/MOV/TCO/terminal/JST ratings are not verified by this script.",
+    "No physical mains test was performed."
+  ]
+}
+exit_code=0

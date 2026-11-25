@@ -1,0 +1,18 @@
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/psu_drc.json
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-F_Cu.gtl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-B_Cu.gbl'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-F_Silkscreen.gto'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-B_Silkscreen.gbo'.
+Plotted to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber\psu_rev_d-Edge_Cuts.gm1'.
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_d.drl'
+Created file 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill\psu_rev_d-drl_map.pdf'.
+Done.
+Wrote position data to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv'.
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --format json --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\psu_drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU DRC violations: 0; unconnected: 0
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export gerbers -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Gerber -l F.Cu,B.Cu,F.SilkS,B.SilkS,Edge.Cuts D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export drill -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\Drill --generate-map --map-format pdf D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export pos -o D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\psu\POSITION.csv --format csv --units mm --side both D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\psu_rev_d.kicad_pcb
+PSU Gerber/drill/POS present: True

@@ -45,7 +45,7 @@ The roadmap is organized by **evidence gates**, not dates. A gate opens only whe
 - [x] Wiring harnesses and enclosure CAD.
 - [ ] Component-level production schematic.
 - [ ] Creepage/clearance calculation with licensed standard and engineer.
-- [ ] Thermal calculation at 8 A in the closed enclosure.
+- [ ] Thermal calculation at 6 A in the closed enclosure (BLX-A 6.3 A holder limit).
 - [ ] PE/polarity/protection coordination review.
 - [ ] Engineer sign-off.
 
@@ -106,7 +106,7 @@ The roadmap is organized by **evidence gates**, not dates. A gate opens only whe
 
 - [ ] PE continuity and fault-current.
 - [ ] Hipot/insulation resistance/leakage.
-- [ ] 8 A thermal rise in the closed enclosure.
+- [ ] 6 A thermal rise in the closed enclosure.
 - [ ] Fuse/MOV/TCO coordination and trip test.
 - [ ] Relay lifecycle and per-channel weld test.
 - [ ] Inrush/load tests.

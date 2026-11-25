@@ -1,0 +1,10 @@
+{
+  "pe_path": "PASS",
+  "relay_contacts_separate": "PASS",
+  "relay_coil_selv": "PASS",
+  "pzem_isolation": "PASS",
+  "mains_selv_separation": "PASS",
+  "gpio_crosscheck": "PASS",
+  "bom_crosscheck": "FAIL",
+  "overall_status": "FAIL"
+}

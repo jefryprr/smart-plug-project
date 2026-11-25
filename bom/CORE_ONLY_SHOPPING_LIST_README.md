@@ -1,8 +1,11 @@
 # CORE-Only Shopping List — REV_D_CORE_ONLY
 
-**File CSV:** `CORE_ONLY_SHOPPING_LIST.csv`  
+**File CSV (aktual):** `CORE_ONLY_SHOPEE_SHOPPING_LIST.csv`  
+**File ini (estimasi lama):** `CORE_ONLY_SHOPPING_LIST.csv`  
 **Board:** ESP32-S3-DevKitC-1 N16R8 **v1.0** (onboard RGB **GPIO48**)  
 **Build:** CORE-only — tanpa OLED, RTC, atau RGB eksternal.
+
+> **PENTING (2026-11-24):** Yang dipakai untuk belanja adalah **`CORE_ONLY_SHOPEE_SHOPPING_LIST.csv`**. File ini adalah daftar estimasi lama. Hardware aktual memakai fuse holder **BLX-A 6.3 A**, fuse **6.3 A**, TCO generik 96 °C, dan terminal **KF129-2P**; baris lama sudah diperbarui, tetapi CSV Shopee tetap sumber utama.
 
 ## Cara pakai
 

@@ -1,0 +1,3 @@
+Exported CORE_ONLY_SHOPEE enclosure, lid, gasket, USB cover, DevKit key, assembly STEP
+D:\Projects\Zed\SMART-PLUG-V2\.venv\Lib\site-packages\cadquery\utils.py:82: FutureWarning: save will be removed in the next release.
+  warn(f"{f.__name__} will be removed in the next release.", FutureWarning)

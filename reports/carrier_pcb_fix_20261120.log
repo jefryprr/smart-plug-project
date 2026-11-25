@@ -1,0 +1,67 @@
+﻿=== carrier PCB fix 2026-11-20T17:25:38.7008656+07:00 ===
+=== scripts\generate_carrier_pcb.py ===
+Wrote C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb with 19 footprints and 11 nets
+exit_code=0
+=== scripts\route_carrier.py ===
+python.exe : Adding duplicate image handler for 'PNG file'
+At line:1 char:264
++ ... er.py")) { $out = & "tools\kicad\bin\python.exe" $script 2>&1; $code  ...
++                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Adding duplicat... for 'PNG file':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Adding duplicate image handler for 'JPEG file'
+Adding duplicate image handler for 'TIFF file'
+Adding duplicate image handler for 'GIF file'
+Adding duplicate image handler for 'PNM file'
+Adding duplicate image handler for 'PCX file'
+Adding duplicate image handler for 'IFF file'
+Adding duplicate image handler for 'Windows icon file'
+Adding duplicate image handler for 'Windows cursor file'
+Adding duplicate image handler for 'Windows animated cursor file'
+Adding duplicate image handler for 'TGA file'
+Adding duplicate image handler for 'XPM file'
+Adding duplicate image handler for 'WebP file'
+route PZEM_TX_3V3: 2 pads
+route PZEM_RX_3V3: 3 pads
+route +3V3: 3 pads
+route BUTTON: 3 pads
+route RELAY_CTRL: 2 pads
+route PZEM_RX_5V: 2 pads
+route RELAY_GATE: 3 pads
+route RELAY_IN: 3 pads
+route PZEM_TX_5V: 2 pads
+route +5V: 6 pads
+routing complete
+saved C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb (default clearance 0.15 mm)
+exit_code=0
+=== export_carrier_artifacts.py ===
+Wrote position data to 'C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\POSITION.csv'.
+carrier pads=96 placement=23 pcba=16
+exit_code=0
+=== run_kicad_check.py --mode all ===
+RUN C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe sch erc --output C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\reports\kicad\erc.json C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_sch
+Found 0 violations
+Saved ERC Report to C:/Users/JEFRY PRATAMA/Zed/SMART-PLUG-V2/reports/kicad/erc.json
+ERC violations: 0 (block-level schematic; functional schematic/netlist separate)
+RUN C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --output C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\reports\kicad\drc.json C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to C:/Users/JEFRY PRATAMA/Zed/SMART-PLUG-V2/reports/kicad/drc.json
+DRC violations: 0 (routed SELV carrier)
+RUN C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export gerbers -o C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\Gerber -l F.Cu,B.Cu,F.SilkS,B.SilkS,Edge.Cuts C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb
+Plotted to 'C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\Gerber\smartplug-F_Cu.gtl'.
+Plotted to 'C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\Gerber\smartplug-B_Cu.gbl'.
+Plotted to 'C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\Gerber\smartplug-F_Silkscreen.gto'.
+Plotted to 'C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\Gerber\smartplug-B_Silkscreen.gbo'.
+Plotted to 'C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\Gerber\smartplug-Edge_Cuts.gm1'.
+RUN C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb export drill -o C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\Drill --generate-map --map-format pdf C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb
+Created file 'C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\Drill\smartplug.drl'
+Created file 'C:\Users\JEFRY PRATAMA\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\Drill\smartplug-drl_map.pdf'.
+Done.
+Gerber/drill routed prototype files present: True
+exit_code=0
+=== generate_bom.py (post carrier fix) ===
+Wrote 57 master rows, 6 tools, 5 consumables.
+Procurement: 48 lines; CORE Rp754,016; FULL add-ons Rp0; verdict CORE_OVER_750K_MARKETPLACE; RESTOCK_WITH_MECH_OVER_750K; FULL_DEFERRED.
+exit_code=0

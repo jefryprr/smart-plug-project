@@ -6,9 +6,9 @@
 
 ## 1. Assumptions
 
-- Load: **8 A / ~1.840 W**, electronics/SMPS only.
+- Load: **6 A / ~1.380 W**, electronics/SMPS only (provisional, limited by BLX-A 6.3 A holder).
 - Ambient: **40 °C** inside a shelf/cabinet; still air.
-- Relay contact resistance: **50 mΩ per channel**, two channels carry 8 A.
+- Relay contact resistance: **50 mΩ per channel**, two channels carry 6 A.
 - Fuse/holder + terminals/wiring: **2.5 W** combined.
 - PZEM: **1.0 W**.
 - HLK-5M05: **2.1 W** (70% efficiency at 5 W).
@@ -40,7 +40,7 @@ If each relay channel is **100 mΩ**:
 - Total ≈ **19.4 W**
 - `ΔT ≈ 27.6 K` → internal air ≈ **67.6 °C**.
 
-Hotspots at the relay contacts, fuse clips, and terminals will be higher than the air average. TF1 is a SEFUSE SF96E one-shot: rated functioning temperature 99 °C, holding temperature 84 °C, 10 A / 250 VAC. Normal-operation hotspot temperature must stay below 84 °C with margin; if the 8 A test shows >84 °C at the TCO, relocate/derate before release. The TCO is a backup, not a control.
+Hotspots at the relay contacts, fuse holder, and terminals will be higher than the air average. TF1 is a **generic 96 °C** one-shot (not confirmed SF96E): marked 96 °C, RFT 99 °C, holding 84 °C, 10 A / 250 VAC. Normal-operation hotspot temperature must stay below 84 °C with margin; if the 6 A test shows >84 °C at the TCO, relocate/derate before release. The TCO is a backup, not a control.
 
 ## 4. Vent (none) and material
 
@@ -50,7 +50,7 @@ Hotspots at the relay contacts, fuse clips, and terminals will be higher than th
 
 ## 5. Acceptance criteria (for the future lab test)
 
-1. Closed enclosure, 8 A resistive/electronics load, ambient 40 °C.
+1. Closed enclosure, 6 A resistive/electronics load, ambient 40 °C.
 2. Measure relay body/contacts, fuse holder, terminals, PZEM, HLK case, enclosure air, and lid.
 3. Record steady-state after at least 60 minutes.
 4. Pass only if all touchable surfaces and component ratings are respected and the TCO is not approached in normal operation.
@@ -58,12 +58,12 @@ Hotspots at the relay contacts, fuse clips, and terminals will be higher than th
 
 ## 5A. REV_D_CORE_ONLY PSU board
 
-- The PSU board carries the full 8 A L/N path through TB1, F1, TCO, TB2, and 4 mm traces (2 oz target).
+- The PSU board carries the full 6 A L/N path through TB1, F1, TCO, TB2, and 2.5 mm traces (2 oz target).
 - HLK-5M05 adds ~2.1 W at 5 W output; fuse holder, terminals, and TCO add contact/joint losses.
-- The 2 mm isolation notch and 4 mm traces are **not** a thermal rating. The board must be tested at 8 A in the closed enclosure.
+- The 2 mm isolation notch and 2.5 mm traces are **not** a thermal rating. The board must be tested at 6 A in the closed enclosure.
 - The TCO is in the L path after the MOV; it must sense the HLK/terminal/PCB hotspot, not only air.
 - The relay is above the PSU board on a printed shelf; its contacts are a separate hotspot.
-- Add PSU board hotspots to the 8 A test: TB1, F1 clips, TCO body, TB2, HLK case, L/N traces.
+- Add PSU board hotspots to the 6 A test: TB1, F1 holder, TCO body, TB2, HLK case, L/N traces.
 
 ## 6. Status
 

@@ -37,11 +37,11 @@
   },
   "bom_crosscheck": {
     "status": "PASS",
-    "master_rows": 57,
-    "pcba_rows": 16,
+    "master_rows": 59,
+    "pcba_rows": 17,
     "missing_refs_in_master": [],
-    "unpriced_lines": 57,
-    "unapproved_lines": 57,
+    "unpriced_lines": 59,
+    "unapproved_lines": 59,
     "approved_for_fabrication": 0,
     "limitations": [
       "Engineering BOM is unpriced; bom/BOM_PROCUREMENT.csv is a dated listing matrix, not a supplier quote."

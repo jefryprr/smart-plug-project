@@ -136,12 +136,18 @@ ROWS = [
         evidence="AOS datasheet; boot waveform must be measured on a low-voltage fixture."
     ),
     row(
-        "E-009", "U9", "UI/Level shift", "Quad buffer/level shifter, 5 V powered, DIP-14, for PZEM TX only",
-        "Texas Instruments", "SN74HCT125N", datasheet="https://www.ti.com/lit/ds/symlink/sn74hct125.pdf",
-        status="PENDING_APPROVAL", alt="74HCT125 (any vendor); SN74AHCT1G125 for one channel",
-        footprint="DIP-14_W7.62mm", mech="DIP14_approx",
-        notes="Converts ESP32 3.3 V logic to 5 V for PZEM RX only. 74HCT input threshold is TTL-compatible. Unused gates: inputs/OE tied to GND, outputs open; add 100 nF at VCC. Do not use for galvanic isolation.",
-        evidence="TI SN74HCT125 datasheet; verify 5 V output levels and PZEM input current."
+        "E-009", "U9", "UI/Level shift", "Quad buffer/level shifter, 5 V, 74HCT125D SOP-14 + SOP14-DIP adapter",
+        "Texas Instruments", "74HCT125D", datasheet="https://www.ti.com/lit/ds/symlink/sn74hct125.pdf",
+        status="PROVISIONAL", alt="SN74HCT125N DIP-14 (preferred if available); 74HCT125 (any vendor)",
+        footprint="SO-14_3.9x8.7mm_P1.27mm + DIP-14 adapter", mech="DIP14_adapter_approx",
+        notes="Shopee part is SMD SOP-14, not DIP-14. It requires a SOP14-to-DIP14 adapter (E-009A); verify adapter pinout, height, and socket fit. 74HCT input threshold is TTL-compatible. Unused gates: inputs/OE tied to GND, outputs open; add 100 nF at VCC. Do not use for galvanic isolation.",
+        evidence="TI SN74HCT125 datasheet; Shopee listing 74HCT125D SOP-14; adapter listing."
+    ),
+    row(
+        "E-009A", "AD1", "UI/Level shift", "SOP14 to DIP14 adapter PCB for 74HCT125D",
+        "Generic", "SOP14-DIP14", status="PROVISIONAL", footprint="DIP-14 adapter",
+        notes="Adapter must map pin 1 to pin 1 and fit the DIP-14 socket. Verify continuity and height before inserting into U9.",
+        evidence="Shopee Mega Electronics adapter listing; pinout not yet measured."
     ),
     row(
         "E-010", "K1", "Switching", "2-channel 5 V optocoupler relay module, 10 A class claim, off-board, active-low input",
@@ -149,7 +155,7 @@ ROWS = [
         datasheet="https://www.handsontec.com/dataspecs/module/2Ch-relay.pdf",
         status="DOCUMENTATION_DEFICIENT", alt="TE RT2 DPST-NO 8A PCB relay (earlier concept); 2P 16A contactor (larger)",
         footprint="OFF_BOARD_MODULE", mech="relay_module_2ch_approx",
-        notes="User-selected common 2-channel module, off-board, mounted in enclosure. Two independent SPDT channels (L/N); NOT mechanically linked DPST. 10A is a vendor claim, not validated continuous rating. Final 8A/1840W. Active-LOW input; verify JD-VCC/pinout. Do not claim safety-rated two-pole.",
+        notes="User-selected common 2-channel module, off-board, mounted in enclosure. Two independent SPDT channels (L/N); NOT mechanically linked DPST. 10A is a vendor claim, not validated continuous rating. Provisional system rating is 6A because the BLX-A holder is 6.3A. Active-LOW input; verify JD-VCC/pinout. Do not claim safety-rated two-pole.",
         evidence="Handsontec 2Ch relay datasheet; DigiKey TS0010D; verify exact batch/pinout/rating on arrival."
     ),
     row(
@@ -165,37 +171,37 @@ ROWS = [
         evidence="To be designed/printed; dimensions approximate until sample measured."
     ),
     row(
-        "E-011", "F1", "Protection", "Fuse, 5x20 mm, 10 A, 250 VAC, time-lag",
-        "Littelfuse", "0215010.MXP", datasheet="https://www.littelfuse.com/assetdocs/215-series-datasheet?assetguid=...",
-        status="PENDING_APPROVAL", alt="Schurter 0001.2510; Bel Fuse 5TT 10",
-        footprint="FUSE_5x20_HOLDER", mech="fuse_5x20_approx",
-        notes="Fuse is backup protection, not the only overcurrent protection. Breaking capacity, time-current curve, holder rating, and coordination must be reviewed. Provisional continuous load may be limited to 8 A.",
-        evidence="Littelfuse 215 series; exact datasheet URL/revision to be captured. Do not use a random glass fuse."
+        "E-011", "F1", "Protection", "Fuse, 5x20 mm, 6.3 A, 250 VAC, time-lag (Littelfuse 215 series claim)",
+        "Littelfuse", "021506.3MXP", datasheet="https://www.littelfuse.com/assetdocs/215-series-datasheet",
+        status="PROVISIONAL", alt="Schurter 0001.2513 (6.3 A); Bel Fuse 5TT 6.3; generic 6.3 A ceramic only as documented deviation",
+        footprint="Fuseholder_BLX-A_5x20mm", mech="fuse_5x20_approx",
+        notes="Shopee part is Littelfuse 215-series 6.3 A slow-blow. The BLX-A holder is rated 6.3 A / 250 V, so the provisional continuous load is 6 A maximum, not 8 A. A 10 A fuse in a 6.3 A holder is NOT acceptable. Breaking capacity, time-current curve, and coordination remain unverified.",
+        evidence="Shopee listing 6.3 A Littelfuse 215 series; Littelfuse 215 series datasheet. Verify delivered marking/MPN and breaking capacity."
     ),
     row(
-        "E-012", "FH1", "Protection", "PCB fuse clips for 5x20 mm fuse, 10 A / 250 V, 2 pcs",
-        "Littelfuse", "01110506Z",
-        datasheet="https://www.littelfuse.com/products/fuses-overcurrent-protection/fuse-holders-fuse-blocks-accessories/fuse-accessories/fuse-clips/111/111505",
-        status="PENDING_APPROVAL", alt="Schurter 0031.8201 closed holder (different footprint); Littelfuse 01110501Z",
-        footprint="Fuseholder_Clip-5x20mm_Littelfuse_111", mech="fuse_clip_approx",
-        notes="Two clips per fuse; matches the routed PSU board. Not a closed/touch-proof holder; fuse access requires opening the screwed lid. Clip rating 10 A/250 V is marginal at 8 A continuous; thermal test required. Tool-access and service procedure required.",
-        evidence="Littelfuse 111 series product page: 5x20 mm clip, 250 V, 10 A."
+        "E-012", "FH1", "Protection", "PCB fuse holder BLX-A, 5x20 mm, 6.3 A / 250 V, 1 per fuse",
+        "Generic (BLX-A)", "BLX-A",
+        datasheet="https://www.taydaelectronics.com/datasheets/files/A-2584.pdf",
+        status="PROVISIONAL", alt="Littelfuse 111 clips (10 A class, different footprint); closed holder with higher rating",
+        footprint="Fuseholder_BLX-A_5x20mm", mech="fuse_holder_approx",
+        notes="Single BLX-A holder with 2 pins; body 22 x 9.5 x 10.5 mm, pin cross-section 1.4 x 0.35 mm. Shopee seller states 21.5 mm pin spacing; the PCB footprint uses 21.5 mm but is UNVERIFIED until the sample is measured. Rating 6.3 A / 250 V, so the product is derated to 6 A continuous. Holder is open when the cover is lifted; service access only.",
+        evidence="Tayda A-2584 BLX-A drawing (6.3 A 250 V, body 22 x 9.5 x 10.5 mm) + Shopee seller 'jarak antar kaki 21.5 mm'. Exact sample must be measured."
     ),
     row(
-        "E-013", "MOV1", "Protection", "Metal-oxide varistor, 275 VAC, 10 mm, surge coordination study required",
-        "EPCOS (TDK)", "B72210S0271K101", datasheet="https://www.tdk-electronics.tdk.com/inf/70/db/varistors/leaded_sio_v_series.pdf",
-        status="PENDING_APPROVAL", alt="Littelfuse V275LA10P; Bourns MOV-10D271K",
-        footprint="MOV_10MM", mech="mov_10mm_approx",
-        notes="MOV alone is not a complete surge protection design. End-of-life failure mode, thermal fuse coordination, and standard applicability must be reviewed. Do not claim surge suppression until tested.",
-        evidence="TDK/EPCOS SIOV series; exact part rating to be verified."
+        "E-013", "MOV1", "Protection", "Metal-oxide varistor 10D271K, 275 VAC class, 10 mm, surge coordination study required",
+        "Generic (GNR Japan listing)", "10D271K", datasheet="",
+        status="PROVISIONAL", alt="EPCOS S10K275 (preferred if documented); Littelfuse V275LA10P",
+        footprint="RV_Disc_D12mm_W5mm_P7.5mm (provisional for 10 mm part)", mech="mov_10mm_approx",
+        notes="Shopee part is a generic 10D271K, 10 pcs pack. Actual disc diameter and lead pitch must be measured; the D12/7.5 mm footprint is a conservative provisional fit. MOV alone is not a complete surge protection design. End-of-life failure mode and thermal-fuse coordination are unverified.",
+        evidence="Shopee listing 10D271K (10 pcs); generic datasheet not supplied. TDK SIOV and Littelfuse datasheets are reference only, not the purchased part."
     ),
     row(
-        "E-014", "TF1", "Protection", "One-shot thermal cutoff, 99 C rated functioning temperature, 10 A / 250 VAC",
-        "Sefuse", "SF96E", datasheet="https://docs.rs-online.com/68de/0900766b81546f0c.pdf",
-        status="PROVISIONAL", alt="Therm-O-Disc one-shot 99 C; KSD301 / Bourns LC auto-reset are NOT equivalent",
-        footprint="TCO_AXIAL", mech="tco_approx",
-        notes="SF96E rated functioning temperature 99 C (marked 96 C), holding temperature 84 C, 10 A resistive / 250 VAC. NOT SF169E (172 C). Must be mechanically clamped to the hottest terminal/HLK/PCB spot and be independent of firmware; normal-operation hotspot must stay below 84 C with margin. Batch certificate and trip test still required.",
-        evidence="SEFUSE SF/E series datasheet (RS mirror), accessed 2026-11-16: ratings table lists SF96E 99 C, 10 A; SF169E is 172 C."
+        "E-014", "TF1", "Protection", "Generic one-shot thermal cutoff, 96 C marking / 99 C functioning, 10 A / 250 VAC",
+        "Generic (Aneka Teknik Surabaya listing)", "TCO-96C-10A-GENERIC", datasheet="",
+        status="PROVISIONAL", alt="SEFUSE SF96E (documented preferred, not purchased); Therm-O-Disc one-shot 99 C",
+        footprint="TCO_AXIAL (custom, 5.1 mm pitch provisional)", mech="tco_approx",
+        notes="Shopee part is a generic 96 C TCO, NOT SEFUSE SF96E. Verify marking 96 C / RFT 99 C / holding 84 C, body dimensions, and lead pitch; the custom 5.1 mm footprint is provisional. Must be mechanically clamped to the hottest terminal/HLK/PCB spot and be independent of firmware. Normal-operation hotspot must stay below 84 C with margin. Batch certificate and trip test required.",
+        evidence="Shopee generic 96 C listing; SEFUSE SF/E datasheet is reference only. Do not claim SF96E."
     ),
     row(
         "E-015", "D1", "Passives", "Flyback diode for relay coil, 1 A / 1000 V",
@@ -221,10 +227,10 @@ ROWS = [
         notes="Place close to LED data input.", evidence="Yageo datasheet."
     ),
     row(
-        "E-050", "F2", "Protection", "Resettable PTC fuse, 1.1 A hold, 1206, 5 V rail", "Littelfuse", "1206L110THYR",
+        "E-050", "F2", "Protection", "Resettable PTC fuse, 1.0 A hold, 1206, 5 V rail", "Generic (Marnov Electronic listing)", "PTC-1206-1.0A",
         status="PROVISIONAL", footprint="Fuse_1206_3216Metric", mech="fuse_1206_approx",
-        notes="Protects the PSU board total 5 V output (J5/J6/J7) and wiring. Hold current 1.1 A; verify trip time and voltage drop. Not a substitute for the mains fuse. The carrier has no PTC.",
-        evidence="Littelfuse 1206L series datasheet; exact batch to be verified."
+        notes="Shopee part is 1.0 A hold, not 1.1 A. Protects the PSU board total 5 V output (J5/J6/J7) and wiring. Verify trip current and voltage drop; 5 V load must stay below hold with margin. Not a substitute for the mains fuse. The carrier has no PTC.",
+        evidence="Shopee PTC 1.0 A 1206 listing; generic datasheet not supplied. Hold/trip current must be measured."
     ),
     row(
         "E-051", "D1", "Protection", "TVS diode, 5 V standoff, 400 W, SMB", "Littelfuse", "SMBJ5.0A",
@@ -251,11 +257,11 @@ ROWS = [
         evidence="Estimated cable assembly."
     ),
     row(
-        "E-055", "TB2", "Connectors", "Mains output terminal block, 2-pin, 5.08 mm, 17.5 A / 250 V, screw clamp", "Phoenix Contact", "MKDS 1,5/2-5,08",
-        status="PROVISIONAL", alt="MKDS 3/2-5,08 (320 V, needs new footprint); Degson DG308-5.08-2P",
-        footprint="TERMINAL_5.08_2P", mech="terminal_5.08_2p_approx",
-        notes="PSU TB2 L/N output to relay/socket. 250 VAC < user's >=300 V target; upgrade path MKDS 3/2-5,08. Verify torque, 1.5 mm2 wire/ferrule, and creepage. Full 8 A passes through this block.",
-        evidence="Phoenix MKDS 1,5 series: 5.08 mm, 17.5 A, 250 V; order code 1715721."
+        "E-055", "TB2", "Connectors", "Mains output terminal block, 2-pin, 5.08 mm, KF129-2P, 300 V / 25 A claim", "Generic (otomata listing)", "KF129-2P",
+        status="UNVERIFIED", alt="Phoenix MKDS 1,5/2-5,08 (250 V, documented); Degson DG308-5.08-2P",
+        footprint="TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal (pad-compatible only)", mech="terminal_5.08_2p_approx",
+        notes="Shopee listing is a new listing with 0 reviews/0 sold; 300 V / 25 A is a vendor claim, not verified. The PCB uses a Phoenix MKDS 5.08 mm pad layout (1.3 mm drill, 2.6 mm pad); body, courtyard, and retention of KF129 are not proven. Measure the sample; if it does not fit, make a KF129 footprint. Provisional load is 6 A, not 8 A.",
+        evidence="Shopee KF129-2P listing (0 reviews/0 sold, shop rating 4.94); Phoenix MKDS datasheet is reference only."
     ),
     row(
         "E-019", "C1", "Passives", "Bulk capacitor, 100 uF, 10 V, low ESR, 6.3x5.4 mm", "Nichicon", "UWT1A101MCL1GS",
@@ -263,14 +269,19 @@ ROWS = [
         footprint="CP_6.3x5.4", mech="cap_6.3_approx", notes="5 V rail decoupling near relay/PSU.", evidence="Nichicon datasheet."
     ),
     row(
-        "E-020", "C2", "Passives", "Decoupling capacitor, 100 nF, 50 V, 0603", "Murata", "GRM188R71H104KA93D",
-        datasheet="https://www.murata.com/", status="PROVISIONAL", footprint="C_0603_1608Metric", mech="C0603_approx",
-        notes="Place at each IC supply pin.", evidence="Murata datasheet."
+        "E-020", "C2", "Passives", "Decoupling capacitor, 100 nF, 50 V, 0805", "Generic (EasyWare 20 pcs pack)", "100nF-0805-X7R",
+        datasheet="", status="PROVISIONAL", footprint="C_0805_2012Metric", mech="C0805_approx",
+        notes="Actual Shopee part is a 20 pcs 0805 X7R pack. Place at each IC supply pin.", evidence="Shopee 100nF 0805 listing; exact voltage/tolerance verify."
     ),
     row(
-        "E-020A", "C3", "Passives", "Decoupling capacitor, 100 nF, 50 V, 0603, at 74HCT125 VCC", "Murata", "GRM188R71H104KA93D",
-        datasheet="https://www.murata.com/", status="PROVISIONAL", footprint="C_0603_1608Metric", mech="C0603_approx",
-        notes="Place within 5 mm of U9 VCC/GND. Required for clean 5V level-shift edges.", evidence="Murata datasheet."
+        "E-020A", "C3", "Passives", "Decoupling capacitor, 100 nF, 50 V, 0805, at 74HCT125 VCC", "Generic (EasyWare 20 pcs pack)", "100nF-0805-X7R",
+        datasheet="", status="PROVISIONAL", footprint="C_0805_2012Metric", mech="C0805_approx",
+        notes="Place within 5 mm of U9 VCC/GND. Required for clean 5V level-shift edges. C3 was moved from 58,48 to 78,24 in REV_D.", evidence="Shopee 100nF 0805 listing; exact voltage/tolerance verify."
+    ),
+    row(
+        "E-020B", "C4", "Passives", "Gate-source capacitor, 100 nF, 0805, at Q1", "Generic (EasyWare 20 pcs pack)", "100nF-0805-X7R",
+        datasheet="", status="PROVISIONAL", footprint="C_0805_2012Metric", mech="C0805_approx",
+        notes="Added across RELAY_GATE-GND to slow the long gate trace and reduce false turn-on. Verify relay driver edge and boot behavior.", evidence="Shopee 100nF 0805 listing; value chosen as provisional EMI/edge filter."
     ),
     row(
         "E-018A", "R4", "Passives", "PZEM TX divider top resistor, 10 kohm, 1%, 0805", "Yageo", "RC0805FR-0710KL",
@@ -323,15 +334,15 @@ ROWS = [
         evidence="Espressif DevKitC-1 v1.1 user guide header tables."
     ),
     row(
-        "E-025", "J2", "Connectors", "JST-XH 4-pin connector for PZEM TTL (5V, RX, TX, GND)", "JST", "B4B-XH-A",
+        "E-025", "J2", "Connectors", "JST-XH 4-pin connector for PZEM TTL (RX, TX, GND; 5V pin NC; 5V from PSU J7)", "JST", "B4B-XH-A",
         status="PROVISIONAL", footprint="JST_XH_B4B-XH-A", mech="jst_xh_4_approx",
-        notes="PZEM TTL side is SELV via the module's internal optocouplers. Pin order must match the purchased V4 batch; never assume colors.",
+        notes="PZEM TTL side is SELV via the module's internal optocouplers. J2 pin 1 is intentionally NC; PZEM 5V comes directly from PSU J7. Pin order must match the purchased V4 batch; never assume colors.",
         evidence="PZEM V4 pinout; verify batch."
     ),
     row(
-        "E-026", "J3", "Connectors", "JST-XH 4-pin connector for relay module (5V, GND, IN1, IN2)", "JST", "B4B-XH-A",
+        "E-026", "J3", "Connectors", "JST-XH 4-pin connector for relay module (GND, IN1, IN2; 5V pin NC; 5V from PSU J6)", "JST", "B4B-XH-A",
         status="PROVISIONAL", footprint="JST_XH_B4B-XH-A", mech="jst_xh_4_approx",
-        notes="Active-LOW module inputs; both driven by one AO3400. JD-VCC jumper on module. Keep coil current off the carrier ground return? Use short 5V/GND pair.",
+        notes="Active-LOW module inputs; both driven by one AO3400. J3 pin 1 is intentionally NC; relay 5V comes directly from PSU J6. Verify module pinout.",
         evidence="Relay module pinout; verify batch."
     ),
     row(
@@ -360,11 +371,11 @@ ROWS = [
         notes="5V/GND from HLK. Add 100uF bulk and 100nF at carrier entry. Keep away from mains wiring.", evidence="JST datasheet."
     ),
     row(
-        "E-029", "TB1", "Connectors", "Mains input terminal block, 2-pin, 5.08 mm, 17.5 A / 250 V, screw clamp", "Phoenix Contact", "MKDS 1,5/2-5,08",
-        status="PROVISIONAL", alt="MKDS 3/2-5,08 (320 V, needs new footprint); Degson DG308-5.08-2P",
-        footprint="TERMINAL_5.08_2P", mech="terminal_5.08_2p_approx",
-        notes="PSU TB1 input L/N. 250 VAC rating meets 230 VAC nominal but is below the user's >=300 V target; conservative upgrade is MKDS 3/2-5,08 with a new footprint. 17.5 A > 10 A fuse. Verify torque, 1.5 mm2 wire/ferrule, and creepage.",
-        evidence="Phoenix MKDS 1,5 series: 5.08 mm, 17.5 A, 250 V; order code 1715721 (MKDS 1,5/2-5,08)."
+        "E-029", "TB1", "Connectors", "Mains input terminal block, 2-pin, 5.08 mm, KF129-2P, 300 V / 25 A claim", "Generic (otomata listing)", "KF129-2P",
+        status="UNVERIFIED", alt="Phoenix MKDS 1,5/2-5,08 (250 V, documented); Degson DG308-5.08-2P",
+        footprint="TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal (pad-compatible only)", mech="terminal_5.08_2p_approx",
+        notes="Shopee listing is a new listing with 0 reviews/0 sold; 300 V / 25 A is a vendor claim, not verified. The PCB uses a Phoenix MKDS 5.08 mm pad layout (1.3 mm drill, 2.6 mm pad); body, courtyard, and retention of KF129 are not proven. Measure the sample; if it does not fit, make a KF129 footprint. Provisional load is 6 A, not 8 A.",
+        evidence="Shopee KF129-2P listing (0 reviews/0 sold, shop rating 4.94); Phoenix MKDS datasheet is reference only."
     ),
     row(
         "E-030", "TB_PE", "Connectors", "Protective earth terminal/stud, screw-clamp, tool-access", "TBD", "PE-TERMINAL-TBD",
@@ -535,13 +546,22 @@ PROCUREMENT = [
         "notes": "Level-shifts ESP32 3.3V TX to PZEM 5V RX and RGB data to 5V. DIP-14 for hand assembly; tie unused inputs to GND, add 100nF at VCC. PZEM RX is not 5V-tolerant, so the RX divider is mandatory.",
     },
     {
+        "line_id": "E-009A", "stage": "CORE",
+        "selected": "SOP14 to DIP14 adapter PCB",
+        "qty": 1, "unit_price": 3113,
+        "seller": "Shopee / Mega Electronics Batam",
+        "url": "https://shopee.co.id/product/5623654/125761820",
+        "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
+        "notes": "Adapter for the SOP-14 74HCT125D. Verify pin 1 mapping, continuity, and height before inserting into U9.",
+    },
+    {
         "line_id": "E-010", "stage": "CORE",
         "selected": "2-channel 5 V optocoupler relay module, 10 A class",
         "qty": 1, "unit_price": 16650,
         "seller": "Shopee / AIFRobotic",
         "url": "https://shopee.co.id/product/214108565/5414791883",
         "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "Two independent SPDT channels, NOT mechanically linked. 10 A is a vendor claim; relay brand, batch, contact rating, and lifecycle are unverified. Final rating is 8 A only after thermal/lifecycle test. Verify active-LOW input and JD-VCC jumper.",
+        "notes": "Two independent SPDT channels, NOT mechanically linked. 10 A is a vendor claim; relay brand, batch, contact rating, and lifecycle are unverified. Provisional system rating is 6 A because the BLX-A holder is 6.3 A. Verify active-LOW input and JD-VCC jumper.",
     },
     {
         "line_id": "E-010A", "stage": "CORE",
@@ -568,7 +588,7 @@ PROCUREMENT = [
         "seller": "Shopee",
         "url": "https://shopee.co.id/product/88911101/12944617615",
         "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "Listing says Littelfuse slow-blow; verify exact MPN/marking and breaking capacity. A 10 A fuse is backup protection, not the only overcurrent protection. 8 A continuous coordination and time-current curve still require review.",
+        "notes": "Shopee listing is a 6.3 A Littelfuse 215-series slow-blow; verify exact MPN/marking and breaking capacity. The BLX-A holder is 6.3 A, so the provisional continuous rating is 6 A. A 10 A fuse in this holder is not acceptable. Time-current coordination still requires review.",
     },
     {
         "line_id": "E-012", "stage": "CORE",
@@ -679,7 +699,7 @@ PROCUREMENT = [
         "seller": "Shopee",
         "url": "https://shopee.co.id/product/27499686/47805816021",
         "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "Listing is a generic 5.08 mm terminal, not confirmed Phoenix. Verify MKDS 1,5/2-5,08 or equivalent, 17.5 A/250 V. 250 V is below the >=300 V target; engineer review or MKDS 3 upgrade. Full 8 A passes here.",
+        "notes": "Shopee part is KF129-2P (new listing, 0 reviews/0 sold), not confirmed Phoenix. 300 V/25 A is a vendor claim; the PCB uses a Phoenix MKDS pad layout and body/courtyard fit is unverified. Provisional load is 6 A. Measure the sample before fabrication.",
     },
     {
         "line_id": "E-019", "stage": "CORE",
@@ -823,7 +843,7 @@ PROCUREMENT = [
         "seller": "Shopee",
         "url": "https://shopee.co.id/product/15316646/522424401",
         "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "PZEM TTL connector; pin order must match the V4 batch. Can be soldered directly if the cable is not available.",
+        "notes": "PZEM TTL connector; J2 pin 1 is NC, PZEM 5V from PSU J7. Pin order must match the V4 batch. Can be soldered directly if the cable is not available.",
     },
     {
         "line_id": "E-026", "stage": "CORE",
@@ -832,7 +852,7 @@ PROCUREMENT = [
         "seller": "Shopee",
         "url": "https://shopee.co.id/product/15316646/522424401",
         "stock": "LISTED", "verification": "VERIFIED_AGGREGATOR",
-        "notes": "Relay module connector; 5V/GND/IN1/IN2. Verify module pinout.",
+        "notes": "Relay module connector; J3 pin 1 is NC, relay 5V from PSU J6; GND/IN1/IN2. Verify module pinout.",
     },
     {
         "line_id": "E-027", "stage": "DEFERRED",
@@ -1005,7 +1025,7 @@ PROCUREMENT_OVERRIDES = {
         "description": "ESP32-S3 DevKitC-1, N16R8 (official preferred; compatible board allowed only as a documented deviation)",
         "manufacturer": "Espressif / documented compatible",
         "alternative_mpn": "Official Espressif ESP32-S3-DevKitC-1-N16R8 (preferred); N8R8",
-        "notes": "Q08=B remains the official ESP32-S3-DevKitC-1 N16R8 baseline. Official local stock is unconfirmed; the priced prototype board is a compatible N16R8 at Rp139,968. This is an explicit, not silent, deviation. Verify N16R8 marking, RGB GPIO (v1.0=48, v1.1=38), regulator, USB, and pinout.",
+        "notes": "Q08=B remains the official ESP32-S3-DevKitC-1 N16R8 baseline. Official local stock is unconfirmed; the actual Shopee cart board is a compatible N16R8 at Rp117,114 (variant: no antenna port, soldered headers). This is an explicit, not silent, deviation. Verify N16R8 marking, 1x22/22.86 mm headers, RGB GPIO (v1.0=48, v1.1=38), regulator, USB, and pinout.",
     },
     "E-002": {
         "description": "PZEM-004T V4 AC energy meter, 100 A CT (closed or split), TTL/Modbus",
@@ -1014,7 +1034,7 @@ PROCUREMENT_OVERRIDES = {
     },
     "E-010": {
         "manufacturer": "Generic module (Songle-class relay)",
-        "notes": "User-selected common 2-channel module, off-board. Two independent SPDT channels (L/N), NOT mechanically linked DPST. 10 A is a vendor claim, not a validated continuous rating. Final 8 A/1840 W. Active-LOW input; verify JD-VCC/pinout. Priced module is a generic optocoupler board; relay brand/batch/rating/lifecycle are unverified.",
+        "notes": "User-selected common 2-channel module, off-board. Two independent SPDT channels (L/N), NOT mechanically linked DPST. 10 A is a vendor claim, not a validated continuous rating. Provisional system rating is 6 A because the BLX-A fuse holder is 6.3 A. Active-LOW input; verify JD-VCC/pinout. Priced module is a generic optocoupler board; relay brand/batch/rating/lifecycle are unverified.",
     },
     "E-021": {
         "manufacturer": "Generic (SSD1306)",
@@ -1066,6 +1086,144 @@ PROCUREMENT_OVERRIDES = {
     },
 }
 
+# Actual Shopee cart/procurement data, 2026-11-24. These override the older
+# aggregator prices in PROCUREMENT so the priced BOM matches what is bought.
+SHOPEE_PROCUREMENT = {
+    "E-001": {
+        "selected": "ESP32-S3 DevKitC-1 N16R8 compatible, dual USB-C, no antenna port, soldered headers",
+        "qty": 1, "unit_price": 117114,
+        "seller": "Shopee / Shop 1555409167",
+        "url": "https://shopee.co.id/product/1555409167/53807075175",
+        "notes": "Actual cart variant: 'Tanpa Port Antena, Disolder', Rp117.114. Verify 1x22 headers at 22.86 mm, N16R8 marking, USB, and whether the soldered headers fit the carrier sockets. Compatible board, not confirmed official Espressif.",
+    },
+    "E-002": {
+        "selected": "PZEM-004T V4.0 100 A CT, closed CT",
+        "qty": 1, "unit_price": 150000,
+        "seller": "Shopee / EasyWare Electronics",
+        "url": "https://shopee.co.id/product/65450634/45917286211",
+        "notes": "Actual cart variant: Close CT (100A). Verify V4 batch, CT ratio, UART levels, terminal rating, and voltage-input construction. CT clamps on L only.",
+    },
+    "E-003": {
+        "selected": "Hi-Link HLK-5M05, 5 V 1 A, 5 W",
+        "qty": 1, "unit_price": 30000,
+        "seller": "Shopee / toko elektronik malang",
+        "url": "https://shopee.co.id/product/310343993/44568415081",
+        "notes": "Price is far below market; verify authenticity, batch marking, and isolation. Batch certificate/hipot still required. Efficiency ~70%, so ~2.1 W heat.",
+    },
+    "E-008": {
+        "selected": "AO3400A SOT-23 N-channel MOSFET, 3 pcs",
+        "qty": 3, "unit_price": 2597,
+        "seller": "Shopee / GOODWORK Electronics",
+        "url": "https://shopee.co.id/product/9011098/5116010755",
+        "notes": "3 pcs (1 used + 2 spares). Verify AO3400A marking and Vgs(th). Gate pulldown 100k and series 1k are mandatory.",
+    },
+    "E-009": {
+        "selected": "74HCT125D SOP-14 level shifter + SOP14-DIP14 adapter",
+        "qty": 1, "unit_price": 10000,
+        "seller": "Shopee / Sinar Elektronik Semarang",
+        "url": "https://shopee.co.id/product/88911101/20111970400",
+        "notes": "Actual part is SMD SOP-14, not DIP-14; it needs the E-009A adapter. Verify adapter pinout/height. Add 100 nF at VCC; tie unused inputs to GND.",
+    },
+    "E-009A": {
+        "selected": "SOP14 to DIP14 adapter PCB",
+        "qty": 1, "unit_price": 3113,
+        "seller": "Shopee / Mega Electronics Batam",
+        "url": "https://shopee.co.id/product/5623654/125761820",
+        "notes": "Map pin 1 to pin 1 and verify continuity before inserting into U9.",
+    },
+    "E-010": {
+        "selected": "2-channel 5 V optocoupler relay module, 10 A class claim",
+        "qty": 1, "unit_price": 18000,
+        "seller": "Shopee / EasyWare Electronics",
+        "url": "https://shopee.co.id/product/65450634/6712855562",
+        "notes": "Two independent SPDT channels, NOT mechanically linked. 10 A is a vendor claim; provisional system rating is 6 A because the BLX-A holder is 6.3 A. Verify active-LOW input and weld behavior.",
+    },
+    "E-011": {
+        "selected": "Littelfuse 215-series 6.3 A 250 V slow-blow ceramic fuse, 5x20 mm",
+        "qty": 2, "unit_price": 2700,
+        "seller": "Shopee / 288747162 (Tangerang)",
+        "url": "https://shopee.co.id/product/288747162/43532030540",
+        "notes": "Actual cart variant: 6.3A. Chosen to coordinate with the BLX-A 6.3 A holder. 1 used + 1 spare. Verify Littelfuse marking and breaking capacity; a 10 A fuse in this holder is not acceptable.",
+    },
+    "E-012": {
+        "selected": "BLX-A PCB fuse holder, 5x20 mm, 6.3 A / 250 V",
+        "qty": 2, "unit_price": 700,
+        "seller": "Shopee / jogjarobotika",
+        "url": "https://shopee.co.id/product/92457567/1867338575",
+        "notes": "One holder per fuse; 2 pcs = 1 used + 1 spare. Rating 6.3 A/250 V; product derated to 6 A. Body 22 x 9.5 x 10.5 mm; seller states 21.5 mm pin spacing. Measure the sample before fabrication.",
+    },
+    "E-013": {
+        "selected": "MOV 10D271K, 275 VAC class, 10 mm, 10 pcs pack",
+        "qty": 1, "unit_price": 10000,
+        "seller": "Shopee / GNR Japan",
+        "url": "https://shopee.co.id/product/469361247/10864541975",
+        "notes": "Generic 10D271K, 10 pcs. Measure disc diameter and lead pitch; D12/7.5 mm PCB footprint is provisional. Surge coordination/end-of-life unverified.",
+    },
+    "E-014": {
+        "selected": "Generic thermal cutoff 96 C, 10 A / 250 VAC, 2 pcs",
+        "qty": 2, "unit_price": 2100,
+        "seller": "Shopee / Aneka Teknik Surabaya",
+        "url": "https://shopee.co.id/product/129979722/22351099166",
+        "notes": "Generic 96 C, NOT SEFUSE SF96E. Verify marking 96 C/RFT 99 C/holding 84 C, body dimensions, and lead pitch. Clamp to the hottest terminal/HLK/PCB spot. One-shot, independent of firmware.",
+    },
+    "E-050": {
+        "selected": "PTC resettable fuse 1.0 A, 1206",
+        "qty": 2, "unit_price": 3500,
+        "seller": "Shopee / Marnov Electronic",
+        "url": "https://shopee.co.id/product/29614947/24440996652",
+        "notes": "1.0 A hold, not 1.1 A. Verify trip current and voltage drop; keep 5 V load below hold with margin. 1 used + 1 spare.",
+    },
+    "E-051": {
+        "selected": "SMBJ5.0A TVS diode, 600 W, SMB",
+        "qty": 2, "unit_price": 927,
+        "seller": "Shopee / GOODWORK Electronics",
+        "url": "https://shopee.co.id/product/9011098/45700185815",
+        "notes": "SMBJ5.0A 600 W. Cathode to +5V, anode to GND; place near the 5 V output.",
+    },
+    "E-053": {
+        "selected": "JST-XH 2-pin PCB connector, straight, 5 pcs",
+        "qty": 5, "unit_price": 350,
+        "seller": "Shopee / Sleman Electronic",
+        "url": "https://shopee.co.id/product/147804825/12393968788",
+        "notes": "3 used + 2 spares. Verify 3 A rating and keying.",
+    },
+    "E-054": {
+        "selected": "JST-XH 2-pin cable 20 cm male+female, 3 sets",
+        "qty": 3, "unit_price": 1800,
+        "seller": "Shopee / Sleman Electronic",
+        "url": "https://shopee.co.id/product/147804825/23455158888",
+        "notes": "3 sets for 5 V/carrier/relay/spare. Label both ends; do not swap polarity.",
+    },
+    "E-029": {
+        "selected": "KF129-2P 5.08 mm terminal block, 300 V / 25 A claim",
+        "qty": 1, "unit_price": 2000,
+        "seller": "Shopee / otomata",
+        "url": "https://shopee.co.id/product/1925606545/47016995838",
+        "notes": "One of two terminals (TB1). New listing, 0 reviews/0 sold, shop rating 4.94; 300 V/25 A claim unverified. PCB uses a Phoenix MKDS pad layout; body/courtyard/retention must be measured. Provisional load 6 A.",
+    },
+    "E-055": {
+        "selected": "KF129-2P 5.08 mm terminal block, 300 V / 25 A claim",
+        "qty": 1, "unit_price": 2000,
+        "seller": "Shopee / otomata",
+        "url": "https://shopee.co.id/product/1925606545/47016995838",
+        "notes": "One of two terminals (TB2). Same part as E-029. New listing with no reviews; verify body fit and rating. Provisional load 6 A.",
+    },
+    "E-034": {
+        "selected": "DV DSMS-2P-16A Schuko panel socket, 16 A/250 V, IP44",
+        "qty": 1, "unit_price": 45999,
+        "seller": "Shopee / Bintang Sukses Listrik",
+        "url": "https://shopee.co.id/product/1256135134/40609914166",
+        "notes": "Flange 50x50, fixing 38x38, cutout 45.6x45.6. Measure depth and PE continuity; certification unverified.",
+    },
+    "E-035": {
+        "selected": "DV DIP-2P-16A Schuko cord plug, 16 A/250 V, IP44",
+        "qty": 1, "unit_price": 31000,
+        "seller": "Shopee / DAHLIA ELECTRIC SDA",
+        "url": "https://shopee.co.id/product/14942994/43260333760",
+        "notes": "Verify PE contact, cable clamp 3x1.5 mm2, terminal torque, and certification.",
+    },
+}
+
 for _item in ROWS:
     if _item["item_id"] in PROCUREMENT_OVERRIDES:
         _item.update(PROCUREMENT_OVERRIDES[_item["item_id"]])
@@ -1088,6 +1246,10 @@ def procurement_rows() -> list[dict]:
         item = by_id.get(entry["line_id"])
         if item is None:
             raise KeyError(f"procurement row {entry['line_id']} has no BOM row")
+        if entry["line_id"] in SHOPEE_PROCUREMENT:
+            entry = {**entry, **SHOPEE_PROCUREMENT[entry["line_id"]]}
+            entry["date"] = "2026-11-24"
+            entry["verification"] = "SHOPEE_CART_2026-11-24"
         extended = round(float(entry["qty"]) * float(entry["unit_price"]))
         rows.append(
             {
@@ -1256,11 +1418,12 @@ def main() -> None:
         "owned_components": {"market_cost_idr": None, "cash_out_cost_idr": None, "note": "Q28=B: none owned."},
         "notes": [
             "Engineering BOM is still unpriced; dated prototype buy list is bom/BOM_PROCUREMENT.csv.",
+            "The actual Shopee cart (CORE_ONLY_SHOPEE_SHOPPING_LIST.csv, 45 priced lines) subtotal is Rp640,074 before shipping; BOM_PROCUREMENT includes PCB-fab estimates and spares, so its subtotal is not identical.",
             "Prices are listing prices, not supplier quotes. Shipping/tax are separate estimates.",
             "REV_D is CORE-only. OLED, RTC, external RGB, their connectors, 330R, and I2C pullups are DEFERRED and excluded from procurement.",
             f"CORE electronics is Rp{core_subtotal:,} (Rp{core_subtotal + SHIPPING_ESTIMATE_IDR:,} all-in) at marketplace prices; the mechanical addendum (~Rp{MECH_ADDENDUM_IDR:,}) makes it about Rp{core_subtotal + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR:,} all-in. EasyWare restock gives about Rp{core_restock + SHIPPING_ESTIMATE_IDR + MECH_ADDENDUM_IDR:,} all-in with the addendum. FULL UI is deferred in REV_D. Do not downgrade safety.",
             "FULL UI/time add-ons are deferred; do not downgrade fuse, MOV, TCO, PE, terminal, enclosure, or isolation to meet budget.",
-            "Final rating is 8 A / about 1.840 W (user amendment), limited to electronics/SMPS loads; thermal/lifecycle tests are still required.",
+            "Provisional rating is 6 A / about 1.380 W, limited by the BLX-A 6.3 A fuse holder; thermal/lifecycle tests are still required. Do not claim 8 A or 16 A.",
             "Batch 10-unit pricing cannot be quoted without actual supplier quotes.",
         ],
     }

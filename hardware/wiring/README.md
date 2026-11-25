@@ -11,8 +11,8 @@ substitute for the PCB netlist (`hardware/carrier/netlist.csv`). CORE-only carri
 |---|---|---|
 | `J1A` | 1×22 socket | ESP32-S3-DevKitC-1 **J1** (3V3, GPIO, 5V, GND) |
 | `J1B` | 1×22 socket | ESP32-S3-DevKitC-1 **J3** (GND, GPIO, USB pins) |
-| `J2` | JST-XH 4 | PZEM-004T V4 TTL: 5V, RX, TX, GND |
-| `J3` | JST-XH 4 | Relay module: 5V, GND, IN1, IN2 |
+| `J2` | JST-XH 4 | PZEM-004T V4 TTL: RX, TX, GND; pin 1 NC (5 V from PSU J7) |
+| `J3` | JST-XH 4 | Relay module: GND, IN1, IN2; pin 1 NC (5 V from PSU J6) |
 | `J6` | JST-XH 2 | Button: BUTTON, GND |
 | `J8` | JST-XH 2 | 5 V input from the REV_D_CORE_ONLY PSU board J5 |
 
@@ -33,6 +33,8 @@ The DevKitC-1 has **two separate 1×22 headers**, not a 2×22 IDC header.
 - PZEM TTL is 5 V. The 10k/20k divider and 74HCT125 are **on the carrier**, not
   in the cable. Do not add an external UART isolator; the PZEM internal
   optocouplers are the barrier.
+- Relay/PZEM 5 V is **not** distributed by the carrier. Use the PSU J6/J7
+  2-pin cables; J2/J3 pin 1 is intentionally NC.
 - The relay module is active-LOW. J3 pins 3/4 are tied together on the carrier
   and driven by one AO3400; they are not independent GPIOs.
 - The relay module is **not** a mechanically linked DPST.

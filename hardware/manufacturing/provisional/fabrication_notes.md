@@ -32,7 +32,7 @@
 | Functional Gerber | `PASS_DIGITAL` | Routed copper exported; not fabricated |
 | POSITION | `PROVISIONAL` | Assembly positions exist but no assembly release |
 | Mains clearance/creepage | `BLOCKED` | OVC/PD/material group/altitude not approved; 2 mm notch is provisional |
-| 8 A thermal / 2 oz capability | `BLOCKED` | No lab, no fabricated board |
+| 6 A thermal / 2 oz capability | `BLOCKED` | No lab, no fabricated board; BLX-A 6.3 A holder limits the path |
 | Hipot/leakage/PE/thermal/load | `BLOCKED` | No lab/hardware |
 
 ## Stackup
@@ -51,7 +51,7 @@
 - PE is **not** on the PSU board; it is a dedicated chassis stud.
 - TB1/TB2 pin order: pin 1 = N, pin 2 = L. Verify before wiring.
 - F1 is before the MOV; TF1 is after the MOV in the L path.
-- The 5 V output order is J5 carrier, J6 relay, J7 PZEM (conditional, ADR-016).
+- The 5 V output order is J5 carrier, J6 relay, J7 PZEM (conditional, ADR-016). Carrier J2/J3 pin 1 is NC; relay/PZEM 5 V comes directly from J6/J7.
 - Stencil/assembly: 13 SMT/THT components on the PSU board; fiducials FID1–FID3.
 
 ## Release rule

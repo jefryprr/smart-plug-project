@@ -1,0 +1,54 @@
+
+> @smartplug/api@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 D:/Projects/Zed/SMART-PLUG-V2/apps/api
+
+ ❯ test/integration.test.ts (0 test)
+ ❯ test/time.test.ts (0 test)
+ ❯ test/alerts.test.ts (0 test)
+ ❯ test/api.test.ts (0 test)
+
+ Test Files  4 failed (4)
+      Tests  no tests
+   Start at  21:08:47
+   Duration  1.61s (worker 97%, environment 3%)
+
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/alerts.test.ts [ test/alerts.test.ts ]
+ FAIL  test/api.test.ts [ test/api.test.ts ]
+ FAIL  test/time.test.ts [ test/time.test.ts ]
+Error: Cannot find package '@smartplug/api-contract' imported from D:/Projects/Zed/SMART-PLUG-V2/apps/api/src/routes/auth.ts
+ ❯ src/routes/auth.ts:4:1
+      2| import type { FastifyInstance } from "fastify";
+      3| import { z } from "zod";
+      4| import {
+       | ^
+      5|   ClaimDeviceRequestSchema,
+      6|   LoginRequestSchema,
+ ❯ src/app.ts:10:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  test/integration.test.ts [ test/integration.test.ts ]
+Error: Cannot find package '@smartplug/device-simulator' imported from D:/Projects/Zed/SMART-PLUG-V2/apps/api/test/integration.test.ts
+ ❯ test/integration.test.ts:7:1
+      5| import { afterEach, beforeEach, describe, expect, it } from "vitest";
+      6| import type { FastifyInstance } from "fastify";
+      7| import { SimulatedDevice } from "@smartplug/device-simulator";
+       | ^
+      8| import { buildApp } from "../src/app.js";
+      9| import { AppDb } from "../src/db/index.js";
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path D:\Projects\Zed\SMART-PLUG-V2\apps\api
+npm error workspace @smartplug/api@0.1.0
+npm error location D:\Projects\Zed\SMART-PLUG-V2\apps\api
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c vitest run

@@ -1,0 +1,5 @@
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/drc.json
+DRC violations: 0 (routed SELV carrier)

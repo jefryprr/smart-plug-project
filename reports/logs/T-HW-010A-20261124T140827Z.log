@@ -1,0 +1,12 @@
+Rendering main_harness.yaml ...
+WireViz 0.4.1
+Input file:   D:\Projects\Zed\SMART-PLUG-V2\hardware\wiring\main_harness.yaml
+Output file:  D:\Projects\Zed\SMART-PLUG-V2\hardware\wiring\renders\main_harness.[gv|png|svg]
+  PDF: main_harness.pdf (51530 bytes)
+Rendering metering_harness.yaml ...
+WireViz 0.4.1
+Input file:   D:\Projects\Zed\SMART-PLUG-V2\hardware\wiring\metering_harness.yaml
+Output file:  D:\Projects\Zed\SMART-PLUG-V2\hardware\wiring\renders\metering_harness.[gv|png|svg]
+  PDF: metering_harness.pdf (46004 bytes)
+
+Rendered 2 harnesses to D:\Projects\Zed\SMART-PLUG-V2\hardware\wiring\renders

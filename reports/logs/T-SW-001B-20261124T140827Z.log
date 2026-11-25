@@ -1,0 +1,60 @@
+
+> @smartplug/api@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+src/mqtt/bridge.ts(15,8): error TS2307: Cannot find module '@smartplug/mqtt-contract' or its corresponding type declarations.
+src/mqtt/publisher.ts(1,50): error TS2307: Cannot find module '@smartplug/mqtt-contract' or its corresponding type declarations.
+src/routes/auth.ts(10,8): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/routes/auth.ts(40,9): error TS18046: 'body' is of type 'unknown'.
+src/routes/auth.ts(42,36): error TS18046: 'body' is of type 'unknown'.
+src/routes/auth.ts(160,14): error TS18046: 'body' is of type 'unknown'.
+src/routes/auth.ts(189,11): error TS18046: 'body' is of type 'unknown'.
+src/routes/auth.ts(190,67): error TS18046: 'body' is of type 'unknown'.
+src/routes/automation.ts(12,8): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/routes/automation.ts(61,55): error TS18046: 'body' is of type 'unknown'.
+src/routes/automation.ts(61,73): error TS18046: 'body' is of type 'unknown'.
+src/routes/automation.ts(137,9): error TS18046: 'body' is of type 'unknown'.
+src/routes/automation.ts(138,9): error TS18046: 'body' is of type 'unknown'.
+src/routes/automation.ts(139,9): error TS18046: 'body' is of type 'unknown'.
+src/routes/automation.ts(140,9): error TS18046: 'body' is of type 'unknown'.
+src/routes/automation.ts(148,29): error TS18046: 'body' is of type 'unknown'.
+src/routes/automation.ts(148,51): error TS18046: 'body' is of type 'unknown'.
+src/routes/automation.ts(197,39): error TS18046: 'body' is of type 'unknown'.
+src/routes/automation.ts(197,60): error TS7006: Parameter 'schedule' implicitly has an 'any' type.
+src/routes/automation.ts(204,39): error TS18046: 'body' is of type 'unknown'.
+src/routes/automation.ts(207,37): error TS18046: 'body' is of type 'unknown'.
+src/routes/automation.ts(207,57): error TS7006: Parameter 'schedule' implicitly has an 'any' type.
+src/routes/devices.ts(3,77): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/routes/devices.ts(85,26): error TS18046: 'body' is of type 'unknown'.
+src/routes/devices.ts(86,25): error TS18046: 'body' is of type 'unknown'.
+src/routes/devices.ts(87,21): error TS18046: 'body' is of type 'unknown'.
+src/routes/devices.ts(88,17): error TS18046: 'body' is of type 'unknown'.
+src/routes/health.ts(2,37): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/routes/helpers.ts(7,34): error TS2307: Cannot find module '@smartplug/domain' or its corresponding type declarations.
+src/routes/helpers.ts(8,50): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/routes/operations.ts(3,69): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/routes/telemetry.ts(3,63): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/routes/time.ts(3,92): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/routes/time.ts(4,34): error TS2307: Cannot find module '@smartplug/mqtt-contract' or its corresponding type declarations.
+src/routes/time.ts(40,24): error TS18046: 'body' is of type 'unknown'.
+src/routes/time.ts(42,32): error TS18046: 'body' is of type 'unknown'.
+src/routes/time.ts(65,67): error TS18046: 'body' is of type 'unknown'.
+src/routes/time.ts(75,66): error TS18046: 'body' is of type 'unknown'.
+src/routes/time.ts(97,19): error TS18046: 'body' is of type 'unknown'.
+src/services/access.ts(3,27): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/services/alerts.ts(1,39): error TS2307: Cannot find module '@smartplug/mqtt-contract' or its corresponding type declarations.
+src/services/commands.ts(2,38): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/services/commands.ts(3,64): error TS2307: Cannot find module '@smartplug/domain' or its corresponding type declarations.
+src/services/commands.ts(4,37): error TS2307: Cannot find module '@smartplug/mqtt-contract' or its corresponding type declarations.
+src/services/commands.ts(33,63): error TS2366: Function lacks ending return statement and return type does not include 'undefined'.
+src/services/energy.ts(3,57): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+src/services/telemetry.ts(3,100): error TS2307: Cannot find module '@smartplug/mqtt-contract' or its corresponding type declarations.
+src/services/telemetry.ts(4,36): error TS2307: Cannot find module '@smartplug/domain' or its corresponding type declarations.
+src/services/telemetry.ts(9,34): error TS2307: Cannot find module '@smartplug/api-contract' or its corresponding type declarations.
+npm error Lifecycle script `typecheck` failed with error:
+npm error code 2
+npm error path D:\Projects\Zed\SMART-PLUG-V2\apps\api
+npm error workspace @smartplug/api@0.1.0
+npm error location D:\Projects\Zed\SMART-PLUG-V2\apps\api
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c tsc -p tsconfig.json --noEmit

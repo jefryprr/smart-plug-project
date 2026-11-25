@@ -1,0 +1,284 @@
+﻿=== generate_carrier_pcb.py 2026-11-24T21:05:29.8088715+07:00 ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb with 25 footprints and 12 nets
+exit_code=0
+=== route_carrier.py 2026-11-24T21:05:40.3538328+07:00 ===
+python.exe : Adding duplicate image handler for 'PNG file'
+At line:1 char:60
++ ... og"; $out = & "tools\kicad\bin\python.exe" scripts\route_carrier.py 2 ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Adding duplicat... for 'PNG file':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Adding duplicate image handler for 'JPEG file'
+Adding duplicate image handler for 'TIFF file'
+Adding duplicate image handler for 'GIF file'
+Adding duplicate image handler for 'PNM file'
+Adding duplicate image handler for 'PCX file'
+Adding duplicate image handler for 'IFF file'
+Adding duplicate image handler for 'Windows icon file'
+Adding duplicate image handler for 'Windows cursor file'
+Adding duplicate image handler for 'Windows animated cursor file'
+Adding duplicate image handler for 'TGA file'
+Adding duplicate image handler for 'XPM file'
+Adding duplicate image handler for 'WebP file'
+route PZEM_TX_3V3: 2 pads
+route PZEM_RX_3V3: 3 pads
+route +3V3: 3 pads
+route BUTTON: 4 pads
+route RELAY_CTRL: 2 pads
+route PZEM_RX_5V: 2 pads
+route RELAY_GATE: 5 pads
+route RELAY_IN: 3 pads
+route PZEM_TX_5V: 2 pads
+route +5V: 7 pads
+route +5V_IN: 2 pads
+routing complete
+saved D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb (default clearance 0.15 mm)
+exit_code=0
+=== run_kicad_check.py --mode drc 2026-11-24T21:05:52.5669876+07:00 ===
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb
+Found 2 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/drc.json
+DRC violations: 2 (routed SELV carrier)
+exit_code=1
+=== generate_carrier_pcb.py (JP1 rotated) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb with 25 footprints and 12 nets
+exit_code=0
+=== route_carrier.py (JP1 rotated) ===
+python.exe : Adding duplicate image handler for 'PNG file'
+At line:1 char:375
++ ... de"; $out = & "tools\kicad\bin\python.exe" scripts\route_carrier.py 2 ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Adding duplicat... for 'PNG file':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Adding duplicate image handler for 'JPEG file'
+Adding duplicate image handler for 'TIFF file'
+Adding duplicate image handler for 'GIF file'
+Adding duplicate image handler for 'PNM file'
+Adding duplicate image handler for 'PCX file'
+Adding duplicate image handler for 'IFF file'
+Adding duplicate image handler for 'Windows icon file'
+Adding duplicate image handler for 'Windows cursor file'
+Adding duplicate image handler for 'Windows animated cursor file'
+Adding duplicate image handler for 'TGA file'
+Adding duplicate image handler for 'XPM file'
+Adding duplicate image handler for 'WebP file'
+route PZEM_TX_3V3: 2 pads
+route PZEM_RX_3V3: 3 pads
+route +3V3: 3 pads
+route BUTTON: 4 pads
+route RELAY_CTRL: 2 pads
+route PZEM_RX_5V: 2 pads
+route RELAY_GATE: 5 pads
+route RELAY_IN: 3 pads
+route PZEM_TX_5V: 2 pads
+route +5V: 7 pads
+route +5V_IN: 2 pads
+routing complete
+saved D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb (default clearance 0.15 mm)
+exit_code=0
+=== run_kicad_check.py drc (JP1 rotated) ===
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/drc.json
+DRC violations: 0 (routed SELV carrier)
+exit_code=0
+=== export_carrier_artifacts.py 2026-11-24T21:07:01.9503956+07:00 ===
+Wrote position data to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\POSITION.csv'.
+carrier pads=104 placement=29 pcba=22
+exit_code=0
+=== generate_carrier_pcb.py (5V_IN power) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb with 25 footprints and 12 nets
+exit_code=0
+=== route_carrier.py (5V_IN power) ===
+python.exe : Adding duplicate image handler for 'PNG file'
+At line:1 char:363
++ ... c1"; $out = & tools\kicad\bin\python.exe scripts\route_carrier.py 2>& ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Adding duplicat... for 'PNG file':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Adding duplicate image handler for 'JPEG file'
+Adding duplicate image handler for 'TIFF file'
+Adding duplicate image handler for 'GIF file'
+Adding duplicate image handler for 'PNM file'
+Adding duplicate image handler for 'PCX file'
+Adding duplicate image handler for 'IFF file'
+Adding duplicate image handler for 'Windows icon file'
+Adding duplicate image handler for 'Windows cursor file'
+Adding duplicate image handler for 'Windows animated cursor file'
+Adding duplicate image handler for 'TGA file'
+Adding duplicate image handler for 'XPM file'
+Adding duplicate image handler for 'WebP file'
+route PZEM_TX_3V3: 2 pads
+route PZEM_RX_3V3: 3 pads
+route +3V3: 3 pads
+route BUTTON: 4 pads
+route RELAY_CTRL: 2 pads
+route PZEM_RX_5V: 2 pads
+route RELAY_GATE: 5 pads
+route RELAY_IN: 3 pads
+route PZEM_TX_5V: 2 pads
+route +5V: 7 pads
+route +5V_IN: 2 pads
+routing complete
+saved D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb (default clearance 0.15 mm)
+exit_code=0
+=== carrier DRC (5V_IN power) ===
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/drc.json
+DRC violations: 0 (routed SELV carrier)
+exit_code=0
+=== export carrier (5V_IN power) ===
+Wrote position data to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\POSITION.csv'.
+carrier pads=104 placement=29 pcba=17
+exit_code=0
+=== generate_carrier_pcb.py (C3 at U9) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb with 25 footprints and 12 nets
+exit_code=0
+=== route_carrier.py (C3 at U9) ===
+python.exe : Adding duplicate image handler for 'PNG file'
+At line:1 char:360
++ ... c1"; $out = & tools\kicad\bin\python.exe scripts\route_carrier.py 2>& ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Adding duplicat... for 'PNG file':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Adding duplicate image handler for 'JPEG file'
+Adding duplicate image handler for 'TIFF file'
+Adding duplicate image handler for 'GIF file'
+Adding duplicate image handler for 'PNM file'
+Adding duplicate image handler for 'PCX file'
+Adding duplicate image handler for 'IFF file'
+Adding duplicate image handler for 'Windows icon file'
+Adding duplicate image handler for 'Windows cursor file'
+Adding duplicate image handler for 'Windows animated cursor file'
+Adding duplicate image handler for 'TGA file'
+Adding duplicate image handler for 'XPM file'
+Adding duplicate image handler for 'WebP file'
+route PZEM_TX_3V3: 2 pads
+route PZEM_RX_3V3: 3 pads
+route +3V3: 3 pads
+route BUTTON: 4 pads
+route RELAY_CTRL: 2 pads
+route PZEM_RX_5V: 2 pads
+route RELAY_GATE: 5 pads
+route RELAY_IN: 3 pads
+route PZEM_TX_5V: 2 pads
+route +5V: 7 pads
+route +5V_IN: 2 pads
+routing complete
+saved D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb (default clearance 0.15 mm)
+exit_code=0
+=== carrier DRC (C3 at U9) ===
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/drc.json
+DRC violations: 0 (routed SELV carrier)
+exit_code=0
+=== export carrier (C3 at U9) ===
+Wrote position data to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\POSITION.csv'.
+carrier pads=104 placement=29 pcba=17
+exit_code=0
+=== generate_carrier_pcb.py (U9 x=72) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb with 25 footprints and 12 nets
+exit_code=0
+=== route_carrier.py (U9 x=72) ===
+python.exe : Adding duplicate image handler for 'PNG file'
+At line:1 char:359
++ ... c1"; $out = & tools\kicad\bin\python.exe scripts\route_carrier.py 2>& ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Adding duplicat... for 'PNG file':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Adding duplicate image handler for 'JPEG file'
+Adding duplicate image handler for 'TIFF file'
+Adding duplicate image handler for 'GIF file'
+Adding duplicate image handler for 'PNM file'
+Adding duplicate image handler for 'PCX file'
+Adding duplicate image handler for 'IFF file'
+Adding duplicate image handler for 'Windows icon file'
+Adding duplicate image handler for 'Windows cursor file'
+Adding duplicate image handler for 'Windows animated cursor file'
+Adding duplicate image handler for 'TGA file'
+Adding duplicate image handler for 'XPM file'
+Adding duplicate image handler for 'WebP file'
+route PZEM_TX_3V3: 2 pads
+route PZEM_RX_3V3: 3 pads
+route +3V3: 3 pads
+route BUTTON: 4 pads
+route RELAY_CTRL: 2 pads
+route PZEM_RX_5V: 2 pads
+route RELAY_GATE: 5 pads
+route RELAY_IN: 3 pads
+route PZEM_TX_5V: 2 pads
+route +5V: 7 pads
+route +5V_IN: 2 pads
+routing complete
+saved D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb (default clearance 0.15 mm)
+exit_code=0
+=== carrier DRC (U9 x=72) ===
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb
+Found 11 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/drc.json
+DRC violations: 11 (routed SELV carrier)
+exit_code=1
+=== export carrier (U9 x=72) ===
+Wrote position data to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\POSITION.csv'.
+carrier pads=104 placement=29 pcba=17
+exit_code=0
+=== generate_carrier_pcb.py (TP4 moved) ===
+Wrote D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb with 25 footprints and 12 nets
+exit_code=0
+=== route_carrier.py (TP4 moved) ===
+python.exe : Adding duplicate image handler for 'PNG file'
+At line:1 char:361
++ ... c1"; $out = & tools\kicad\bin\python.exe scripts\route_carrier.py 2>& ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Adding duplicat... for 'PNG file':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Adding duplicate image handler for 'JPEG file'
+Adding duplicate image handler for 'TIFF file'
+Adding duplicate image handler for 'GIF file'
+Adding duplicate image handler for 'PNM file'
+Adding duplicate image handler for 'PCX file'
+Adding duplicate image handler for 'IFF file'
+Adding duplicate image handler for 'Windows icon file'
+Adding duplicate image handler for 'Windows cursor file'
+Adding duplicate image handler for 'Windows animated cursor file'
+Adding duplicate image handler for 'TGA file'
+Adding duplicate image handler for 'XPM file'
+Adding duplicate image handler for 'WebP file'
+route PZEM_TX_3V3: 2 pads
+route PZEM_RX_3V3: 3 pads
+route +3V3: 3 pads
+route BUTTON: 4 pads
+route RELAY_CTRL: 2 pads
+route PZEM_RX_5V: 2 pads
+route RELAY_GATE: 5 pads
+route RELAY_IN: 3 pads
+route PZEM_TX_5V: 2 pads
+route +5V: 7 pads
+route +5V_IN: 2 pads
+routing complete
+saved D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb (default clearance 0.15 mm)
+exit_code=0
+=== carrier DRC (TP4 moved) ===
+RUN D:\Projects\Zed\SMART-PLUG-V2\tools\kicad\bin\kicad-cli.exe pcb drc --output D:\Projects\Zed\SMART-PLUG-V2\reports\kicad\drc.json D:\Projects\Zed\SMART-PLUG-V2\hardware\kicad\smartplug.kicad_pcb
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to D:/Projects/Zed/SMART-PLUG-V2/reports/kicad/drc.json
+DRC violations: 0 (routed SELV carrier)
+exit_code=0
+=== export carrier (TP4 moved) ===
+Wrote position data to 'D:\Projects\Zed\SMART-PLUG-V2\hardware\manufacturing\provisional\POSITION.csv'.
+carrier pads=104 placement=29 pcba=17
+exit_code=0

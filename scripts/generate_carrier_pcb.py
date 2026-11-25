@@ -48,7 +48,7 @@ COMPONENTS = [
     ("J3", "RELAY", "Connector_JST", "JST_XH_B4B-XH-A_1x04_P2.50mm_Vertical", 93.0, 57.0, 180.0),
     ("J6", "BUTTON", "Connector_JST", "JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical", 43.0, 63.0, 0.0),
     ("J8", "5V_IN", "Connector_JST", "JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical", 70.0, 63.0, 0.0),
-    ("U9", "74HCT125N", "Package_DIP", "DIP-14_W7.62mm", 70.0, 34.0, 0.0),
+    ("U9", "74HCT125D + adapter", "Package_DIP", "DIP-14_W7.62mm", 72.0, 34.0, 0.0),
     ("Q1", "AO3400A", "Package_TO_SOT_SMD", "SOT-23", 85.0, 34.0, 0.0),
     ("R1", "1k", "Resistor_SMD", "R_0805_2012Metric", 76.0, 28.0, 0.0),
     ("R2", "100k", "Resistor_SMD", "R_0805_2012Metric", 84.0, 50.0, 0.0),
@@ -57,7 +57,13 @@ COMPONENTS = [
     ("R8", "10k", "Resistor_SMD", "R_0805_2012Metric", 40.0, 54.0, 0.0),
     ("C1", "100uF", "Capacitor_SMD", "CP_Elec_6.3x5.4", 64.0, 56.0, 0.0),
     ("C2", "100nF", "Capacitor_SMD", "C_0805_2012Metric", 56.0, 42.0, 0.0),
-    ("C3", "100nF", "Capacitor_SMD", "C_0805_2012Metric", 58.0, 48.0, 0.0),
+    ("C3", "100nF", "Capacitor_SMD", "C_0805_2012Metric", 80.0, 31.0, 0.0),
+    ("C4", "100nF", "Capacitor_SMD", "C_0805_2012Metric", 88.0, 30.0, 0.0),
+    ("JP1", "5V PSU/USB", "Jumper", "SolderJumper-2_P1.3mm_Open_Pad1.0x1.5mm", 63.0, 63.0, 180.0),
+    ("TP1", "+5V", "TestPoint", "TestPoint_THTPad_D1.5mm_Drill0.7mm", 60.0, 60.0, 0.0),
+    ("TP2", "GND", "TestPoint", "TestPoint_THTPad_D1.5mm_Drill0.7mm", 60.0, 64.0, 0.0),
+    ("TP4", "RELAY_GATE", "TestPoint", "TestPoint_THTPad_D1.5mm_Drill0.7mm", 83.0, 42.0, 0.0),
+    ("TP5", "BUTTON", "TestPoint", "TestPoint_THTPad_D1.5mm_Drill0.7mm", 36.0, 62.0, 0.0),
     ("FID1", "FID", "Fiducial", "Fiducial_1mm_Mask2mm", 5.0, 35.0, 0.0),
     ("FID2", "FID", "Fiducial", "Fiducial_1mm_Mask2mm", 95.0, 35.0, 0.0),
     ("FID3", "FID", "Fiducial", "Fiducial_1mm_Mask2mm", 50.0, 40.0, 0.0),
@@ -67,17 +73,18 @@ COMPONENTS = [
 # J1A = DevKitC-1 J1, J1B = DevKitC-1 J3. Header pin numbers refer to the
 # official 1x22 tables, not odd/even socket numbering.
 NETS = {
-    "+5V": [("J1A", 21), ("J8", 1), ("J2", 1), ("J3", 1), ("U9", 14), ("C1", 1), ("C2", 1), ("C3", 1)],
+    "+5V": [("J1A", 21), ("JP1", 2), ("U9", 14), ("C1", 1), ("C2", 1), ("C3", 1), ("TP1", 1)],
+    "+5V_IN": [("J8", 1), ("JP1", 1)],
     "+3V3": [("J1A", 1), ("J1A", 2), ("R8", 1)],
     "GND": [
         ("J1A", 22), ("J1B", 1), ("J1B", 21), ("J1B", 22), ("J8", 2), ("J2", 4), ("J3", 2),
         ("J6", 2), ("U9", 7), ("U9", 1), ("U9", 4), ("U9", 5),
         ("U9", 9), ("U9", 10), ("U9", 12), ("U9", 13), ("Q1", 2), ("C1", 2), ("C2", 2), ("C3", 2),
-        ("R2", 2), ("R5", 2),
+        ("C4", 2), ("R2", 2), ("R5", 2), ("TP2", 1),
     ],
-    "BUTTON": [("J1A", 5), ("J6", 1), ("R8", 2)],
+    "BUTTON": [("J1A", 5), ("J6", 1), ("R8", 2), ("TP5", 1)],
     "RELAY_CTRL": [("J1A", 4), ("R1", 1)],
-    "RELAY_GATE": [("R1", 2), ("R2", 1), ("Q1", 1)],
+    "RELAY_GATE": [("R1", 2), ("R2", 1), ("Q1", 1), ("C4", 1), ("TP4", 1)],
     "RELAY_IN": [("Q1", 3), ("J3", 3), ("J3", 4)],
     "PZEM_TX_3V3": [("J1A", 10), ("U9", 2)],
     "PZEM_RX_5V": [("U9", 3), ("J2", 2)],
@@ -88,7 +95,9 @@ NETS = {
 # Unused pads are left netless. J1A pins 3,6,7,8,9,12,13,14,15,16,17-20 and
 # almost all J1B pins are intentionally unconnected. U9 gates 2-4 are unused:
 # inputs/OE tied to GND, outputs left open.
-NO_CONNECT = [("U9", 6), ("U9", 8), ("U9", 11)]
+# J2.1 and J3.1 are intentionally NC: relay/PZEM 5V comes directly from the
+# PSU board J6/J7. Only signals and GND cross the carrier-to-module cables.
+NO_CONNECT = [("U9", 6), ("U9", 8), ("U9", 11), ("J2", 1), ("J3", 1)]
 
 def add_footprint(board, ref, value, lib, name, x, y, rot):
     fp = IO.FootprintLoad(str(FP_LIB / f"{lib}.pretty"), name)

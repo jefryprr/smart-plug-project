@@ -33,7 +33,7 @@ import sys
 sys.path.insert(0, str(ROOT / "scripts"))
 from generate_carrier_pcb import NETS  # noqa: E402
 
-POWER_NETS = {"+5V", "+3V3"}
+POWER_NETS = {"+5V", "+3V3", "+5V_IN"}
 GND = "GND"
 
 

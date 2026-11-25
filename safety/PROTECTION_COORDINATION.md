@@ -6,9 +6,9 @@
 ## 1. Rantai proteksi
 
 ```
-TB1 L → F1 10 A → MOV (L-N) → TF1 TCO → TB2 L → relay pole 1 → socket L
+TB1 L → F1 6.3 A → MOV (L-N) → TF1 TCO → TB2 L → relay pole 1 → socket L
 TB1 N → TB2 N → relay pole 2 → socket N
-HLK AC branch from TB2/TCO output → HLK-5M05 → F2 PTC + D1 TVS → J5/J6/J7 5 V
+HLK AC branch from TB2/TCO output → HLK-5M05 → F2 PTC 1.0 A + D1 TVS → J5/J6/J7 5 V
 PE → dedicated chassis stud → socket PE (tidak diputus)
 ```
 
@@ -17,14 +17,14 @@ PE → dedicated chassis stud → socket PE (tidak diputus)
 | Perangkat | Fungsi | Rating | Karakteristik | Koordinasi |
 |---|---|---|---|---|
 | REV_D_CORE_ONLY PSU board | Mains entry + SELV output | 50x65 mm, 2 oz target | 2 mm isolation notch; HLK bridges | Creepage/hipot/thermal UNVERIFIED |
-| Fuse F1 | Short-circuit backup | 10 A, 250 V, time-lag | Time-current TBD | On PSU board, after TB1; protect wiring/terminal |
-| PTC F2 (5 V) | SELV 5 V wiring backup | 1.1 A hold, 1206 | Trip/time TBD | Bukan proteksi mains; melindungi wiring/rail 5 V |
+| Fuse F1 | Short-circuit backup | **6.3 A**, 250 V, time-lag (Littelfuse 215 claim) | Time-current TBD | On PSU board, after TB1; protect wiring/terminal |
+| PTC F2 (5 V) | SELV 5 V wiring backup | **1.0 A hold**, 1206 | Trip/time TBD | Bukan proteksi mains; melindungi wiring/rail 5 V |
 | TVS D1 (5 V, PSU board) | SELV transient clamp | SMBJ5.0A, 5 V standoff | Clamping TBD | Melindungi total output 5 V J5/J6/J7; bukan pengganti isolasi |
-| Holder F1 clips | Mounting | 10 A class TBD | TBD | Tool-access via lid; rating/retention TBD |
-| MOV1 | Transient clamping | 275 VAC class | Energy/clamping TBD | Perlu thermal fuse/koordinasi end-of-life |
-| Thermal cutoff TF1 | Independent overtemp | 99 °C, 10 A class TBD | One-shot | On PSU board after MOV; senses HLK/terminal/PCB hotspot; trip removes load + HLK |
-| Relay module K1 | Disconnect (2 channels) | 10 A class claim, final 8 A | Two independent SPDT channels, active-low; not mechanically linked | Rating kontak/inrush/lifecycle; channel weld |
-| TB1/TB2 | Connection | 10 A class TBD | Torsi/ferrule | On PSU board; input/output L/N; no PE |
+| Holder F1 | Mounting | **BLX-A 6.3 A / 250 V** | Body 22×9.5 mm; pitch 21.5 mm provisional | Tool-access via lid; rating/retention/pitch TBD |
+| MOV1 | Transient clamping | 275 VAC class (10D271K) | Energy/clamping TBD | Perlu thermal fuse/koordinasi end-of-life |
+| Thermal cutoff TF1 | Independent overtemp | Generic 96 °C marking / 99 °C RFT, 10 A class | One-shot | On PSU board after MOV; senses HLK/terminal/PCB hotspot; trip removes load + HLK |
+| Relay module K1 | Disconnect (2 channels) | 10 A class claim, **final/provisional 6 A** | Two independent SPDT channels, active-low; not mechanically linked | Rating kontak/inrush/lifecycle; channel weld |
+| TB1/TB2 | Connection | KF129-2P, 300 V/25 A claim | Torsi/ferrule | On PSU board; input/output L/N; no PE |
 | J5/J6/J7 | 3x 5 V output | 3 A class TBD | Keyed JST-XH 2.5 mm | J5 carrier, J6 relay, J7 PZEM conditional |
 | Socket X1 | Output | 16 A class TBD | Retensi/PE | Tidak boleh berputar/tercabut |
 | Software | Supplemental | Threshold TBD | Sampling | Tidak boleh menjadi satu-satunya proteksi |
@@ -47,7 +47,7 @@ PE → dedicated chassis stud → socket PE (tidak diputus)
 - Fault current rumah tangga Indonesia dapat tinggi; breaking capacity fuse/holder harus sesuai.
 - Nilai prospective short-circuit current di lokasi instalasi **belum diukur**.
 - Jangan memakai fuse kaca murah tanpa breaking capacity yang terdokumentasi.
-- Koordinasi harus dihitung oleh engineer, bukan dipilih dari nama "10 A".
+- Koordinasi harus dihitung oleh engineer, bukan dipilih dari nama "10 A". Holder BLX-A 6.3 A membatasi arus kontinu; fuse 10 A tidak boleh dipasang di holder ini.
 
 ## 5. Status
 

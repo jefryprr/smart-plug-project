@@ -7,10 +7,11 @@
 A 2-layer SELV carrier for:
 
 - ESP32-S3-DevKitC-1 (two 1x22 sockets, 22.86 mm row spacing; pin 1 / USB end marked)
-- PZEM-004T V4 TTL: 5V/GND, 5V TX → 10k/20k divider → GPIO18, GPIO17 → 74HCT125 → PZEM RX
-- 2-channel relay module: 5V/GND/IN1/IN2; AO3400 pulls both inputs low
+- PZEM-004T V4 TTL: J2 RX/TX/GND; 5 V power comes directly from PSU J7 (J2 pin 1 is NC). 5V TX → 10k/20k divider → GPIO18, GPIO17 → 74HCT125 → PZEM RX
+- 2-channel relay module: J3 GND/IN1/IN2; 5 V power comes directly from PSU J6 (J3 pin 1 is NC); AO3400 pulls both inputs low
 - Physical button; onboard DevKitC-1 v1.0 RGB GPIO48 (not a carrier net)
 - 5V input from the REV_D_CORE_ONLY PSU board J5 (the PTC/TVS are on the PSU board, not the carrier)
+- REV_D 2026-11-24: C3 moved to ~3.2 mm from U9 pin 14, C4 100 nF gate-source, JP1 PSU/USB 5 V jumper, and TP1/TP2/TP4/TP5 test points added. **JP1 must be bridged for PSU operation; open it before connecting USB service power.**
 
 No mains. No TMP102. No ADuM1201/B0505S. PZEM internal optocouplers are the
 UART galvanic barrier.
@@ -45,7 +46,7 @@ Do not use a 2x22 IDC socket (2.54 mm rows); it will not fit. See
 - DRC: **0 violations / 0 unconnected** at 0.15 mm default clearance
 - ERC (block schematic): **0 violations**
 - Nets: 11 named; footprints: 23 total (16 assembled + 3 fiducials + 4 mounting holes); board: 100 x 70 mm
-- 5 V input: JST-XH J8 from PSU J5; no PTC/TVS on the carrier; 3 fiducials
+- 5 V input: JST-XH J8 from PSU J5; relay/PZEM 5 V from PSU J6/J7; J2/J3 pin 1 NC; no PTC/TVS on the carrier; 3 fiducials
 - Gerber/drill/POS exported by KiCad 10.0.8
 
 ## What is not proven

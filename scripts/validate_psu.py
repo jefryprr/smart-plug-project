@@ -76,7 +76,7 @@ def main() -> int:
         check(ref, "1", "+5V")
         check(ref, "2", "GND")
 
-    # Board size and 8 A trace widths.
+    # Board size and 6 A provisional trace widths (BLX-A 6.3 A holder limit).
     edge = board.GetBoardEdgesBoundingBox()
     w = pcbnew.ToMM(edge.GetWidth())
     h = pcbnew.ToMM(edge.GetHeight())
@@ -87,9 +87,12 @@ def main() -> int:
         if isinstance(track, pcbnew.PCB_VIA):
             continue
         widths_by_net.setdefault(str(track.GetNetname()), []).append(pcbnew.ToMM(track.GetWidth()))
-    for net in ("L_IN", "N_MAINS", "L_FUSED", "L_LOAD"):
-        if max(widths_by_net.get(net, [0.0])) < 3.9:
-            issues.append(f"TRACK_WIDTH:{net}<4mm")
+    # Terminal feeds keep 4 mm; the fuse/TCO bus is 2.5 mm, sufficient for 6 A
+    # at 2 oz. This is a width screen, not a thermal rating.
+    min_widths = {"L_IN": 2.4, "N_MAINS": 2.4, "L_FUSED": 2.4, "L_LOAD": 2.4}
+    for net, minimum in min_widths.items():
+        if max(widths_by_net.get(net, [0.0])) < minimum:
+            issues.append(f"TRACK_WIDTH:{net}<{minimum}mm")
 
     # Carrier must be SELV-only and must not duplicate F2/D1.
     carrier = pcbnew.LoadBoard(str(CARRIER))
@@ -134,7 +137,7 @@ def main() -> int:
         "issues": issues,
         "limitations": [
             "Static net/width check only; DRC does not prove creepage or hipot.",
-            "HLK-5M05 footprint is datasheet-derived, not sample-verified.",
+            "HLK-5M05 footprint is custom (KiCad-official geometry), not sample-verified.",
             "Fuse/MOV/TCO/terminal/JST ratings are not verified by this script.",
             "No physical mains test was performed.",
         ],

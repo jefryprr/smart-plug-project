@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate the REV_D_CORE_ONLY mains-entry PSU board (provisional, not for fabrication).
 
-Board: 50 x 70 mm, 2-layer FR4, HLK-5M05, fuse/MOV/TCO, L/N terminals,
+Board: 50 x 65 mm, 2-layer FR4, HLK-5M05, fuse/MOV/TCO, L/N terminals,
 3x JST-XH 5 V outputs. The board has a routed isolation notch between the
 mains leg and the SELV leg; the HLK module bridges it.
 
@@ -22,6 +22,7 @@ KICAD = ROOT / "hardware" / "kicad"
 KICAD.mkdir(parents=True, exist_ok=True)
 BOARD_PATH = KICAD / "psu_rev_d.kicad_pcb"
 FP_LIB = ROOT / "tools" / "kicad" / "share" / "kicad" / "footprints"
+PROJECT_FP = ROOT / "hardware" / "kicad" / "footprints"
 
 W, H = 50.0, 65.0
 IO = pcbnew.PCB_IO_MGR.FindPlugin(pcbnew.PCB_IO_MGR.KICAD_SEXP)
@@ -70,7 +71,7 @@ def add_mounting_holes(board: pcbnew.BOARD) -> None:
 
 
 def add_fiducials(board: pcbnew.BOARD) -> None:
-    for ref, x, y in [("FID1", 47, 50), ("FID2", 47, 35), ("FID3", 20, 63)]:
+    for ref, x, y in [("FID1", 34.5, 49), ("FID2", 31, 36), ("FID3", 20, 63)]:
         fp = IO.FootprintLoad(str(FP_LIB / "Fiducial.pretty"), "Fiducial_1mm_Mask2mm")
         fp.SetReference(ref)
         fp.SetValue("FID")
@@ -80,7 +81,8 @@ def add_fiducials(board: pcbnew.BOARD) -> None:
 
 
 def load_fp(board: pcbnew.BOARD, ref: str, value: str, lib: str, name: str, x: float, y: float, rot: float = 0.0) -> pcbnew.FOOTPRINT:
-    fp = IO.FootprintLoad(str(FP_LIB / f"{lib}.pretty"), name)
+    base = PROJECT_FP if lib == "SmartPlug" else FP_LIB
+    fp = IO.FootprintLoad(str(base / f"{lib}.pretty"), name)
     if fp is None:
         raise RuntimeError(f"footprint not found: {lib}:{name}")
     fp.SetReference(ref)
@@ -100,16 +102,17 @@ def add_custom_hlk(board: pcbnew.BOARD) -> pcbnew.FOOTPRINT:
     fp = pcbnew.FOOTPRINT(board)
     fp.SetReference("PS1")
     fp.SetValue("HLK-5M05")
-    fp.SetPosition(pcbnew.VECTOR2I(mm(29), mm(20)))
+    fp.SetPosition(pcbnew.VECTOR2I(mm(29), mm(21.5)))
     fp.Reference().SetVisible(False)
     fp.Value().SetVisible(False)
     # Pin positions from the distributor datasheet drawing, rotated 180 deg so
-    # AC pins face the mains leg and DC pins face the SELV leg.
+    # AC pins face the mains leg and DC pins face the SELV leg. Shifted 1.5 mm
+    # up to clear the TB2 body at the bottom edge.
     pins = [
-        ("1", 45.8, 17.0),  # AC L
-        ("2", 45.8, 23.0),  # AC N
-        ("3", 12.2, 11.0),  # -Vo
-        ("4", 12.2, 29.0),  # +Vo
+        ("1", 45.8, 18.5),  # AC L
+        ("2", 45.8, 24.5),  # AC N
+        ("3", 12.2, 12.5),  # -Vo
+        ("4", 12.2, 30.5),  # +Vo
     ]
     for num, x, y in pins:
         pad = pcbnew.PAD(fp)
@@ -121,18 +124,21 @@ def add_custom_hlk(board: pcbnew.BOARD) -> pcbnew.FOOTPRINT:
         pad.SetLayerSet(pad.PTHMask())
         pad.SetPosition(pcbnew.VECTOR2I(mm(x), mm(y)))
         fp.Add(pad)
-    # Body outline on silkscreen.
-    for (x1, y1), (x2, y2) in [
-        ((10, 8.5), (48, 8.5)), ((48, 8.5), (48, 31.5)),
-        ((48, 31.5), (10, 31.5)), ((10, 31.5), (10, 8.5)),
-    ]:
-        s = pcbnew.PCB_SHAPE(fp)
-        s.SetShape(pcbnew.SHAPE_T_SEGMENT)
-        s.SetStart(pcbnew.VECTOR2I(mm(x1), mm(y1)))
-        s.SetEnd(pcbnew.VECTOR2I(mm(x2), mm(y2)))
-        s.SetLayer(pcbnew.F_Fab)
-        s.SetWidth(mm(0.15))
-        fp.Add(s)
+    # Body outline on silkscreen (module body 38 x 23 mm).
+    for layer, inset, width in ((pcbnew.F_Fab, 0.0, 0.15), (pcbnew.F_CrtYd, 0.25, 0.05)):
+        for (x1, y1), (x2, y2) in [
+            ((10 - inset, 10.0 - inset), (48 + inset, 10.0 - inset)),
+            ((48 + inset, 10.0 - inset), (48 + inset, 33.0 + inset)),
+            ((48 + inset, 33.0 + inset), (10 - inset, 33.0 + inset)),
+            ((10 - inset, 33.0 + inset), (10 - inset, 10.0 - inset)),
+        ]:
+            s = pcbnew.PCB_SHAPE(fp)
+            s.SetShape(pcbnew.SHAPE_T_SEGMENT)
+            s.SetStart(pcbnew.VECTOR2I(mm(x1), mm(y1)))
+            s.SetEnd(pcbnew.VECTOR2I(mm(x2), mm(y2)))
+            s.SetLayer(layer)
+            s.SetWidth(mm(width))
+            fp.Add(s)
     board.Add(fp)
     return fp
 
@@ -140,31 +146,35 @@ def add_custom_hlk(board: pcbnew.BOARD) -> pcbnew.FOOTPRINT:
 def add_custom_tco(board: pcbnew.BOARD) -> pcbnew.FOOTPRINT:
     fp = pcbnew.FOOTPRINT(board)
     fp.SetReference("TF1")
-    fp.SetValue("SF96E 99C")
-    fp.SetPosition(pcbnew.VECTOR2I(mm(42), mm(35.5)))
+    fp.SetValue("TCO 96C 10A")
+    fp.SetPosition(pcbnew.VECTOR2I(mm(43.5), mm(36.5)))
     fp.Reference().SetVisible(False)
     fp.Value().SetVisible(False)
-    for num, y in [("1", 38.0), ("2", 33.0)]:
+    # 5.1 mm pitch generic 96 C TCO; body 10 x 5 mm. Exact sample is UNVERIFIED.
+    for num, y in [("1", 39.0), ("2", 34.0)]:
         pad = pcbnew.PAD(fp)
         pad.SetNumber(num)
         pad.SetShape(pcbnew.PAD_SHAPE_CIRCLE)
-        pad.SetSize(pcbnew.VECTOR2I(mm(2.0), mm(2.0)))
-        pad.SetDrillSize(pcbnew.VECTOR2I(mm(1.0), mm(1.0)))
+        pad.SetSize(pcbnew.VECTOR2I(mm(1.3), mm(1.3)))
+        pad.SetDrillSize(pcbnew.VECTOR2I(mm(0.7), mm(0.7)))
         pad.SetAttribute(pcbnew.PAD_ATTRIB_PTH)
         pad.SetLayerSet(pad.PTHMask())
-        pad.SetPosition(pcbnew.VECTOR2I(mm(42), mm(y)))
+        pad.SetPosition(pcbnew.VECTOR2I(mm(43.5), mm(y)))
         fp.Add(pad)
-    for (x1, y1), (x2, y2) in [
-        ((37, 32.0), (47, 32.0)), ((47, 32.0), (47, 39.0)),
-        ((47, 39.0), (37, 39.0)), ((37, 39.0), (37, 32.0)),
-    ]:
-        s = pcbnew.PCB_SHAPE(fp)
-        s.SetShape(pcbnew.SHAPE_T_SEGMENT)
-        s.SetStart(pcbnew.VECTOR2I(mm(x1), mm(y1)))
-        s.SetEnd(pcbnew.VECTOR2I(mm(x2), mm(y2)))
-        s.SetLayer(pcbnew.F_Fab)
-        s.SetWidth(mm(0.15))
-        fp.Add(s)
+    for layer, inset, width in ((pcbnew.F_Fab, 0.0, 0.15), (pcbnew.F_CrtYd, 0.25, 0.05)):
+        for (x1, y1), (x2, y2) in [
+            ((38.5 - inset, 34.0), (48.5 + inset, 34.0)),
+            ((48.5 + inset, 34.0), (48.5 + inset, 39.0)),
+            ((48.5 + inset, 39.0), (38.5 - inset, 39.0)),
+            ((38.5 - inset, 39.0), (38.5 - inset, 34.0)),
+        ]:
+            s = pcbnew.PCB_SHAPE(fp)
+            s.SetShape(pcbnew.SHAPE_T_SEGMENT)
+            s.SetStart(pcbnew.VECTOR2I(mm(x1), mm(y1)))
+            s.SetEnd(pcbnew.VECTOR2I(mm(x2), mm(y2)))
+            s.SetLayer(layer)
+            s.SetWidth(mm(width))
+            fp.Add(s)
     board.Add(fp)
     return fp
 
@@ -211,18 +221,18 @@ def main() -> None:
     add_fiducials(board)
 
     # Footprints
-    load_fp(board, "TB1", "230VAC IN", "TerminalBlock_Phoenix", "TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal", 29, 62, 0)
-    load_fp(board, "TB2", "230VAC OUT", "TerminalBlock_Phoenix", "TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal", 29, 4, 0)
-    load_fp(board, "F1", "10A 250V", "Fuse", "Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal", 42, 60, 90)
-    load_fp(board, "MOV1", "275VAC", "Varistor", "RV_Disc_D9mm_W5.2mm_P5mm", 30, 40, 0)
+    load_fp(board, "TB1", "KF129-2P 25A IN", "TerminalBlock_Phoenix", "TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal", 29, 62, 0)
+    load_fp(board, "TB2", "KF129-2P 25A OUT", "TerminalBlock_Phoenix", "TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal", 29, 4, 0)
+    load_fp(board, "F1", "BLX-A 5x20 6.3A", "SmartPlug", "Fuseholder_BLX-A_5x20mm", 43.5, 63, 90)
+    load_fp(board, "MOV1", "10D271K", "Varistor", "RV_Disc_D12mm_W5mm_P7.5mm", 27, 40, 0)
     add_custom_tco(board)
     add_custom_hlk(board)
-    for ref, y, label in [("J5", 55, "OUT1 CARRIER"), ("J6", 45, "OUT2 RELAY"), ("J7", 35, "OUT3 PZEM")]:
-        load_fp(board, ref, label, "Connector_JST", "JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical", 5, y, 0)
+    for ref, x, y, label in [("J5", 5, 55, "OUT1 CARRIER"), ("J6", 5, 45, "OUT2 RELAY"), ("J7", 4, 35, "OUT3 PZEM")]:
+        load_fp(board, ref, label, "Connector_JST", "JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical", x, y, 0)
     load_fp(board, "C1", "100uF", "Capacitor_THT", "CP_Radial_D6.3mm_P2.50mm", 5, 23, 0)
     load_fp(board, "C2", "100nF", "Capacitor_SMD", "C_0805_2012Metric", 5, 30, 0)
-    load_fp(board, "F2", "1.1A PTC", "Fuse", "Fuse_1206_3216Metric", 12, 33, 90)
-    load_fp(board, "D1", "SMBJ5.0A", "Diode_SMD", "D_SMB", 8, 12, 0)
+    load_fp(board, "F2", "1.0A PTC", "Fuse", "Fuse_1206_3216Metric", 12, 36.5, 90)
+    load_fp(board, "D1", "SMBJ5.0A", "Diode_SMD", "D_SMB", 5.5, 12, 0)
 
     # Nets
     nets = {name: add_net(board, name) for name in [
@@ -256,63 +266,75 @@ def main() -> None:
     for ref in ("J5", "J6", "J7"):
         setpad(ref, "1", "+5V"); setpad(ref, "2", "GND")
 
-    # Mains tracks: 4 mm L/N, 2.5 mm branches.
+    # Mains tracks: 4 mm L/N at the terminals, 2.5 mm bus/branches.
     L, N = nets["L_IN"], nets["N_MAINS"]
     LF, LL = nets["L_FUSED"], nets["L_LOAD"]
-    add_track(board, N, (29, 62), (26, 62), 4.0)
-    add_track(board, N, (26, 62), (26, 5), 4.0)
-    add_track(board, N, (26, 5), (29, 5), 4.0)
-    add_track(board, L, (34.08, 62), (42, 62), 4.0)
-    add_track(board, L, (42, 62), (42, 60), 4.0)
-    add_track(board, L, (42, 60), (42, 55), 4.0)
-    add_track(board, LF, (42, 45), (42, 40), 4.0)
-    add_track(board, LF, (42, 40), (42, 38.0), 4.0)
-    add_track(board, LL, (42, 33.0), (42, 4), 4.0)
-    add_track(board, LL, (42, 4), (34.08, 4), 4.0)
-    # MOV branches (protection device, 1.5 mm)
-    add_track(board, LF, (42, 40), (30, 40), 1.5)
-    add_track(board, N, (26, 42.5), (35, 42.5), 1.5)
-    # HLK AC L branch
-    add_track(board, LL, (42, 17), (45.8, 17), 2.5)
+    # N bus is moved left (x=23.5) so the MOV body can sit clear of the fuse.
+    add_track(board, N, (29, 62), (23.5, 62), 2.5)
+    add_track(board, N, (23.5, 62), (23.5, 5), 2.5)
+    add_track(board, N, (23.5, 5), (29, 5), 2.5)
+    # TB1 -> fuse top contact (fuse top pad is 1 mm above the TB1 row).
+    add_track(board, L, (34.08, 62), (43.5, 62), 2.5)
+    add_track(board, L, (43.5, 62), (43.5, 63), 2.5)
+    # Fuse bottom contact -> TCO input.
+    add_track(board, LF, (43.5, 41.5), (43.5, 39.0), 2.5)
+    # MOV branch: go up over the N branch, then left to MOV pad 1.
+    add_track(board, LF, (43.5, 41.5), (43.5, 45.5), 1.5)
+    add_track(board, LF, (43.5, 45.5), (27, 45.5), 1.5)
+    add_track(board, LF, (27, 45.5), (27, 40), 1.5)
+    # MOV neutral branch from the N bus on B.Cu, then up to pad 2.
+    add_via(board, N, 23.5, 36.5)
+    add_via(board, N, 34.5, 36.5)
+    add_track(board, N, (23.5, 36.5), (34.5, 36.5), 1.5, pcbnew.B_Cu)
+    add_track(board, N, (34.5, 36.5), (34.5, 42.2), 1.5)
+    # TCO output -> HLK AC L (pin 1) and TB2 L_LOAD.
+    add_track(board, LL, (43.5, 34.0), (42, 34.0), 2.5)
+    add_track(board, LL, (42, 34.0), (42, 18.5), 2.5)
+    add_track(board, LL, (42, 18.5), (45.8, 18.5), 2.5)
+    add_track(board, LL, (43.5, 34.0), (38, 34.0), 2.5)
+    add_track(board, LL, (38, 34.0), (38, 4), 2.5)
+    add_track(board, LL, (38, 4), (34.08, 4), 2.5)
     # HLK AC N branch: crossover on B.Cu, vias at both ends.
-    add_via(board, N, 26, 23)
-    add_via(board, N, 47, 23)
-    add_track(board, N, (26, 23), (47, 23), 4.0, pcbnew.B_Cu)
-    add_track(board, N, (47, 23), (45.8, 23), 2.5)
+    add_via(board, N, 23.5, 28.5)
+    add_via(board, N, 48, 28.5)
+    add_track(board, N, (23.5, 28.5), (48, 28.5), 2.5, pcbnew.B_Cu)
+    add_track(board, N, (48, 28.5), (45.8, 24.5), 2.5)
 
     # 5 V SELV tracks: 1 mm. +5V bus x=2, GND bus x=9.2.
     V, PRE, G = nets["+5V"], nets["+5V_PRE"], nets["GND"]
-    # HLK +Vo -> PTC input (pad 2 at y=31.6)
-    add_track(board, PRE, (12.2, 29), (12, 29), 1.0)
-    add_track(board, PRE, (12, 29), (12, 31.6), 1.0)
-    # PTC output (pad 1 at y=34.4) -> 5V bus via B.Cu
-    add_via(board, V, 12, 34.4, 1.1, 0.8)
-    add_via(board, V, 2, 34.4, 1.1, 0.8)
-    add_track(board, V, (12, 34.4), (12, 32.5), 1.0, pcbnew.B_Cu)
-    add_track(board, V, (12, 32.5), (2, 32.5), 1.0, pcbnew.B_Cu)
-    add_track(board, V, (2, 32.5), (2, 34.4), 1.0, pcbnew.B_Cu)
+    # HLK +Vo -> PTC input (pad 2 at y=35.1)
+    add_track(board, PRE, (12.2, 30.5), (12, 30.5), 1.0)
+    add_track(board, PRE, (12, 30.5), (12, 35.1), 1.0)
+    # PTC output (pad 1 at y=37.9) -> 5V bus via B.Cu
+    add_via(board, V, 12, 37.9, 1.1, 0.8)
+    add_via(board, V, 2, 37.9, 1.1, 0.8)
+    add_track(board, V, (12, 37.9), (2, 37.9), 1.0, pcbnew.B_Cu)
     add_track(board, V, (2, 12), (2, 55), 1.0)
     # GND bus
-    add_track(board, G, (12.2, 11), (9.2, 11), 1.0)
-    add_track(board, G, (9.2, 11), (9.2, 55), 1.0)
+    add_track(board, G, (12.2, 12.5), (9.2, 12.5), 1.0)
+    add_track(board, G, (9.2, 12), (9.2, 55), 1.0)
     # JST branches
-    for y in (55, 45, 35):
-        add_track(board, V, (2, y), (5, y), 1.0)
-        add_track(board, G, (7.5, y), (9.2, y), 1.0)
+    for x, y in ((5, 55), (5, 45), (4, 35)):
+        add_track(board, V, (2, y), (x, y), 1.0)
+        add_track(board, G, (x + 2.5, y), (9.2, y), 1.0)
     # C1/C2/D1 branches
     add_track(board, V, (2, 23), (5, 23), 1.0)
     add_track(board, G, (7.5, 23), (9.2, 23), 1.0)
     add_track(board, V, (2, 30), (4.05, 30), 1.0)
     add_track(board, G, (5.95, 30), (9.2, 30), 1.0)
-    add_track(board, V, (2, 12), (5.85, 12), 1.0)
-    add_track(board, G, (10.15, 12), (9.2, 12), 1.0)
+    add_track(board, V, (2, 12), (3.35, 12), 1.0)
+    add_track(board, G, (7.65, 12), (9.2, 12), 1.0)
 
     # Labels
-    add_text(board, "MAINS 230VAC 8A - REVIEW ONLY", 14, 58, 0.8)
+    add_text(board, "MAINS 230VAC 6A MAX - REVIEW ONLY", 20, 58, 0.8)
     add_text(board, "SELV 5V", 4, 10, 0.8)
-    add_text(board, "F1 10A 250V", 25, 50, 0.8)
-    add_text(board, "TCO 99C", 25, 32, 0.8)
-    add_text(board, "HLK-5M05", 6, 20, 0.8)
+    add_text(board, "F1 6.3A 250V T", 26, 50, 0.8)
+    add_text(board, "TCO 96C", 26, 33, 0.8)
+    add_text(board, "HLK-5M05", 6, 17, 0.8)
+    add_text(board, "N", 25, 64.5, 0.8)
+    add_text(board, "L", 36, 64.5, 0.8)
+    add_text(board, "N", 25, 1.5, 0.8)
+    add_text(board, "L", 36, 1.5, 0.8)
     add_text(board, "OUT1 CARRIER", 14, 56, 0.8)
     add_text(board, "OUT2 RELAY", 14, 46, 0.8)
     add_text(board, "OUT3 PZEM", 14, 36, 0.8)

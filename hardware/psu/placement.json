@@ -1,45 +1,5 @@
 [
   {
-    "ref": "H1",
-    "value": "M3",
-    "footprint": "MountingHole_3.2mm_M3",
-    "x_mm": 3.0,
-    "y_mm": 3.0,
-    "rot": 0.0
-  },
-  {
-    "ref": "MOV1",
-    "value": "275VAC",
-    "footprint": "RV_Disc_D9mm_W5.2mm_P5mm",
-    "x_mm": 30.0,
-    "y_mm": 40.0,
-    "rot": 0.0
-  },
-  {
-    "ref": "TB1",
-    "value": "230VAC IN",
-    "footprint": "TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal",
-    "x_mm": 29.0,
-    "y_mm": 62.0,
-    "rot": 0.0
-  },
-  {
-    "ref": "FID1",
-    "value": "FID",
-    "footprint": "Fiducial_1mm_Mask2mm",
-    "x_mm": 47.0,
-    "y_mm": 50.0,
-    "rot": 0.0
-  },
-  {
-    "ref": "J6",
-    "value": "OUT2 RELAY",
-    "footprint": "JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
-    "x_mm": 5.0,
-    "y_mm": 45.0,
-    "rot": 0.0
-  },
-  {
     "ref": "C1",
     "value": "100uF",
     "footprint": "CP_Radial_D6.3mm_P2.50mm",
@@ -48,19 +8,27 @@
     "rot": 0.0
   },
   {
-    "ref": "F1",
-    "value": "10A 250V",
-    "footprint": "Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal",
-    "x_mm": 42.0,
-    "y_mm": 60.0,
-    "rot": 90.0
+    "ref": "TB2",
+    "value": "KF129-2P 25A OUT",
+    "footprint": "TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal",
+    "x_mm": 29.0,
+    "y_mm": 4.0,
+    "rot": 0.0
   },
   {
-    "ref": "C2",
-    "value": "100nF",
-    "footprint": "C_0805_2012Metric",
-    "x_mm": 5.0,
-    "y_mm": 30.0,
+    "ref": "J7",
+    "value": "OUT3 PZEM",
+    "footprint": "JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+    "x_mm": 4.0,
+    "y_mm": 35.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "TF1",
+    "value": "TCO 96C 10A",
+    "footprint": "",
+    "x_mm": 43.5,
+    "y_mm": 36.5,
     "rot": 0.0
   },
   {
@@ -72,19 +40,35 @@
     "rot": 0.0
   },
   {
-    "ref": "TF1",
-    "value": "SF96E 99C",
-    "footprint": "",
-    "x_mm": 42.0,
-    "y_mm": 35.5,
+    "ref": "H3",
+    "value": "M3",
+    "footprint": "MountingHole_3.2mm_M3",
+    "x_mm": 47.0,
+    "y_mm": 3.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "J6",
+    "value": "OUT2 RELAY",
+    "footprint": "JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+    "x_mm": 5.0,
+    "y_mm": 45.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "TB1",
+    "value": "KF129-2P 25A IN",
+    "footprint": "TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal",
+    "x_mm": 29.0,
+    "y_mm": 62.0,
     "rot": 0.0
   },
   {
     "ref": "FID2",
     "value": "FID",
     "footprint": "Fiducial_1mm_Mask2mm",
-    "x_mm": 47.0,
-    "y_mm": 35.0,
+    "x_mm": 31.0,
+    "y_mm": 36.0,
     "rot": 0.0
   },
   {
@@ -96,36 +80,52 @@
     "rot": 0.0
   },
   {
-    "ref": "PS1",
-    "value": "HLK-5M05",
-    "footprint": "",
-    "x_mm": 29.0,
-    "y_mm": 20.0,
-    "rot": 0.0
-  },
-  {
-    "ref": "J7",
-    "value": "OUT3 PZEM",
-    "footprint": "JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
-    "x_mm": 5.0,
-    "y_mm": 35.0,
-    "rot": 0.0
-  },
-  {
-    "ref": "TB2",
-    "value": "230VAC OUT",
-    "footprint": "TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal",
-    "x_mm": 29.0,
-    "y_mm": 4.0,
-    "rot": 0.0
-  },
-  {
-    "ref": "H3",
+    "ref": "H1",
     "value": "M3",
     "footprint": "MountingHole_3.2mm_M3",
-    "x_mm": 47.0,
+    "x_mm": 3.0,
     "y_mm": 3.0,
     "rot": 0.0
+  },
+  {
+    "ref": "MOV1",
+    "value": "10D271K",
+    "footprint": "RV_Disc_D12mm_W5mm_P7.5mm",
+    "x_mm": 27.0,
+    "y_mm": 40.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "F2",
+    "value": "1.0A PTC",
+    "footprint": "Fuse_1206_3216Metric",
+    "x_mm": 12.0,
+    "y_mm": 36.5,
+    "rot": 90.0
+  },
+  {
+    "ref": "C2",
+    "value": "100nF",
+    "footprint": "C_0805_2012Metric",
+    "x_mm": 5.0,
+    "y_mm": 30.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "D1",
+    "value": "SMBJ5.0A",
+    "footprint": "D_SMB",
+    "x_mm": 5.5,
+    "y_mm": 12.0,
+    "rot": 0.0
+  },
+  {
+    "ref": "F1",
+    "value": "BLX-A 5x20 6.3A",
+    "footprint": "Fuseholder_BLX-A_5x20mm",
+    "x_mm": 43.5,
+    "y_mm": 63.0,
+    "rot": 90.0
   },
   {
     "ref": "H4",
@@ -136,19 +136,19 @@
     "rot": 0.0
   },
   {
-    "ref": "F2",
-    "value": "1.1A PTC",
-    "footprint": "Fuse_1206_3216Metric",
-    "x_mm": 12.0,
-    "y_mm": 33.0,
-    "rot": 90.0
+    "ref": "PS1",
+    "value": "HLK-5M05",
+    "footprint": "",
+    "x_mm": 29.0,
+    "y_mm": 21.5,
+    "rot": 0.0
   },
   {
-    "ref": "D1",
-    "value": "SMBJ5.0A",
-    "footprint": "D_SMB",
-    "x_mm": 8.0,
-    "y_mm": 12.0,
+    "ref": "FID1",
+    "value": "FID",
+    "footprint": "Fiducial_1mm_Mask2mm",
+    "x_mm": 34.5,
+    "y_mm": 49.0,
     "rot": 0.0
   }
 ]

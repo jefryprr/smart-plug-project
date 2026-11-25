@@ -18,7 +18,7 @@
 | B. Satu kutub | Hanya L atau hanya N diputus | Hanya jika arsitektur keselamatan dan pemasangan membuktikan; belum |
 | C. Engineer memilih | Studi standar | Diperlukan jika A tidak memenuhi ruang/rating |
 
-**Rekomendasi:** pertahankan dua channel (L/N) sebagai arah desain, dengan rating final **8 A/1.840 W**. Module bukan DPST mechanically linked; uji tiap channel dan dokumentasikan residual risk. Jangan kembali ke satu kutub hanya untuk mengejar rating lebih tinggi.
+**Rekomendasi:** pertahankan dua channel (L/N) sebagai arah desain, dengan rating provisional **6 A/1.380 W** (dibatasi BLX-A 6.3 A holder). Module bukan DPST mechanically linked; uji tiap channel dan dokumentasikan residual risk. Jangan kembali ke satu kutub hanya untuk mengejar rating lebih tinggi.
 
 ## 3. PE path
 

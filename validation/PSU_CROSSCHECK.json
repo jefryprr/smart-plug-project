@@ -18,7 +18,7 @@
   "issues": [],
   "limitations": [
     "Static net/width check only; DRC does not prove creepage or hipot.",
-    "HLK-5M05 footprint is datasheet-derived, not sample-verified.",
+    "HLK-5M05 footprint is custom (KiCad-official geometry), not sample-verified.",
     "Fuse/MOV/TCO/terminal/JST ratings are not verified by this script.",
     "No physical mains test was performed."
   ]
