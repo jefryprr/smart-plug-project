@@ -46,13 +46,13 @@
 7. Jalankan DRC setelah menambahkan footprint; periksa silk-over-pad.
 8. Uji scan dengan phone sebelum enclosure ditutup.
 
-## Aktivasi URL
+## Status URL
 
-QR mengarah ke PDF di repo publik `jefryprr/smart-plug-project`. URL akan **404 sampai** file berikut di-commit dan di-push ke branch `main`:
+QR mengarah ke PDF di repo publik `jefryprr/smart-plug-project`. File sudah di-push ke branch `main` pada 2026-11-27 dan URL sudah dicek merespons (PDF 1,49 MB):
 
-- `hardware/schematic/SYSTEM_SCHEMATIC.pdf`
+`https://github.com/jefryprr/smart-plug-project/blob/main/hardware/schematic/SYSTEM_SCHEMATIC.pdf`
 
-Repo sudah publik, jadi setelah push URL langsung bisa diakses. QR belum diuji lewat internet karena PDF belum di-push.
+QR sudah diuji dengan decoder zxing-cpp dan OpenCV pada gambar hasil render PDF; lihat `QR_TEST_REPORT.md`.
 
 ## Catatan penting
 

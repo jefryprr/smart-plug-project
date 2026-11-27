@@ -56,7 +56,7 @@ Command: `python hardware/pcb/qr/verify_qr_placement.py`
 
 ## 5. Limitations
 
-- URL is not live until `SYSTEM_SCHEMATIC.pdf` is committed and pushed to `main`.
+- URL already live after push to `main` on 2026-11-27; PDF responds on GitHub.
 - Physical adhesion, chemical compatibility, UV/abrasion, and RF effects were not tested.
 - The label is on the SELV carrier inside the enclosure; scanning requires mains OFF and the enclosure open.
 - For scanning without opening the enclosure, apply a **duplicate label on the outside of the enclosure**; do not rely on the internal PCB label alone.
