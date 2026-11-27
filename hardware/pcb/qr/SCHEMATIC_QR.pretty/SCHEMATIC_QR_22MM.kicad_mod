@@ -1,0 +1,31 @@
+(footprint "SCHEMATIC_QR_22MM"
+  (version 20240108)
+  (generator "opencode")
+  (generator_version "8.0")
+  (layer "F.Cu")
+  (descr "22 x 22 mm schematic QR label placement. Silkscreen outline only. No pads, no copper, no solder mask opening. Apply a printed white polyester/polyimide label inside the outline.")
+  (tags "QR label silkscreen documentation")
+  (attr exclude_from_pos_files exclude_from_bom)
+  (fp_rect
+    (start -11 -11)
+    (end 11 11)
+    (stroke (width 0.15) (type solid))
+    (fill none)
+    (layer "F.SilkS")
+  )
+  (fp_rect
+    (start -11.3 -11.3)
+    (end 11.3 11.3)
+    (stroke (width 0.05) (type solid))
+    (fill none)
+    (layer "F.CrtYd")
+  )
+  (fp_text reference "QR1" (at 0 -12.4) (layer "F.SilkS")
+    (effects (font (size 1 1) (thickness 0.15)))
+    hide
+  )
+  (fp_text value "SCHEMATIC_QR" (at 0 12.4) (layer "F.SilkS")
+    (effects (font (size 1 1) (thickness 0.15)))
+    hide
+  )
+)
